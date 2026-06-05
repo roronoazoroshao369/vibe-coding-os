@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "policy": "No external content is vendored in v0.1. Verify licenses before import.",
+  "sources": [
+    {
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source of workflow inspiration. No content imported in v0.1."
+    },
+    {
+      "name": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source of AI coding workflow ideas. No content imported in v0.1."
+    },
+    {
+      "name": "supermemoryai/supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source for memory-related patterns. No content imported in v0.1."
+    },
+    {
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source for Claude memory workflows. No content imported in v0.1."
+    },
+    {
+      "name": "github/spec-kit",
+      "url": "https://github.com/github/spec-kit",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source for spec-driven workflow inspiration. No content imported in v0.1."
+    },
+    {
+      "name": "multica-ai/andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source for skill-style guardrails. No content imported in v0.1."
+    },
+    {
+      "name": "yeachan-heo/oh-my-claudecode",
+      "url": "https://github.com/yeachan-heo/oh-my-claudecode",
+      "license": "unknown",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a potential source for Claude Code organization patterns. No content imported in v0.1."
+    }
+  ]
+}

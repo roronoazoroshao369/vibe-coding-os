@@ -1,0 +1,65 @@
+{
+  "version": "0.1.0",
+  "prompts": [
+    {
+      "name": "vibe-doctor",
+      "path": "commands/vibe-doctor.md",
+      "description": "Diagnose repository health."
+    },
+    {
+      "name": "vibe-implement",
+      "path": "commands/vibe-implement.md",
+      "description": "Implement the current plan with minimal, correct edits."
+    },
+    {
+      "name": "vibe-init",
+      "path": "commands/vibe-init.md",
+      "description": "Prime this repository for disciplined AI-assisted work."
+    },
+    {
+      "name": "vibe-memory",
+      "path": "commands/vibe-memory.md",
+      "description": "Summarize durable session knowledge."
+    },
+    {
+      "name": "vibe-merge",
+      "path": "commands/vibe-merge.md",
+      "description": "Assess merge readiness."
+    },
+    {
+      "name": "vibe-plan",
+      "path": "commands/vibe-plan.md",
+      "description": "Turn the accepted spec into an execution plan."
+    },
+    {
+      "name": "vibe-reference-add",
+      "path": "commands/vibe-reference-add.md",
+      "description": "Add a new reference repository to the Reference Intelligence Layer."
+    },
+    {
+      "name": "vibe-reference-audit",
+      "path": "commands/vibe-reference-audit.md",
+      "description": "Audit one or more tracked references and record useful upstream changes."
+    },
+    {
+      "name": "vibe-reference-index",
+      "path": "commands/vibe-reference-index.md",
+      "description": "Rebuild and check the Reference Intelligence Layer index."
+    },
+    {
+      "name": "vibe-reference-update",
+      "path": "commands/vibe-reference-update.md",
+      "description": "Update local files based on audited upstream changes without copying content."
+    },
+    {
+      "name": "vibe-review",
+      "path": "commands/vibe-review.md",
+      "description": "Review the current diff against the spec and plan."
+    },
+    {
+      "name": "vibe-spec",
+      "path": "commands/vibe-spec.md",
+      "description": "Create or update a concise spec before implementation."
+    }
+  ]
+}

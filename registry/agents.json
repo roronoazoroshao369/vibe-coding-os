@@ -1,0 +1,25 @@
+{
+  "version": "0.1.0",
+  "agents": [
+    {
+      "name": "architect-agent",
+      "path": "skills/agents/architect-agent/SKILL.md",
+      "description": "Design a minimal technical approach that satisfies a spec."
+    },
+    {
+      "name": "implementer-agent",
+      "path": "skills/agents/implementer-agent/SKILL.md",
+      "description": "Make focused code changes that follow the plan and local conventions."
+    },
+    {
+      "name": "reviewer-agent",
+      "path": "skills/agents/reviewer-agent/SKILL.md",
+      "description": "Review a patch for correctness, simplicity, risks, and readiness."
+    },
+    {
+      "name": "tester-agent",
+      "path": "skills/agents/tester-agent/SKILL.md",
+      "description": "Find and run the most valuable tests for a change."
+    }
+  ]
+}
