@@ -1,0 +1,113 @@
+{
+  "version": "0.1.0",
+  "skills": [
+    {
+      "name": "architect-agent",
+      "path": "skills/agents/architect-agent/SKILL.md",
+      "category": "agents",
+      "description": "Design a minimal technical approach that satisfies a spec."
+    },
+    {
+      "name": "implementer-agent",
+      "path": "skills/agents/implementer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Make focused code changes that follow the plan and local conventions."
+    },
+    {
+      "name": "reviewer-agent",
+      "path": "skills/agents/reviewer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Review a patch for correctness, simplicity, risks, and readiness."
+    },
+    {
+      "name": "tester-agent",
+      "path": "skills/agents/tester-agent/SKILL.md",
+      "category": "agents",
+      "description": "Find and run the most valuable tests for a change."
+    },
+    {
+      "name": "clarify-before-code",
+      "path": "skills/core/clarify-before-code/SKILL.md",
+      "category": "core",
+      "description": "Prevent wasted implementation by resolving ambiguity before edits."
+    },
+    {
+      "name": "plan-driven-execution",
+      "path": "skills/core/plan-driven-execution/SKILL.md",
+      "category": "core",
+      "description": "Convert a spec or task into small ordered implementation steps."
+    },
+    {
+      "name": "review-before-merge",
+      "path": "skills/core/review-before-merge/SKILL.md",
+      "category": "core",
+      "description": "Catch correctness, maintainability, security, and attribution issues before merge."
+    },
+    {
+      "name": "spec-first-development",
+      "path": "skills/core/spec-first-development/SKILL.md",
+      "category": "core",
+      "description": "Turn intent into a compact specification before non-trivial code changes."
+    },
+    {
+      "name": "test-driven-development",
+      "path": "skills/core/test-driven-development/SKILL.md",
+      "category": "core",
+      "description": "Drive behavior changes with tests or executable checks."
+    },
+    {
+      "name": "verification-before-done",
+      "path": "skills/core/verification-before-done/SKILL.md",
+      "category": "core",
+      "description": "Ensure completion claims are backed by evidence."
+    },
+    {
+      "name": "vibe-bootstrap",
+      "path": "skills/core/vibe-bootstrap/SKILL.md",
+      "category": "core",
+      "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
+    },
+    {
+      "name": "context-retrieval",
+      "path": "skills/memory/context-retrieval/SKILL.md",
+      "category": "memory",
+      "description": "Find relevant repository context before making decisions."
+    },
+    {
+      "name": "privacy-filter",
+      "path": "skills/memory/privacy-filter/SKILL.md",
+      "category": "memory",
+      "description": "Prevent sensitive data from entering prompts, memory, examples, or commits."
+    },
+    {
+      "name": "project-memory",
+      "path": "skills/memory/project-memory/SKILL.md",
+      "category": "memory",
+      "description": "Maintain durable project context that future sessions can trust."
+    },
+    {
+      "name": "session-summarizer",
+      "path": "skills/memory/session-summarizer/SKILL.md",
+      "category": "memory",
+      "description": "Compress a work session into useful handoff context."
+    },
+    {
+      "name": "anti-overengineering",
+      "path": "skills/prompts/anti-overengineering/SKILL.md",
+      "category": "prompts",
+      "description": "Keep solutions simple, local, and proportional to the request."
+    },
+    {
+      "name": "ask-when-confused",
+      "path": "skills/prompts/ask-when-confused/SKILL.md",
+      "category": "prompts",
+      "description": "Make uncertainty visible instead of guessing."
+    },
+    {
+      "name": "karpathy-guardrails",
+      "path": "skills/prompts/karpathy-guardrails/SKILL.md",
+      "category": "prompts",
+      "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+    }
+  ]
+}

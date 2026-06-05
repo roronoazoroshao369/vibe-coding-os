@@ -1,0 +1,181 @@
+{
+  "version": "0.1.0",
+  "last_built": null,
+  "sources": [
+    {
+      "id": "obra-superpowers",
+      "name": "superpowers",
+      "owner": "obra",
+      "url": "https://github.com/obra/superpowers",
+      "category": "skill-system",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/obra-superpowers.md",
+      "changelog": "references/changelogs/obra-superpowers.md",
+      "features": [
+        "skill-orchestration",
+        "anti-overengineering",
+        "review-before-merge"
+      ],
+      "local_targets": [
+        "skills/core/vibe-bootstrap/SKILL.md",
+        "skills/core/plan-driven-execution/SKILL.md",
+        "skills/core/review-before-merge/SKILL.md",
+        "commands/vibe-init.md",
+        "commands/vibe-review.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for composable agent skills and workflow ergonomics."
+    },
+    {
+      "id": "affaan-m-ecc",
+      "name": "ECC",
+      "owner": "affaan-m",
+      "url": "https://github.com/affaan-m/ECC",
+      "category": "coding-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/affaan-m-ecc.md",
+      "changelog": "references/changelogs/affaan-m-ecc.md",
+      "features": [
+        "spec-driven-development",
+        "tdd-loop",
+        "review-before-merge"
+      ],
+      "local_targets": [
+        "skills/core/spec-first-development/SKILL.md",
+        "skills/core/test-driven-development/SKILL.md",
+        "commands/vibe-spec.md",
+        "commands/vibe-implement.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for end-to-end disciplined AI coding loops."
+    },
+    {
+      "id": "supermemoryai-supermemory",
+      "name": "supermemory",
+      "owner": "supermemoryai",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "category": "memory-system",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/supermemoryai-supermemory.md",
+      "changelog": "references/changelogs/supermemoryai-supermemory.md",
+      "features": [
+        "persistent-memory"
+      ],
+      "local_targets": [
+        "skills/memory/project-memory/SKILL.md",
+        "skills/memory/context-retrieval/SKILL.md",
+        "skills/memory/privacy-filter/SKILL.md",
+        "templates/memory-template.md",
+        "commands/vibe-memory.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for durable memory and retrieval concepts."
+    },
+    {
+      "id": "thedotmack-claude-mem",
+      "name": "claude-mem",
+      "owner": "thedotmack",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "category": "memory-system",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/thedotmack-claude-mem.md",
+      "changelog": "references/changelogs/thedotmack-claude-mem.md",
+      "features": [
+        "persistent-memory"
+      ],
+      "local_targets": [
+        "CLAUDE.md",
+        "skills/memory/session-summarizer/SKILL.md",
+        "skills/memory/project-memory/SKILL.md",
+        "commands/vibe-memory.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for Claude-oriented memory workflows."
+    },
+    {
+      "id": "github-spec-kit",
+      "name": "spec-kit",
+      "owner": "github",
+      "url": "https://github.com/github/spec-kit",
+      "category": "specification-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/github-spec-kit.md",
+      "changelog": "references/changelogs/github-spec-kit.md",
+      "features": [
+        "spec-driven-development",
+        "skill-orchestration",
+        "tdd-loop"
+      ],
+      "local_targets": [
+        "templates/spec-template.md",
+        "templates/plan-template.md",
+        "skills/core/spec-first-development/SKILL.md",
+        "skills/core/plan-driven-execution/SKILL.md",
+        "commands/vibe-spec.md",
+        "commands/vibe-plan.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for spec-first delivery and structured implementation planning."
+    },
+    {
+      "id": "multica-ai-andrej-karpathy-skills",
+      "name": "andrej-karpathy-skills",
+      "owner": "multica-ai",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "category": "prompt-guardrails",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/multica-ai-andrej-karpathy-skills.md",
+      "changelog": "references/changelogs/multica-ai-andrej-karpathy-skills.md",
+      "features": [
+        "anti-overengineering",
+        "tdd-loop"
+      ],
+      "local_targets": [
+        "skills/prompts/karpathy-guardrails/SKILL.md",
+        "skills/prompts/anti-overengineering/SKILL.md",
+        "commands/vibe-implement.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for practical guardrails and empirical iteration patterns."
+    },
+    {
+      "id": "yeachan-heo-oh-my-claudecode",
+      "name": "oh-my-claudecode",
+      "owner": "yeachan-heo",
+      "url": "https://github.com/yeachan-heo/oh-my-claudecode",
+      "category": "claude-code-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/yeachan-heo-oh-my-claudecode.md",
+      "changelog": "references/changelogs/yeachan-heo-oh-my-claudecode.md",
+      "features": [
+        "skill-orchestration",
+        "multi-agent-workflow",
+        "review-before-merge"
+      ],
+      "local_targets": [
+        "CLAUDE.md",
+        "skills/agents/architect-agent/SKILL.md",
+        "skills/agents/implementer-agent/SKILL.md",
+        "skills/agents/reviewer-agent/SKILL.md",
+        "skills/agents/tester-agent/SKILL.md",
+        "adapters/claude-code/README.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for Claude Code organization and agent workflow ergonomics."
+    }
+  ]
+}
