@@ -57,6 +57,14 @@
       "status": "candidate_inspiration",
       "import_mode": "none",
       "notes": "Track as a potential source for Claude Code organization patterns. No content imported in v0.1."
+    },
+    {
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "license": "MIT",
+      "status": "candidate_inspiration",
+      "import_mode": "none",
+      "notes": "Track as a source of small composable engineering skills for Claude Code. No content imported; ideas require review before adaptation."
     }
   ]
 }
