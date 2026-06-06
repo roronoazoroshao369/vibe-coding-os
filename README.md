@@ -58,6 +58,15 @@ Manual usage options:
 4. Use templates from `templates/` to create specs, plans, tasks, reviews, and memory notes.
 5. Walk through complete examples in `examples/`, starting with the [feature workflow](examples/feature-workflow/README.md) or [bugfix workflow](examples/bugfix-workflow/README.md).
 
+## Vietnamese documentation
+
+Vietnamese onboarding and reference docs are available under [`docs/vi/`](docs/vi/index.md):
+
+- [`docs/vi/index.md`](docs/vi/index.md) — overview, quick start, feature index, and glossary.
+- [`docs/vi/skills-and-commands.md`](docs/vi/skills-and-commands.md) — Vietnamese reference for commands, skills, and skill combos.
+- [`docs/vi/folders-and-workflows.md`](docs/vi/folders-and-workflows.md) — repository map and common workflows.
+- [`docs/vi/strategy-and-roadmap.md`](docs/vi/strategy-and-roadmap.md) — status review, strategic goal, metrics, and future roadmap.
+
 ## Skill system
 
 A skill is a portable operating procedure stored as `SKILL.md`. Every skill uses the same sections:

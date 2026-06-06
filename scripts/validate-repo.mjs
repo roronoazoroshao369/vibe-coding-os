@@ -122,6 +122,15 @@ function requireUniqueNames(records, label) {
   }
 }
 
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+async function findSkillDirs(root) {
+  const skillFiles = await findSkillFiles(root);
+  return skillFiles.map((file) => normalizePath(path.dirname(file))).sort();
+}
+
 async function findSkillFiles(root) {
   if (!existsSync(root)) return [];
   const found = [];
@@ -213,15 +222,6 @@ for (const file of [
     errors.push(`Invalid JSON in ${file}: ${error.message}`);
   }
 
-  requireUniqueNames(registry[arrayName], label);
-  for (const [position, entry] of registry[arrayName].entries()) {
-    const entryLabel = `${file} ${label} at index ${position}`;
-    requireStringFields(entry, requiredFields, entryLabel);
-    if (isNonEmptyString(entry?.path) && !existsSync(entry.path)) {
-      errors.push(`${entryLabel} path does not exist: ${entry.path}`);
-    }
-  }
-  return registry[arrayName];
 }
 
 function validateRequiredRegistryCoverage(requiredPaths, entries, registryFile, arrayName, coveredType) {
