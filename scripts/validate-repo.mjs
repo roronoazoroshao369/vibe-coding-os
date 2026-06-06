@@ -25,7 +25,8 @@ const requiredCommands = [
   'vibe-review.md',
   'vibe-memory.md',
   'vibe-merge.md',
-  'vibe-doctor.md'
+  'vibe-doctor.md',
+  'vibe-upstream-sync.md'
 ].map((file) => path.join('commands', file));
 
 const requiredTemplates = [
@@ -33,11 +34,13 @@ const requiredTemplates = [
   'plan-template.md',
   'task-template.md',
   'review-template.md',
-  'memory-template.md'
+  'memory-template.md',
+  'upstream-audit-template.md'
 ].map((file) => path.join('templates', file));
 
 const requiredSkillDirs = [
   'skills/core/vibe-bootstrap',
+  'skills/core/upstream-intelligence-loop',
   'skills/core/clarify-before-code',
   'skills/core/spec-first-development',
   'skills/core/plan-driven-execution',
