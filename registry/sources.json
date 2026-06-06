@@ -5,42 +5,42 @@
     {
       "name": "obra/superpowers",
       "url": "https://github.com/obra/superpowers",
-      "license": "unknown",
+      "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source of workflow inspiration. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "affaan-m/ECC",
       "url": "https://github.com/affaan-m/ECC",
-      "license": "unknown",
+      "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source of AI coding workflow ideas. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "supermemoryai/supermemory",
       "url": "https://github.com/supermemoryai/supermemory",
-      "license": "unknown",
+      "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source for memory-related patterns. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "thedotmack/claude-mem",
       "url": "https://github.com/thedotmack/claude-mem",
-      "license": "unknown",
+      "license": "Apache-2.0",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source for Claude memory workflows. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "github/spec-kit",
       "url": "https://github.com/github/spec-kit",
-      "license": "unknown",
+      "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source for spec-driven workflow inspiration. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "multica-ai/andrej-karpathy-skills",
@@ -48,15 +48,15 @@
       "license": "unknown",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source for skill-style guardrails. No content imported in v0.1."
+      "notes": "Tracked as inspiration only. No root license file was found in the 2026-06-06 local clone audit; do not import content without license review."
     },
     {
       "name": "yeachan-heo/oh-my-claudecode",
       "url": "https://github.com/yeachan-heo/oh-my-claudecode",
-      "license": "unknown",
+      "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a potential source for Claude Code organization patterns. No content imported in v0.1."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
       "name": "mattpocock/skills",
@@ -64,7 +64,7 @@
       "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
-      "notes": "Track as a source of small composable engineering skills for Claude Code. No content imported; ideas require review before adaptation."
+      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     }
   ]
 }

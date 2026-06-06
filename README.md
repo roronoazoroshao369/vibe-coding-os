@@ -112,6 +112,8 @@ Vibe Coding OS tracks upstream inspirations through a markdown-first Reference I
 
 Use it before adapting upstream ideas: read the source entry, inspect the linked feature and mapping docs, update the local changelog when auditing upstream, and keep attribution decisions explicit. Reference validation is available with `npm run validate:references`, and the main validation script includes it.
 
+For hands-on audits, `npm run references:clone` creates shallow ignored working copies under `references/upstreams/`. Treat those clones as disposable research material only; durable local knowledge belongs in `references/changelogs/`, source docs, feature mappings, skills, commands, templates, and attribution files. The detailed loop lives in `references/upstream-audit-workflow.md`.
+
 ## Roadmap
 
 ### v0.1 kernel

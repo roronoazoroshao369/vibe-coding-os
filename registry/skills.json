@@ -56,6 +56,12 @@
       "description": "Drive behavior changes with tests or executable checks."
     },
     {
+      "name": "upstream-intelligence-loop",
+      "path": "skills/core/upstream-intelligence-loop/SKILL.md",
+      "category": "core",
+      "description": "Audit tracked upstream AI-coding repositories and distill maintainable local improvements without vendoring source."
+    },
+    {
       "name": "verification-before-done",
       "path": "skills/core/verification-before-done/SKILL.md",
       "category": "core",

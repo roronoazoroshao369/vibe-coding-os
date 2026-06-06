@@ -22,7 +22,8 @@ const requiredReferenceCommands = [
   'vibe-reference-add.md',
   'vibe-reference-audit.md',
   'vibe-reference-update.md',
-  'vibe-reference-index.md'
+  'vibe-reference-index.md',
+  'vibe-upstream-sync.md'
 ].map((file) => path.join('commands', file));
 
 function requireFile(file) {

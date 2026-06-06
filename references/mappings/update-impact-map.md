@@ -21,6 +21,7 @@ Use this document to decide which local files to inspect when a tracked referenc
 - Multi-agent ideas usually affect `skills/agents/*` and adapter docs.
 - Testing ideas usually affect `skills/core/test-driven-development/SKILL.md`, command prompts, and task templates.
 - Review ideas usually affect `skills/core/review-before-merge/SKILL.md`, `skills/core/verification-before-done/SKILL.md`, and `templates/review-template.md`.
+- Upstream audit process ideas usually affect `skills/core/upstream-intelligence-loop/SKILL.md`, `commands/vibe-upstream-sync.md`, `templates/upstream-audit-template.md`, and `references/upstream-audit-workflow.md`.
 
 ## Safety rules
 

@@ -60,6 +60,11 @@
       "name": "vibe-spec",
       "path": "commands/vibe-spec.md",
       "description": "Create or update a concise spec before implementation."
+    },
+    {
+      "name": "vibe-upstream-sync",
+      "path": "commands/vibe-upstream-sync.md",
+      "description": "Clone, audit, and distill tracked upstream references without vendoring source."
     }
   ]
 }
