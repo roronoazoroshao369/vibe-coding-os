@@ -99,7 +99,7 @@ The registry at `registry/prompts.json` tracks these command prompts.
 
 ## Adapters
 
-Adapters document how to use the framework in specific environments:
+Adapters document how to use the framework in specific environments. Start with the [adapter compatibility matrix](adapters/compatibility-matrix.md) when choosing setup details across tools:
 
 - `adapters/claude-code/`
 - `adapters/codex/`
