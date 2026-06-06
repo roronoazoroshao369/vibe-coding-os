@@ -38,6 +38,11 @@ const requiredTemplates = [
   'upstream-audit-template.md'
 ].map((file) => path.join('templates', file));
 
+const requiredExamples = [
+  'feature-workflow/README.md',
+  'bugfix-workflow/README.md'
+].map((file) => path.join('examples', file));
+
 const requiredSkillDirs = [
   'skills/core/vibe-bootstrap',
   'skills/core/upstream-intelligence-loop',
@@ -68,7 +73,7 @@ function requireFile(file) {
   }
 }
 
-for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates]) {
+for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates, ...requiredExamples]) {
   requireFile(file);
 }
 
@@ -118,4 +123,4 @@ if (errors.length > 0) {
 }
 
 console.log('Vibe Coding OS validation passed.');
-console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, and ${requiredTemplates.length} templates.`);
+console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, ${requiredTemplates.length} templates, and ${requiredExamples.length} examples.`);
