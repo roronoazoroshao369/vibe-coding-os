@@ -1,4 +1,4 @@
-# Project Memory
+# Skill: Project Memory
 
 ## Purpose
 
@@ -38,3 +38,11 @@ A concise memory entry with source, confidence, and safety status.
 - [ ] Staleness risk is noted.
 
 Related mattpocock-inspired skills: `skills/core/shared-domain-language/SKILL.md`, `skills/core/architecture-decision-records/SKILL.md`, and `skills/memory/agent-handoff/SKILL.md`.
+
+## Applied / Not Applied
+
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Not applied: hosted Supermemory service requirement, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
+
+## Ghi chú tiếng Việt
+
+Dùng kỹ năng này để lưu hoặc truy xuất ngữ cảnh bền vững một cách an toàn. Không lưu bí mật, token, khóa riêng tư hoặc dữ liệu cá nhân không cần thiết.

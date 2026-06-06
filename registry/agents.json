@@ -20,6 +20,11 @@
       "name": "tester-agent",
       "path": "skills/agents/tester-agent/SKILL.md",
       "description": "Find and run the most valuable tests for a change."
+    },
+    {
+      "name": "memory-architect-agent",
+      "path": "skills/memory/memory-architecture/SKILL.md",
+      "description": "Plan memory architecture, privacy, retrieval, and provider boundaries for memory-sensitive work."
     }
   ]
 }

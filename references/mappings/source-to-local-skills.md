@@ -189,3 +189,19 @@ Import mode: inspiration/adaptation only; no vendored content.
 ## Ghi chú tiếng Việt
 
 Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh hưởng skill/command/template/workflow nào. Khi upstream update, kiểm tra danh sách này trước khi sửa file local và ghi changelog.
+
+## supermemoryai/supermemory update impact rules
+
+- If upstream changes memory API, inspect `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `templates/memory-provider-adapter-template.md`, `skills/memory/memory-provider-adapter/SKILL.md`, and `references/features/memory-provider-adapter.md`.
+- If upstream adds new integrations, inspect `adapters/memory/supermemory-adapter-plan.md`, `commands/vibe-memory-provider-plan.md`, `registry/sources.json`, and `references/mappings/feature-to-local-files.md`.
+- If upstream changes privacy/security model, inspect `skills/memory/memory-privacy/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
+- If upstream adds memory benchmarks/evals, inspect `skills/memory/memory-evaluation/SKILL.md`, `references/features/memory-evaluation.md`, `templates/memory-evaluation-template.md`, and `commands/vibe-memory-audit.md`.
+- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
+- If upstream adds local/self-hosting patterns, inspect `skills/memory/local-first-memory/SKILL.md`, `adapters/memory/local-memory-adapter.md`, `docs/workflows/memory-provider-adapter.md`, and `references/features/local-first-memory.md`.
+- If upstream changes docs or examples, inspect `references/sources/supermemoryai-supermemory.md`, `references/changelogs/supermemoryai-supermemory.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md` before adapting any idea.
+
+### supermemoryai/supermemory local skill mapping
+
+- Source: `references/sources/supermemoryai-supermemory.md`.
+- Core memory skills: `skills/memory/memory-architecture/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-privacy/SKILL.md`, `skills/memory/memory-evaluation/SKILL.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `skills/memory/local-first-memory/SKILL.md`.
+- Enhanced existing skills: `skills/memory/project-memory/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/agent-handoff/SKILL.md`.
