@@ -42,6 +42,13 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Memory:** record durable decisions, gotchas, and follow-ups.
 - **Merge:** ship only after verification status is clear.
 
+
+## Superpowers-style methodology adaptation
+
+Vibe Coding OS tracks [`obra/superpowers`](https://github.com/obra/superpowers) as an MIT-licensed inspiration source and adapts its composable-skill methodology into this repository's own local skill system. The local integration focuses on brainstorming before coding, spec/design approval for non-trivial work, isolated branches or worktrees, detailed plans, TDD, subagent-friendly task boundaries, review exchange, verification before completion, branch-finishing rituals, systematic debugging, skill-writing guidance, and multi-harness portability.
+
+The adapted workflow is documented in [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md). The reference audit and mapping live in `references/sources/obra-superpowers.md`, `references/changelogs/obra-superpowers.md`, and `references/mappings/`. No upstream code, skill files, or large documentation blocks are vendored.
+
 ## Installation and manual usage
 
 This repository is intentionally dependency-light. To validate the framework structure:

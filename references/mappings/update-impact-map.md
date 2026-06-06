@@ -7,7 +7,7 @@ Use this document to decide which local files to inspect when a tracked referenc
 1. Identify the source id in `references/index.json`.
 2. Read the source doc and changelog.
 3. Review the source's `features` and `local_targets` arrays.
-4. Read the matching feature docs under `references/features/`.
+4. Read the matching feature docs under `references/features/` and mapping docs under `references/mappings/`.
 5. Inspect local targets before editing.
 6. Update only files that benefit from the upstream change.
 7. Record audit findings in the source changelog.
@@ -15,12 +15,18 @@ Use this document to decide which local files to inspect when a tracked referenc
 
 ## Common update paths
 
-- Spec or planning ideas usually affect `templates/spec-template.md`, `templates/plan-template.md`, `skills/core/spec-first-development/SKILL.md`, and `commands/vibe-spec.md`.
+- Superpowers-style workflow changes affect `docs/workflows/superpowers-inspired-workflow.md`, `skills/meta/using-vibe-coding-os/SKILL.md`, `README.md`, `AGENTS.md`, and `CLAUDE.md`.
+- Brainstorming or clarification changes affect `skills/core/brainstorming/SKILL.md`, `skills/core/clarify-before-code/SKILL.md`, and `commands/vibe-brainstorm.md`.
+- Git isolation changes affect `skills/core/using-git-worktrees/SKILL.md` and `commands/vibe-worktree.md`.
+- Spec or planning ideas usually affect `templates/spec-template.md`, `templates/plan-template.md`, `skills/core/spec-first-development/SKILL.md`, `skills/core/writing-plans/SKILL.md`, `skills/core/executing-plans/SKILL.md`, `skills/core/plan-driven-execution/SKILL.md`, and planning commands.
 - Memory ideas usually affect `skills/memory/*`, `templates/memory-template.md`, and `commands/vibe-memory.md`.
-- Skill orchestration ideas usually affect `registry/skills.json`, `skills/core/vibe-bootstrap/SKILL.md`, `CLAUDE.md`, and `AGENTS.md`.
-- Multi-agent ideas usually affect `skills/agents/*` and adapter docs.
+- Skill orchestration ideas usually affect `registry/skills.json`, `skills/core/vibe-bootstrap/SKILL.md`, `skills/meta/using-vibe-coding-os/SKILL.md`, `CLAUDE.md`, and `AGENTS.md`.
+- Multi-agent ideas usually affect `skills/core/subagent-driven-development/SKILL.md`, `skills/agents/*`, `commands/vibe-subagents.md`, and adapter docs.
 - Testing ideas usually affect `skills/core/test-driven-development/SKILL.md`, command prompts, and task templates.
-- Review ideas usually affect `skills/core/review-before-merge/SKILL.md`, `skills/core/verification-before-done/SKILL.md`, and `templates/review-template.md`.
+- Review ideas usually affect `skills/core/requesting-code-review/SKILL.md`, `skills/core/receiving-code-review/SKILL.md`, `skills/core/review-before-merge/SKILL.md`, `skills/core/verification-before-done/SKILL.md`, and `templates/review-template.md`.
+- Debugging ideas usually affect `skills/core/systematic-debugging/SKILL.md` and `commands/vibe-debug.md`.
+- Branch-finishing ideas usually affect `skills/core/finishing-a-development-branch/SKILL.md`, `commands/vibe-finish-branch.md`, and `commands/vibe-merge.md`.
+- Skill-writing ideas usually affect `skills/meta/writing-skills/SKILL.md`, `commands/vibe-write-skill.md`, and skill registry/documentation coverage.
 - Upstream audit process ideas usually affect `skills/core/upstream-intelligence-loop/SKILL.md`, `commands/vibe-upstream-sync.md`, `templates/upstream-audit-template.md`, and `references/upstream-audit-workflow.md`.
 
 ## Safety rules
@@ -29,3 +35,4 @@ Use this document to decide which local files to inspect when a tracked referenc
 - If the license is not verified, treat the source as inspiration only.
 - If a local target no longer exists, update `references/index.json` before validation can pass.
 - If an upstream idea creates scope creep, record it as a possible future investigation instead of changing the kernel.
+- Never stage `references/upstreams/` clone contents.

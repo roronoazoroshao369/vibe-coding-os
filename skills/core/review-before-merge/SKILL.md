@@ -1,4 +1,4 @@
-# Review Before Merge
+# Skill: Review Before Merge
 
 ## Purpose
 
@@ -36,3 +36,7 @@ A review note with approval status, blockers, risks, and follow-ups.
 - [ ] Tests and docs are adequate.
 - [ ] No obvious secret or attribution issue exists.
 - [ ] Follow-ups are explicit.
+
+## Superpowers alignment
+
+Use with `requesting-code-review` and `receiving-code-review` for review exchange.

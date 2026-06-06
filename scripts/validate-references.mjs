@@ -26,6 +26,34 @@ const requiredReferenceCommands = [
   'vibe-reference-index.md',
   'vibe-upstream-sync.md'
 ].map((file) => path.join('commands', file));
+const requiredSuperpowersFiles = [
+  'references/sources/obra-superpowers.md',
+  'references/changelogs/obra-superpowers.md',
+  'docs/workflows/superpowers-inspired-workflow.md',
+  'skills/core/brainstorming/SKILL.md',
+  'skills/core/using-git-worktrees/SKILL.md',
+  'skills/core/writing-plans/SKILL.md',
+  'skills/core/executing-plans/SKILL.md',
+  'skills/core/subagent-driven-development/SKILL.md',
+  'skills/core/requesting-code-review/SKILL.md',
+  'skills/core/receiving-code-review/SKILL.md',
+  'skills/core/finishing-a-development-branch/SKILL.md',
+  'skills/core/systematic-debugging/SKILL.md',
+  'skills/core/verification-before-completion/SKILL.md',
+  'skills/meta/writing-skills/SKILL.md',
+  'skills/meta/using-vibe-coding-os/SKILL.md',
+  'commands/vibe-brainstorm.md',
+  'commands/vibe-worktree.md',
+  'commands/vibe-write-plan.md',
+  'commands/vibe-execute-plan.md',
+  'commands/vibe-subagents.md',
+  'commands/vibe-request-review.md',
+  'commands/vibe-receive-review.md',
+  'commands/vibe-finish-branch.md',
+  'commands/vibe-debug.md',
+  'commands/vibe-verify.md',
+  'commands/vibe-write-skill.md'
+];
 
 function requireFile(file) {
   if (!existsSync(file)) errors.push(`Missing required file: ${file}`);
@@ -147,7 +175,7 @@ function validateRegistryReferenceConsistency(index, registry) {
 
 requireFile('references/index.json');
 requireFile('registry/sources.json');
-for (const file of [...requiredFeatureDocs, ...requiredMappingDocs, ...requiredReferenceCommands]) requireFile(file);
+for (const file of [...requiredFeatureDocs, ...requiredMappingDocs, ...requiredReferenceCommands, ...requiredSuperpowersFiles]) requireFile(file);
 
 const index = await readJson('references/index.json');
 const sourceRegistry = await readJson('registry/sources.json');

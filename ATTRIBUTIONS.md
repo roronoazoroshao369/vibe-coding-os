@@ -10,6 +10,15 @@ Candidate inspiration sources are tracked in `registry/sources.json`. Their lice
 
 No external material has been imported in v0.1.
 
+## obra/superpowers
+
+- Name: `obra/superpowers`
+- URL: https://github.com/obra/superpowers
+- License: MIT, verified during the 2026-06-06 local clone audit
+- What Vibe Coding OS uses it for: inspiration for composable skill methodology, mandatory workflow discipline, brainstorming, worktree isolation, planning, TDD, review exchange, branch finishing, verification, debugging, skill writing, and multi-harness packaging.
+- Import mode: inspiration/adaptation only. Vibe Coding OS does not vendor upstream code, prompts, skill files, assets, tests, or documentation from this source.
+
+
 ## Future attribution process
 
 When external ideas, code, docs, prompts, or tests are imported or closely adapted:

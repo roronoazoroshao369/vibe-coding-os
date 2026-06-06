@@ -26,16 +26,46 @@
       "description": "Find and run the most valuable tests for a change."
     },
     {
+      "name": "brainstorming",
+      "path": "skills/core/brainstorming/SKILL.md",
+      "category": "core",
+      "description": "Explore intent, constraints, options, and open questions before committing to code."
+    },
+    {
       "name": "clarify-before-code",
       "path": "skills/core/clarify-before-code/SKILL.md",
       "category": "core",
       "description": "Prevent wasted implementation by resolving ambiguity before edits."
     },
     {
+      "name": "executing-plans",
+      "path": "skills/core/executing-plans/SKILL.md",
+      "category": "core",
+      "description": "Execute accepted plans in small scoped steps with visible validation."
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "path": "skills/core/finishing-a-development-branch/SKILL.md",
+      "category": "core",
+      "description": "Close branch work with clean status, validation, review, attribution, and handoff notes."
+    },
+    {
       "name": "plan-driven-execution",
       "path": "skills/core/plan-driven-execution/SKILL.md",
       "category": "core",
       "description": "Convert a spec or task into small ordered implementation steps."
+    },
+    {
+      "name": "receiving-code-review",
+      "path": "skills/core/receiving-code-review/SKILL.md",
+      "category": "core",
+      "description": "Triage review feedback, fix blockers, rerun checks, and document deferrals."
+    },
+    {
+      "name": "requesting-code-review",
+      "path": "skills/core/requesting-code-review/SKILL.md",
+      "category": "core",
+      "description": "Package scope, diff, risks, and verification evidence for useful review."
     },
     {
       "name": "review-before-merge",
@@ -50,6 +80,18 @@
       "description": "Turn intent into a compact specification before non-trivial code changes."
     },
     {
+      "name": "subagent-driven-development",
+      "path": "skills/core/subagent-driven-development/SKILL.md",
+      "category": "core",
+      "description": "Coordinate bounded parallel agent passes while preserving integration ownership."
+    },
+    {
+      "name": "systematic-debugging",
+      "path": "skills/core/systematic-debugging/SKILL.md",
+      "category": "core",
+      "description": "Debug failures through evidence, hypotheses, small experiments, and regression checks."
+    },
+    {
       "name": "test-driven-development",
       "path": "skills/core/test-driven-development/SKILL.md",
       "category": "core",
@@ -62,6 +104,18 @@
       "description": "Audit tracked upstream AI-coding repositories and distill maintainable local improvements without vendoring source."
     },
     {
+      "name": "using-git-worktrees",
+      "path": "skills/core/using-git-worktrees/SKILL.md",
+      "category": "core",
+      "description": "Isolate risky or parallel work in git worktrees without disrupting user changes."
+    },
+    {
+      "name": "verification-before-completion",
+      "path": "skills/core/verification-before-completion/SKILL.md",
+      "category": "core",
+      "description": "Require evidence and explicit limitations before claiming completion."
+    },
+    {
       "name": "verification-before-done",
       "path": "skills/core/verification-before-done/SKILL.md",
       "category": "core",
@@ -72,6 +126,12 @@
       "path": "skills/core/vibe-bootstrap/SKILL.md",
       "category": "core",
       "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
+    },
+    {
+      "name": "writing-plans",
+      "path": "skills/core/writing-plans/SKILL.md",
+      "category": "core",
+      "description": "Create executable plans with file targets, risks, rollback points, and checks."
     },
     {
       "name": "context-retrieval",
@@ -96,6 +156,18 @@
       "path": "skills/memory/session-summarizer/SKILL.md",
       "category": "memory",
       "description": "Compress a work session into useful handoff context."
+    },
+    {
+      "name": "using-vibe-coding-os",
+      "path": "skills/meta/using-vibe-coding-os/SKILL.md",
+      "category": "meta",
+      "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries."
+    },
+    {
+      "name": "writing-skills",
+      "path": "skills/meta/writing-skills/SKILL.md",
+      "category": "meta",
+      "description": "Write original, portable, indexed skills with required sections and validation."
     },
     {
       "name": "anti-overengineering",

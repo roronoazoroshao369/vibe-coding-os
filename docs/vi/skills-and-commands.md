@@ -77,3 +77,24 @@ Tài liệu này giúp chọn đúng command và skill cho từng tình huống.
 | Repo health | `vibe-bootstrap` → `vibe-doctor` → `verification-before-done` |
 | Reference audit | `upstream-intelligence-loop` → `privacy-filter` → `verification-before-done` |
 | Session dài | `context-retrieval` → `session-summarizer` → `project-memory` → `privacy-filter` |
+
+## 8. Superpowers-inspired workflow index
+
+Vibe Coding OS hiện track `obra/superpowers` như nguồn cảm hứng/adaptation cho workflow kỷ luật hơn. Nội dung local là bản viết mới, không vendor upstream.
+
+| Pha | Command | Skill local |
+| --- | --- | --- |
+| Brainstorm | `vibe-brainstorm` | `brainstorming`, alias `clarify-before-code` |
+| Worktree isolation | `vibe-worktree` | `using-git-worktrees` |
+| Write plan | `vibe-write-plan` | `writing-plans`, alias `plan-driven-execution` |
+| Execute plan | `vibe-execute-plan` | `executing-plans`, alias `plan-driven-execution` |
+| Subagents | `vibe-subagents` | `subagent-driven-development`, `skills/agents/*` |
+| Request review | `vibe-request-review` | `requesting-code-review` |
+| Receive review | `vibe-receive-review` | `receiving-code-review` |
+| Finish branch | `vibe-finish-branch` | `finishing-a-development-branch` |
+| Debug | `vibe-debug` | `systematic-debugging` |
+| Verify | `vibe-verify` | `verification-before-completion`, alias `verification-before-done` |
+| Write skill | `vibe-write-skill` | `writing-skills` |
+| Use framework | `vibe-init` | `using-vibe-coding-os`, `vibe-bootstrap` |
+
+Workflow chi tiết nằm ở `docs/workflows/superpowers-inspired-workflow.md`; source tracking nằm ở `references/sources/obra-superpowers.md` và changelog ở `references/changelogs/obra-superpowers.md`.
