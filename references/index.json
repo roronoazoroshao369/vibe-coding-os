@@ -25,7 +25,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "7113b5bf63694b716f8b2413c5919824a82fc095",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for cross-harness registries, placement policy, security guide rails, and workflow conventions."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for cross-harness registries, placement policy, security guide rails, and workflow conventions.",
+      "license": "MIT"
     },
     {
       "id": "github-spec-kit",
@@ -52,7 +53,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "7106858c4e636098815fffa23f6c6b99eb0e156b",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for spec-driven command packages, workflow definitions, templates, and integration testing."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for spec-driven command packages, workflow definitions, templates, and integration testing.",
+      "license": "MIT"
     },
     {
       "id": "mattpocock-skills",
@@ -83,7 +85,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "aaf2453fbdfe7a15c07f11d861224f34ab4b53cb",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for small composable engineering skills and lightweight verification ergonomics."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for small composable engineering skills and lightweight verification ergonomics.",
+      "license": "MIT"
     },
     {
       "id": "multica-ai-andrej-karpathy-skills",
@@ -106,7 +109,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-      "notes": "Baseline audited from local clone on 2026-06-06. No root license found; treat as inspiration only for assumptions, simplicity, surgical changes, and goal-driven execution."
+      "notes": "Baseline audited from local clone on 2026-06-06. No root license found; treat as inspiration only for assumptions, simplicity, surgical changes, and goal-driven execution.",
+      "license": "unknown"
     },
     {
       "id": "obra-superpowers",
@@ -132,7 +136,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "6fd4507659784c351abbd2bc264c7162cfd386dc",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for composable skill orchestration, plan execution, review exchange, and verification-before-completion patterns."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for composable skill orchestration, plan execution, review exchange, and verification-before-completion patterns.",
+      "license": "MIT"
     },
     {
       "id": "supermemoryai-supermemory",
@@ -156,7 +161,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "1b1bd4d2214f7dcf80f95646ae4ea0e46bb6cb2a",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for durable memory, retrieval surfaces, structured operations, and privacy-aware memory design."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for durable memory, retrieval surfaces, structured operations, and privacy-aware memory design.",
+      "license": "MIT"
     },
     {
       "id": "thedotmack-claude-mem",
@@ -179,7 +185,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "671de5e3e20544f1d50e7488088063ffb5275646",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for persistent memory safety, opt-out behavior, observer boundaries, and unintended-recording tests."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for persistent memory safety, opt-out behavior, observer boundaries, and unintended-recording tests.",
+      "license": "Apache-2.0"
     },
     {
       "id": "yeachan-heo-oh-my-claudecode",
@@ -206,7 +213,8 @@
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "3e945671dcf3ed1c1bcc422862815f92c1999143",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for Claude Code agent boundaries, skill budgets, memory merge behavior, and plugin compatibility tests."
+      "notes": "Baseline audited from local clone on 2026-06-06. Study for Claude Code agent boundaries, skill budgets, memory merge behavior, and plugin compatibility tests.",
+      "license": "MIT"
     }
   ]
 }
