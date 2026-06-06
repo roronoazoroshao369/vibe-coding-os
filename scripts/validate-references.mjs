@@ -71,12 +71,13 @@ function validateLicense(source, label) {
   }
 }
 
-function indexRegistrySourcesByUrl(registry) {
+function indexRegistrySources(registry) {
   const byUrl = new Map();
-  if (!registry) return byUrl;
+  const byName = new Map();
+  if (!registry) return { byUrl, byName };
   if (!Array.isArray(registry.sources)) {
     errors.push('registry/sources.json must contain a sources array.');
-    return byUrl;
+    return { byUrl, byName };
   }
 
   for (const [position, source] of registry.sources.entries()) {
@@ -84,7 +85,14 @@ function indexRegistrySourcesByUrl(registry) {
     validateLicense(source, label);
     validateImportMode(source, label);
 
-    if (!isNonEmptyString(source?.name)) errors.push(`${label} is missing required string field: name`);
+    if (!isNonEmptyString(source?.name)) {
+      errors.push(`${label} is missing required string field: name`);
+    } else if (byName.has(source.name)) {
+      errors.push(`Duplicate registry source name: ${source.name}`);
+    } else {
+      byName.set(source.name, source);
+    }
+
     if (!isNonEmptyString(source?.url)) {
       errors.push(`${label} is missing required string field: url`);
       continue;
@@ -97,22 +105,32 @@ function indexRegistrySourcesByUrl(registry) {
       byUrl.set(normalizedUrl, source);
     }
   }
-  return byUrl;
+  return { byUrl, byName };
+}
+
+function matchingRegistrySource(registrySources, referenceSource) {
+  const referenceName = trackedReferenceName(referenceSource);
+  if (isNonEmptyString(referenceName) && registrySources.byName.has(referenceName)) {
+    return registrySources.byName.get(referenceName);
+  }
+  if (isNonEmptyString(referenceSource?.url)) {
+    return registrySources.byUrl.get(normalizeSourceUrl(referenceSource.url));
+  }
+  return null;
 }
 
 function validateRegistryReferenceConsistency(index, registry) {
-  const registryByUrl = indexRegistrySourcesByUrl(registry);
-  if (!index || !Array.isArray(index.sources) || registryByUrl.size === 0) return;
+  const registrySources = indexRegistrySources(registry);
+  if (!index || !Array.isArray(index.sources) || (registrySources.byUrl.size === 0 && registrySources.byName.size === 0)) return;
 
   for (const [position, source] of index.sources.entries()) {
     const label = source?.id || `references/index.json source at index ${position}`;
     validateLicense(source, label);
     validateImportMode(source, label);
-    if (!isNonEmptyString(source?.url)) continue;
 
-    const registrySource = registryByUrl.get(normalizeSourceUrl(source.url));
+    const registrySource = matchingRegistrySource(registrySources, source);
     if (!registrySource) {
-      errors.push(`${label} is missing from registry/sources.json: ${source.url}`);
+      errors.push(`${label} is missing from registry/sources.json: ${trackedReferenceName(source) || source?.url || 'unknown source'}`);
       continue;
     }
 

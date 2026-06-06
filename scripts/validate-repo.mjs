@@ -202,8 +202,7 @@ await validateSkillFileFormat(skillFiles);
 const registries = {
   skills: await readJson('registry/skills.json'),
   prompts: await readJson('registry/prompts.json'),
-  agents: await readJson('registry/agents.json'),
-  sources: await readJson('registry/sources.json')
+  agents: await readJson('registry/agents.json')
 };
 
 const skillEntries = validateRegistryEntries(
