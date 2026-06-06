@@ -204,6 +204,7 @@ const registries = {
   prompts: await readJson('registry/prompts.json'),
   agents: await readJson('registry/agents.json')
 };
+await readJson('registry/sources.json');
 
 const skillEntries = validateRegistryEntries(
   registries.skills,
