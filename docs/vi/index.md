@@ -1,6 +1,6 @@
 # Vibe Coding OS — Tài liệu tiếng Việt
 
-Đây là entrypoint tiếng Việt cho Vibe Coding OS. Mục tiêu của tài liệu này là giúp người dùng Việt hiểu nhanh repo đang có gì, từng feature/thư mục dùng để làm gì, chọn command/skill nào, và nên phát triển framework theo hướng nào.
+Đây là entrypoint tiếng Việt cho Vibe Coding OS. Nếu muốn xem README tiếng Việt trực tiếp trên GitHub, mở [`README.vi.md`](../../README.vi.md). Mục tiêu của tài liệu này là giúp người dùng Việt hiểu nhanh repo đang có gì, từng feature/thư mục dùng để làm gì, chọn command/skill nào, và nên phát triển framework theo hướng nào.
 
 ## 1. Vibe Coding OS là gì?
 
@@ -55,7 +55,7 @@ Task nhỏ có thể dùng phiên bản nhẹ của loop, nhưng task nhiều fi
 
 ## 5. Bắt đầu nhanh trong 10 phút
 
-1. Đọc `README.md` để hiểu triết lý tổng quan.
+1. Đọc [`README.vi.md`](../../README.vi.md) hoặc `README.md` để hiểu triết lý tổng quan.
 2. Chọn adapter theo tool:
    - Claude Code: đọc `CLAUDE.md` và `adapters/claude-code/README.md`.
    - Codex hoặc coding agent đọc `AGENTS.md`: dùng `adapters/codex/README.md`.
