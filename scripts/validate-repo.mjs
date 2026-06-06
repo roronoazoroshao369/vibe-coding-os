@@ -60,11 +60,131 @@ const requiredSkillDirs = [
   'skills/agents/tester-agent'
 ];
 
+const requiredSkillSections = [
+  'Purpose',
+  'When to use',
+  'Inputs',
+  'Workflow',
+  'Outputs',
+  'Failure modes',
+  'Verification checklist'
+];
+
 const errors = [];
+
+function normalizePath(file) {
+  return file.split(path.sep).join('/');
+}
 
 function requireFile(file) {
   if (!existsSync(file)) {
     errors.push(`Missing required file: ${file}`);
+  }
+}
+
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim() !== '';
+}
+
+async function readJson(file) {
+  if (!existsSync(file)) return null;
+  try {
+    return JSON.parse(await readFile(file, 'utf8'));
+  } catch (error) {
+    errors.push(`Invalid JSON in ${file}: ${error.message}`);
+    return null;
+  }
+}
+
+function requireStringFields(record, fields, label) {
+  for (const field of fields) {
+    if (!isNonEmptyString(record?.[field])) {
+      errors.push(`${label} is missing required string field: ${field}`);
+    }
+  }
+}
+
+function requireUniqueNames(records, label) {
+  const seen = new Map();
+  for (const [position, record] of records.entries()) {
+    if (!isNonEmptyString(record?.name)) continue;
+    if (seen.has(record.name)) {
+      errors.push(`Duplicate ${label} name: ${record.name} at indexes ${seen.get(record.name)} and ${position}`);
+    } else {
+      seen.set(record.name, position);
+    }
+  }
+}
+
+async function findSkillFiles(root) {
+  if (!existsSync(root)) return [];
+  const found = [];
+  async function walk(dir) {
+    const entries = await readdir(dir, { withFileTypes: true });
+    const hasSkill = entries.some((entry) => entry.isFile() && entry.name === 'SKILL.md');
+    if (hasSkill) found.push(normalizePath(path.join(dir, 'SKILL.md')));
+    for (const entry of entries) {
+      if (entry.isDirectory()) await walk(path.join(dir, entry.name));
+    }
+  }
+  await walk(root);
+  return found.sort();
+}
+
+async function findCommandFiles(root) {
+  if (!existsSync(root)) return [];
+  const entries = await readdir(root, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => normalizePath(path.join(root, entry.name)))
+    .sort();
+}
+
+function validateRegistryEntries(registry, arrayName, file, requiredFields, label) {
+  if (!registry) return [];
+  if (!Array.isArray(registry[arrayName])) {
+    errors.push(`${file} must contain a ${arrayName} array.`);
+    return [];
+  }
+
+  requireUniqueNames(registry[arrayName], label);
+  for (const [position, entry] of registry[arrayName].entries()) {
+    const entryLabel = `${file} ${label} at index ${position}`;
+    requireStringFields(entry, requiredFields, entryLabel);
+    if (isNonEmptyString(entry?.path) && !existsSync(entry.path)) {
+      errors.push(`${entryLabel} path does not exist: ${entry.path}`);
+    }
+  }
+  return registry[arrayName];
+}
+
+function validateRequiredRegistryCoverage(requiredPaths, entries, registryFile, arrayName, coveredType) {
+  const registeredPaths = new Set(
+    entries.filter((entry) => isNonEmptyString(entry.path)).map((entry) => normalizePath(entry.path))
+  );
+  for (const requiredPath of requiredPaths) {
+    if (!registeredPaths.has(requiredPath)) {
+      errors.push(`${registryFile} is missing a ${arrayName} entry for ${coveredType}: ${requiredPath}`);
+    }
+  }
+}
+
+async function validateSkillFileFormat(skillFiles) {
+  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const requiredHeadingPattern = (section) => new RegExp(`^##\\s+${escapeRegExp(section)}\\s*$`, 'm');
+  for (const skillPath of skillFiles) {
+    const info = await stat(skillPath);
+    if (info.size === 0) {
+      errors.push(`Empty skill file: ${skillPath}`);
+      continue;
+    }
+
+    const content = await readFile(skillPath, 'utf8');
+    for (const section of requiredSkillSections) {
+      if (!requiredHeadingPattern(section).test(content)) {
+        errors.push(`${skillPath} is missing required section: ${section}`);
+      }
+    }
   }
 }
 
@@ -76,40 +196,47 @@ for (const dir of requiredSkillDirs) {
   requireFile(path.join(dir, 'SKILL.md'));
 }
 
-async function findSkillDirs(root) {
-  if (!existsSync(root)) return [];
-  const found = [];
-  async function walk(dir) {
-    const entries = await readdir(dir, { withFileTypes: true });
-    const hasSkill = entries.some((entry) => entry.isFile() && entry.name === 'SKILL.md');
-    if (hasSkill) found.push(dir);
-    for (const entry of entries) {
-      if (entry.isDirectory()) await walk(path.join(dir, entry.name));
-    }
-  }
-  await walk(root);
-  return found;
-}
+const skillFiles = await findSkillFiles('skills');
+await validateSkillFileFormat(skillFiles);
 
-for (const dir of await findSkillDirs('skills')) {
-  const skillPath = path.join(dir, 'SKILL.md');
-  const info = await stat(skillPath);
-  if (info.size === 0) errors.push(`Empty skill file: ${skillPath}`);
-}
+const registries = {
+  skills: await readJson('registry/skills.json'),
+  prompts: await readJson('registry/prompts.json'),
+  agents: await readJson('registry/agents.json')
+};
+await readJson('registry/sources.json');
 
-for (const file of [
-  'registry/sources.json',
+const skillEntries = validateRegistryEntries(
+  registries.skills,
+  'skills',
   'registry/skills.json',
+  ['name', 'path', 'category', 'description'],
+  'skill'
+);
+validateRequiredRegistryCoverage(skillFiles, skillEntries, 'registry/skills.json', 'skills', 'skill file');
+
+const promptEntries = validateRegistryEntries(
+  registries.prompts,
+  'prompts',
   'registry/prompts.json',
-  'registry/agents.json'
-]) {
-  if (!existsSync(file)) continue;
-  try {
-    JSON.parse(await readFile(file, 'utf8'));
-  } catch (error) {
-    errors.push(`Invalid JSON in ${file}: ${error.message}`);
-  }
-}
+  ['name', 'path', 'description'],
+  'prompt'
+);
+validateRequiredRegistryCoverage(
+  await findCommandFiles('commands'),
+  promptEntries,
+  'registry/prompts.json',
+  'prompts',
+  'command file'
+);
+
+validateRegistryEntries(
+  registries.agents,
+  'agents',
+  'registry/agents.json',
+  ['name', 'path'],
+  'agent'
+);
 
 if (errors.length > 0) {
   console.error('Vibe Coding OS validation failed:');
@@ -118,4 +245,4 @@ if (errors.length > 0) {
 }
 
 console.log('Vibe Coding OS validation passed.');
-console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, and ${requiredTemplates.length} templates.`);
+console.log(`Checked ${requiredFiles.length} required files, ${skillFiles.length} skills, ${requiredCommands.length} commands, and ${requiredTemplates.length} templates.`);

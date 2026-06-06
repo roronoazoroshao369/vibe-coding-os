@@ -10,6 +10,7 @@
       "category": "coding-workflow",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/affaan-m-ecc.md",
       "changelog": "references/changelogs/affaan-m-ecc.md",
       "features": [
@@ -35,6 +36,7 @@
       "category": "specification-workflow",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/github-spec-kit.md",
       "changelog": "references/changelogs/github-spec-kit.md",
       "features": [
@@ -62,6 +64,7 @@
       "category": "engineering-skills",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/mattpocock-skills.md",
       "changelog": "references/changelogs/mattpocock-skills.md",
       "features": [
@@ -93,6 +96,7 @@
       "category": "prompt-guardrails",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "unknown",
       "reference_doc": "references/sources/multica-ai-andrej-karpathy-skills.md",
       "changelog": "references/changelogs/multica-ai-andrej-karpathy-skills.md",
       "features": [
@@ -116,6 +120,7 @@
       "category": "skill-system",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/obra-superpowers.md",
       "changelog": "references/changelogs/obra-superpowers.md",
       "features": [
@@ -142,6 +147,7 @@
       "category": "memory-system",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/supermemoryai-supermemory.md",
       "changelog": "references/changelogs/supermemoryai-supermemory.md",
       "features": [
@@ -166,6 +172,7 @@
       "category": "memory-system",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "Apache-2.0",
       "reference_doc": "references/sources/thedotmack-claude-mem.md",
       "changelog": "references/changelogs/thedotmack-claude-mem.md",
       "features": [
@@ -189,6 +196,7 @@
       "category": "claude-code-workflow",
       "status": "tracked",
       "import_mode": "inspiration",
+      "license": "MIT",
       "reference_doc": "references/sources/yeachan-heo-oh-my-claudecode.md",
       "changelog": "references/changelogs/yeachan-heo-oh-my-claudecode.md",
       "features": [
