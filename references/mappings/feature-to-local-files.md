@@ -22,6 +22,9 @@ This map shows where each reference feature is implemented or documented locally
   - `skills/memory/context-retrieval/SKILL.md`
   - `skills/memory/privacy-filter/SKILL.md`
   - `templates/memory-template.md`
+  - `templates/memory-redaction-checklist.md`
+  - `docs/memory-conventions.md`
+  - `commands/vibe-memory.md`
 
 
 ## Skill orchestration

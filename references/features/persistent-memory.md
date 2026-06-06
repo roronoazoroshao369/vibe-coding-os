@@ -16,12 +16,16 @@ Define how Vibe Coding OS should support persistent memory as an original local 
 - `skills/memory/context-retrieval/SKILL.md`
 - `skills/memory/privacy-filter/SKILL.md`
 - `templates/memory-template.md`
+- `templates/memory-redaction-checklist.md`
+- `docs/memory-conventions.md`
 
 ## Must-have behavior
 
-- Durable decisions are captured with context and confidence.
-- Secrets and sensitive personal data are filtered out.
-- Stale or uncertain memory is labeled.
+- Durable decisions, architecture constraints, commands that worked, gotchas, and follow-ups are captured with context and confidence.
+- Secrets, tokens, private keys, unnecessary personal data, and long raw transcripts are filtered out.
+- Each memory entry has date, confidence, source, and staleness status.
+- Stale or uncertain memory is reviewed, updated, or marked stale before reuse.
+- A redaction checklist is completed before committing memory entries or transcript-derived summaries.
 
 ## Failure modes
 
