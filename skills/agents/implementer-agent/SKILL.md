@@ -36,3 +36,31 @@ A working patch with notes and verification results.
 - [ ] Relevant checks ran.
 - [ ] No unrelated churn.
 - [ ] Docs or tests updated when needed.
+
+## Multi-agent workflow guardrails
+
+### Agent ownership
+
+- Own only the assigned files/modules and delegated behavior.
+- Confirm boundaries before editing shared registries, generated files, migrations, or cross-cutting docs.
+- Do not revert edits made by other agents; adapt around them or report the conflict.
+- Keep unrelated cleanup out of scope unless explicitly assigned.
+
+### Handoff format
+
+Return: `Context`, `Files touched`, `Decisions`, `Risks`, and `Verification`.
+
+### Parallelization rules
+
+- Work in parallel only when your write scope is separate from other agents' scopes.
+- Do not delegate or wait on a blocking critical-path task when you can resolve the next step locally.
+
+### Conflict handling
+
+Preserve other agents' edits. If outputs conflict, report affected files, assumptions, and a proposed resolution for the main agent to integrate.
+
+### Tool-specific notes
+
+- Claude Code: subagents need a bounded implementation scope and file-ownership handoff.
+- Codex: delegated workers are not alone in the codebase; they must not revert other workers' edits.
+- Cursor: keep one manual chat responsible for each write scope and hand work back to the main chat.
