@@ -21,6 +21,7 @@ Vibe Coding OS learns from the broader AI coding workflow ecosystem, but it must
 - `references/snapshots/` is reserved for future local metadata snapshots. Do not store vendored source code here.
 - `references/upstreams/` is an ignored local clone workspace for shallow audit working copies. Only its README is committed.
 - `references/upstream-audit-workflow.md` documents how to clone, audit, distill, and validate upstream ideas safely.
+- `references/maintenance-cadence.md` defines audit frequency, trigger conditions, source priority tiers, required audit outputs, and validation commands.
 
 ## How AI agents should use this layer
 
@@ -31,8 +32,9 @@ Before using upstream inspiration:
 3. Read relevant `references/features/*.md` and mapping docs.
 4. Inspect local files first and adapt only what benefits the local framework.
 5. Update the source changelog if you audit upstream.
-6. When local clones are needed, run `npm run references:clone`; inspect them only as disposable audit evidence.
-7. Run `npm run validate:references` and, when appropriate, `npm run validate`.
+6. Check `references/maintenance-cadence.md` for audit priority, trigger conditions, and required outputs.
+7. When local clones are needed, run `npm run references:clone`; inspect them only as disposable audit evidence.
+8. Run `npm run validate:references` and, when appropriate, `npm run validate`.
 
 ## Adding a new reference repo
 
@@ -48,7 +50,7 @@ Use `commands/vibe-reference-add.md` as the prompt checklist. In short:
 
 ## Auditing an upstream update
 
-Use `commands/vibe-reference-audit.md`. The audit should summarize relevant upstream changes, record the upstream commit if known, update `last_checked`, update the local changelog, and identify impacted local files. It should not automatically merge upstream ideas into Vibe Coding OS.
+Use `commands/vibe-reference-audit.md` and the cadence in `references/maintenance-cadence.md`. The audit should summarize relevant upstream changes, record the upstream commit if known, update `last_checked`, update `last_known_commit`, update the local changelog, include a scorecard, and identify impacted local files. It should not automatically merge upstream ideas into Vibe Coding OS.
 
 ## Rules against blind copying
 
