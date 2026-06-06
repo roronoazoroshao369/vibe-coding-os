@@ -48,3 +48,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and adapter plans. No upstream source code, SDK, API client, dashboard, connectors, benchmark data, prompts, or large documentation text is vendored.
+
+## thedotmack/claude-mem
+
+- Name: `thedotmack/claude-mem`
+- URL: https://github.com/thedotmack/claude-mem
+- License: Apache-2.0, verified from upstream `LICENSE` during the 2026-06-06 audit.
+- Used for: persistent context lifecycle, session capture, memory compression, progressive retrieval, privacy exclusion, observation citation, context injection, configuration, troubleshooting, and hook-based memory inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and adapter plans. No upstream hook scripts, worker service, installer, database schema, UI, prompts, docs, assets, or runtime dependencies are vendored.

@@ -2,34 +2,34 @@
   "version": "0.1.0",
   "skills": [
     {
+      "name": "agent-handoff",
+      "path": "skills/memory/agent-handoff/SKILL.md",
+      "category": "memory",
+      "description": "Create durable handoff summaries for agent/session switches."
+    },
+    {
+      "name": "anti-overengineering",
+      "path": "skills/prompts/anti-overengineering/SKILL.md",
+      "category": "prompts",
+      "description": "Keep solutions simple, local, and proportional to the request."
+    },
+    {
       "name": "architect-agent",
       "path": "skills/agents/architect-agent/SKILL.md",
       "category": "agents",
       "description": "Design a minimal technical approach that satisfies a spec."
     },
     {
-      "name": "implementer-agent",
-      "path": "skills/agents/implementer-agent/SKILL.md",
-      "category": "agents",
-      "description": "Make focused code changes that follow the plan and local conventions."
-    },
-    {
-      "name": "reviewer-agent",
-      "path": "skills/agents/reviewer-agent/SKILL.md",
-      "category": "agents",
-      "description": "Review a patch for correctness, simplicity, risks, and readiness."
-    },
-    {
-      "name": "tester-agent",
-      "path": "skills/agents/tester-agent/SKILL.md",
-      "category": "agents",
-      "description": "Find and run the most valuable tests for a change."
-    },
-    {
       "name": "architecture-decision-records",
       "path": "skills/core/architecture-decision-records/SKILL.md",
       "category": "core",
       "description": "Capture durable decisions, options, rationale, and consequences."
+    },
+    {
+      "name": "ask-when-confused",
+      "path": "skills/prompts/ask-when-confused/SKILL.md",
+      "category": "prompts",
+      "description": "Make uncertainty visible instead of guessing."
     },
     {
       "name": "brainstorming",
@@ -42,6 +42,24 @@
       "path": "skills/core/clarify-before-code/SKILL.md",
       "category": "core",
       "description": "Prevent wasted implementation by resolving ambiguity before edits."
+    },
+    {
+      "name": "compressed-technical-communication",
+      "path": "skills/prompts/compressed-technical-communication/SKILL.md",
+      "category": "prompts",
+      "description": "Use terse expert technical communication without losing caveats."
+    },
+    {
+      "name": "context-injection",
+      "path": "skills/memory/context-injection/SKILL.md",
+      "category": "memory",
+      "description": "Inject scoped, safe, citation-backed memory into active work."
+    },
+    {
+      "name": "context-retrieval",
+      "path": "skills/memory/context-retrieval/SKILL.md",
+      "category": "memory",
+      "description": "Find relevant repository context before making decisions."
     },
     {
       "name": "disciplined-diagnosis",
@@ -80,6 +98,18 @@
       "description": "Align with the user while maintaining context and ADR candidates."
     },
     {
+      "name": "hook-based-memory",
+      "path": "skills/memory/hook-based-memory/SKILL.md",
+      "category": "memory",
+      "description": "Plan optional memory lifecycle hooks without copying upstream scripts."
+    },
+    {
+      "name": "implementer-agent",
+      "path": "skills/agents/implementer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Make focused code changes that follow the plan and local conventions."
+    },
+    {
       "name": "improve-codebase-architecture",
       "path": "skills/core/improve-codebase-architecture/SKILL.md",
       "category": "core",
@@ -92,6 +122,78 @@
       "description": "Slice PRDs and plans into independently grabbable vertical issues."
     },
     {
+      "name": "karpathy-guardrails",
+      "path": "skills/prompts/karpathy-guardrails/SKILL.md",
+      "category": "prompts",
+      "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+    },
+    {
+      "name": "local-first-memory",
+      "path": "skills/memory/local-first-memory/SKILL.md",
+      "category": "memory",
+      "description": "Keep local memory as the default fallback for all memory workflows."
+    },
+    {
+      "name": "memory-architecture",
+      "path": "skills/memory/memory-architecture/SKILL.md",
+      "category": "memory",
+      "description": "Design local-first agent memory contracts and boundaries."
+    },
+    {
+      "name": "memory-configuration",
+      "path": "skills/memory/memory-configuration/SKILL.md",
+      "category": "memory",
+      "description": "Define memory scopes, retention, privacy, and injection policy."
+    },
+    {
+      "name": "memory-evaluation",
+      "path": "skills/memory/memory-evaluation/SKILL.md",
+      "category": "memory",
+      "description": "Evaluate memory relevance, freshness, safety, cost, and latency."
+    },
+    {
+      "name": "memory-ingestion",
+      "path": "skills/memory/memory-ingestion/SKILL.md",
+      "category": "memory",
+      "description": "Capture durable memory entries through privacy-filtered ingestion."
+    },
+    {
+      "name": "memory-privacy",
+      "path": "skills/memory/memory-privacy/SKILL.md",
+      "category": "memory",
+      "description": "Apply privacy rules before storing, retrieving, or sharing memory."
+    },
+    {
+      "name": "memory-provider-adapter",
+      "path": "skills/memory/memory-provider-adapter/SKILL.md",
+      "category": "memory",
+      "description": "Plan optional memory provider adapters without required dependencies."
+    },
+    {
+      "name": "memory-retrieval",
+      "path": "skills/memory/memory-retrieval/SKILL.md",
+      "category": "memory",
+      "description": "Retrieve task-relevant memory before decisions or implementation."
+    },
+    {
+      "name": "memory-search",
+      "path": "skills/memory/memory-search/SKILL.md",
+      "category": "memory",
+      "description": "Search local memory and optional providers with scoped queries."
+    },
+    {
+      "name": "memory-troubleshooting",
+      "path": "skills/memory/memory-troubleshooting/SKILL.md",
+      "category": "memory",
+      "description": "Diagnose missing, stale, unsafe, or noisy memory behavior."
+    },
+    {
+      "name": "observation-citations",
+      "path": "skills/memory/observation-citations/SKILL.md",
+      "category": "memory",
+      "description": "Create and use observation IDs for memory-backed claims."
+    },
+    {
       "name": "plan-driven-execution",
       "path": "skills/core/plan-driven-execution/SKILL.md",
       "category": "core",
@@ -102,6 +204,30 @@
       "path": "skills/core/prd-from-context/SKILL.md",
       "category": "core",
       "description": "Create a PRD from existing conversation context without inventing requirements."
+    },
+    {
+      "name": "privacy-exclusion",
+      "path": "skills/memory/privacy-exclusion/SKILL.md",
+      "category": "memory",
+      "description": "Exclude secrets and sensitive data before memory storage or use."
+    },
+    {
+      "name": "privacy-filter",
+      "path": "skills/memory/privacy-filter/SKILL.md",
+      "category": "memory",
+      "description": "Prevent sensitive data from entering prompts, memory, examples, or commits."
+    },
+    {
+      "name": "progressive-memory-disclosure",
+      "path": "skills/memory/progressive-memory-disclosure/SKILL.md",
+      "category": "memory",
+      "description": "Retrieve memory in progressive stages to avoid context overload."
+    },
+    {
+      "name": "project-memory",
+      "path": "skills/memory/project-memory/SKILL.md",
+      "category": "memory",
+      "description": "Maintain durable project context that future sessions can trust."
     },
     {
       "name": "prototype-before-commitment",
@@ -128,10 +254,40 @@
       "description": "Catch correctness, maintainability, security, and attribution issues before merge."
     },
     {
+      "name": "reviewer-agent",
+      "path": "skills/agents/reviewer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Review a patch for correctness, simplicity, risks, and readiness."
+    },
+    {
+      "name": "session-capture",
+      "path": "skills/memory/session-capture/SKILL.md",
+      "category": "memory",
+      "description": "Capture safe session observations for persistent context."
+    },
+    {
+      "name": "session-compression",
+      "path": "skills/memory/session-compression/SKILL.md",
+      "category": "memory",
+      "description": "Compress session activity into durable memory summaries."
+    },
+    {
+      "name": "session-summarizer",
+      "path": "skills/memory/session-summarizer/SKILL.md",
+      "category": "memory",
+      "description": "Compress a work session into useful handoff context."
+    },
+    {
       "name": "setup-pre-commit-quality-gates",
       "path": "skills/core/setup-pre-commit-quality-gates/SKILL.md",
       "category": "core",
       "description": "Set up lightweight maintainable pre-commit quality gates."
+    },
+    {
+      "name": "setup-project-agent-skills",
+      "path": "skills/meta/setup-project-agent-skills/SKILL.md",
+      "category": "meta",
+      "description": "Configure a repo for agent skills, context, issue flow, and validation."
     },
     {
       "name": "shared-domain-language",
@@ -164,6 +320,12 @@
       "description": "Drive behavior changes with tests or executable checks."
     },
     {
+      "name": "tester-agent",
+      "path": "skills/agents/tester-agent/SKILL.md",
+      "category": "agents",
+      "description": "Find and run the most valuable tests for a change."
+    },
+    {
       "name": "triage-workflow",
       "path": "skills/core/triage-workflow/SKILL.md",
       "category": "core",
@@ -180,6 +342,12 @@
       "path": "skills/core/using-git-worktrees/SKILL.md",
       "category": "core",
       "description": "Isolate risky or parallel work in git worktrees without disrupting user changes."
+    },
+    {
+      "name": "using-vibe-coding-os",
+      "path": "skills/meta/using-vibe-coding-os/SKILL.md",
+      "category": "meta",
+      "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries."
     },
     {
       "name": "verification-before-completion",
@@ -200,64 +368,16 @@
       "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
     },
     {
-      "name": "writing-plans",
-      "path": "skills/core/writing-plans/SKILL.md",
-      "category": "core",
-      "description": "Create executable plans with file targets, risks, rollback points, and checks."
-    },
-    {
-      "name": "zoom-out-system-context",
-      "path": "skills/core/zoom-out-system-context/SKILL.md",
-      "category": "core",
-      "description": "Explain broader system context before architecture-sensitive changes."
-    },
-    {
-      "name": "agent-handoff",
-      "path": "skills/memory/agent-handoff/SKILL.md",
-      "category": "memory",
-      "description": "Create durable handoff summaries for agent/session switches."
-    },
-    {
-      "name": "context-retrieval",
-      "path": "skills/memory/context-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Find relevant repository context before making decisions."
-    },
-    {
-      "name": "privacy-filter",
-      "path": "skills/memory/privacy-filter/SKILL.md",
-      "category": "memory",
-      "description": "Prevent sensitive data from entering prompts, memory, examples, or commits."
-    },
-    {
-      "name": "project-memory",
-      "path": "skills/memory/project-memory/SKILL.md",
-      "category": "memory",
-      "description": "Maintain durable project context that future sessions can trust."
-    },
-    {
-      "name": "session-summarizer",
-      "path": "skills/memory/session-summarizer/SKILL.md",
-      "category": "memory",
-      "description": "Compress a work session into useful handoff context."
-    },
-    {
-      "name": "setup-project-agent-skills",
-      "path": "skills/meta/setup-project-agent-skills/SKILL.md",
-      "category": "meta",
-      "description": "Configure a repo for agent skills, context, issue flow, and validation."
-    },
-    {
-      "name": "using-vibe-coding-os",
-      "path": "skills/meta/using-vibe-coding-os/SKILL.md",
-      "category": "meta",
-      "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries."
-    },
-    {
       "name": "write-reusable-skill",
       "path": "skills/meta/write-reusable-skill/SKILL.md",
       "category": "meta",
       "description": "Write small composable Vibe Coding OS skills."
+    },
+    {
+      "name": "writing-plans",
+      "path": "skills/core/writing-plans/SKILL.md",
+      "category": "core",
+      "description": "Create executable plans with file targets, risks, rollback points, and checks."
     },
     {
       "name": "writing-skills",
@@ -266,76 +386,10 @@
       "description": "Write original, portable, indexed skills with required sections and validation."
     },
     {
-      "name": "anti-overengineering",
-      "path": "skills/prompts/anti-overengineering/SKILL.md",
-      "category": "prompts",
-      "description": "Keep solutions simple, local, and proportional to the request."
-    },
-    {
-      "name": "ask-when-confused",
-      "path": "skills/prompts/ask-when-confused/SKILL.md",
-      "category": "prompts",
-      "description": "Make uncertainty visible instead of guessing."
-    },
-    {
-      "name": "compressed-technical-communication",
-      "path": "skills/prompts/compressed-technical-communication/SKILL.md",
-      "category": "prompts",
-      "description": "Use terse expert technical communication without losing caveats."
-    },
-    {
-      "name": "karpathy-guardrails",
-      "path": "skills/prompts/karpathy-guardrails/SKILL.md",
-      "category": "prompts",
-      "description": "Encourage fast empirical iteration while preserving basic engineering safety."
-    },
-    {
-      "name": "memory-architecture",
-      "path": "skills/memory/memory-architecture/SKILL.md",
-      "category": "memory",
-      "description": "Design local-first agent memory contracts and boundaries."
-    },
-    {
-      "name": "memory-ingestion",
-      "path": "skills/memory/memory-ingestion/SKILL.md",
-      "category": "memory",
-      "description": "Capture durable memory entries through privacy-filtered ingestion."
-    },
-    {
-      "name": "memory-retrieval",
-      "path": "skills/memory/memory-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Retrieve task-relevant memory before decisions or implementation."
-    },
-    {
-      "name": "memory-search",
-      "path": "skills/memory/memory-search/SKILL.md",
-      "category": "memory",
-      "description": "Search local memory and optional providers with scoped queries."
-    },
-    {
-      "name": "memory-privacy",
-      "path": "skills/memory/memory-privacy/SKILL.md",
-      "category": "memory",
-      "description": "Apply privacy rules before storing, retrieving, or sharing memory."
-    },
-    {
-      "name": "memory-evaluation",
-      "path": "skills/memory/memory-evaluation/SKILL.md",
-      "category": "memory",
-      "description": "Evaluate memory relevance, freshness, safety, cost, and latency."
-    },
-    {
-      "name": "memory-provider-adapter",
-      "path": "skills/memory/memory-provider-adapter/SKILL.md",
-      "category": "memory",
-      "description": "Plan optional memory provider adapters without required dependencies."
-    },
-    {
-      "name": "local-first-memory",
-      "path": "skills/memory/local-first-memory/SKILL.md",
-      "category": "memory",
-      "description": "Keep local memory as the default fallback for all memory workflows."
+      "name": "zoom-out-system-context",
+      "path": "skills/core/zoom-out-system-context/SKILL.md",
+      "category": "core",
+      "description": "Explain broader system context before architecture-sensitive changes."
     }
   ]
 }

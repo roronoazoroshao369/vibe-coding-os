@@ -3,33 +3,9 @@
   "policy": "No external content is vendored in v0.1. Verify licenses before import.",
   "sources": [
     {
-      "name": "obra/superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "license": "MIT",
-      "status": "tracked_inspiration",
-      "import_mode": "adapted",
-      "notes": "Tracked as inspiration/adaptation. Root MIT license verified during the 2026-06-06 local clone audit; Vibe Coding OS adapts methodology concepts into original local skills, commands, mappings, and docs without vendoring upstream code or text."
-    },
-    {
       "name": "affaan-m/ECC",
       "url": "https://github.com/affaan-m/ECC",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
-    },
-    {
-      "name": "supermemoryai/supermemory",
-      "url": "https://github.com/supermemoryai/supermemory",
-      "license": "MIT",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "notes": "Used for agent memory architecture, memory lifecycle, retrieval, provider abstraction, and memory evaluation inspiration. Import mode is inspiration/adaptation only; vendored code: no. Root license verified on 2026-06-06."
-    },
-    {
-      "name": "thedotmack/claude-mem",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "license": "Apache-2.0",
       "status": "candidate_inspiration",
       "import_mode": "none",
       "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
@@ -43,6 +19,14 @@
       "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
     },
     {
+      "name": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Tracked as inspiration/adaptation only. Root MIT license verified during the 2026-06-06 audit at commit be55a7970319ede7965edbb02b5e41cba1ca82c9; no upstream source content is vendored. Used for engineering agent skills, alignment workflow, shared domain language, ADR practice, diagnosis loop, TDD loop, PRD/issue workflow, handoff, skill-writing inspiration, guardrails, and setup patterns."
+    },
+    {
       "name": "multica-ai/andrej-karpathy-skills",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills",
       "license": "unknown",
@@ -51,20 +35,36 @@
       "notes": "Tracked as inspiration only. No root license file was found in the 2026-06-06 local clone audit; do not import content without license review."
     },
     {
+      "name": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "adapted",
+      "notes": "Tracked as inspiration/adaptation. Root MIT license verified during the 2026-06-06 local clone audit; Vibe Coding OS adapts methodology concepts into original local skills, commands, mappings, and docs without vendoring upstream code or text."
+    },
+    {
+      "name": "supermemoryai/supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "license": "MIT",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "notes": "Used for agent memory architecture, memory lifecycle, retrieval, provider abstraction, and memory evaluation inspiration. Import mode is inspiration/adaptation only; vendored code: no. Root license verified on 2026-06-06."
+    },
+    {
+      "name": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "license": "Apache-2.0",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Used for persistent context lifecycle, memory compression, progressive retrieval, privacy exclusion, and hook-based memory inspiration. Vendored code: no. License verified during the 2026-06-06 upstream audit."
+    },
+    {
       "name": "yeachan-heo/oh-my-claudecode",
       "url": "https://github.com/yeachan-heo/oh-my-claudecode",
       "license": "MIT",
       "status": "candidate_inspiration",
       "import_mode": "none",
       "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
-    },
-    {
-      "name": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills",
-      "license": "MIT",
-      "status": "tracked_inspiration",
-      "import_mode": "inspiration",
-      "notes": "Tracked as inspiration/adaptation only. Root MIT license verified during the 2026-06-06 audit at commit be55a7970319ede7965edbb02b5e41cba1ca82c9; no upstream source content is vendored. Used for engineering agent skills, alignment workflow, shared domain language, ADR practice, diagnosis loop, TDD loop, PRD/issue workflow, handoff, skill-writing inspiration, guardrails, and setup patterns."
     }
   ]
 }
