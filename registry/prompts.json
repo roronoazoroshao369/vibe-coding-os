@@ -4,32 +4,32 @@
     {
       "name": "vibe-doctor",
       "path": "commands/vibe-doctor.md",
-      "description": "Diagnose repository health."
+      "description": "Diagnose repository health across required files, registries, skills, commands, templates, and validation scripts."
     },
     {
       "name": "vibe-implement",
       "path": "commands/vibe-implement.md",
-      "description": "Implement the current plan with minimal, correct edits."
+      "description": "Implement an accepted spec or plan with minimal edits, matching conventions and reporting verification results."
     },
     {
       "name": "vibe-init",
       "path": "commands/vibe-init.md",
-      "description": "Prime this repository for disciplined AI-assisted work."
+      "description": "Orient a new session by inspecting instructions, repository state, registries, templates, skills, and next workflow step."
     },
     {
       "name": "vibe-memory",
       "path": "commands/vibe-memory.md",
-      "description": "Summarize durable session knowledge."
+      "description": "Create a privacy-filtered durable session summary with decisions, changed files, verification, questions, and next actions."
     },
     {
       "name": "vibe-merge",
       "path": "commands/vibe-merge.md",
-      "description": "Assess merge readiness."
+      "description": "Assess merge readiness by checking scope, acceptance criteria, validation, attribution, security, and follow-ups."
     },
     {
       "name": "vibe-plan",
       "path": "commands/vibe-plan.md",
-      "description": "Turn the accepted spec into an execution plan."
+      "description": "Convert an accepted spec into ordered implementation steps, target files, risks, rollback points, and validation commands."
     },
     {
       "name": "vibe-reference-add",
@@ -54,17 +54,17 @@
     {
       "name": "vibe-review",
       "path": "commands/vibe-review.md",
-      "description": "Review the current diff against the spec and plan."
+      "description": "Review the current diff against the spec and plan, prioritizing blockers, missing tests, security, attribution, and scope control."
     },
     {
       "name": "vibe-spec",
       "path": "commands/vibe-spec.md",
-      "description": "Create or update a concise spec before implementation."
+      "description": "Draft or update a concise implementation spec with goals, non-goals, behavior, edge cases, acceptance criteria, and verification strategy."
     },
     {
       "name": "vibe-upstream-sync",
       "path": "commands/vibe-upstream-sync.md",
-      "description": "Clone, audit, and distill tracked upstream references without vendoring source."
+      "description": "Audit tracked upstream references, update reference metadata, and adapt high-fit ideas without vendoring upstream source."
     }
   ]
 }

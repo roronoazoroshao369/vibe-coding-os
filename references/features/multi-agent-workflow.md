@@ -39,3 +39,54 @@ Define how Vibe Coding OS should support multi-agent workflow as an original loc
 - Can an agent find the relevant local files from this feature document in under a minute?
 - Does the feature reduce mistakes without adding unnecessary ceremony?
 - Are acceptance criteria, verification, and attribution implications visible?
+
+## Multi-agent workflow guardrails
+
+### Agent ownership
+
+- Assign each agent a file/module responsibility before it edits.
+- Keep shared registries, schemas, generated files, migrations, and cross-cutting docs serialized unless one integrator owns them.
+- Tell agents they are not alone in the codebase and must not revert edits made by other agents.
+- Require agents to adapt to concurrent edits or escalate conflicts instead of overwriting.
+
+### Handoff format
+
+Every delegated agent should return these sections:
+
+```markdown
+## Context
+- Goal, constraints, assumptions, and relevant prior decisions.
+
+## Files touched
+- Files/modules changed, inspected, or reserved as write scope.
+
+## Decisions
+- Important implementation, architecture, review, or testing choices.
+
+## Risks
+- Correctness, scope, attribution, sequencing, or verification concerns.
+
+## Verification
+- Exact checks run or recommended, results, and limitations.
+```
+
+### Parallelization rules
+
+- Parallelize only when write scopes are clearly separated by file/module ownership.
+- Do not delegate a blocking critical-path task when the main agent's immediate next step depends on that result.
+- Prefer independent review lanes, read-only exploration, or disjoint implementation slices.
+- Use a single owner or ordered sequence for tightly coupled changes.
+
+### Review gates
+
+Reviewers must check correctness, scope, attribution, and tests before approval.
+
+### Conflict handling
+
+Conflicting outputs are integration inputs, not instructions to overwrite another agent. The main agent keeps responsibility for final integration, conflict resolution, staging, committing, and final verification.
+
+### Tool-specific notes
+
+- Claude Code subagents: pass ownership and handoff requirements in the prompt; keep final synthesis in the main conversation.
+- Codex delegated agents/workers: assign disjoint write scopes, tell workers not to revert others' edits, and review changes before integration.
+- Cursor manual chat workflows: use separate chats with pasted context, one write owner per chat, and a structured handoff back to the main chat.

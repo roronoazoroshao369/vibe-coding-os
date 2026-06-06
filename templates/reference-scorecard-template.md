@@ -1,26 +1,6 @@
-# Upstream Audit: <source-id>
+# Reference Scorecard: <source-id>
 
-## Baseline
-
-- Source: `<owner>/<repo>`
-- URL: <url>
-- Local clone: `references/upstreams/<owner>-<repo>`
-- Commit: `<hash>`
-- Commit date: <date>
-- License status: <verified/unknown/requires-review>
-
-## What changed upstream
-
-- <Summarize upstream changes in original language. Do not copy release notes or docs.>
-
-## Reusable principles
-
-- <Principle 1>
-- <Principle 2>
-
-## Reference scorecard
-
-Use `references/reference-scorecard.md` for rating guidance.
+Use this template with `references/reference-scorecard.md` during upstream audits. Keep evidence concise, original, and linked to local files or upstream metadata instead of copying upstream prose.
 
 | Criterion | Rating | Evidence | Notes |
 | --- | --- | --- | --- |
@@ -35,16 +15,9 @@ Use `references/reference-scorecard.md` for rating guidance.
 | Maintenance cost | <low/medium/high/unknown> | <files touched, validation burden, sync complexity> | <short rationale> |
 | Recommended action | <adopt/adapt/defer/ignore> | <decision evidence> | <next step> |
 
-## Impacted local files
+## Decision notes
 
-- `<local-file>` — <why this file may change>
-
-## Decisions
-
-- Adopt: <ideas to adapt now>
-- Defer: <ideas to revisit later>
-- Ignore: <ideas that do not fit Vibe Coding OS>
-
-## Validation
-
-- `<command>` — <result>
+- Adopt: <ideas to bring in directly because fit is high and risk is low>
+- Adapt: <ideas to translate into local wording, structure, or smaller primitives>
+- Defer: <ideas blocked by evidence, licensing, timing, or maintenance capacity>
+- Ignore: <ideas that do not fit Vibe Coding OS or carry unacceptable risk>
