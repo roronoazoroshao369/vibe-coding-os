@@ -17,10 +17,11 @@ Vibe Coding OS learns from strong public AI-coding repositories through referenc
 4. **Read the local source doc.** Use `references/sources/<source-id>.md` to understand why the source is tracked.
 5. **Read feature mappings.** Use `references/mappings/source-to-local-skills.md`, `feature-to-local-files.md`, and `update-impact-map.md` to find local targets before editing.
 6. **Extract principles.** Summarize reusable ideas as principles, checklists, gates, or failure modes in original language.
-7. **Decide action.** Mark each idea as adopt, adapt, defer, or ignore. Popularity alone is not enough.
-8. **Adapt locally.** Update the smallest relevant Vibe Coding OS skill, command, template, adapter, or doc.
-9. **Record the audit.** Update `references/changelogs/<source-id>.md`, `references/index.json`, and `registry/sources.json` when metadata changes.
-10. **Validate and review.** Run `npm run validate` and confirm no upstream clone contents are staged.
+7. **Complete the reference scorecard.** Use `references/reference-scorecard.md` or `templates/reference-scorecard-template.md` to rate feature overlap, activity, license clarity, documentation quality, local skill/command/template relevance, memory/privacy risk, multi-agent relevance, copy/licensing risk, maintenance cost, and recommended action.
+8. **Decide action.** Mark each idea as `adopt`, `adapt`, `defer`, or `ignore` based on the scorecard. Popularity alone is not enough.
+9. **Adapt locally.** Update the smallest relevant Vibe Coding OS skill, command, template, adapter, or doc.
+10. **Record the audit.** Update `references/changelogs/<source-id>.md`, `references/index.json`, and `registry/sources.json` when metadata changes.
+11. **Validate and review.** Run `npm run validate` and confirm no upstream clone contents are staged.
 
 ## Distillation principles
 
