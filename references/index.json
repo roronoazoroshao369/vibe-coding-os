@@ -152,6 +152,8 @@
         "skills/memory/context-retrieval/SKILL.md",
         "skills/memory/privacy-filter/SKILL.md",
         "templates/memory-template.md",
+        "templates/memory-redaction-checklist.md",
+        "docs/memory-conventions.md",
         "commands/vibe-memory.md"
       ],
       "last_checked": "2026-06-06",
@@ -175,6 +177,9 @@
         "CLAUDE.md",
         "skills/memory/session-summarizer/SKILL.md",
         "skills/memory/project-memory/SKILL.md",
+        "templates/memory-template.md",
+        "templates/memory-redaction-checklist.md",
+        "docs/memory-conventions.md",
         "commands/vibe-memory.md"
       ],
       "last_checked": "2026-06-06",

@@ -26,7 +26,7 @@ It is tracked as a reference for memory and retrieval concepts. Vibe Coding OS s
 
 | Feature | Why it matters | Local equivalent | Status |
 | --- | --- | --- | --- |
-| Persistent Memory | Helps evaluate whether the local workflow covers an important reusable behavior. | skills/memory/project-memory/SKILL.md, skills/memory/context-retrieval/SKILL.md, skills/memory/privacy-filter/SKILL.md | Tracked for study, not copied. |
+| Persistent Memory | Helps evaluate whether the local workflow covers an important reusable behavior. | skills/memory/project-memory/SKILL.md, skills/memory/context-retrieval/SKILL.md, skills/memory/privacy-filter/SKILL.md, docs/memory-conventions.md | Tracked for study, not copied. |
 
 ## Local mapping
 
@@ -36,6 +36,8 @@ The current local targets connected to this source are:
 - `skills/memory/context-retrieval/SKILL.md`
 - `skills/memory/privacy-filter/SKILL.md`
 - `templates/memory-template.md`
+- `templates/memory-redaction-checklist.md`
+- `docs/memory-conventions.md`
 - `commands/vibe-memory.md`
 
 ## Update watchlist
