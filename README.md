@@ -1,5 +1,9 @@
 # Vibe Coding OS
 
+<p align="right">
+  <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
+</p>
+
 **Vibe Coding OS** is a Claude/Codex-friendly skill framework for one person who wants to move fast with AI coding assistants without giving up engineering discipline.
 
 It is not a wrapper, product, or agent runtime. It is a normalized operating system for AI-assisted software work: reusable skills, command prompts, templates, and registries that help a human and an AI assistant repeatedly turn intent into reliable code. Its specific aim is to raise the quality of vibe coding with Claude Code and similar agents by selectively studying, merging, and re-normalizing the best reusable workflow ideas from leading public skill and agent-workflow repositories without blindly copying or vendoring them.
