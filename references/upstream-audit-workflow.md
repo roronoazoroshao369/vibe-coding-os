@@ -9,9 +9,13 @@ Vibe Coding OS learns from strong public AI-coding repositories through referenc
 - Do not stage or commit cloned upstream repositories.
 - Treat local clones as disposable evidence for audits; durable knowledge belongs in `references/changelogs/`, `references/sources/`, `references/mappings/`, local skills, templates, commands, and attribution files.
 
+## Maintenance cadence
+
+Use `references/maintenance-cadence.md` to decide whether a source needs a monthly, quarterly, or on-demand audit. The cadence also defines out-of-cycle trigger conditions, priority tiers for all tracked sources, required audit outputs, and validation commands.
+
 ## Audit loop
 
-1. **Select a source.** Start from `references/index.json` and choose a source with high feature overlap or recent upstream activity.
+1. **Select a source.** Start from `references/index.json` and `references/maintenance-cadence.md`; choose a source based on priority tier, cadence due date, high feature overlap, or recent upstream activity.
 2. **Refresh clones.** Run `npm run references:clone` to clone or fetch tracked repositories.
 3. **Pin metadata.** Record the source URL, default branch, current commit hash, commit date, and root license status.
 4. **Read the local source doc.** Use `references/sources/<source-id>.md` to understand why the source is tracked.
@@ -19,8 +23,8 @@ Vibe Coding OS learns from strong public AI-coding repositories through referenc
 6. **Extract principles.** Summarize reusable ideas as principles, checklists, gates, or failure modes in original language.
 7. **Decide action.** Mark each idea as adopt, adapt, defer, or ignore. Popularity alone is not enough.
 8. **Adapt locally.** Update the smallest relevant Vibe Coding OS skill, command, template, adapter, or doc.
-9. **Record the audit.** Update `references/changelogs/<source-id>.md`, `references/index.json`, and `registry/sources.json` when metadata changes.
-10. **Validate and review.** Run `npm run validate` and confirm no upstream clone contents are staged.
+9. **Record the audit.** Update `references/changelogs/<source-id>.md`, `references/index.json`, and `registry/sources.json` when metadata changes. Include the cadence-required changelog entry, `last_checked`, `last_known_commit`, scorecard, and impacted local files list.
+10. **Validate and review.** Run `npm run validate:references` and `npm run validate`, then confirm no upstream clone contents are staged.
 
 ## Distillation principles
 
@@ -34,6 +38,8 @@ Vibe Coding OS learns from strong public AI-coding repositories through referenc
 - Use upstream popularity as a discovery signal, not an adoption decision.
 
 ## Baseline source priorities
+
+For audit frequency and current high/medium/low tiers, use `references/maintenance-cadence.md`. Baseline feature themes are:
 
 1. Skill orchestration and disciplined execution: `obra-superpowers`, `mattpocock-skills`.
 2. Spec-first planning and implementation gates: `github-spec-kit`, `affaan-m-ecc`.
