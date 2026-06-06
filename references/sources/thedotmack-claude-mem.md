@@ -26,7 +26,7 @@ It is tracked as a reference for Claude-oriented memory practices. Vibe Coding O
 
 | Feature | Why it matters | Local equivalent | Status |
 | --- | --- | --- | --- |
-| Persistent Memory | Helps evaluate whether the local workflow covers an important reusable behavior. | CLAUDE.md, skills/memory/session-summarizer/SKILL.md, skills/memory/project-memory/SKILL.md | Tracked for study, not copied. |
+| Persistent Memory | Helps evaluate whether the local workflow covers an important reusable behavior. | CLAUDE.md, skills/memory/session-summarizer/SKILL.md, skills/memory/project-memory/SKILL.md, docs/memory-conventions.md | Tracked for study, not copied. |
 
 ## Local mapping
 
@@ -35,6 +35,9 @@ The current local targets connected to this source are:
 - `CLAUDE.md`
 - `skills/memory/session-summarizer/SKILL.md`
 - `skills/memory/project-memory/SKILL.md`
+- `templates/memory-template.md`
+- `templates/memory-redaction-checklist.md`
+- `docs/memory-conventions.md`
 - `commands/vibe-memory.md`
 
 ## Update watchlist

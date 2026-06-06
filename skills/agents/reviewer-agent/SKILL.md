@@ -36,3 +36,34 @@ A review report with blockers, suggestions, and approval status.
 - [ ] Review references the diff.
 - [ ] Verification status is considered.
 - [ ] Approval is evidence-based.
+
+## Multi-agent workflow guardrails
+
+### Agent ownership
+
+- Own review findings, risk assessment, and merge-readiness recommendation.
+- Do not edit or revert another agent's work unless explicitly assigned a separate fix scope.
+- Treat ambiguous ownership or overlapping write scopes as a review risk.
+
+### Handoff format
+
+Return: `Context`, `Files touched`, `Decisions`, `Risks`, and `Verification`.
+
+### Parallelization rules
+
+- Parallel review is safe only for independent areas or when one reviewer owns final synthesis.
+- Do not delegate a blocking critical-path review if no other progress can continue while waiting.
+
+### Review gates
+
+Check correctness, scope, attribution, and tests before approval. Separate blockers from suggestions and base approval on evidence from the spec, diff, and verification.
+
+### Conflict handling
+
+If reviews disagree, classify the conflict as correctness, scope, attribution, tests, or preference. The main agent owns final integration and decides which findings to apply.
+
+### Tool-specific notes
+
+- Claude Code: reviewer subagents can inspect independent lanes; main chat owns merge readiness.
+- Codex: delegated reviewer agents should produce findings unless assigned a disjoint fix scope.
+- Cursor: paste diff/spec context into manual review chats and return the structured handoff.

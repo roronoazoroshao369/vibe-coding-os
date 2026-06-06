@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const errors = [];
+const validImportModes = new Set(['none', 'inspiration', 'adapted', 'vendored']);
 const requiredFeatureDocs = [
   'spec-driven-development.md',
   'persistent-memory.md',
@@ -30,31 +31,141 @@ function requireFile(file) {
   if (!existsSync(file)) errors.push(`Missing required file: ${file}`);
 }
 
-requireFile('references/index.json');
-for (const file of [...requiredFeatureDocs, ...requiredMappingDocs, ...requiredReferenceCommands]) requireFile(file);
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim() !== '';
+}
 
-let index = null;
-if (existsSync('references/index.json')) {
+async function readJson(file) {
+  if (!existsSync(file)) return null;
   try {
-    index = JSON.parse(await readFile('references/index.json', 'utf8'));
+    return JSON.parse(await readFile(file, 'utf8'));
   } catch (error) {
-    errors.push(`Invalid JSON in references/index.json: ${error.message}`);
+    errors.push(`Invalid JSON in ${file}: ${error.message}`);
+    return null;
   }
 }
+
+function normalizeSourceUrl(url) {
+  if (!isNonEmptyString(url)) return '';
+  return url.trim().replace(/\.git$/, '').replace(/\/$/, '').toLowerCase();
+}
+
+function trackedReferenceName(source) {
+  if (isNonEmptyString(source?.owner) && isNonEmptyString(source?.name)) {
+    return `${source.owner}/${source.name}`;
+  }
+  return source?.name;
+}
+
+function validateImportMode(source, label) {
+  if (!isNonEmptyString(source?.import_mode)) {
+    errors.push(`${label} is missing required string field: import_mode`);
+  } else if (!validImportModes.has(source.import_mode)) {
+    errors.push(`${label} has invalid import_mode: ${source.import_mode}`);
+  }
+}
+
+function validateLicense(source, label) {
+  if (!isNonEmptyString(source?.license)) {
+    errors.push(`${label} is missing required string field: license`);
+  }
+}
+
+function indexRegistrySources(registry) {
+  const byUrl = new Map();
+  const byName = new Map();
+  if (!registry) return { byUrl, byName };
+  if (!Array.isArray(registry.sources)) {
+    errors.push('registry/sources.json must contain a sources array.');
+    return { byUrl, byName };
+  }
+
+  for (const [position, source] of registry.sources.entries()) {
+    const label = source?.name || `registry/sources.json source at index ${position}`;
+    validateLicense(source, label);
+    validateImportMode(source, label);
+
+    if (!isNonEmptyString(source?.name)) {
+      errors.push(`${label} is missing required string field: name`);
+    } else if (byName.has(source.name)) {
+      errors.push(`Duplicate registry source name: ${source.name}`);
+    } else {
+      byName.set(source.name, source);
+    }
+
+    if (!isNonEmptyString(source?.url)) {
+      errors.push(`${label} is missing required string field: url`);
+      continue;
+    }
+
+    const normalizedUrl = normalizeSourceUrl(source.url);
+    if (byUrl.has(normalizedUrl)) {
+      errors.push(`Duplicate registry source URL: ${source.url}`);
+    } else {
+      byUrl.set(normalizedUrl, source);
+    }
+  }
+  return { byUrl, byName };
+}
+
+function matchingRegistrySource(registrySources, referenceSource) {
+  const referenceName = trackedReferenceName(referenceSource);
+  if (isNonEmptyString(referenceName) && registrySources.byName.has(referenceName)) {
+    return registrySources.byName.get(referenceName);
+  }
+  if (isNonEmptyString(referenceSource?.url)) {
+    return registrySources.byUrl.get(normalizeSourceUrl(referenceSource.url));
+  }
+  return null;
+}
+
+function validateRegistryReferenceConsistency(index, registry) {
+  const registrySources = indexRegistrySources(registry);
+  if (!index || !Array.isArray(index.sources) || (registrySources.byUrl.size === 0 && registrySources.byName.size === 0)) return;
+
+  for (const [position, source] of index.sources.entries()) {
+    const label = source?.id || `references/index.json source at index ${position}`;
+    validateLicense(source, label);
+    validateImportMode(source, label);
+
+    const registrySource = matchingRegistrySource(registrySources, source);
+    if (!registrySource) {
+      errors.push(`${label} is missing from registry/sources.json: ${trackedReferenceName(source) || source?.url || 'unknown source'}`);
+      continue;
+    }
+
+    const registryName = registrySource.name;
+    const referenceName = trackedReferenceName(source);
+    if (registrySource.url !== source.url) {
+      errors.push(`${label} URL differs between registry/sources.json (${registrySource.url}) and references/index.json (${source.url}).`);
+    }
+    if (registryName !== referenceName) {
+      errors.push(`${label} name differs between registry/sources.json (${registryName}) and references/index.json (${referenceName}).`);
+    }
+  }
+}
+
+requireFile('references/index.json');
+requireFile('registry/sources.json');
+for (const file of [...requiredFeatureDocs, ...requiredMappingDocs, ...requiredReferenceCommands]) requireFile(file);
+
+const index = await readJson('references/index.json');
+const sourceRegistry = await readJson('registry/sources.json');
 
 if (index) {
   if (!Array.isArray(index.sources)) {
     errors.push('references/index.json must contain a sources array.');
   } else {
     const seen = new Set();
-    const requiredFields = ['id', 'name', 'owner', 'url', 'category', 'status', 'import_mode', 'reference_doc', 'changelog'];
+    const requiredFields = ['id', 'name', 'owner', 'url', 'category', 'status', 'import_mode', 'license', 'reference_doc', 'changelog'];
     for (const [position, source] of index.sources.entries()) {
       const label = source?.id || `source at index ${position}`;
       for (const field of requiredFields) {
-        if (!source || typeof source[field] !== 'string' || source[field].trim() === '') {
+        if (!isNonEmptyString(source?.[field])) {
           errors.push(`${label} is missing required string field: ${field}`);
         }
       }
+      validateImportMode(source, label);
       if (source?.id) {
         if (seen.has(source.id)) errors.push(`Duplicate source id: ${source.id}`);
         seen.add(source.id);
@@ -66,7 +177,7 @@ if (index) {
           errors.push(`${label} local_targets must be an array.`);
         } else {
           for (const target of source.local_targets) {
-            if (typeof target !== 'string' || target.trim() === '') {
+            if (!isNonEmptyString(target)) {
               errors.push(`${label} has an invalid local target entry.`);
             } else if (!existsSync(target)) {
               errors.push(`${label} local target does not exist: ${target}`);
@@ -77,6 +188,8 @@ if (index) {
     }
   }
 }
+
+validateRegistryReferenceConsistency(index, sourceRegistry);
 
 if (errors.length > 0) {
   console.error('Reference Intelligence Layer validation failed:');
