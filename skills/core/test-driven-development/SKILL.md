@@ -1,42 +1,38 @@
-# Skill: Test-Driven Development
+# Skill: Test Driven Development
 
 ## Purpose
 
-Drive behavior changes with tests or executable checks.
+Use a red-green-refactor loop for behavior changes and bug fixes.
 
 ## When to use
 
-Use when adding or changing logic, fixing bugs, or preventing regressions.
+Use when behavior can be specified with tests, especially new features, regressions, and risky refactors.
 
 ## Inputs
 
-Spec, current test setup, target behavior, known failure.
+Expected behavior, acceptance criteria, existing test framework, target slice, and validation commands.
 
 ## Workflow
 
-1. Find the closest existing test pattern.
-2. Write or update a failing test when feasible.
-3. Implement the smallest change to pass.
-4. Run targeted tests.
-5. Refactor only after behavior is protected.
+1. Pick one vertical behavior slice.
+2. Write or update a failing test first when practical.
+3. Run the targeted test and confirm red for the right reason.
+4. Implement the smallest code change to pass.
+5. Refactor while tests stay green.
+6. Repeat for the next slice and finish with broader validation.
 
 ## Outputs
 
-Tests or checks that prove the intended behavior and implementation that passes them.
+Failing test evidence, passing test evidence, implementation notes, refactor notes, and remaining gaps.
 
 ## Failure modes
 
-- No test seam exists.
-- Tests assert implementation details.
-- Skipping targeted checks after edits.
+Writing tests after broad implementation, testing implementation details, skipping the red state, or expanding scope mid-loop.
 
 ## Verification checklist
 
-- [ ] A meaningful test or check exists.
-- [ ] Targeted tests were run.
-- [ ] Failure before fix was observed when practical.
-- [ ] The test matches acceptance criteria.
+Red state observed or justified; green state observed; refactor kept behavior; verification commands are recorded.
 
-## Superpowers alignment
+## Ghi chú tiếng Việt
 
-This skill is the local TDD equivalent for Superpowers-style red/green/refactor discipline.
+TDD ở đây là red-green-refactor theo lát nhỏ. Dùng cho thay đổi hành vi và bug. File liên quan: `commands/vibe-tdd.md`, `references/features/diagnosis-loop.md`. Khi upstream update TDD, so sánh nguyên tắc, không sao chép ví dụ.

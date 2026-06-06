@@ -118,3 +118,74 @@ This map shows which local skills and commands are influenced by tracked sources
   - `skills/agents/reviewer-agent/SKILL.md`
   - `skills/agents/tester-agent/SKILL.md`
   - `adapters/claude-code/README.md`
+
+
+## mattpocock/skills
+
+Source: https://github.com/mattpocock/skills
+
+Import mode: inspiration/adaptation only; no vendored content.
+
+### Local skills
+
+- `skills/core/grill-user-before-building/SKILL.md`
+- `skills/core/grill-with-docs/SKILL.md`
+- `skills/core/shared-domain-language/SKILL.md`
+- `skills/core/architecture-decision-records/SKILL.md`
+- `skills/core/disciplined-diagnosis/SKILL.md`
+- `skills/core/test-driven-development/SKILL.md`
+- `skills/core/prd-from-context/SKILL.md`
+- `skills/core/issue-slicing/SKILL.md`
+- `skills/core/triage-workflow/SKILL.md`
+- `skills/core/zoom-out-system-context/SKILL.md`
+- `skills/core/prototype-before-commitment/SKILL.md`
+- `skills/core/improve-codebase-architecture/SKILL.md`
+- `skills/core/git-guardrails/SKILL.md`
+- `skills/core/setup-pre-commit-quality-gates/SKILL.md`
+- `skills/memory/agent-handoff/SKILL.md`
+- `skills/prompts/compressed-technical-communication/SKILL.md`
+- `skills/meta/write-reusable-skill/SKILL.md`
+- `skills/meta/setup-project-agent-skills/SKILL.md`
+
+### Local commands
+
+- `commands/vibe-setup-skills.md`
+- `commands/vibe-grill-me.md`
+- `commands/vibe-grill-with-docs.md`
+- `commands/vibe-to-prd.md`
+- `commands/vibe-to-issues.md`
+- `commands/vibe-triage.md`
+- `commands/vibe-diagnose.md`
+- `commands/vibe-tdd.md`
+- `commands/vibe-zoom-out.md`
+- `commands/vibe-improve-architecture.md`
+- `commands/vibe-prototype.md`
+- `commands/vibe-handoff.md`
+- `commands/vibe-caveman.md`
+- `commands/vibe-write-skill.md`
+- `commands/vibe-git-guardrails.md`
+- `commands/vibe-setup-pre-commit.md`
+
+### Local templates
+
+- `templates/project-context-template.md`
+- `templates/adr-template.md`
+- `templates/prd-template.md`
+- `templates/issue-slicing-template.md`
+- `templates/triage-template.md`
+- `templates/diagnosis-template.md`
+- `templates/handoff-template.md`
+- `templates/architecture-review-template.md`
+- `templates/prototype-report-template.md`
+
+### Local workflows
+
+- `docs/workflows/real-engineering-skills-workflow.md`
+- `docs/workflows/grill-to-prd-to-issues.md`
+- `docs/workflows/debug-diagnose-tdd.md`
+- `docs/workflows/domain-language-and-adrs.md`
+- `docs/workflows/architecture-improvement-loop.md`
+
+## Ghi chú tiếng Việt
+
+Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh hưởng skill/command/template/workflow nào. Khi upstream update, kiểm tra danh sách này trước khi sửa file local và ghi changelog.

@@ -36,3 +36,5 @@ A concise spec with goals, non-goals, behavior, edge cases, and acceptance crite
 - [ ] Acceptance criteria are observable.
 - [ ] Open questions are listed.
 - [ ] Spec matches the user request.
+
+Related mattpocock-inspired skill: `skills/core/prd-from-context/SKILL.md` for product-shaped specs from existing conversation context.

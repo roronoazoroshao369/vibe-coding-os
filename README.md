@@ -170,3 +170,22 @@ Before importing external material:
 5. prefer adaptation and normalization over copying.
 
 See `NOTICE.md` and `ATTRIBUTIONS.md` for the current policy and placeholders.
+
+## Real Engineering Skills Layer
+
+Vibe Coding OS adapts practical engineering-agent ideas from [`mattpocock/skills`](https://github.com/mattpocock/skills) into its own local skill system. This layer is inspiration/adaptation only: no upstream code, prompts, or large documentation blocks are vendored. It strengthens the default workflow with:
+
+- grilling before building so the assistant does not invent requirements;
+- shared domain language in `CONTEXT.md`;
+- ADRs for important technical decisions;
+- TDD and disciplined diagnosis loops;
+- PRD creation from conversation context and issue slicing for independently grabbable work;
+- zoom-out and architecture-improvement workflows;
+- handoff documents for agent/session continuity;
+- git guardrails and quality gates before finishing work.
+
+Canonical local docs: `references/sources/mattpocock-skills.md`, `docs/workflows/real-engineering-skills-workflow.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md`.
+
+### Ghi chú tiếng Việt
+
+Layer này giúp maintainer Việt Nam dùng AI như kỹ sư thật: hỏi rõ trước khi làm, giữ glossary/context, ghi ADR, dùng TDD/debug có bằng chứng, chia issue nhỏ, handoff rõ, và chạy validation. Khi upstream `mattpocock/skills` thay đổi, hãy audit reference doc/changelog/mapping trước rồi mới sửa skill/command/template local. Không chép nội dung upstream.

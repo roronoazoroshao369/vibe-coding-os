@@ -57,3 +57,7 @@ When Claude uses upstream inspiration, first read `references/index.json`, the m
 ## Superpowers-inspired Claude workflow
 
 For meaningful tasks, do not skip the local Superpowers-inspired rituals: brainstorm before coding, write or update a spec/design when behavior or architecture is non-trivial, write a concrete plan before broad implementation, use TDD or targeted checks for behavior changes, request and receive review when a patch is ready, verify before claiming completion, and finish the branch with clear validation, attribution, memory, and handoff status. Use `docs/workflows/superpowers-inspired-workflow.md` plus the matching skills in `skills/core/` and `skills/meta/` as the canonical local guidance, not upstream text.
+
+## Real Engineering Skills Layer
+
+When using the mattpocock-inspired local layer, prefer grilling before implementation, keep `CONTEXT.md` and `docs/adr/` useful, use TDD and disciplined diagnosis loops, zoom out before architecture-sensitive work, and hand off unfinished work with exact validation status. Use compressed technical communication only when the user wants terse expert output or token pressure is high; do not hide caveats. Preserve attribution by reading `references/sources/mattpocock-skills.md` and related mappings before adapting upstream ideas.

@@ -38,3 +38,5 @@ A complete skill file plus registry, mapping, documentation, attribution, and va
 - [ ] Instructions are original and actionable.
 - [ ] Registry and indexes include the skill.
 - [ ] Attribution and validation are complete where applicable.
+
+Related mattpocock-inspired skill: `skills/meta/write-reusable-skill/SKILL.md` for compact reusable skill authoring.

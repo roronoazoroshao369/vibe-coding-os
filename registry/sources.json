@@ -62,9 +62,9 @@
       "name": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Tracked as inspiration/adaptation only. Root MIT license verified during the 2026-06-06 audit at commit be55a7970319ede7965edbb02b5e41cba1ca82c9; no upstream source content is vendored. Used for engineering agent skills, alignment workflow, shared domain language, ADR practice, diagnosis loop, TDD loop, PRD/issue workflow, handoff, skill-writing inspiration, guardrails, and setup patterns."
     }
   ]
 }

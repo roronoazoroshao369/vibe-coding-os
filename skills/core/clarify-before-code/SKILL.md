@@ -39,3 +39,5 @@ Clarifying questions or documented assumptions and a narrowed task statement.
 ## Superpowers alignment
 
 Use with `brainstorming` when the request needs option exploration before a spec.
+
+Related mattpocock-inspired skill: `skills/core/grill-user-before-building/SKILL.md` for deeper pre-build interviewing.

@@ -40,3 +40,5 @@ A practical plan with task order, file targets, risks, and checks.
 ## Superpowers alignment
 
 Use with `writing-plans` for plan creation and `executing-plans` for plan execution.
+
+Related mattpocock-inspired skill: `skills/core/issue-slicing/SKILL.md` for independently grabbable vertical slices.

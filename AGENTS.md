@@ -22,3 +22,14 @@
 ## Superpowers-inspired workflow discipline
 
 For non-trivial software tasks, use the adapted workflow in `docs/workflows/superpowers-inspired-workflow.md`. Check the relevant local skills before coding, especially brainstorming/clarification, spec-first development, writing/executing plans, TDD, review, verification, and finishing-branch skills. Prefer design or spec approval before implementation when the work changes behavior, spans multiple files, or contains meaningful risk. Use TDD or a targeted regression check for behavior changes. Verify before claiming completion, and use review plus finish-branch rituals before merge or PR handoff.
+
+## Real Engineering Skills Layer
+
+- Use `skills/core/grill-user-before-building/SKILL.md` or `commands/vibe-grill-me.md` for ambiguous tasks before implementation.
+- Use `CONTEXT.md` and `skills/core/shared-domain-language/SKILL.md` before large changes that affect project terminology or workflow meaning.
+- Create ADRs with `templates/adr-template.md` for important design decisions; do not create fake ADRs for decisions not made.
+- Use `skills/core/prd-from-context/SKILL.md` and `skills/core/issue-slicing/SKILL.md` for non-trivial product or multi-slice work.
+- Use TDD for behavior changes and `skills/core/disciplined-diagnosis/SKILL.md` for bugs.
+- Use `skills/memory/agent-handoff/SKILL.md` when context must survive an agent or session switch.
+- Run validation before finishing, especially `npm run validate:references` for reference changes and `npm run validate` for broader repo changes.
+- Never copy upstream content blindly; use `mattpocock/skills` as inspiration only and preserve attribution.
