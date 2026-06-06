@@ -26,6 +26,12 @@
       "description": "Find and run the most valuable tests for a change."
     },
     {
+      "name": "architecture-decision-records",
+      "path": "skills/core/architecture-decision-records/SKILL.md",
+      "category": "core",
+      "description": "Capture durable decisions, options, rationale, and consequences."
+    },
+    {
       "name": "brainstorming",
       "path": "skills/core/brainstorming/SKILL.md",
       "category": "core",
@@ -36,6 +42,12 @@
       "path": "skills/core/clarify-before-code/SKILL.md",
       "category": "core",
       "description": "Prevent wasted implementation by resolving ambiguity before edits."
+    },
+    {
+      "name": "disciplined-diagnosis",
+      "path": "skills/core/disciplined-diagnosis/SKILL.md",
+      "category": "core",
+      "description": "Diagnose bugs with reproduction, hypotheses, evidence, and regression checks."
     },
     {
       "name": "executing-plans",
@@ -50,10 +62,52 @@
       "description": "Close branch work with clean status, validation, review, attribution, and handoff notes."
     },
     {
+      "name": "git-guardrails",
+      "path": "skills/core/git-guardrails/SKILL.md",
+      "category": "core",
+      "description": "Protect user work and repository history around risky git operations."
+    },
+    {
+      "name": "grill-user-before-building",
+      "path": "skills/core/grill-user-before-building/SKILL.md",
+      "category": "core",
+      "description": "Interview the user for alignment before building."
+    },
+    {
+      "name": "grill-with-docs",
+      "path": "skills/core/grill-with-docs/SKILL.md",
+      "category": "core",
+      "description": "Align with the user while maintaining context and ADR candidates."
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "path": "skills/core/improve-codebase-architecture/SKILL.md",
+      "category": "core",
+      "description": "Improve architecture deliberately with small verified changes."
+    },
+    {
+      "name": "issue-slicing",
+      "path": "skills/core/issue-slicing/SKILL.md",
+      "category": "core",
+      "description": "Slice PRDs and plans into independently grabbable vertical issues."
+    },
+    {
       "name": "plan-driven-execution",
       "path": "skills/core/plan-driven-execution/SKILL.md",
       "category": "core",
       "description": "Convert a spec or task into small ordered implementation steps."
+    },
+    {
+      "name": "prd-from-context",
+      "path": "skills/core/prd-from-context/SKILL.md",
+      "category": "core",
+      "description": "Create a PRD from existing conversation context without inventing requirements."
+    },
+    {
+      "name": "prototype-before-commitment",
+      "path": "skills/core/prototype-before-commitment/SKILL.md",
+      "category": "core",
+      "description": "Use disposable prototypes to reduce uncertainty before commitment."
     },
     {
       "name": "receiving-code-review",
@@ -72,6 +126,18 @@
       "path": "skills/core/review-before-merge/SKILL.md",
       "category": "core",
       "description": "Catch correctness, maintainability, security, and attribution issues before merge."
+    },
+    {
+      "name": "setup-pre-commit-quality-gates",
+      "path": "skills/core/setup-pre-commit-quality-gates/SKILL.md",
+      "category": "core",
+      "description": "Set up lightweight maintainable pre-commit quality gates."
+    },
+    {
+      "name": "shared-domain-language",
+      "path": "skills/core/shared-domain-language/SKILL.md",
+      "category": "core",
+      "description": "Maintain durable project vocabulary for humans and agents."
     },
     {
       "name": "spec-first-development",
@@ -96,6 +162,12 @@
       "path": "skills/core/test-driven-development/SKILL.md",
       "category": "core",
       "description": "Drive behavior changes with tests or executable checks."
+    },
+    {
+      "name": "triage-workflow",
+      "path": "skills/core/triage-workflow/SKILL.md",
+      "category": "core",
+      "description": "Classify issues and route them to clear next states."
     },
     {
       "name": "upstream-intelligence-loop",
@@ -134,6 +206,18 @@
       "description": "Create executable plans with file targets, risks, rollback points, and checks."
     },
     {
+      "name": "zoom-out-system-context",
+      "path": "skills/core/zoom-out-system-context/SKILL.md",
+      "category": "core",
+      "description": "Explain broader system context before architecture-sensitive changes."
+    },
+    {
+      "name": "agent-handoff",
+      "path": "skills/memory/agent-handoff/SKILL.md",
+      "category": "memory",
+      "description": "Create durable handoff summaries for agent/session switches."
+    },
+    {
       "name": "context-retrieval",
       "path": "skills/memory/context-retrieval/SKILL.md",
       "category": "memory",
@@ -158,10 +242,22 @@
       "description": "Compress a work session into useful handoff context."
     },
     {
+      "name": "setup-project-agent-skills",
+      "path": "skills/meta/setup-project-agent-skills/SKILL.md",
+      "category": "meta",
+      "description": "Configure a repo for agent skills, context, issue flow, and validation."
+    },
+    {
       "name": "using-vibe-coding-os",
       "path": "skills/meta/using-vibe-coding-os/SKILL.md",
       "category": "meta",
       "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries."
+    },
+    {
+      "name": "write-reusable-skill",
+      "path": "skills/meta/write-reusable-skill/SKILL.md",
+      "category": "meta",
+      "description": "Write small composable Vibe Coding OS skills."
     },
     {
       "name": "writing-skills",
@@ -180,6 +276,12 @@
       "path": "skills/prompts/ask-when-confused/SKILL.md",
       "category": "prompts",
       "description": "Make uncertainty visible instead of guessing."
+    },
+    {
+      "name": "compressed-technical-communication",
+      "path": "skills/prompts/compressed-technical-communication/SKILL.md",
+      "category": "prompts",
+      "description": "Use terse expert technical communication without losing caveats."
     },
     {
       "name": "karpathy-guardrails",

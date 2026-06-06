@@ -1,29 +1,32 @@
-# vibe-write-skill
-
-## Purpose
-
-Write or revise a Vibe Coding OS skill.
+# Command: Write reusable skill
 
 ## When to use
 
-Use when creating a new skill, adapting methodology, or making a repeated workflow reusable.
+Use when creating or improving a Vibe Coding OS skill.
 
 ## Required inputs
 
-Skill behavior; triggering context; inputs/outputs; related skills; reference sources; registry/docs needs.
+Workflow, triggers, inputs, outputs, related files.
 
 ## Step-by-step behavior
 
-1. Define the behavioral purpose and avoid duplicate skills.
-2. Use the required `SKILL.md` headings.
-3. Write original cross-harness guidance.
-4. Update `registry/skills.json`, mappings, and user-facing docs/indexes.
-5. Record attribution when external inspiration shaped the skill and run validation.
+1. Check for existing similar skills.
+2. Keep scope narrow.
+3. Use required headings.
+4. Add registry entry and validation.
 
 ## Outputs
 
-Skill file plus registry, mapping, documentation, attribution, and validation updates as needed.
+Skill file and registry update.
 
-## Verification or stopping conditions
+## Stopping conditions
 
-Stop if license/attribution status is unclear for copied or closely adapted material.
+Stop if the workflow is one-off or duplicates another skill.
+
+## Verification checklist
+
+Skill validates and links related workflows.
+
+## Ghi chú tiếng Việt
+
+Viết skill nhỏ, rõ trigger, có checklist và registry.

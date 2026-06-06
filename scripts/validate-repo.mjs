@@ -37,7 +37,22 @@ const requiredCommands = [
   'vibe-finish-branch.md',
   'vibe-debug.md',
   'vibe-verify.md',
-  'vibe-write-skill.md'
+  'vibe-write-skill.md',
+  'vibe-setup-skills.md',
+  'vibe-grill-me.md',
+  'vibe-grill-with-docs.md',
+  'vibe-to-prd.md',
+  'vibe-to-issues.md',
+  'vibe-triage.md',
+  'vibe-diagnose.md',
+  'vibe-tdd.md',
+  'vibe-zoom-out.md',
+  'vibe-improve-architecture.md',
+  'vibe-prototype.md',
+  'vibe-handoff.md',
+  'vibe-caveman.md',
+  'vibe-git-guardrails.md',
+  'vibe-setup-pre-commit.md'
 ].map((file) => path.join('commands', file));
 
 const requiredTemplates = [
@@ -46,7 +61,16 @@ const requiredTemplates = [
   'task-template.md',
   'review-template.md',
   'memory-template.md',
-  'upstream-audit-template.md'
+  'upstream-audit-template.md',
+  'project-context-template.md',
+  'adr-template.md',
+  'prd-template.md',
+  'issue-slicing-template.md',
+  'triage-template.md',
+  'diagnosis-template.md',
+  'handoff-template.md',
+  'architecture-review-template.md',
+  'prototype-report-template.md'
 ].map((file) => path.join('templates', file));
 
 const requiredExamples = [
@@ -85,7 +109,24 @@ const requiredSkillDirs = [
   'skills/agents/architect-agent',
   'skills/agents/implementer-agent',
   'skills/agents/reviewer-agent',
-  'skills/agents/tester-agent'
+  'skills/agents/tester-agent',
+  'skills/core/grill-user-before-building',
+  'skills/core/grill-with-docs',
+  'skills/core/shared-domain-language',
+  'skills/core/architecture-decision-records',
+  'skills/core/disciplined-diagnosis',
+  'skills/core/prd-from-context',
+  'skills/core/issue-slicing',
+  'skills/core/triage-workflow',
+  'skills/core/zoom-out-system-context',
+  'skills/core/prototype-before-commitment',
+  'skills/core/improve-codebase-architecture',
+  'skills/core/git-guardrails',
+  'skills/core/setup-pre-commit-quality-gates',
+  'skills/memory/agent-handoff',
+  'skills/prompts/compressed-technical-communication',
+  'skills/meta/write-reusable-skill',
+  'skills/meta/setup-project-agent-skills'
 ];
 
 const requiredSkillSections = [

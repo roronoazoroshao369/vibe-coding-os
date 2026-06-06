@@ -7,9 +7,19 @@
       "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."
     },
     {
+      "name": "vibe-caveman",
+      "path": "commands/vibe-caveman.md",
+      "description": "Use compressed high-signal technical communication."
+    },
+    {
       "name": "vibe-debug",
       "path": "commands/vibe-debug.md",
       "description": "Debug systematically with reproduction, hypotheses, experiments, root cause, and regression checks."
+    },
+    {
+      "name": "vibe-diagnose",
+      "path": "commands/vibe-diagnose.md",
+      "description": "Run an evidence-based diagnosis loop for bugs."
     },
     {
       "name": "vibe-doctor",
@@ -27,9 +37,34 @@
       "description": "Finish branch work with clean status, final checks, review, attribution, and handoff notes."
     },
     {
+      "name": "vibe-git-guardrails",
+      "path": "commands/vibe-git-guardrails.md",
+      "description": "Check safe git behavior before risky operations or commits."
+    },
+    {
+      "name": "vibe-grill-me",
+      "path": "commands/vibe-grill-me.md",
+      "description": "Interview the user before building to remove ambiguity."
+    },
+    {
+      "name": "vibe-grill-with-docs",
+      "path": "commands/vibe-grill-with-docs.md",
+      "description": "Grill the user while updating durable context and ADR candidates."
+    },
+    {
+      "name": "vibe-handoff",
+      "path": "commands/vibe-handoff.md",
+      "description": "Create a continuation-ready handoff for another agent/session."
+    },
+    {
       "name": "vibe-implement",
       "path": "commands/vibe-implement.md",
       "description": "Implement an accepted spec or plan with minimal edits, matching conventions and reporting verification results."
+    },
+    {
+      "name": "vibe-improve-architecture",
+      "path": "commands/vibe-improve-architecture.md",
+      "description": "Plan deliberate architecture improvements in small verified slices."
     },
     {
       "name": "vibe-init",
@@ -50,6 +85,11 @@
       "name": "vibe-plan",
       "path": "commands/vibe-plan.md",
       "description": "Convert an accepted spec into ordered implementation steps, target files, risks, rollback points, and validation commands."
+    },
+    {
+      "name": "vibe-prototype",
+      "path": "commands/vibe-prototype.md",
+      "description": "Run a disposable prototype to answer a design question."
     },
     {
       "name": "vibe-receive-review",
@@ -87,6 +127,16 @@
       "description": "Review the current diff against the spec and plan, prioritizing blockers, missing tests, security, attribution, and scope control."
     },
     {
+      "name": "vibe-setup-pre-commit",
+      "path": "commands/vibe-setup-pre-commit.md",
+      "description": "Set up lightweight pre-commit quality gates."
+    },
+    {
+      "name": "vibe-setup-skills",
+      "path": "commands/vibe-setup-skills.md",
+      "description": "Set up per-repo Vibe Coding OS skills, context, and validation guidance."
+    },
+    {
       "name": "vibe-spec",
       "path": "commands/vibe-spec.md",
       "description": "Draft or update a concise implementation spec with goals, non-goals, behavior, edge cases, acceptance criteria, and verification strategy."
@@ -95,6 +145,26 @@
       "name": "vibe-subagents",
       "path": "commands/vibe-subagents.md",
       "description": "Coordinate bounded subagent or parallel-agent work with clear ownership and integration."
+    },
+    {
+      "name": "vibe-tdd",
+      "path": "commands/vibe-tdd.md",
+      "description": "Use red-green-refactor for behavior changes."
+    },
+    {
+      "name": "vibe-to-issues",
+      "path": "commands/vibe-to-issues.md",
+      "description": "Slice a PRD or plan into independent vertical issues."
+    },
+    {
+      "name": "vibe-to-prd",
+      "path": "commands/vibe-to-prd.md",
+      "description": "Convert existing conversation context into a PRD without inventing requirements."
+    },
+    {
+      "name": "vibe-triage",
+      "path": "commands/vibe-triage.md",
+      "description": "Classify incoming work and recommend next state/action."
     },
     {
       "name": "vibe-upstream-sync",
@@ -120,6 +190,11 @@
       "name": "vibe-write-skill",
       "path": "commands/vibe-write-skill.md",
       "description": "Create or revise portable Vibe Coding OS skills and update indexes and validation."
+    },
+    {
+      "name": "vibe-zoom-out",
+      "path": "commands/vibe-zoom-out.md",
+      "description": "Explain system context before architecture-sensitive changes."
     }
   ]
 }

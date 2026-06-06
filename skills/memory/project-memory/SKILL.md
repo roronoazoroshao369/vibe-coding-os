@@ -36,3 +36,5 @@ A concise memory entry with source, confidence, and safety status.
 - [ ] No sensitive data is included.
 - [ ] Source and confidence are clear.
 - [ ] Staleness risk is noted.
+
+Related mattpocock-inspired skills: `skills/core/shared-domain-language/SKILL.md`, `skills/core/architecture-decision-records/SKILL.md`, and `skills/memory/agent-handoff/SKILL.md`.

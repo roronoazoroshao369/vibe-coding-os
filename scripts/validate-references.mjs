@@ -12,7 +12,18 @@ const requiredFeatureDocs = [
   'multi-agent-workflow.md',
   'anti-overengineering.md',
   'tdd-loop.md',
-  'review-before-merge.md'
+  'review-before-merge.md',
+  'agent-alignment.md',
+  'shared-domain-language.md',
+  'architecture-decision-records.md',
+  'diagnosis-loop.md',
+  'prd-from-context.md',
+  'issue-slicing.md',
+  'triage-workflow.md',
+  'architecture-improvement.md',
+  'agent-handoff.md',
+  'git-guardrails.md',
+  'compressed-technical-communication.md'
 ].map((file) => path.join('references', 'features', file));
 const requiredMappingDocs = [
   'source-to-local-skills.md',
@@ -52,7 +63,14 @@ const requiredSuperpowersFiles = [
   'commands/vibe-finish-branch.md',
   'commands/vibe-debug.md',
   'commands/vibe-verify.md',
-  'commands/vibe-write-skill.md'
+  'commands/vibe-write-skill.md',
+  'references/sources/mattpocock-skills.md',
+  'references/changelogs/mattpocock-skills.md',
+  'docs/workflows/real-engineering-skills-workflow.md',
+  'docs/workflows/grill-to-prd-to-issues.md',
+  'docs/workflows/debug-diagnose-tdd.md',
+  'docs/workflows/domain-language-and-adrs.md',
+  'docs/workflows/architecture-improvement-loop.md'
 ];
 
 function requireFile(file) {

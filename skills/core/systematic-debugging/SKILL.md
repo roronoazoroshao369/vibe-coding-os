@@ -38,3 +38,5 @@ A debugging log with reproduction status, hypotheses, experiments, root cause co
 - [ ] Hypotheses and observations are separated.
 - [ ] Experiments are small and evidence-based.
 - [ ] Fix is verified by targeted check or clear limitation.
+
+Related mattpocock-inspired skill: `skills/core/disciplined-diagnosis/SKILL.md` for evidence-first bug diagnosis.

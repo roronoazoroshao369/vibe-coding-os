@@ -36,3 +36,41 @@ Use this document to decide which local files to inspect when a tracked referenc
 - If a local target no longer exists, update `references/index.json` before validation can pass.
 - If an upstream idea creates scope creep, record it as a possible future investigation instead of changing the kernel.
 - Never stage `references/upstreams/` clone contents.
+
+## mattpocock/skills update impact rules
+
+### If upstream adds a new skill
+
+Inspect `references/sources/mattpocock-skills.md`, `registry/skills.json`, `registry/prompts.json`, relevant `references/features/*.md`, and decide whether a local skill/command/template is needed.
+
+### If upstream changes setup flow
+
+Inspect `skills/meta/setup-project-agent-skills/SKILL.md`, `commands/vibe-setup-skills.md`, `CONTEXT.md`, `AGENTS.md`, `CLAUDE.md`, and registry files.
+
+### If upstream changes TDD/diagnosis guidance
+
+Inspect `skills/core/test-driven-development/SKILL.md`, `skills/core/disciplined-diagnosis/SKILL.md`, `commands/vibe-tdd.md`, `commands/vibe-diagnose.md`, `templates/diagnosis-template.md`, and `docs/workflows/debug-diagnose-tdd.md`.
+
+### If upstream changes domain language/ADR guidance
+
+Inspect `skills/core/shared-domain-language/SKILL.md`, `skills/core/architecture-decision-records/SKILL.md`, `CONTEXT.md`, `docs/adr/README.md`, `templates/project-context-template.md`, `templates/adr-template.md`, and `docs/workflows/domain-language-and-adrs.md`.
+
+### If upstream changes architecture guidance
+
+Inspect `skills/core/zoom-out-system-context/SKILL.md`, `skills/core/improve-codebase-architecture/SKILL.md`, `skills/core/prototype-before-commitment/SKILL.md`, architecture templates, and `docs/workflows/architecture-improvement-loop.md`.
+
+### If upstream changes handoff guidance
+
+Inspect `skills/memory/agent-handoff/SKILL.md`, `commands/vibe-handoff.md`, `templates/handoff-template.md`, and `skills/memory/project-memory/SKILL.md`.
+
+### If upstream changes guardrail/hook behavior
+
+Inspect `skills/core/git-guardrails/SKILL.md`, `skills/core/setup-pre-commit-quality-gates/SKILL.md`, `commands/vibe-git-guardrails.md`, `commands/vibe-setup-pre-commit.md`, and validation scripts.
+
+### If upstream changes install or plugin packaging
+
+Inspect `skills/meta/setup-project-agent-skills/SKILL.md`, `registry/skills.json`, `registry/prompts.json`, `registry/sources.json`, `references/index.json`, `scripts/validate-repo.mjs`, and `scripts/validate-references.mjs`.
+
+## Ghi chú tiếng Việt
+
+Impact map này là checklist khi upstream đổi. Đừng sửa tùy hứng: xác định loại thay đổi, đọc file local tương ứng, cập nhật changelog và chạy validation.

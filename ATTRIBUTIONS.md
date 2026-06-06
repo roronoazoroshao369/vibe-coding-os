@@ -28,3 +28,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 3. describe the imported material here;
 4. preserve upstream notices when required;
 5. prefer summaries and normalized procedures over direct copying.
+
+## mattpocock/skills
+
+- Name: mattpocock/skills
+- URL: https://github.com/mattpocock/skills
+- License: MIT, verified from upstream `LICENSE` during the 2026-06-06 audit.
+- Used for: engineering agent skills, alignment workflow, shared domain language, ADR practice, diagnosis loop, TDD loop, PRD/issue workflow, handoff, skill-writing inspiration, git guardrails, setup/pre-commit ideas, and architecture/prototype workflow inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: Local content is original Vibe Coding OS documentation and prompts. Future closer adaptation requires license and attribution review.
