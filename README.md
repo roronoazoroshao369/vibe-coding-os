@@ -53,6 +53,23 @@ Vibe Coding OS tracks [`obra/superpowers`](https://github.com/obra/superpowers) 
 
 The adapted workflow is documented in [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md). The reference audit and mapping live in `references/sources/obra-superpowers.md`, `references/changelogs/obra-superpowers.md`, and `references/mappings/`. No upstream code, skill files, or large documentation blocks are vendored.
 
+
+## Persistent Context Layer
+
+Vibe Coding OS includes a persistent context layer inspired by `thedotmack/claude-mem`, adapted as local skills, commands, workflows, templates, and adapter contracts rather than as a runtime dependency. The layer helps agents capture session observations, compress noisy work into concise summaries, search memory progressively, inject only relevant context, cite observation IDs or source artifacts, and exclude secrets before anything is stored or reused.
+
+Applied locally:
+
+- session capture lifecycle via `skills/memory/session-capture/SKILL.md` and `commands/vibe-session-capture.md`;
+- compression and handoff via `skills/memory/session-compression/SKILL.md`, `commands/vibe-session-summary.md`, and `docs/workflows/session-summary-and-handoff.md`;
+- context injection and progressive retrieval via `skills/memory/context-injection/SKILL.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, and `docs/workflows/progressive-memory-retrieval.md`;
+- observation citations and privacy exclusion via `skills/memory/observation-citations/SKILL.md`, `skills/memory/privacy-exclusion/SKILL.md`, and the related templates;
+- optional hook/adapter planning via `adapters/hooks/memory-hooks-contract.md` and `adapters/memory/claude-mem-adapter-plan.md`.
+
+Not applied locally: no copied hook scripts, Bun worker service, SQLite/Chroma stack, local web viewer clone, installer clone, background daemon, OpenClaw gateway, beta/endless mode, or hard dependency on `claude-mem`.
+
+**Ghi chú tiếng Việt:** Lớp Persistent Context giúp agent tiếp tục công việc giữa các phiên bằng bộ nhớ ngắn gọn, có trích dẫn và đã lọc bí mật. Không lưu token, mật khẩu, khóa riêng tư, dữ liệu cá nhân không cần thiết, hoặc transcript thô nhạy cảm.
+
 ## Installation and manual usage
 
 This repository is intentionally dependency-light. To validate the framework structure:

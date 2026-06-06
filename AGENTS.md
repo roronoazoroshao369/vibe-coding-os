@@ -33,3 +33,17 @@ For non-trivial software tasks, use the adapted workflow in `docs/workflows/supe
 - Use `skills/memory/agent-handoff/SKILL.md` when context must survive an agent or session switch.
 - Run validation before finishing, especially `npm run validate:references` for reference changes and `npm run validate` for broader repo changes.
 - Never copy upstream content blindly; use `mattpocock/skills` as inspiration only and preserve attribution.
+
+## Persistent Context Layer
+
+- Summarize sessions when context should survive an agent/session switch; prefer concise observations and summaries over raw transcripts.
+- Avoid storing secrets, credentials, private keys, tokens, unnecessary personal data, or sensitive raw logs in memory.
+- Retrieve context progressively: search/index first, inspect summaries, then fetch or inject only task-relevant details.
+- Cite memory entries when possible using observation IDs, source files, session summaries, or handoff notes.
+- Run privacy exclusion before session capture, compression, retrieval, context injection, or handoff.
+- Treat `thedotmack/claude-mem` as inspiration only: do not copy hook scripts, install it as a hard dependency, or clone its worker/database/viewer architecture.
+
+## Ghi chú tiếng Việt
+
+Khi dùng bộ nhớ, hãy tóm tắt ngắn gọn, lọc bí mật trước, tìm kiếm theo từng lớp, và trích dẫn observation/source khi dựa vào ký ức cũ.
+

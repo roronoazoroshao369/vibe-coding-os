@@ -61,3 +61,17 @@ For meaningful tasks, do not skip the local Superpowers-inspired rituals: brains
 ## Real Engineering Skills Layer
 
 When using the mattpocock-inspired local layer, prefer grilling before implementation, keep `CONTEXT.md` and `docs/adr/` useful, use TDD and disciplined diagnosis loops, zoom out before architecture-sensitive work, and hand off unfinished work with exact validation status. Use compressed technical communication only when the user wants terse expert output or token pressure is high; do not hide caveats. Preserve attribution by reading `references/sources/mattpocock-skills.md` and related mappings before adapting upstream ideas.
+
+## Claude persistent context guidance
+
+- At session start, retrieve only task-relevant memory and inject it as a small bundle with citations, confidence, and staleness labels.
+- During work, capture durable observations: user intent, constraints, decisions, material tool outcomes, files touched, validation status, risks, and follow-ups.
+- Before storing or injecting memory, apply privacy exclusions for secrets, credentials, tokens, private keys, unnecessary personal data, and sensitive raw transcripts.
+- At session end or handoff, compress noisy context into a concise summary that preserves citations, uncertainty, failed checks, and next actions.
+- Use progressive disclosure: search broad memory first, inspect candidate summaries, then include full details only when directly relevant.
+- Treat `thedotmack/claude-mem` as an inspiration source only. Do not copy upstream hooks, require its Bun worker, clone its storage/search stack, or depend on its installer.
+
+## Ghi chú tiếng Việt
+
+Claude nên nạp bộ nhớ vừa đủ cho nhiệm vụ, luôn lọc dữ liệu nhạy cảm trước khi lưu/chèn, và ghi rõ trích dẫn hoặc observation ID khi dùng thông tin từ phiên trước.
+

@@ -34,3 +34,7 @@ Summarize what was searched, what was found, and how it affects the task.
 - [ ] No full transcript unless explicitly required and sanitized.
 - [ ] Redactions preserve only useful technical context.
 - [ ] External provider use is optional and authorized.
+
+## Ghi chú tiếng Việt
+
+Dùng mẫu này để lưu bộ nhớ một cách an toàn: không lưu bí mật, luôn ghi nguồn/trích dẫn, và chỉ giữ thông tin bền vững hữu ích cho phiên sau.

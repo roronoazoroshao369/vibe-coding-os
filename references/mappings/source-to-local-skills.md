@@ -205,3 +205,22 @@ Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh h�
 - Source: `references/sources/supermemoryai-supermemory.md`.
 - Core memory skills: `skills/memory/memory-architecture/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-privacy/SKILL.md`, `skills/memory/memory-evaluation/SKILL.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `skills/memory/local-first-memory/SKILL.md`.
 - Enhanced existing skills: `skills/memory/project-memory/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/agent-handoff/SKILL.md`.
+
+## thedotmack/claude-mem
+
+`claude-mem` is tracked as Apache-2.0 inspiration for persistent agent context, not as vendored code or a runtime dependency.
+
+| Upstream concept | Local skills | Local commands/docs | Applied / not applied |
+| --- | --- | --- | --- |
+| Session lifecycle capture | `skills/memory/session-capture/SKILL.md`, `skills/memory/session-summarizer/SKILL.md` | `commands/vibe-session-capture.md`, `docs/workflows/privacy-safe-session-capture.md` | Applied as safe observations; no hook script copy. |
+| Memory compression | `skills/memory/session-compression/SKILL.md` | `commands/vibe-session-summary.md`, `templates/session-summary-template.md` | Applied as summarization discipline; no upstream algorithm/runtime copied. |
+| Context injection | `skills/memory/context-injection/SKILL.md`, `skills/memory/context-retrieval/SKILL.md` | `commands/vibe-context-inject.md`, `templates/context-injection-template.md` | Applied as scoped injection policy; no daemon required. |
+| Progressive disclosure/search | `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md` | `commands/vibe-memory-progressive-search.md`, `templates/progressive-memory-search-template.md` | Applied as workflow; no Chroma/SQLite implementation. |
+| Observation citations | `skills/memory/observation-citations/SKILL.md` | `commands/vibe-memory-cite.md`, `templates/session-observation-template.md` | Applied as ID/citation convention; no local viewer clone. |
+| Privacy exclusion | `skills/memory/privacy-exclusion/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/memory-privacy/SKILL.md` | `templates/privacy-exclusion-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Applied as exclusion-first policy; secrets are blocked. |
+| Hook/plugin architecture | `skills/memory/hook-based-memory/SKILL.md`, `skills/memory/memory-configuration/SKILL.md` | `adapters/hooks/memory-hooks-contract.md`, `adapters/memory/claude-mem-adapter-plan.md` | Planned as optional contract; not implemented. |
+| Troubleshooting/configuration | `skills/memory/memory-troubleshooting/SKILL.md`, `skills/memory/memory-configuration/SKILL.md` | `commands/vibe-memory-troubleshoot.md`, `commands/vibe-memory-config.md`, `templates/memory-config-template.md` | Applied as docs/templates; no installer clone. |
+
+## Ghi chú tiếng Việt
+
+Mapping này giúp agent biết ý tưởng nào từ `claude-mem` được chuyển thành skill local và ý tưởng nào bị loại khỏi scope. Không cài `claude-mem`, không copy hook, và luôn ưu tiên bộ nhớ an toàn có trích dẫn.
