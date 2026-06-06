@@ -113,7 +113,7 @@ Vibe Coding OS tracks upstream inspirations through a markdown-first Reference I
 
 Use it before adapting upstream ideas: read the source entry, inspect the linked feature and mapping docs, update the local changelog when auditing upstream, and keep attribution decisions explicit. Reference validation is available with `npm run validate:references`, and the main validation script includes it.
 
-For hands-on audits, `npm run references:clone` creates shallow ignored working copies under `references/upstreams/`. Treat those clones as disposable research material only; durable local knowledge belongs in `references/changelogs/`, source docs, feature mappings, skills, commands, templates, and attribution files. The detailed loop lives in `references/upstream-audit-workflow.md`.
+For hands-on audits, `npm run references:clone` creates or updates shallow ignored working copies under `references/upstreams/<owner>-<repo>`. With no flags, the command processes every source; `npm run references:clone -- --all` makes that explicit. To refresh one source, pass either its source id or owner/repo name, for example `npm run references:clone -- --source obra-superpowers` or `npm run references:clone -- --source github/spec-kit`. The clone command retries transient network failures, continues processing remaining sources after a failure, prints a final `cloned` / `updated` / `failed` / `skipped` summary with local paths, and exits non-zero if any source failed. Treat those clones as disposable research material only; durable local knowledge belongs in `references/changelogs/`, source docs, feature mappings, skills, commands, templates, and attribution files. The detailed loop lives in `references/upstream-audit-workflow.md`.
 
 ## Roadmap
 
