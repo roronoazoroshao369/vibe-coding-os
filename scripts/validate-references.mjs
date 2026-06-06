@@ -23,7 +23,15 @@ const requiredFeatureDocs = [
   'architecture-improvement.md',
   'agent-handoff.md',
   'git-guardrails.md',
-  'compressed-technical-communication.md'
+  'compressed-technical-communication.md',
+  'agent-memory-engine.md',
+  'memory-ingestion.md',
+  'memory-retrieval.md',
+  'memory-search.md',
+  'memory-privacy.md',
+  'memory-evaluation.md',
+  'memory-provider-adapter.md',
+  'local-first-memory.md'
 ].map((file) => path.join('references', 'features', file));
 const requiredMappingDocs = [
   'source-to-local-skills.md',
@@ -70,7 +78,35 @@ const requiredSuperpowersFiles = [
   'docs/workflows/grill-to-prd-to-issues.md',
   'docs/workflows/debug-diagnose-tdd.md',
   'docs/workflows/domain-language-and-adrs.md',
-  'docs/workflows/architecture-improvement-loop.md'
+  'docs/workflows/architecture-improvement-loop.md',
+  'references/sources/supermemoryai-supermemory.md',
+  'references/changelogs/supermemoryai-supermemory.md',
+  'docs/workflows/memory-lifecycle.md',
+  'docs/workflows/memory-retrieval-before-work.md',
+  'docs/workflows/privacy-safe-memory.md',
+  'docs/workflows/memory-provider-adapter.md',
+  'skills/memory/memory-architecture/SKILL.md',
+  'skills/memory/memory-ingestion/SKILL.md',
+  'skills/memory/memory-retrieval/SKILL.md',
+  'skills/memory/memory-search/SKILL.md',
+  'skills/memory/memory-privacy/SKILL.md',
+  'skills/memory/memory-evaluation/SKILL.md',
+  'skills/memory/memory-provider-adapter/SKILL.md',
+  'skills/memory/local-first-memory/SKILL.md',
+  'commands/vibe-memory-ingest.md',
+  'commands/vibe-memory-search.md',
+  'commands/vibe-memory-retrieve.md',
+  'commands/vibe-memory-audit.md',
+  'commands/vibe-memory-privacy-check.md',
+  'commands/vibe-memory-provider-plan.md',
+  'templates/memory-entry-template.md',
+  'templates/memory-retrieval-report-template.md',
+  'templates/memory-privacy-review-template.md',
+  'templates/memory-provider-adapter-template.md',
+  'templates/memory-evaluation-template.md',
+  'adapters/memory/README.md',
+  'adapters/memory/supermemory-adapter-plan.md',
+  'adapters/memory/local-memory-adapter.md'
 ];
 
 function requireFile(file) {

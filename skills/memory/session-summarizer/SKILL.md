@@ -1,4 +1,4 @@
-# Session Summarizer
+# Skill: Session Summarizer
 
 ## Purpose
 
@@ -36,3 +36,11 @@ A short handoff summary suitable for project memory or a PR note.
 - [ ] Commands and results are included.
 - [ ] Next action is actionable.
 - [ ] No secrets are included.
+
+## Applied / Not Applied
+
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Not applied: hosted Supermemory service requirement, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
+
+## Ghi chú tiếng Việt
+
+Dùng kỹ năng này để lưu hoặc truy xuất ngữ cảnh bền vững một cách an toàn. Không lưu bí mật, token, khóa riêng tư hoặc dữ liệu cá nhân không cần thiết.

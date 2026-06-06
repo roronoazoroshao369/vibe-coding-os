@@ -288,6 +288,54 @@
       "path": "skills/prompts/karpathy-guardrails/SKILL.md",
       "category": "prompts",
       "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+    },
+    {
+      "name": "memory-architecture",
+      "path": "skills/memory/memory-architecture/SKILL.md",
+      "category": "memory",
+      "description": "Design local-first agent memory contracts and boundaries."
+    },
+    {
+      "name": "memory-ingestion",
+      "path": "skills/memory/memory-ingestion/SKILL.md",
+      "category": "memory",
+      "description": "Capture durable memory entries through privacy-filtered ingestion."
+    },
+    {
+      "name": "memory-retrieval",
+      "path": "skills/memory/memory-retrieval/SKILL.md",
+      "category": "memory",
+      "description": "Retrieve task-relevant memory before decisions or implementation."
+    },
+    {
+      "name": "memory-search",
+      "path": "skills/memory/memory-search/SKILL.md",
+      "category": "memory",
+      "description": "Search local memory and optional providers with scoped queries."
+    },
+    {
+      "name": "memory-privacy",
+      "path": "skills/memory/memory-privacy/SKILL.md",
+      "category": "memory",
+      "description": "Apply privacy rules before storing, retrieving, or sharing memory."
+    },
+    {
+      "name": "memory-evaluation",
+      "path": "skills/memory/memory-evaluation/SKILL.md",
+      "category": "memory",
+      "description": "Evaluate memory relevance, freshness, safety, cost, and latency."
+    },
+    {
+      "name": "memory-provider-adapter",
+      "path": "skills/memory/memory-provider-adapter/SKILL.md",
+      "category": "memory",
+      "description": "Plan optional memory provider adapters without required dependencies."
+    },
+    {
+      "name": "local-first-memory",
+      "path": "skills/memory/local-first-memory/SKILL.md",
+      "category": "memory",
+      "description": "Keep local memory as the default fallback for all memory workflows."
     }
   ]
 }

@@ -38,3 +38,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: Local content is original Vibe Coding OS documentation and prompts. Future closer adaptation requires license and attribution review.
+
+## supermemoryai/supermemory
+
+- Name: `supermemoryai/supermemory`
+- URL: https://github.com/supermemoryai/supermemory
+- License: MIT, verified from upstream root `LICENSE` during the 2026-06-06 audit.
+- Used for: agent memory architecture, memory lifecycle, retrieval, provider abstraction, and memory evaluation inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and adapter plans. No upstream source code, SDK, API client, dashboard, connectors, benchmark data, prompts, or large documentation text is vendored.

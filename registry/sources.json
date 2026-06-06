@@ -22,9 +22,9 @@
       "name": "supermemoryai/supermemory",
       "url": "https://github.com/supermemoryai/supermemory",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "notes": "Used for agent memory architecture, memory lifecycle, retrieval, provider abstraction, and memory evaluation inspiration. Import mode is inspiration/adaptation only; vendored code: no. Root license verified on 2026-06-06."
     },
     {
       "name": "thedotmack/claude-mem",

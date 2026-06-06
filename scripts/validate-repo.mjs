@@ -52,7 +52,13 @@ const requiredCommands = [
   'vibe-handoff.md',
   'vibe-caveman.md',
   'vibe-git-guardrails.md',
-  'vibe-setup-pre-commit.md'
+  'vibe-setup-pre-commit.md',
+  'vibe-memory-ingest.md',
+  'vibe-memory-search.md',
+  'vibe-memory-retrieve.md',
+  'vibe-memory-audit.md',
+  'vibe-memory-privacy-check.md',
+  'vibe-memory-provider-plan.md'
 ].map((file) => path.join('commands', file));
 
 const requiredTemplates = [
@@ -70,7 +76,12 @@ const requiredTemplates = [
   'diagnosis-template.md',
   'handoff-template.md',
   'architecture-review-template.md',
-  'prototype-report-template.md'
+  'prototype-report-template.md',
+  'memory-entry-template.md',
+  'memory-retrieval-report-template.md',
+  'memory-privacy-review-template.md',
+  'memory-provider-adapter-template.md',
+  'memory-evaluation-template.md'
 ].map((file) => path.join('templates', file));
 
 const requiredExamples = [
@@ -126,7 +137,15 @@ const requiredSkillDirs = [
   'skills/memory/agent-handoff',
   'skills/prompts/compressed-technical-communication',
   'skills/meta/write-reusable-skill',
-  'skills/meta/setup-project-agent-skills'
+  'skills/meta/setup-project-agent-skills',
+  'skills/memory/memory-architecture',
+  'skills/memory/memory-ingestion',
+  'skills/memory/memory-retrieval',
+  'skills/memory/memory-search',
+  'skills/memory/memory-privacy',
+  'skills/memory/memory-evaluation',
+  'skills/memory/memory-provider-adapter',
+  'skills/memory/local-first-memory'
 ];
 
 const requiredSkillSections = [

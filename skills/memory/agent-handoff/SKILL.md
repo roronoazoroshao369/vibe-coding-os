@@ -35,3 +35,7 @@ Another agent can resume; exact commands are included; risks/open questions are 
 ## Ghi chú tiếng Việt
 
 Handoff giúp chuyển phiên/agent không mất ngữ cảnh. File liên quan: `templates/handoff-template.md`, `commands/vibe-handoff.md`, `skills/memory/project-memory/SKILL.md`.
+
+## Applied / Not Applied
+
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Not applied: hosted Supermemory service requirement, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.

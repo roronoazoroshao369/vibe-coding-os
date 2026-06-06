@@ -195,6 +195,36 @@
       "name": "vibe-zoom-out",
       "path": "commands/vibe-zoom-out.md",
       "description": "Explain system context before architecture-sensitive changes."
+    },
+    {
+      "name": "vibe-memory-ingest",
+      "path": "commands/vibe-memory-ingest.md",
+      "description": "Create a privacy-filtered durable memory entry."
+    },
+    {
+      "name": "vibe-memory-search",
+      "path": "commands/vibe-memory-search.md",
+      "description": "Search local memory and optional providers with scoped queries."
+    },
+    {
+      "name": "vibe-memory-retrieve",
+      "path": "commands/vibe-memory-retrieve.md",
+      "description": "Retrieve relevant memory before work and report confidence."
+    },
+    {
+      "name": "vibe-memory-audit",
+      "path": "commands/vibe-memory-audit.md",
+      "description": "Audit memory entries, reference mappings, and provider assumptions."
+    },
+    {
+      "name": "vibe-memory-privacy-check",
+      "path": "commands/vibe-memory-privacy-check.md",
+      "description": "Check candidate memory for secrets, sensitive data, and unsafe provider use."
+    },
+    {
+      "name": "vibe-memory-provider-plan",
+      "path": "commands/vibe-memory-provider-plan.md",
+      "description": "Plan an optional memory provider adapter with local-first fallback."
     }
   ]
 }
