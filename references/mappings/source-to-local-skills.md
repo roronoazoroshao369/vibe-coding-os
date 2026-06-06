@@ -90,3 +90,19 @@ This map links each tracked reference repository to local files that may be infl
   - `skills/agents/reviewer-agent/SKILL.md`
   - `skills/agents/tester-agent/SKILL.md`
   - `adapters/claude-code/README.md`
+
+
+## mattpocock/skills
+
+- Source doc: `references/sources/mattpocock-skills.md`
+- Changelog: `references/changelogs/mattpocock-skills.md`
+- Feature links: `skill-orchestration`, `spec-driven-development`, `tdd-loop`, `review-before-merge`, `anti-overengineering`
+- Local targets:
+  - `skills/core/clarify-before-code/SKILL.md`
+  - `skills/core/spec-first-development/SKILL.md`
+  - `skills/core/test-driven-development/SKILL.md`
+  - `skills/core/review-before-merge/SKILL.md`
+  - `skills/prompts/anti-overengineering/SKILL.md`
+  - `commands/vibe-spec.md`
+  - `commands/vibe-implement.md`
+  - `commands/vibe-review.md`

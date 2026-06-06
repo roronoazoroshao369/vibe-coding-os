@@ -1,7 +1,113 @@
 {
   "version": "0.1.0",
-  "last_built": null,
+  "last_built": "2026-06-05T17:34:01.600Z",
   "sources": [
+    {
+      "id": "affaan-m-ecc",
+      "name": "ECC",
+      "owner": "affaan-m",
+      "url": "https://github.com/affaan-m/ECC",
+      "category": "coding-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/affaan-m-ecc.md",
+      "changelog": "references/changelogs/affaan-m-ecc.md",
+      "features": [
+        "spec-driven-development",
+        "tdd-loop",
+        "review-before-merge"
+      ],
+      "local_targets": [
+        "skills/core/spec-first-development/SKILL.md",
+        "skills/core/test-driven-development/SKILL.md",
+        "commands/vibe-spec.md",
+        "commands/vibe-implement.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for end-to-end disciplined AI coding loops."
+    },
+    {
+      "id": "github-spec-kit",
+      "name": "spec-kit",
+      "owner": "github",
+      "url": "https://github.com/github/spec-kit",
+      "category": "specification-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/github-spec-kit.md",
+      "changelog": "references/changelogs/github-spec-kit.md",
+      "features": [
+        "spec-driven-development",
+        "skill-orchestration",
+        "tdd-loop"
+      ],
+      "local_targets": [
+        "templates/spec-template.md",
+        "templates/plan-template.md",
+        "skills/core/spec-first-development/SKILL.md",
+        "skills/core/plan-driven-execution/SKILL.md",
+        "commands/vibe-spec.md",
+        "commands/vibe-plan.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for spec-first delivery and structured implementation planning."
+    },
+    {
+      "id": "mattpocock-skills",
+      "name": "skills",
+      "owner": "mattpocock",
+      "url": "https://github.com/mattpocock/skills",
+      "category": "engineering-skills",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/mattpocock-skills.md",
+      "changelog": "references/changelogs/mattpocock-skills.md",
+      "features": [
+        "skill-orchestration",
+        "spec-driven-development",
+        "tdd-loop",
+        "review-before-merge",
+        "anti-overengineering"
+      ],
+      "local_targets": [
+        "skills/core/clarify-before-code/SKILL.md",
+        "skills/core/spec-first-development/SKILL.md",
+        "skills/core/test-driven-development/SKILL.md",
+        "skills/core/review-before-merge/SKILL.md",
+        "skills/prompts/anti-overengineering/SKILL.md",
+        "commands/vibe-spec.md",
+        "commands/vibe-implement.md",
+        "commands/vibe-review.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for small composable engineering skills, plan critique, issue shaping, TDD, diagnosis, and codebase improvement workflows."
+    },
+    {
+      "id": "multica-ai-andrej-karpathy-skills",
+      "name": "andrej-karpathy-skills",
+      "owner": "multica-ai",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "category": "prompt-guardrails",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "reference_doc": "references/sources/multica-ai-andrej-karpathy-skills.md",
+      "changelog": "references/changelogs/multica-ai-andrej-karpathy-skills.md",
+      "features": [
+        "anti-overengineering",
+        "tdd-loop"
+      ],
+      "local_targets": [
+        "skills/prompts/karpathy-guardrails/SKILL.md",
+        "skills/prompts/anti-overengineering/SKILL.md",
+        "commands/vibe-implement.md"
+      ],
+      "last_checked": null,
+      "last_known_commit": null,
+      "notes": "Study as a reference for practical guardrails and empirical iteration patterns."
+    },
     {
       "id": "obra-superpowers",
       "name": "superpowers",
@@ -27,31 +133,6 @@
       "last_checked": null,
       "last_known_commit": null,
       "notes": "Study as a reference for composable agent skills and workflow ergonomics."
-    },
-    {
-      "id": "affaan-m-ecc",
-      "name": "ECC",
-      "owner": "affaan-m",
-      "url": "https://github.com/affaan-m/ECC",
-      "category": "coding-workflow",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "reference_doc": "references/sources/affaan-m-ecc.md",
-      "changelog": "references/changelogs/affaan-m-ecc.md",
-      "features": [
-        "spec-driven-development",
-        "tdd-loop",
-        "review-before-merge"
-      ],
-      "local_targets": [
-        "skills/core/spec-first-development/SKILL.md",
-        "skills/core/test-driven-development/SKILL.md",
-        "commands/vibe-spec.md",
-        "commands/vibe-implement.md"
-      ],
-      "last_checked": null,
-      "last_known_commit": null,
-      "notes": "Study as a reference for end-to-end disciplined AI coding loops."
     },
     {
       "id": "supermemoryai-supermemory",
@@ -99,56 +180,6 @@
       "last_checked": null,
       "last_known_commit": null,
       "notes": "Study as a reference for Claude-oriented memory workflows."
-    },
-    {
-      "id": "github-spec-kit",
-      "name": "spec-kit",
-      "owner": "github",
-      "url": "https://github.com/github/spec-kit",
-      "category": "specification-workflow",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "reference_doc": "references/sources/github-spec-kit.md",
-      "changelog": "references/changelogs/github-spec-kit.md",
-      "features": [
-        "spec-driven-development",
-        "skill-orchestration",
-        "tdd-loop"
-      ],
-      "local_targets": [
-        "templates/spec-template.md",
-        "templates/plan-template.md",
-        "skills/core/spec-first-development/SKILL.md",
-        "skills/core/plan-driven-execution/SKILL.md",
-        "commands/vibe-spec.md",
-        "commands/vibe-plan.md"
-      ],
-      "last_checked": null,
-      "last_known_commit": null,
-      "notes": "Study as a reference for spec-first delivery and structured implementation planning."
-    },
-    {
-      "id": "multica-ai-andrej-karpathy-skills",
-      "name": "andrej-karpathy-skills",
-      "owner": "multica-ai",
-      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "category": "prompt-guardrails",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "reference_doc": "references/sources/multica-ai-andrej-karpathy-skills.md",
-      "changelog": "references/changelogs/multica-ai-andrej-karpathy-skills.md",
-      "features": [
-        "anti-overengineering",
-        "tdd-loop"
-      ],
-      "local_targets": [
-        "skills/prompts/karpathy-guardrails/SKILL.md",
-        "skills/prompts/anti-overengineering/SKILL.md",
-        "commands/vibe-implement.md"
-      ],
-      "last_checked": null,
-      "last_known_commit": null,
-      "notes": "Study as a reference for practical guardrails and empirical iteration patterns."
     },
     {
       "id": "yeachan-heo-oh-my-claudecode",
