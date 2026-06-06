@@ -56,6 +56,7 @@ Manual usage options:
 2. Invoke a command prompt from `commands/` such as `vibe-spec.md` or `vibe-review.md`.
 3. Attach one or more skills from `skills/` when you want a specific behavior.
 4. Use templates from `templates/` to create specs, plans, tasks, reviews, and memory notes.
+5. Walk through complete examples in `examples/`, starting with the [feature workflow](examples/feature-workflow/README.md) or [bugfix workflow](examples/bugfix-workflow/README.md).
 
 ## Skill system
 
@@ -126,7 +127,7 @@ For hands-on audits, `npm run references:clone` creates shallow ignored working 
 
 ### Near-term
 
-- Add examples of complete workflows.
+- Expand examples of complete workflows across more project types.
 - Add a repeatable reference intake scorecard for deciding which upstream ideas are worth adapting.
 - Add stronger schema validation for registries.
 - Add import review process for external ideas.

@@ -38,6 +38,11 @@ const requiredTemplates = [
   'upstream-audit-template.md'
 ].map((file) => path.join('templates', file));
 
+const requiredExamples = [
+  'feature-workflow/README.md',
+  'bugfix-workflow/README.md'
+].map((file) => path.join('examples', file));
+
 const requiredSkillDirs = [
   'skills/core/vibe-bootstrap',
   'skills/core/upstream-intelligence-loop',
@@ -79,35 +84,7 @@ function requireFile(file) {
   }
 }
 
-function normalizePath(file) {
-  return file.split(path.sep).join('/');
-}
-
-function isNonEmptyString(value) {
-  return typeof value === 'string' && value.trim() !== '';
-}
-
-function requireStringFields(record, fields, label) {
-  for (const field of fields) {
-    if (!isNonEmptyString(record?.[field])) {
-      errors.push(`${label} is missing required string field: ${field}`);
-    }
-  }
-}
-
-function requireUniqueNames(records, label) {
-  const seen = new Map();
-  for (const [position, record] of records.entries()) {
-    if (!isNonEmptyString(record?.name)) continue;
-    if (seen.has(record.name)) {
-      errors.push(`Duplicate ${label} name: ${record.name} at indexes ${seen.get(record.name)} and ${position}`);
-    } else {
-      seen.set(record.name, position);
-    }
-  }
-}
-
-for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates]) {
+for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates, ...requiredExamples]) {
   requireFile(file);
 }
 
@@ -244,4 +221,4 @@ if (errors.length > 0) {
 }
 
 console.log('Vibe Coding OS validation passed.');
-console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, and ${requiredTemplates.length} templates.`);
+console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, ${requiredTemplates.length} templates, and ${requiredExamples.length} examples.`);
