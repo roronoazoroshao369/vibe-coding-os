@@ -19,6 +19,8 @@ Vibe Coding OS learns from the broader AI coding workflow ecosystem, but it must
 - `references/mappings/*.md` maps sources to local skills, features to local files, and upstream changes to likely update targets.
 - `references/changelogs/*.md` tracks local audit notes about upstream changes. These are not copied upstream changelogs.
 - `references/snapshots/` is reserved for future local metadata snapshots. Do not store vendored source code here.
+- `references/upstreams/` is an ignored local clone workspace for shallow audit working copies. Only its README is committed.
+- `references/upstream-audit-workflow.md` documents how to clone, audit, distill, and validate upstream ideas safely.
 
 ## How AI agents should use this layer
 
@@ -29,7 +31,8 @@ Before using upstream inspiration:
 3. Read relevant `references/features/*.md` and mapping docs.
 4. Inspect local files first and adapt only what benefits the local framework.
 5. Update the source changelog if you audit upstream.
-6. Run `npm run validate:references` and, when appropriate, `npm run validate`.
+6. When local clones are needed, run `npm run references:clone`; inspect them only as disposable audit evidence.
+7. Run `npm run validate:references` and, when appropriate, `npm run validate`.
 
 ## Adding a new reference repo
 

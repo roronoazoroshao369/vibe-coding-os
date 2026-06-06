@@ -18,3 +18,4 @@
 - Never copy large upstream content or vendor code without license review and an explicit decision.
 - Keep attribution clean in `ATTRIBUTIONS.md`, `NOTICE.md`, registries, and reference docs when external material is imported or closely adapted.
 - Run `npm run validate:references` after changing reference files, or `npm run validate` for broader repository validation.
+- Use `npm run references:clone` for local upstream audit clones, but never stage or commit cloned upstream source trees under `references/upstreams/`.

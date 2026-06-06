@@ -71,3 +71,13 @@ This map shows where each reference feature is implemented or documented locally
   - `commands/vibe-review.md`
   - `commands/vibe-merge.md`
   - `templates/review-template.md`
+
+## Upstream intelligence
+
+- Feature doc: `references/upstream-audit-workflow.md`
+- Local files:
+  - `skills/core/upstream-intelligence-loop/SKILL.md`
+  - `commands/vibe-upstream-sync.md`
+  - `templates/upstream-audit-template.md`
+  - `scripts/clone-upstreams.mjs`
+  - `references/upstreams/README.md`

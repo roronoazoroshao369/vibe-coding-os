@@ -1,0 +1,3 @@
+# Local upstream audit clones. Do not vendor third-party repositories.
+references/upstreams/*
+!references/upstreams/README.md

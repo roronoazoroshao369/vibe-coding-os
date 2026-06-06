@@ -9,7 +9,8 @@
     "validate:repo": "node scripts/validate-repo.mjs",
     "validate:references": "node scripts/validate-references.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
-    "references:report": "node scripts/generate-update-report.mjs"
+    "references:report": "node scripts/generate-update-report.mjs",
+    "references:clone": "node scripts/clone-upstreams.mjs"
   },
   "license": "MIT"
 }
