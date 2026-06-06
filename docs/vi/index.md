@@ -107,3 +107,6 @@ Task nhỏ có thể dùng phiên bản nhẹ của loop, nhưng task nhiều fi
 | Vendoring | Đưa nguyên code/docs/prompt của bên ngoài vào repo local |
 | Upstream audit | Kiểm tra nguồn upstream để học pattern phù hợp mà không copy bừa |
 | Staleness | Trạng thái cũ/mới của memory hoặc reference cần review lại |
+## 9. Superpowers-inspired workflow
+
+Repo đã tích hợp `obra/superpowers` theo hướng inspiration/adaptation để agent dễ dùng skill methodology có kỷ luật: brainstorm trước khi code, spec/design approval cho việc không trivial, worktree/branch isolation khi cần, plan chi tiết, TDD, subagent pass, review, verification, finish branch và memory. Xem `docs/workflows/superpowers-inspired-workflow.md` và bảng index trong `docs/vi/skills-and-commands.md`.

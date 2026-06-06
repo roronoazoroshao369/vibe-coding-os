@@ -11,3 +11,7 @@ If future versions import or adapt external material, contributors must:
 - document the imported material in `ATTRIBUTIONS.md`;
 - include any required upstream notices;
 - keep copied text minimal and clearly identified.
+
+## Reference inspiration notice
+
+Vibe Coding OS tracks `obra/superpowers` (https://github.com/obra/superpowers, MIT License) as an inspiration/adaptation source for agentic skill methodology and workflow discipline. The local integration consists of original Vibe Coding OS skills, commands, mappings, and documentation. No upstream source code, skill files, prompts, assets, tests, or large documentation excerpts are vendored.

@@ -1,4 +1,4 @@
-# Clarify Before Code
+# Skill: Clarify Before Code
 
 ## Purpose
 
@@ -35,3 +35,7 @@ Clarifying questions or documented assumptions and a narrowed task statement.
 - [ ] Ambiguities that affect code are resolved or recorded.
 - [ ] Assumptions are conservative.
 - [ ] The user goal remains unchanged.
+
+## Superpowers alignment
+
+Use with `brainstorming` when the request needs option exploration before a spec.

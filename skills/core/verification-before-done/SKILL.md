@@ -1,4 +1,4 @@
-# Verification Before Done
+# Skill: Verification Before Done
 
 ## Purpose
 
@@ -36,3 +36,7 @@ A verification summary with commands, results, and limitations.
 - [ ] Failures are reported honestly.
 - [ ] Acceptance criteria are accounted for.
 - [ ] Final status is not overstated.
+
+## Superpowers alignment
+
+Use with `verification-before-completion` as the local completion gate alias.

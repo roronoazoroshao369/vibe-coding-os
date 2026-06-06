@@ -1,4 +1,4 @@
-# Plan-Driven Execution
+# Skill: Plan-Driven Execution
 
 ## Purpose
 
@@ -36,3 +36,7 @@ A practical plan with task order, file targets, risks, and checks.
 - [ ] Risky areas are named.
 - [ ] Verification commands are included.
 - [ ] Scope remains aligned with the spec.
+
+## Superpowers alignment
+
+Use with `writing-plans` for plan creation and `executing-plans` for plan execution.

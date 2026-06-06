@@ -1,4 +1,4 @@
-# Test-Driven Development
+# Skill: Test-Driven Development
 
 ## Purpose
 
@@ -36,3 +36,7 @@ Tests or checks that prove the intended behavior and implementation that passes 
 - [ ] Targeted tests were run.
 - [ ] Failure before fix was observed when practical.
 - [ ] The test matches acceptance criteria.
+
+## Superpowers alignment
+
+This skill is the local TDD equivalent for Superpowers-style red/green/refactor discipline.

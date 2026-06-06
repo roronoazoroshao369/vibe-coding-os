@@ -6,9 +6,9 @@
       "name": "obra/superpowers",
       "url": "https://github.com/obra/superpowers",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked_inspiration",
+      "import_mode": "adapted",
+      "notes": "Tracked as inspiration/adaptation. Root MIT license verified during the 2026-06-06 local clone audit; Vibe Coding OS adapts methodology concepts into original local skills, commands, mappings, and docs without vendoring upstream code or text."
     },
     {
       "name": "affaan-m/ECC",

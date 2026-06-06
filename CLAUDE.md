@@ -54,3 +54,6 @@ A change is merge-ready only when the diff is reviewed, acceptance criteria are 
 ## Reference Intelligence Layer
 
 When Claude uses upstream inspiration, first read `references/index.json`, the matching source document, and relevant feature or mapping docs. Use `npm run references:clone` only for ignored local audit working copies under `references/upstreams/`. Treat upstream repositories as inspiration only: summarize ideas in original language, update changelogs when auditing, and never copy large upstream content or vendor code without license and attribution review. Run `npm run validate:references` after reference-layer edits.
+## Superpowers-inspired Claude workflow
+
+For meaningful tasks, do not skip the local Superpowers-inspired rituals: brainstorm before coding, write or update a spec/design when behavior or architecture is non-trivial, write a concrete plan before broad implementation, use TDD or targeted checks for behavior changes, request and receive review when a patch is ready, verify before claiming completion, and finish the branch with clear validation, attribution, memory, and handoff status. Use `docs/workflows/superpowers-inspired-workflow.md` plus the matching skills in `skills/core/` and `skills/meta/` as the canonical local guidance, not upstream text.
