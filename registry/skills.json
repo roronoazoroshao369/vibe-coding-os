@@ -2,6 +2,72 @@
   "version": "0.1.0",
   "skills": [
     {
+      "name": "acceptance-criteria",
+      "path": "skills/core/acceptance-criteria/SKILL.md",
+      "category": "core",
+      "description": "Write observable, testable acceptance criteria that connect intent to verification."
+    },
+    {
+      "name": "brownfield-spec-enhancement",
+      "path": "skills/core/brownfield-spec-enhancement/SKILL.md",
+      "category": "core",
+      "description": "Apply spec discipline to existing systems with incremental, reversible migration."
+    },
+    {
+      "name": "checkpoint-validation",
+      "path": "skills/core/checkpoint-validation/SKILL.md",
+      "category": "core",
+      "description": "Validate each phase before the next with an explicit implementation-readiness gate."
+    },
+    {
+      "name": "creative-parallel-exploration",
+      "path": "skills/core/creative-parallel-exploration/SKILL.md",
+      "category": "core",
+      "description": "Compare multiple candidate approaches against explicit criteria and record a decision."
+    },
+    {
+      "name": "dependency-aware-task-ordering",
+      "path": "skills/core/dependency-aware-task-ordering/SKILL.md",
+      "category": "core",
+      "description": "Order tasks by dependencies and mark safe parallelism with test-first sequencing."
+    },
+    {
+      "name": "plan-from-spec",
+      "path": "skills/core/plan-from-spec/SKILL.md",
+      "category": "core",
+      "description": "Translate an agreed spec into a verifiable plan with separated technical context."
+    },
+    {
+      "name": "project-constitution",
+      "path": "skills/core/project-constitution/SKILL.md",
+      "category": "core",
+      "description": "Define durable, testable governing principles that constrain every later phase."
+    },
+    {
+      "name": "spec-template-design",
+      "path": "skills/meta/spec-template-design/SKILL.md",
+      "category": "meta",
+      "description": "Design and audit spec/plan/tasks templates for compact, complete, verifiable quality."
+    },
+    {
+      "name": "task-breakdown-from-plan",
+      "path": "skills/core/task-breakdown-from-plan/SKILL.md",
+      "category": "core",
+      "description": "Decompose a plan into small, ordered, grabbable tasks with dependencies and markers."
+    },
+    {
+      "name": "what-before-how",
+      "path": "skills/core/what-before-how/SKILL.md",
+      "category": "core",
+      "description": "Agree user-visible behavior and acceptance criteria before choosing technology."
+    },
+    {
+      "name": "workflow-extension-design",
+      "path": "skills/meta/workflow-extension-design/SKILL.md",
+      "category": "meta",
+      "description": "Design optional, documented workflow variants/presets without a runtime engine."
+    },
+    {
       "name": "agent-handoff",
       "path": "skills/memory/agent-handoff/SKILL.md",
       "category": "memory",

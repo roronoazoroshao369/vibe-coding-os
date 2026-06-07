@@ -70,6 +70,33 @@ Not applied locally: no copied hook scripts, Bun worker service, SQLite/Chroma s
 
 **Ghi chú tiếng Việt:** Lớp Persistent Context giúp agent tiếp tục công việc giữa các phiên bằng bộ nhớ ngắn gọn, có trích dẫn và đã lọc bí mật. Không lưu token, mật khẩu, khóa riêng tư, dữ liệu cá nhân không cần thiết, hoặc transcript thô nhạy cảm.
 
+## Spec-Driven Development Layer
+
+Vibe Coding OS includes a spec-driven development layer inspired by [`github/spec-kit`](https://github.com/github/spec-kit) (MIT), adapted into local skills, commands, templates, and docs. It makes specifications the central, testable artifact that drives planning, tasks, and implementation. This layer is inspiration/adaptation only: no upstream templates, prompts, or CLI are vendored, and the Specify CLI is not required.
+
+The lifecycle is:
+
+```text
+Constitution → Specify → Plan → Tasks → Implement
+```
+
+with a checkpoint between phases and an implementation-readiness gate before any code.
+
+Applied locally:
+
+- a project constitution of short, testable principles (`CONSTITUTION.md`, `skills/core/project-constitution/SKILL.md`, `commands/vibe-constitution.md`);
+- what-before-how specs with observable acceptance criteria (`skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`, `commands/vibe-specify.md`);
+- plan-from-spec with separated technical context (`skills/core/plan-from-spec/SKILL.md`, `commands/vibe-plan-from-spec.md`);
+- dependency-aware, parallelizable, test-first task breakdown (`skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`, `commands/vibe-tasks.md`);
+- checkpoint validation and an implementation-readiness gate (`skills/core/checkpoint-validation/SKILL.md`, `commands/vibe-checkpoints.md`, `commands/vibe-implement-from-tasks.md`);
+- brownfield enhancement and creative parallel exploration (`skills/core/brownfield-spec-enhancement/SKILL.md`, `skills/core/creative-parallel-exploration/SKILL.md`).
+
+Not applied: the Specify CLI as a dependency, upstream command names as mandatory, copied templates, an agent installer, a full extension/preset runtime, or language-specific project generators.
+
+Canonical docs: `docs/specs/README.md`, `docs/workflows/spec-driven-development.md`, `references/sources/github-spec-kit.md`, and `references/mappings/`.
+
+**Ghi chú tiếng Việt:** Lớp spec-driven biến đặc tả thành tài liệu trung tâm: constitution → specify → plan → tasks → implement, làm rõ "cái gì" trước "làm thế nào", có checkpoint và cổng sẵn sàng triển khai. Học ý tưởng từ `github/spec-kit`, không copy template/CLI và không bắt buộc Specify CLI.
+
 ## Installation and manual usage
 
 This repository is intentionally dependency-light. To validate the framework structure:

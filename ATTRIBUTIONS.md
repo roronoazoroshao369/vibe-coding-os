@@ -58,3 +58,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and adapter plans. No upstream hook scripts, worker service, installer, database schema, UI, prompts, docs, assets, or runtime dependencies are vendored.
+
+## github/spec-kit
+
+- Name: `github/spec-kit`
+- URL: https://github.com/github/spec-kit
+- License: MIT, verified from upstream root `LICENSE` during the 2026-06-06 audit.
+- Used for: spec-driven development, project constitution/principles, the spec → plan → tasks → implement lifecycle, what-before-how discipline, acceptance criteria, dependency-aware and parallelizable task ordering, TDD task ordering, checkpoint validation, the implementation-readiness gate, brownfield iterative enhancement, and creative parallel exploration inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and reference docs. No upstream templates, prompts, CLI/`src` code, scripts, docs, tests, or assets are vendored. The Specify CLI is not a dependency and upstream command names are not required.

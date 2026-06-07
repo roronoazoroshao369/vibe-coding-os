@@ -224,3 +224,36 @@ Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh h�
 ## Ghi chú tiếng Việt
 
 Mapping này giúp agent biết ý tưởng nào từ `claude-mem` được chuyển thành skill local và ý tưởng nào bị loại khỏi scope. Không cài `claude-mem`, không copy hook, và luôn ưu tiên bộ nhớ an toàn có trích dẫn.
+
+## github/spec-kit
+
+`spec-kit` is tracked as MIT inspiration for spec-driven development. No upstream code, templates, or CLI is vendored, and the Specify CLI is not required.
+
+- Source doc: `references/sources/github-spec-kit.md`
+- Changelog: `references/changelogs/github-spec-kit.md`
+- Feature links: `constitution`, `specify`, `plan`, `tasks`, `implement`, `what-before-how`, `acceptance-criteria`, `task-dependencies`, `parallel-tasks`, `tdd-ordering`, `checkpoint-validation`, `brownfield-enhancement`, `creative-exploration`
+
+| Upstream concept | Local skills | Local commands/templates/docs | Applied / not applied |
+| --- | --- | --- | --- |
+| Constitution / principles | `skills/core/project-constitution/SKILL.md` | `commands/vibe-constitution.md`, `templates/constitution-template.md`, `CONSTITUTION.md` | Applied as a local principles file + skill; no upstream text. |
+| Specify (what before how) | `skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md` | `commands/vibe-specify.md`, `templates/spec-template.md` | Applied; reuses existing spec template, adds what-before-how discipline. |
+| Plan from spec | `skills/core/plan-from-spec/SKILL.md`, `skills/core/plan-driven-execution/SKILL.md` | `commands/vibe-plan-from-spec.md`, `templates/plan-template.md` | Applied; separates technical context from behavior. |
+| Tasks decomposition | `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`, `skills/core/issue-slicing/SKILL.md` | `commands/vibe-tasks.md`, `templates/tasks-template.md` | Applied; dependency + parallel markers, TDD ordering. |
+| Acceptance criteria | `skills/core/acceptance-criteria/SKILL.md` | `templates/spec-template.md`, `templates/checkpoint-template.md` | Applied; criteria must be observable. |
+| Implement + readiness gate | `skills/core/checkpoint-validation/SKILL.md` | `commands/vibe-implement-from-tasks.md`, `commands/vibe-checkpoints.md`, `templates/checkpoint-template.md` | Applied; gate before implementation. |
+| Brownfield enhancement | `skills/core/brownfield-spec-enhancement/SKILL.md` | `commands/vibe-brownfield-spec.md`, `templates/brownfield-spec-template.md` | Applied for existing systems. |
+| Creative exploration | `skills/core/creative-parallel-exploration/SKILL.md` | `commands/vibe-parallel-explore.md`, `templates/parallel-exploration-template.md` | Applied as time-boxed comparison. |
+| Spec template design | `skills/meta/spec-template-design/SKILL.md` | `templates/spec-audit-template.md`, `commands/vibe-spec-audit.md` | Applied as meta guidance for template quality. |
+| Extensions / presets | `skills/meta/workflow-extension-design/SKILL.md` | `references/features/workflow-extensions-and-presets.md` | Design guidance only; no runtime engine. |
+| Agent integrations | — | `AGENTS.md`, `CLAUDE.md`, `docs/workflows/spec-driven-development.md` | Partial; uses existing instruction files, no installer. |
+
+### github/spec-kit local skill mapping
+
+- Source: `references/sources/github-spec-kit.md`.
+- New core skills: `skills/core/project-constitution`, `skills/core/what-before-how`, `skills/core/plan-from-spec`, `skills/core/task-breakdown-from-plan`, `skills/core/acceptance-criteria`, `skills/core/dependency-aware-task-ordering`, `skills/core/checkpoint-validation`, `skills/core/brownfield-spec-enhancement`, `skills/core/creative-parallel-exploration`.
+- New meta skills: `skills/meta/spec-template-design`, `skills/meta/workflow-extension-design`.
+- Enhanced existing skills: `skills/core/spec-first-development`, `skills/core/plan-driven-execution`, `skills/core/issue-slicing`, `skills/core/test-driven-development`.
+
+#### Ghi chú tiếng Việt
+
+Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/command/template local. Không copy template hay CLI upstream; chỉ thêm kỷ luật còn thiếu (hiến chương, cổng sẵn sàng, sắp xếp task, checkpoint, brownfield, khám phá song song).
