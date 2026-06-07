@@ -46,6 +46,68 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Memory:** ghi lại quyết định, gotcha, follow-up bền vững.
 - **Merge:** chỉ ship khi trạng thái verification rõ ràng.
 
+## Quick start theo từng tool
+
+Vibe Coding OS là markdown-first và nhẹ dependency. Chọn đúng đường cho agent của bạn. Mọi trường hợp đều cùng một mục tiêu: cho agent đọc `CLAUDE.md` (hoặc `AGENTS.md`), rồi nạp đúng các file `commands/*.md` và `skills/*/*/SKILL.md` mà task cần.
+
+### Claude Code
+
+```bash
+# Cách A — trỏ Claude Code thẳng vào repo này và làm việc bên trong
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd ~/vibe-coding-os
+claude          # CLAUDE.md tự nạp; skills/, commands/, templates/ sẵn sàng
+
+# Cách B — dùng trong PROJECT của bạn
+cd your-project
+# copy CLAUDE.md của framework (hoặc nối vào file CLAUDE.md hiện có)
+cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+# rồi tham chiếu skill/command theo path, ví dụ bảo Claude Code:
+#   "Theo skills/core/spec-first-development/SKILL.md cho feature này"
+```
+
+Trong phiên, kích hoạt một phase bằng cách gọi tên command hoặc skill: `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, hoặc "dùng `skills/prompts/pragmatic-programmer/SKILL.md`". Chạy `npm run validate` sau khi sửa cấu trúc. Xem đầy đủ tại [`adapters/claude-code/README.md`](adapters/claude-code/README.md).
+
+### Codex CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md   # Codex đọc AGENTS.md làm instruction surface
+```
+
+Paste một command prompt từ `commands/` (ví dụ `vibe-spec.md`, `vibe-review.md`) ở đầu task, và attach các `skills/*/*/SKILL.md` liên quan. Xem [`adapters/codex/README.md`](adapters/codex/README.md).
+
+### Gemini CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md   # hoặc paste nội dung CLAUDE.md vào file context của Gemini
+```
+
+Gemini CLI nạp context instruction lúc khởi động phiên; trỏ nó vào file đã copy và tham chiếu `commands/` cùng `skills/` theo path khi cần.
+
+### Cursor / assistant khác
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+```
+
+Paste nội dung `CLAUDE.md` vào project rules (ví dụ `.cursorrules` hoặc system prompt của chat), rồi paste từng prompt `commands/*.md` theo phase và attach `skills/*/*/SKILL.md` khi task cần. Xem [`adapters/cursor/README.md`](adapters/cursor/README.md) và [bảng tương thích adapter](adapters/compatibility-matrix.md).
+
+### Runtime tùy chọn (mọi tool)
+
+Framework chạy không cần runtime. Nếu muốn JSON state local cho task, memory, checkpoint, team, session:
+
+```bash
+node scripts/runtime-install.mjs            # cài đặt idempotent dưới .omc/runtime/
+node scripts/runtime-install.mjs --dry-run  # xem trước, không ghi
+node scripts/runtime-install.mjs --mcp      # đăng ký luôn MCP server vào .mcp.json
+```
+
+Hoàn toàn opt-in, không bao giờ tự khởi động, và degrade nhẹ nhàng nếu thiếu dependency tùy chọn.
+
 ## Cách dùng nhanh
 
 Repo này cố ý nhẹ dependency. Để kiểm tra cấu trúc framework:

@@ -47,6 +47,68 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Merge:** ship only after verification status is clear.
 
 
+## Quick start by tool
+
+Vibe Coding OS is markdown-first and dependency-light. Pick the path for your agent. In every case the goal is the same: make the agent read `CLAUDE.md` (or `AGENTS.md`), then pull in the specific `commands/*.md` and `skills/*/*/SKILL.md` files a task needs.
+
+### Claude Code
+
+```bash
+# Option A — point Claude Code at this repo and work inside it
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd ~/vibe-coding-os
+claude          # CLAUDE.md auto-loads; skills/, commands/, templates/ are ready
+
+# Option B — use it inside YOUR project
+cd your-project
+# copy the framework's CLAUDE.md (or append it to your existing one)
+cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+# then reference skills/commands by path, e.g. ask Claude Code:
+#   "Follow skills/core/spec-first-development/SKILL.md for this feature"
+```
+
+In a session, trigger a phase by naming a command or skill: `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, or "use `skills/prompts/pragmatic-programmer/SKILL.md`". Run `npm run validate` after structural edits. See [`adapters/claude-code/README.md`](adapters/claude-code/README.md) for the full workflow.
+
+### Codex CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md   # Codex reads AGENTS.md as its instruction surface
+```
+
+Paste a command prompt from `commands/` (for example `vibe-spec.md`, `vibe-review.md`) at the start of a task, and attach the relevant `skills/*/*/SKILL.md`. See [`adapters/codex/README.md`](adapters/codex/README.md).
+
+### Gemini CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md   # or paste CLAUDE.md content into your Gemini context file
+```
+
+Gemini CLI loads instruction context at session start; point it at the copied file and reference `commands/` and `skills/` by path as needed.
+
+### Cursor / other assistants
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+```
+
+Paste the contents of `CLAUDE.md` into your project rules (e.g. `.cursorrules` or the chat system prompt), then paste individual `commands/*.md` prompts per phase and attach `skills/*/*/SKILL.md` when a task needs that procedure. See [`adapters/cursor/README.md`](adapters/cursor/README.md) and the [adapter compatibility matrix](adapters/compatibility-matrix.md).
+
+### Optional runtime (any tool)
+
+The framework works with zero runtime. If you want local JSON state for tasks, memory, checkpoints, teams, and sessions:
+
+```bash
+node scripts/runtime-install.mjs            # idempotent setup under .omc/runtime/
+node scripts/runtime-install.mjs --dry-run  # preview, no writes
+node scripts/runtime-install.mjs --mcp      # also register the MCP server in .mcp.json
+```
+
+It is fully opt-in, never auto-starts, and degrades gracefully if optional dependencies are absent. See the [Runtime](#runtime) section below.
+
 ## Superpowers-style methodology adaptation
 
 Vibe Coding OS tracks [`obra/superpowers`](https://github.com/obra/superpowers) as an MIT-licensed inspiration source and adapts its composable-skill methodology into this repository's own local skill system. The local integration focuses on brainstorming before coding, spec/design approval for non-trivial work, isolated branches or worktrees, detailed plans, TDD, subagent-friendly task boundaries, review exchange, verification before completion, branch-finishing rituals, systematic debugging, skill-writing guidance, and multi-harness portability.

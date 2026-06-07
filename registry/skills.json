@@ -492,6 +492,54 @@
       "path": "skills/prompts/karpathy-guardrails/SKILL.md",
       "category": "prompts",
       "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+    },
+    {
+      "name": "software-design-philosophy",
+      "path": "skills/prompts/software-design-philosophy/SKILL.md",
+      "category": "prompts",
+      "description": "Apply deep modules, strategic design, and complexity management from Ousterhout."
+    },
+    {
+      "name": "code-complete-construction",
+      "path": "skills/prompts/code-complete-construction/SKILL.md",
+      "category": "prompts",
+      "description": "Build quality in during construction with defensive programming and data-first design."
+    },
+    {
+      "name": "readable-code",
+      "path": "skills/prompts/readable-code/SKILL.md",
+      "category": "prompts",
+      "description": "Apply readability heuristics from Readable Code so AI output is clear, unsurprising, and maintainable."
+    },
+    {
+      "name": "release-it-stability",
+      "path": "skills/prompts/release-it-stability/SKILL.md",
+      "category": "prompts",
+      "description": "Harden production code with circuit breaker, bulkhead, steady-state, and handshaking patterns."
+    },
+    {
+      "name": "pragmatic-programmer",
+      "path": "skills/prompts/pragmatic-programmer/SKILL.md",
+      "category": "prompts",
+      "description": "Apply DRY, orthogonality, reversible decisions, tracer bullets, and broken-windows discipline from The Pragmatic Programmer."
+    },
+    {
+      "name": "clean-code-discipline",
+      "path": "skills/prompts/clean-code-discipline/SKILL.md",
+      "category": "prompts",
+      "description": "Apply Clean Code rules for naming, small functions, comment discipline, and error handling."
+    },
+    {
+      "name": "working-with-legacy-code",
+      "path": "skills/prompts/working-with-legacy-code/SKILL.md",
+      "category": "prompts",
+      "description": "Change existing code safely using characterization tests, seams, and dependency-breaking patterns."
+    },
+    {
+      "name": "software-engineering-at-google",
+      "path": "skills/prompts/software-engineering-at-google/SKILL.md",
+      "category": "prompts",
+      "description": "Apply Google's review, testing, documentation, and sustainable-development culture to AI-generated code."
     }
   ]
 }
