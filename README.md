@@ -83,20 +83,43 @@ Vibe Coding OS is markdown-first and dependency-light. Pick the path for your ag
 
 ### Claude Code — install as a plugin (recommended)
 
-Vibe Coding OS ships a Claude Code plugin manifest (`.claude-plugin/plugin.json`) and a marketplace manifest (`.claude-plugin/marketplace.json`), so it installs like any other plugin — all 90 skills and 68 commands load automatically, no manual file copying.
+Vibe Coding OS ships a Claude Code plugin manifest (`.claude-plugin/plugin.json`) and a marketplace manifest (`.claude-plugin/marketplace.json`). The installer below registers the marketplace and enables the plugin in one command — no SSH key, no second step. Re-running it is safe.
 
 ```bash
-# 1. Add this repo as a marketplace
+curl -fsSL https://raw.githubusercontent.com/roronoazoroshao369/vibe-coding-os/main/install.sh | bash
+```
+
+What it does:
+
+- merges `extraKnownMarketplaces` + `enabledPlugins` into `~/.claude/settings.json` (backup at `settings.json.bak`);
+- forces the HTTPS-backed `github` plugin source, so users without SSH keys are unaffected;
+- requires only `bash` and `node`.
+
+Then **restart Claude Code** — it will prompt to trust and install the plugin. Verify with `claude plugin list`, manage with `claude plugin disable/enable/update vibe-coding-os`.
+
+<details>
+<summary>Manual (without the installer)</summary>
+
+```bash
+# 1. Add this repo as a marketplace (clones via HTTPS)
 claude plugin marketplace add roronoazoroshao369/vibe-coding-os
 
 # 2. Install the plugin
 claude plugin install vibe-coding-os@vibe-coding-os-marketplace
 
-# 3. (Optional) inspect what it ships before/after install
+# 3. (Optional) inspect what it ships
 claude plugin details vibe-coding-os
 ```
 
-After install, skills auto-activate by trigger and commands are available as `/vibe-*`. Use `claude plugin list`, `claude plugin disable/enable vibe-coding-os`, and `claude plugin update vibe-coding-os` to manage it.
+If step 2 fails with `git@github.com: Permission denied (publickey)`, your Claude Code build is cloning the plugin source over SSH. Either set up an SSH key on GitHub, or rewrite globally:
+
+```bash
+git config --global url."https://github.com/".insteadOf "git@github.com:"
+```
+
+The installer above avoids this entirely by writing the settings directly.
+
+</details>
 
 ### Claude Code — manual (no plugin)
 
