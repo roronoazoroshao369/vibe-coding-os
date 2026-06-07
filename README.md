@@ -4,9 +4,9 @@
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-**Vibe Coding OS** is a Claude/Codex-friendly skill framework for one person who wants to move fast with AI coding assistants without giving up engineering discipline.
+**Vibe Coding OS** is a Claude/Codex-friendly skill framework for one person who wants to move fast with AI coding assistants without giving up engineering discipline. It is markdown-first, dependency-light, and usable as plain instructions, prompts, and templates. It also includes an optional JSON-first runtime companion for local task, memory, checkpoint, team, session, daemon, MCP, tmux, and vector-memory workflows.
 
-It is not a wrapper, product, or agent runtime. It is a normalized operating system for AI-assisted software work: reusable skills, command prompts, templates, and registries that help a human and an AI assistant repeatedly turn intent into reliable code. Its specific aim is to raise the quality of vibe coding with Claude Code and similar agents by selectively studying, merging, and re-normalizing the best reusable workflow ideas from leading public skill and agent-workflow repositories without blindly copying or vendoring them.
+It is not a required wrapper, product, hosted service, or mandatory agent runtime. It is a normalized operating system for AI-assisted software work: reusable skills, command prompts, templates, registries, adapters, reference maps, and optional local runtime helpers that help a human and an AI assistant repeatedly turn intent into reliable code. Its specific aim is to raise the quality of vibe coding with Claude Code and similar agents by selectively studying, merging, and re-normalizing the best reusable workflow ideas from leading public skill, agent-workflow, and engineering-practice sources without blindly copying or vendoring them.
 
 ## Why this exists
 
@@ -45,6 +45,36 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Review:** inspect the diff for correctness, simplicity, security, and maintainability.
 - **Memory:** record durable decisions, gotchas, and follow-ups.
 - **Merge:** ship only after verification status is clear.
+
+## What is included now
+
+Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
+
+| Layer | What it contains | Pain it reduces |
+| --- | --- | --- |
+| Spec-driven workflow | Constitution, specify, plan, tasks, checkpoints, implementation-readiness gates | AI codes before understanding requirements |
+| Adaptive flow | Tiny/small/medium/large/risky workflow tiers | Process is either too heavy for small tasks or too light for risky work |
+| Real engineering skills | Grilling, PRD, ADRs, TDD, diagnosis, review, branch finishing | AI acts like a code generator instead of a disciplined engineer |
+| Prompt discipline | Karpathy-style think/simplicity/surgical/goal-driven rules plus book-inspired coding principles | Overengineering, vague naming, fragile design, unreviewable code |
+| Team-agent orchestration | Team architecture templates, role routing, handoffs, watchdogs, scaffold generation | Complex work cannot be split safely across agents |
+| Memory layer | Session capture, summarization, privacy filtering, progressive retrieval, citations | Context is lost between sessions or unsafe to reuse |
+| Reference intelligence | Source index, attribution policy, feature maps, update-impact maps, changelogs | Upstream ideas are copied blindly or become unmaintainable |
+| Optional runtime | JSON stores, task/memory/checkpoint/team/session CLI, daemon, MCP server, vector search, tmux team runner, installer | Markdown-only workflows need inspectable state or local automation |
+
+## Pain points solved
+
+| Vibe-coding pain | Local answer |
+| --- | --- |
+| Requirements are vague | `clarify-before-code`, `what-before-how`, `vibe-specify`, acceptance criteria templates |
+| AI jumps into code too soon | spec → plan → tasks gates, implementation-readiness checkpoint |
+| AI overbuilds or rewrites too much | `anti-overengineering`, Karpathy engineering discipline, surgical-change checks |
+| AI changes are hard to verify | goal-driven execution, TDD, verifier/reviewer split, `npm run validate` |
+| Multi-step work loses progress | task-state tracking, runtime task store, handoff templates |
+| Multi-agent work causes conflicts | team-agent orchestration, file ownership, handoff contracts, tmux runner |
+| Context disappears after compaction/session end | memory/session capture, summarizer, observation citations, optional vector search |
+| Legacy code changes are risky | characterization tests, seams, bug-fix lifecycle, brownfield spec enhancement |
+| Production code is happy-path only | Release It! stability patterns, defensive programming, review checklists |
+| Borrowed upstream ideas create license/attribution risk | reference index, source docs, ATTRIBUTIONS/NOTICE, validation scripts |
 
 
 ## Quick start by tool
@@ -159,7 +189,7 @@ Canonical docs: `docs/specs/README.md`, `docs/workflows/spec-driven-development.
 
 **Ghi chú tiếng Việt:** Lớp spec-driven biến đặc tả thành tài liệu trung tâm: constitution → specify → plan → tasks → implement, làm rõ "cái gì" trước "làm thế nào", có checkpoint và cổng sẵn sàng triển khai. Học ý tưởng từ `github/spec-kit`, không copy template/CLI và không bắt buộc Specify CLI.
 
-## Installation and manual usage
+## Validation and manual usage
 
 This repository is intentionally dependency-light. To validate the framework structure:
 
@@ -243,28 +273,28 @@ For hands-on audits, `npm run references:clone` creates or updates shallow ignor
 
 ## Roadmap
 
-### v0.1 kernel
+### Complete in the current kernel
 
-- Establish the normalized repository structure.
-- Provide core, memory, prompt, and agent skills.
-- Provide reusable command prompts and templates.
-- Add structural validation.
-- Add source and attribution registries without vendoring external code.
+- Normalized repository structure with core, memory, meta, prompt, and agent skills.
+- 68 reusable command prompts and 38 templates.
+- Dynamic structural validation plus reference-layer validation.
+- Source, attribution, feature, and impact registries without vendoring upstream code.
+- Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.
+- Optional JSON-first runtime with task, memory, checkpoint, team, session, daemon, MCP, vector, tmux-runner, and installer entry points.
 
 ### Near-term
 
-- Expand examples of complete workflows across more project types.
+- Expand complete example workflows across more project types.
 - Add a repeatable reference intake scorecard for deciding which upstream ideas are worth adapting.
-- Add stronger schema validation for registries.
-- Add import review process for external ideas.
-- Add project memory conventions and redaction tests.
-- Add adapter-specific install snippets.
+- Add stronger schema validation for registry semantics beyond path existence.
+- Add redaction tests and memory-quality evaluation fixtures.
+- Add dashboard or lightweight viewer for `.omc/runtime/` state.
 
 ### Later
 
-- Add optional CLI helpers.
-- Add compatibility tests for major agent tools.
 - Add curated skill packs for common stacks.
+- Add compatibility tests for major agent tools.
+- Add richer IDE/editor snippets for quick command and skill insertion.
 - Add governance rules for external contributions and source intake.
 
 ## Attribution and license policy
@@ -302,7 +332,23 @@ Layer này giúp maintainer Việt Nam dùng AI như kỹ sư thật: hỏi rõ 
 
 ## Runtime
 
-The optional runtime layer stores local JSON state for tasks, memory, checkpoints, teams, and sessions under `.omc/runtime/`. It is markdown-first and entirely opt-in.
+The optional runtime layer stores local JSON state for tasks, memory, checkpoints, teams, sessions, events, vector memory, daemon state, MCP integration, and tmux team execution under `.omc/runtime/`. It is markdown-first, entirely opt-in, and never auto-starts.
+
+Available npm scripts:
+
+```text
+runtime:init       initialise .omc/runtime/
+runtime:validate   validate runtime collections
+runtime:task       manage local task state
+runtime:memory     ingest/search local memory
+runtime:checkpoint record readiness/checkpoint evidence
+runtime:team       import/scaffold team specs
+runtime:session    capture session records
+runtime:daemon     run the opt-in watch daemon
+runtime:mcp        start the stdio MCP server
+runtime:team-run   launch the opt-in tmux team runner
+runtime:install    bootstrap runtime config and optional MCP registration
+```
 
 Bootstrap a clone with the installer:
 
@@ -313,4 +359,4 @@ node scripts/runtime-install.mjs --force    # overwrite config & collections
 node scripts/runtime-install.mjs --mcp      # also register MCP server in .mcp.json (merges, never clobbers)
 ```
 
-The installer creates `.omc/runtime/`, writes config from `templates/runtime-config-template.json`, initialises empty collections, and prints next steps. No global or system installs are performed. See [`docs/workflows/runtime-install.md`](docs/workflows/runtime-install.md) for details and [`docs/workflows/optional-runtime-architecture.md`](docs/workflows/optional-runtime-architecture.md) for the architecture.
+The installer creates `.omc/runtime/`, writes config from `templates/runtime-config-template.json`, initialises empty collections, and prints next steps. No global or system installs are performed. Runtime components degrade gracefully when optional dependencies are absent. See [`docs/workflows/runtime-install.md`](docs/workflows/runtime-install.md), [`docs/workflows/runtime-daemon.md`](docs/workflows/runtime-daemon.md), [`docs/workflows/runtime-mcp-server.md`](docs/workflows/runtime-mcp-server.md), [`docs/workflows/runtime-vector-memory.md`](docs/workflows/runtime-vector-memory.md), [`docs/workflows/runtime-team-runner.md`](docs/workflows/runtime-team-runner.md), and [`docs/workflows/optional-runtime-architecture.md`](docs/workflows/optional-runtime-architecture.md).
