@@ -326,3 +326,17 @@ Bảng này nối từng tính năng bộ nhớ với file local cần kiểm tr
 ### Ghi chú tiếng Việt
 
 Bảng spec-driven nối từng tính năng (hiến chương, spec, plan, tasks, checkpoint, brownfield, khám phá) với file local cần đọc khi `spec-kit` thay đổi hoặc khi sửa một tính năng.
+
+## Team-agent orchestration
+
+- Feature doc: `references/features/team-agent-orchestration.md`
+- Local files:
+  - `skills/core/team-agent-orchestration/SKILL.md`
+  - `commands/vibe-team.md`
+  - `templates/team-architecture-template.md`
+  - `docs/workflows/team-agent-orchestration.md`
+  - `skills/core/subagent-driven-development/SKILL.md`
+  - `references/features/multi-agent-workflow.md`
+- Reference sources:
+  - `references/sources/yeachan-heo-oh-my-claudecode.md`
+  - `references/sources/revfactory-harness.md`

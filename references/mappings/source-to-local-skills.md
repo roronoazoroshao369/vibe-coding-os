@@ -257,3 +257,21 @@ Mapping này giúp agent biết ý tưởng nào từ `claude-mem` được chuy
 #### Ghi chú tiếng Việt
 
 Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/command/template local. Không copy template hay CLI upstream; chỉ thêm kỷ luật còn thiếu (hiến chương, cổng sẵn sàng, sắp xếp task, checkpoint, brownfield, khám phá song song).
+
+## revfactory/harness
+
+- Source doc: `references/sources/revfactory-harness.md`
+- Changelog: `references/changelogs/revfactory-harness.md`
+- Feature links: `team-agent-orchestration`, `multi-agent-workflow`, `progressive-disclosure`
+- Local targets:
+  - `skills/core/team-agent-orchestration/SKILL.md`
+  - `commands/vibe-team.md`
+  - `templates/team-architecture-template.md`
+  - `docs/workflows/team-agent-orchestration.md`
+  - `references/features/team-agent-orchestration.md`
+
+## yeachan-heo/oh-my-claudecode team-orchestration update
+
+- Added local team orchestration guidance inspired by staged team plan/exec/verify/fix flow, role routing, TeamCreate/TaskCreate/SendMessage-style coordination, handoffs, watchdog concepts, worktree integration, and dynamic scaling/config.
+- Local targets added: `skills/core/team-agent-orchestration/SKILL.md`, `commands/vibe-team.md`, `templates/team-architecture-template.md`, `docs/workflows/team-agent-orchestration.md`, `references/features/team-agent-orchestration.md`.
+- No upstream team/swarm runtime, state manager, hook, tmux/mailbox layer, or prose is copied.

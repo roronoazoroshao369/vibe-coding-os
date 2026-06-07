@@ -272,6 +272,11 @@
       "description": "Coordinate bounded subagent or parallel-agent work with clear ownership and integration."
     },
     {
+      "name": "vibe-team",
+      "path": "commands/vibe-team.md",
+      "description": "Design and coordinate a proportional team-agent workflow with roles, ownership, handoffs, and validation."
+    },
+    {
       "name": "vibe-tasks",
       "path": "commands/vibe-tasks.md",
       "description": "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."

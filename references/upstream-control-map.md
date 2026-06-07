@@ -108,3 +108,12 @@ npm run validate:references   # đảm bảo index/mapping/registry còn nhất 
 ## Ghi chú tiếng Việt
 
 File này là bảng điều khiển trung tâm. Khi cần biết "tôi dùng repo nào / merge gì / ở file nào / maintain sao", đọc theo thứ tự: bảng mục 1 → index `references/index.json` → quy trình maintain mục 3. Khi upstream update: `clone → audit → impact → decide → adapt → verify`, và luôn cập nhật `last_known_commit` + changelog để giữ kiểm soát.
+
+### Đợt 3 — Team-agent orchestration (2026-06-07)
+
+| # | Upstream repo | License | Trạng thái | Đã merge feature gì (gap-only) | File local chính |
+|---|---|---|---|---|---|
+| 14 | [yeachan-heo/oh-my-claudecode](https://github.com/yeachan-heo/oh-my-claudecode) | MIT | inspiration/adapted | Staged team flow, role routing, task/message coordination, handoff/watchdog/worktree/dynamic-scaling concepts | `skills/core/team-agent-orchestration/`, `commands/vibe-team.md` |
+| 15 | [revfactory/harness](https://github.com/revfactory/harness) | Apache-2.0 | inspiration | Six team patterns, domain-analysis-first team architecture, progressive disclosure, dry-run and with-vs-without validation | `templates/team-architecture-template.md`, `docs/workflows/team-agent-orchestration.md` |
+
+> **SKIP:** upstream orchestration runtimes, tmux/session/mailbox layers, hook daemons, generated `.claude/agents` / `.claude/skills`, installers, code, prompts, and docs. Local result is original markdown only.

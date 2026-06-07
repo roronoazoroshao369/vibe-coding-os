@@ -518,7 +518,8 @@
       "features": [
         "skill-orchestration",
         "multi-agent-workflow",
-        "review-before-merge"
+        "review-before-merge",
+        "team-agent-orchestration"
       ],
       "local_targets": [
         "CLAUDE.md",
@@ -526,11 +527,58 @@
         "skills/agents/implementer-agent/SKILL.md",
         "skills/agents/reviewer-agent/SKILL.md",
         "skills/agents/tester-agent/SKILL.md",
-        "adapters/claude-code/README.md"
+        "adapters/claude-code/README.md",
+        "skills/core/team-agent-orchestration/SKILL.md",
+        "commands/vibe-team.md",
+        "docs/workflows/team-agent-orchestration.md",
+        "templates/team-architecture-template.md",
+        "references/features/team-agent-orchestration.md"
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "3e945671dcf3ed1c1bcc422862815f92c1999143",
       "notes": "Baseline audited from local clone on 2026-06-06. Study for Claude Code agent boundaries, skill budgets, memory merge behavior, and plugin compatibility tests."
+    },
+    {
+      "id": "revfactory-harness",
+      "name": "harness",
+      "owner": "revfactory",
+      "url": "https://github.com/revfactory/harness",
+      "category": "agent-team-orchestration",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "Apache-2.0",
+      "reference_doc": "references/sources/revfactory-harness.md",
+      "changelog": "references/changelogs/revfactory-harness.md",
+      "features": [
+        "team-agent-orchestration",
+        "multi-agent-workflow",
+        "progressive-disclosure"
+      ],
+      "local_targets": [
+        "skills/core/team-agent-orchestration/SKILL.md",
+        "commands/vibe-team.md",
+        "templates/team-architecture-template.md",
+        "docs/workflows/team-agent-orchestration.md",
+        "references/features/team-agent-orchestration.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "maintenance_priority": "high",
+      "upstream_watch_paths": [
+        "README.md",
+        "docs/",
+        ".claude/agents/",
+        ".claude/skills/",
+        "src/"
+      ],
+      "update_triggers": [
+        "new team pattern",
+        "phase workflow change",
+        "validation method change",
+        "progressive disclosure change",
+        "generated artifact boundary change"
+      ],
+      "notes": "Apache-2.0 Copyright 2025 robin from provided upstream facts. Used as inspiration for team architecture patterns and validation workflow only; no generated agent/skill files or runtime are vendored."
     }
   ]
 }

@@ -236,6 +236,12 @@
       "description": "Drive behavior changes with tests or executable checks."
     },
     {
+      "name": "team-agent-orchestration",
+      "path": "skills/core/team-agent-orchestration/SKILL.md",
+      "category": "core",
+      "description": "Design proportional temporary agent teams with clear roles, handoffs, integration ownership, and verification."
+    },
+    {
       "name": "triage-workflow",
       "path": "skills/core/triage-workflow/SKILL.md",
       "category": "core",

@@ -90,3 +90,7 @@ Conflicting outputs are integration inputs, not instructions to overwrite anothe
 - Claude Code subagents: pass ownership and handoff requirements in the prompt; keep final synthesis in the main conversation.
 - Codex delegated agents/workers: assign disjoint write scopes, tell workers not to revert others' edits, and review changes before integration.
 - Cursor manual chat workflows: use separate chats with pasted context, one write owner per chat, and a structured handoff back to the main chat.
+
+## Team architecture extension
+
+For broad or risky multi-agent work, use `references/features/team-agent-orchestration.md` and `skills/core/team-agent-orchestration/SKILL.md`. The extension adds domain analysis before delegation, explicit team-pattern selection, progressive context disclosure, watchdog rules, dry-run validation, and a with-team vs without-team retrospective. Keep one integrator responsible for shared files, final verification, and attribution hygiene.

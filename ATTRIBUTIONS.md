@@ -148,3 +148,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: No `/pm` runtime, `gh` issue-sync scripting, bash command library, or GitHub-as-database engine is vendored. Only conceptual tracking patterns are adapted.
+
+## revfactory/harness
+
+- Name: `revfactory/harness`
+- URL: https://github.com/revfactory/harness
+- License: Apache-2.0, Copyright 2025 robin. Verified from provided upstream facts during the 2026-06-07 audit.
+- Used for: idea-level inspiration for team-agent orchestration patterns, domain-analysis-first team design, progressive disclosure, generated-role brief structure, dry-run validation, and with-team vs without-team comparison.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: No upstream runtime, generated `.claude/agents`, generated `.claude/skills`, code, prompts, templates, docs, or installer behavior is vendored. Local artifacts are original markdown guidance.

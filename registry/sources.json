@@ -105,6 +105,14 @@
       "status": "tracked_inspiration",
       "import_mode": "adapted",
       "notes": "MIT (Copyright (c) 2025 Yeachan Heo) verified from upstream root LICENSE during the 2026-06-07 audit. Used for decision-context commit-trailer convention, context-budget heuristics, skill-from-session and instinct extraction, and agent role/model-tier routing inspiration, adapted in original wording. The upstream runtime engine (team/swarm, hooks, state manager) is not vendored. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "revfactory/harness",
+      "url": "https://github.com/revfactory/harness",
+      "license": "Apache-2.0",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Apache-2.0 (Copyright 2025 robin) from provided upstream facts during the 2026-06-07 audit. Used as idea-level inspiration for team-agent orchestration: six team patterns (Pipeline, Fan-out/Fan-in, Expert Pool, Producer-Reviewer, Supervisor, Hierarchical Delegation), the domain-analysis-to-validation phase workflow, progressive disclosure, and dry-run plus with-vs-without validation. No runtime, generated .claude/agents or .claude/skills, code, prompts, or docs are vendored. See ATTRIBUTIONS.md."
     }
   ]
 }
