@@ -15,10 +15,11 @@ Candidate content, sensitivity rules, repository policy.
 ## Workflow
 
 1. Scan for secrets, tokens, keys, credentials, private URLs, and personal data.
-2. Remove or replace sensitive values with placeholders.
-3. Keep enough context for usefulness.
-4. Record redaction decisions when helpful.
-5. Block the action if sensitive data cannot be safely removed.
+2. Before spawning a subprocess, hook, or sub-agent, strip secrets from the environment passed to it: allowlist only the variables the child needs and drop the rest, so tokens never leak into a child's context or captured memory.
+3. Remove or replace sensitive values with placeholders.
+4. Keep enough context for usefulness.
+5. Record redaction decisions when helpful.
+6. Block the action if sensitive data cannot be safely removed.
 
 ## Outputs
 
@@ -39,7 +40,7 @@ Sanitized content or a clear block reason.
 
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Not applied: hosted Supermemory service requirement, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Applied from claude-mem-inspired privacy design: strip secrets from child process or sub-agent environments before spawn. Not applied: hosted Supermemory service requirement, claude-mem hook runtime, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
 
 ## Ghi chú tiếng Việt
 

@@ -2,54 +2,47 @@
 
 ## Purpose
 
-Provide a disciplined local procedure for memory ingestion that is inspired by `supermemoryai/supermemory` concepts while remaining dependency-free, privacy-safe, and human-controlled.
+Turn durable observations into safe, scoped memory entries with citations and privacy filtering.
 
 ## When to use
 
-Use when work needs durable context, memory ingestion, retrieval before decisions, memory search, provider planning, or evaluation of memory usefulness. Prefer existing memory skills (`project-memory`, `context-retrieval`, `privacy-filter`, `session-summarizer`, `agent-handoff`) when the task is narrower.
+Use after a session, decision, validation result, troubleshooting discovery, or user constraint should persist for future work.
 
 ## Inputs
 
-- Task or decision that may need memory.
-- Candidate memory content, source, scope, sensitivity, confidence, and staleness risk.
-- Local files, prior memory entries, templates, and related commands.
-- Optional provider constraints if a human explicitly requests an external backend.
+- Candidate fact, decision, command, file path, validation result, risk, or follow-up.
+- Source artifact: file path, command output summary, conversation turn, issue, PR, or handoff.
+- Scope, confidence, sensitivity, and retention expectation.
 
 ## Workflow
 
-1. Confirm the memory goal: ingest, retrieve, search, evaluate, protect, or plan an adapter.
-2. Check local conventions and related memory skills before adding new behavior.
-3. Apply privacy filtering before storing or sharing any memory.
-4. Prefer local-first storage and cite sources for retrieved context.
-5. Label confidence, expiry, contradictions, and unresolved questions.
-6. If an external provider is considered, keep it optional and document fallback behavior.
-7. Record verification using the relevant template or command.
+1. Keep only durable facts that could change future behavior.
+2. Run `privacy-filter` before storing anything.
+3. Attach source/citation: file path, command, observation ID, or handoff reference.
+4. Set scope: session, worktree, project, or user-level.
+5. Add confidence and stale-risk labels.
+6. Record contradictions or supersession links when replacing older memory.
+7. Store concise original wording; never store raw secrets or full transcripts.
 
 ## Outputs
 
-- A concise memory entry, retrieval/search report, privacy review, evaluation note, or adapter plan.
-- Clear applied/not-applied decisions and follow-up checks.
+- Safe memory entry with source, scope, confidence, and retention note.
+- Rejected-content note for excluded sensitive or low-value material.
 
 ## Failure modes
 
-- Duplicating an existing memory skill instead of composing with it.
-- Storing secrets, credentials, private keys, or unnecessary personal data.
-- Treating hosted provider behavior as required.
-- Saving full transcripts instead of durable facts.
-- Omitting source, confidence, scope, or staleness information.
+- Saving transcript noise instead of durable facts.
+- Omitting source/citation.
+- Storing sensitive data because it was useful.
+- Writing global memory for branch-specific facts.
 
 ## Verification checklist
 
-- [ ] Existing memory skills were checked for overlap.
-- [ ] Candidate content passed privacy filtering.
-- [ ] Local-first behavior remains available.
-- [ ] External provider use, if any, is explicitly optional.
-- [ ] Sources, confidence, and stale/contradictory signals are documented.
-
-## Applied / Not Applied
-
-Applied from Supermemory-inspired design: explicit memory operations, retrieval-before-work, search as an interface, provider abstraction, evaluation, privacy gates, and local fallback. Not applied: hosted Supermemory requirement, dashboard clone, cloud auth/account flow, SDK client, database stack, connectors, benchmark data, or replacing local memory by default.
+- [ ] Entry is durable, concise, and actionable.
+- [ ] Privacy filter ran before storage.
+- [ ] Source/citation and scope are present.
+- [ ] Confidence, staleness, and follow-up labels are present when relevant.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent dùng bộ nhớ như một năng lực rõ ràng nhưng vẫn an toàn. Luôn ưu tiên bộ nhớ cục bộ, kiểm tra quyền riêng tư trước khi lưu, ghi nguồn và độ tin cậy, và không biến Supermemory thành phụ thuộc bắt buộc.
+Chỉ nạp những quan sát bền vững, có nguồn, có phạm vi và đã lọc riêng tư. Không lưu transcript thô hoặc bí mật.

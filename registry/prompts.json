@@ -2,9 +2,34 @@
   "version": "0.1.0",
   "prompts": [
     {
+      "name": "vibe-analyze",
+      "path": "commands/vibe-analyze.md",
+      "description": "Check spec, plan, and tasks for cross-artifact consistency before implementation."
+    },
+    {
+      "name": "vibe-brainstorm",
+      "path": "commands/vibe-brainstorm.md",
+      "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."
+    },
+    {
+      "name": "vibe-brief",
+      "path": "commands/vibe-brief.md",
+      "description": "Create a compact implementation brief with scoped context, examples, and validation gates."
+    },
+    {
       "name": "vibe-brownfield-spec",
       "path": "commands/vibe-brownfield-spec.md",
       "description": "Apply spec discipline to an existing system with incremental, reversible migration."
+    },
+    {
+      "name": "vibe-caveman",
+      "path": "commands/vibe-caveman.md",
+      "description": "Use compressed high-signal technical communication."
+    },
+    {
+      "name": "vibe-checklist",
+      "path": "commands/vibe-checklist.md",
+      "description": "Generate and use requirement-quality checklists before implementation."
     },
     {
       "name": "vibe-checkpoints",
@@ -15,46 +40,6 @@
       "name": "vibe-constitution",
       "path": "commands/vibe-constitution.md",
       "description": "Create or update the project constitution of short, testable governing principles."
-    },
-    {
-      "name": "vibe-implement-from-tasks",
-      "path": "commands/vibe-implement-from-tasks.md",
-      "description": "Execute ordered tasks into verified implementation after the readiness gate clears."
-    },
-    {
-      "name": "vibe-parallel-explore",
-      "path": "commands/vibe-parallel-explore.md",
-      "description": "Compare candidate approaches against explicit criteria and record a deliberate decision."
-    },
-    {
-      "name": "vibe-plan-from-spec",
-      "path": "commands/vibe-plan-from-spec.md",
-      "description": "Turn an agreed spec into a verifiable plan with separated technical context and traceability."
-    },
-    {
-      "name": "vibe-spec-audit",
-      "path": "commands/vibe-spec-audit.md",
-      "description": "Audit specs and templates for required sections, observable criteria, and verification gates."
-    },
-    {
-      "name": "vibe-specify",
-      "path": "commands/vibe-specify.md",
-      "description": "Produce a behavior-focused spec with goals, non-goals, scenarios, and observable criteria."
-    },
-    {
-      "name": "vibe-tasks",
-      "path": "commands/vibe-tasks.md",
-      "description": "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."
-    },
-    {
-      "name": "vibe-brainstorm",
-      "path": "commands/vibe-brainstorm.md",
-      "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."
-    },
-    {
-      "name": "vibe-caveman",
-      "path": "commands/vibe-caveman.md",
-      "description": "Use compressed high-signal technical communication."
     },
     {
       "name": "vibe-context-inject",
@@ -87,6 +72,11 @@
       "description": "Finish branch work with clean status, final checks, review, attribution, and handoff notes."
     },
     {
+      "name": "vibe-flow",
+      "path": "commands/vibe-flow.md",
+      "description": "Choose the lightest useful Vibe Coding OS workflow tier for a task."
+    },
+    {
       "name": "vibe-git-guardrails",
       "path": "commands/vibe-git-guardrails.md",
       "description": "Check safe git behavior before risky operations or commits."
@@ -110,6 +100,11 @@
       "name": "vibe-implement",
       "path": "commands/vibe-implement.md",
       "description": "Implement an accepted spec or plan with minimal edits, matching conventions and reporting verification results."
+    },
+    {
+      "name": "vibe-implement-from-tasks",
+      "path": "commands/vibe-implement-from-tasks.md",
+      "description": "Execute ordered tasks into verified implementation after the readiness gate clears."
     },
     {
       "name": "vibe-improve-architecture",
@@ -182,9 +177,19 @@
       "description": "Assess merge readiness by checking scope, acceptance criteria, validation, attribution, security, and follow-ups."
     },
     {
+      "name": "vibe-parallel-explore",
+      "path": "commands/vibe-parallel-explore.md",
+      "description": "Compare candidate approaches against explicit criteria and record a deliberate decision."
+    },
+    {
       "name": "vibe-plan",
       "path": "commands/vibe-plan.md",
       "description": "Convert an accepted spec into ordered implementation steps, target files, risks, rollback points, and validation commands."
+    },
+    {
+      "name": "vibe-plan-from-spec",
+      "path": "commands/vibe-plan-from-spec.md",
+      "description": "Turn an agreed spec into a verifiable plan with separated technical context and traceability."
     },
     {
       "name": "vibe-prototype",
@@ -252,9 +257,24 @@
       "description": "Draft or update a concise implementation spec with goals, non-goals, behavior, edge cases, acceptance criteria, and verification strategy."
     },
     {
+      "name": "vibe-spec-audit",
+      "path": "commands/vibe-spec-audit.md",
+      "description": "Audit specs and templates for required sections, observable criteria, and verification gates."
+    },
+    {
+      "name": "vibe-specify",
+      "path": "commands/vibe-specify.md",
+      "description": "Produce a behavior-focused spec with goals, non-goals, scenarios, and observable criteria."
+    },
+    {
       "name": "vibe-subagents",
       "path": "commands/vibe-subagents.md",
       "description": "Coordinate bounded subagent or parallel-agent work with clear ownership and integration."
+    },
+    {
+      "name": "vibe-tasks",
+      "path": "commands/vibe-tasks.md",
+      "description": "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."
     },
     {
       "name": "vibe-tdd",

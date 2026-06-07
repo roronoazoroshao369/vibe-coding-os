@@ -12,7 +12,7 @@ Define task-scoped recall before planning or coding for Vibe Coding OS while kee
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/memory-retrieval/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/memory-search/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 

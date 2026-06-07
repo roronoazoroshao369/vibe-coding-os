@@ -51,3 +51,12 @@ Stop and ask when the spec is not accepted, the proposed file scope is too broad
 - `skills/prompts/anti-overengineering/SKILL.md`
 - `templates/plan-template.md`
 - `templates/task-template.md`
+
+## Handoffs / next-step suggestion
+
+After the plan is agreed, suggest the likely next command:
+
+- Plan is ready to decompose → `commands/vibe-tasks.md` to break it into ordered tasks.
+- Spec, plan, and tasks all exist → `commands/vibe-analyze.md` to check cross-artifact
+  consistency before implementation.
+- Plan revealed gaps in the spec → return to `commands/vibe-specify.md`.

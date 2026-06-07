@@ -351,14 +351,14 @@
         "optional-memory-backend-adapter",
         "memory-evaluation-checklist",
         "memory-provider-abstraction",
-        "local-first-memory-fallback"
+        "local-first-memory-fallback",
+        "memory-vs-rag"
       ],
       "local_targets": [
         "skills/memory/memory-architecture/SKILL.md",
         "skills/memory/memory-ingestion/SKILL.md",
-        "skills/memory/memory-retrieval/SKILL.md",
         "skills/memory/memory-search/SKILL.md",
-        "skills/memory/memory-privacy/SKILL.md",
+        "skills/memory/privacy-filter/SKILL.md",
         "skills/memory/memory-evaluation/SKILL.md",
         "skills/memory/memory-provider-adapter/SKILL.md",
         "skills/memory/local-first-memory/SKILL.md",
@@ -391,11 +391,11 @@
         "skills/memory/project-memory/SKILL.md",
         "skills/memory/session-summarizer/SKILL.md",
         "skills/memory/context-retrieval/SKILL.md",
-        "skills/memory/privacy-filter/SKILL.md",
         "skills/memory/agent-handoff/SKILL.md",
         "references/mappings/source-to-local-skills.md",
         "references/mappings/feature-to-local-files.md",
-        "references/mappings/update-impact-map.md"
+        "references/mappings/update-impact-map.md",
+        "references/features/memory-vs-rag.md"
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "5b129d7d323429cedc41a5c2d7c84fa0c859a991",
@@ -439,7 +439,8 @@
         "progressive-disclosure",
         "observation-citations",
         "privacy-exclusion",
-        "hook-based-memory"
+        "hook-based-memory",
+        "memory-vs-rag"
       ],
       "local_targets": [
         "references/features/persistent-agent-context.md",
@@ -451,11 +452,9 @@
         "references/features/privacy-exclusion.md",
         "references/features/hook-based-memory.md",
         "skills/memory/session-capture/SKILL.md",
-        "skills/memory/session-compression/SKILL.md",
-        "skills/memory/context-injection/SKILL.md",
         "skills/memory/progressive-memory-disclosure/SKILL.md",
         "skills/memory/observation-citations/SKILL.md",
-        "skills/memory/privacy-exclusion/SKILL.md",
+        "skills/memory/privacy-filter/SKILL.md",
         "skills/memory/memory-configuration/SKILL.md",
         "skills/memory/memory-troubleshooting/SKILL.md",
         "skills/memory/hook-based-memory/SKILL.md",
@@ -477,7 +476,8 @@
         "templates/privacy-exclusion-template.md",
         "templates/memory-config-template.md",
         "adapters/memory/claude-mem-adapter-plan.md",
-        "adapters/hooks/memory-hooks-contract.md"
+        "adapters/hooks/memory-hooks-contract.md",
+        "references/features/memory-vs-rag.md"
       ],
       "last_checked": "2026-06-06",
       "last_known_commit": "671de5e3e20544f1d50e7488088063ffb5275646",

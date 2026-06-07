@@ -64,3 +64,18 @@ Treat conflicting outputs as integration inputs. The main agent owns final integ
 - Claude Code: use subagents for bounded architecture exploration; keep final synthesis in the main chat.
 - Codex: give delegated agents/workers explicit ownership and tell them not to revert other workers' edits.
 - Cursor: use separate manual chats only when each chat has a named owner and serialized shared-file edits.
+
+### Model-tier routing
+
+- Use a low/fast model for narrow architecture lookups or mapping one interface.
+- Use a standard model for normal feature plans with bounded risk.
+- Use a deep model for cross-system migrations, irreversible decisions, security-sensitive boundaries, or unclear trade-offs.
+- Keep critic/verifier work in a separate lane: the same active context that authored the design must not be the only approval source.
+
+## Ghi chú tiếng Việt
+
+Architect agent thiết kế hướng kỹ thuật tối thiểu, ưu tiên pattern hiện có. Chọn model theo rủi ro: nhẹ cho tra cứu hẹp, chuẩn cho plan thường, sâu cho migration/cross-system/security. Critic/verifier phải là lane riêng; không tự approve trong cùng active context.
+
+## Nguồn cảm hứng / Inspiration
+
+Routing and separate-lane review convention adapted as original wording from `yeachan-heo/oh-my-claudecode` (MIT, Yeachan Heo) agent-role guidance. Inspiration only — no upstream text copied.

@@ -32,7 +32,7 @@ Use for non-trivial memory changes, before work that may depend on prior context
 
 ## Related skills
 
-- memory-privacy, privacy-filter, project-memory
+- privacy-filter, project-memory
 
 ## Related commands
 

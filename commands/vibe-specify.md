@@ -49,6 +49,16 @@ request violates repository policy.
 - `skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`
 - `templates/spec-template.md`
 
+## Handoffs / next-step suggestion
+
+After the spec is accepted, suggest the likely next command:
+
+- Requirements still feel vague or risky → `commands/vibe-checklist.md` to run a
+  requirements-quality pass ("unit tests for English").
+- Spec is solid → `commands/vibe-plan.md` to turn it into an execution plan.
+- Open questions remain → resolve via `skills/core/clarify-before-code/SKILL.md` and encode
+  answers back into this spec before planning.
+
 ## Ghi chú tiếng Việt
 
 Viết spec tập trung vào hành vi: goals, non-goals, user scenarios, tiêu chí chấp nhận quan

@@ -3,6 +3,19 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
+// -----------------------------------------------------------------------------
+// Vibe Coding OS structural validator
+//
+// Design: skills, commands, and templates are discovered DYNAMICALLY from disk.
+// There are no hardcoded inventory lists for those three families, so adding or
+// removing a skill/command/template never requires editing this script. Root
+// files and the small fixed example set are still checked explicitly because
+// they are structural invariants of the repo, not a growing inventory.
+//
+// Registries (skills.json / prompts.json) are owned elsewhere; this script only
+// CROSS-CHECKS them against disk and reports drift. It never mutates a registry.
+// -----------------------------------------------------------------------------
+
 const requiredFiles = [
   'README.md',
   'LICENSE',
@@ -17,136 +30,10 @@ const requiredFiles = [
   'package.json'
 ];
 
-const requiredCommands = [
-  'vibe-init.md',
-  'vibe-spec.md',
-  'vibe-plan.md',
-  'vibe-implement.md',
-  'vibe-review.md',
-  'vibe-memory.md',
-  'vibe-merge.md',
-  'vibe-doctor.md',
-  'vibe-upstream-sync.md',
-  'vibe-brainstorm.md',
-  'vibe-worktree.md',
-  'vibe-write-plan.md',
-  'vibe-execute-plan.md',
-  'vibe-subagents.md',
-  'vibe-request-review.md',
-  'vibe-receive-review.md',
-  'vibe-finish-branch.md',
-  'vibe-debug.md',
-  'vibe-verify.md',
-  'vibe-write-skill.md',
-  'vibe-setup-skills.md',
-  'vibe-grill-me.md',
-  'vibe-grill-with-docs.md',
-  'vibe-to-prd.md',
-  'vibe-to-issues.md',
-  'vibe-triage.md',
-  'vibe-diagnose.md',
-  'vibe-tdd.md',
-  'vibe-zoom-out.md',
-  'vibe-improve-architecture.md',
-  'vibe-prototype.md',
-  'vibe-handoff.md',
-  'vibe-caveman.md',
-  'vibe-git-guardrails.md',
-  'vibe-setup-pre-commit.md',
-  'vibe-memory-ingest.md',
-  'vibe-memory-search.md',
-  'vibe-memory-retrieve.md',
-  'vibe-memory-audit.md',
-  'vibe-memory-privacy-check.md',
-  'vibe-memory-provider-plan.md'
-].map((file) => path.join('commands', file));
-
-const requiredTemplates = [
-  'spec-template.md',
-  'plan-template.md',
-  'task-template.md',
-  'review-template.md',
-  'memory-template.md',
-  'upstream-audit-template.md',
-  'project-context-template.md',
-  'adr-template.md',
-  'prd-template.md',
-  'issue-slicing-template.md',
-  'triage-template.md',
-  'diagnosis-template.md',
-  'handoff-template.md',
-  'architecture-review-template.md',
-  'prototype-report-template.md',
-  'memory-entry-template.md',
-  'memory-retrieval-report-template.md',
-  'memory-privacy-review-template.md',
-  'memory-provider-adapter-template.md',
-  'memory-evaluation-template.md'
-].map((file) => path.join('templates', file));
-
 const requiredExamples = [
   'feature-workflow/README.md',
   'bugfix-workflow/README.md'
 ].map((file) => path.join('examples', file));
-
-const requiredSkillDirs = [
-  'skills/core/vibe-bootstrap',
-  'skills/core/upstream-intelligence-loop',
-  'skills/core/clarify-before-code',
-  'skills/core/brainstorming',
-  'skills/core/using-git-worktrees',
-  'skills/core/spec-first-development',
-  'skills/core/writing-plans',
-  'skills/core/executing-plans',
-  'skills/core/plan-driven-execution',
-  'skills/core/subagent-driven-development',
-  'skills/core/test-driven-development',
-  'skills/core/requesting-code-review',
-  'skills/core/receiving-code-review',
-  'skills/core/finishing-a-development-branch',
-  'skills/core/systematic-debugging',
-  'skills/core/verification-before-completion',
-  'skills/core/verification-before-done',
-  'skills/core/review-before-merge',
-  'skills/meta/writing-skills',
-  'skills/meta/using-vibe-coding-os',
-  'skills/memory/project-memory',
-  'skills/memory/session-summarizer',
-  'skills/memory/context-retrieval',
-  'skills/memory/privacy-filter',
-  'skills/prompts/anti-overengineering',
-  'skills/prompts/karpathy-guardrails',
-  'skills/prompts/ask-when-confused',
-  'skills/agents/architect-agent',
-  'skills/agents/implementer-agent',
-  'skills/agents/reviewer-agent',
-  'skills/agents/tester-agent',
-  'skills/core/grill-user-before-building',
-  'skills/core/grill-with-docs',
-  'skills/core/shared-domain-language',
-  'skills/core/architecture-decision-records',
-  'skills/core/disciplined-diagnosis',
-  'skills/core/prd-from-context',
-  'skills/core/issue-slicing',
-  'skills/core/triage-workflow',
-  'skills/core/zoom-out-system-context',
-  'skills/core/prototype-before-commitment',
-  'skills/core/improve-codebase-architecture',
-  'skills/core/git-guardrails',
-  'skills/core/setup-pre-commit-quality-gates',
-  'skills/memory/agent-handoff',
-  'skills/prompts/compressed-technical-communication',
-  'skills/meta/write-reusable-skill',
-  'skills/meta/setup-project-agent-skills',
-  'skills/memory/memory-architecture',
-  'skills/memory/memory-ingestion',
-  'skills/memory/memory-retrieval',
-  'skills/memory/memory-search',
-  'skills/memory/memory-privacy',
-  'skills/memory/memory-evaluation',
-  'skills/memory/memory-provider-adapter',
-  'skills/memory/local-first-memory'
-];
 
 const requiredSkillSections = [
   'Purpose',
@@ -159,10 +46,15 @@ const requiredSkillSections = [
 ];
 
 const errors = [];
+const warnings = [];
 const registries = {};
 
 function normalizePath(file) {
   return file.split(path.sep).join('/');
+}
+
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 function requireFile(file) {
@@ -171,19 +63,67 @@ function requireFile(file) {
   }
 }
 
-for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates, ...requiredExamples]) {
-  requireFile(file);
+// --- Dynamic disk discovery --------------------------------------------------
+
+async function findSkillFiles(root) {
+  if (!existsSync(root)) return [];
+  const found = [];
+  async function walk(dir) {
+    const entries = await readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        await walk(full);
+      } else if (entry.isFile() && entry.name === 'SKILL.md') {
+        found.push(normalizePath(full));
+      }
+    }
+  }
+  await walk(root);
+  return found.sort();
 }
 
-async function readJson(file) {
-  if (!existsSync(file)) return null;
-  try {
-    return JSON.parse(await readFile(file, 'utf8'));
-  } catch (error) {
-    errors.push(`Invalid JSON in ${file}: ${error.message}`);
-    return null;
+async function findMarkdownFiles(root) {
+  if (!existsSync(root)) return [];
+  const entries = await readdir(root, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => normalizePath(path.join(root, entry.name)))
+    .sort();
+}
+
+// --- SKILL.md structural checks ---------------------------------------------
+
+async function validateSkillFiles(skillFiles) {
+  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const requiredHeadingPattern = (section) =>
+    new RegExp(`^##\\s+${escapeRegExp(section)}\\s*$`, 'm');
+
+  for (const skillPath of skillFiles) {
+    const info = await stat(skillPath);
+    if (info.size === 0) {
+      errors.push(`Empty skill file: ${skillPath}`);
+      continue;
+    }
+    const content = await readFile(skillPath, 'utf8');
+    for (const section of requiredSkillSections) {
+      if (!requiredHeadingPattern(section).test(content)) {
+        errors.push(`${skillPath} is missing required section: ${section}`);
+      }
+    }
   }
 }
+
+async function validateMarkdownNonEmpty(files, label) {
+  for (const file of files) {
+    const info = await stat(file);
+    if (info.size === 0) {
+      errors.push(`Empty ${label} file: ${file}`);
+    }
+  }
+}
+
+// --- Registry validation -----------------------------------------------------
 
 function requireStringFields(record, fields, label) {
   for (const field of fields) {
@@ -198,63 +138,11 @@ function requireUniqueNames(records, label) {
   for (const [position, record] of records.entries()) {
     if (!isNonEmptyString(record?.name)) continue;
     if (seen.has(record.name)) {
-      errors.push(`Duplicate ${label} name: ${record.name} at indexes ${seen.get(record.name)} and ${position}`);
+      errors.push(
+        `Duplicate ${label} name: ${record.name} at indexes ${seen.get(record.name)} and ${position}`
+      );
     } else {
       seen.set(record.name, position);
-    }
-  }
-}
-
-function isNonEmptyString(value) {
-  return typeof value === 'string' && value.trim().length > 0;
-}
-
-async function findSkillDirs(root) {
-  const skillFiles = await findSkillFiles(root);
-  return skillFiles.map((file) => normalizePath(path.dirname(file))).sort();
-}
-
-async function findSkillFiles(root) {
-  if (!existsSync(root)) return [];
-  const found = [];
-  async function walk(dir) {
-    const entries = await readdir(dir, { withFileTypes: true });
-    const hasSkill = entries.some((entry) => entry.isFile() && entry.name === 'SKILL.md');
-    if (hasSkill) found.push(normalizePath(path.join(dir, 'SKILL.md')));
-    for (const entry of entries) {
-      if (entry.isDirectory()) await walk(path.join(dir, entry.name));
-    }
-  }
-  await walk(root);
-  return found.sort();
-}
-
-async function findCommandFiles(root) {
-  if (!existsSync(root)) return [];
-  const entries = await readdir(root, { withFileTypes: true });
-  return entries
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
-    .map((entry) => normalizePath(path.join(root, entry.name)))
-    .sort();
-}
-
-async function validateSkillFiles(skillDirs) {
-  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const requiredHeadingPattern = (section) => new RegExp(`^##\\s+${escapeRegExp(section)}\\s*$`, 'm');
-
-  for (const dir of skillDirs) {
-    const skillPath = path.join(dir, 'SKILL.md');
-    const info = await stat(skillPath);
-    if (info.size === 0) {
-      errors.push(`Empty skill file: ${skillPath}`);
-      continue;
-    }
-
-    const content = await readFile(skillPath, 'utf8');
-    for (const section of requiredSkillSections) {
-      if (!requiredHeadingPattern(section).test(content)) {
-        errors.push(`${normalizePath(skillPath)} is missing required section: ${section}`);
-      }
     }
   }
 }
@@ -278,20 +166,48 @@ function validateRegistryEntries(file, arrayName, requiredFields, label) {
   return registry[arrayName];
 }
 
-function validateRegistryCoverage(requiredPaths, entries, registryFile, arrayName, coveredType) {
-  const registeredPaths = new Set(
-    entries.filter((entry) => isNonEmptyString(entry.path)).map((entry) => normalizePath(entry.path))
-  );
-  for (const requiredPath of requiredPaths) {
-    if (!registeredPaths.has(requiredPath)) {
-      errors.push(`${registryFile} is missing a ${arrayName} entry for ${coveredType}: ${requiredPath}`);
+// Bidirectional drift check between disk inventory and registry entries.
+// - disk-not-in-registry => missing entry (registry owner must add)
+// - registry-not-on-disk => stale/extra entry (registry owner must remove)
+function crossCheckRegistry(diskPaths, entries, registryFile, arrayName, coveredType) {
+  const diskSet = new Set(diskPaths.map(normalizePath));
+  const registeredPaths = entries
+    .filter((entry) => isNonEmptyString(entry.path))
+    .map((entry) => normalizePath(entry.path));
+  const registeredSet = new Set(registeredPaths);
+
+  for (const diskPath of diskSet) {
+    if (!registeredSet.has(diskPath)) {
+      errors.push(
+        `${registryFile} is missing a ${arrayName} entry for ${coveredType}: ${diskPath}`
+      );
+    }
+  }
+  for (const registeredPath of registeredSet) {
+    if (!diskSet.has(registeredPath)) {
+      errors.push(
+        `${registryFile} has a stale ${arrayName} entry (path not on disk): ${registeredPath}`
+      );
     }
   }
 }
 
-const skillDirs = await findSkillDirs('skills');
-await validateSkillFiles(skillDirs);
+// --- Run ---------------------------------------------------------------------
 
+for (const file of [...requiredFiles, ...requiredExamples]) {
+  requireFile(file);
+}
+
+// Discover inventories dynamically.
+const skillFiles = await findSkillFiles('skills');
+const commandFiles = await findMarkdownFiles('commands');
+const templateFiles = await findMarkdownFiles('templates');
+
+await validateSkillFiles(skillFiles);
+await validateMarkdownNonEmpty(commandFiles, 'command');
+await validateMarkdownNonEmpty(templateFiles, 'template');
+
+// Load registries (JSON validity).
 for (const file of [
   'registry/sources.json',
   'registry/skills.json',
@@ -304,41 +220,6 @@ for (const file of [
   } catch (error) {
     errors.push(`Invalid JSON in ${file}: ${error.message}`);
   }
-
-}
-
-function validateRequiredRegistryCoverage(requiredPaths, entries, registryFile, arrayName, coveredType) {
-  const registeredPaths = new Set(
-    entries.filter((entry) => isNonEmptyString(entry.path)).map((entry) => normalizePath(entry.path))
-  );
-  for (const requiredPath of requiredPaths) {
-    if (!registeredPaths.has(requiredPath)) {
-      errors.push(`${registryFile} is missing a ${arrayName} entry for ${coveredType}: ${requiredPath}`);
-    }
-  }
-}
-
-async function validateSkillFileFormat(skillFiles) {
-  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const requiredHeadingPattern = (section) => new RegExp(`^##\\s+${escapeRegExp(section)}\\s*$`, 'm');
-  for (const skillPath of skillFiles) {
-    const info = await stat(skillPath);
-    if (info.size === 0) {
-      errors.push(`Empty skill file: ${skillPath}`);
-      continue;
-    }
-
-    const content = await readFile(skillPath, 'utf8');
-    for (const section of requiredSkillSections) {
-      if (!requiredHeadingPattern(section).test(content)) {
-        errors.push(`${skillPath} is missing required section: ${section}`);
-      }
-    }
-  }
-}
-
-for (const file of [...requiredFiles, ...requiredCommands, ...requiredTemplates]) {
-  requireFile(file);
 }
 
 const skillEntries = validateRegistryEntries(
@@ -347,13 +228,7 @@ const skillEntries = validateRegistryEntries(
   ['name', 'path', 'category', 'description'],
   'skill'
 );
-validateRegistryCoverage(
-  skillDirs.map((dir) => normalizePath(path.join(dir, 'SKILL.md'))).sort(),
-  skillEntries,
-  'registry/skills.json',
-  'skills',
-  'skill file'
-);
+crossCheckRegistry(skillFiles, skillEntries, 'registry/skills.json', 'skills', 'skill file');
 
 const promptEntries = validateRegistryEntries(
   'registry/prompts.json',
@@ -361,15 +236,14 @@ const promptEntries = validateRegistryEntries(
   ['name', 'path', 'description'],
   'prompt'
 );
-validateRegistryCoverage(
-  await findCommandFiles('commands'),
-  promptEntries,
-  'registry/prompts.json',
-  'prompts',
-  'command file'
-);
+crossCheckRegistry(commandFiles, promptEntries, 'registry/prompts.json', 'prompts', 'command file');
 
 validateRegistryEntries('registry/agents.json', 'agents', ['name', 'path'], 'agent');
+
+if (warnings.length > 0) {
+  console.warn('Vibe Coding OS validation warnings:');
+  for (const warning of warnings) console.warn(`- ${warning}`);
+}
 
 if (errors.length > 0) {
   console.error('Vibe Coding OS validation failed:');
@@ -378,4 +252,8 @@ if (errors.length > 0) {
 }
 
 console.log('Vibe Coding OS validation passed.');
-console.log(`Checked ${requiredFiles.length} required files, ${requiredSkillDirs.length} skills, ${requiredCommands.length} commands, ${requiredTemplates.length} templates, and ${requiredExamples.length} examples.`);
+console.log(
+  `Checked ${requiredFiles.length} required files, ${skillFiles.length} skills, ` +
+    `${commandFiles.length} commands, ${templateFiles.length} templates, and ` +
+    `${requiredExamples.length} examples (skills/commands/templates discovered dynamically).`
+);

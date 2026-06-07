@@ -32,7 +32,7 @@ Use for non-trivial memory changes, before work that may depend on prior context
 
 ## Related skills
 
-- memory-retrieval, memory-search, context-retrieval
+- memory-search, progressive-memory-disclosure, context-retrieval
 
 ## Related commands
 

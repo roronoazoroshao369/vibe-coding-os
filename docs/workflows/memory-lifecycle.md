@@ -32,7 +32,7 @@ Use for non-trivial memory changes, before work that may depend on prior context
 
 ## Related skills
 
-- memory-architecture, memory-ingestion, memory-privacy, memory-evaluation
+- memory-architecture, memory-ingestion, privacy-filter, memory-evaluation
 
 ## Related commands
 

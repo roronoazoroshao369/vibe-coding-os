@@ -49,6 +49,16 @@ broken, or when an acceptance criterion has no feasible task.
 - `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`
 - `templates/tasks-template.md`
 
+## Handoffs / next-step suggestion
+
+After tasks are generated, suggest the likely next command:
+
+- Spec, plan, and tasks all exist → `commands/vibe-analyze.md` to verify spec ↔ plan ↔ tasks
+  alignment before any code is written.
+- Analysis is clean → clear the implementation-readiness gate
+  (`skills/core/checkpoint-validation/SKILL.md`), then `commands/vibe-implement.md`.
+- Tasks exposed missing coverage → return to `commands/vibe-plan.md` or `commands/vibe-specify.md`.
+
 ## Ghi chú tiếng Việt
 
 Chia plan thành task nhỏ: done condition, `depends-on`, đánh dấu song song, test trước

@@ -2,54 +2,54 @@
 
 ## Purpose
 
-Provide a disciplined local procedure for memory search that is inspired by `supermemoryai/supermemory` concepts while remaining dependency-free, privacy-safe, and human-controlled.
+Find candidate memory entries for a task using staged search, then return only relevant, cited, confidence-labeled context.
 
 ## When to use
 
-Use when work needs durable context, memory ingestion, retrieval before decisions, memory search, provider planning, or evaluation of memory usefulness. Prefer existing memory skills (`project-memory`, `context-retrieval`, `privacy-filter`, `session-summarizer`, `agent-handoff`) when the task is narrower.
+Use before planning, debugging, reviewing, or implementing when prior sessions, decisions, commands, or constraints may change the answer.
 
 ## Inputs
 
-- Task or decision that may need memory.
-- Candidate memory content, source, scope, sensitivity, confidence, and staleness risk.
-- Local files, prior memory entries, templates, and related commands.
-- Optional provider constraints if a human explicitly requests an external backend.
+- Current task and search question.
+- Available local memory, project memory, session summaries, handoffs, and cited observations.
+- Search terms, entities, files, time window, and scope filters.
 
 ## Workflow
 
-1. Confirm the memory goal: ingest, retrieve, search, evaluate, protect, or plan an adapter.
-2. Check local conventions and related memory skills before adding new behavior.
-3. Apply privacy filtering before storing or sharing any memory.
-4. Prefer local-first storage and cite sources for retrieved context.
-5. Label confidence, expiry, contradictions, and unresolved questions.
-6. If an external provider is considered, keep it optional and document fallback behavior.
-7. Record verification using the relevant template or command.
+1. Convert the task into 2-5 search queries: entity, file/path, decision, error, and workflow terms.
+2. Search broad indexes or summaries first; avoid loading raw transcripts by default.
+3. Inspect only promising entries, following citation IDs or source paths.
+4. Tune retrieval without binding to vector infrastructure: blend keyword/path hits for exact names with semantic summaries for fuzzy intent; start with a conservative relevance threshold, lower it only when recall is clearly missing, and rerank by source fit, recency, confidence, and contradiction risk.
+5. Deduplicate by source and keep the newest non-contradicted entry unless history matters.
+6. Label every returned fact with source, confidence, staleness, and contradictions.
+7. If nothing useful is found, say so and proceed without inventing memory.
 
 ## Outputs
 
-- A concise memory entry, retrieval/search report, privacy review, evaluation note, or adapter plan.
-- Clear applied/not-applied decisions and follow-up checks.
+- Focused memory search report.
+- Relevant citations and rejected/stale matches.
+- Open questions or missing-memory note.
 
 ## Failure modes
 
-- Duplicating an existing memory skill instead of composing with it.
-- Storing secrets, credentials, private keys, or unnecessary personal data.
-- Treating hosted provider behavior as required.
-- Saving full transcripts instead of durable facts.
-- Omitting source, confidence, scope, or staleness information.
+- Injecting every matching entry into context.
+- Treating semantic similarity as evidence.
+- Dropping source/citation labels.
+- Ignoring stale or contradicted entries.
 
 ## Verification checklist
 
-- [ ] Existing memory skills were checked for overlap.
-- [ ] Candidate content passed privacy filtering.
-- [ ] Local-first behavior remains available.
-- [ ] External provider use, if any, is explicitly optional.
-- [ ] Sources, confidence, and stale/contradictory signals are documented.
+- [ ] Search used more than one term or path when ambiguity existed.
+- [ ] Hybrid keyword/path/semantic search was tuned only as far as the task required.
+- [ ] Threshold and rerank choices are explainable without provider-specific claims.
+- [ ] Raw context was loaded only after summary hits justified it.
+- [ ] Returned context is cited, scoped, and confidence-labeled.
+- [ ] Irrelevant/stale matches were excluded or marked.
 
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: explicit memory operations, retrieval-before-work, search as an interface, provider abstraction, evaluation, privacy gates, and local fallback. Not applied: hosted Supermemory requirement, dashboard clone, cloud auth/account flow, SDK client, database stack, connectors, benchmark data, or replacing local memory by default.
+Applied as original wording from Supermemory-inspired retrieval/search design and claude-mem-inspired progressive disclosure: hybrid keyword/path/semantic search, threshold tuning, and reranking guidance without requiring vector infrastructure. Not applied: Chroma, SQLite, embedding services, hosted search, SDK clients, or copied upstream text.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent dùng bộ nhớ như một năng lực rõ ràng nhưng vẫn an toàn. Luôn ưu tiên bộ nhớ cục bộ, kiểm tra quyền riêng tư trước khi lưu, ghi nguồn và độ tin cậy, và không biến Supermemory thành phụ thuộc bắt buộc.
+Tìm bộ nhớ theo từng lớp: tìm rộng trước, đọc chi tiết sau. Chỉ đưa vào ngữ cảnh phần thật sự liên quan, có nguồn, độ tin cậy, và nhãn cũ/mâu thuẫn.

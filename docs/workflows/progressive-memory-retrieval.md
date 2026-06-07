@@ -34,12 +34,12 @@ Use when memory may help but dumping all context would be noisy or risky.
 ## Related skills
 
 - `skills/memory/session-capture/SKILL.md`
-- `skills/memory/session-compression/SKILL.md`
-- `skills/memory/context-injection/SKILL.md`
+- `skills/memory/session-summarizer/SKILL.md`
+- `skills/memory/progressive-memory-disclosure/SKILL.md`
 - `skills/memory/progressive-memory-disclosure/SKILL.md`
 - `skills/memory/observation-citations/SKILL.md`
-- `skills/memory/privacy-exclusion/SKILL.md`
-- Existing overlap skills: `memory-search`, `memory-retrieval`, `memory-privacy`, `privacy-filter`, `session-summarizer`, and `agent-handoff`.
+- `skills/memory/privacy-filter/SKILL.md`
+- Existing overlap skills: `memory-search`, `progressive-memory-disclosure`, `privacy-filter`, `session-summarizer`, and `agent-handoff`.
 
 ## Related commands
 

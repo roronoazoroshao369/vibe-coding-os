@@ -67,3 +67,18 @@ If test results conflict with implementation claims, report the command, output 
 - Claude Code: tester subagents can run independent verification lanes; main chat owns pass/fail synthesis.
 - Codex: delegated tester workers should avoid overlapping test-file edits and report exact commands.
 - Cursor: paste command output summaries back to the main chat using the handoff format.
+
+### Model-tier routing
+
+- Use a low/fast model to pick and run targeted tests for a small change.
+- Use a standard model to design coverage for a normal feature.
+- Use a deep model for risky, security-sensitive, or hard-to-reproduce behavior where test strategy is unclear.
+- Verification is a separate lane: the agent that wrote the code should not be the sole judge that its tests pass — route the pass/fail call to a verifier or the main chat.
+
+## Ghi chú tiếng Việt
+
+Tester agent chọn và chạy test giá trị nhất, ưu tiên test nhắm trúng trước. Chọn model theo rủi ro: nhẹ cho thay đổi nhỏ, chuẩn cho feature thường, sâu cho hành vi rủi ro/khó tái hiện. Verify là lane riêng; người viết code không tự kết luận test pass một mình.
+
+## Nguồn cảm hứng / Inspiration
+
+Routing and separate-lane verification convention adapted as original wording from `yeachan-heo/oh-my-claudecode` (MIT, Yeachan Heo) agent-role guidance. Inspiration only — no upstream text copied.

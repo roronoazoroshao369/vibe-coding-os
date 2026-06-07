@@ -2,54 +2,54 @@
 
 ## Purpose
 
-Provide a disciplined local procedure for local-first memory that is inspired by `supermemoryai/supermemory` concepts while remaining dependency-free, privacy-safe, and human-controlled.
+Choose the smallest local memory surface that preserves useful project context without introducing hosted storage, background daemons, or hidden data flows.
 
 ## When to use
 
-Use when work needs durable context, memory ingestion, retrieval before decisions, memory search, provider planning, or evaluation of memory usefulness. Prefer existing memory skills (`project-memory`, `context-retrieval`, `privacy-filter`, `session-summarizer`, `agent-handoff`) when the task is narrower.
+Use when deciding where memory should live, whether an external provider is acceptable, or how to scope memory by project, worktree, session, or user opt-out.
 
 ## Inputs
 
-- Task or decision that may need memory.
-- Candidate memory content, source, scope, sensitivity, confidence, and staleness risk.
-- Local files, prior memory entries, templates, and related commands.
-- Optional provider constraints if a human explicitly requests an external backend.
+- Memory goal and expected lifetime.
+- Repository, worktree, branch, and session scope.
+- Candidate storage location or provider.
+- Privacy exclusions, retention needs, and user opt-out constraints.
 
 ## Workflow
 
-1. Confirm the memory goal: ingest, retrieve, search, evaluate, protect, or plan an adapter.
-2. Check local conventions and related memory skills before adding new behavior.
-3. Apply privacy filtering before storing or sharing any memory.
-4. Prefer local-first storage and cite sources for retrieved context.
-5. Label confidence, expiry, contradictions, and unresolved questions.
-6. If an external provider is considered, keep it optional and document fallback behavior.
-7. Record verification using the relevant template or command.
+1. Classify scope: session-only, worktree, project, global user, or external provider.
+2. Prefer local project/worktree storage for repo facts; use session memory for transient coordination.
+3. Apply opt-out rules before creating or loading memory; record the opt-out marker at the same scope it protects so future sessions do not re-enable it accidentally.
+4. Keep project facts in project memory, worktree-specific facts in worktree/session memory, and never promote branch-only decisions to global memory without review.
+5. Define retention: keep, expire, archive, or delete on branch cleanup.
+6. If a provider is requested, require a local fallback and document what leaves the machine.
+7. Record scope, retention, source, confidence, stale-risk, and opt-out labels.
 
 ## Outputs
 
-- A concise memory entry, retrieval/search report, privacy review, evaluation note, or adapter plan.
-- Clear applied/not-applied decisions and follow-up checks.
+- Storage/scoping decision.
+- Local fallback plan when a provider is optional.
+- Retention and opt-out notes.
 
 ## Failure modes
 
-- Duplicating an existing memory skill instead of composing with it.
-- Storing secrets, credentials, private keys, or unnecessary personal data.
-- Treating hosted provider behavior as required.
-- Saving full transcripts instead of durable facts.
-- Omitting source, confidence, scope, or staleness information.
+- Treating cloud memory as required.
+- Mixing worktree-specific facts into global memory.
+- Loading stale global notes into an unrelated project.
+- Ignoring explicit opt-out or privacy constraints.
 
 ## Verification checklist
 
-- [ ] Existing memory skills were checked for overlap.
-- [ ] Candidate content passed privacy filtering.
+- [ ] Scope is explicit: session, worktree, project, user, or provider.
+- [ ] Worktree-only facts are not leaking into project/global memory.
 - [ ] Local-first behavior remains available.
-- [ ] External provider use, if any, is explicitly optional.
-- [ ] Sources, confidence, and stale/contradictory signals are documented.
+- [ ] Opt-out marker and retention rules are documented at the protected scope.
+- [ ] Provider use, if any, states exactly what data leaves local storage.
 
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: explicit memory operations, retrieval-before-work, search as an interface, provider abstraction, evaluation, privacy gates, and local fallback. Not applied: hosted Supermemory requirement, dashboard clone, cloud auth/account flow, SDK client, database stack, connectors, benchmark data, or replacing local memory by default.
+Applied as original wording from claude-mem-inspired persistent-context design: project/worktree memory scoping and opt-out tracking recorded at the scope they protect. Not applied: hosted services, background daemons, SQLite/vector storage, installers, or copied upstream text.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent dùng bộ nhớ như một năng lực rõ ràng nhưng vẫn an toàn. Luôn ưu tiên bộ nhớ cục bộ, kiểm tra quyền riêng tư trước khi lưu, ghi nguồn và độ tin cậy, và không biến Supermemory thành phụ thuộc bắt buộc.
+Ưu tiên bộ nhớ cục bộ theo phạm vi rõ ràng. Chỉ dùng nhà cung cấp ngoài khi người dùng muốn, có fallback cục bộ, và đã ghi rõ dữ liệu nào rời khỏi máy.

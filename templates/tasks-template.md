@@ -16,11 +16,13 @@ Link or summarize the spec and plan this task list implements.
 
 ## Tasks
 
-| ID | Subject | Files | depends-on | Markers | Done condition | Acceptance criteria covered |
-| --- | --- | --- | --- | --- | --- | --- |
-| T1 | <write test for X> | `<path>` | — | `[test]` | <test fails for the right reason> | AC1 |
-| T2 | <implement X> | `<path>` | T1 | — | <T1 test passes> | AC1 |
-| T3 | <independent change Y> | `<path>` | — | `[parallel]` | <observable outcome> | AC2 |
+Status values: `todo`, `ready`, `in-progress`, `blocked`, `done`, `deferred`.
+
+| ID | Status | Subject | Files | depends-on | Markers | Done condition | Acceptance criteria covered |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| T1 | ready | <write test for X> | `<path>` | — | `[test]` | <test fails for the right reason> | AC1 |
+| T2 | todo | <implement X> | `<path>` | T1 | — | <T1 test passes> | AC1 |
+| T3 | ready | <independent change Y> | `<path>` | — | `[parallel]` | <observable outcome> | AC2 |
 
 ## Dependency notes
 
@@ -38,6 +40,14 @@ Link or summarize the spec and plan this task list implements.
 
 - [ ] Every acceptance criterion maps to at least one task.
 - [ ] Test tasks precede their implementation tasks.
+
+## Next-task selection
+
+- A task is selectable only when its status is `ready` (all `depends-on` tasks are `done`).
+- Order of preference: ready `[test]` tasks → ready tasks that unblock others → ready
+  implementation tasks → parallel-safe independent tasks.
+- Never start a task whose dependencies are not `done`; never run two `[exclusive]` tasks at once.
+- Update dependents' status when a task becomes `done`. See `skills/core/task-state-tracking/SKILL.md`.
 
 ## Verification gates
 

@@ -79,9 +79,9 @@ Impact map này là checklist khi upstream đổi. Đừng sửa tùy hứng: x�
 
 - If upstream changes memory API, inspect `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `templates/memory-provider-adapter-template.md`, `skills/memory/memory-provider-adapter/SKILL.md`, and `references/features/memory-provider-adapter.md`.
 - If upstream adds new integrations, inspect `adapters/memory/supermemory-adapter-plan.md`, `commands/vibe-memory-provider-plan.md`, `registry/sources.json`, and `references/mappings/feature-to-local-files.md`.
-- If upstream changes privacy/security model, inspect `skills/memory/memory-privacy/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
+- If upstream changes privacy/security model, inspect `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
 - If upstream adds memory benchmarks/evals, inspect `skills/memory/memory-evaluation/SKILL.md`, `references/features/memory-evaluation.md`, `templates/memory-evaluation-template.md`, and `commands/vibe-memory-audit.md`.
-- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
+- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
 - If upstream adds local/self-hosting patterns, inspect `skills/memory/local-first-memory/SKILL.md`, `adapters/memory/local-memory-adapter.md`, `docs/workflows/memory-provider-adapter.md`, and `references/features/local-first-memory.md`.
 - If upstream changes docs or examples, inspect `references/sources/supermemoryai-supermemory.md`, `references/changelogs/supermemoryai-supermemory.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md` before adapting any idea.
 
@@ -93,19 +93,19 @@ Inspect `references/sources/thedotmack-claude-mem.md`, `references/features/sess
 
 ### If upstream changes memory compression
 
-Inspect `references/features/memory-compression.md`, `skills/memory/session-compression/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `commands/vibe-session-summary.md`, `templates/session-summary-template.md`, and `docs/workflows/session-summary-and-handoff.md`. Preserve citations and privacy labels.
+Inspect `references/features/memory-compression.md`, `skills/memory/session-summarizer/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `commands/vibe-session-summary.md`, `templates/session-summary-template.md`, and `docs/workflows/session-summary-and-handoff.md`. Preserve citations and privacy labels.
 
 ### If upstream changes search/progressive disclosure
 
-Inspect `references/features/progressive-disclosure.md`, `references/features/memory-search.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md`, `commands/vibe-memory-progressive-search.md`, `commands/vibe-memory-search.md`, `commands/vibe-memory-retrieve.md`, and `templates/progressive-memory-search-template.md`.
+Inspect `references/features/progressive-disclosure.md`, `references/features/memory-search.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `commands/vibe-memory-progressive-search.md`, `commands/vibe-memory-search.md`, `commands/vibe-memory-retrieve.md`, and `templates/progressive-memory-search-template.md`.
 
 ### If upstream changes privacy tags
 
-Inspect `references/features/privacy-exclusion.md`, `references/features/memory-privacy.md`, `skills/memory/privacy-exclusion/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/memory-privacy/SKILL.md`, `commands/vibe-memory-privacy-check.md`, `templates/privacy-exclusion-template.md`, `templates/memory-privacy-review-template.md`, `AGENTS.md`, `CLAUDE.md`, and `NOTICE.md`.
+Inspect `references/features/privacy-exclusion.md`, `references/features/memory-privacy.md`, `skills/memory/privacy-filter/SKILL.md`, `commands/vibe-memory-privacy-check.md`, `templates/privacy-exclusion-template.md`, `templates/memory-privacy-review-template.md`, `AGENTS.md`, `CLAUDE.md`, and `NOTICE.md`.
 
 ### If upstream changes context injection
 
-Inspect `references/features/context-injection.md`, `skills/memory/context-injection/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `commands/vibe-context-inject.md`, `templates/context-injection-template.md`, `docs/workflows/persistent-context-lifecycle.md`, and `CLAUDE.md`.
+Inspect `references/features/context-injection.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `commands/vibe-context-inject.md`, `templates/context-injection-template.md`, `docs/workflows/persistent-context-lifecycle.md`, and `CLAUDE.md`.
 
 ### If upstream changes plugin packaging
 

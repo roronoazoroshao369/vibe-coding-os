@@ -272,9 +272,9 @@ Mỗi feature upstream được map sang file local cụ thể để agent tươ
 
 - If upstream changes memory API, inspect `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `templates/memory-provider-adapter-template.md`, `skills/memory/memory-provider-adapter/SKILL.md`, and `references/features/memory-provider-adapter.md`.
 - If upstream adds new integrations, inspect `adapters/memory/supermemory-adapter-plan.md`, `commands/vibe-memory-provider-plan.md`, `registry/sources.json`, and `references/mappings/feature-to-local-files.md`.
-- If upstream changes privacy/security model, inspect `skills/memory/memory-privacy/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
+- If upstream changes privacy/security model, inspect `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
 - If upstream adds memory benchmarks/evals, inspect `skills/memory/memory-evaluation/SKILL.md`, `references/features/memory-evaluation.md`, `templates/memory-evaluation-template.md`, and `commands/vibe-memory-audit.md`.
-- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
+- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
 - If upstream adds local/self-hosting patterns, inspect `skills/memory/local-first-memory/SKILL.md`, `adapters/memory/local-memory-adapter.md`, `docs/workflows/memory-provider-adapter.md`, and `references/features/local-first-memory.md`.
 - If upstream changes docs or examples, inspect `references/sources/supermemoryai-supermemory.md`, `references/changelogs/supermemoryai-supermemory.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md` before adapting any idea.
 
@@ -282,9 +282,9 @@ Mỗi feature upstream được map sang file local cụ thể để agent tươ
 
 - `agent-memory-contract`: `references/features/agent-memory-engine.md`, `skills/memory/memory-architecture/SKILL.md`, `docs/workflows/memory-lifecycle.md`.
 - `memory-ingestion-workflow`: `references/features/memory-ingestion.md`, `skills/memory/memory-ingestion/SKILL.md`, `commands/vibe-memory-ingest.md`, `templates/memory-entry-template.md`.
-- `memory-retrieval-workflow`: `references/features/memory-retrieval.md`, `skills/memory/memory-retrieval/SKILL.md`, `commands/vibe-memory-retrieve.md`, `templates/memory-retrieval-report-template.md`.
+- `memory-retrieval-workflow`: `references/features/memory-retrieval.md`, `skills/memory/memory-search/SKILL.md`, `commands/vibe-memory-retrieve.md`, `templates/memory-retrieval-report-template.md`.
 - `memory-search-interface`: `references/features/memory-search.md`, `skills/memory/memory-search/SKILL.md`, `commands/vibe-memory-search.md`.
-- `memory-privacy-rules`: `references/features/memory-privacy.md`, `skills/memory/memory-privacy/SKILL.md`, `commands/vibe-memory-privacy-check.md`, `templates/memory-privacy-review-template.md`.
+- `memory-privacy-rules`: `references/features/memory-privacy.md`, `skills/memory/privacy-filter/SKILL.md`, `commands/vibe-memory-privacy-check.md`, `templates/memory-privacy-review-template.md`.
 - `memory-evaluation-checklist`: `references/features/memory-evaluation.md`, `skills/memory/memory-evaluation/SKILL.md`, `templates/memory-evaluation-template.md`.
 - `memory-provider-abstraction`: `references/features/memory-provider-adapter.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `adapters/memory/README.md`.
 - `local-first-memory-fallback`: `references/features/local-first-memory.md`, `skills/memory/local-first-memory/SKILL.md`, `adapters/memory/local-memory-adapter.md`.
@@ -294,11 +294,11 @@ Mỗi feature upstream được map sang file local cụ thể để agent tươ
 | Feature | Local files to inspect | Notes |
 | --- | --- | --- |
 | session-capture-lifecycle | `references/features/session-capture.md`, `skills/memory/session-capture/SKILL.md`, `commands/vibe-session-capture.md`, `templates/session-observation-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Capture durable observations only after privacy exclusion. |
-| memory-compression | `references/features/memory-compression.md`, `skills/memory/session-compression/SKILL.md`, `commands/vibe-session-summary.md`, `templates/session-summary-template.md`, `docs/workflows/session-summary-and-handoff.md` | Preserve citations, uncertainty, validation status, and follow-ups. |
-| context-injection-policy | `references/features/context-injection.md`, `skills/memory/context-injection/SKILL.md`, `commands/vibe-context-inject.md`, `templates/context-injection-template.md`, `docs/workflows/persistent-context-lifecycle.md` | Inject only relevant, safe, scoped memory. |
+| memory-compression | `references/features/memory-compression.md`, `skills/memory/session-summarizer/SKILL.md`, `commands/vibe-session-summary.md`, `templates/session-summary-template.md`, `docs/workflows/session-summary-and-handoff.md` | Preserve citations, uncertainty, validation status, and follow-ups. |
+| context-injection-policy | `references/features/context-injection.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, `commands/vibe-context-inject.md`, `templates/context-injection-template.md`, `docs/workflows/persistent-context-lifecycle.md` | Inject only relevant, safe, scoped memory. |
 | progressive-disclosure-retrieval | `references/features/progressive-disclosure.md`, `skills/memory/progressive-memory-disclosure/SKILL.md`, `commands/vibe-memory-progressive-search.md`, `templates/progressive-memory-search-template.md`, `docs/workflows/progressive-memory-retrieval.md` | Search/index first, fetch details only by relevance. |
-| memory-search-workflow | `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md`, `commands/vibe-memory-search.md`, `commands/vibe-memory-retrieve.md`, `commands/vibe-memory-progressive-search.md` | Compose with existing Supermemory-inspired search docs. |
-| privacy-exclusion-rules | `references/features/privacy-exclusion.md`, `skills/memory/privacy-exclusion/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `templates/privacy-exclusion-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Secrets and high-risk data are excluded, not merely tagged. |
+| memory-search-workflow | `skills/memory/memory-search/SKILL.md`, `commands/vibe-memory-search.md`, `commands/vibe-memory-retrieve.md`, `commands/vibe-memory-progressive-search.md` | Compose with existing Supermemory-inspired search docs. |
+| privacy-exclusion-rules | `references/features/privacy-exclusion.md`, `skills/memory/privacy-filter/SKILL.md`, `templates/privacy-exclusion-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Secrets and high-risk data are excluded, not merely tagged. |
 | observation-id-citations | `references/features/observation-citations.md`, `skills/memory/observation-citations/SKILL.md`, `commands/vibe-memory-cite.md`, `templates/session-observation-template.md` | Cite memory entries when relying on remembered claims. |
 | hook-based-agent-memory | `references/features/hook-based-memory.md`, `skills/memory/hook-based-memory/SKILL.md`, `adapters/hooks/memory-hooks-contract.md`, `adapters/memory/claude-mem-adapter-plan.md` | Contract only; no upstream scripts or daemon. |
 | memory-configuration-policy | `skills/memory/memory-configuration/SKILL.md`, `commands/vibe-memory-config.md`, `templates/memory-config-template.md`, `CLAUDE.md`, `AGENTS.md` | Keep defaults local-first and privacy-safe. |

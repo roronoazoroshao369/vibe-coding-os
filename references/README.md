@@ -22,6 +22,7 @@ Vibe Coding OS learns from the broader AI coding workflow ecosystem, but it must
 - `references/upstreams/` is an ignored local clone workspace for shallow audit working copies. Only its README is committed.
 - `references/upstream-audit-workflow.md` documents how to clone, audit, distill, and validate upstream ideas safely.
 - `references/maintenance-cadence.md` defines audit frequency, trigger conditions, source priority tiers, required audit outputs, and validation commands.
+- `references/upstream-control-map.md` is the human control dashboard: upstream repo → merged/adapted feature → local files/index entries → maintenance workflow.
 
 ## How AI agents should use this layer
 
