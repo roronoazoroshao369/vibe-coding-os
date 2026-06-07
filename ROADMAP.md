@@ -9,6 +9,7 @@ Vibe Coding OS helps humans and coding agents turn intent into verified software
 ## Product principles
 
 - Markdown-first: useful without a runtime, installer, or hosted service.
+- Optional runtime: a lightweight local JSON companion may materialize state under `.omc/runtime/`, but it stays opt-in and never replaces the markdown baseline.
 - Portable: applicable across Claude Code, Codex, Cursor, and similar agent harnesses.
 - Verification-oriented: completion claims require evidence.
 - Attribution-safe: external ideas are tracked, rewritten, and mapped.
@@ -33,7 +34,7 @@ Vibe Coding OS helps humans and coding agents turn intent into verified software
 ## Out of scope
 
 - This roadmap is not a release promise.
-- It does not authorize runtime dependencies, installers, or external services.
+- It does not authorize mandatory runtime dependencies, installers, or external services; the optional runtime layer stays opt-in and local-only.
 - It does not replace per-feature specs, plans, or acceptance criteria.
 
 ## Ghi chú tiếng Việt

@@ -12,7 +12,14 @@
     "references:report": "node scripts/generate-update-report.mjs",
     "references:clone": "node scripts/clone-upstreams.mjs",
     "team:scaffold": "node scripts/scaffold-team.mjs",
-    "team:scaffold:dry": "node scripts/scaffold-team.mjs --dry-run"
+    "team:scaffold:dry": "node scripts/scaffold-team.mjs --dry-run",
+    "runtime:init": "node scripts/runtime-init.mjs",
+    "runtime:validate": "node scripts/runtime-validate.mjs",
+    "runtime:task": "node scripts/runtime-task.mjs",
+    "runtime:memory": "node scripts/runtime-memory.mjs",
+    "runtime:checkpoint": "node scripts/runtime-checkpoint.mjs",
+    "runtime:team": "node scripts/runtime-team.mjs",
+    "runtime:session": "node scripts/runtime-session.mjs"
   },
   "license": "MIT"
 }

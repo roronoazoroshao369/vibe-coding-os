@@ -128,3 +128,21 @@ File này là bảng điều khiển trung tâm. Khi cần biết "tôi dùng re
 | 19 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | MIT + Commons Clause | inspiration | Task-state traceability convention; no runtime | `templates/traceability-map-template.md`, `skills/core/task-state-tracking/` |
 
 > **SKIPPED as duplicates:** claude-mem periodic digest, hook taxonomy/env sanitizer, and supermemory MemScore were already present in existing memory artifacts. **SKIPPED as runtime:** all CLI/MCP/installer/database/GitHub automation.
+
+### Đợt 5 — Optional runtime-heavy synthesis (adapted MVP, 2026-06-07)
+
+User chủ động yêu cầu một runtime companion. Quyết định kiến trúc (xem `docs/adr/0001-optional-runtime-layer.md`): **JSON-first, opt-in, một-lần CLI, KHÔNG daemon mặc định**. Markdown vẫn là nền tảng. Đây là synthesis **viết mới hoàn toàn (original code)** lấy cảm hứng từ các repo dưới — KHÔNG copy CLI/runtime/DB/installer upstream.
+
+| # | Upstream repo | License | Trạng thái | Ý tưởng synthesis (adapted, code gốc) | File local chính |
+|---|---|---|---|---|---|
+| 20 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | MIT + Commons Clause | inspiration | Task status convention + dependency-aware next-task selection → local JSON store | `runtime/tasks/task-store.mjs`, `scripts/runtime-task.mjs` |
+| 21 | [automazeio/ccpm](https://github.com/automazeio/ccpm) | MIT | inspiration | Source-of-truth task state engine (no GitHub-as-DB) → local JSON | `runtime/tasks/task-store.mjs` |
+| 22 | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | Apache-2.0 | inspiration | Local-first memory + session records + env/secret redaction (no Bun worker/installer) | `runtime/memory/*.mjs`, `runtime/sessions/session-store.mjs`, `runtime/core/privacy.mjs` |
+| 23 | [supermemoryai/supermemory](https://github.com/supermemoryai/supermemory) | MIT | inspiration | Memory ingest/search APIs with source metadata (no vector DB) → local JSON | `runtime/memory/memory-store.mjs`, `runtime/memory/retrieval.mjs` |
+| 24 | [github/spec-kit](https://github.com/github/spec-kit) | MIT | inspiration | Checkpoint/readiness gate as recorded runtime evidence | `runtime/checkpoints/checkpoint-engine.mjs`, `scripts/runtime-checkpoint.mjs` |
+| 25 | [yeachan-heo/oh-my-claudecode](https://github.com/yeachan-heo/oh-my-claudecode) + [revfactory/harness](https://github.com/revfactory/harness) | MIT / Apache-2.0 | inspiration | Team-spec import/scaffold into inspectable state (NO live spawn/tmux/mailbox) | `runtime/teams/team-store.mjs`, `scripts/runtime-team.mjs` |
+
+> **Foundation (original):** `runtime/core/*.mjs` (ids, atomic JSON fs-store, lock files, events.jsonl, schemaVersion validation, privacy redaction), `templates/runtime-config-template.json`.
+> **MVP commands:** `runtime:init|validate|task|memory|checkpoint|team|session` trong `package.json`.
+> **SKIP (vẫn giữ non-goal):** daemon mặc định, SQLite/vector/GitHub-sync/tmux runner (để dành adapter opt-in về sau), và mọi code/template/CLI upstream.
+> Docs: `docs/adr/0001-optional-runtime-layer.md`, `docs/workflows/optional-runtime-architecture.md`.

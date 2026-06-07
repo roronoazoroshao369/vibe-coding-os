@@ -1,3 +1,6 @@
 # Local upstream audit clones. Do not vendor third-party repositories.
 references/upstreams/*
 !references/upstreams/README.md
+
+# Optional runtime state. Local-first, disposable, machine-generated.
+.omc/runtime/
