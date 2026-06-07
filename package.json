@@ -19,7 +19,11 @@
     "runtime:memory": "node scripts/runtime-memory.mjs",
     "runtime:checkpoint": "node scripts/runtime-checkpoint.mjs",
     "runtime:team": "node scripts/runtime-team.mjs",
-    "runtime:session": "node scripts/runtime-session.mjs"
+    "runtime:session": "node scripts/runtime-session.mjs",
+    "runtime:daemon": "node scripts/runtime-daemon.mjs",
+    "runtime:mcp": "node scripts/runtime-mcp.mjs",
+    "runtime:team-run": "node scripts/runtime-team-run.mjs",
+    "runtime:install": "node scripts/runtime-install.mjs"
   },
   "license": "MIT"
 }

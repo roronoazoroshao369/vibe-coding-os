@@ -237,3 +237,18 @@ Canonical local docs: `references/sources/mattpocock-skills.md`, `docs/workflows
 ### Ghi chú tiếng Việt
 
 Layer này giúp maintainer Việt Nam dùng AI như kỹ sư thật: hỏi rõ trước khi làm, giữ glossary/context, ghi ADR, dùng TDD/debug có bằng chứng, chia issue nhỏ, handoff rõ, và chạy validation. Khi upstream `mattpocock/skills` thay đổi, hãy audit reference doc/changelog/mapping trước rồi mới sửa skill/command/template local. Không chép nội dung upstream.
+
+## Runtime
+
+The optional runtime layer stores local JSON state for tasks, memory, checkpoints, teams, and sessions under `.omc/runtime/`. It is markdown-first and entirely opt-in.
+
+Bootstrap a clone with the installer:
+
+```bash
+node scripts/runtime-install.mjs            # idempotent setup
+node scripts/runtime-install.mjs --dry-run  # preview steps, no writes
+node scripts/runtime-install.mjs --force    # overwrite config & collections
+node scripts/runtime-install.mjs --mcp      # also register MCP server in .mcp.json (merges, never clobbers)
+```
+
+The installer creates `.omc/runtime/`, writes config from `templates/runtime-config-template.json`, initialises empty collections, and prints next steps. No global or system installs are performed. See [`docs/workflows/runtime-install.md`](docs/workflows/runtime-install.md) for details and [`docs/workflows/optional-runtime-architecture.md`](docs/workflows/optional-runtime-architecture.md) for the architecture.
