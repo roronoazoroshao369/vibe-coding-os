@@ -62,6 +62,23 @@ For meaningful tasks, do not skip the local Superpowers-inspired rituals: brains
 
 When using the mattpocock-inspired local layer, prefer grilling before implementation, keep `CONTEXT.md` and `docs/adr/` useful, use TDD and disciplined diagnosis loops, zoom out before architecture-sensitive work, and hand off unfinished work with exact validation status. Use compressed technical communication only when the user wants terse expert output or token pressure is high; do not hide caveats. Preserve attribution by reading `references/sources/mattpocock-skills.md` and related mappings before adapting upstream ideas.
 
+## Spec-Driven Development Layer
+
+When tackling non-trivial work, Claude should follow the local spec-driven layer adapted from `github/spec-kit`:
+
+- Move through constitution → specify → plan → tasks → implement, using the lightest useful version of each phase.
+- Read `CONSTITUTION.md` first; ensure goals and non-goals respect the project principles.
+- Write specs that describe behavior (the "what") with observable acceptance criteria; defer technology choices (the "how") to the plan. Use `commands/vibe-specify.md` and `skills/core/what-before-how/SKILL.md`.
+- Translate the spec into a plan with separated technical context and spec traceability (`commands/vibe-plan-from-spec.md`), then into ordered tasks with dependencies, parallel markers, and test-first sequencing (`commands/vibe-tasks.md`).
+- Do not write implementation code until the implementation-readiness gate clears (spec, plan, and tasks all pass their checkpoint). Use `commands/vibe-checkpoints.md` and `skills/core/checkpoint-validation/SKILL.md`.
+- Record assumptions in the spec instead of guessing; surface open questions that would change the work.
+- For existing systems, use `skills/core/brownfield-spec-enhancement/SKILL.md` and add characterization tests before changing behavior.
+- Treat `github/spec-kit` as inspiration only: do not vendor upstream templates, prompts, or CLI code, do not require the Specify CLI, and do not adopt upstream command names as mandatory.
+
+### Ghi chú tiếng Việt
+
+Claude nên theo lớp spec-driven: constitution → specify → plan → tasks → implement, làm rõ "cái gì" trước "làm thế nào", ghi assumptions, và chỉ code sau khi qua cổng sẵn sàng. Coi `github/spec-kit` là nguồn cảm hứng: không vendor template/prompt/CLI, không bắt buộc Specify CLI.
+
 ## Claude persistent context guidance
 
 - At session start, retrieve only task-relevant memory and inject it as a small bundle with citations, confidence, and staleness labels.

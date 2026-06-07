@@ -122,3 +122,41 @@ Inspect `references/features/progressive-disclosure.md`, `references/features/me
 ## Ghi chú tiếng Việt
 
 Nếu upstream đổi, dùng các rule trên để biết file nào cần đọc trước. Chỉ học ý tưởng, không copy mã/kiến trúc, và luôn cập nhật changelog cùng validation.
+
+## github/spec-kit update impact rules
+
+### If upstream changes the spec phase model
+
+Inspect `references/sources/github-spec-kit.md`, `references/features/spec-driven-development.md`, `references/features/spec-to-plan-to-tasks.md`, `skills/core/spec-first-development/SKILL.md`, `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `commands/vibe-specify.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-tasks.md`, `docs/workflows/spec-driven-development.md`, and `docs/specs/README.md`. Do not adopt new phase names blindly.
+
+### If upstream changes constitution/principles
+
+Inspect `references/features/project-constitution.md`, `skills/core/project-constitution/SKILL.md`, `commands/vibe-constitution.md`, `templates/constitution-template.md`, `CONSTITUTION.md`, and `docs/workflows/constitution-to-spec-to-plan.md`. Keep local principles original and testable.
+
+### If upstream changes plan/task templates
+
+Inspect `templates/plan-template.md`, `templates/tasks-template.md`, `references/features/dependency-aware-tasks.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/meta/spec-template-design/SKILL.md`, and `commands/vibe-spec-audit.md`. Do not copy template text; adapt structure only.
+
+### If upstream changes TDD or checkpoint behavior
+
+Inspect `references/features/checkpoint-validation.md`, `references/features/tdd-loop.md`, `skills/core/checkpoint-validation/SKILL.md`, `skills/core/test-driven-development/SKILL.md`, `commands/vibe-checkpoints.md`, `commands/vibe-implement-from-tasks.md`, `templates/checkpoint-template.md`, and `docs/workflows/spec-to-tasks-to-implementation.md`. Keep the readiness gate explicit.
+
+### If upstream adds agent integrations
+
+Inspect `AGENTS.md`, `CLAUDE.md`, `docs/workflows/spec-driven-development.md`, `adapters/claude-code/README.md`, and `references/sources/github-spec-kit.md`. Use existing agent instruction files; do not add an installer.
+
+### If upstream changes the extension/preset model
+
+Inspect `references/features/workflow-extensions-and-presets.md`, `skills/meta/workflow-extension-design/SKILL.md`, and `references/sources/github-spec-kit.md`. Keep this as design guidance unless a new approved spec adds a runtime.
+
+### If upstream changes brownfield workflows
+
+Inspect `references/features/brownfield-enhancement.md`, `skills/core/brownfield-spec-enhancement/SKILL.md`, `commands/vibe-brownfield-spec.md`, `templates/brownfield-spec-template.md`, and `docs/workflows/brownfield-spec-enhancement.md`.
+
+### If upstream changes installation/CLI behavior
+
+Inspect `references/sources/github-spec-kit.md`, `references/changelogs/github-spec-kit.md`, `registry/sources.json`, `references/index.json`, `ATTRIBUTIONS.md`, and `NOTICE.md`. The Specify CLI must remain optional; never make it a hard dependency.
+
+### Ghi chú tiếng Việt
+
+Khi `spec-kit` thay đổi, dùng các rule trên để biết file local cần đọc trước. Specify CLI luôn là tùy chọn, không bao giờ thành phụ thuộc bắt buộc, và không copy template/CLI upstream.

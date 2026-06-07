@@ -2,6 +2,51 @@
   "version": "0.1.0",
   "prompts": [
     {
+      "name": "vibe-brownfield-spec",
+      "path": "commands/vibe-brownfield-spec.md",
+      "description": "Apply spec discipline to an existing system with incremental, reversible migration."
+    },
+    {
+      "name": "vibe-checkpoints",
+      "path": "commands/vibe-checkpoints.md",
+      "description": "Run phase-boundary validation and the implementation-readiness gate with recorded evidence."
+    },
+    {
+      "name": "vibe-constitution",
+      "path": "commands/vibe-constitution.md",
+      "description": "Create or update the project constitution of short, testable governing principles."
+    },
+    {
+      "name": "vibe-implement-from-tasks",
+      "path": "commands/vibe-implement-from-tasks.md",
+      "description": "Execute ordered tasks into verified implementation after the readiness gate clears."
+    },
+    {
+      "name": "vibe-parallel-explore",
+      "path": "commands/vibe-parallel-explore.md",
+      "description": "Compare candidate approaches against explicit criteria and record a deliberate decision."
+    },
+    {
+      "name": "vibe-plan-from-spec",
+      "path": "commands/vibe-plan-from-spec.md",
+      "description": "Turn an agreed spec into a verifiable plan with separated technical context and traceability."
+    },
+    {
+      "name": "vibe-spec-audit",
+      "path": "commands/vibe-spec-audit.md",
+      "description": "Audit specs and templates for required sections, observable criteria, and verification gates."
+    },
+    {
+      "name": "vibe-specify",
+      "path": "commands/vibe-specify.md",
+      "description": "Produce a behavior-focused spec with goals, non-goals, scenarios, and observable criteria."
+    },
+    {
+      "name": "vibe-tasks",
+      "path": "commands/vibe-tasks.md",
+      "description": "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."
+    },
+    {
       "name": "vibe-brainstorm",
       "path": "commands/vibe-brainstorm.md",
       "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."

@@ -34,6 +34,24 @@ For non-trivial software tasks, use the adapted workflow in `docs/workflows/supe
 - Run validation before finishing, especially `npm run validate:references` for reference changes and `npm run validate` for broader repo changes.
 - Never copy upstream content blindly; use `mattpocock/skills` as inspiration only and preserve attribution.
 
+## Spec-Driven Development Layer
+
+For non-trivial work, use the spec-driven layer adapted from `github/spec-kit`:
+
+- Follow the lifecycle: constitution → specify → plan → tasks → implement.
+- Consult `CONSTITUTION.md` (or create one with `commands/vibe-constitution.md`) so decisions respect project principles.
+- Apply what-before-how: agree user-visible behavior and observable acceptance criteria before choosing technology. Keep technical decisions in the plan, not the spec.
+- Do NOT begin implementation before the implementation-readiness gate clears: the spec, plan, and tasks must each pass their checkpoint (`skills/core/checkpoint-validation/SKILL.md`).
+- Decompose plans into ordered tasks with explicit dependencies, parallel markers, and test-first sequencing (`skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`).
+- Record assumptions explicitly in the spec rather than guessing; list open questions that would materially change the work.
+- For existing systems, use brownfield enhancement (`skills/core/brownfield-spec-enhancement/SKILL.md`): characterize current behavior with tests before changing it.
+- The Specify CLI is not required and upstream command names are not mandatory; use the local `vibe-*` commands.
+- Canonical guidance: `docs/workflows/spec-driven-development.md`, `docs/specs/README.md`.
+
+### Ghi chú tiếng Việt
+
+Với việc không tầm thường, dùng lớp spec-driven: constitution → specify → plan → tasks → implement. Làm rõ "cái gì" trước "làm thế nào", ghi assumptions, và KHÔNG code trước khi qua cổng sẵn sàng (spec/plan/tasks đều đạt checkpoint). Không bắt buộc Specify CLI.
+
 ## Persistent Context Layer
 
 - Summarize sessions when context should survive an agent/session switch; prefer concise observations and summaries over raw transcripts.

@@ -14,9 +14,9 @@
       "name": "github/spec-kit",
       "url": "https://github.com/github/spec-kit",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "notes": "Tracked as inspiration/adaptation for spec-driven development. Root MIT license verified during the 2026-06-06 audit at commit 7106858c4e636098815fffa23f6c6b99eb0e156b. Used for project constitution, spec to plan to tasks lifecycle, what-before-how, acceptance criteria, dependency-aware/parallel task ordering, TDD ordering, checkpoint validation, implementation-readiness gate, brownfield enhancement, and creative parallel exploration. Vendored code: no. Specify CLI is not required."
     },
     {
       "name": "mattpocock/skills",

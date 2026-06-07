@@ -306,3 +306,23 @@ Mỗi feature upstream được map sang file local cụ thể để agent tươ
 ## Ghi chú tiếng Việt
 
 Bảng này nối từng tính năng bộ nhớ với file local cần kiểm tra. Khi sửa một tính năng, hãy cập nhật reference, mapping, changelog và chạy validation.
+
+## Spec-driven development (github/spec-kit inspiration)
+
+| Feature | Local files to inspect | Notes |
+| --- | --- | --- |
+| project-constitution | `references/features/project-constitution.md`, `skills/core/project-constitution/SKILL.md`, `commands/vibe-constitution.md`, `templates/constitution-template.md`, `CONSTITUTION.md` | Principles must be short and testable. |
+| spec-first-development | `references/features/spec-driven-development.md`, `skills/core/spec-first-development/SKILL.md`, `commands/vibe-specify.md`, `templates/spec-template.md`, `docs/specs/README.md` | Reuse existing spec template; add scenarios. |
+| what-before-how | `references/features/what-before-how.md`, `skills/core/what-before-how/SKILL.md`, `commands/vibe-specify.md` | Behavior + acceptance criteria precede tech choices. |
+| spec-to-plan-to-tasks | `references/features/spec-to-plan-to-tasks.md`, `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-tasks.md`, `templates/plan-template.md`, `templates/tasks-template.md` | Keep technical context in the plan, not the spec. |
+| acceptance-criteria | `references/features/acceptance-criteria.md`, `skills/core/acceptance-criteria/SKILL.md`, `templates/spec-template.md`, `templates/checkpoint-template.md` | Criteria must be observable and verifiable. |
+| dependency-aware-tasks | `references/features/dependency-aware-tasks.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`, `templates/tasks-template.md` | Encode depends-on and parallel markers; tests first. |
+| checkpoint-validation | `references/features/checkpoint-validation.md`, `skills/core/checkpoint-validation/SKILL.md`, `commands/vibe-checkpoints.md`, `commands/vibe-implement-from-tasks.md`, `templates/checkpoint-template.md` | Gate each phase before the next. |
+| brownfield-enhancement | `references/features/brownfield-enhancement.md`, `skills/core/brownfield-spec-enhancement/SKILL.md`, `commands/vibe-brownfield-spec.md`, `templates/brownfield-spec-template.md` | Capture current vs desired behavior + migration risk. |
+| creative-parallel-exploration | `references/features/creative-parallel-exploration.md`, `skills/core/creative-parallel-exploration/SKILL.md`, `commands/vibe-parallel-explore.md`, `templates/parallel-exploration-template.md` | Time-box exploration; record a decision. |
+| workflow-extensions-and-presets | `references/features/workflow-extensions-and-presets.md`, `skills/meta/workflow-extension-design/SKILL.md` | Design guidance only; no runtime engine. |
+| spec-template-quality | `skills/meta/spec-template-design/SKILL.md`, `commands/vibe-spec-audit.md`, `templates/spec-audit-template.md` | Audit spec quality against required sections. |
+
+### Ghi chú tiếng Việt
+
+Bảng spec-driven nối từng tính năng (hiến chương, spec, plan, tasks, checkpoint, brownfield, khám phá) với file local cần đọc khi `spec-kit` thay đổi hoặc khi sửa một tính năng.
