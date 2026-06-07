@@ -1,3 +1,7 @@
+---
+description: "Plan deliberate architecture improvements in small verified slices."
+---
+
 # Command: Improve architecture deliberately
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Audit specs and templates for required sections, observable criteria, and verification gates."
+---
+
 # vibe-spec-audit
 
 ## Purpose

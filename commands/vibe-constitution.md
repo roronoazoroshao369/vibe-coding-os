@@ -1,3 +1,7 @@
+---
+description: "Create or update the project constitution of short, testable governing principles."
+---
+
 # vibe-constitution
 
 ## Purpose

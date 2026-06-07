@@ -1,3 +1,7 @@
+---
+description: "Search memory progressively before fetching details."
+---
+
 # vibe-memory-progressive-search
 
 ## When to use

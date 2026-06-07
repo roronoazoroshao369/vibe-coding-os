@@ -1,3 +1,7 @@
+---
+description: "Check spec, plan, and tasks for cross-artifact consistency before implementation."
+---
+
 # vibe-analyze
 
 ## Purpose

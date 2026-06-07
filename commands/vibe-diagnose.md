@@ -1,3 +1,7 @@
+---
+description: "Run an evidence-based diagnosis loop for bugs."
+---
+
 # Command: Run diagnosis loop
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Execute an implementation brief: load, plan, implement, run validation gates, and iterate until green."
+---
+
 # vibe-brief-execute
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+description: "Design and coordinate a proportional team-agent workflow with roles, ownership, handoffs, and validation."
+---
+
 # vibe-team
 
 ## Purpose

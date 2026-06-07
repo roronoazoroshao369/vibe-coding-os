@@ -80,11 +80,28 @@ Inventory hiện tại: **90 skills**, **68 commands**, **38 templates**, **14 n
 
 Vibe Coding OS là markdown-first và nhẹ dependency. Chọn đúng đường cho agent của bạn. Mọi trường hợp đều cùng một mục tiêu: cho agent đọc `CLAUDE.md` (hoặc `AGENTS.md`), rồi nạp đúng các file `commands/*.md` và `skills/*/*/SKILL.md` mà task cần.
 
-### Claude Code
+### Claude Code — cài như plugin (khuyến nghị)
+
+Vibe Coding OS đã có sẵn manifest plugin Claude Code (`.claude-plugin/plugin.json`) và manifest marketplace (`.claude-plugin/marketplace.json`), nên cài như mọi plugin khác — toàn bộ 90 skills và 68 commands tự nạp, không cần copy file thủ công.
+
+```bash
+# 1. Thêm repo này làm marketplace
+claude plugin marketplace add roronoazoroshao369/vibe-coding-os
+
+# 2. Cài plugin
+claude plugin install vibe-coding-os@vibe-coding-os-marketplace
+
+# 3. (Tùy chọn) xem plugin ship gì trước/sau khi cài
+claude plugin details vibe-coding-os
+```
+
+Sau khi cài, skills tự kích hoạt theo trigger và commands sẵn dùng dạng `/vibe-*`. Quản lý bằng `claude plugin list`, `claude plugin disable/enable vibe-coding-os`, `claude plugin update vibe-coding-os`.
+
+### Claude Code — thủ công (không dùng plugin)
 
 ```bash
 # Cách A — trỏ Claude Code thẳng vào repo này và làm việc bên trong
-git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
 cd ~/vibe-coding-os
 claude          # CLAUDE.md tự nạp; skills/, commands/, templates/ sẵn sàng
 

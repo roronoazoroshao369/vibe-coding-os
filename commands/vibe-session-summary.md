@@ -1,3 +1,7 @@
+---
+description: "Compress a session into a continuation-ready summary."
+---
+
 # vibe-session-summary
 
 ## When to use

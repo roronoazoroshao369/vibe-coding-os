@@ -1,3 +1,7 @@
+---
+description: "Generate reviewable team-agent scaffold files (agent definitions, plan, optional role routing) from a deterministic JSON spec without starting a runtime."
+---
+
 # vibe-team-generate
 
 ## Purpose

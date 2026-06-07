@@ -1,3 +1,7 @@
+---
+description: "Generate and use requirement-quality checklists before implementation."
+---
+
 # vibe-checklist
 
 ## Purpose

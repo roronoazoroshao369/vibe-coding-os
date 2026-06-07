@@ -1,3 +1,7 @@
+---
+description: "Verify acceptance criteria before completion with exact commands, outcomes, and limitations."
+---
+
 # vibe-verify
 
 ## Purpose

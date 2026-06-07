@@ -1,3 +1,7 @@
+---
+description: "Search local memory and optional providers with scoped queries."
+---
+
 # vibe-memory-search
 
 ## When to use

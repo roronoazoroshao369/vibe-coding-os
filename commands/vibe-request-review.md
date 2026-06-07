@@ -1,3 +1,7 @@
+---
+description: "Package a patch for useful review with scope, risks, changed files, and validation evidence."
+---
+
 # vibe-request-review
 
 ## Purpose

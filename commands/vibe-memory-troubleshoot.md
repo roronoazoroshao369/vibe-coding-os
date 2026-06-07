@@ -1,3 +1,7 @@
+---
+description: "Diagnose missing, stale, unsafe, or noisy memory behavior."
+---
+
 # vibe-memory-troubleshoot
 
 ## When to use

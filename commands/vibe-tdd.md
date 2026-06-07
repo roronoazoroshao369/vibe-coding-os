@@ -1,3 +1,7 @@
+---
+description: "Use red-green-refactor for behavior changes."
+---
+
 # Command: Use TDD loop
 
 ## When to use

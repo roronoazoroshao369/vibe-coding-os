@@ -1,3 +1,7 @@
+---
+description: "Produce a behavior-focused spec with goals, non-goals, scenarios, and observable criteria."
+---
+
 # vibe-specify
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+description: "Grill the user while updating durable context and ADR candidates."
+---
+
 # Command: Grill while updating docs
 
 ## When to use

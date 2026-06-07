@@ -1,3 +1,7 @@
+---
+description: "Assess merge readiness by checking scope, acceptance criteria, validation, attribution, security, and follow-ups."
+---
+
 # vibe-merge
 
 ## Purpose

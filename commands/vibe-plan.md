@@ -1,3 +1,7 @@
+---
+description: "Convert an accepted spec into ordered implementation steps, target files, risks, rollback points, and validation commands."
+---
+
 # vibe-plan
 
 ## Purpose

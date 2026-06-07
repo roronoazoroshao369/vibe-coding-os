@@ -1,3 +1,7 @@
+---
+description: "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."
+---
+
 # vibe-tasks
 
 ## Purpose

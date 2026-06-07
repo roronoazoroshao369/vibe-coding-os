@@ -1,3 +1,7 @@
+---
+description: "Apply spec discipline to an existing system with incremental, reversible migration."
+---
+
 # vibe-brownfield-spec
 
 ## Purpose

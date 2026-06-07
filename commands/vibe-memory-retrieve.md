@@ -1,3 +1,7 @@
+---
+description: "Retrieve relevant memory before work and report confidence."
+---
+
 # vibe-memory-retrieve
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Create or revise portable Vibe Coding OS skills and update indexes and validation."
+---
+
 # Command: Write reusable skill
 
 ## When to use

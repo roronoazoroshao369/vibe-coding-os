@@ -1,3 +1,7 @@
+---
+description: "Choose the lightest useful Vibe Coding OS workflow tier for a task."
+---
+
 # vibe-flow
 
 ## Purpose

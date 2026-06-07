@@ -1,3 +1,7 @@
+---
+description: "Draft or update a concise implementation spec with goals, non-goals, behavior, edge cases, acceptance criteria, and verification strategy."
+---
+
 # vibe-spec
 
 ## Purpose

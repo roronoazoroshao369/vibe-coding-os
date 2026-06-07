@@ -1,3 +1,7 @@
+---
+description: "Coordinate bounded subagent or parallel-agent work with clear ownership and integration."
+---
+
 # vibe-subagents
 
 ## Purpose

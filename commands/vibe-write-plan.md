@@ -1,3 +1,7 @@
+---
+description: "Write an implementation plan with ordered tasks, target files, risks, and checks."
+---
+
 # vibe-write-plan
 
 ## Purpose

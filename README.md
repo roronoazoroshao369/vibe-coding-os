@@ -81,11 +81,28 @@ Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracke
 
 Vibe Coding OS is markdown-first and dependency-light. Pick the path for your agent. In every case the goal is the same: make the agent read `CLAUDE.md` (or `AGENTS.md`), then pull in the specific `commands/*.md` and `skills/*/*/SKILL.md` files a task needs.
 
-### Claude Code
+### Claude Code — install as a plugin (recommended)
+
+Vibe Coding OS ships a Claude Code plugin manifest (`.claude-plugin/plugin.json`) and a marketplace manifest (`.claude-plugin/marketplace.json`), so it installs like any other plugin — all 90 skills and 68 commands load automatically, no manual file copying.
+
+```bash
+# 1. Add this repo as a marketplace
+claude plugin marketplace add roronoazoroshao369/vibe-coding-os
+
+# 2. Install the plugin
+claude plugin install vibe-coding-os@vibe-coding-os-marketplace
+
+# 3. (Optional) inspect what it ships before/after install
+claude plugin details vibe-coding-os
+```
+
+After install, skills auto-activate by trigger and commands are available as `/vibe-*`. Use `claude plugin list`, `claude plugin disable/enable vibe-coding-os`, and `claude plugin update vibe-coding-os` to manage it.
+
+### Claude Code — manual (no plugin)
 
 ```bash
 # Option A — point Claude Code at this repo and work inside it
-git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
 cd ~/vibe-coding-os
 claude          # CLAUDE.md auto-loads; skills/, commands/, templates/ are ready
 

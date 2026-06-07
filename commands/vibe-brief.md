@@ -1,3 +1,7 @@
+---
+description: "Create a compact implementation brief with scoped context, examples, and validation gates."
+---
+
 # vibe-brief
 
 ## Purpose

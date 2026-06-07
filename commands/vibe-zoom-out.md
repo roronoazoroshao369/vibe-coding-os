@@ -1,3 +1,7 @@
+---
+description: "Explain system context before architecture-sensitive changes."
+---
+
 # Command: Zoom out on system context
 
 ## When to use

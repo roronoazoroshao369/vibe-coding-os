@@ -1,0 +1,22 @@
+{
+  "name": "vibe-coding-os-marketplace",
+  "owner": {
+    "name": "Vibe Coding OS contributors"
+  },
+  "metadata": {
+    "description": "Marketplace entry for Vibe Coding OS Claude Code plugin.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "vibe-coding-os",
+      "source": {
+        "source": "github",
+        "repo": "roronoazoroshao369/vibe-coding-os"
+      },
+      "description": "Markdown-first AI coding OS for disciplined vibe coding with optional local runtime helpers.",
+      "version": "0.1.0",
+      "strict": true
+    }
+  ]
+}
