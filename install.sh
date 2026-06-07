@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO="roronoazoroshao369/vibe-coding-os"
-MARKETPLACE="vibe-coding-os-marketplace"
+MARKETPLACE="vibe-coding-os"
 PLUGIN="vibe-coding-os"
 CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 SETTINGS="$CONFIG_DIR/settings.json"

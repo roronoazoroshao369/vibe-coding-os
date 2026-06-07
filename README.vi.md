@@ -82,41 +82,30 @@ Vibe Coding OS là markdown-first và nhẹ dependency. Chọn đúng đường 
 
 ### Claude Code — cài như plugin (khuyến nghị)
 
-Vibe Coding OS đã có sẵn manifest plugin (`.claude-plugin/plugin.json`) và manifest marketplace (`.claude-plugin/marketplace.json`). Script dưới đây đăng ký marketplace và bật plugin chỉ trong **một lệnh** — không cần SSH key, không cần bước thứ hai. Chạy lại nhiều lần vẫn an toàn.
+Vibe Coding OS đã có sẵn manifest plugin (`.claude-plugin/plugin.json`) và manifest marketplace (`.claude-plugin/marketplace.json`), nên cài như mọi plugin Claude Code khác. Trong Claude Code, gõ hai slash command **lần lượt** (không paste cả hai cùng lúc):
+
+```text
+/plugin marketplace add https://github.com/roronoazoroshao369/vibe-coding-os
+```
+
+Rồi:
+
+```text
+/plugin install vibe-coding-os
+```
+
+Marketplace dùng `source: "./"` nên plugin được cài thẳng từ repo marketplace đã clone, không cần clone lại từ GitHub và không cần SSH key.
+
+Sau khi cài, skills tự kích hoạt theo trigger và commands sẵn dùng dạng `/vibe-*`. Quản lý bằng `/plugin list`, `/plugin disable vibe-coding-os`, `/plugin enable vibe-coding-os`, `/plugin update vibe-coding-os`.
+
+<details>
+<summary>Fallback script (nếu bản Claude Code chưa hỗ trợ slash command)</summary>
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/roronoazoroshao369/vibe-coding-os/main/install.sh | bash
 ```
 
-Script làm gì:
-
-- merge `extraKnownMarketplaces` + `enabledPlugins` vào `~/.claude/settings.json` (sao lưu ở `settings.json.bak`);
-- ép dùng nguồn plugin `github` qua HTTPS, nên người không có SSH key vẫn cài được;
-- chỉ cần `bash` và `node`.
-
-Sau đó **khởi động lại Claude Code** — nó sẽ hỏi trust và cài plugin. Kiểm tra bằng `claude plugin list`, quản lý bằng `claude plugin disable/enable/update vibe-coding-os`.
-
-<details>
-<summary>Thủ công (không dùng script)</summary>
-
-```bash
-# 1. Thêm repo này làm marketplace (clone qua HTTPS)
-claude plugin marketplace add roronoazoroshao369/vibe-coding-os
-
-# 2. Cài plugin
-claude plugin install vibe-coding-os@vibe-coding-os-marketplace
-
-# 3. (Tùy chọn) xem plugin ship gì
-claude plugin details vibe-coding-os
-```
-
-Nếu bước 2 báo `git@github.com: Permission denied (publickey)`, nghĩa là Claude Code đang clone nguồn plugin qua SSH. Hãy tạo SSH key trên GitHub, hoặc rewrite toàn cục:
-
-```bash
-git config --global url."https://github.com/".insteadOf "git@github.com:"
-```
-
-Script ở trên tránh hẳn lỗi này vì ghi thẳng vào settings.
+Sau đó khởi động lại Claude Code.
 
 </details>
 

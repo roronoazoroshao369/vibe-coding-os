@@ -1,5 +1,7 @@
 {
-  "name": "vibe-coding-os-marketplace",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "vibe-coding-os",
+  "description": "Markdown-first AI coding OS for disciplined vibe coding with optional local runtime helpers.",
   "owner": {
     "name": "Vibe Coding OS contributors"
   },
@@ -10,13 +12,19 @@
   "plugins": [
     {
       "name": "vibe-coding-os",
-      "source": {
-        "source": "github",
-        "repo": "roronoazoroshao369/vibe-coding-os"
-      },
-      "description": "Markdown-first AI coding OS for disciplined vibe coding with optional local runtime helpers.",
+      "source": "./",
+      "description": "Markdown-first AI coding OS: 90 skills, 68 commands, templates, and optional runtime helpers for disciplined vibe coding.",
       "version": "0.1.0",
-      "strict": true
+      "category": "productivity",
+      "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",
+      "tags": [
+        "skills",
+        "spec-driven",
+        "vibe-coding",
+        "workflow",
+        "ai-coding"
+      ]
     }
-  ]
+  ],
+  "version": "0.1.0"
 }
