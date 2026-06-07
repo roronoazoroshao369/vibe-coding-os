@@ -2,54 +2,49 @@
 
 ## Purpose
 
-Provide a disciplined local procedure for memory provider adapter that is inspired by `supermemoryai/supermemory` concepts while remaining dependency-free, privacy-safe, and human-controlled.
+Plan optional memory provider integrations without making the provider mandatory or copying upstream runtime code.
 
 ## When to use
 
-Use when work needs durable context, memory ingestion, retrieval before decisions, memory search, provider planning, or evaluation of memory usefulness. Prefer existing memory skills (`project-memory`, `context-retrieval`, `privacy-filter`, `session-summarizer`, `agent-handoff`) when the task is narrower.
+Use when a user asks about external memory backends, vector stores, hosted search, MCP memory tools, or provider-specific configuration.
 
 ## Inputs
 
-- Task or decision that may need memory.
-- Candidate memory content, source, scope, sensitivity, confidence, and staleness risk.
-- Local files, prior memory entries, templates, and related commands.
-- Optional provider constraints if a human explicitly requests an external backend.
+- Provider goal, constraints, and data categories.
+- Local-first fallback requirements.
+- Privacy policy, auth needs, retention, export/delete support, and failure behavior.
 
 ## Workflow
 
-1. Confirm the memory goal: ingest, retrieve, search, evaluate, protect, or plan an adapter.
-2. Check local conventions and related memory skills before adding new behavior.
-3. Apply privacy filtering before storing or sharing any memory.
-4. Prefer local-first storage and cite sources for retrieved context.
-5. Label confidence, expiry, contradictions, and unresolved questions.
-6. If an external provider is considered, keep it optional and document fallback behavior.
-7. Record verification using the relevant template or command.
+1. Define the provider capability needed: store, search, summarize, sync, or citations.
+2. List data that would leave local storage and whether it includes sensitive content.
+3. Require explicit opt-in for external storage/search.
+4. Define local fallback and provider-down behavior.
+5. Document auth handling without recording secrets.
+6. Map provider outputs back to local citation, confidence, freshness, and scope labels.
+7. Treat upstream SDKs/daemons as inspiration only unless the project explicitly becomes a runtime.
 
 ## Outputs
 
-- A concise memory entry, retrieval/search report, privacy review, evaluation note, or adapter plan.
-- Clear applied/not-applied decisions and follow-up checks.
+- Provider adapter plan.
+- Privacy/data-flow note.
+- Local fallback and troubleshooting checklist.
 
 ## Failure modes
 
-- Duplicating an existing memory skill instead of composing with it.
-- Storing secrets, credentials, private keys, or unnecessary personal data.
-- Treating hosted provider behavior as required.
-- Saving full transcripts instead of durable facts.
-- Omitting source, confidence, scope, or staleness information.
+- Making hosted memory a hidden dependency.
+- Storing tokens or provider secrets in memory.
+- Losing citation/confidence metadata at provider boundaries.
+- Copying upstream implementation code into this docs framework.
 
 ## Verification checklist
 
-- [ ] Existing memory skills were checked for overlap.
-- [ ] Candidate content passed privacy filtering.
-- [ ] Local-first behavior remains available.
-- [ ] External provider use, if any, is explicitly optional.
-- [ ] Sources, confidence, and stale/contradictory signals are documented.
-
-## Applied / Not Applied
-
-Applied from Supermemory-inspired design: explicit memory operations, retrieval-before-work, search as an interface, provider abstraction, evaluation, privacy gates, and local fallback. Not applied: hosted Supermemory requirement, dashboard clone, cloud auth/account flow, SDK client, database stack, connectors, benchmark data, or replacing local memory by default.
+- [ ] External provider use is explicit and optional.
+- [ ] Local fallback is documented.
+- [ ] Data leaving local storage is listed.
+- [ ] Secret handling avoids memory/log storage.
+- [ ] Provider output preserves citation, confidence, and freshness labels.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent dùng bộ nhớ như một năng lực rõ ràng nhưng vẫn an toàn. Luôn ưu tiên bộ nhớ cục bộ, kiểm tra quyền riêng tư trước khi lưu, ghi nguồn và độ tin cậy, và không biến Supermemory thành phụ thuộc bắt buộc.
+Khi lập kế hoạch nhà cung cấp bộ nhớ, hãy ghi rõ dữ liệu nào rời khỏi máy, fallback cục bộ là gì, và không lưu bí mật. Không copy runtime upstream.

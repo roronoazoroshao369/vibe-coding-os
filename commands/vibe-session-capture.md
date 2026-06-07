@@ -1,3 +1,7 @@
+---
+description: "Capture safe session observations for persistent context."
+---
+
 # vibe-session-capture
 
 ## When to use

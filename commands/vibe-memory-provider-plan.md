@@ -1,3 +1,7 @@
+---
+description: "Plan an optional memory provider adapter with local-first fallback."
+---
+
 # vibe-memory-provider-plan
 
 ## When to use

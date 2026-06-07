@@ -1,3 +1,7 @@
+---
+description: "Implement an accepted spec or plan with minimal edits, matching conventions and reporting verification results."
+---
+
 # vibe-implement
 
 ## Purpose

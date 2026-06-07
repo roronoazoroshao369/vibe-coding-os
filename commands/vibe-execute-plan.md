@@ -1,3 +1,7 @@
+---
+description: "Execute an accepted plan in small scoped steps with visible validation."
+---
+
 # vibe-execute-plan
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+description: "Run phase-boundary validation and the implementation-readiness gate with recorded evidence."
+---
+
 # vibe-checkpoints
 
 ## Purpose

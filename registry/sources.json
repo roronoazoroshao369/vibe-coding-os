@@ -1,14 +1,54 @@
 {
   "version": "0.1.0",
-  "policy": "No external content is vendored in v0.1. Verify licenses before import.",
+  "policy": "Upstream code is not vendored. Adaptation is inspiration-only and in original wording. Verify licenses before any closer adaptation; sources with an incomplete license grant must not be vendored.",
   "sources": [
     {
       "name": "affaan-m/ECC",
       "url": "https://github.com/affaan-m/ECC",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked_inspiration",
+      "import_mode": "adapted",
+      "notes": "MIT (Copyright (c) 2026 Affaan Mustafa) verified from upstream root LICENSE during the 2026-06-07 audit. Used for continuous-learning/instinct-extraction concept, context-budget audit heuristics, and prompt-defense baseline inspiration, adapted in original wording at individual-developer scale. No upstream code or structural import is vendored. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "automazeio/ccpm",
+      "url": "https://github.com/automazeio/ccpm",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT (Copyright (c) 2025 Ran Aroussi) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Used as idea-level inspiration for source-of-truth task tracking and optional spec-to-issue/worktree traceability. No /pm runtime, bash engine, GitHub automation, or upstream text is vendored."
+    },
+    {
+      "name": "bmad-code-org/BMAD-METHOD",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT (Copyright (c) 2025 BMad Code, LLC) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Used as idea-level inspiration for product/PRD/UX-depth and adaptive planning concepts. Local artifacts are original wording; no installer, runtime, bundles, prompts, or upstream docs are vendored."
+    },
+    {
+      "name": "buildermethods/agent-os",
+      "url": "https://github.com/buildermethods/agent-os",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT (Copyright (c) 2025 CasJam Media LLC / Builder Methods) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Used as idea-level inspiration for standards-aware, task-proportional workflow selection. Local artifacts are original wording; no installer, scripts, or upstream templates are vendored."
+    },
+    {
+      "name": "coleam00/context-engineering-intro",
+      "url": "https://github.com/coleam00/context-engineering-intro",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT (Copyright (c) 2025 Cole Medin) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Used as idea-level inspiration for implementation briefs/context bundles and validation-loop framing. No upstream text, templates, or runner code are copied."
+    },
+    {
+      "name": "eyaltoledano/claude-task-master",
+      "url": "https://github.com/eyaltoledano/claude-task-master",
+      "license": "MIT+Commons-Clause",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT plus Commons Clause condition (Copyright (c) 2025 Eyal Toledano, Ralph Khreish) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Used as idea-level inspiration for markdown task status and next-task selection. No MCP server, CLI engine, tasks.json runtime, model config, or upstream code is vendored."
     },
     {
       "name": "github/spec-kit",
@@ -29,10 +69,10 @@
     {
       "name": "multica-ai/andrej-karpathy-skills",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "license": "unknown",
+      "license": "MIT-declared-incomplete",
       "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration only. No root license file was found in the 2026-06-06 local clone audit; do not import content without license review."
+      "import_mode": "inspiration",
+      "notes": "INSPIRATION-ONLY RE-WRITE (no upstream text copied). MIT is declared in metadata only (.claude-plugin/plugin.json and README) by author forrestchang per the 2026-06-07 audit, but no standalone LICENSE file and no copyright line exist upstream, so the grant is incomplete/unverifiable. Used as idea source for all four engineering-discipline principles — Think-Before-Coding, Simplicity-First, Surgical-Changes, and Goal-Driven-Execution (attributed to Karpathy public commentary). Do not vendor until a complete license + notice is added upstream. See ATTRIBUTIONS.md."
     },
     {
       "name": "obra/superpowers",
@@ -62,9 +102,17 @@
       "name": "yeachan-heo/oh-my-claudecode",
       "url": "https://github.com/yeachan-heo/oh-my-claudecode",
       "license": "MIT",
-      "status": "candidate_inspiration",
-      "import_mode": "none",
-      "notes": "Tracked as inspiration. Root license verified during the 2026-06-06 local clone audit; no upstream source content is vendored."
+      "status": "tracked_inspiration",
+      "import_mode": "adapted",
+      "notes": "MIT (Copyright (c) 2025 Yeachan Heo) verified from upstream root LICENSE during the 2026-06-07 audit. Used for decision-context commit-trailer convention, context-budget heuristics, skill-from-session and instinct extraction, and agent role/model-tier routing inspiration, adapted in original wording. The upstream runtime engine (team/swarm, hooks, state manager) is not vendored. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "revfactory/harness",
+      "url": "https://github.com/revfactory/harness",
+      "license": "Apache-2.0",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Apache-2.0 (Copyright 2025 robin) from provided upstream facts during the 2026-06-07 audit. Used as idea-level inspiration for team-agent orchestration: six team patterns (Pipeline, Fan-out/Fan-in, Expert Pool, Producer-Reviewer, Supervisor, Hierarchical Delegation), the domain-analysis-to-validation phase workflow, progressive disclosure, and dry-run plus with-vs-without validation. No runtime, generated .claude/agents or .claude/skills, code, prompts, or docs are vendored. See ATTRIBUTIONS.md."
     }
   ]
 }

@@ -1,3 +1,7 @@
+---
+description: "Turn an agreed spec into a verifiable plan with separated technical context and traceability."
+---
+
 # vibe-plan-from-spec
 
 ## Purpose

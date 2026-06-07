@@ -1,3 +1,7 @@
+---
+description: "Create a continuation-ready handoff for another agent/session."
+---
+
 # Command: Create agent handoff
 
 ## When to use

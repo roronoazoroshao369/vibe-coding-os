@@ -1,3 +1,7 @@
+---
+description: "Slice a PRD or plan into independent vertical issues."
+---
+
 # Command: Slice work into issues
 
 ## When to use

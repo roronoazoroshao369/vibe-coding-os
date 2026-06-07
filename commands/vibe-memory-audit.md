@@ -1,3 +1,7 @@
+---
+description: "Audit memory entries, reference mappings, and provider assumptions."
+---
+
 # vibe-memory-audit
 
 ## When to use

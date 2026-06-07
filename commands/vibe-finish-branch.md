@@ -1,3 +1,7 @@
+---
+description: "Finish branch work with clean status, final checks, review, attribution, and handoff notes."
+---
+
 # vibe-finish-branch
 
 ## Purpose

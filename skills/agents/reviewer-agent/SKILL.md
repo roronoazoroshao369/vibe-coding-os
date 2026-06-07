@@ -67,3 +67,18 @@ If reviews disagree, classify the conflict as correctness, scope, attribution, t
 - Claude Code: reviewer subagents can inspect independent lanes; main chat owns merge readiness.
 - Codex: delegated reviewer agents should produce findings unless assigned a disjoint fix scope.
 - Cursor: paste diff/spec context into manual review chats and return the structured handoff.
+
+### Model-tier routing
+
+- Use a low/fast model for small diffs with narrow blast radius.
+- Use a standard model for normal feature reviews across spec, diff, and tests.
+- Use a deep model for security-sensitive, architectural, large, or high-risk reviews.
+- Reviewer/critic work is a separate lane by definition: never approve a patch in the same active context that authored it.
+
+## Ghi chú tiếng Việt
+
+Reviewer agent kiểm tra correctness, simplicity, risk, readiness. Chọn model theo rủi ro diff: nhẹ cho diff nhỏ, chuẩn cho feature thường, sâu cho security/architecture/large review. Review/critic là lane riêng; không approve patch do cùng active context tạo ra.
+
+## Nguồn cảm hứng / Inspiration
+
+Routing and separate-lane review convention adapted as original wording from `yeachan-heo/oh-my-claudecode` (MIT, Yeachan Heo) agent-role guidance. Inspiration only — no upstream text copied.

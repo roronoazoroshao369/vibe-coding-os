@@ -18,7 +18,8 @@ Goal, changes made, commands run, decisions, blockers, follow-ups.
 2. List completed changes and files touched.
 3. Record verification results.
 4. Capture decisions and unresolved questions.
-5. Recommend the next action.
+5. For periodic digests, group observations by timeline window (daily, weekly, or sprint), summarize decisions and validation outcomes, flag superseded memories, and list follow-ups separately from completed work.
+6. Recommend the next action.
 
 ## Outputs
 
@@ -34,12 +35,13 @@ A short handoff summary suitable for project memory or a PR note.
 
 - [ ] Completed vs pending work is clear.
 - [ ] Commands and results are included.
+- [ ] Periodic digests distinguish timeline trends, superseded memories, and open follow-ups.
 - [ ] Next action is actionable.
 - [ ] No secrets are included.
 
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Not applied: hosted Supermemory service requirement, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Applied from claude-mem-inspired persistent-context design: periodic timeline or weekly digest summaries that compress memory across a time window without storing raw transcripts. Not applied: hosted Supermemory service requirement, claude-mem worker/runtime, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
 
 ## Ghi chú tiếng Việt
 

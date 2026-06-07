@@ -1,3 +1,7 @@
+---
+description: "Compare candidate approaches against explicit criteria and record a deliberate decision."
+---
+
 # vibe-parallel-explore
 
 ## Purpose

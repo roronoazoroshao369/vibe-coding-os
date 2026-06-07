@@ -79,10 +79,14 @@ This map shows which local skills and commands are influenced by tracked sources
 
 - Source doc: `references/sources/multica-ai-andrej-karpathy-skills.md`
 - Changelog: `references/changelogs/multica-ai-andrej-karpathy-skills.md`
-- Feature links: `anti-overengineering`, `tdd-loop`
-- Local targets:
-  - `skills/prompts/karpathy-guardrails/SKILL.md`
-  - `skills/prompts/anti-overengineering/SKILL.md`
+- License: MIT declared in metadata only (author `forrestchang`), no LICENSE file → inspiration-only re-write.
+- Feature links: `think-before-coding`, `simplicity-first`, `surgical-changes`, `goal-driven-execution`, `anti-overengineering`, `tdd-loop`
+- Local targets (four engineering-discipline principles, one coherent set):
+  - `skills/prompts/karpathy-engineering-discipline/SKILL.md` — Think Before Coding + Surgical Changes
+  - `skills/prompts/anti-overengineering/SKILL.md` — Simplicity First
+  - `skills/core/goal-driven-execution/SKILL.md` — Goal-Driven Execution
+  - `skills/core/verification-before-completion/SKILL.md` — evidence bar behind goal-driven
+  - `skills/prompts/karpathy-guardrails/SKILL.md` — distinct ML-iteration skill
   - `commands/vibe-implement.md`
 
 ## supermemoryai/supermemory
@@ -194,16 +198,16 @@ Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh h�
 
 - If upstream changes memory API, inspect `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `templates/memory-provider-adapter-template.md`, `skills/memory/memory-provider-adapter/SKILL.md`, and `references/features/memory-provider-adapter.md`.
 - If upstream adds new integrations, inspect `adapters/memory/supermemory-adapter-plan.md`, `commands/vibe-memory-provider-plan.md`, `registry/sources.json`, and `references/mappings/feature-to-local-files.md`.
-- If upstream changes privacy/security model, inspect `skills/memory/memory-privacy/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
+- If upstream changes privacy/security model, inspect `skills/memory/privacy-filter/SKILL.md`, `docs/workflows/privacy-safe-memory.md`, `templates/memory-privacy-review-template.md`, and `NOTICE.md`.
 - If upstream adds memory benchmarks/evals, inspect `skills/memory/memory-evaluation/SKILL.md`, `references/features/memory-evaluation.md`, `templates/memory-evaluation-template.md`, and `commands/vibe-memory-audit.md`.
-- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
+- If upstream changes retrieval/search behavior, inspect `skills/memory/memory-search/SKILL.md`, `docs/workflows/memory-retrieval-before-work.md`, `commands/vibe-memory-retrieve.md`, and `commands/vibe-memory-search.md`.
 - If upstream adds local/self-hosting patterns, inspect `skills/memory/local-first-memory/SKILL.md`, `adapters/memory/local-memory-adapter.md`, `docs/workflows/memory-provider-adapter.md`, and `references/features/local-first-memory.md`.
 - If upstream changes docs or examples, inspect `references/sources/supermemoryai-supermemory.md`, `references/changelogs/supermemoryai-supermemory.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md` before adapting any idea.
 
 ### supermemoryai/supermemory local skill mapping
 
 - Source: `references/sources/supermemoryai-supermemory.md`.
-- Core memory skills: `skills/memory/memory-architecture/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-privacy/SKILL.md`, `skills/memory/memory-evaluation/SKILL.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `skills/memory/local-first-memory/SKILL.md`.
+- Core memory skills: `skills/memory/memory-architecture/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/memory-evaluation/SKILL.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `skills/memory/local-first-memory/SKILL.md`.
 - Enhanced existing skills: `skills/memory/project-memory/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/agent-handoff/SKILL.md`.
 
 ## thedotmack/claude-mem
@@ -213,11 +217,11 @@ Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh h�
 | Upstream concept | Local skills | Local commands/docs | Applied / not applied |
 | --- | --- | --- | --- |
 | Session lifecycle capture | `skills/memory/session-capture/SKILL.md`, `skills/memory/session-summarizer/SKILL.md` | `commands/vibe-session-capture.md`, `docs/workflows/privacy-safe-session-capture.md` | Applied as safe observations; no hook script copy. |
-| Memory compression | `skills/memory/session-compression/SKILL.md` | `commands/vibe-session-summary.md`, `templates/session-summary-template.md` | Applied as summarization discipline; no upstream algorithm/runtime copied. |
-| Context injection | `skills/memory/context-injection/SKILL.md`, `skills/memory/context-retrieval/SKILL.md` | `commands/vibe-context-inject.md`, `templates/context-injection-template.md` | Applied as scoped injection policy; no daemon required. |
-| Progressive disclosure/search | `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-retrieval/SKILL.md` | `commands/vibe-memory-progressive-search.md`, `templates/progressive-memory-search-template.md` | Applied as workflow; no Chroma/SQLite implementation. |
+| Memory compression | `skills/memory/session-summarizer/SKILL.md` | `commands/vibe-session-summary.md`, `templates/session-summary-template.md` | Applied as summarization discipline; no upstream algorithm/runtime copied. |
+| Context injection | `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/context-retrieval/SKILL.md` | `commands/vibe-context-inject.md`, `templates/context-injection-template.md` | Applied as scoped injection policy; no daemon required. |
+| Progressive disclosure/search | `skills/memory/progressive-memory-disclosure/SKILL.md`, `skills/memory/memory-search/SKILL.md` | `commands/vibe-memory-progressive-search.md`, `templates/progressive-memory-search-template.md` | Applied as workflow; no Chroma/SQLite implementation. |
 | Observation citations | `skills/memory/observation-citations/SKILL.md` | `commands/vibe-memory-cite.md`, `templates/session-observation-template.md` | Applied as ID/citation convention; no local viewer clone. |
-| Privacy exclusion | `skills/memory/privacy-exclusion/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/memory-privacy/SKILL.md` | `templates/privacy-exclusion-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Applied as exclusion-first policy; secrets are blocked. |
+| Privacy exclusion | `skills/memory/privacy-filter/SKILL.md` | `templates/privacy-exclusion-template.md`, `docs/workflows/privacy-safe-session-capture.md` | Applied as exclusion-first policy; secrets are blocked. |
 | Hook/plugin architecture | `skills/memory/hook-based-memory/SKILL.md`, `skills/memory/memory-configuration/SKILL.md` | `adapters/hooks/memory-hooks-contract.md`, `adapters/memory/claude-mem-adapter-plan.md` | Planned as optional contract; not implemented. |
 | Troubleshooting/configuration | `skills/memory/memory-troubleshooting/SKILL.md`, `skills/memory/memory-configuration/SKILL.md` | `commands/vibe-memory-troubleshoot.md`, `commands/vibe-memory-config.md`, `templates/memory-config-template.md` | Applied as docs/templates; no installer clone. |
 
@@ -257,3 +261,64 @@ Mapping này giúp agent biết ý tưởng nào từ `claude-mem` được chuy
 #### Ghi chú tiếng Việt
 
 Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/command/template local. Không copy template hay CLI upstream; chỉ thêm kỷ luật còn thiếu (hiến chương, cổng sẵn sàng, sắp xếp task, checkpoint, brownfield, khám phá song song).
+
+## revfactory/harness
+
+- Source doc: `references/sources/revfactory-harness.md`
+- Changelog: `references/changelogs/revfactory-harness.md`
+- Feature links: `team-agent-orchestration`, `multi-agent-workflow`, `progressive-disclosure`
+- Local targets:
+  - `skills/core/team-agent-orchestration/SKILL.md`
+  - `commands/vibe-team.md`
+  - `templates/team-architecture-template.md`
+  - `docs/workflows/team-agent-orchestration.md`
+  - `references/features/team-agent-orchestration.md`
+
+## yeachan-heo/oh-my-claudecode team-orchestration update
+
+- Added local team orchestration guidance inspired by staged team plan/exec/verify/fix flow, role routing, TeamCreate/TaskCreate/SendMessage-style coordination, handoffs, watchdog concepts, worktree integration, and dynamic scaling/config.
+- Local targets added: `skills/core/team-agent-orchestration/SKILL.md`, `commands/vibe-team.md`, `templates/team-architecture-template.md`, `docs/workflows/team-agent-orchestration.md`, `references/features/team-agent-orchestration.md`.
+- No upstream team/swarm runtime, state manager, hook, tmux/mailbox layer, or prose is copied.
+
+## coleam00/context-engineering-intro
+
+- Source doc: `references/sources/coleam00-context-engineering.md`
+- Changelog: `references/changelogs/coleam00-context-engineering.md`
+- Feature links: `context-rich-brief`, `research-phase`, `examples-library`, `project-rules`, `validation-gates`, `iterate-until-green`, `confidence-score`
+- Local targets:
+  - `skills/core/context-rich-implementation/SKILL.md`
+  - `commands/vibe-brief.md`
+  - `commands/vibe-brief-execute.md`
+  - `templates/implementation-brief-template.md`
+  - `docs/workflows/context-engineering.md`
+  - `references/features/context-engineering.md`
+
+## 2026-06-07 portable feature additions
+
+### bmad-code-org/BMAD-METHOD
+
+- Source doc: `references/sources/bmad-code-org-bmad-method.md`
+- Changelog: `references/changelogs/bmad-code-org-bmad-method.md`
+- Feature links: `project-standards`, `product-mission-roadmap`, `adaptive-planning`
+- Local targets: `STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, `docs/workflows/adaptive-flow.md`.
+
+### buildermethods/agent-os
+
+- Source doc: `references/sources/buildermethods-agent-os.md`
+- Changelog: `references/changelogs/buildermethods-agent-os.md`
+- Feature links: `project-standards`, `standards-aware-planning`, `product-roadmap`
+- Local targets: `STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, `commands/vibe-flow.md`.
+
+### eyaltoledano/claude-task-master
+
+- Source doc: `references/sources/eyaltoledano-claude-task-master.md`
+- Changelog: `references/changelogs/eyaltoledano-claude-task-master.md`
+- Feature links: `task-state-tracking`, `next-task-selection`, `spec-issue-worktree-traceability`
+- Local targets: `skills/core/task-state-tracking/SKILL.md`, `templates/tasks-template.md`, `templates/traceability-map-template.md`.
+
+### automazeio/ccpm
+
+- Source doc: `references/sources/automazeio-ccpm.md`
+- Changelog: `references/changelogs/automazeio-ccpm.md`
+- Feature links: `source-of-truth-task-tracking`, `spec-issue-worktree-traceability`
+- Local targets: `skills/core/task-state-tracking/SKILL.md`, `templates/traceability-map-template.md`, `commands/vibe-worktree.md`.

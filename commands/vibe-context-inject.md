@@ -1,3 +1,7 @@
+---
+description: "Build a scoped, citation-backed context injection bundle."
+---
+
 # vibe-context-inject
 
 ## When to use

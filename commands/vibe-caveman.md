@@ -1,3 +1,7 @@
+---
+description: "Use compressed high-signal technical communication."
+---
+
 # Command: Compressed technical communication
 
 ## When to use

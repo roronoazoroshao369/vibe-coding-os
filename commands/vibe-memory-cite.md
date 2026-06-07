@@ -1,3 +1,7 @@
+---
+description: "Create or verify observation citations for memory-backed claims."
+---
+
 # vibe-memory-cite
 
 ## When to use

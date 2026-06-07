@@ -2,10 +2,52 @@
   "version": "0.1.0",
   "skills": [
     {
+      "name": "architect-agent",
+      "path": "skills/agents/architect-agent/SKILL.md",
+      "category": "agents",
+      "description": "Design a minimal technical approach that satisfies a spec."
+    },
+    {
+      "name": "implementer-agent",
+      "path": "skills/agents/implementer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Make focused code changes that follow the plan and local conventions."
+    },
+    {
+      "name": "reviewer-agent",
+      "path": "skills/agents/reviewer-agent/SKILL.md",
+      "category": "agents",
+      "description": "Review a patch for correctness, simplicity, risks, and readiness."
+    },
+    {
+      "name": "tester-agent",
+      "path": "skills/agents/tester-agent/SKILL.md",
+      "category": "agents",
+      "description": "Find and run the most valuable tests for a change."
+    },
+    {
       "name": "acceptance-criteria",
       "path": "skills/core/acceptance-criteria/SKILL.md",
       "category": "core",
       "description": "Write observable, testable acceptance criteria that connect intent to verification."
+    },
+    {
+      "name": "adaptive-flow",
+      "path": "skills/core/adaptive-flow/SKILL.md",
+      "category": "core",
+      "description": "Select the lightest useful workflow tier for a task while preserving required verification."
+    },
+    {
+      "name": "architecture-decision-records",
+      "path": "skills/core/architecture-decision-records/SKILL.md",
+      "category": "core",
+      "description": "Capture durable decisions, options, rationale, and consequences."
+    },
+    {
+      "name": "brainstorming",
+      "path": "skills/core/brainstorming/SKILL.md",
+      "category": "core",
+      "description": "Explore intent, constraints, options, and open questions before committing to code."
     },
     {
       "name": "brownfield-spec-enhancement",
@@ -14,10 +56,28 @@
       "description": "Apply spec discipline to existing systems with incremental, reversible migration."
     },
     {
+      "name": "bug-fix-lifecycle",
+      "path": "skills/core/bug-fix-lifecycle/SKILL.md",
+      "category": "core",
+      "description": "Guide bug fixes through reproduce, failing test, and fix-to-green phases."
+    },
+    {
       "name": "checkpoint-validation",
       "path": "skills/core/checkpoint-validation/SKILL.md",
       "category": "core",
       "description": "Validate each phase before the next with an explicit implementation-readiness gate."
+    },
+    {
+      "name": "clarify-before-code",
+      "path": "skills/core/clarify-before-code/SKILL.md",
+      "category": "core",
+      "description": "Prevent wasted implementation by resolving ambiguity before edits."
+    },
+    {
+      "name": "context-rich-implementation",
+      "path": "skills/core/context-rich-implementation/SKILL.md",
+      "category": "core",
+      "description": "Assemble verified context, curated examples, and executable validation gates into a brief so implementation passes in one validation-green pass."
     },
     {
       "name": "creative-parallel-exploration",
@@ -30,102 +90,6 @@
       "path": "skills/core/dependency-aware-task-ordering/SKILL.md",
       "category": "core",
       "description": "Order tasks by dependencies and mark safe parallelism with test-first sequencing."
-    },
-    {
-      "name": "plan-from-spec",
-      "path": "skills/core/plan-from-spec/SKILL.md",
-      "category": "core",
-      "description": "Translate an agreed spec into a verifiable plan with separated technical context."
-    },
-    {
-      "name": "project-constitution",
-      "path": "skills/core/project-constitution/SKILL.md",
-      "category": "core",
-      "description": "Define durable, testable governing principles that constrain every later phase."
-    },
-    {
-      "name": "spec-template-design",
-      "path": "skills/meta/spec-template-design/SKILL.md",
-      "category": "meta",
-      "description": "Design and audit spec/plan/tasks templates for compact, complete, verifiable quality."
-    },
-    {
-      "name": "task-breakdown-from-plan",
-      "path": "skills/core/task-breakdown-from-plan/SKILL.md",
-      "category": "core",
-      "description": "Decompose a plan into small, ordered, grabbable tasks with dependencies and markers."
-    },
-    {
-      "name": "what-before-how",
-      "path": "skills/core/what-before-how/SKILL.md",
-      "category": "core",
-      "description": "Agree user-visible behavior and acceptance criteria before choosing technology."
-    },
-    {
-      "name": "workflow-extension-design",
-      "path": "skills/meta/workflow-extension-design/SKILL.md",
-      "category": "meta",
-      "description": "Design optional, documented workflow variants/presets without a runtime engine."
-    },
-    {
-      "name": "agent-handoff",
-      "path": "skills/memory/agent-handoff/SKILL.md",
-      "category": "memory",
-      "description": "Create durable handoff summaries for agent/session switches."
-    },
-    {
-      "name": "anti-overengineering",
-      "path": "skills/prompts/anti-overengineering/SKILL.md",
-      "category": "prompts",
-      "description": "Keep solutions simple, local, and proportional to the request."
-    },
-    {
-      "name": "architect-agent",
-      "path": "skills/agents/architect-agent/SKILL.md",
-      "category": "agents",
-      "description": "Design a minimal technical approach that satisfies a spec."
-    },
-    {
-      "name": "architecture-decision-records",
-      "path": "skills/core/architecture-decision-records/SKILL.md",
-      "category": "core",
-      "description": "Capture durable decisions, options, rationale, and consequences."
-    },
-    {
-      "name": "ask-when-confused",
-      "path": "skills/prompts/ask-when-confused/SKILL.md",
-      "category": "prompts",
-      "description": "Make uncertainty visible instead of guessing."
-    },
-    {
-      "name": "brainstorming",
-      "path": "skills/core/brainstorming/SKILL.md",
-      "category": "core",
-      "description": "Explore intent, constraints, options, and open questions before committing to code."
-    },
-    {
-      "name": "clarify-before-code",
-      "path": "skills/core/clarify-before-code/SKILL.md",
-      "category": "core",
-      "description": "Prevent wasted implementation by resolving ambiguity before edits."
-    },
-    {
-      "name": "compressed-technical-communication",
-      "path": "skills/prompts/compressed-technical-communication/SKILL.md",
-      "category": "prompts",
-      "description": "Use terse expert technical communication without losing caveats."
-    },
-    {
-      "name": "context-injection",
-      "path": "skills/memory/context-injection/SKILL.md",
-      "category": "memory",
-      "description": "Inject scoped, safe, citation-backed memory into active work."
-    },
-    {
-      "name": "context-retrieval",
-      "path": "skills/memory/context-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Find relevant repository context before making decisions."
     },
     {
       "name": "disciplined-diagnosis",
@@ -152,6 +116,12 @@
       "description": "Protect user work and repository history around risky git operations."
     },
     {
+      "name": "goal-driven-execution",
+      "path": "skills/core/goal-driven-execution/SKILL.md",
+      "category": "core",
+      "description": "Rewrite imperative instructions into verifiable goals with per-step checks so the agent can execute and self-correct independently."
+    },
+    {
       "name": "grill-user-before-building",
       "path": "skills/core/grill-user-before-building/SKILL.md",
       "category": "core",
@@ -162,18 +132,6 @@
       "path": "skills/core/grill-with-docs/SKILL.md",
       "category": "core",
       "description": "Align with the user while maintaining context and ADR candidates."
-    },
-    {
-      "name": "hook-based-memory",
-      "path": "skills/memory/hook-based-memory/SKILL.md",
-      "category": "memory",
-      "description": "Plan optional memory lifecycle hooks without copying upstream scripts."
-    },
-    {
-      "name": "implementer-agent",
-      "path": "skills/agents/implementer-agent/SKILL.md",
-      "category": "agents",
-      "description": "Make focused code changes that follow the plan and local conventions."
     },
     {
       "name": "improve-codebase-architecture",
@@ -188,10 +146,184 @@
       "description": "Slice PRDs and plans into independently grabbable vertical issues."
     },
     {
-      "name": "karpathy-guardrails",
-      "path": "skills/prompts/karpathy-guardrails/SKILL.md",
-      "category": "prompts",
-      "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+      "name": "plan-driven-execution",
+      "path": "skills/core/plan-driven-execution/SKILL.md",
+      "category": "core",
+      "description": "Convert a spec or task into small ordered implementation steps."
+    },
+    {
+      "name": "plan-from-spec",
+      "path": "skills/core/plan-from-spec/SKILL.md",
+      "category": "core",
+      "description": "Translate an agreed spec into a verifiable plan with separated technical context."
+    },
+    {
+      "name": "prd-from-context",
+      "path": "skills/core/prd-from-context/SKILL.md",
+      "category": "core",
+      "description": "Create a PRD from existing conversation context without inventing requirements."
+    },
+    {
+      "name": "project-constitution",
+      "path": "skills/core/project-constitution/SKILL.md",
+      "category": "core",
+      "description": "Define durable, testable governing principles that constrain every later phase."
+    },
+    {
+      "name": "prototype-before-commitment",
+      "path": "skills/core/prototype-before-commitment/SKILL.md",
+      "category": "core",
+      "description": "Use disposable prototypes to reduce uncertainty before commitment."
+    },
+    {
+      "name": "receiving-code-review",
+      "path": "skills/core/receiving-code-review/SKILL.md",
+      "category": "core",
+      "description": "Triage review feedback, fix blockers, rerun checks, and document deferrals."
+    },
+    {
+      "name": "requesting-code-review",
+      "path": "skills/core/requesting-code-review/SKILL.md",
+      "category": "core",
+      "description": "Package scope, diff, risks, and verification evidence for useful review."
+    },
+    {
+      "name": "requirements-quality-checklist",
+      "path": "skills/core/requirements-quality-checklist/SKILL.md",
+      "category": "core",
+      "description": "Use checklist-style review to test requirement clarity, completeness, and coverage before implementation."
+    },
+    {
+      "name": "review-before-merge",
+      "path": "skills/core/review-before-merge/SKILL.md",
+      "category": "core",
+      "description": "Catch correctness, maintainability, security, and attribution issues before merge."
+    },
+    {
+      "name": "setup-pre-commit-quality-gates",
+      "path": "skills/core/setup-pre-commit-quality-gates/SKILL.md",
+      "category": "core",
+      "description": "Set up lightweight maintainable pre-commit quality gates."
+    },
+    {
+      "name": "shared-domain-language",
+      "path": "skills/core/shared-domain-language/SKILL.md",
+      "category": "core",
+      "description": "Maintain durable project vocabulary for humans and agents."
+    },
+    {
+      "name": "spec-first-development",
+      "path": "skills/core/spec-first-development/SKILL.md",
+      "category": "core",
+      "description": "Turn intent into a compact specification before non-trivial code changes."
+    },
+    {
+      "name": "subagent-driven-development",
+      "path": "skills/core/subagent-driven-development/SKILL.md",
+      "category": "core",
+      "description": "Coordinate bounded parallel agent passes while preserving integration ownership."
+    },
+    {
+      "name": "systematic-debugging",
+      "path": "skills/core/systematic-debugging/SKILL.md",
+      "category": "core",
+      "description": "Debug failures through evidence, hypotheses, small experiments, and regression checks."
+    },
+    {
+      "name": "task-breakdown-from-plan",
+      "path": "skills/core/task-breakdown-from-plan/SKILL.md",
+      "category": "core",
+      "description": "Decompose a plan into small, ordered, grabbable tasks with dependencies and markers."
+    },
+    {
+      "name": "task-state-tracking",
+      "path": "skills/core/task-state-tracking/SKILL.md",
+      "category": "core",
+      "description": "Track task status, dependencies, and next eligible work without adding runtime automation."
+    },
+    {
+      "name": "test-driven-development",
+      "path": "skills/core/test-driven-development/SKILL.md",
+      "category": "core",
+      "description": "Drive behavior changes with tests or executable checks."
+    },
+    {
+      "name": "team-agent-orchestration",
+      "path": "skills/core/team-agent-orchestration/SKILL.md",
+      "category": "core",
+      "description": "Design proportional temporary agent teams with clear roles, handoffs, integration ownership, and verification."
+    },
+    {
+      "name": "triage-workflow",
+      "path": "skills/core/triage-workflow/SKILL.md",
+      "category": "core",
+      "description": "Classify issues and route them to clear next states."
+    },
+    {
+      "name": "upstream-intelligence-loop",
+      "path": "skills/core/upstream-intelligence-loop/SKILL.md",
+      "category": "core",
+      "description": "Audit tracked upstream AI-coding repositories and distill maintainable local improvements without vendoring source."
+    },
+    {
+      "name": "using-git-worktrees",
+      "path": "skills/core/using-git-worktrees/SKILL.md",
+      "category": "core",
+      "description": "Isolate risky or parallel work in git worktrees without disrupting user changes."
+    },
+    {
+      "name": "verification-before-completion",
+      "path": "skills/core/verification-before-completion/SKILL.md",
+      "category": "core",
+      "description": "Require evidence and explicit limitations before claiming completion."
+    },
+    {
+      "name": "verification-before-done",
+      "path": "skills/core/verification-before-done/SKILL.md",
+      "category": "core",
+      "description": "Ensure completion claims are backed by evidence."
+    },
+    {
+      "name": "vibe-bootstrap",
+      "path": "skills/core/vibe-bootstrap/SKILL.md",
+      "category": "core",
+      "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
+    },
+    {
+      "name": "what-before-how",
+      "path": "skills/core/what-before-how/SKILL.md",
+      "category": "core",
+      "description": "Agree user-visible behavior and acceptance criteria before choosing technology."
+    },
+    {
+      "name": "writing-plans",
+      "path": "skills/core/writing-plans/SKILL.md",
+      "category": "core",
+      "description": "Create executable plans with file targets, risks, rollback points, and checks."
+    },
+    {
+      "name": "zoom-out-system-context",
+      "path": "skills/core/zoom-out-system-context/SKILL.md",
+      "category": "core",
+      "description": "Explain broader system context before architecture-sensitive changes."
+    },
+    {
+      "name": "agent-handoff",
+      "path": "skills/memory/agent-handoff/SKILL.md",
+      "category": "memory",
+      "description": "Create durable handoff summaries for agent/session switches."
+    },
+    {
+      "name": "context-retrieval",
+      "path": "skills/memory/context-retrieval/SKILL.md",
+      "category": "memory",
+      "description": "Find relevant repository context before making decisions."
+    },
+    {
+      "name": "hook-based-memory",
+      "path": "skills/memory/hook-based-memory/SKILL.md",
+      "category": "memory",
+      "description": "Plan optional memory lifecycle hooks without copying upstream scripts."
     },
     {
       "name": "local-first-memory",
@@ -224,22 +356,10 @@
       "description": "Capture durable memory entries through privacy-filtered ingestion."
     },
     {
-      "name": "memory-privacy",
-      "path": "skills/memory/memory-privacy/SKILL.md",
-      "category": "memory",
-      "description": "Apply privacy rules before storing, retrieving, or sharing memory."
-    },
-    {
       "name": "memory-provider-adapter",
       "path": "skills/memory/memory-provider-adapter/SKILL.md",
       "category": "memory",
       "description": "Plan optional memory provider adapters without required dependencies."
-    },
-    {
-      "name": "memory-retrieval",
-      "path": "skills/memory/memory-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Retrieve task-relevant memory before decisions or implementation."
     },
     {
       "name": "memory-search",
@@ -260,24 +380,6 @@
       "description": "Create and use observation IDs for memory-backed claims."
     },
     {
-      "name": "plan-driven-execution",
-      "path": "skills/core/plan-driven-execution/SKILL.md",
-      "category": "core",
-      "description": "Convert a spec or task into small ordered implementation steps."
-    },
-    {
-      "name": "prd-from-context",
-      "path": "skills/core/prd-from-context/SKILL.md",
-      "category": "core",
-      "description": "Create a PRD from existing conversation context without inventing requirements."
-    },
-    {
-      "name": "privacy-exclusion",
-      "path": "skills/memory/privacy-exclusion/SKILL.md",
-      "category": "memory",
-      "description": "Exclude secrets and sensitive data before memory storage or use."
-    },
-    {
       "name": "privacy-filter",
       "path": "skills/memory/privacy-filter/SKILL.md",
       "category": "memory",
@@ -296,46 +398,10 @@
       "description": "Maintain durable project context that future sessions can trust."
     },
     {
-      "name": "prototype-before-commitment",
-      "path": "skills/core/prototype-before-commitment/SKILL.md",
-      "category": "core",
-      "description": "Use disposable prototypes to reduce uncertainty before commitment."
-    },
-    {
-      "name": "receiving-code-review",
-      "path": "skills/core/receiving-code-review/SKILL.md",
-      "category": "core",
-      "description": "Triage review feedback, fix blockers, rerun checks, and document deferrals."
-    },
-    {
-      "name": "requesting-code-review",
-      "path": "skills/core/requesting-code-review/SKILL.md",
-      "category": "core",
-      "description": "Package scope, diff, risks, and verification evidence for useful review."
-    },
-    {
-      "name": "review-before-merge",
-      "path": "skills/core/review-before-merge/SKILL.md",
-      "category": "core",
-      "description": "Catch correctness, maintainability, security, and attribution issues before merge."
-    },
-    {
-      "name": "reviewer-agent",
-      "path": "skills/agents/reviewer-agent/SKILL.md",
-      "category": "agents",
-      "description": "Review a patch for correctness, simplicity, risks, and readiness."
-    },
-    {
       "name": "session-capture",
       "path": "skills/memory/session-capture/SKILL.md",
       "category": "memory",
       "description": "Capture safe session observations for persistent context."
-    },
-    {
-      "name": "session-compression",
-      "path": "skills/memory/session-compression/SKILL.md",
-      "category": "memory",
-      "description": "Compress session activity into durable memory summaries."
     },
     {
       "name": "session-summarizer",
@@ -344,10 +410,16 @@
       "description": "Compress a work session into useful handoff context."
     },
     {
-      "name": "setup-pre-commit-quality-gates",
-      "path": "skills/core/setup-pre-commit-quality-gates/SKILL.md",
-      "category": "core",
-      "description": "Set up lightweight maintainable pre-commit quality gates."
+      "name": "context-budget",
+      "path": "skills/meta/context-budget/SKILL.md",
+      "category": "meta",
+      "description": "Audit skills, prompts, and docs for context bloat, duplication, and unnecessary token cost."
+    },
+    {
+      "name": "instinct-extraction",
+      "path": "skills/meta/instinct-extraction/SKILL.md",
+      "category": "meta",
+      "description": "Distill reusable session patterns into confidence-scored operating instincts."
     },
     {
       "name": "setup-project-agent-skills",
@@ -356,58 +428,16 @@
       "description": "Configure a repo for agent skills, context, issue flow, and validation."
     },
     {
-      "name": "shared-domain-language",
-      "path": "skills/core/shared-domain-language/SKILL.md",
-      "category": "core",
-      "description": "Maintain durable project vocabulary for humans and agents."
+      "name": "skillify-from-session",
+      "path": "skills/meta/skillify-from-session/SKILL.md",
+      "category": "meta",
+      "description": "Extract a reusable skill from a completed conversation or workflow."
     },
     {
-      "name": "spec-first-development",
-      "path": "skills/core/spec-first-development/SKILL.md",
-      "category": "core",
-      "description": "Turn intent into a compact specification before non-trivial code changes."
-    },
-    {
-      "name": "subagent-driven-development",
-      "path": "skills/core/subagent-driven-development/SKILL.md",
-      "category": "core",
-      "description": "Coordinate bounded parallel agent passes while preserving integration ownership."
-    },
-    {
-      "name": "systematic-debugging",
-      "path": "skills/core/systematic-debugging/SKILL.md",
-      "category": "core",
-      "description": "Debug failures through evidence, hypotheses, small experiments, and regression checks."
-    },
-    {
-      "name": "test-driven-development",
-      "path": "skills/core/test-driven-development/SKILL.md",
-      "category": "core",
-      "description": "Drive behavior changes with tests or executable checks."
-    },
-    {
-      "name": "tester-agent",
-      "path": "skills/agents/tester-agent/SKILL.md",
-      "category": "agents",
-      "description": "Find and run the most valuable tests for a change."
-    },
-    {
-      "name": "triage-workflow",
-      "path": "skills/core/triage-workflow/SKILL.md",
-      "category": "core",
-      "description": "Classify issues and route them to clear next states."
-    },
-    {
-      "name": "upstream-intelligence-loop",
-      "path": "skills/core/upstream-intelligence-loop/SKILL.md",
-      "category": "core",
-      "description": "Audit tracked upstream AI-coding repositories and distill maintainable local improvements without vendoring source."
-    },
-    {
-      "name": "using-git-worktrees",
-      "path": "skills/core/using-git-worktrees/SKILL.md",
-      "category": "core",
-      "description": "Isolate risky or parallel work in git worktrees without disrupting user changes."
+      "name": "spec-template-design",
+      "path": "skills/meta/spec-template-design/SKILL.md",
+      "category": "meta",
+      "description": "Design and audit spec/plan/tasks templates for compact, complete, verifiable quality."
     },
     {
       "name": "using-vibe-coding-os",
@@ -416,22 +446,10 @@
       "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries."
     },
     {
-      "name": "verification-before-completion",
-      "path": "skills/core/verification-before-completion/SKILL.md",
-      "category": "core",
-      "description": "Require evidence and explicit limitations before claiming completion."
-    },
-    {
-      "name": "verification-before-done",
-      "path": "skills/core/verification-before-done/SKILL.md",
-      "category": "core",
-      "description": "Ensure completion claims are backed by evidence."
-    },
-    {
-      "name": "vibe-bootstrap",
-      "path": "skills/core/vibe-bootstrap/SKILL.md",
-      "category": "core",
-      "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
+      "name": "workflow-extension-design",
+      "path": "skills/meta/workflow-extension-design/SKILL.md",
+      "category": "meta",
+      "description": "Design optional, documented workflow variants/presets without a runtime engine."
     },
     {
       "name": "write-reusable-skill",
@@ -440,22 +458,88 @@
       "description": "Write small composable Vibe Coding OS skills."
     },
     {
-      "name": "writing-plans",
-      "path": "skills/core/writing-plans/SKILL.md",
-      "category": "core",
-      "description": "Create executable plans with file targets, risks, rollback points, and checks."
-    },
-    {
       "name": "writing-skills",
       "path": "skills/meta/writing-skills/SKILL.md",
       "category": "meta",
       "description": "Write original, portable, indexed skills with required sections and validation."
     },
     {
-      "name": "zoom-out-system-context",
-      "path": "skills/core/zoom-out-system-context/SKILL.md",
-      "category": "core",
-      "description": "Explain broader system context before architecture-sensitive changes."
+      "name": "anti-overengineering",
+      "path": "skills/prompts/anti-overengineering/SKILL.md",
+      "category": "prompts",
+      "description": "Keep solutions simple, local, and proportional to the request."
+    },
+    {
+      "name": "ask-when-confused",
+      "path": "skills/prompts/ask-when-confused/SKILL.md",
+      "category": "prompts",
+      "description": "Make uncertainty visible instead of guessing."
+    },
+    {
+      "name": "compressed-technical-communication",
+      "path": "skills/prompts/compressed-technical-communication/SKILL.md",
+      "category": "prompts",
+      "description": "Use terse expert technical communication without losing caveats."
+    },
+    {
+      "name": "karpathy-engineering-discipline",
+      "path": "skills/prompts/karpathy-engineering-discipline/SKILL.md",
+      "category": "prompts",
+      "description": "Apply think-before-coding and surgical-change discipline when working with AI coding agents."
+    },
+    {
+      "name": "karpathy-guardrails",
+      "path": "skills/prompts/karpathy-guardrails/SKILL.md",
+      "category": "prompts",
+      "description": "Encourage fast empirical iteration while preserving basic engineering safety."
+    },
+    {
+      "name": "software-design-philosophy",
+      "path": "skills/prompts/software-design-philosophy/SKILL.md",
+      "category": "prompts",
+      "description": "Apply deep modules, strategic design, and complexity management from Ousterhout."
+    },
+    {
+      "name": "code-complete-construction",
+      "path": "skills/prompts/code-complete-construction/SKILL.md",
+      "category": "prompts",
+      "description": "Build quality in during construction with defensive programming and data-first design."
+    },
+    {
+      "name": "readable-code",
+      "path": "skills/prompts/readable-code/SKILL.md",
+      "category": "prompts",
+      "description": "Apply readability heuristics from Readable Code so AI output is clear, unsurprising, and maintainable."
+    },
+    {
+      "name": "release-it-stability",
+      "path": "skills/prompts/release-it-stability/SKILL.md",
+      "category": "prompts",
+      "description": "Harden production code with circuit breaker, bulkhead, steady-state, and handshaking patterns."
+    },
+    {
+      "name": "pragmatic-programmer",
+      "path": "skills/prompts/pragmatic-programmer/SKILL.md",
+      "category": "prompts",
+      "description": "Apply DRY, orthogonality, reversible decisions, tracer bullets, and broken-windows discipline from The Pragmatic Programmer."
+    },
+    {
+      "name": "clean-code-discipline",
+      "path": "skills/prompts/clean-code-discipline/SKILL.md",
+      "category": "prompts",
+      "description": "Apply Clean Code rules for naming, small functions, comment discipline, and error handling."
+    },
+    {
+      "name": "working-with-legacy-code",
+      "path": "skills/prompts/working-with-legacy-code/SKILL.md",
+      "category": "prompts",
+      "description": "Change existing code safely using characterization tests, seams, and dependency-breaking patterns."
+    },
+    {
+      "name": "software-engineering-at-google",
+      "path": "skills/prompts/software-engineering-at-google/SKILL.md",
+      "category": "prompts",
+      "description": "Apply Google's review, testing, documentation, and sustainable-development culture to AI-generated code."
     }
   ]
 }

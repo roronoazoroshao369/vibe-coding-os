@@ -1,0 +1,70 @@
+{
+  "name": "Example Team Scaffold",
+  "pattern": "Producer-Reviewer",
+  "goal": "Generate focused team roles and a plan for a bounded implementation task.",
+  "outcome": "Project-local Claude agent definitions and an OMC plan are ready to review.",
+  "nonGoals": [
+    "Do not start a daemon or background runtime.",
+    "Do not run tmux, MCP servers, or custom orchestration processes."
+  ],
+  "tier": "medium",
+  "why": "A producer creates the patch, a reviewer checks it, and a verifier records evidence before integration.",
+  "soloRisk": "A single pass can miss review or validation gaps.",
+  "downshift": "Use direct implementation when the task is tiny or one role can safely finish it.",
+  "emitRoleRouting": true,
+  "roles": [
+    {
+      "name": "producer",
+      "description": "Implement the scoped change with minimal diff.",
+      "model": "sonnet",
+      "allowedTools": ["Read", "Grep", "Glob", "Edit", "Write", "Bash"],
+      "mission": "Implement the assigned change exactly, matching local conventions.",
+      "context": ["Accepted spec", "Relevant files", "Implementation plan", "Validation gates"],
+      "writeScope": "Only files named in the assigned task.",
+      "forbiddenScope": "Do not refactor adjacent code or edit registries unless assigned.",
+      "outputContract": "Report files changed, decisions, risks, and commands run."
+    },
+    {
+      "name": "reviewer",
+      "description": "Review the produced patch for correctness and scope control.",
+      "model": "sonnet",
+      "allowedTools": ["Read", "Grep", "Glob", "Bash"],
+      "mission": "Find correctness, simplicity, and scope issues before merge readiness.",
+      "context": ["Diff", "Acceptance criteria", "Repo conventions"],
+      "writeScope": "Read-only review.",
+      "forbiddenScope": "Do not edit production files during review.",
+      "outputContract": "Report findings with severity, file paths, and verification suggestions."
+    }
+  ],
+  "tasks": [
+    {
+      "name": "Implement patch",
+      "owner": "producer",
+      "blocks": ["Review patch"],
+      "parallelSafe": false,
+      "doneWhen": "Scoped patch is ready and local diagnostics pass."
+    },
+    {
+      "name": "Review patch",
+      "owner": "reviewer",
+      "blockedBy": ["Implement patch"],
+      "parallelSafe": false,
+      "doneWhen": "Review findings are resolved or accepted with rationale."
+    }
+  ],
+  "watchdog": {
+    "idleTimeout": "15 minutes without progress update.",
+    "conflictEscalation": "Pause and ask integrator before editing shared files.",
+    "sharedFileRule": "One writer per file; reviewers stay read-only.",
+    "stopCondition": "Acceptance criteria met and validation evidence recorded.",
+    "isolation": "Use worktrees only for parallel write lanes."
+  },
+  "validation": [
+    {
+      "name": "Repository validation",
+      "command": "npm run validate",
+      "owner": "integrator",
+      "expected": "Passes with no registry or reference drift."
+    }
+  ]
+}

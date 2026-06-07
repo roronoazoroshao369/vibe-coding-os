@@ -71,6 +71,7 @@ When principles conflict, resolve in this order:
 - This constitution is not a heavyweight process manual.
 - It does not mandate any specific CLI, framework, or vendor.
 - It does not replace per-task specs, plans, or reviews.
+- Optional runtime helpers may materialize local JSON state, but they do not replace the markdown-first baseline or require a daemon, hosted service, or database.
 
 ## Acceptance criteria (for this constitution)
 

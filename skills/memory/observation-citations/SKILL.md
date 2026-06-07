@@ -2,57 +2,47 @@
 
 ## Purpose
 
-Create and use observation IDs for memory-backed claims. This skill adapts `thedotmack/claude-mem` concepts into Vibe Coding OS while composing with existing memory skills such as `project-memory`, `session-summarizer`, `context-retrieval`, `memory-search`, `memory-retrieval`, `memory-privacy`, `privacy-filter`, and `agent-handoff`.
+Create citation IDs and source labels so memory-backed claims can be audited and updated.
 
 ## When to use
 
-Use when a task needs persistent context across sessions, session observations, compressed summaries, context injection, progressive retrieval, citation IDs, privacy exclusions, hook planning, memory configuration, or troubleshooting. Prefer an existing narrower skill when it already covers the need.
+Use when storing, retrieving, injecting, summarizing, or evaluating memory that may later be cited as evidence.
 
 ## Inputs
 
-- Current task, session goal, and repository scope.
-- Candidate observations, commands run, files touched, decisions, risks, validation, and follow-ups.
-- Source references, confidence level, staleness risk, sensitivity/privacy tags, and optional observation IDs.
-- Applicable templates in `templates/` and workflows in `docs/workflows/`.
+- Observation text.
+- Source artifact: file, command, issue, PR, session summary, handoff, or prior memory entry.
+- Timestamp, scope, confidence, and relationship to older observations.
 
 ## Workflow
 
-1. Read local memory conventions and check overlapping memory skills before creating new memory.
-2. Define the memory lifecycle phase: capture, compress, search, inject, cite, configure, troubleshoot, or hand off.
-3. Apply privacy exclusion first; remove secrets, credentials, private keys, tokens, unnecessary personal data, and raw sensitive transcripts.
-4. Capture only durable facts: user intent, constraints, decisions, evidence, commands/checks, file paths, risks, and follow-ups.
-5. Compress noisy context into concise observations or summaries while preserving uncertainty, timestamps, source, and citations.
-6. Retrieve progressively: search/index first, inspect summaries, then fetch details only for relevant observation IDs.
-7. When injecting context, include only task-relevant entries with citations, confidence, and stale/contradictory labels.
-8. Record applied/not-applied upstream ideas and avoid implementing runtime infrastructure unless explicitly requested.
+1. Assign a stable observation ID or source label.
+2. Record source path or artifact reference; summarize command output instead of storing raw logs.
+3. Add scope, confidence, and stale-risk labels.
+4. Link related observations with `derives_from`, `updates`, `extends`, `contradicts`, or `supersedes`.
+5. When making a claim, cite the observation ID and label uncertainty.
+6. When updating a claim, mark the old citation as superseded rather than silently replacing history.
 
 ## Outputs
 
-- Safe observation, summary, citation bundle, memory configuration note, troubleshooting note, context injection bundle, or hook/adapter planning artifact.
-- Explicit blocked content or privacy exclusions when relevant.
-- Follow-up actions and verification status.
+- Citation-ready observation.
+- Relationship links between observations.
+- Supersession or contradiction note when relevant.
 
 ## Failure modes
 
-- Duplicating existing memory skills instead of composing with them.
-- Storing secrets, private credentials, raw transcripts, or sensitive personal data.
-- Compressing away uncertainty, source, validation status, or privacy warnings.
-- Injecting stale or excessive memory without relevance filtering.
-- Treating `claude-mem` runtime architecture as required.
+- Making memory-backed claims without evidence.
+- Using unstable references like “earlier in chat”.
+- Losing history when a new observation supersedes an old one.
+- Citing a raw sensitive transcript.
 
 ## Verification checklist
 
-- [ ] Existing memory skills and docs were checked for overlap.
-- [ ] Privacy exclusion ran before storage, retrieval, injection, or sharing.
-- [ ] Output is concise, source-aware, and useful to a future agent.
-- [ ] Observation IDs or source citations are present when making memory-backed claims.
-- [ ] Staleness, uncertainty, contradictions, and follow-ups are labeled.
-- [ ] No upstream code, scripts, database schema, installer, or large text was copied.
-
-## Applied / Not Applied
-
-Applied: lifecycle-aware memory capture, compression, progressive disclosure, context injection, observation citations, privacy exclusions, configuration, troubleshooting, and optional hook vocabulary. Not applied: copied hook scripts, Bun worker, SQLite/Chroma implementation, web viewer clone, installer clone, background daemon, OpenClaw gateway, beta/endless mode, hard dependency, or full architecture clone.
+- [ ] Observation has stable ID or source reference.
+- [ ] Claim cites source, confidence, and scope.
+- [ ] Superseded/contradicted entries are labeled.
+- [ ] Sensitive raw content was not cited or stored.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent nhớ việc quan trọng giữa các phiên nhưng vẫn an toàn. Luôn lọc bí mật trước, ghi nhớ ngắn gọn có nguồn/trích dẫn, tìm kiếm theo từng lớp, và không biến `claude-mem` thành phụ thuộc bắt buộc.
+Mỗi quan sát quan trọng cần ID hoặc nguồn ổn định. Khi kiến thức thay đổi, đánh dấu bản cũ là bị thay thế thay vì xóa dấu vết.

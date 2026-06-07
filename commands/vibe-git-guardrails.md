@@ -1,3 +1,7 @@
+---
+description: "Check safe git behavior before risky operations or commits."
+---
+
 # Command: Check git guardrails
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Check candidate memory for secrets, sensitive data, and unsafe provider use."
+---
+
 # vibe-memory-privacy-check
 
 ## When to use

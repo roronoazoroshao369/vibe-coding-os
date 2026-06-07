@@ -1,3 +1,7 @@
+---
+description: "Orient a new session by inspecting instructions, repository state, registries, templates, skills, and next workflow step."
+---
+
 # vibe-init
 
 ## Purpose

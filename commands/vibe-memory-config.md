@@ -1,3 +1,7 @@
+---
+description: "Define or audit local memory configuration."
+---
+
 # vibe-memory-config
 
 ## When to use

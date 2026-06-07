@@ -1,3 +1,7 @@
+---
+description: "Set up per-repo Vibe Coding OS skills, context, and validation guidance."
+---
+
 # Command: Setup project agent skills
 
 ## When to use

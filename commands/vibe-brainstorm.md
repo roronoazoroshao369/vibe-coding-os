@@ -1,3 +1,7 @@
+---
+description: "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."
+---
+
 # vibe-brainstorm
 
 ## Purpose

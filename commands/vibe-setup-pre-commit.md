@@ -1,3 +1,7 @@
+---
+description: "Set up lightweight pre-commit quality gates."
+---
+
 # Command: Setup pre-commit quality gates
 
 ## When to use

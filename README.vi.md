@@ -4,9 +4,9 @@
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-**Vibe Coding OS** là framework skill thân thiện với Claude/Codex dành cho một người muốn dùng AI coding assistant thật nhanh nhưng vẫn giữ kỷ luật kỹ thuật.
+**Vibe Coding OS** là framework skill thân thiện với Claude/Codex dành cho một người muốn dùng AI coding assistant thật nhanh nhưng vẫn giữ kỷ luật kỹ thuật. Repo là markdown-first, nhẹ dependency, và dùng được như instruction, prompt, template thuần. Ngoài ra còn có một runtime companion tùy chọn (JSON-first) cho task, memory, checkpoint, team, session, daemon, MCP, tmux, và vector-memory ở local.
 
-Đây không phải wrapper, sản phẩm, hay agent runtime. Đây là một “hệ điều hành” chuẩn hóa cho công việc phần mềm có AI hỗ trợ: skill tái sử dụng, command prompt, template, registry, và quy ước giúp con người cùng AI assistant biến ý định thành code đáng tin cậy. Mục tiêu cụ thể là nâng chất lượng vibe coding với Claude Code và các agent tương tự bằng cách học có chọn lọc từ những workflow public tốt, rồi tái chuẩn hóa vào repo này mà không copy/vendor bừa.
+Đây không phải wrapper bắt buộc, sản phẩm, dịch vụ hosted, hay agent runtime bắt buộc. Đây là một “hệ điều hành” chuẩn hóa cho công việc phần mềm có AI hỗ trợ: skill tái sử dụng, command prompt, template, registry, adapter, reference map, và runtime helper local tùy chọn giúp con người cùng AI assistant biến ý định thành code đáng tin cậy. Mục tiêu cụ thể là nâng chất lượng vibe coding với Claude Code và các agent tương tự bằng cách học có chọn lọc từ những nguồn workflow/skill/engineering-practice tốt, rồi tái chuẩn hóa vào repo này mà không copy/vendor bừa.
 
 ## Vì sao repo này tồn tại
 
@@ -46,7 +46,116 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Memory:** ghi lại quyết định, gotcha, follow-up bền vững.
 - **Merge:** chỉ ship khi trạng thái verification rõ ràng.
 
-## Cách dùng nhanh
+## Hiện tại có gì
+
+Inventory hiện tại: **90 skills**, **68 commands**, **38 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
+
+| Layer | Gồm gì | Giảm nỗi đau nào |
+| --- | --- | --- |
+| Spec-driven workflow | Constitution, specify, plan, tasks, checkpoint, cổng sẵn-sàng-triển-khai | AI code khi chưa hiểu yêu cầu |
+| Adaptive flow | Tier tiny/small/medium/large/risky | Quy trình quá nặng cho việc nhỏ, hoặc quá nhẹ cho việc rủi ro |
+| Real engineering skills | Grilling, PRD, ADR, TDD, diagnosis, review, finish branch | AI hành xử như máy sinh code thay vì kỹ sư có kỷ luật |
+| Prompt discipline | Karpathy think/simplicity/surgical/goal-driven + nguyên lý từ sách coding | Overengineering, đặt tên mơ hồ, thiết kế dễ vỡ, code khó review |
+| Team-agent orchestration | Template kiến trúc team, role routing, handoff, watchdog, scaffold | Việc phức tạp không chia an toàn cho nhiều agent |
+| Memory layer | Session capture, summarization, lọc privacy, retrieval lũy tiến, citation | Mất context giữa các phiên hoặc lưu không an toàn |
+| Reference intelligence | Source index, attribution, feature map, update-impact map, changelog | Idea upstream bị copy bừa hoặc không maintain được |
+| Runtime tùy chọn | JSON store, CLI task/memory/checkpoint/team/session, daemon, MCP server, vector search, tmux team runner, installer | Workflow markdown cần state kiểm tra được hoặc tự động hóa local |
+
+## Nỗi đau đã giải quyết
+
+| Nỗi đau khi vibe code | Lời giải local |
+| --- | --- |
+| Yêu cầu mơ hồ | `clarify-before-code`, `what-before-how`, `vibe-specify`, template acceptance criteria |
+| AI lao vào code quá sớm | cổng spec → plan → tasks, checkpoint sẵn-sàng-triển-khai |
+| AI làm dư / rewrite quá nhiều | `anti-overengineering`, kỷ luật Karpathy, check surgical-change |
+| Khó kiểm chứng thay đổi của AI | goal-driven execution, TDD, tách verifier/reviewer, `npm run validate` |
+| Việc nhiều bước bị mất tiến độ | task-state tracking, runtime task store, template handoff |
+| Đa-agent gây xung đột | team-agent orchestration, sở hữu file, handoff contract, tmux runner |
+| Context biến mất sau compaction/hết phiên | memory/session capture, summarizer, observation citation, vector search tùy chọn |
+| Sửa legacy code rủi ro | characterization test, seam, bug-fix lifecycle, brownfield spec enhancement |
+| Code production chỉ có happy-path | mẫu hình ổn định Release It!, defensive programming, checklist review |
+| Idea upstream gây rủi ro license/attribution | reference index, source docs, ATTRIBUTIONS/NOTICE, script validation |
+
+## Quick start theo từng tool
+
+Vibe Coding OS là markdown-first và nhẹ dependency. Chọn đúng đường cho agent của bạn. Mọi trường hợp đều cùng một mục tiêu: cho agent đọc `CLAUDE.md` (hoặc `AGENTS.md`), rồi nạp đúng các file `commands/*.md` và `skills/*/*/SKILL.md` mà task cần.
+
+### Claude Code — cài như plugin (khuyến nghị)
+
+Vibe Coding OS đã có sẵn manifest plugin Claude Code (`.claude-plugin/plugin.json`) và manifest marketplace (`.claude-plugin/marketplace.json`), nên cài như mọi plugin khác — toàn bộ 90 skills và 68 commands tự nạp, không cần copy file thủ công.
+
+```bash
+# 1. Thêm repo này làm marketplace
+claude plugin marketplace add roronoazoroshao369/vibe-coding-os
+
+# 2. Cài plugin
+claude plugin install vibe-coding-os@vibe-coding-os-marketplace
+
+# 3. (Tùy chọn) xem plugin ship gì trước/sau khi cài
+claude plugin details vibe-coding-os
+```
+
+Sau khi cài, skills tự kích hoạt theo trigger và commands sẵn dùng dạng `/vibe-*`. Quản lý bằng `claude plugin list`, `claude plugin disable/enable vibe-coding-os`, `claude plugin update vibe-coding-os`.
+
+### Claude Code — thủ công (không dùng plugin)
+
+```bash
+# Cách A — trỏ Claude Code thẳng vào repo này và làm việc bên trong
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cd ~/vibe-coding-os
+claude          # CLAUDE.md tự nạp; skills/, commands/, templates/ sẵn sàng
+
+# Cách B — dùng trong PROJECT của bạn
+cd your-project
+# copy CLAUDE.md của framework (hoặc nối vào file CLAUDE.md hiện có)
+cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+# rồi tham chiếu skill/command theo path, ví dụ bảo Claude Code:
+#   "Theo skills/core/spec-first-development/SKILL.md cho feature này"
+```
+
+Trong phiên, kích hoạt một phase bằng cách gọi tên command hoặc skill: `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, hoặc "dùng `skills/prompts/pragmatic-programmer/SKILL.md`". Chạy `npm run validate` sau khi sửa cấu trúc. Xem đầy đủ tại [`adapters/claude-code/README.md`](adapters/claude-code/README.md).
+
+### Codex CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md   # Codex đọc AGENTS.md làm instruction surface
+```
+
+Paste một command prompt từ `commands/` (ví dụ `vibe-spec.md`, `vibe-review.md`) ở đầu task, và attach các `skills/*/*/SKILL.md` liên quan. Xem [`adapters/codex/README.md`](adapters/codex/README.md).
+
+### Gemini CLI
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+cd your-project
+cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md   # hoặc paste nội dung CLAUDE.md vào file context của Gemini
+```
+
+Gemini CLI nạp context instruction lúc khởi động phiên; trỏ nó vào file đã copy và tham chiếu `commands/` cùng `skills/` theo path khi cần.
+
+### Cursor / assistant khác
+
+```bash
+git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
+```
+
+Paste nội dung `CLAUDE.md` vào project rules (ví dụ `.cursorrules` hoặc system prompt của chat), rồi paste từng prompt `commands/*.md` theo phase và attach `skills/*/*/SKILL.md` khi task cần. Xem [`adapters/cursor/README.md`](adapters/cursor/README.md) và [bảng tương thích adapter](adapters/compatibility-matrix.md).
+
+### Runtime tùy chọn (mọi tool)
+
+Framework chạy không cần runtime. Nếu muốn JSON state local cho task, memory, checkpoint, team, session — cộng daemon, MCP server, vector search, và tmux team runner tùy chọn:
+
+```bash
+node scripts/runtime-install.mjs            # cài đặt idempotent dưới .omc/runtime/
+node scripts/runtime-install.mjs --dry-run  # xem trước, không ghi
+node scripts/runtime-install.mjs --mcp      # đăng ký luôn MCP server vào .mcp.json
+```
+
+Hoàn toàn opt-in, không bao giờ tự khởi động, và degrade nhẹ nhàng nếu thiếu dependency tùy chọn.
+
+## Validation và cách dùng thủ công
 
 Repo này cố ý nhẹ dependency. Để kiểm tra cấu trúc framework:
 
@@ -128,28 +237,28 @@ Trước khi adapt ý tưởng upstream: đọc source entry, xem feature/mappin
 
 ## Roadmap
 
-### v0.1 kernel
+### Đã hoàn thành trong kernel hiện tại
 
-- Chuẩn hóa cấu trúc repository.
-- Cung cấp core, memory, prompt, và agent skills.
-- Cung cấp command prompt và template tái sử dụng.
-- Thêm structural validation.
-- Thêm source và attribution registry mà không vendor external code.
+- Cấu trúc repo chuẩn hóa với skill core, memory, meta, prompt, agent.
+- 68 command prompt và 38 template tái sử dụng.
+- Validation cấu trúc động cộng validation cho reference layer.
+- Registry source, attribution, feature, impact mà không vendor code upstream.
+- Quick start adapter cho Claude Code, Codex CLI, Gemini CLI, Cursor, và assistant khác.
+- Runtime JSON-first tùy chọn với task, memory, checkpoint, team, session, daemon, MCP, vector, tmux-runner, installer.
 
 ### Gần hạn
 
 - Mở rộng example workflow hoàn chỉnh cho nhiều loại project hơn.
 - Thêm reference intake scorecard để quyết định upstream idea nào đáng adapt.
-- Tăng schema validation cho registry.
-- Thêm process review khi import external idea.
-- Thêm project memory convention và redaction test.
-- Thêm adapter-specific install snippet.
+- Tăng schema validation cho ngữ nghĩa registry (vượt mức kiểm tra path tồn tại).
+- Thêm redaction test và fixture đánh giá chất lượng memory.
+- Thêm dashboard/viewer nhẹ cho state `.omc/runtime/`.
 
 ### Sau đó
 
-- Thêm CLI helper tùy chọn.
-- Thêm compatibility test cho các agent tool chính.
 - Thêm curated skill pack cho stack phổ biến.
+- Thêm compatibility test cho các agent tool chính.
+- Thêm snippet IDE/editor để chèn nhanh command và skill.
 - Thêm governance rule cho external contribution và source intake.
 
 ## Attribution và license policy

@@ -2,54 +2,52 @@
 
 ## Purpose
 
-Provide a disciplined local procedure for memory architecture that is inspired by `supermemoryai/supermemory` concepts while remaining dependency-free, privacy-safe, and human-controlled.
+Design the memory model: what kinds of observations exist, how they relate, how recency is represented, and which skills own each lifecycle step.
 
 ## When to use
 
-Use when work needs durable context, memory ingestion, retrieval before decisions, memory search, provider planning, or evaluation of memory usefulness. Prefer existing memory skills (`project-memory`, `context-retrieval`, `privacy-filter`, `session-summarizer`, `agent-handoff`) when the task is narrower.
+Use when adding or reorganizing memory workflows, defining schemas, splitting memory responsibilities, or resolving overlap between ingestion/search/evaluation/provider skills.
 
 ## Inputs
 
-- Task or decision that may need memory.
-- Candidate memory content, source, scope, sensitivity, confidence, and staleness risk.
-- Local files, prior memory entries, templates, and related commands.
-- Optional provider constraints if a human explicitly requests an external backend.
+- Memory use cases and non-goals.
+- Existing memory skill layout and templates.
+- Candidate observation types, relationship types, confidence labels, and recency rules.
+- Privacy and local-first constraints.
 
 ## Workflow
 
-1. Confirm the memory goal: ingest, retrieve, search, evaluate, protect, or plan an adapter.
-2. Check local conventions and related memory skills before adding new behavior.
-3. Apply privacy filtering before storing or sharing any memory.
-4. Prefer local-first storage and cite sources for retrieved context.
-5. Label confidence, expiry, contradictions, and unresolved questions.
-6. If an external provider is considered, keep it optional and document fallback behavior.
-7. Record verification using the relevant template or command.
+1. Separate lifecycle roles: capture, ingest, search, inject, compress, cite, evaluate, configure, troubleshoot.
+2. Define observation fields: source, scope, timestamp, confidence, stale-risk, sensitivity, and follow-up.
+3. Model relationships explicitly with local-only relation types: `updates` (replaces a prior claim), `extends` (adds detail without replacing), `derives_from` (summarizes or infers from evidence), `contradicts`, and `supersedes`.
+4. Mark current knowledge with an `isLatest` or equivalent recency note when older entries remain useful history; only latest non-contradicted entries should drive current work.
+5. Keep the relation schema provider-neutral and storage-free; adapters may persist links, but the skill owns the meaning.
+6. Map each responsibility to one skill to prevent duplicate workflows.
 
 ## Outputs
 
-- A concise memory entry, retrieval/search report, privacy review, evaluation note, or adapter plan.
-- Clear applied/not-applied decisions and follow-up checks.
+- Memory schema or responsibility map.
+- Relationship and recency conventions.
+- Notes on overlaps removed or deferred.
 
 ## Failure modes
 
-- Duplicating an existing memory skill instead of composing with it.
-- Storing secrets, credentials, private keys, or unnecessary personal data.
-- Treating hosted provider behavior as required.
-- Saving full transcripts instead of durable facts.
-- Omitting source, confidence, scope, or staleness information.
+- Designing a runtime engine instead of a prompt-portable workflow.
+- Letting multiple skills own the same lifecycle step.
+- Missing contradiction or supersession semantics.
+- Treating recency as truth without confidence/source checks.
 
 ## Verification checklist
 
-- [ ] Existing memory skills were checked for overlap.
-- [ ] Candidate content passed privacy filtering.
-- [ ] Local-first behavior remains available.
-- [ ] External provider use, if any, is explicitly optional.
-- [ ] Sources, confidence, and stale/contradictory signals are documented.
+- [ ] Each lifecycle role has one clear owning skill.
+- [ ] Relationship types and recency labels are documented.
+- [ ] Provider/storage choices are not hardcoded into the architecture.
+- [ ] Privacy and local-first constraints are preserved.
 
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: explicit memory operations, retrieval-before-work, search as an interface, provider abstraction, evaluation, privacy gates, and local fallback. Not applied: hosted Supermemory requirement, dashboard clone, cloud auth/account flow, SDK client, database stack, connectors, benchmark data, or replacing local memory by default.
+Applied as original wording from Supermemory-inspired agent-memory design and claude-mem-inspired persistent-context design: explicit relation typing, temporal latest markers, and provider-neutral memory architecture. Not applied: hosted memory services, SDK clients, hook daemons, storage engines, database schemas, or copied upstream text.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giúp agent dùng bộ nhớ như một năng lực rõ ràng nhưng vẫn an toàn. Luôn ưu tiên bộ nhớ cục bộ, kiểm tra quyền riêng tư trước khi lưu, ghi nguồn và độ tin cậy, và không biến Supermemory thành phụ thuộc bắt buộc.
+Dùng kỹ năng này để thiết kế mô hình bộ nhớ: loại quan sát, quan hệ, độ mới, phạm vi, và skill nào chịu trách nhiệm. Không biến nó thành engine runtime.

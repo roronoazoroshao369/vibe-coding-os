@@ -1,3 +1,7 @@
+---
+description: "Debug systematically with reproduction, hypotheses, experiments, root cause, and regression checks."
+---
+
 # vibe-debug
 
 ## Purpose

@@ -1,3 +1,7 @@
+---
+description: "Convert existing conversation context into a PRD without inventing requirements."
+---
+
 # Command: Create PRD from context
 
 ## When to use

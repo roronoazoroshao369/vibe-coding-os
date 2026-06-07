@@ -1,3 +1,7 @@
+---
+description: "Triage and address review feedback, rerun checks, and document deferred items."
+---
+
 # vibe-receive-review
 
 ## Purpose

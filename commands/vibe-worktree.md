@@ -1,3 +1,7 @@
+---
+description: "Create or use an isolated git worktree for risky, conflicting, or parallel work."
+---
+
 # vibe-worktree
 
 ## Purpose

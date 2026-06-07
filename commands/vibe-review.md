@@ -1,3 +1,7 @@
+---
+description: "Review the current diff against the spec and plan, prioritizing blockers, missing tests, security, attribution, and scope control."
+---
+
 # vibe-review
 
 ## Purpose

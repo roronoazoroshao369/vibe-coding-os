@@ -1,3 +1,7 @@
+---
+description: "Run a disposable prototype to answer a design question."
+---
+
 # Command: Prototype before commitment
 
 ## When to use

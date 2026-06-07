@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "storage": "json",
+  "runtimeDir": ".omc/runtime",
+  "privacy": {
+    "redactSecrets": true,
+    "storeRawTranscripts": false
+  },
+  "adapters": {
+    "sqlite": false,
+    "vector": false,
+    "github": false,
+    "tmux": false
+  }
+}

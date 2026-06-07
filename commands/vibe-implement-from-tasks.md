@@ -1,3 +1,7 @@
+---
+description: "Execute ordered tasks into verified implementation after the readiness gate clears."
+---
+
 # vibe-implement-from-tasks
 
 ## Purpose

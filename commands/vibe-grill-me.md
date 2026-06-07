@@ -1,3 +1,7 @@
+---
+description: "Interview the user before building to remove ambiguity."
+---
+
 # Command: Grill user before building
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Classify incoming work and recommend next state/action."
+---
+
 # Command: Triage task or issue
 
 ## When to use

@@ -1,3 +1,7 @@
+---
+description: "Diagnose repository health across required files, registries, skills, commands, templates, and validation scripts."
+---
+
 # vibe-doctor
 
 ## Purpose

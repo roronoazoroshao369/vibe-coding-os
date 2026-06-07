@@ -1,3 +1,7 @@
+---
+description: "Create a privacy-filtered durable memory entry."
+---
+
 # vibe-memory-ingest
 
 ## When to use

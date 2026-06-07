@@ -38,3 +38,14 @@ A verification report with exact commands, outcomes, evidence coverage, limitati
 - [ ] Exact commands and outcomes are listed.
 - [ ] Failures or limitations are visible.
 - [ ] Final status is not overstated.
+
+## Related skills
+
+This skill is the evidence bar that backs the goal-driven member of the four-part engineering
+discipline set (think-before-coding, simplicity-first, surgical-changes, goal-driven):
+
+- `skills/core/goal-driven-execution/SKILL.md` — turns an imperative into a verifiable goal
+  whose success condition is checked here.
+- `skills/prompts/karpathy-engineering-discipline/SKILL.md` — Think Before Coding and Surgical
+  Changes.
+- `skills/prompts/anti-overengineering/SKILL.md` — Simplicity First.

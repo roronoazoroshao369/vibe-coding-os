@@ -4,7 +4,7 @@ This file is the shared-language document for Vibe Coding OS itself. It should s
 
 ## Glossary
 
-- **Vibe Coding OS**: A markdown-first operating system of skills, commands, templates, registries, and reference intelligence for disciplined AI-assisted software work.
+- **Vibe Coding OS**: A markdown-first operating system of skills, commands, templates, registries, optional local runtime state, and reference intelligence for disciplined AI-assisted software work.
 - **Skill**: A reusable `SKILL.md` operating procedure with purpose, triggers, workflow, outputs, failure modes, and verification.
 - **Command prompt**: A reusable prompt in `commands/` that invokes a workflow phase.
 - **Reference Intelligence Layer**: The `references/` system that tracks upstream inspiration, feature mappings, changelogs, and update impact without vendoring upstream content.
@@ -16,6 +16,7 @@ This file is the shared-language document for Vibe Coding OS itself. It should s
 - Skills define reusable behavior; commands trigger behavior; templates capture artifacts; registries make files discoverable.
 - References are inspiration sources, not vendored dependencies. Any adaptation must be original, attributed, and mapped to local files.
 - Validation scripts protect repository structure and JSON registries.
+- Optional runtime commands write inspectable JSON under `.omc/runtime/` for local task, memory, checkpoint, team, and session state; markdown remains the portable baseline.
 
 ## Local naming conventions
 

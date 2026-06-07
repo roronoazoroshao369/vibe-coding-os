@@ -1,14 +1,14 @@
 # Attributions
 
-This project is original work. The initial repository structure is informed by common patterns in AI coding workflow projects, but no external code or documentation has been vendored.
+This project is original work. Its skills, commands, templates, and docs are inspired by — and in places closely adapted from — the public projects listed below, but no upstream source code, prompt text, skill files, or large documentation blocks are vendored. All local content is written in original wording.
 
 ## Source registry
 
-Candidate inspiration sources are tracked in `registry/sources.json`. Their licenses are marked `unknown` until verified from upstream metadata.
+Inspiration sources are tracked in `registry/sources.json`, each with its verified license and import mode. Licenses were verified from upstream metadata during the 2026-06-06 local clone audit.
 
 ## Imported material
 
-No external material has been imported in v0.1.
+No upstream code or documentation is vendored. Vibe Coding OS adapts methodology, design patterns, and conventions into original local artifacts. Each source actively used for adaptation is listed below with its license and usage.
 
 ## obra/superpowers
 
@@ -68,3 +68,93 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: Local content is original Vibe Coding OS documentation, skills, commands, templates, mappings, and reference docs. No upstream templates, prompts, CLI/`src` code, scripts, docs, tests, or assets are vendored. The Specify CLI is not a dependency and upstream command names are not required.
+
+## yeachan-heo/oh-my-claudecode
+
+- Name: `yeachan-heo/oh-my-claudecode`
+- URL: https://github.com/yeachan-heo/oh-my-claudecode
+- License: MIT, Copyright (c) 2025 Yeachan Heo. Verified from upstream root `LICENSE` during the 2026-06-07 audit.
+- Used for: decision-context commit-trailer convention, context-budget audit heuristics, skill-from-session extraction, instinct extraction (design only), and agent role/model-tier routing inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: The upstream is a TypeScript runtime plugin (team/swarm engine, hook scripts, state manager). Vibe Coding OS adapts only prompt/convention patterns into original artifacts. No runtime engine, hook scripts, or compiled code is vendored.
+
+## affaan-m/ECC
+
+- Name: `affaan-m/ECC` (Everything Claude Code)
+- URL: https://github.com/affaan-m/ECC
+- License: MIT, Copyright (c) 2026 Affaan Mustafa. Verified from upstream root `LICENSE` during the 2026-06-07 audit.
+- Used for: continuous-learning / instinct-extraction concept, context-budget audit heuristics, and fail-safe prompt-defense baseline inspiration.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: The upstream is a large cross-harness operator system (Node hook runtime, 251 skills / 63 agents). Vibe Coding OS adapts a small number of ideas in original wording at individual-developer scale. No upstream code, marketing/commercial framing, or structural import is included.
+
+## multica-ai/andrej-karpathy-skills
+
+- Name: `multica-ai/andrej-karpathy-skills`
+- URL: https://github.com/multica-ai/andrej-karpathy-skills
+- License: MIT **declared in metadata only** (`.claude-plugin/plugin.json`, README) by author `forrestchang` during the 2026-06-07 audit. No standalone `LICENSE` file and no copyright line are present upstream, so the MIT grant is incomplete/unverifiable.
+- Used for: idea-level inspiration for four engineering-discipline principles — "Think Before Coding", "Simplicity First", "Surgical Changes", and "Goal-Driven Execution" (rewriting imperative instructions into verifiable goals with per-step checks). All attributed to Karpathy's public commentary.
+- Import mode: **inspiration-only re-write**. Because the license grant is incomplete, no upstream text is copied; the related local skills are written entirely in original wording.
+- Vendored code: no.
+- Notes: Treated as inspiration-only until upstream adds a complete license + copyright notice. Local targets: `skills/prompts/karpathy-engineering-discipline` (Think Before Coding + Surgical Changes), `skills/prompts/anti-overengineering` (Simplicity First), `skills/core/goal-driven-execution` (Goal-Driven Execution), and `skills/core/verification-before-completion` (its evidence bar). The existing `karpathy-guardrails` skill is a distinct, separately-authored artifact.
+
+## bmad-code-org/BMAD-METHOD
+
+- Name: `bmad-code-org/BMAD-METHOD`
+- URL: https://github.com/bmad-code-org/BMAD-METHOD
+- License: MIT, Copyright (c) 2025 BMad Code, LLC. Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
+- Used for: idea-level inspiration for product/PRD/UX depth and scale-adaptive planning that informs the adaptive-flow tiers.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: The upstream is an npm-installed agent runtime (`.bmad-core`, web bundles, expansion packs, slash-command orchestrator). Only conceptual patterns are adapted into original local artifacts; no installer, runtime, bundles, prompts, or docs are vendored.
+
+## buildermethods/agent-os
+
+- Name: `buildermethods/agent-os`
+- URL: https://github.com/buildermethods/agent-os
+- License: MIT, Copyright (c) 2025 CasJam Media LLC (Builder Methods). Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
+- Used for: idea-level inspiration for standards-aware, task-proportional workflow selection feeding the adaptive-flow rubric.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: No installer scripts, base/project install flows, or upstream templates are vendored.
+
+## coleam00/context-engineering-intro
+
+- Name: `coleam00/context-engineering-intro`
+- URL: https://github.com/coleam00/context-engineering-intro
+- License: MIT, Copyright (c) 2025 Cole Medin. Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
+- Used for: idea-level inspiration for the implementation brief / context bundle (spec + curated examples + doc links + executable validation gates) and validation-loop framing.
+- Import mode: inspiration/adaptation only (no upstream text copied).
+- Vendored code: no.
+- Notes: Adapted as an original markdown template/command over existing artifacts. No PRP-runner tooling or upstream prose is copied. Future closer adaptation still requires normal attribution review.
+
+## eyaltoledano/claude-task-master
+
+- Name: `eyaltoledano/claude-task-master`
+- URL: https://github.com/eyaltoledano/claude-task-master
+- License: MIT plus Commons Clause condition, Copyright (c) 2025 Eyal Toledano, Ralph Khreish. Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
+- Used for: idea-level inspiration for a markdown task-status convention and next-task selection.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: No MCP server, CLI engine, `tasks.json` runtime, AI-model config, or upstream code is vendored. Only the markdown status/complexity idea is adapted.
+
+## automazeio/ccpm
+
+- Name: `automazeio/ccpm`
+- URL: https://github.com/automazeio/ccpm
+- License: MIT, Copyright (c) 2025 Ran Aroussi. Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
+- Used for: idea-level inspiration for source-of-truth task tracking and optional spec → issue → worktree traceability.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: No `/pm` runtime, `gh` issue-sync scripting, bash command library, or GitHub-as-database engine is vendored. Only conceptual tracking patterns are adapted.
+
+## revfactory/harness
+
+- Name: `revfactory/harness`
+- URL: https://github.com/revfactory/harness
+- License: Apache-2.0, Copyright 2025 robin. Verified from provided upstream facts during the 2026-06-07 audit.
+- Used for: idea-level inspiration for team-agent orchestration patterns, domain-analysis-first team design, progressive disclosure, generated-role brief structure, dry-run validation, and with-team vs without-team comparison.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: No upstream runtime, generated `.claude/agents`, generated `.claude/skills`, code, prompts, templates, docs, or installer behavior is vendored. Local artifacts are original markdown guidance.

@@ -1,3 +1,7 @@
+---
+description: "Create a privacy-filtered durable session summary with decisions, changed files, verification, questions, and next actions."
+---
+
 # vibe-memory
 
 ## Purpose
