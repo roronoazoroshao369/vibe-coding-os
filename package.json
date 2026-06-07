@@ -10,7 +10,9 @@
     "validate:references": "node scripts/validate-references.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",
-    "references:clone": "node scripts/clone-upstreams.mjs"
+    "references:clone": "node scripts/clone-upstreams.mjs",
+    "team:scaffold": "node scripts/scaffold-team.mjs",
+    "team:scaffold:dry": "node scripts/scaffold-team.mjs --dry-run"
   },
   "license": "MIT"
 }

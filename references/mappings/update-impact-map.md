@@ -160,3 +160,43 @@ Inspect `references/sources/github-spec-kit.md`, `references/changelogs/github-s
 ### Ghi chú tiếng Việt
 
 Khi `spec-kit` thay đổi, dùng các rule trên để biết file local cần đọc trước. Specify CLI luôn là tùy chọn, không bao giờ thành phụ thuộc bắt buộc, và không copy template/CLI upstream.
+
+## coleam00/context-engineering-intro update impact rules
+
+### If upstream changes the brief/blueprint structure
+
+Inspect `references/sources/coleam00-context-engineering.md`, `references/features/context-engineering.md`, `templates/implementation-brief-template.md`, `commands/vibe-brief.md`, `commands/vibe-brief-execute.md`, and `skills/core/context-rich-implementation/SKILL.md`. Adapt structure only; do not copy upstream text.
+
+### If upstream changes research or documentation-gathering guidance
+
+Inspect `commands/vibe-brief.md`, `skills/core/context-rich-implementation/SKILL.md`, and `docs/workflows/context-engineering.md`. Keep findings concrete and repo-specific.
+
+### If upstream changes examples-library or project-rules conventions
+
+Inspect `docs/workflows/context-engineering.md`, `templates/implementation-brief-template.md`, and the `examples/` area. Reference in-repo paths; never vendor upstream example files.
+
+### If upstream changes the validation-gate or iterate-until-green model
+
+Inspect `templates/implementation-brief-template.md`, `commands/vibe-brief-execute.md`, `skills/core/context-rich-implementation/SKILL.md`, and `skills/core/checkpoint-validation/SKILL.md`. Gates stay plain local commands composed with `npm run validate`.
+
+### If upstream changes the confidence-scoring rubric
+
+Inspect `templates/implementation-brief-template.md`, `commands/vibe-brief.md`, and `skills/core/context-rich-implementation/SKILL.md`.
+
+### If upstream changes license or attribution metadata
+
+Inspect `registry/sources.json`, `references/index.json`, `ATTRIBUTIONS.md`, and `NOTICE.md`. Re-verify the MIT grant before any closer adaptation. No PRP-runner tooling is ever vendored.
+
+## 2026-06-07 project standards / roadmap / traceability update rules
+
+### If upstream changes project standards or roadmap conventions
+
+Inspect `STANDARDS.md`, `ROADMAP.md`, `CONSTITUTION.md`, `CONTEXT.md`, `commands/vibe-flow.md`, `skills/core/adaptive-flow/SKILL.md`, `references/features/project-standards-and-roadmap.md`, `references/sources/bmad-code-org-bmad-method.md`, and `references/sources/buildermethods-agent-os.md`. Keep specs behavior-focused; do not copy upstream templates.
+
+### If upstream changes issue/task/worktree traceability
+
+Inspect `templates/traceability-map-template.md`, `skills/core/task-state-tracking/SKILL.md`, `templates/tasks-template.md`, `commands/vibe-tasks.md`, `commands/vibe-worktree.md`, `references/features/spec-issue-worktree-traceability.md`, `references/sources/automazeio-ccpm.md`, and `references/sources/eyaltoledano-claude-task-master.md`. Keep all tracking markdown-only unless a new approved spec adds automation.
+
+### If upstream changes command handoff metadata conventions
+
+Inspect `STANDARDS.md`, high-traffic commands in `commands/`, and `registry/prompts.json`. Add conditional next-step suggestions; do not require a fixed command pipeline.

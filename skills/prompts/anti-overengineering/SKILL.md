@@ -36,3 +36,13 @@ A simplified approach and trimmed scope.
 - [ ] No speculative features were added.
 - [ ] Complexity is justified.
 - [ ] Follow-ups are separate.
+
+## Related skills
+
+This is the Simplicity-First member of a four-part engineering discipline set:
+
+- `skills/prompts/karpathy-engineering-discipline/SKILL.md` — Think Before Coding and
+  Surgical Changes.
+- `skills/core/goal-driven-execution/SKILL.md` — Goal-Driven Execution (imperative →
+  verifiable goal with per-step checks).
+- `skills/core/verification-before-completion/SKILL.md` — the evidence bar for "done".

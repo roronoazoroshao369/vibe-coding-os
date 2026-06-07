@@ -22,50 +22,70 @@ Skip for tiny edits where intent, files, and verification are obvious.
 
 1. Select the next ready task: status is `todo`, `ready`, or blank; dependencies are done; no
    exclusive conflict is active.
-2. Read the spec, plan, task row, and the closest existing examples.
-3. Summarize only task-relevant context; omit broad transcript history.
-4. Record source links and acceptance criteria covered.
-5. Define the smallest in-scope change and explicit non-goals.
-6. List files to inspect/change, patterns to follow, and constraints that matter.
-7. Add verification commands with expected results.
-8. Save the brief using `templates/implementation-brief-template.md`.
+2. Research before writing: read the spec, plan, task row, and the closest existing code.
+   Identify the patterns this repo already uses (naming, error handling, imports, test
+   layout) and the file(s) that demonstrate them best.
+3. Gather documentation: collect the few doc links or local references that actually settle a
+   decision (API contract, library behavior, prior ADR). Note the exact section, not just the
+   home page. Skip links that do not change the implementation.
+4. Summarize only task-relevant context; omit broad transcript history.
+5. Record source links and acceptance criteria covered.
+6. Define the smallest in-scope change and explicit non-goals.
+7. List files to inspect/change, patterns to follow, and constraints that matter.
+8. Select examples to mimic — positive prior art to copy and negative patterns to avoid —
+   with file paths and a one-line reason for each.
+9. Define validation gates: the ordered, executable checks that must pass, each with an
+   observable pass condition, plus the iterate-until-green expectation.
+10. Self-score confidence (1-10) that the brief is sufficient for a one-pass, validation-green
+    implementation. If the score is below 7, list the missing context and gather it before
+    handing the brief off.
+11. Save the brief using `templates/implementation-brief-template.md`.
 
 ## Outputs
 
-An implementation brief with source traceability, objective, scope, repo context, required
-changes, verification, risks, rollback, and open questions.
+An implementation brief with source traceability, objective, scope, research findings,
+examples to mimic (positive and negative), required changes, validation gates, risks,
+rollback, open questions, and a confidence score with rationale.
 
 ## Stopping conditions
 
-Stop and ask when no task is ready, dependencies are unclear, source artifacts disagree, or
-an open question would change the implementation.
+Stop and ask when no task is ready, dependencies are unclear, source artifacts disagree, an
+open question would change the implementation, or the confidence score stays below 7 because
+required context cannot be gathered locally.
 
 ## Verification checklist
 
 - [ ] Brief maps to one task or one cohesive task group.
 - [ ] Acceptance criteria and source artifacts are cited.
 - [ ] Scope and non-goals prevent drift.
-- [ ] Repo patterns/examples are named.
-- [ ] Verification command and expected result are explicit.
+- [ ] Research findings name real repo patterns and the docs that settle decisions.
+- [ ] Positive and negative examples are named with file paths.
+- [ ] Validation gates are executable, ordered, and have observable pass conditions.
+- [ ] Confidence score is recorded with rationale; if below 7, gaps are listed.
 
 ## Related skills/templates
 
 - `templates/implementation-brief-template.md`
 - `templates/tasks-template.md`
+- `skills/core/context-rich-implementation/SKILL.md`
 - `skills/core/task-state-tracking/SKILL.md`
 - `skills/core/checkpoint-validation/SKILL.md`
+- `docs/workflows/context-engineering.md`
 
 ## Handoffs / next-step suggestion
 
 After the brief is complete:
 
-- Open questions remain → resolve them before coding.
-- Brief is complete and readiness gate is clear → `commands/vibe-implement.md`.
+- Open questions remain or confidence is below 7 → gather missing context before coding.
+- Brief is complete and readiness gate is clear → `commands/vibe-brief-execute.md` to load,
+  implement, and validate, or `commands/vibe-implement.md` for a smaller inline change.
 - Brief exposed missing acceptance criteria or missing tasks → return to `commands/vibe-specify.md`,
   `commands/vibe-plan.md`, or `commands/vibe-tasks.md` as needed.
 
 ## Ghi chú tiếng Việt
 
-Tạo implementation brief sau spec/plan/tasks: chọn task sẵn sàng, gom ngữ cảnh vừa đủ,
-truy vết AC, khóa scope, nêu file/pattern cần theo, lệnh verify, rủi ro và rollback. Không
-biến brief thành runtime/CLI hay hệ thống automation.
+Tạo implementation brief sau spec/plan/tasks: chọn task sẵn sàng, NGHIÊN CỨU trước (đọc code,
+tìm pattern repo, gom tài liệu cần thiết), gom ngữ cảnh vừa đủ, truy vết AC, khóa scope, nêu
+ví dụ nên bắt chước và ví dụ cần tránh, đặt cổng kiểm thử chạy được (lặp đến khi xanh), và
+TỰ CHẤM độ tự tin 1-10. Nếu dưới 7, bổ sung ngữ cảnh còn thiếu trước khi giao. Không biến
+brief thành runtime/CLI hay hệ thống automation.

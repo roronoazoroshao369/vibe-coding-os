@@ -74,6 +74,12 @@
       "description": "Prevent wasted implementation by resolving ambiguity before edits."
     },
     {
+      "name": "context-rich-implementation",
+      "path": "skills/core/context-rich-implementation/SKILL.md",
+      "category": "core",
+      "description": "Assemble verified context, curated examples, and executable validation gates into a brief so implementation passes in one validation-green pass."
+    },
+    {
       "name": "creative-parallel-exploration",
       "path": "skills/core/creative-parallel-exploration/SKILL.md",
       "category": "core",
@@ -108,6 +114,12 @@
       "path": "skills/core/git-guardrails/SKILL.md",
       "category": "core",
       "description": "Protect user work and repository history around risky git operations."
+    },
+    {
+      "name": "goal-driven-execution",
+      "path": "skills/core/goal-driven-execution/SKILL.md",
+      "category": "core",
+      "description": "Rewrite imperative instructions into verifiable goals with per-step checks so the agent can execute and self-correct independently."
     },
     {
       "name": "grill-user-before-building",

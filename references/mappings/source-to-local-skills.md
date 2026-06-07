@@ -79,10 +79,14 @@ This map shows which local skills and commands are influenced by tracked sources
 
 - Source doc: `references/sources/multica-ai-andrej-karpathy-skills.md`
 - Changelog: `references/changelogs/multica-ai-andrej-karpathy-skills.md`
-- Feature links: `anti-overengineering`, `tdd-loop`
-- Local targets:
-  - `skills/prompts/karpathy-guardrails/SKILL.md`
-  - `skills/prompts/anti-overengineering/SKILL.md`
+- License: MIT declared in metadata only (author `forrestchang`), no LICENSE file → inspiration-only re-write.
+- Feature links: `think-before-coding`, `simplicity-first`, `surgical-changes`, `goal-driven-execution`, `anti-overengineering`, `tdd-loop`
+- Local targets (four engineering-discipline principles, one coherent set):
+  - `skills/prompts/karpathy-engineering-discipline/SKILL.md` — Think Before Coding + Surgical Changes
+  - `skills/prompts/anti-overengineering/SKILL.md` — Simplicity First
+  - `skills/core/goal-driven-execution/SKILL.md` — Goal-Driven Execution
+  - `skills/core/verification-before-completion/SKILL.md` — evidence bar behind goal-driven
+  - `skills/prompts/karpathy-guardrails/SKILL.md` — distinct ML-iteration skill
   - `commands/vibe-implement.md`
 
 ## supermemoryai/supermemory
@@ -275,3 +279,46 @@ Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/comma
 - Added local team orchestration guidance inspired by staged team plan/exec/verify/fix flow, role routing, TeamCreate/TaskCreate/SendMessage-style coordination, handoffs, watchdog concepts, worktree integration, and dynamic scaling/config.
 - Local targets added: `skills/core/team-agent-orchestration/SKILL.md`, `commands/vibe-team.md`, `templates/team-architecture-template.md`, `docs/workflows/team-agent-orchestration.md`, `references/features/team-agent-orchestration.md`.
 - No upstream team/swarm runtime, state manager, hook, tmux/mailbox layer, or prose is copied.
+
+## coleam00/context-engineering-intro
+
+- Source doc: `references/sources/coleam00-context-engineering.md`
+- Changelog: `references/changelogs/coleam00-context-engineering.md`
+- Feature links: `context-rich-brief`, `research-phase`, `examples-library`, `project-rules`, `validation-gates`, `iterate-until-green`, `confidence-score`
+- Local targets:
+  - `skills/core/context-rich-implementation/SKILL.md`
+  - `commands/vibe-brief.md`
+  - `commands/vibe-brief-execute.md`
+  - `templates/implementation-brief-template.md`
+  - `docs/workflows/context-engineering.md`
+  - `references/features/context-engineering.md`
+
+## 2026-06-07 portable feature additions
+
+### bmad-code-org/BMAD-METHOD
+
+- Source doc: `references/sources/bmad-code-org-bmad-method.md`
+- Changelog: `references/changelogs/bmad-code-org-bmad-method.md`
+- Feature links: `project-standards`, `product-mission-roadmap`, `adaptive-planning`
+- Local targets: `STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, `docs/workflows/adaptive-flow.md`.
+
+### buildermethods/agent-os
+
+- Source doc: `references/sources/buildermethods-agent-os.md`
+- Changelog: `references/changelogs/buildermethods-agent-os.md`
+- Feature links: `project-standards`, `standards-aware-planning`, `product-roadmap`
+- Local targets: `STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, `commands/vibe-flow.md`.
+
+### eyaltoledano/claude-task-master
+
+- Source doc: `references/sources/eyaltoledano-claude-task-master.md`
+- Changelog: `references/changelogs/eyaltoledano-claude-task-master.md`
+- Feature links: `task-state-tracking`, `next-task-selection`, `spec-issue-worktree-traceability`
+- Local targets: `skills/core/task-state-tracking/SKILL.md`, `templates/tasks-template.md`, `templates/traceability-map-template.md`.
+
+### automazeio/ccpm
+
+- Source doc: `references/sources/automazeio-ccpm.md`
+- Changelog: `references/changelogs/automazeio-ccpm.md`
+- Feature links: `source-of-truth-task-tracking`, `spec-issue-worktree-traceability`
+- Local targets: `skills/core/task-state-tracking/SKILL.md`, `templates/traceability-map-template.md`, `commands/vibe-worktree.md`.

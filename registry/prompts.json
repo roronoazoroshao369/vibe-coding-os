@@ -17,6 +17,11 @@
       "description": "Create a compact implementation brief with scoped context, examples, and validation gates."
     },
     {
+      "name": "vibe-brief-execute",
+      "path": "commands/vibe-brief-execute.md",
+      "description": "Execute an implementation brief: load, plan, implement, run validation gates, and iterate until green."
+    },
+    {
       "name": "vibe-brownfield-spec",
       "path": "commands/vibe-brownfield-spec.md",
       "description": "Apply spec discipline to an existing system with incremental, reversible migration."
@@ -275,6 +280,11 @@
       "name": "vibe-team",
       "path": "commands/vibe-team.md",
       "description": "Design and coordinate a proportional team-agent workflow with roles, ownership, handoffs, and validation."
+    },
+    {
+      "name": "vibe-team-generate",
+      "path": "commands/vibe-team-generate.md",
+      "description": "Generate reviewable team-agent scaffold files (agent definitions, plan, optional role routing) from a deterministic JSON spec without starting a runtime."
     },
     {
       "name": "vibe-tasks",

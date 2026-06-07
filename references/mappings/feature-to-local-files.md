@@ -340,3 +340,53 @@ Bảng spec-driven nối từng tính năng (hiến chương, spec, plan, tasks,
 - Reference sources:
   - `references/sources/yeachan-heo-oh-my-claudecode.md`
   - `references/sources/revfactory-harness.md`
+
+## Context engineering (coleam00/context-engineering-intro inspiration)
+
+- Feature doc: `references/features/context-engineering.md`
+- Reference source: `references/sources/coleam00-context-engineering.md`
+
+| Feature | Local files to inspect | Notes |
+| --- | --- | --- |
+| context-rich-brief | `templates/implementation-brief-template.md`, `skills/core/context-rich-implementation/SKILL.md`, `commands/vibe-brief.md`, `commands/vibe-brief-execute.md` | Bundle spec + research + examples + gates + score; markdown-first. |
+| research-phase | `commands/vibe-brief.md`, `skills/core/context-rich-implementation/SKILL.md` | Discover repo patterns before writing; cite real files. |
+| examples-library | `docs/workflows/context-engineering.md`, `templates/implementation-brief-template.md`, `examples/` | Reference in-repo paths; include positive and negative examples. |
+| project-rules | `docs/workflows/context-engineering.md`, `CONSTITUTION.md`, `CLAUDE.md`, `AGENTS.md`, `CONTEXT.md` | Reference standing rules, do not duplicate them. |
+| validation-gates | `templates/implementation-brief-template.md`, `commands/vibe-brief-execute.md`, `skills/core/checkpoint-validation/SKILL.md` | Executable, ordered, observable pass conditions. |
+| iterate-until-green | `commands/vibe-brief-execute.md`, `skills/core/context-rich-implementation/SKILL.md` | Fix root causes in code; never weaken a check. |
+| confidence-score | `templates/implementation-brief-template.md`, `commands/vibe-brief.md` | 1-10 self-score; below 7 blocks handoff until context gathered. |
+
+## Project standards and roadmap
+
+- Feature docs: `references/features/project-standards-and-roadmap.md`
+- Local files:
+  - `STANDARDS.md`
+  - `ROADMAP.md`
+  - `CONSTITUTION.md`
+  - `CONTEXT.md`
+- Source docs:
+  - `references/sources/bmad-code-org-bmad-method.md`
+  - `references/sources/buildermethods-agent-os.md`
+
+## Spec issue worktree traceability
+
+- Feature doc: `references/features/spec-issue-worktree-traceability.md`
+- Local files:
+  - `templates/traceability-map-template.md`
+  - `skills/core/task-state-tracking/SKILL.md`
+  - `templates/tasks-template.md`
+  - `commands/vibe-tasks.md`
+  - `commands/vibe-worktree.md`
+- Source docs:
+  - `references/sources/automazeio-ccpm.md`
+  - `references/sources/eyaltoledano-claude-task-master.md`
+
+## Command handoff convention
+
+- Local files:
+  - `STANDARDS.md`
+  - `commands/vibe-brief.md`
+  - `commands/vibe-specify.md`
+  - `commands/vibe-plan.md`
+  - `commands/vibe-tasks.md`
+- Note: new convention is centralized in `STANDARDS.md`; commands can be updated incrementally.

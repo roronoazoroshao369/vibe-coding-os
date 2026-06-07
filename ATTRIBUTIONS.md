@@ -93,11 +93,11 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 
 - Name: `multica-ai/andrej-karpathy-skills`
 - URL: https://github.com/multica-ai/andrej-karpathy-skills
-- License: MIT **declared in metadata only** (`.claude-plugin/plugin.json`, README) during the 2026-06-07 audit. No standalone `LICENSE` file and no copyright line are present upstream, so the MIT grant is incomplete/unverifiable.
-- Used for: idea-level inspiration for "Think Before Coding" and "Surgical Changes" engineering discipline (attributed to Karpathy's public commentary).
-- Import mode: **inspiration-only re-write**. Because the license grant is incomplete, no upstream text is copied; the related local skill is written entirely in original wording.
+- License: MIT **declared in metadata only** (`.claude-plugin/plugin.json`, README) by author `forrestchang` during the 2026-06-07 audit. No standalone `LICENSE` file and no copyright line are present upstream, so the MIT grant is incomplete/unverifiable.
+- Used for: idea-level inspiration for four engineering-discipline principles — "Think Before Coding", "Simplicity First", "Surgical Changes", and "Goal-Driven Execution" (rewriting imperative instructions into verifiable goals with per-step checks). All attributed to Karpathy's public commentary.
+- Import mode: **inspiration-only re-write**. Because the license grant is incomplete, no upstream text is copied; the related local skills are written entirely in original wording.
 - Vendored code: no.
-- Notes: Treated as inspiration-only until upstream adds a complete license + copyright notice. The existing `karpathy-guardrails` skill is a distinct, separately-authored artifact.
+- Notes: Treated as inspiration-only until upstream adds a complete license + copyright notice. Local targets: `skills/prompts/karpathy-engineering-discipline` (Think Before Coding + Surgical Changes), `skills/prompts/anti-overengineering` (Simplicity First), `skills/core/goal-driven-execution` (Goal-Driven Execution), and `skills/core/verification-before-completion` (its evidence bar). The existing `karpathy-guardrails` skill is a distinct, separately-authored artifact.
 
 ## bmad-code-org/BMAD-METHOD
 

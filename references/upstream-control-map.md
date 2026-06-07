@@ -30,7 +30,7 @@
 | 5 | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | Apache-2.0 | inspiration | Project/worktree scoping, periodic digest, env-sanitizer checklist, hook event taxonomy | `skills/memory/local-first-memory/`, `skills/memory/session-summarizer/`, `skills/memory/privacy-filter/`, `adapters/hooks/memory-hooks-contract.md` | `references/sources/thedotmack-claude-mem.md` |
 | 6 | [yeachan-heo/oh-my-claudecode](https://github.com/yeachan-heo/oh-my-claudecode) | MIT | adapted | Commit decision-trailers, context-budget audit, skillify-from-session, instinct-extraction, agent role routing | `skills/core/git-guardrails/`, `skills/meta/context-budget/`, `skills/meta/skillify-from-session/`, `skills/meta/instinct-extraction/`, `skills/agents/*` | `references/sources/yeachan-heo-oh-my-claudecode.md` |
 | 7 | [affaan-m/ECC](https://github.com/affaan-m/ECC) | MIT | adapted | Continuous-learning/instinct concept, context-budget heuristics | `skills/meta/instinct-extraction/`, `skills/meta/context-budget/` | `references/sources/affaan-m-ecc.md` |
-| 8 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | ⚠️ MIT-declared-incomplete | inspiration (re-write only) | Think-Before-Coding + Surgical-Changes (viết lại nguyên bản, KHÔNG copy) | `skills/prompts/karpathy-engineering-discipline/` | `references/sources/multica-ai-andrej-karpathy-skills.md` |
+| 8 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | ⚠️ MIT-declared-incomplete | inspiration (re-write only) | 4 engineering-discipline principles: Think-Before-Coding, Simplicity-First, Surgical-Changes, Goal-Driven-Execution (viết lại nguyên bản, KHÔNG copy) | `skills/prompts/karpathy-engineering-discipline/`, `skills/prompts/anti-overengineering/`, `skills/core/goal-driven-execution/`, `skills/core/verification-before-completion/` | `references/sources/multica-ai-andrej-karpathy-skills.md` |
 
 > ⚠️ **Repo #8 (multica-ai)**: khai MIT trong metadata nhưng KHÔNG có file LICENSE + copyright line → grant không đầy đủ. Đã xử lý inspiration-only re-write. KHÔNG vendor cho tới khi upstream bổ sung license đầy đủ.
 
@@ -42,11 +42,11 @@ Chỉ lấy phần **không trùng** với các feature đã có. Tất cả là
 |---|---|---|---|---|---|
 | 9 | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | MIT | inspiration | Scale-adaptive planning depth → tier rubric | `skills/core/adaptive-flow/`, `docs/workflows/adaptive-flow.md` |
 | 10 | [buildermethods/agent-os](https://github.com/buildermethods/agent-os) | MIT | inspiration | Task-proportional/standards-aware flow selection | `skills/core/adaptive-flow/`, `commands/vibe-flow.md` |
-| 11 | [coleam00/context-engineering-intro](https://github.com/coleam00/context-engineering-intro) | ⚠️ chưa verify | inspiration (re-write) | Implementation brief / context bundle + validation gates | `templates/implementation-brief-template.md`, `commands/vibe-brief.md` |
+| 11 | [coleam00/context-engineering-intro](https://github.com/coleam00/context-engineering-intro) | MIT (Cole Medin 2025, verified) | adapted | Context-rich implementation brief + research/examples/validation-gates + confidence score | `templates/implementation-brief-template.md`, `commands/vibe-brief.md`, `commands/vibe-brief-execute.md`, `skills/core/context-rich-implementation/SKILL.md`, `docs/workflows/context-engineering.md` |
 | 12 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | MIT + Commons Clause | inspiration | Task status convention + next-task selection | `skills/core/task-state-tracking/`, `templates/tasks-template.md` |
 | 13 | [automazeio/ccpm](https://github.com/automazeio/ccpm) | MIT | inspiration | Source-of-truth task tracking (markdown only) | `skills/core/task-state-tracking/` |
 
-> **DEFER (chưa cần):** BMAD product mission/roadmap doc; Agent OS standards doc tách khỏi constitution. Chỉ thêm khi đa-spec planning thực sự đau.
+> **ADAPTED (2026-06-07):** BMAD / Agent OS standards + mission/roadmap concepts are now local markdown only: `STANDARDS.md`, `ROADMAP.md`.
 > **SKIP (vi phạm non-goal):** task-master MCP/CLI/tasks.json engine; CCPM `/pm` runtime + GitHub-as-DB; BMAD/Agent OS installer + runtime; mọi text/template/code upstream.
 
 ---
@@ -117,3 +117,14 @@ File này là bảng điều khiển trung tâm. Khi cần biết "tôi dùng re
 | 15 | [revfactory/harness](https://github.com/revfactory/harness) | Apache-2.0 | inspiration | Six team patterns, domain-analysis-first team architecture, progressive disclosure, dry-run and with-vs-without validation | `templates/team-architecture-template.md`, `docs/workflows/team-agent-orchestration.md` |
 
 > **SKIP:** upstream orchestration runtimes, tmux/session/mailbox layers, hook daemons, generated `.claude/agents` / `.claude/skills`, installers, code, prompts, and docs. Local result is original markdown only.
+
+### Đợt 4 — Portable feature cherry-pick (2026-06-07)
+
+| # | Upstream repo | License | Trạng thái | Đã merge feature gì (gap-only) | File local chính |
+|---|---|---|---|---|---|
+| 16 | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | MIT | inspiration | Product mission/roadmap + standards-aware planning convention | `ROADMAP.md`, `STANDARDS.md` |
+| 17 | [buildermethods/agent-os](https://github.com/buildermethods/agent-os) | MIT | inspiration | Project standards doc separated from constitution | `STANDARDS.md` |
+| 18 | [automazeio/ccpm](https://github.com/automazeio/ccpm) | MIT | inspiration | Optional spec → issue → worktree traceability (markdown only) | `templates/traceability-map-template.md` |
+| 19 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | MIT + Commons Clause | inspiration | Task-state traceability convention; no runtime | `templates/traceability-map-template.md`, `skills/core/task-state-tracking/` |
+
+> **SKIPPED as duplicates:** claude-mem periodic digest, hook taxonomy/env sanitizer, and supermemory MemScore were already present in existing memory artifacts. **SKIPPED as runtime:** all CLI/MCP/installer/database/GitHub automation.

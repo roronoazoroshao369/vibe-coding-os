@@ -57,7 +57,7 @@ So "merge the strong features" realistically means: **adapt the strong portable 
 | 15 | **Hook event contract taxonomy + privacy env-sanitizer checklist** | claude-mem | Enrich `adapters/hooks/memory-hooks-contract.md`, `privacy-exclusion` | Design-portable; scripts are not |
 | 16 | **Bug-fix lifecycle trio (assess → failing test → fix)** | spec-kit `bug` ext | New TDD-anchored bug command | Distinct from existing diagnosis skills |
 | 17 | **CONTEXT glossary `_Avoid:` synonyms + flagged-ambiguities log** | mattpocock | Enhance `shared-domain-language` | Format polish |
-| 18 | **Karpathy: Think-Before-Coding + Surgical-Changes guidelines** | multica-ai ⚠️ | Original re-write only (license unsafe) | §Simplicity/§Verify already covered; only these 2 add net value |
+| 18 | **Karpathy: 4 engineering-discipline principles** (Think-Before-Coding, Simplicity-First, Surgical-Changes, Goal-Driven-Execution) | multica-ai ⚠️ | Original re-write only (license unsafe) | Think+Surgical in `karpathy-engineering-discipline`, Simplicity in `anti-overengineering`, Goal-Driven in new `skills/core/goal-driven-execution` backed by `verification-before-completion` |
 | 19 | **Periodic memory digest (timeline-report / weekly-digest)** | claude-mem | New small memory workflow | vibe-os lacks "summarize memory over a period" |
 
 ### Tier 3 — Study only / DO NOT MERGE (runtime, scope creep, or out of domain)
