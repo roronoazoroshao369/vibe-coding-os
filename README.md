@@ -56,7 +56,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## What is included now
 
-Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
+Current inventory: **90 skills**, **68 commands**, **41 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
 
 | Layer | What it contains | Pain it reduces |
 | --- | --- | --- |
@@ -147,6 +147,7 @@ Useful commands: `vibe-flow`, `vibe-triage`, `vibe-checkpoints`, `vibe-verify`.
 | Reference | `templates/upstream-audit-template.md`, `templates/reference-scorecard-template.md` |
 | Team | `templates/team-spec-template.json`, `templates/team-architecture-template.md` |
 | Runtime | `templates/runtime-config-template.json` |
+| ROI/metrics | `templates/roi-metrics-template.md` |
 
 ### 6. Use the optional local runtime
 
@@ -258,10 +259,10 @@ npm run runtime:validate
 
 Most rows above are reduced by **advice**, not automation. Two honesty labels:
 
-- **COVERED-tooling** — enforced by a script that exits non-zero on violation. Today that is only the validate scripts: `validate-repo`, `validate-references`, `validate-traceability` (run via `npm run validate`), and the opt-in `validate-secrets` (`npm run validate:secrets`). These are the only checks that auto-run and can fail a change.
+- **COVERED-tooling** — enforced by a script that exits non-zero on violation. Today that is the validate scripts: `validate-repo`, `validate-references`, `validate-traceability`, `validate-injection` (run via `npm run validate`), and the opt-in `validate-secrets` (`npm run validate:secrets`). These are the only checks that auto-run and can fail a change.
 - **COVERED-advice** — guidance in a `SKILL.md`, command, or template that a human or agent must choose to follow. Nothing enforces it automatically; the value depends on actually applying it.
 
-Treat everything not backed by a validate script as advice, not a guarantee.
+Treat everything not backed by a validate script as advice, not a guarantee. Handling of untrusted external content at runtime (issues, PRs, web/tool/MCP output an agent reads while working) is still advice: see [`docs/workflows/prompt-injection-handling.md`](docs/workflows/prompt-injection-handling.md) — the framework cannot intercept a live injection, it only tells humans and agents how to behave. The one enforced slice is `validate-injection`: a best-effort static scan of the artifacts this repo *ships* (skill bodies, `.mcp.json`, commands, templates, docs) for injection and skill-poisoning signatures. It catches known shapes, not novel payloads, so the human checklist remains the backstop.
 
 
 ## Quick start by tool
@@ -494,7 +495,7 @@ For hands-on audits, `npm run references:clone` creates or updates shallow ignor
 ### Complete in the current kernel
 
 - Normalized repository structure with core, memory, meta, prompt, and agent skills.
-- 68 reusable command prompts and 38 templates.
+- 68 reusable command prompts and 41 templates.
 - Dynamic structural validation plus reference-layer validation.
 - Source, attribution, feature, and impact registries without vendoring upstream code.
 - Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.

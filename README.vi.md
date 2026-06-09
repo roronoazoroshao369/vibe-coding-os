@@ -56,7 +56,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## Hiện tại có gì
 
-Inventory hiện tại: **90 skills**, **68 commands**, **38 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
+Inventory hiện tại: **90 skills**, **68 commands**, **41 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
 
 | Layer | Gồm gì | Giảm nỗi đau nào |
 | --- | --- | --- |
@@ -430,7 +430,7 @@ Trước khi adapt ý tưởng upstream: đọc source entry, xem feature/mappin
 ### Đã hoàn thành trong kernel hiện tại
 
 - Cấu trúc repo chuẩn hóa với skill core, memory, meta, prompt, agent.
-- 68 command prompt và 38 template tái sử dụng.
+- 68 command prompt và 41 template tái sử dụng.
 - Validation cấu trúc động cộng validation cho reference layer.
 - Registry source, attribution, feature, impact mà không vendor code upstream.
 - Quick start adapter cho Claude Code, Codex CLI, Gemini CLI, Cursor, và assistant khác.
