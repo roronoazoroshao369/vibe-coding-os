@@ -5,9 +5,10 @@
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
   "scripts": {
-    "validate": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs",
+    "validate": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs",
     "validate:repo": "node scripts/validate-repo.mjs",
     "validate:references": "node scripts/validate-references.mjs",
+    "validate:traceability": "node scripts/validate-traceability.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",
     "references:clone": "node scripts/clone-upstreams.mjs",

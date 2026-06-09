@@ -43,7 +43,8 @@ Avoid:
 ## Verification rules
 
 - Run the most relevant checks available.
-- For structure changes, run `npm run validate`.
+- For structure changes, run `npm run validate` (repo structure, references, and traceability).
+- Traceability (`npm run validate:traceability`) fails on broken `commands/`, `skills/`, or `templates/` references and warns on orphan inventory items that no narrative markdown links to.
 - For code changes, run targeted tests first and broader checks when feasible.
 - Report every check honestly as passed, failed, or not run with a reason.
 

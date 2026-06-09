@@ -18,6 +18,7 @@
 - Never copy large upstream content or vendor code without license review and an explicit decision.
 - Keep attribution clean in `ATTRIBUTIONS.md`, `NOTICE.md`, registries, and reference docs when external material is imported or closely adapted.
 - Run `npm run validate:references` after changing reference files, or `npm run validate` for broader repository validation.
+- After adding, renaming, or removing a command/skill/template, run `npm run validate:traceability`: it fails on broken internal references (a doc pointing at a `commands/`, `skills/`, or `templates/` path that no longer exists) and warns on orphans (inventory items no narrative markdown links to). Orphans are a review signal, not a failure; keyword-triggered skills may legitimately stand alone.
 - Use `npm run references:clone` for local upstream audit clones, but never stage or commit cloned upstream source trees under `references/upstreams/`.
 - Before adopting any upstream, follow `docs/UPSTREAM_ADOPTION_POLICY.md`: classify the source (adapt-skill/command/template/doc/rule, adapter-only, runtime-local, reject-runtime, inspiration-only, blocked-license) and pass the 7-point engine adoption gate. Default to portable adaptation; never vendor engines.
 - Respect the layer boundary in `docs/workflows/core-vs-optional-runtime.md`: Core (skills/commands/templates/docs/references, zero deps) is the identity; Runtime (`runtime/*.mjs`) is opt-in and frozen-scope. Do not move Core work into Runtime or expand Runtime without an explicit decision.
