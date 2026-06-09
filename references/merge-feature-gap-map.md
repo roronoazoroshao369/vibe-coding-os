@@ -82,6 +82,7 @@ These came up across multiple agents and from the prior repo review:
 2. **Resolve multica-ai license** — update `registry/sources.json` note to "MIT declared in metadata only; no LICENSE file/notice — vendoring unsafe"; keep inspiration-only.
 3. **De-duplicate the 22 memory skills first** — many are near-identical boilerplate (8 supermemory-derived skills byte-identical except title line). Folding new memory ideas (Tier 1 #6, #7) into EXISTING skills only works if the existing set is cleaned up first.
 4. **Fix validator before adding content** — `scripts/validate-repo.mjs` uses a hardcoded list (checks ~56/41/20) while disk has 76/61/34; ~20 skills + 20 commands + 14 templates are unverified. Adding more without fixing this widens the blind spot.
+   - **Correction / Status update (2026-06-09):** validator claim above is stale. `npm run validate` now passes and discovers skills/commands/templates dynamically (90 skills, 68 commands, 38 templates). Registry is in sync: skills 90, prompts 68, agents 5, sources 14. Attribution-gap items for ECC, yeachan-heo, and multica-ai remain valid TODOs unless separately fixed.
 5. **Refresh stale reference docs** — `affaan-m-ecc.md` mislabels license as unverified and misses the strongest features (continuous-learning, context-budget).
 
 ---

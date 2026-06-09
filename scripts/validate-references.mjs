@@ -36,8 +36,13 @@ const requiredFeatureDocs = [
 const requiredMappingDocs = [
   'source-to-local-skills.md',
   'feature-to-local-files.md',
-  'update-impact-map.md'
+  'update-impact-map.md',
+  'adoption-classification.md'
 ].map((file) => path.join('references', 'mappings', file));
+const requiredPolicyDocs = [
+  'docs/UPSTREAM_ADOPTION_POLICY.md',
+  'docs/workflows/core-vs-optional-runtime.md'
+];
 const requiredReferenceCommands = [
   'vibe-reference-add.md',
   'vibe-reference-audit.md',

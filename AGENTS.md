@@ -19,6 +19,8 @@
 - Keep attribution clean in `ATTRIBUTIONS.md`, `NOTICE.md`, registries, and reference docs when external material is imported or closely adapted.
 - Run `npm run validate:references` after changing reference files, or `npm run validate` for broader repository validation.
 - Use `npm run references:clone` for local upstream audit clones, but never stage or commit cloned upstream source trees under `references/upstreams/`.
+- Before adopting any upstream, follow `docs/UPSTREAM_ADOPTION_POLICY.md`: classify the source (adapt-skill/command/template/doc/rule, adapter-only, runtime-local, reject-runtime, inspiration-only, blocked-license) and pass the 7-point engine adoption gate. Default to portable adaptation; never vendor engines.
+- Respect the layer boundary in `docs/workflows/core-vs-optional-runtime.md`: Core (skills/commands/templates/docs/references, zero deps) is the identity; Runtime (`runtime/*.mjs`) is opt-in and frozen-scope. Do not move Core work into Runtime or expand Runtime without an explicit decision.
 ## Superpowers-inspired workflow discipline
 
 For non-trivial software tasks, use the adapted workflow in `docs/workflows/superpowers-inspired-workflow.md`. Check the relevant local skills before coding, especially brainstorming/clarification, spec-first development, writing/executing plans, TDD, review, verification, and finishing-branch skills. Prefer design or spec approval before implementation when the work changes behavior, spans multiple files, or contains meaningful risk. Use TDD or a targeted regression check for behavior changes. Verify before claiming completion, and use review plus finish-branch rituals before merge or PR handoff.
