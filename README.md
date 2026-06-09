@@ -254,6 +254,15 @@ npm run runtime:validate
 | Production code is happy-path only | Release It! stability patterns, defensive programming, review checklists |
 | Borrowed upstream ideas create license/attribution risk | reference index, source docs, ATTRIBUTIONS/NOTICE, validation scripts |
 
+### How to read coverage claims
+
+Most rows above are reduced by **advice**, not automation. Two honesty labels:
+
+- **COVERED-tooling** — enforced by a script that exits non-zero on violation. Today that is only the validate scripts: `validate-repo`, `validate-references`, `validate-traceability` (run via `npm run validate`), and the opt-in `validate-secrets` (`npm run validate:secrets`). These are the only checks that auto-run and can fail a change.
+- **COVERED-advice** — guidance in a `SKILL.md`, command, or template that a human or agent must choose to follow. Nothing enforces it automatically; the value depends on actually applying it.
+
+Treat everything not backed by a validate script as advice, not a guarantee.
+
 
 ## Quick start by tool
 

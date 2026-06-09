@@ -9,6 +9,7 @@
     "validate:repo": "node scripts/validate-repo.mjs",
     "validate:references": "node scripts/validate-references.mjs",
     "validate:traceability": "node scripts/validate-traceability.mjs",
+    "validate:secrets": "node scripts/validate-secrets.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",
     "references:clone": "node scripts/clone-upstreams.mjs",
