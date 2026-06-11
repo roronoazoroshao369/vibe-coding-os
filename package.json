@@ -11,6 +11,7 @@
     "validate:traceability": "node scripts/validate-traceability.mjs",
     "validate:secrets": "node scripts/validate-secrets.mjs",
     "validate:injection": "node scripts/validate-injection.mjs",
+    "validate:provenance": "node scripts/validate-provenance.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",
     "references:clone": "node scripts/clone-upstreams.mjs",
