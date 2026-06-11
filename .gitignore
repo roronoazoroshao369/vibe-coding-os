@@ -4,3 +4,12 @@ references/upstreams/*
 
 # Optional runtime state. Local-first, disposable, machine-generated.
 .omc/runtime/
+
+# macOS Finder metadata.
+.DS_Store
+**/.DS_Store
+
+# Editor
+*.swp
+.idea/
+.vscode/

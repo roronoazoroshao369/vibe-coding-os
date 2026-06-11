@@ -8,6 +8,14 @@
 
 It is not a required wrapper, product, hosted service, or mandatory agent runtime. It is a normalized operating system for AI-assisted software work: reusable skills, command prompts, templates, registries, adapters, reference maps, and optional local runtime helpers that help a human and an AI assistant repeatedly turn intent into reliable code. Its specific aim is to raise the quality of vibe coding with Claude Code and similar agents by selectively studying, merging, and re-normalizing the best reusable workflow ideas from leading public skill, agent-workflow, and engineering-practice sources without blindly copying or vendoring them.
 
+## Core vs Optional Runtime
+
+The **core** is markdown-first and works with **zero runtime**: install the Claude Code plugin and use `/vibe-*` commands, skills, and templates as plain instructions. No daemon, database, MCP server, or tmux session is required.
+
+The **runtime** is fully **opt-in**. Enable it only when you want local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, or a tmux team runner.
+
+See [INSTALL.md](INSTALL.md) for the full install guide and [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) for the upstream-adoption policy.
+
 ## Why this exists
 
 Modern coding agents are powerful, but they are easiest to misuse when the task is vague, the context is stale, or success is declared before verification. Vibe Coding OS makes the desired behavior explicit:
@@ -48,7 +56,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## What is included now
 
-Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
+Current inventory: **90 skills**, **68 commands**, **41 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
 
 | Layer | What it contains | Pain it reduces |
 | --- | --- | --- |
@@ -60,6 +68,177 @@ Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracke
 | Memory layer | Session capture, summarization, privacy filtering, progressive retrieval, citations | Context is lost between sessions or unsafe to reuse |
 | Reference intelligence | Source index, attribution policy, feature maps, update-impact maps, changelogs | Upstream ideas are copied blindly or become unmaintainable |
 | Optional runtime | JSON stores, task/memory/checkpoint/team/session CLI, daemon, MCP server, vector search, tmux team runner, installer | Markdown-only workflows need inspectable state or local automation |
+
+## Comprehensive usage guide
+
+This section is the practical map for using the whole repository. If you are new: choose the right adapter → choose a workflow tier → invoke the matching command → attach relevant skills → use templates for artifacts → run validation.
+
+### 1. Choose an entry point by environment
+
+| Tool | Main file/entry point | Fast path |
+| --- | --- | --- |
+| Claude Code plugin | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Install the plugin, then use `/vibe-*` commands and skill auto-triggers. |
+| Claude Code manual | `CLAUDE.md` | Work inside this repo or copy/append `CLAUDE.md` into your project. |
+| Codex CLI | `AGENTS.md`, `adapters/codex/README.md` | Copy `AGENTS.md`, paste prompts from `commands/`, attach skills by path. |
+| Gemini CLI | `AGENTS.md` or `GEMINI.md` | Copy the instruction surface, then reference `commands/` and `skills/`. |
+| Cursor / other assistants | `adapters/cursor/README.md`, `adapters/compatibility-matrix.md` | Paste rules into project rules, use commands/skills/templates as plain markdown. |
+| Optional local runtime | `scripts/runtime-install.mjs`, `.mcp.json` | Bootstrap `.omc/runtime/`, then use local CLI or MCP server tools. |
+
+### 2. Choose a workflow tier before work
+
+| Tier | Use when | Minimum artifact |
+| --- | --- | --- |
+| Tiny | typo, small docs edit, obvious rename | short intent + quick check |
+| Small | low-risk focused change | mini-spec or checklist + validation |
+| Medium | feature/bugfix with behavior | spec → plan → tasks → implement → verify |
+| Large | multiple modules, agents, migration | PRD/spec, ADR if needed, detailed plan, handoff |
+| Risky | auth, security, data loss, license, production stability | strict spec, TDD/checkpoint, independent reviewer, rollback |
+
+Useful commands: `vibe-flow`, `vibe-triage`, `vibe-checkpoints`, `vibe-verify`.
+
+### 3. Use commands by phase
+
+| Need | Command to invoke | Expected output |
+| --- | --- | --- |
+| Start a session | `vibe-init` | instructions, registries, repo state |
+| Clarify intent | `vibe-brainstorm`, `vibe-grill-me`, `vibe-grill-with-docs` | questions, assumptions, boundaries |
+| Write a spec | `vibe-spec`, `vibe-specify`, `vibe-brownfield-spec` | goals, non-goals, scenarios, acceptance criteria |
+| Audit a spec | `vibe-spec-audit`, `vibe-checklist` | ambiguity, missing criteria, scope creep findings |
+| Plan work | `vibe-plan`, `vibe-plan-from-spec`, `vibe-write-plan` | implementation steps, files, risks, checks |
+| Break into tasks | `vibe-tasks`, `vibe-to-issues` | dependency-aware tasks, parallel markers, test-first order |
+| Implement | `vibe-implement`, `vibe-implement-from-tasks`, `vibe-brief-execute` | focused patch matching the plan |
+| Debug | `vibe-debug`, `vibe-diagnose`, `vibe-tdd` | repro, hypotheses, root cause, regression check |
+| Review | `vibe-request-review`, `vibe-review`, `vibe-receive-review` | findings, fix/defer decisions, re-validation |
+| Memory/handoff | `vibe-memory`, `vibe-session-capture`, `vibe-session-summary`, `vibe-handoff` | safe memory, continuation summary |
+| Merge/finish | `vibe-merge`, `vibe-finish-branch`, `vibe-git-guardrails` | readiness report, checks, attribution status |
+| Reference | `vibe-reference-audit`, `vibe-reference-update`, `vibe-reference-index`, `vibe-upstream-sync` | upstream audit, changelog, mappings |
+| Team | `vibe-team`, `vibe-team-generate`, `vibe-subagents` | role plan, handoff, team scaffold |
+| Runtime/memory | `vibe-memory-*`, runtime npm scripts | local state/search/checkpoint evidence |
+
+### 4. Use skills by problem
+
+| Problem | Suggested skills |
+| --- | --- |
+| User intent is unclear | `clarify-before-code`, `what-before-how`, `grill-user-before-building` |
+| Need spec-first discipline | `spec-first-development`, `acceptance-criteria`, `requirements-quality-checklist` |
+| Existing system / legacy | `brownfield-spec-enhancement`, `working-with-legacy-code`, `bug-fix-lifecycle` |
+| Hard debugging | `disciplined-diagnosis`, `systematic-debugging`, `test-driven-development` |
+| Avoid overengineering | `anti-overengineering`, `karpathy-engineering-discipline`, `software-design-philosophy` |
+| Architecture | `zoom-out-system-context`, `improve-codebase-architecture`, `architecture-decision-records` |
+| Review/merge | `requesting-code-review`, `review-before-merge`, `finishing-a-development-branch` |
+| Multi-agent work | `subagent-driven-development`, `team-agent-orchestration`, `agent-handoff` |
+| Memory/context | `session-capture`, `session-summarizer`, `progressive-memory-disclosure`, `privacy-filter` |
+| Reference/upstream | `upstream-intelligence-loop`, `git-guardrails`, `project-constitution` |
+| Write a new skill | `write-reusable-skill`, `writing-skills`, `skillify-from-session` |
+
+### 5. Use templates to create artifacts
+
+| Artifact | Template |
+| --- | --- |
+| Spec | `templates/spec-template.md`, `templates/brownfield-spec-template.md` |
+| Plan | `templates/plan-template.md`, `templates/implementation-brief-template.md` |
+| Tasks | `templates/tasks-template.md`, `templates/task-template.md` |
+| PRD | `templates/prd-template.md` |
+| ADR/architecture | `templates/adr-template.md`, `templates/architecture-review-template.md` |
+| Review | `templates/review-template.md`, `templates/spec-audit-template.md` |
+| Debug | `templates/diagnosis-template.md`, `templates/prototype-report-template.md` |
+| Memory | `templates/memory-entry-template.md`, `templates/session-summary-template.md`, `templates/memory-privacy-review-template.md` |
+| Handoff/context | `templates/handoff-template.md`, `templates/context-injection-template.md` |
+| Reference | `templates/upstream-audit-template.md`, `templates/reference-scorecard-template.md` |
+| Team | `templates/team-spec-template.json`, `templates/team-architecture-template.md` |
+| Runtime | `templates/runtime-config-template.json` |
+| ROI/metrics | `templates/roi-metrics-template.md` |
+
+### 6. Use the optional local runtime
+
+The runtime is optional. Use it when you want inspectable state instead of markdown-only workflow artifacts.
+
+```bash
+npm run runtime:install
+npm run runtime:init
+npm run runtime:validate
+```
+
+| Need | Script |
+| --- | --- |
+| Task state | `npm run runtime:task` |
+| Local memory | `npm run runtime:memory` |
+| Checkpoint evidence | `npm run runtime:checkpoint` |
+| Team spec/state | `npm run runtime:team` |
+| Session capture | `npm run runtime:session` |
+| Opt-in daemon | `npm run runtime:daemon` |
+| MCP stdio server | `npm run runtime:mcp` |
+| Tmux team runner | `npm run runtime:team-run` |
+| Full bootstrap | `npm run runtime:install` |
+
+The MCP server is declared in `.mcp.json` and exposes task, memory, and checkpoint tools for MCP-capable agents.
+
+### 7. Use the Reference Intelligence Layer
+
+Before adapting upstream ideas:
+
+1. Read `references/index.json`.
+2. Read the source document in `references/sources/`.
+3. Inspect feature docs in `references/features/`.
+4. Inspect mappings in `references/mappings/`.
+5. For a new upstream audit, clone/audit under `references/upstreams/`, then update the changelog.
+6. Run `npm run validate:references`.
+
+Useful scripts:
+
+```bash
+npm run references:index
+npm run references:clone
+npm run references:report
+npm run validate:references
+```
+
+Rule: study patterns, rewrite in local language, and do not vendor upstream code/docs/prompts without license and attribution review.
+
+### 8. Use team-agent orchestration
+
+The team layer splits complex work into clear roles:
+
+| Role | Responsibility |
+| --- | --- |
+| Architect | design the minimal technical approach |
+| Implementer | edit code according to the plan |
+| Tester | find and run the highest-value checks |
+| Reviewer | review correctness, simplicity, and risk |
+| Memory architect | preserve safe context and memory |
+
+Recommended flow: `vibe-team` to design the team → `vibe-team-generate` to scaffold a spec → `vibe-subagents` to delegate bounded work → `vibe-request-review` / `vibe-verify` before claiming done.
+
+### 9. Quick recipes
+
+| Situation | Fast sequence |
+| --- | --- |
+| New feature | `vibe-flow` → `vibe-specify` → `vibe-plan-from-spec` → `vibe-tasks` → `vibe-implement-from-tasks` → `vibe-verify` |
+| Hard bug | `vibe-diagnose` → `vibe-tdd` → `vibe-implement` → `vibe-review` → `vibe-verify` |
+| Refactor | `vibe-zoom-out` → `vibe-improve-architecture` → ADR if needed → `vibe-plan` → `vibe-review` |
+| Legacy enhancement | `vibe-brownfield-spec` → characterization tests → `vibe-plan-from-spec` → `vibe-implement` |
+| Multi-agent task | `vibe-team` → `vibe-subagents` → handoff → independent review → `vibe-verify` |
+| Long session | `vibe-session-capture` → `vibe-memory-privacy-check` → `vibe-session-summary` → `vibe-handoff` |
+| Learn from upstream | `vibe-reference-audit` → `vibe-reference-update` → `vibe-reference-index` → `npm run validate:references` |
+| Prepare to merge | `vibe-review` → `vibe-merge` → `vibe-finish-branch` |
+
+### 10. Required validation when editing this repo
+
+```bash
+npm run validate
+```
+
+If you edit the reference layer, also run:
+
+```bash
+npm run validate:references
+```
+
+If you edit runtime/state schemas, run:
+
+```bash
+npm run runtime:validate
+```
 
 ## Pain points solved
 
@@ -75,6 +254,15 @@ Current inventory: **90 skills**, **68 commands**, **38 templates**, **14 tracke
 | Legacy code changes are risky | characterization tests, seams, bug-fix lifecycle, brownfield spec enhancement |
 | Production code is happy-path only | Release It! stability patterns, defensive programming, review checklists |
 | Borrowed upstream ideas create license/attribution risk | reference index, source docs, ATTRIBUTIONS/NOTICE, validation scripts |
+
+### How to read coverage claims
+
+Most rows above are reduced by **advice**, not automation. Two honesty labels:
+
+- **COVERED-tooling** — enforced by a script that exits non-zero on violation. Today that is the validate scripts: `validate-repo`, `validate-references`, `validate-traceability`, `validate-injection` (run via `npm run validate`), and the opt-in `validate-secrets` (`npm run validate:secrets`). These are the only checks that auto-run and can fail a change.
+- **COVERED-advice** — guidance in a `SKILL.md`, command, or template that a human or agent must choose to follow. Nothing enforces it automatically; the value depends on actually applying it.
+
+Treat everything not backed by a validate script as advice, not a guarantee. Handling of untrusted external content at runtime (issues, PRs, web/tool/MCP output an agent reads while working) is still advice: see [`docs/workflows/prompt-injection-handling.md`](docs/workflows/prompt-injection-handling.md) — the framework cannot intercept a live injection, it only tells humans and agents how to behave. The one enforced slice is `validate-injection`: a best-effort static scan of the artifacts this repo *ships* (skill bodies, `.mcp.json`, commands, templates, docs) for injection and skill-poisoning signatures. It catches known shapes, not novel payloads, so the human checklist remains the backstop.
 
 
 ## Quick start by tool
@@ -307,7 +495,7 @@ For hands-on audits, `npm run references:clone` creates or updates shallow ignor
 ### Complete in the current kernel
 
 - Normalized repository structure with core, memory, meta, prompt, and agent skills.
-- 68 reusable command prompts and 38 templates.
+- 68 reusable command prompts and 41 templates.
 - Dynamic structural validation plus reference-layer validation.
 - Source, attribution, feature, and impact registries without vendoring upstream code.
 - Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.
