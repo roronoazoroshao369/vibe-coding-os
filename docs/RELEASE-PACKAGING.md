@@ -6,9 +6,9 @@ How to version, tag, and ship releases for Vibe Coding OS.
 >
 > **Tagging note:** Do **not** create or push git tags on a PR branch. Create and push the actual `v<version>` tag only after the release PR has merged into the target branch (e.g. `main`).
 >
+> **Draft release notes:** See [`docs/releases/v0.4.0.md`](releases/v0.4.0.md) for the current v0.4.0 GitHub Release draft.
 
 ---
-
 ## Version Numbering
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html):

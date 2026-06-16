@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Next: v1.0 hardening and release-candidate work.
 
 ### Added
+- README status refresh with CI/status badges, compact current-status line (v0.4.0, 90 skills, 68 commands, 41 templates, validate:all 11/11, 0 broken refs/orphans), and links to DASHBOARD, RELEASE-PACKAGING, ROADMAP-STATUS, and QUICKSTART. Equivalent Vietnamese updates in README.vi.md.
+- v0.4.0 GitHub Release notes draft (`docs/releases/v0.4.0.md`) with summary, highlights, validation status, upgrade notes, and post-merge tag instructions.
+- RELEASE-PACKAGING.md now points to `docs/releases/v0.4.0.md` as the current release note draft.
+- 15-minute onboarding tutorials in English and Vietnamese (`docs/TUTORIAL.md`, `docs/vi/TUTORIAL.vi.md`) covering clone/install, validation, CLI artifacts, eval reports, review/merge checklist, and troubleshooting.
 - v1.0 contribution governance and maintainer process docs (`docs/governance.md`, `docs/decision-record-process.md`, `docs/maintainer-guide.md`), plus `CONTRIBUTING.md` links and roadmap updates.
 - Stable registry schema contracts in `schemas/` for the reference index, skills, commands, and templates.
 - Lightweight schema validation (`scripts/validate-schemas.mjs`, `npm run validate:schemas`) covering schema JSON validity, `references/index.json`, skill headings/descriptions, and command prompt content.
@@ -20,6 +24,7 @@ Next: v1.0 hardening and release-candidate work.
 - CLI smoke tests and dashboard data checks added to `npm run validate:all`.
 - Release checklist updated with dashboard regeneration section.
 - `scripts/vibe-cli.mjs` and `scripts/dashboard-data.mjs` refactored to export their command/functionality for reuse by other scripts.
+- End-to-end CLI workflow integration test (`scripts/test-e2e-workflow.mjs`, `npm run test:e2e`) that copies templates to a temp dir, asserts content, runs read-only CLI commands, and cleans up. Added to validation gate (`npm run validate:all`) and release checklist.
 
 ## [0.4.0] — 2026-06-16
 
