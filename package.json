@@ -12,6 +12,7 @@
     "validate:secrets": "node scripts/validate-secrets.mjs",
     "validate:injection": "node scripts/validate-injection.mjs",
     "validate:provenance": "node scripts/validate-provenance.mjs",
+    "eval:report": "node scripts/evaluation-report.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",
     "references:clone": "node scripts/clone-upstreams.mjs",

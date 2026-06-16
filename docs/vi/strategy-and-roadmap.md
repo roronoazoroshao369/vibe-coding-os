@@ -24,13 +24,13 @@ Vibe Coding OS hiện là một framework v0.1 tập trung vào disciplined AI-a
 
 ## 3. Điểm yếu/rủi ro
 
-- Validation repo-level từng bị blocker do syntax error trong `scripts/validate-repo.mjs`; validation phải là P0 vì framework claim reliability dựa vào nó.
-- Adapters còn lightweight, chưa có install snippets đủ cụ thể cho từng tool.
+- Validation repo-level từng bị blocker do syntax error trong `scripts/validate-repo.mjs`; validation phải là P0 vì framework claim reliability dựa vào nó. **Hiện tại: đã recover và `npm run validate` pass.**
+- Adapters còn lightweight, chưa có install snippets đủ cụ thể cho từng tool. **Đã cải thiện một phần:** Quickstart có setup cho Claude Code/Codex/Cursor, có adapter smoke tests và compatibility matrix; vẫn cần snippets sâu hơn theo từng adapter.
 - Templates còn skeleton, cần ví dụ điền thực tế cho người mới.
-- Chưa có CLI helper hoặc packaging giúp setup nhanh.
-- Chưa có behavioral eval để đo agent có thật sự hỏi khi mơ hồ, spec trước code, verify trước done hay không.
+- ~~Chưa có CLI helper hoặc packaging giúp setup nhanh.~~ **Đã có CLI helper MVP:** `vibe init`, `vibe doctor`, `vibe stats`, `vibe list-skills`, `vibe list-commands` qua `scripts/vibe-cli.mjs`.
+- ~~Chưa có behavioral eval để đo agent có thật sự hỏi khi mơ hồ, spec trước code, verify trước done hay không.~~ **Đã có:** `docs/eval-scenarios.md` với 5 scenarios; cần bước tiếp theo là runner/report tự động hoàn chỉnh hơn.
 - Một số upstream inspiration có license caveat; không được import nếu license/attribution chưa rõ.
-- Trước thay đổi này, chưa có tài liệu tiếng Việt làm entrypoint cho người dùng Việt.
+- Trước thay đổi này, chưa có tài liệu tiếng Việt làm entrypoint cho người dùng Việt. **Hiện tại: đã có `README.vi.md` và `docs/vi/`.**
 
 ## 4. Goal chiến lược 12–18 tháng
 

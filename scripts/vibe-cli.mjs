@@ -61,6 +61,11 @@ ${c.bold}Commands:${c.reset}
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
   ${c.green}stats${c.reset}              Show repository statistics
+  ${c.green}spec${c.reset} [name]        Show spec template (use --copy to copy to cwd)
+  ${c.green}plan${c.reset} [name]        Show plan template (use --copy to copy to cwd)
+  ${c.green}memory${c.reset} [name]      Show memory entry template (use --copy to copy to cwd)
+  ${c.green}task${c.reset} [name]        Show task template (use --copy to copy to cwd)
+  ${c.green}templates${c.reset}          List all available templates
   ${c.green}help${c.reset}               Show this help message
 
 ${c.bold}Examples:${c.reset}
@@ -68,6 +73,9 @@ ${c.bold}Examples:${c.reset}
   node scripts/vibe-cli.mjs doctor
   node scripts/vibe-cli.mjs list-skills memory
   node scripts/vibe-cli.mjs stats
+  node scripts/vibe-cli.mjs spec my-feature
+  node scripts/vibe-cli.mjs plan my-feature --copy
+  node scripts/vibe-cli.mjs templates
 `);
 }
 
@@ -254,6 +262,161 @@ function cmdStats() {
   console.log('');
 }
 
+function cmdSpec(args) {
+  const templatePath = join(ROOT, 'templates/spec-template.md');
+  if (!existsSync(templatePath)) {
+    console.error(`${fail} Spec template not found: templates/spec-template.md`);
+    process.exit(1);
+  }
+
+  const taskName = args.filter(a => !a.startsWith('--'))[0] || 'my-feature';
+  const copy = args.includes('--copy');
+
+  console.log(`${c.bold}${c.cyan}Vibe Spec${c.reset} — Specification for: ${taskName}\n`);
+  console.log(`${info} Template: templates/spec-template.md`);
+  console.log(`${info} Purpose: Define what you're building before writing code\n`);
+
+  if (copy) {
+    const dest = resolve('SPEC.md');
+    const content = readFileSync(templatePath, 'utf8');
+    writeFileSync(dest, content, 'utf8');
+    console.log(`${ok} Copied template → SPEC.md`);
+    console.log(`\n  Next steps:`);
+    console.log(`  1. Edit SPEC.md with your task details`);
+    console.log(`  2. Run: node scripts/vibe-cli.mjs plan ${taskName}`);
+  } else {
+    console.log(`  Tip: Add --copy to copy template to current directory\n`);
+    console.log(`  Copy template:`);
+    console.log(`    cp templates/spec-template.md SPEC.md`);
+  }
+  console.log('');
+}
+
+function cmdPlan(args) {
+  const templatePath = join(ROOT, 'templates/plan-template.md');
+  if (!existsSync(templatePath)) {
+    console.error(`${fail} Plan template not found: templates/plan-template.md`);
+    process.exit(1);
+  }
+
+  const taskName = args.filter(a => !a.startsWith('--'))[0] || 'my-feature';
+  const copy = args.includes('--copy');
+
+  console.log(`${c.bold}${c.cyan}Vibe Plan${c.reset} — Implementation plan for: ${taskName}\n`);
+  console.log(`${info} Template: templates/plan-template.md`);
+  console.log(`${info} Purpose: Break down a spec into concrete tasks and risks\n`);
+
+  if (copy) {
+    const dest = resolve('PLAN.md');
+    const content = readFileSync(templatePath, 'utf8');
+    writeFileSync(dest, content, 'utf8');
+    console.log(`${ok} Copied template → PLAN.md`);
+    console.log(`\n  Next steps:`);
+    console.log(`  1. Edit PLAN.md with your implementation plan`);
+    console.log(`  2. Run: node scripts/vibe-cli.mjs task ${taskName}`);
+  } else {
+    console.log(`  Tip: Add --copy to copy template to current directory\n`);
+    console.log(`  Copy template:`);
+    console.log(`    cp templates/plan-template.md PLAN.md`);
+  }
+  console.log('');
+}
+
+function cmdMemory(args) {
+  const templatePath = join(ROOT, 'templates/memory-entry-template.md');
+  if (!existsSync(templatePath)) {
+    console.error(`${fail} Memory template not found: templates/memory-entry-template.md`);
+    process.exit(1);
+  }
+
+  const taskName = args.filter(a => !a.startsWith('--'))[0] || 'general';
+  const copy = args.includes('--copy');
+
+  console.log(`${c.bold}${c.cyan}Vibe Memory${c.reset} — Memory entry for: ${taskName}\n`);
+  console.log(`${info} Template: templates/memory-entry-template.md`);
+  console.log(`${info} Purpose: Capture a durable memory item with source, sensitivity, and expiry\n`);
+
+  if (copy) {
+    const dest = resolve('MEMORY.md');
+    const content = readFileSync(templatePath, 'utf8');
+    writeFileSync(dest, content, 'utf8');
+    console.log(`${ok} Copied template → MEMORY.md`);
+    console.log(`\n  Next steps:`);
+    console.log(`  1. Edit MEMORY.md with your observation details`);
+    console.log(`  2. Review for privacy (no secrets, no tokens)`);
+  } else {
+    console.log(`  Tip: Add --copy to copy template to current directory\n`);
+    console.log(`  Copy template:`);
+    console.log(`    cp templates/memory-entry-template.md MEMORY.md`);
+  }
+  console.log('');
+}
+
+function cmdTask(args) {
+  const templatePath = join(ROOT, 'templates/task-template.md');
+  if (!existsSync(templatePath)) {
+    console.error(`${fail} Task template not found: templates/task-template.md`);
+    process.exit(1);
+  }
+
+  const taskName = args.filter(a => !a.startsWith('--'))[0] || 'my-task';
+  const copy = args.includes('--copy');
+
+  console.log(`${c.bold}${c.cyan}Vibe Task${c.reset} — Task breakdown for: ${taskName}\n`);
+  console.log(`${info} Template: templates/task-template.md`);
+  console.log(`${info} Purpose: Define scope, steps, and verification for a single task\n`);
+
+  if (copy) {
+    const dest = resolve('TASK.md');
+    const content = readFileSync(templatePath, 'utf8');
+    writeFileSync(dest, content, 'utf8');
+    console.log(`${ok} Copied template → TASK.md`);
+    console.log(`\n  Next steps:`);
+    console.log(`  1. Edit TASK.md with your task details`);
+    console.log(`  2. Start implementing with verification steps`);
+  } else {
+    console.log(`  Tip: Add --copy to copy template to current directory\n`);
+    console.log(`  Copy template:`);
+    console.log(`    cp templates/task-template.md TASK.md`);
+  }
+  console.log('');
+}
+
+function cmdTemplates() {
+  const templatesDir = join(ROOT, 'templates');
+  if (!existsSync(templatesDir)) {
+    console.error(`${fail} templates/ directory not found`);
+    process.exit(1);
+  }
+
+  console.log(`${c.bold}${c.cyan}Available Templates${c.reset}\n`);
+
+  let total = 0;
+  for (const f of readdirSync(templatesDir).sort()) {
+    const fp = join(templatesDir, f);
+    try {
+      if (!statSync(fp).isFile()) continue;
+    } catch { continue; }
+
+    let desc = '';
+    if (f.endsWith('.md')) {
+      const content = readFileSync(fp, 'utf8');
+      for (const line of content.split('\n')) {
+        const trimmed = line.replace(/^#+\s*/, '').trim();
+        if (trimmed && !trimmed.startsWith('>')) {
+          desc = trimmed.slice(0, 80);
+          break;
+        }
+      }
+    }
+
+    console.log(`  ${c.green}${f}${c.reset}${desc ? c.dim + ` — ${desc}` : ''}${c.reset}`);
+    total++;
+  }
+
+  console.log(`\n${c.dim}Total: ${total} templates${c.reset}\n`);
+}
+
 // ─── Main ───
 const [,, cmd, ...args] = process.argv;
 
@@ -263,6 +426,11 @@ switch (cmd) {
   case 'list-skills': cmdListSkills(args[0] || null); break;
   case 'list-commands': cmdListCommands(); break;
   case 'stats': cmdStats(); break;
+  case 'spec': cmdSpec(args); break;
+  case 'plan': cmdPlan(args); break;
+  case 'memory': cmdMemory(args); break;
+  case 'task': cmdTask(args); break;
+  case 'templates': cmdTemplates(); break;
   case 'help': case undefined: cmdHelp(); break;
   default:
     console.error(`${fail} Unknown command: ${cmd}`);

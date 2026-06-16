@@ -7,16 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added (PR #26 — 2026-06-16)
+### Added
+- Memory redaction test suite (30 cases in docs/tests/ + scripts/verify-memory-redaction.mjs)
+- CLI helper MVP (`vibe init`, `vibe doctor`, `vibe stats`, `vibe list-skills`, `vibe list-commands`) in scripts/vibe-cli.mjs
+- Adapter smoke tests + CI workflow (scripts/smoke-test-adapters.mjs, .github/workflows/smoke-test.yml)
+- Skill packs: Core Solo Developer, Memory-Safe, Multi-Agent (docs/skill-packs/)
+- Skill decision guide (docs/skill-decision-guide.md)
+- Runtime guide (docs/RUNTIME-GUIDE.md — MCP setup, commands, troubleshooting)
+- ROADMAP-STATUS.md (docs/ROADMAP-STATUS.md)
 - CHANGELOG.md (Keep a Changelog format)
 - CONTRIBUTING.md (skill/command/template contribution guide)
 - CODE_OF_CONDUCT.md (Contributor Covenant v2.1)
-- .github/ (issue templates, PR template, CI workflow)
+- .github/ (issue templates, PR template, CI workflows)
 - docs/QUICKSTART.md (10-min guides for Claude Code, Codex, Cursor)
-- 3 examples: refactor-workflow, legacy-enhancement, multi-agent-task
+- 5 examples: bugfix-workflow, feature-workflow, legacy-enhancement, multi-agent-task, refactor-workflow
 - docs/eval-scenarios.md (5 behavioral evaluation scenarios)
 - references/upstream-intake-scorecard.md (1-5 rubric + decision matrix)
 - docs/adr/0002-notification-system.md (ADR for multi-agent demo)
+- Evaluation report runner (scripts/evaluation-report.mjs)
 
 ### Roadmap
 
