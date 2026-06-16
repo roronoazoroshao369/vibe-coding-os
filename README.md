@@ -433,6 +433,18 @@ Vietnamese onboarding and reference docs are available under [`docs/vi/`](docs/v
 - [`docs/vi/folders-and-workflows.md`](docs/vi/folders-and-workflows.md) — repository map and common workflows.
 - [`docs/vi/strategy-and-roadmap.md`](docs/vi/strategy-and-roadmap.md) — status review, strategic goal, metrics, and future roadmap.
 
+## New Documentation
+
+Additional guides and references:
+
+- [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — 10-minute quickstart for Claude Code, Codex CLI, and Cursor.
+- [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — getting started with the optional runtime layer.
+- [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — quick reference table mapping problems to skills.
+- [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — behavioral evaluation scenarios for the framework.
+- [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Core Solo, Memory Safe, Multi-Agent).
+- [`CHANGELOG.md`](CHANGELOG.md) — version history following Keep a Changelog.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to contribute skills, commands, templates, and references.
+
 ## Skill system
 
 A skill is a portable operating procedure stored as `SKILL.md`. Every skill uses the same sections:

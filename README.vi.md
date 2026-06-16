@@ -370,6 +370,18 @@ Bản README này là trang vào tiếng Việt có thể xem trực tiếp trê
 - [`docs/vi/folders-and-workflows.md`](docs/vi/folders-and-workflows.md) — map thư mục và workflow phổ biến.
 - [`docs/vi/strategy-and-roadmap.md`](docs/vi/strategy-and-roadmap.md) — status review, goal chiến lược, metrics, và roadmap.
 
+## Tài liệu bổ sung
+
+Các hướng dẫn và reference mới:
+
+- [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — quickstart 10 phút cho Claude Code, Codex CLI, Cursor.
+- [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — hướng dẫn bắt đầu với runtime layer tùy chọn.
+- [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — bảng tra cứu skill theo vấn đề.
+- [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — kịch bản đánh giá behavioral cho framework.
+- [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Solo Developer, Memory Safe, Multi-Agent).
+- [`CHANGELOG.md`](CHANGELOG.md) — lịch sử version theo Keep a Changelog.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — hướng dẫn contribute skill, command, template, reference.
+
 ## Skill system
 
 Skill là một operating procedure portable được lưu trong file `SKILL.md`. Mỗi skill dùng cùng cấu trúc:

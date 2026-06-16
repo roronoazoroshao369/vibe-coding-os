@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added (PR #26 — 2026-06-16)
+- CHANGELOG.md (Keep a Changelog format)
+- CONTRIBUTING.md (skill/command/template contribution guide)
+- CODE_OF_CONDUCT.md (Contributor Covenant v2.1)
+- .github/ (issue templates, PR template, CI workflow)
+- docs/QUICKSTART.md (10-min guides for Claude Code, Codex, Cursor)
+- 3 examples: refactor-workflow, legacy-enhancement, multi-agent-task
+- docs/eval-scenarios.md (5 behavioral evaluation scenarios)
+- references/upstream-intake-scorecard.md (1-5 rubric + decision matrix)
+- docs/adr/0002-notification-system.md (ADR for multi-agent demo)
+
 ### Roadmap
 
 Future releases planned from the project roadmap:
