@@ -37,6 +37,26 @@ If subagent outputs conflict, the main Claude Code chat remains responsible for 
 - Attach skill files from `skills/core`, `skills/memory`, `skills/agents`, and `skills/prompts` only when the task needs that procedure.
 - Copy templates from `templates/` into normal project files when you need persistent specs, plans, reviews, tasks, memory notes, or upstream audit records.
 
+### Install snippet
+
+```bash
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cd ~/your-project
+cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+# or: ln -s ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+```
+
+The repository also includes Claude Code plugin manifests at `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`. Use the plugin flow in `docs/QUICKSTART.md` when available; otherwise the `CLAUDE.md` copy above is the portable setup.
+
+Validate the framework checkout and inspect the helper CLI:
+
+```bash
+cd ~/vibe-coding-os
+node scripts/vibe-cli.mjs help
+node scripts/vibe-cli.mjs doctor
+npm run validate
+```
+
 ## Daily workflow
 
 1. Start with `vibe-spec` for any task where requirements, acceptance criteria, or edge cases matter.

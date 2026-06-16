@@ -206,6 +206,7 @@ npm run validate
 
 After completing your first workflow:
 
+- Browse [adapter install snippets](adapter-install-snippets.md) for copy-paste setup per adapter
 - Explore the [full skills library](../skills/) for discipline-specific procedures
 - Browse [examples](../examples/) for complete end-to-end workflows
 - Check the [Vietnamese documentation](vi/index.md) for localized guides (`docs/vi/`)

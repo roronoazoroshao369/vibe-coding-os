@@ -8,9 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Detailed adapter install snippets for Claude Code, Codex, and Cursor, including `docs/adapter-install-snippets.md` and per-adapter README setup commands.
+- v1.0 foundation docs: core workflow contract, release checklist, compatibility/support policy (docs/core-workflow-contract.md, docs/release-checklist.md, docs/compatibility-support-policy.md)
 - Memory redaction test suite (30 cases in docs/tests/ + scripts/verify-memory-redaction.mjs)
 - CLI helper MVP (`vibe init`, `vibe doctor`, `vibe stats`, `vibe list-skills`, `vibe list-commands`) in scripts/vibe-cli.mjs
 - Adapter smoke tests + CI workflow (scripts/smoke-test-adapters.mjs, .github/workflows/smoke-test.yml)
+- Upstream Intelligence Pack (`docs/skill-packs/upstream-intelligence-pack.md`) with Discover → Score → Provenance/License Gate → Adapt, don't copy → Attribute → Validate → Report workflow, safe import checklist, and upstream evaluation example
 - Skill packs: Core Solo Developer, Memory-Safe, Multi-Agent (docs/skill-packs/)
 - Skill decision guide (docs/skill-decision-guide.md)
 - Runtime guide (docs/RUNTIME-GUIDE.md — MCP setup, commands, troubleshooting)
