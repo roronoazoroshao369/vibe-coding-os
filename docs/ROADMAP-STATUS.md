@@ -39,7 +39,7 @@ Last updated: 2026-06-16
 | Eval report runner | ✅ Done — scripts/evaluation-report.mjs is wired as `npm run eval:report` and included in `npm run validate:all` |
 
 ## v0.4 — Packaging & Skill Packs
-**Status:** ✅ FUNCTIONALLY COMPLETE
+**Status:** ✅ RELEASE-READY
 
 | Deliverable | Status |
 |---|---|
@@ -62,7 +62,7 @@ Last updated: 2026-06-16
 | Versioned compatibility matrix | ✅ adapters/compatibility-matrix.md |
 
 ## v1.0 — Trusted Workflow Framework
-**Status:** 🟡 IN PROGRESS (~40%)
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
@@ -70,11 +70,21 @@ Last updated: 2026-06-16
 | Stable registry schemas | ✅ schemas/ + `npm run validate:schemas` |
 | Contribution governance | ✅ docs/governance.md, docs/decision-record-process.md, docs/maintainer-guide.md |
 | Compatibility support policy | ✅ docs/compatibility-support-policy.md |
-| Safety/eval dashboard | ✅ docs/DASHBOARD.md |
-| Full validation gate | ✅ npm run validate:all |
+| Safety/eval dashboard | ✅ docs/DASHBOARD.md + scripts/check-dashboard-sync.mjs |
+| Full validation gate | ✅ npm run validate:all (13 gates) |
 | Release checklist | ✅ docs/release-checklist.md |
+| v1.0 release plan | ✅ docs/v1.0-release-plan.md |
+| v1.0 RC checklist | ✅ docs/v1.0-rc-checklist.md |
+| Support matrix | ✅ docs/support-matrix.md |
+| Release automation | ✅ scripts/release.mjs + npm run release:dry-run |
+| CI full validation gate | ✅ .github/workflows/validate.yml runs validate:all |
+| Issue/release/compat/safety templates | ✅ 3 issue templates + PR template with v1.0 gates |
+| Dashboard sync validation | ✅ scripts/check-dashboard-sync.mjs in validate:all |
+| v1.0 readiness report | ✅ docs/reports/v1.0-readiness-report.md |
+| v1.0 final audit | ✅ docs/reports/v1.0-final-audit.md |
+| README v1.0 positioning | ✅ README + README.vi updated for v0.4.0 → v1.0 RC path |
 
-Bug-fix workflows are covered by `skills/core/bug-fix-lifecycle/SKILL.md` as part of the v1.0 trusted workflow framework.
+Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../skills/core/bug-fix-lifecycle/SKILL.md) as part of the v1.0 trusted workflow framework.
 
 ## Overall Progress
 
@@ -82,4 +92,4 @@ Bug-fix workflows are covered by `skills/core/bug-fix-lifecycle/SKILL.md` as par
 - v0.2:   ████████████ 100%
 - v0.3:   ████████████ 100%
 - v0.4:   ████████████ 100%
-- v1.0:   █████░░░░░░░ 45%
+- v1.0:   ████████████ 100%

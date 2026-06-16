@@ -13,6 +13,12 @@ One person may hold multiple roles. For small changes, the same maintainer may p
 
 ## Decision Authority
 
+Use the GitHub issue templates to route governance-sensitive work:
+
+- Use `.github/ISSUE_TEMPLATE/release_checklist.md` for release tracking, RC readiness, and tag preparation.
+- Use `.github/ISSUE_TEMPLATE/compatibility_report.md` for adapter compatibility regressions or support-tier questions.
+- Use `.github/ISSUE_TEMPLATE/safety_eval_report.md` for safety check failures, eval regressions, security concerns, or licensing/attribution issues.
+
 - **Routine changes** may be approved by the relevant domain maintainer after validation passes.
 - **Cross-cutting workflow changes** require project maintainer approval and should be checked against `docs/core-workflow-contract.md`.
 - **Compatibility or breaking changes** require project maintainer approval and must follow `docs/compatibility-support-policy.md`.

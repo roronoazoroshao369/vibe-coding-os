@@ -1,5 +1,6 @@
 name: Adapter Smoke Tests
 
+# Fast, path-focused adapter smoke coverage. The full release validation gate runs in validate.yml.
 on:
   push:
     branches: [main]

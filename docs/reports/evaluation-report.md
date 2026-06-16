@@ -6,10 +6,10 @@ Overall: **4/4 checks passed**
 
 ## Summary
 
-- ✅ **Repo Validation**: PASS (352 narrative files) — 737ms
-- ✅ **Secret Scanning**: PASS (0 secrets found) — 63ms
-- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 54ms
-- ✅ **Adapter Smoke Tests**: PASS (4/4 adapters) — 57ms
+- ✅ **Repo Validation**: PASS (363 narrative files) — 737ms
+- ✅ **Secret Scanning**: PASS (0 secrets found) — 62ms
+- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 64ms
+- ✅ **Adapter Smoke Tests**: PASS (4/4 adapters) — 64ms
 
 ## Details
 
@@ -22,15 +22,15 @@ Overall: **4/4 checks passed**
 - Last 10 lines of output:
 
 ```text
-> vibe-coding-os@0.1.0 validate
+> vibe-coding-os@0.4.0 validate
 > node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs
 Vibe Coding OS validation passed.
 Checked 11 required files, 90 skills, 68 commands, 39 templates, and 2 examples (skills/commands/templates discovered dynamically).
 Reference Intelligence Layer validation passed.
 Checked 14 sources, 26 feature docs, 4 mapping docs, and 5 reference commands.
 Traceability validation passed.
-Checked 68 commands, 90 skills, 41 templates against 352 narrative files. Broken references: 0. Orphans (warnings): 0 commands, 0 skills, 0 templates.
-Injection scan passed: 264 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
+Checked 68 commands, 90 skills, 41 templates against 363 narrative files. Broken references: 0. Orphans (warnings): 0 commands, 0 skills, 0 templates.
+Injection scan passed: 275 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
 ```
 
 ### Secret Scanning
@@ -38,7 +38,7 @@ Injection scan passed: 264 text files + 1 MCP manifest(s) scanned, 0 blocking fi
 - Command: `node scripts/validate-secrets.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 63ms
+- Duration: 62ms
 - Last 10 lines of output:
 
 ```text
@@ -50,7 +50,7 @@ Secret scan passed: no secrets detected in staged changes.
 - Command: `node scripts/verify-memory-redaction.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 54ms
+- Duration: 64ms
 - Last 10 lines of output:
 
 ```text
@@ -71,7 +71,7 @@ Secret scan passed: no secrets detected in staged changes.
 - Command: `node scripts/smoke-test-adapters.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 57ms
+- Duration: 64ms
 - Last 10 lines of output:
 
 ```text

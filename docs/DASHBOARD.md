@@ -11,7 +11,7 @@
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 41 |
-| Narrative files | 353 |
+| Narrative files | 365 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -33,7 +33,7 @@
 | v0.2 | ✅ Complete | Adoption MVP |
 | v0.3 | ✅ Complete | Evidence & Safety |
 | v0.4 | ✅ Complete | Packaging & Skill Packs |
-| v1.0 | 🟡 ~45% | Trusted Workflow Framework |
+| v1.0 | ✅ Complete | Trusted Workflow Framework |
 
 ## Safety Metrics
 
@@ -54,11 +54,16 @@
 | validate-traceability | ✅ PASS | ~191ms |
 | validate-injection | ✅ PASS | ~236ms |
 | validate-secrets | ✅ PASS | ~62ms |
+| validate-schemas | ✅ PASS | ~87ms |
 | verify-memory-redaction | ✅ PASS | ~60ms |
 | smoke-test-adapters | ✅ PASS | ~49ms |
+| smoke-test-cli | ✅ PASS | ~450ms |
+| e2e-workflow | ✅ PASS | ~465ms |
+| dashboard-data | ✅ PASS | ~319ms |
+| dashboard-sync | ✅ PASS | ~316ms |
 | evaluation-report | ✅ PASS | ~959ms |
 
-**Overall: 8/8 gates passed**
+**Overall: 13/13 gates passed**
 
 ## Coverage Summary
 
