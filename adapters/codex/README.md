@@ -37,6 +37,40 @@ If delegated outputs conflict, the main Codex agent owns integration. Review ret
 - Copy or reference command prompts from `commands/` for `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, `vibe-memory`, and `vibe-merge`.
 - Reuse `templates/` for persistent project artifacts, and attach skill files from `skills/` only for the current task phase.
 
+### Install snippet
+
+```bash
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md
+# or: ln -s ~/vibe-coding-os/AGENTS.md ./AGENTS.md
+```
+
+Start Codex from the target project and paste a focused workflow prompt:
+
+```bash
+cd ~/your-project
+codex
+```
+
+```text
+Follow ~/vibe-coding-os/commands/vibe-spec.md. Define goals, non-goals, constraints, edge cases, and acceptance criteria. Do not implement yet.
+```
+
+For planning, reference both the command and the relevant skill:
+
+```text
+Follow ~/vibe-coding-os/commands/vibe-plan.md and skills/core/plan-driven-execution/SKILL.md. Produce a file-oriented implementation plan with validation commands.
+```
+
+Validate the framework checkout when framework files change:
+
+```bash
+cd ~/vibe-coding-os
+node scripts/vibe-cli.mjs doctor
+npm run validate
+```
+
 ## Daily workflow
 
 1. Use `vibe-spec` to capture goals, non-goals, constraints, edge cases, and verification before editing.

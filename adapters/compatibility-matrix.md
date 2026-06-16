@@ -12,3 +12,4 @@ Use this matrix to choose the lightest setup for each assistant environment. The
 
 - The validation command checks repository structure and reference metadata; use `npm run validate:references` only when changing reference-layer files.
 - For all tools, prefer the smallest relevant command, skill, or template rather than loading the entire framework into every session.
+- See [adapter install snippets](../docs/adapter-install-snippets.md) for copy-paste installation commands per tool.

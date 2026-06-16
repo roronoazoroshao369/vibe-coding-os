@@ -11,6 +11,32 @@ See the [adapter compatibility matrix](../compatibility-matrix.md) for cross-too
 - Add only the needed `skills/*/*/SKILL.md` content to the chat context or file references.
 - Use `templates/` to create durable specs, plans, reviews, task notes, memory notes, and upstream audit records inside the project.
 
+### Install snippet
+
+```bash
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./.cursorrules
+```
+
+If your Cursor version and workspace use project rules, keep rules under `.cursor/rules/` instead:
+
+```bash
+cd ~/your-project
+mkdir -p .cursor/rules
+cp ~/vibe-coding-os/AGENTS.md .cursor/rules/vibe-coding-os.md
+```
+
+If `.cursorrules` or project rules already exist, merge the Vibe workflow guidance rather than overwriting project-specific conventions. Cursor context is manual: paste or reference one command, such as `commands/vibe-spec.md`, and one matching skill only when needed.
+
+Validate the framework checkout when framework files change:
+
+```bash
+cd ~/vibe-coding-os
+node scripts/vibe-cli.mjs doctor
+npm run validate
+```
+
 ## Daily workflow
 
 1. Start a new chat or thread with `vibe-spec` and the smallest useful file context.

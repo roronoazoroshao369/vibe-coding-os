@@ -14,12 +14,12 @@ Last updated: 2026-06-16
 | Validation scope reported in PRs | ✅ Done |
 
 ## v0.2 — Adoption MVP
-**Status:** ✅ MOSTLY COMPLETE
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
 | Quickstart 10-min guides | ✅ docs/QUICKSTART.md (3 guides: Claude Code, Codex, Cursor) |
-| Adapter install snippets | 🟡 Basic docs exist (step-by-step in QUICKSTART.md), could have dedicated install snippets per adapter |
+| Adapter install snippets | ✅ docs/adapter-install-snippets.md + snippets added to each adapter README |
 | 3-5 end-to-end examples | ✅ 5 examples in examples/ (bugfix, feature, legacy-enhancement, multi-agent, refactor) |
 | vibe-doctor documented | ✅ via CLI help (`vibe doctor` in scripts/vibe-cli.mjs) |
 | Memory redaction tests | ✅ docs/tests/memory-redaction-test-cases.md (30 cases) + scripts/verify-memory-redaction.mjs |
@@ -39,7 +39,7 @@ Last updated: 2026-06-16
 | Eval report runner | 🟡 Planned — scripts/evaluation-report.mjs exists but not wired as npm script or fully integrated |
 
 ## v0.4 — Packaging & Skill Packs
-**Status:** 🟡 IN PROGRESS (~70%)
+**Status:** 🟡 IN PROGRESS (~80%)
 
 | Deliverable | Status |
 |---|---|
@@ -54,26 +54,26 @@ Last updated: 2026-06-16
 | Core Solo Developer Pack | ✅ docs/skill-packs/core-solo-developer.md |
 | Memory-Safe Pack | ✅ docs/skill-packs/memory-safe-pack.md |
 | Multi-Agent Pack | ✅ docs/skill-packs/multi-agent-pack.md |
-| Upstream Intelligence Pack | 🔜 Coming — not yet created |
+| Upstream Intelligence Pack | ✅ docs/skill-packs/upstream-intelligence-pack.md |
 | Adapter smoke tests | ✅ scripts/smoke-test-adapters.mjs + CI workflow |
 | Versioned compatibility matrix | ✅ adapters/compatibility-matrix.md |
 
 ## v1.0 — Trusted Workflow Framework
-**Status:** 🔜 NOT STARTED
+**Status:** 🟡 IN PROGRESS (~40%)
 
 | Deliverable | Status |
 |---|---|
-| Stable core workflow contract | 🔜 Pending |
+| Stable core workflow contract | ✅ docs/core-workflow-contract.md |
 | Stable registry schemas | 🔜 Pending |
-| Contribution governance | 🔜 Pending |
-| Compatibility support policy | 🔜 Pending |
+| Contribution governance | 🟡 CONTRIBUTING.md exists; governance doc planned |
+| Compatibility support policy | ✅ docs/compatibility-support-policy.md |
 | Safety/eval dashboard | 🔜 Pending |
-| Release checklist | 🔜 Pending |
+| Release checklist | ✅ docs/release-checklist.md |
 
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
-- v0.2:   ████████████ 95%
+- v0.2:   ████████████ 100%
 - v0.3:   ████████████ 85%
-- v0.4:   █████████░░░ 70%
-- v1.0:   ██░░░░░░░░░░ 10%
+- v0.4:   ██████████░░ 80%
+- v1.0:   ████░░░░░░░░ 40%
