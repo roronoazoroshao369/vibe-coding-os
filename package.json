@@ -34,7 +34,9 @@
     "smoke-test:cli": "node scripts/smoke-test-cli.mjs",
     "test:e2e": "node scripts/test-e2e-workflow.mjs",
     "dashboard:data": "node scripts/dashboard-data.mjs",
-    "dashboard:generate": "node scripts/generate-dashboard.mjs"
+    "dashboard:generate": "node scripts/generate-dashboard.mjs",
+    "dashboard:check": "node scripts/check-dashboard-sync.mjs",
+    "release:dry-run": "node scripts/release.mjs --dry-run"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

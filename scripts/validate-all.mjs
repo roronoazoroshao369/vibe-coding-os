@@ -20,6 +20,7 @@ const checks = [
   ['CLI smoke tests', 'node', ['scripts/smoke-test-cli.mjs']],
   ['E2E workflow', 'node', ['scripts/test-e2e-workflow.mjs']],
   ['Dashboard data', 'node', ['scripts/dashboard-data.mjs']],
+  ['Dashboard sync check', 'node', ['scripts/check-dashboard-sync.mjs']],
   ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']]
 ];
 

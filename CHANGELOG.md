@@ -10,7 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Next: v1.0 hardening and release-candidate work.
 
 ### Added
-- README status refresh with CI/status badges, compact current-status line (v0.4.0, 90 skills, 68 commands, 41 templates, validate:all 11/11, 0 broken refs/orphans), and links to DASHBOARD, RELEASE-PACKAGING, ROADMAP-STATUS, and QUICKSTART. Equivalent Vietnamese updates in README.vi.md.
+- Dashboard sync validation (`scripts/check-dashboard-sync.mjs`, `npm run dashboard:check`) that verifies `docs/DASHBOARD.md` matches live package version, inventory counts, narrative file count, and orphan counts; added to `npm run validate:all`.
+- Release checklist issue template (`.github/ISSUE_TEMPLATE/release_checklist.md`) for tracking RC progress, validation gates, documentation checks, and post-release verification.
+- Compatibility report issue template (`.github/ISSUE_TEMPLATE/compatibility_report.md`) for adapter compatibility regressions and support-tier issues.
+- Safety / eval report issue template (`.github/ISSUE_TEMPLATE/safety_eval_report.md`) for safety check failures, eval regressions, and security concerns.
+- PR template updated with v1.0 gates section: `validate:all`, schema validation, CLI/E2E, release dry-run, and docs/dashboard sync.
+- Governance doc updated to reference new issue templates for routing release, compatibility, and safety work.
+- v1.0 release plan (`docs/v1.0-release-plan.md`) with scope definition, done criteria, required gates, RC strategy (`v1.0.0-rc.1` → feedback → final), and release manager workflow.
+- v1.0 RC checklist (`docs/v1.0-rc-checklist.md`) with pre-RC validation, release notes requirements, documentation completeness checks, and post-merge verification steps.
+- Support matrix (`docs/support-matrix.md`) with adapter support tiers, optional runtime vs core expectations, and compatibility policy summary.
+- ROADMAP-STATUS.md updated: v0.4.0 marked as release-ready, v1.0 progress moved to ~65% with v1.0 planning deliverables.
+- README status refresh with CI/status badges, compact current-status line (v0.4.0, 90 skills, 68 commands, 41 templates, validate:all 13/13, 0 broken refs, 0 orphans), and links to DASHBOARD, RELEASE-PACKAGING, ROADMAP-STATUS, QUICKSTART, tutorial, v0.4.0 release notes, and v1.0 release plan. Equivalent Vietnamese updates in README.vi.md.
 - v0.4.0 GitHub Release notes draft (`docs/releases/v0.4.0.md`) with summary, highlights, validation status, upgrade notes, and post-merge tag instructions.
 - RELEASE-PACKAGING.md now points to `docs/releases/v0.4.0.md` as the current release note draft.
 - 15-minute onboarding tutorials in English and Vietnamese (`docs/TUTORIAL.md`, `docs/vi/TUTORIAL.vi.md`) covering clone/install, validation, CLI artifacts, eval reports, review/merge checklist, and troubleshooting.
@@ -25,6 +35,8 @@ Next: v1.0 hardening and release-candidate work.
 - Release checklist updated with dashboard regeneration section.
 - `scripts/vibe-cli.mjs` and `scripts/dashboard-data.mjs` refactored to export their command/functionality for reuse by other scripts.
 - End-to-end CLI workflow integration test (`scripts/test-e2e-workflow.mjs`, `npm run test:e2e`) that copies templates to a temp dir, asserts content, runs read-only CLI commands, and cleans up. Added to validation gate (`npm run validate:all`) and release checklist.
+- Release dry-run automation (`scripts/release.mjs`, `npm run release:dry-run`) that validates clean git status, runs the full validation gate and dashboard data check, and prints exact tag/GitHub release next steps without pushing tags.
+- GitHub Actions validate workflow now runs the full `npm run validate:all` gate, with the adapter smoke workflow documented as fast path-focused coverage.
 
 ## [0.4.0] — 2026-06-16
 
@@ -57,6 +69,13 @@ Next: v1.0 hardening and release-candidate work.
 - references/upstream-intake-scorecard.md (1-5 rubric + decision matrix)
 - docs/adr/0002-notification-system.md (ADR for multi-agent demo)
 - Evaluation report runner (scripts/evaluation-report.mjs)
+- 15-minute onboarding tutorials in English and Vietnamese (`docs/TUTORIAL.md`, `docs/vi/TUTORIAL.vi.md`) covering clone/install, validation, CLI artifacts, eval reports, review/merge checklist, and troubleshooting.
+- v1.0 contribution governance trio: governance, decision-record process, and maintainer guide (`docs/governance.md`, `docs/decision-record-process.md`, `docs/maintainer-guide.md`), plus `CONTRIBUTING.md` links and roadmap updates.
+- Stable registry schemas in `schemas/` for the reference index, skills, commands, and templates, with lightweight schema validation (`scripts/validate-schemas.mjs`, `npm run validate:schemas`) and full validation gate coverage.
+- CLI smoke tests (`scripts/smoke-test-cli.mjs`, `npm run smoke-test:cli`) covering read-only CLI commands with pass/fail reporting.
+- Dashboard generator (`scripts/generate-dashboard.mjs`, `npm run dashboard:generate`) plus `npm run dashboard:data` for direct JSON data extraction.
+- End-to-end CLI workflow integration test (`scripts/test-e2e-workflow.mjs`, `npm run test:e2e`) that exercises template copies, read-only CLI commands, assertions, and cleanup.
+- v0.4.0 GitHub Release notes draft (`docs/releases/v0.4.0.md`) with copy-ready release body and post-merge tag commands.
 
 ## [0.1.0] — 2026-06-06
 

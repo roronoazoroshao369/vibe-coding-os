@@ -10,11 +10,19 @@ Every release (patch, minor, or major) must pass all checks below before shippin
 
 ## 1. Core Validation
 
-- [ ] `npm run validate` passes (exit 0)
+- [ ] `npm run validate:all` passes in CI (the full validation gate defined in validate.yml)
   - Repo structure validation
   - Reference validation (if reference files changed)
+  - Registry schema validation
   - Traceability validation (no broken internal references)
   - Injection validation
+  - Secret scan
+  - Memory redaction tests (30/30)
+  - Adapter smoke tests (all adapters)
+  - CLI smoke tests
+  - E2E workflow test
+  - Dashboard data extraction
+  - Evaluation report (≥ 4/4 checks)
 
 Use `skills/prompts/release-it-stability/SKILL.md` when preparing release prompts or final stabilization passes for release candidates.
 
@@ -34,6 +42,7 @@ Evidence: paste report summary or link to `docs/reports/evaluation-report.md`.
 
 - [ ] `npm run dashboard:generate` regenerates `docs/DASHBOARD.md` from current data
 - [ ] `docs/DASHBOARD.md` shows a recent "Last generated" date
+- [ ] `npm run dashboard:check` confirms docs/DASHBOARD.md is in sync with live data
 - [ ] `npm run smoke-test:cli` passes (CLI smoke tests)
 - [ ] `npm run dashboard:data` outputs valid JSON
 
@@ -48,6 +57,17 @@ Evidence: paste generation output or confirm date stamp.
   - Cleans up temporary directory unless DEBUG_E2E=1
 
 Evidence: paste E2E test output showing all checks pass.
+
+## 2d. Release Dry-Run Automation
+
+- [ ] `node scripts/release.mjs --dry-run --version <version>` passes
+  - Confirms git status is clean, unless a release PR dry-run explicitly uses `--allow-dirty`
+  - Runs `npm run validate:all`
+  - Runs `node scripts/dashboard-data.mjs`
+  - Prints exact tag and GitHub release next steps
+- [ ] Confirm no tag was created during dry-run: `git tag --list v<version>` returns no unexpected tag
+
+Evidence: paste release dry-run summary and next-step commands.
 
 ## 3. Secret Scan
 

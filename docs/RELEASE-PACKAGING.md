@@ -7,6 +7,8 @@ How to version, tag, and ship releases for Vibe Coding OS.
 > **Tagging note:** Do **not** create or push git tags on a PR branch. Create and push the actual `v<version>` tag only after the release PR has merged into the target branch (e.g. `main`).
 >
 > **Draft release notes:** See [`docs/releases/v0.4.0.md`](releases/v0.4.0.md) for the current v0.4.0 GitHub Release draft.
+>
+> **Post-release next step:** Create the v1.0 branch only after `v0.4.0` has been tagged and pushed from the merged release commit.
 
 ---
 ## Version Numbering
@@ -61,6 +63,55 @@ The checklist covers 10 checks:
 10. **Attribution & Licensing** — upstream sources cited, no unlicensed content
 
 **Release is blocked if any check fails.** Fix the issue and re-run.
+
+---
+
+## Release Dry-Run Automation
+
+Use `scripts/release.mjs` to validate release readiness before creating or pushing any tag:
+
+```bash
+npm run release:dry-run -- --version 1.0.0-rc.1
+# or
+node scripts/release.mjs --dry-run --version 1.0.0-rc.1
+```
+
+The release script uses only Node.js built-ins and performs these checks:
+
+1. Confirms the git working tree is clean, unless `--allow-dirty` is passed
+2. Runs the full validation gate: `npm run validate:all`
+3. Runs dashboard data validation: `node scripts/dashboard-data.mjs`
+4. Confirms the requested tag does not already exist
+5. Prints exact next steps for local tagging, pushing the tag, and creating the GitHub release
+
+Default behavior is a dry run. No tag is created and nothing is pushed unless tagging is explicitly requested.
+
+Supported options:
+
+```bash
+node scripts/release.mjs [--dry-run] [--version <semver>] [--allow-dirty] [--tag]
+```
+
+- `--dry-run` — validate and print commands without creating tags; this is the default
+- `--version <semver>` — release version to validate, such as `1.0.0` or `1.0.0-rc.1`; defaults to `package.json` version
+- `--allow-dirty` — allow validation with uncommitted local changes, useful for release PR dry-runs
+- `--tag` — create the local annotated tag after validation; the script still does **not** push
+
+When ready to create a local tag after the release commit has merged:
+
+```bash
+node scripts/release.mjs --tag --version 1.0.0
+git show v1.0.0
+git push origin v1.0.0
+```
+
+Create the GitHub release after pushing the tag:
+
+```bash
+gh release create v1.0.0 --title "v1.0.0" --generate-notes
+```
+
+> Safety rule: `scripts/release.mjs` never pushes tags. Pushing is always an explicit manual command.
 
 ---
 
@@ -200,13 +251,14 @@ Copy this template for each release:
 
 1. **Ensure all changes are merged** to `main` (or the release branch)
 2. **Run the full pre-release checklist** (`docs/release-checklist.md`)
-3. **Run validation:** `npm run validate && npm run eval:report`
-4. **Bump the version:** `bash scripts/bump-version.sh <version>`
-5. **Review the commit and tag** — verify CHANGELOG looks correct
-6. **Push:** `git push origin main --tags`
-7. **Create the GitHub release** with release notes
-8. **Announce** in relevant channels (GitHub Discussions, README badge update, etc.)
-9. **Update ROADMAP-STATUS.md** to reflect the release
+3. **Run release dry-run validation:** `node scripts/release.mjs --dry-run --version <version>`
+4. **Run validation:** `npm run validate && npm run eval:report`
+5. **Bump the version:** `bash scripts/bump-version.sh <version>`
+6. **Review the commit and tag** — verify CHANGELOG looks correct
+7. **Push:** `git push origin main --tags`
+8. **Create the GitHub release** with release notes
+9. **Announce** in relevant channels (GitHub Discussions, README badge update, etc.)
+10. **Update ROADMAP-STATUS.md** to reflect the release
 
 ---
 
