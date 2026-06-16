@@ -2,7 +2,10 @@
 
 How to version, tag, and ship releases for Vibe Coding OS.
 
-> **Current version:** `0.1.0` (see `package.json`)
+> **Current version:** `0.4.0` (see `package.json`)
+>
+> **Tagging note:** Do **not** create or push git tags on a PR branch. Create and push the actual `v<version>` tag only after the release PR has merged into the target branch (e.g. `main`).
+>
 
 ---
 

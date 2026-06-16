@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/reference-index.schema.json",
+  "title": "Vibe Coding OS Reference Index",
+  "description": "Contract for references/index.json, the source registry for upstream inspiration and adoption tracking.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "last_built", "sources"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version of the generated reference index contract/data shape."
+    },
+    "last_built": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp for the last index build or manual refresh."
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stringList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/nonEmptyString" }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "name",
+        "owner",
+        "url",
+        "category",
+        "status",
+        "import_mode",
+        "license",
+        "reference_doc",
+        "changelog"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "name": { "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "$ref": "#/$defs/nonEmptyString" },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "category": { "$ref": "#/$defs/nonEmptyString" },
+        "status": {
+          "type": "string",
+          "enum": ["tracked", "candidate", "archived", "blocked"]
+        },
+        "import_mode": {
+          "type": "string",
+          "enum": ["none", "inspiration", "adapted", "vendored"]
+        },
+        "license": { "$ref": "#/$defs/nonEmptyString" },
+        "reference_doc": { "$ref": "#/$defs/nonEmptyString" },
+        "changelog": { "$ref": "#/$defs/nonEmptyString" },
+        "features": { "$ref": "#/$defs/stringList" },
+        "local_targets": { "$ref": "#/$defs/stringList" },
+        "last_checked": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_known_commit": { "$ref": "#/$defs/nonEmptyString" },
+        "maintenance_priority": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "very-high"]
+        },
+        "upstream_watch_paths": { "$ref": "#/$defs/stringList" },
+        "update_triggers": { "$ref": "#/$defs/stringList" },
+        "notes": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

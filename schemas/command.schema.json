@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/command.schema.json",
+  "title": "Vibe Coding OS Command Prompt",
+  "description": "Contract for command markdown files under commands/. Commands are markdown prompts, optionally with YAML front matter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug", "description", "body"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^vibe-[a-z0-9-]+$",
+      "description": "Command filename without .md and primary command heading."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short command description, preferably front matter description or Purpose text."
+    },
+    "front_matter": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "description": { "type": "string" }
+      },
+      "description": "Optional YAML front matter metadata."
+    },
+    "heading": {
+      "type": "string",
+      "description": "Top-level markdown heading, usually matching the command slug."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Purpose section for human-readable intent."
+    },
+    "when_to_use": {
+      "type": "string",
+      "description": "When-to-use guidance."
+    },
+    "required_inputs": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+    "workflow": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "Step-by-step workflow or prompt body."
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Non-empty markdown body after optional front matter."
+    }
+  }
+}

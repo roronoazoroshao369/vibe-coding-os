@@ -215,6 +215,12 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it b
 
 Open a discussion or issue at: https://github.com/roronoazoroshao369/vibe-coding-os
 
+## Governance and maintainer process
+
+- Read [`docs/governance.md`](docs/governance.md) for maintainer roles, change categories, review requirements, safety review rules, upstream import governance, and deprecation policy.
+- Use [`docs/decision-record-process.md`](docs/decision-record-process.md) for architecture or policy decisions that should be recorded as ADRs.
+- Review [`docs/maintainer-guide.md`](docs/maintainer-guide.md) for weekly and monthly maintenance checks, PR review expectations, validation/eval/dashboard commands, release flow, and compatibility change handling.
+
 ---
 
 *Lời nhắn ngắn: Cảm ơn bạn đã quan tâm đến Vibe Coding OS! Mọi đóng góp — dù lớn hay nhỏ — đều giúp framework tốt hơn. Nếu bạn có thắc mắc, đừng ngần ngại mở issue hoặc discussion trên GitHub.* 🙏

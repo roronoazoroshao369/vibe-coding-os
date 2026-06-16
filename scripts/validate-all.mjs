@@ -11,11 +11,14 @@ const ROOT = resolve(__dirname, '..');
 const checks = [
   ['Repo structure', 'node', ['scripts/validate-repo.mjs']],
   ['References', 'node', ['scripts/validate-references.mjs']],
+  ['Registry schemas', 'node', ['scripts/validate-schemas.mjs']],
   ['Traceability', 'node', ['scripts/validate-traceability.mjs']],
   ['Injection scan', 'node', ['scripts/validate-injection.mjs']],
   ['Secret scan', 'node', ['scripts/validate-secrets.mjs']],
   ['Memory redaction', 'node', ['scripts/verify-memory-redaction.mjs']],
   ['Adapter smoke tests', 'node', ['scripts/smoke-test-adapters.mjs']],
+  ['CLI smoke tests', 'node', ['scripts/smoke-test-cli.mjs']],
+  ['Dashboard data', 'node', ['scripts/dashboard-data.mjs']],
   ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']]
 ];
 

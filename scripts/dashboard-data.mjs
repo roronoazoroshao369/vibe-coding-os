@@ -112,36 +112,51 @@ async function readUpstreamCount() {
   return Array.isArray(index.sources) ? index.sources.length : 0;
 }
 
-const skillsByCategory = await countSkillsByCategory();
-const traceabilityRun = runNodeScript('validate-traceability.mjs');
-const traceability = parseTraceability(traceabilityRun.output);
-const commandFiles = await countMarkdownFiles('commands');
-const templateFiles = await countTemplateFiles();
-const narrativeFallback = (await listFiles(ROOT, (path, name) => {
-  const rel = relative(ROOT, path);
-  return name.endsWith('.md')
-    && !rel.startsWith('node_modules/')
-    && !rel.startsWith('references/upstreams/');
-})).length;
+export async function getDashboardSummary() {
+  const skillsByCategory = await countSkillsByCategory();
+  const traceabilityRun = runNodeScript('validate-traceability.mjs');
+  const traceability = parseTraceability(traceabilityRun.output);
+  const commandFiles = await countMarkdownFiles('commands');
+  const templateFiles = await countTemplateFiles();
+  const narrativeFallback = (await listFiles(ROOT, (path, name) => {
+    const rel = relative(ROOT, path);
+    return name.endsWith('.md')
+      && !rel.startsWith('node_modules/')
+      && !rel.startsWith('references/upstreams/');
+  })).length;
 
-const summary = {
-  generatedAt: new Date().toISOString(),
-  version: await readPackageVersion(),
-  counts: {
-    skills: Object.values(skillsByCategory).reduce((sum, count) => sum + count, 0),
-    skillsByCategory,
-    commands: traceability.commands ?? commandFiles,
-    templates: traceability.templates ?? templateFiles,
-    narrativeFiles: traceability.narrativeFiles ?? narrativeFallback,
-    upstreamSources: await readUpstreamCount()
-  },
-  traceability: {
-    validationPassed: traceabilityRun.ok,
-    brokenReferences: traceability.brokenReferences,
-    orphanCommands: traceability.orphanCommands,
-    orphanSkills: traceability.orphanSkills,
-    orphanTemplates: traceability.orphanTemplates
+  return {
+    generatedAt: new Date().toISOString(),
+    version: await readPackageVersion(),
+    counts: {
+      skills: Object.values(skillsByCategory).reduce((sum, count) => sum + count, 0),
+      skillsByCategory,
+      commands: traceability.commands ?? commandFiles,
+      templates: traceability.templates ?? templateFiles,
+      narrativeFiles: traceability.narrativeFiles ?? narrativeFallback,
+      upstreamSources: await readUpstreamCount()
+    },
+    traceability: {
+      validationPassed: traceabilityRun.ok,
+      brokenReferences: traceability.brokenReferences,
+      orphanCommands: traceability.orphanCommands,
+      orphanSkills: traceability.orphanSkills,
+      orphanTemplates: traceability.orphanTemplates
+    }
+  };
+}
+
+// When run directly, print JSON summary
+const isMainModule = (() => {
+  const entry = process.argv[1];
+  try {
+    return entry && (resolve(entry) === resolve(fileURLToPath(import.meta.url)));
+  } catch {
+    return false;
   }
-};
+})();
 
-console.log(JSON.stringify(summary, null, 2));
+if (isMainModule) {
+  const summary = await getDashboardSummary();
+  console.log(JSON.stringify(summary, null, 2));
+}
