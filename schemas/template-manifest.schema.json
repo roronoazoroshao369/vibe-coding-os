@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/template-manifest.schema.json",
+  "title": "Vibe Coding OS Template",
+  "description": "Contract for reusable markdown templates under templates/.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["filename", "description", "sections"],
+  "properties": {
+    "filename": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Relative path or filename of the template inside the templates directory."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short human-readable description of what the template produces."
+    },
+    "title": {
+      "type": "string",
+      "description": "First markdown heading in the template, e.g. # Spec: <title>."
+    },
+    "sections": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered list of required section headings present in the template body."
+    },
+    "fillable_placeholders": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Representative placeholder tokens or placeholder list from the template."
+    },
+    "related_skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional skill or command paths related to this template."
+    }
+  }
+}

@@ -48,7 +48,7 @@ function countFiles(dir, ext) {
 
 // ─── Commands ───
 
-function cmdHelp() {
+export function cmdHelp() {
   console.log(`
 ${c.bold}${c.cyan}Vibe Coding OS CLI${c.reset} v0.2.0
 
@@ -79,7 +79,7 @@ ${c.bold}Examples:${c.reset}
 `);
 }
 
-function cmdInit(tool = 'claude-code') {
+export function cmdInit(tool = 'claude-code') {
   const validTools = ['claude-code', 'codex', 'cursor'];
   if (!validTools.includes(tool)) {
     console.error(`${fail} Unknown tool: ${tool}. Valid: ${validTools.join(', ')}`);
@@ -117,7 +117,7 @@ function cmdInit(tool = 'claude-code') {
   console.log(`  Next: Open your project in ${tool} and start vibing! 🚀\n`);
 }
 
-function cmdDoctor() {
+export function cmdDoctor() {
   console.log(`${c.bold}${c.cyan}Vibe Coding OS — Health Check${c.reset}\n`);
 
   const checks = [
@@ -172,7 +172,7 @@ function cmdDoctor() {
   process.exit(failed > 0 ? 1 : 0);
 }
 
-function cmdListSkills(category = null) {
+export function cmdListSkills(category = null) {
   const skillsDir = join(ROOT, 'skills');
   if (!existsSync(skillsDir)) {
     console.error(`${fail} skills/ directory not found`);
@@ -212,7 +212,7 @@ function cmdListSkills(category = null) {
   console.log(`${c.dim}Total: ${totalCount} skills${c.reset}\n`);
 }
 
-function cmdListCommands() {
+export function cmdListCommands() {
   const cmdsDir = join(ROOT, 'commands');
   if (!existsSync(cmdsDir)) {
     console.error(`${fail} commands/ directory not found`);
@@ -235,7 +235,7 @@ function cmdListCommands() {
   console.log(`\n${c.dim}Total: ${total} commands${c.reset}\n`);
 }
 
-function cmdStats() {
+export function cmdStats() {
   console.log(`${c.bold}${c.cyan}Vibe Coding OS — Repository Stats${c.reset}\n`);
 
   const skills = getSubdirs(join(ROOT, 'skills')).reduce((acc, cat) => acc + getSubdirs(join(ROOT, 'skills', cat)).length, 0);
@@ -262,7 +262,7 @@ function cmdStats() {
   console.log('');
 }
 
-function cmdSpec(args) {
+export function cmdSpec(args) {
   const templatePath = join(ROOT, 'templates/spec-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Spec template not found: templates/spec-template.md`);
@@ -292,7 +292,7 @@ function cmdSpec(args) {
   console.log('');
 }
 
-function cmdPlan(args) {
+export function cmdPlan(args) {
   const templatePath = join(ROOT, 'templates/plan-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Plan template not found: templates/plan-template.md`);
@@ -322,7 +322,7 @@ function cmdPlan(args) {
   console.log('');
 }
 
-function cmdMemory(args) {
+export function cmdMemory(args) {
   const templatePath = join(ROOT, 'templates/memory-entry-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Memory template not found: templates/memory-entry-template.md`);
@@ -352,7 +352,7 @@ function cmdMemory(args) {
   console.log('');
 }
 
-function cmdTask(args) {
+export function cmdTask(args) {
   const templatePath = join(ROOT, 'templates/task-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Task template not found: templates/task-template.md`);
@@ -382,7 +382,7 @@ function cmdTask(args) {
   console.log('');
 }
 
-function cmdTemplates() {
+export function cmdTemplates() {
   const templatesDir = join(ROOT, 'templates');
   if (!existsSync(templatesDir)) {
     console.error(`${fail} templates/ directory not found`);
@@ -418,22 +418,33 @@ function cmdTemplates() {
 }
 
 // ─── Main ───
-const [,, cmd, ...args] = process.argv;
+const isMainModule = (() => {
+  const entry = process.argv[1];
+  try {
+    return entry && (resolve(entry) === resolve(fileURLToPath(import.meta.url)));
+  } catch {
+    return false;
+  }
+})();
 
-switch (cmd) {
-  case 'init': cmdInit(args[0]); break;
-  case 'doctor': cmdDoctor(); break;
-  case 'list-skills': cmdListSkills(args[0] || null); break;
-  case 'list-commands': cmdListCommands(); break;
-  case 'stats': cmdStats(); break;
-  case 'spec': cmdSpec(args); break;
-  case 'plan': cmdPlan(args); break;
-  case 'memory': cmdMemory(args); break;
-  case 'task': cmdTask(args); break;
-  case 'templates': cmdTemplates(); break;
-  case 'help': case undefined: cmdHelp(); break;
-  default:
-    console.error(`${fail} Unknown command: ${cmd}`);
-    console.log(`Run ${c.cyan}node scripts/vibe-cli.mjs help${c.reset} for usage.\n`);
-    process.exit(1);
+if (isMainModule) {
+  const [,, cmd, ...args] = process.argv;
+
+  switch (cmd) {
+    case 'init': cmdInit(args[0]); break;
+    case 'doctor': cmdDoctor(); break;
+    case 'list-skills': cmdListSkills(args[0] || null); break;
+    case 'list-commands': cmdListCommands(); break;
+    case 'stats': cmdStats(); break;
+    case 'spec': cmdSpec(args); break;
+    case 'plan': cmdPlan(args); break;
+    case 'memory': cmdMemory(args); break;
+    case 'task': cmdTask(args); break;
+    case 'templates': cmdTemplates(); break;
+    case 'help': case undefined: cmdHelp(); break;
+    default:
+      console.error(`${fail} Unknown command: ${cmd}`);
+      console.log(`Run ${c.cyan}node scripts/vibe-cli.mjs help${c.reset} for usage.\n`);
+      process.exit(1);
+  }
 }

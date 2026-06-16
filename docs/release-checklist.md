@@ -30,6 +30,15 @@ Evidence: paste validation output or CI log snippet.
 
 Evidence: paste report summary or link to `docs/reports/evaluation-report.md`.
 
+## 2b. Dashboard Regeneration
+
+- [ ] `npm run dashboard:generate` regenerates `docs/DASHBOARD.md` from current data
+- [ ] `docs/DASHBOARD.md` shows a recent "Last generated" date
+- [ ] `npm run smoke-test:cli` passes (CLI smoke tests)
+- [ ] `npm run dashboard:data` outputs valid JSON
+
+Evidence: paste generation output or confirm date stamp.
+
 ## 3. Secret Scan
 
 - [ ] No secrets, tokens, API keys, or credentials in new or changed files

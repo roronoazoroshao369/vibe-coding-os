@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-os",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "private": true,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
@@ -8,6 +8,7 @@
     "validate": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs",
     "validate:repo": "node scripts/validate-repo.mjs",
     "validate:references": "node scripts/validate-references.mjs",
+    "validate:schemas": "node scripts/validate-schemas.mjs",
     "validate:traceability": "node scripts/validate-traceability.mjs",
     "validate:secrets": "node scripts/validate-secrets.mjs",
     "validate:injection": "node scripts/validate-injection.mjs",
@@ -29,7 +30,10 @@
     "runtime:daemon": "node scripts/runtime-daemon.mjs",
     "runtime:mcp": "node scripts/runtime-mcp.mjs",
     "runtime:team-run": "node scripts/runtime-team-run.mjs",
-    "runtime:install": "node scripts/runtime-install.mjs"
+    "runtime:install": "node scripts/runtime-install.mjs",
+    "smoke-test:cli": "node scripts/smoke-test-cli.mjs",
+    "dashboard:data": "node scripts/dashboard-data.mjs",
+    "dashboard:generate": "node scripts/generate-dashboard.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

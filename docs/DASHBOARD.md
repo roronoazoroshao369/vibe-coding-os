@@ -1,16 +1,17 @@
 # Vibe Coding OS — Project Health Dashboard
 
-Last generated: 2026-06-16
+> **Auto-generated** by `scripts/generate-dashboard.mjs` — do not edit manually.
+> Last generated: 2026-06-16
 
 ## Quick Status
 
 | Metric | Value |
 |---|---|
-| Version | 0.1.0 |
+| Version | 0.4.0 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 41 |
-| Narrative files | 351 |
+| Narrative files | 353 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -18,11 +19,11 @@ Last generated: 2026-06-16
 
 | Category | Count |
 |---|---|
+| agents | 4 |
 | core | 47 |
 | memory | 17 |
-| prompts | 13 |
 | meta | 9 |
-| agents | 4 |
+| prompts | 13 |
 
 ## Version Progress
 
@@ -31,8 +32,8 @@ Last generated: 2026-06-16
 | v0.1.1 | ✅ Complete | Validation + VI docs |
 | v0.2 | ✅ Complete | Adoption MVP |
 | v0.3 | ✅ Complete | Evidence & Safety |
-| v0.4 | 🟡 ~80% | Packaging & Skill Packs |
-| v1.0 | 🟡 ~40% | Trusted Workflow Framework |
+| v0.4 | ✅ Complete | Packaging & Skill Packs |
+| v1.0 | 🟡 ~45% | Trusted Workflow Framework |
 
 ## Safety Metrics
 
@@ -68,22 +69,22 @@ Last generated: 2026-06-16
 | Templates (41) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟡 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 6 (warnings — review signal) |
-| Orphan skills | 6 (warnings — review signal) |
+| Orphan commands | 0 (warnings — review signal) |
+| Orphan skills | 0 (warnings — review signal) |
 | Orphan templates | 0 |
 | Broken references | 0 |
 
 ## How to Regenerate
 
 ```bash
-# Full dashboard data (JSON to stdout)
-node scripts/dashboard-data.mjs
+# Dashboard data (JSON to stdout)
+npm run dashboard:data
+
+# Regenerate this dashboard markdown
+npm run dashboard:generate
 
 # Full validation gate (all checks)
 npm run validate:all
-
-# Evaluation report only
-npm run eval:report
 ```
 
 ## Related Documents

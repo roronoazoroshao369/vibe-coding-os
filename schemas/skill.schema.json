@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/skill.schema.json",
+  "title": "Vibe Coding OS Skill Manifest",
+  "description": "Contract for skills under skills/*/SKILL.md — each skill is a markdown document with a # Name heading and specific sections.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "purpose", "workflow"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Skill name extracted from the first `#` heading in the SKILL.md file."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "The ## Purpose section — a one-paragraph description of what the skill achieves."
+    },
+    "when_to_use": {
+      "type": "string",
+      "description": "The ## When to use section describing triggering conditions."
+    },
+    "inputs": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "The ## Inputs section — what information or artifacts this skill needs."
+    },
+    "workflow": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The ## Workflow section, typically a numbered list of steps."
+    },
+    "outputs": {
+      "type": "string",
+      "description": "The ## Outputs section describing produced artifacts."
+    },
+    "failure_modes": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "The ## Failure modes section documenting common pitfalls."
+    },
+    "verification_checklist": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "A list of checkable items from the ## Verification checklist section."
+    },
+    "superpowers_alignment": {
+      "type": "string",
+      "description": "Notes on how this skill maps to superpowers-inspired workflow roles."
+    },
+    "spec_driven_layer": {
+      "type": "string",
+      "description": "Notes on spec-driven development (github/spec-kit) layer integration."
+    }
+  }
+}

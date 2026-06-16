@@ -26,7 +26,7 @@ Last updated: 2026-06-16
 | CLI helper MVP | ✅ scripts/vibe-cli.mjs (init, doctor, stats, list-skills, list-commands) |
 
 ## v0.3 — Evidence & Safety
-**Status:** ✅ MOSTLY COMPLETE
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
@@ -36,10 +36,10 @@ Last updated: 2026-06-16
 | Reference report workflow | ✅ via `npm run references:report` |
 | Secret scanning | ✅ scripts/validate-secrets.mjs |
 | Adapter smoke tests | ✅ scripts/smoke-test-adapters.mjs + .github/workflows/smoke-test.yml |
-| Eval report runner | 🟡 Planned — scripts/evaluation-report.mjs exists but not wired as npm script or fully integrated |
+| Eval report runner | ✅ Done — scripts/evaluation-report.mjs is wired as `npm run eval:report` and included in `npm run validate:all` |
 
 ## v0.4 — Packaging & Skill Packs
-**Status:** 🟡 IN PROGRESS (~80%)
+**Status:** ✅ FUNCTIONALLY COMPLETE
 
 | Deliverable | Status |
 |---|---|
@@ -67,8 +67,8 @@ Last updated: 2026-06-16
 | Deliverable | Status |
 |---|---|
 | Stable core workflow contract | ✅ docs/core-workflow-contract.md |
-| Stable registry schemas | 🔜 Pending |
-| Contribution governance | 🟡 CONTRIBUTING.md exists; governance doc planned |
+| Stable registry schemas | ✅ schemas/ + `npm run validate:schemas` |
+| Contribution governance | ✅ docs/governance.md, docs/decision-record-process.md, docs/maintainer-guide.md |
 | Compatibility support policy | ✅ docs/compatibility-support-policy.md |
 | Safety/eval dashboard | ✅ docs/DASHBOARD.md |
 | Full validation gate | ✅ npm run validate:all |
@@ -80,6 +80,6 @@ Bug-fix workflows are covered by `skills/core/bug-fix-lifecycle/SKILL.md` as par
 
 - v0.1.1: ████████████ 100%
 - v0.2:   ████████████ 100%
-- v0.3:   ████████████ 85%
-- v0.4:   ██████████░░ 80%
+- v0.3:   ████████████ 100%
+- v0.4:   ████████████ 100%
 - v1.0:   █████░░░░░░░ 45%

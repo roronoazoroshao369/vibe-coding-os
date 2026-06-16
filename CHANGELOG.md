@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Next: v1.0 hardening and release-candidate work.
+
+### Added
+- v1.0 contribution governance and maintainer process docs (`docs/governance.md`, `docs/decision-record-process.md`, `docs/maintainer-guide.md`), plus `CONTRIBUTING.md` links and roadmap updates.
+- Stable registry schema contracts in `schemas/` for the reference index, skills, commands, and templates.
+- Lightweight schema validation (`scripts/validate-schemas.mjs`, `npm run validate:schemas`) covering schema JSON validity, `references/index.json`, skill headings/descriptions, and command prompt content.
+- Registry schema documentation (`docs/registry-schemas.md`) and full validation gate coverage via `npm run validate:all`.
+- CLI smoke tests (`scripts/smoke-test-cli.mjs`, `npm run smoke-test:cli`) covering 7 read-only CLI commands with pass/fail per command and overall.
+- Dashboard generator (`scripts/generate-dashboard.mjs`, `npm run dashboard:generate`) that regenerates `docs/DASHBOARD.md` from live dashboard data with auto-generated mark.
+- `npm run dashboard:data` script alias for direct JSON data extraction.
+- CLI smoke tests and dashboard data checks added to `npm run validate:all`.
+- Release checklist updated with dashboard regeneration section.
+- `scripts/vibe-cli.mjs` and `scripts/dashboard-data.mjs` refactored to export their command/functionality for reuse by other scripts.
+
+## [0.4.0] — 2026-06-16
+
 ### Added
 - Release packaging guide (`docs/RELEASE-PACKAGING.md`) covering version numbering, tag naming conventions, pre-release checklist, GitHub release creation, CHANGELOG section header updates, and a release notes template
 - Version bump script (`scripts/bump-version.sh`) — automated version updates to `package.json`, CHANGELOG section header migration, git tag creation, and next-step instructions
@@ -113,5 +129,6 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.1.0...v0.4.0
 [0.1.0]: https://github.com/roronoazoroshao369/vibe-coding-os/releases/tag/v0.1.0
