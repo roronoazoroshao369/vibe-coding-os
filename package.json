@@ -29,5 +29,8 @@
     "runtime:team-run": "node scripts/runtime-team-run.mjs",
     "runtime:install": "node scripts/runtime-install.mjs"
   },
+  "bin": {
+    "vibe": "./scripts/vibe-cli.mjs"
+  },
   "license": "MIT"
 }
