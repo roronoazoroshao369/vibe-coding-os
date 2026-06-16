@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Release packaging guide (`docs/RELEASE-PACKAGING.md`) covering version numbering, tag naming conventions, pre-release checklist, GitHub release creation, CHANGELOG section header updates, and a release notes template
+- Version bump script (`scripts/bump-version.sh`) — automated version updates to `package.json`, CHANGELOG section header migration, git tag creation, and next-step instructions
+- CLI workflow examples (`examples/cli-workflows/README.md`) — practical examples for `vibe doctor`, `vibe spec`, `vibe plan`, `vibe task`, `vibe memory`, `vibe templates`, and `npm run eval:report` with expected outputs and usage guidance
+- Project health dashboard (`docs/DASHBOARD.md`) with quick status, safety metrics, coverage summary, and regeneration commands
+- Dashboard data extractor (`scripts/dashboard-data.mjs`) for clean JSON counts across skills, commands, templates, narrative files, upstream sources, and traceability warnings
+- Full validation gate (`scripts/validate-all.mjs`, `npm run validate:all`) covering repo, references, traceability, injection, secrets, memory redaction, adapter smoke tests, and eval summary
+- ROADMAP-STATUS.md updated to mark dashboard + validate-all as done under v1.0
+- ROADMAP-STATUS.md updated to mark release packaging and CLI examples as done
 - Detailed adapter install snippets for Claude Code, Codex, and Cursor, including `docs/adapter-install-snippets.md` and per-adapter README setup commands.
 - v1.0 foundation docs: core workflow contract, release checklist, compatibility/support policy (docs/core-workflow-contract.md, docs/release-checklist.md, docs/compatibility-support-policy.md)
 - Memory redaction test suite (30 cases in docs/tests/ + scripts/verify-memory-redaction.mjs)
@@ -28,16 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - references/upstream-intake-scorecard.md (1-5 rubric + decision matrix)
 - docs/adr/0002-notification-system.md (ADR for multi-agent demo)
 - Evaluation report runner (scripts/evaluation-report.mjs)
-
-### Roadmap
-
-Future releases planned from the project roadmap:
-
-- **0.1.1** — Validation Recovery & Vietnamese Onboarding
-- **0.2** — Adoption MVP
-- **0.3** — Evidence & Safety
-- **0.4** — Packaging & Skill Packs
-- **1.0** — Trusted Workflow Framework
 
 ## [0.1.0] — 2026-06-06
 
