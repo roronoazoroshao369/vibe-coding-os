@@ -56,6 +56,10 @@ Discover → Score → Provenance/License Gate → Adapt, don't copy → Attribu
 
 | Action | Command / Script |
 |--------|------------------|
+| Add a tracked upstream reference | `commands/vibe-reference-add.md` |
+| Audit a tracked upstream reference | `commands/vibe-reference-audit.md` |
+| Rebuild the markdown reference index | `commands/vibe-reference-index.md` |
+| Update a tracked upstream reference after audit | `commands/vibe-reference-update.md` |
 | Rebuild reference index | `npm run references:index` |
 | Generate upstream update report | `npm run references:report` |
 | Clone tracked upstreams for local audit | `npm run references:clone` |

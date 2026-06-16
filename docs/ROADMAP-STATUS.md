@@ -48,9 +48,12 @@ Last updated: 2026-06-16
 | `vibe stats` | ✅ scripts/vibe-cli.mjs |
 | `vibe list-skills` | ✅ scripts/vibe-cli.mjs |
 | `vibe list-commands` | ✅ scripts/vibe-cli.mjs |
-| `vibe spec` | 🔜 Coming — planned but not yet implemented in CLI |
-| `vibe plan` | 🔜 Coming |
-| `vibe memory` | 🔜 Coming |
+| `vibe spec` | ✅ docs/RELEASE-PACKAGING.md + examples/cli-workflows/README.md |
+| `vibe plan` | ✅ docs/RELEASE-PACKAGING.md + examples/cli-workflows/README.md |
+| `vibe memory` | ✅ docs/RELEASE-PACKAGING.md + examples/cli-workflows/README.md |
+| Release packaging guide | ✅ docs/RELEASE-PACKAGING.md |
+| Version bump script | ✅ scripts/bump-version.sh |
+| CLI workflow examples | ✅ examples/cli-workflows/README.md |
 | Core Solo Developer Pack | ✅ docs/skill-packs/core-solo-developer.md |
 | Memory-Safe Pack | ✅ docs/skill-packs/memory-safe-pack.md |
 | Multi-Agent Pack | ✅ docs/skill-packs/multi-agent-pack.md |
@@ -67,8 +70,11 @@ Last updated: 2026-06-16
 | Stable registry schemas | 🔜 Pending |
 | Contribution governance | 🟡 CONTRIBUTING.md exists; governance doc planned |
 | Compatibility support policy | ✅ docs/compatibility-support-policy.md |
-| Safety/eval dashboard | 🔜 Pending |
+| Safety/eval dashboard | ✅ docs/DASHBOARD.md |
+| Full validation gate | ✅ npm run validate:all |
 | Release checklist | ✅ docs/release-checklist.md |
+
+Bug-fix workflows are covered by `skills/core/bug-fix-lifecycle/SKILL.md` as part of the v1.0 trusted workflow framework.
 
 ## Overall Progress
 
@@ -76,4 +82,4 @@ Last updated: 2026-06-16
 - v0.2:   ████████████ 100%
 - v0.3:   ████████████ 85%
 - v0.4:   ██████████░░ 80%
-- v1.0:   ████░░░░░░░░ 40%
+- v1.0:   █████░░░░░░░ 45%

@@ -38,6 +38,7 @@
 2. vibe-team-generate (scaffold)
    → Generate role briefs from team spec
    → Output: role-brief-*.md files
+   → Command doc: `commands/vibe-team-generate.md`
 
 3. vibe-subagents (execute)
    → Spawn subagents per role

@@ -34,6 +34,8 @@ npm run runtime:validate
 ls -la .omc/runtime/
 ```
 
+For markdown-first health checks before or after runtime setup, use `commands/vibe-doctor.md` to inspect repository wiring and validation readiness.
+
 ## Available Commands
 
 | Command | Mô Tả | Output |
@@ -109,6 +111,8 @@ npm run runtime:team → define roles
 npm run runtime:team-run → orchestrate via tmux
 npm run runtime:session → capture per-agent state
 ```
+
+When runtime state or long sessions risk overloading the agent, load `skills/meta/context-budget/SKILL.md` before injecting additional memory, task, or team context.
 
 ## Troubleshooting
 

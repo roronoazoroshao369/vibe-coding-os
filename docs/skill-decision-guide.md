@@ -29,6 +29,8 @@
 | Viết skill mới | `write-reusable-skill` | `vibe-write-skill` | Meta |
 | Kiểm tra context budget | `context-budget` | — | Meta |
 | Extract instinct từ session | `instinct-extraction` | — | Meta |
+| Convert một session hữu ích thành skill tái sử dụng | `skillify-from-session` | — | Meta |
+| Xây prompt hoàn chỉnh theo code-complete style | `code-complete-construction` | — | Prompts |
 | **Capturing session state** | `session-capture` | `vibe-session-capture` | Memory |
 | Tóm tắt session | `session-summarizer` | `vibe-session-summary` | Memory |
 | Lọc secrets khỏi memory | `privacy-filter` | `vibe-memory-privacy-check` | Memory |
@@ -90,3 +92,9 @@ session-capture → session-summarizer → privacy-filter → agent-handoff
 | Review code | `requesting-code-review` → `verification-before-completion` |
 | Quản lý context | `session-capture` → `memory-search` → `agent-handoff` |
 | Multi-agent work | `team-agent-orchestration` → `subagent-driven-development` |
+
+## Meta and Prompt Skills
+
+- Use `skills/meta/instinct-extraction/SKILL.md` when a session reveals a repeatable engineering instinct that should be named, tested, and taught.
+- Use `skills/meta/skillify-from-session/SKILL.md` to turn a successful session pattern into a reusable skill with triggers and verification.
+- Use `skills/prompts/code-complete-construction/SKILL.md` when constructing high-signal prompts for code completion tools or prompt libraries.

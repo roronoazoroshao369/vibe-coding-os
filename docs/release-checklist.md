@@ -16,6 +16,8 @@ Every release (patch, minor, or major) must pass all checks below before shippin
   - Traceability validation (no broken internal references)
   - Injection validation
 
+Use `skills/prompts/release-it-stability/SKILL.md` when preparing release prompts or final stabilization passes for release candidates.
+
 Evidence: paste validation output or CI log snippet.
 
 ## 2. Evaluation Report
