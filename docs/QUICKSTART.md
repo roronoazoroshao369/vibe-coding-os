@@ -206,9 +206,11 @@ npm run validate
 
 After completing your first workflow:
 
+- **Continue with the [15-Minute Tutorial](TUTORIAL.md)** — walk through the full spec → plan → task → validate → review loop hands-on
 - Browse [adapter install snippets](adapter-install-snippets.md) for copy-paste setup per adapter
 - Explore the [full skills library](../skills/) for discipline-specific procedures
 - Browse [examples](../examples/) for complete end-to-end workflows
 - Check the [Vietnamese documentation](vi/index.md) for localized guides (`docs/vi/`)
 - Read the [strategy and roadmap](vi/strategy-and-roadmap.md) to see where the project is headed
 - Set up the [optional runtime layer](../scripts/runtime-install.mjs) for JSON state, checkpoints, and team orchestration
+- [Vietnamese tutorial](vi/TUTORIAL.vi.md) — hướng dẫn 15 phút bằng tiếng Việt

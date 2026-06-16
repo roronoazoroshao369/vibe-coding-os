@@ -39,6 +39,16 @@ Evidence: paste report summary or link to `docs/reports/evaluation-report.md`.
 
 Evidence: paste generation output or confirm date stamp.
 
+## 2c. End-to-End Workflow Test
+
+- [ ] `npm run test:e2e` passes (end-to-end CLI workflow integration test)
+  - Copies spec, plan, task, memory templates to a temp directory
+  - Asserts generated files contain expected headings
+  - Runs read-only CLI commands as smoke tests
+  - Cleans up temporary directory unless DEBUG_E2E=1
+
+Evidence: paste E2E test output showing all checks pass.
+
 ## 3. Secret Scan
 
 - [ ] No secrets, tokens, API keys, or credentials in new or changed files

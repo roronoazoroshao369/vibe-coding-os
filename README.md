@@ -1,5 +1,10 @@
 # Vibe Coding OS
 
+[![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
+[![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
+
+**Current status (v0.4.0):** 90 skills, 68 commands, 41 templates, validate:all 11/11, 0 broken refs/orphans. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v0.4.0 release notes draft](docs/releases/v0.4.0.md)
+
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
@@ -14,7 +19,7 @@ The **core** is markdown-first and works with **zero runtime**: install the Clau
 
 The **runtime** is fully **opt-in**. Enable it only when you want local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, or a tmux team runner.
 
-See [INSTALL.md](INSTALL.md) for the full install guide and [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) for the upstream-adoption policy.
+See [INSTALL.md](INSTALL.md) for the full install guide, [docs/TUTORIAL.md](docs/TUTORIAL.md) for a 15-minute zero-to-workflow tutorial, and [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) for the upstream-adoption policy.
 
 ## Why this exists
 
@@ -438,7 +443,13 @@ Vietnamese onboarding and reference docs are available under [`docs/vi/`](docs/v
 Additional guides and references:
 
 - [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — 10-minute quickstart for Claude Code, Codex CLI, and Cursor.
+- [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute zero-to-workflow tutorial (English).
+- [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — hướng dẫn 15 phút từ zero đến workflow (Tiếng Việt).
 - [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — getting started with the optional runtime layer.
+- [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — live project health dashboard, inventory counts, and validation summary.
+- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress tracker and v1.0 hardening status.
+- [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — release tagging, changelog workflow, and packaging notes.
+- [`docs/releases/v0.4.0.md`](docs/releases/v0.4.0.md) — draft release notes for v0.4.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — quick reference table mapping problems to skills.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — behavioral evaluation scenarios for the framework.
 - [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Core Solo, Memory Safe, Multi-Agent).

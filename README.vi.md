@@ -1,5 +1,10 @@
 # Vibe Coding OS
 
+[![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
+[![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
+
+**Trạng thái hiện tại (v0.4.0):** 90 skills, 68 commands, 41 templates, validate:all 11/11, 0 broken refs/orphans. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [draft release notes v0.4.0](docs/releases/v0.4.0.md)
+
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
@@ -14,7 +19,7 @@
 
 **Runtime** hoàn toàn **tùy chọn (opt-in)**. Chỉ bật khi bạn muốn local JSON state cho task, memory, checkpoint, team, session, daemon workflow, MCP tool, hoặc tmux team runner.
 
-Xem [INSTALL.md](INSTALL.md) cho hướng dẫn cài đặt đầy đủ và [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) cho chính sách adoption upstream.
+Xem [INSTALL.md](INSTALL.md) cho hướng dẫn cài đặt đầy đủ, [docs/vi/TUTORIAL.vi.md](docs/vi/TUTORIAL.vi.md) cho hướng dẫn 15 phút từ zero đến workflow, và [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) cho chính sách adoption upstream.
 
 ## Vì sao repo này tồn tại
 
@@ -375,7 +380,13 @@ Bản README này là trang vào tiếng Việt có thể xem trực tiếp trê
 Các hướng dẫn và reference mới:
 
 - [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — quickstart 10 phút cho Claude Code, Codex CLI, Cursor.
+- [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — hướng dẫn 15 phút từ zero đến workflow (English).
+- [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — hướng dẫn 15 phút từ zero đến workflow (Tiếng Việt).
 - [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — hướng dẫn bắt đầu với runtime layer tùy chọn.
+- [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — dashboard sức khỏe dự án, inventory, và tóm tắt validation.
+- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — trạng thái version và tiến độ hardening cho v1.0.
+- [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — hướng dẫn tag release, changelog, và đóng gói.
+- [`docs/releases/v0.4.0.md`](docs/releases/v0.4.0.md) — draft release notes cho v0.4.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — bảng tra cứu skill theo vấn đề.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — kịch bản đánh giá behavioral cho framework.
 - [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Solo Developer, Memory Safe, Multi-Agent).
