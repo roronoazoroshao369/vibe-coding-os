@@ -165,19 +165,44 @@ function parseTestCases(md) {
 // 3. Run tests
 // ---------------------------------------------------------------------------
 
-async function main() {
-  // Optionally load custom redactor
-  let redact = builtinRedact;
+async function loadRedactor() {
+  // Default: use the real redactor from runtime/core/privacy.mjs
+  // Fall back to the built-in sample redactor only if explicitly requested.
   const customArg = process.argv.find((a) => a.startsWith("--redactor="));
+  const useBuiltin = process.argv.includes("--builtin");
+
   if (customArg) {
     const modPath = resolve(REPO_ROOT, customArg.split("=")[1]);
     const mod = await import(modPath);
-    if (typeof mod.redact !== "function") {
-      console.error(`Custom redactor at ${modPath} does not export redact()`);
+    const fn = mod.redact || mod.redactText;
+    if (typeof fn !== "function") {
+      console.error(`Custom redactor at ${modPath} does not export redact() or redactText()`);
       process.exit(1);
     }
-    redact = mod.redact;
+    return fn;
   }
+
+  if (useBuiltin) {
+    return builtinRedact;
+  }
+
+  // Default: import and wrap the production redactor
+  try {
+    const privacy = await import(resolve(REPO_ROOT, "runtime/core/privacy.mjs"));
+    // redactText(value: string): string matches our interface
+    if (typeof privacy.redactText === "function") {
+      return privacy.redactText;
+    }
+    console.error("runtime/core/privacy.mjs does not export redactText(); falling back to builtin");
+    return builtinRedact;
+  } catch (err) {
+    console.error(`Failed to load runtime redactor: ${err.message}; falling back to builtin`);
+    return builtinRedact;
+  }
+}
+
+async function main() {
+  const redact = await loadRedactor();
 
   const mdPath = resolve(
     REPO_ROOT,

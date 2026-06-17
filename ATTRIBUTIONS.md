@@ -134,10 +134,10 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Name: `eyaltoledano/claude-task-master`
 - URL: https://github.com/eyaltoledano/claude-task-master
 - License: MIT plus Commons Clause condition, Copyright (c) 2025 Eyal Toledano, Ralph Khreish. Verified from upstream `LICENSE` via raw GitHub during the 2026-06-07 audit.
-- Used for: idea-level inspiration for a markdown task-status convention and next-task selection.
+- Used for: idea-level inspiration for a markdown task-status convention, dependency-aware next-task selection, and (where the optional runtime exists) a local JSON task-store shape.
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
-- Notes: No MCP server, CLI engine, `tasks.json` runtime, AI-model config, or upstream code is vendored. Only the markdown status/complexity idea is adapted.
+- Notes: No MCP server, CLI engine, upstream `tasks.json` runtime, AI-model config, or upstream code is vendored. Any local files such as `runtime/tasks/task-store.mjs` or `scripts/runtime-task.mjs`, when present, are original Vibe Coding OS runtime code inspired by the task-status/next-task concept, not copied or ported from upstream. Planned runtime targets remain aspirational until implemented.
 
 ## automazeio/ccpm
 
