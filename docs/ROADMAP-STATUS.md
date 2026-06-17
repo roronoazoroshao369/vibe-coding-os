@@ -86,6 +86,21 @@ Last updated: 2026-06-17
 
 Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../skills/core/bug-fix-lifecycle/SKILL.md) as part of the v1.0 trusted workflow framework.
 
+## v1.1 — P0+P1+P2 Hardening
+**Status:** ✅ COMPLETE — Released v1.1.0
+
+| Deliverable | Status |
+|---|---|
+| Schema alignment (registries, runtime, adapter, validation) | ✅ Done |
+| Workflow state hardening (task/checkpoint/memory/team/session/daemon/MCP/tmux) | ✅ Done |
+| Runtime validation expansion (config checks, installer safety, smoke coverage) | ✅ Done |
+| CLI expansion (broader coverage, 20 smoke tests passing) | ✅ Done |
+| Cursor / Codex / Claude adapter packs refreshed | ✅ Done |
+| Safety & hook contracts clarified (secret scan, injection, redaction, handoff) | ✅ Done |
+| Execution trace support (local runtime activity logging) | ✅ Done |
+| Bilingual sync validation (English/Vietnamese docs alignment) | ✅ Done |
+| Markdown link validation (broken reference catch) | ✅ Done |
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
@@ -93,3 +108,4 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v0.3:   ████████████ 100%
 - v0.4:   ████████████ 100%
 - v1.0:   ████████████ 100%
+- v1.1:   ████████████ 100%
