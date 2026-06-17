@@ -68,8 +68,9 @@
 | bilingual-readme-sync | ✅ PASS | ~53ms |
 | markdown-links | ✅ PASS | ~84ms |
 | readme-heading-version | ✅ PASS | ~56ms |
+| runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 17/17 gates passed**
+**Overall: 18/18 gates passed**
 
 ## Coverage Summary
 
