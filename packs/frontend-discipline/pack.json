@@ -1,7 +1,7 @@
 {
-  "name": "react-nextjs",
+  "name": "frontend-discipline",
   "version": "1.0.0",
-  "description": "React / Next.js focused skill pack: component testing, hooks, performance, Next.js patterns",
+  "description": "Front-end development discipline: component quality, planning, testing, anti-overengineering, and clean-code patterns",
   "skills": [
     {"name": "test-driven-development", "source": "core/test-driven-development/SKILL.md"},
     {"name": "writing-plans", "source": "core/writing-plans/SKILL.md"},
@@ -18,6 +18,6 @@
     {"name": "code-complete-construction", "source": "prompts/code-complete-construction/SKILL.md"}
   ],
   "commands": [
-    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review"
   ]
 }

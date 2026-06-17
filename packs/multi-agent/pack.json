@@ -19,6 +19,6 @@
     {"name": "reviewer-agent", "source": "agents/reviewer-agent/SKILL.md"}
   ],
   "commands": [
-    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review"
   ]
 }

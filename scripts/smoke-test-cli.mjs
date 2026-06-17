@@ -2,7 +2,7 @@
 // smoke-test-cli.mjs — smoke tests for vibe CLI commands
 
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, existsSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -134,7 +134,7 @@ for (const script of ['runtime-task.mjs', 'runtime-memory.mjs', 'runtime-session
 // ── Skill pack install tests ──
 console.log('');
 console.log('--- Skill pack install tests ---');
-for (const packName of ['core-solo', 'react-nextjs', 'memory-safe', 'multi-agent']) {
+for (const packName of ['core-solo', 'frontend-discipline', 'memory-safe', 'multi-agent']) {
   runCmd('vibe-cli.mjs', ['install-pack', packName, '--dry-run'], {
     expectedStatus: 0,
     label: `vibe install-pack ${packName} --dry-run`,
@@ -148,6 +148,40 @@ runCmd('vibe-cli.mjs', ['install-pack', 'core-solo'], {
 runCmd('vibe-cli.mjs', ['install-pack', 'invalid-pack'], {
   expectedStatus: 1,
   label: 'vibe install-pack invalid-pack (expect fail)',
+});
+
+// B3: Overwrite protection — without --force should fail on existing dir
+const overwriteTmp = join(packTmp, 'overwrite-test');
+mkdirSync(join(overwriteTmp, '.vibe', 'skills', 'core-solo'), { recursive: true });
+writeFileSync(join(overwriteTmp, '.vibe', 'skills', 'core-solo', 'placeholder.md'), 'old content', 'utf8');
+runCmd('vibe-cli.mjs', ['install-pack', 'core-solo'], {
+  cwd: overwriteTmp,
+  expectedStatus: 1,
+  label: 'vibe install-pack core-solo (expect fail without --force)',
+});
+// W4: With --force should succeed and overwrite
+runCmd('vibe-cli.mjs', ['install-pack', 'core-solo', '--force'], {
+  cwd: overwriteTmp,
+  expectedStatus: 0,
+  label: 'vibe install-pack core-solo --force (overwrite)',
+});
+
+// W4: Content assertion — verify pack-manifest.json exists after install
+const manifestExists = existsSync(join(packTmp, '.vibe', 'skills', 'core-solo', 'pack-manifest.json'));
+const readmeExists = existsSync(join(packTmp, '.vibe', 'skills', 'core-solo', 'README.md'));
+if (!manifestExists || !readmeExists) {
+  results.push({ passed: false, label: 'pack content assertion (manifest+readme)' });
+  console.error('FAIL pack content assertion: missing manifest or readme');
+} else {
+  results.push({ passed: true, label: 'pack content assertion (manifest+readme)' });
+  console.log('OK   pack content assertion (manifest+readme)');
+}
+
+// W5: Unknown flag should fail
+runCmd('vibe-cli.mjs', ['install-pack', 'core-solo', '--unknown-flag'], {
+  cwd: packTmp,
+  expectedStatus: 1,
+  label: 'vibe install-pack core-solo --unknown-flag (expect fail)',
 });
 
 // ── Runtime task claim/lease lifecycle test ──
@@ -225,6 +259,7 @@ if (taskId) {
 
 rmSync(tmpCwd, { recursive: true, force: true });
 rmSync(packTmp, { recursive: true, force: true });
+if (existsSync(overwriteTmp)) rmSync(overwriteTmp, { recursive: true, force: true });
 
 console.log('');
 const passedCount = results.filter((result) => result.passed).length;

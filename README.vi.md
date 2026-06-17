@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Bản phát hành hiện tại (v1.3.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
 
@@ -15,7 +15,7 @@
 - Migration dry-run engine: con đường an toàn hơn để nâng cấp runtime state lưu trữ với backup và rollback awareness.
 - Schema event, approval, tool-contract, và migration cho provenance, capability declarations, và risk inspection.
 - Paths validation backward-compatible v1→v2 cho runtime state hiện tại.
-- 19/19 validation gates passes với full repository integrity checks.
+- 20/20 validation gates passes với full repository integrity checks.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
