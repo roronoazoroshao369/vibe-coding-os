@@ -2,7 +2,7 @@
 // vibe-cli.mjs — Lightweight CLI helper for Vibe Coding OS
 // Usage: node scripts/vibe-cli.mjs <command> [options]
 
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -59,7 +59,11 @@ ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 ${c.bold}Commands:${c.reset}
   ${c.green}init${c.reset} [tool]         Initialize a project with the selected adapter
                             Tools: claude-code (default), codex, cursor, gemini
-  ${c.green}doctor${c.reset}              Check if vibe-coding-os is properly installed
+  ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
+                            Tools: cursor, claude, codex, gemini
+  ${c.green}doctor${c.reset} [--project] Check if vibe-coding-os is properly installed
+                            --project <path> checks a project directory for vibe readiness
+  ${c.green}version${c.reset}            Show version number
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
   ${c.green}stats${c.reset}              Show repository statistics
@@ -74,13 +78,16 @@ ${c.bold}Commands:${c.reset}
   ${c.green}help${c.reset}               Show this help message
 
 ${c.bold}Examples:${c.reset}
-  node scripts/vibe-cli.mjs init claude-code
-  node scripts/vibe-cli.mjs doctor
-  node scripts/vibe-cli.mjs list-skills memory
-  node scripts/vibe-cli.mjs stats
-  node scripts/vibe-cli.mjs spec my-feature
-  node scripts/vibe-cli.mjs plan my-feature --copy
-  node scripts/vibe-cli.mjs templates
+  vibe init claude-code
+  vibe export cursor
+  vibe doctor
+  vibe doctor --project ~/my-app
+  vibe version
+  vibe list-skills memory
+  vibe stats
+  vibe spec my-feature
+  vibe plan my-feature --copy
+  vibe templates
 `);
 }
 
@@ -119,12 +126,95 @@ export function cmdInit(tool = 'claude-code') {
     console.log(`${ok} Copied ${adapter.src} → ${adapter.file}`);
   }
 
-  console.log(`\n${c.green}${c.bold}Done!${c.reset} Your project is ready for ${tool}.`);
+  console.log(`${c.green}${c.bold}Done!${c.reset} Your project is ready for ${tool}.`);
   console.log(`  Next: Open your project in ${tool} and start vibing! 🚀\n`);
 }
 
-export function cmdDoctor() {
-  console.log(`${c.bold}${c.cyan}Vibe Coding OS — Health Check${c.reset}\n`);
+export function cmdVersion() {
+  const pkg = readJSON(join(ROOT, 'package.json'));
+  console.log(pkg.version || '0.0.0');
+}
+
+export function cmdExport(tool) {
+  const validTools = ['cursor', 'claude', 'codex', 'gemini'];
+  if (!tool || !validTools.includes(tool)) {
+    console.error(`${fail} Usage: vibe export <tool>`);
+    console.error(`  Valid tools: ${validTools.join(', ')}`);
+    process.exit(1);
+  }
+
+  console.log(`${info} Exporting Vibe Coding OS instructions for ${c.bold}${tool}${c.reset}...\n`);
+
+  const adapters = {
+    'cursor': {
+      files: [
+        { src: 'AGENTS.md', dest: '.cursorrules' },
+      ],
+      note: 'Tip: For Cursor project rules, move .cursorrules to .cursor/rules/vibe-coding-os.md',
+    },
+    'claude': {
+      files: [
+        { src: 'CLAUDE.md', dest: 'CLAUDE.md' },
+      ],
+      note: 'CLAUDE.md is read directly by Claude Code as project instructions.',
+    },
+    'codex': {
+      files: [
+        { src: 'AGENTS.md', dest: 'AGENTS.md' },
+      ],
+      note: 'AGENTS.md is read by Codex as repository-level instructions.',
+    },
+    'gemini': {
+      files: [
+        { src: 'AGENTS.md', dest: 'GEMINI.md' },
+      ],
+      note: 'GEMINI.md is read by Gemini Code Assist as project instructions.',
+    },
+  };
+
+  const adapter = adapters[tool];
+  for (const { src, dest } of adapter.files) {
+    const srcPath = join(ROOT, src);
+    const destPath = resolve(dest);
+    if (!existsSync(srcPath)) {
+      console.error(`${fail} Source not found: ${src}`);
+      process.exit(1);
+    }
+    if (existsSync(destPath)) {
+      console.log(`${c.yellow}⚠ ${dest} already exists — skipping (delete it first to overwrite)${c.reset}`);
+    } else {
+      mkdirSync(dirname(destPath), { recursive: true });
+      writeFileSync(destPath, readFileSync(srcPath, 'utf8'), 'utf8');
+      console.log(`${ok} ${src} → ${dest}`);
+    }
+  }
+
+  console.log(`\n${c.green}${c.bold}Export complete!${c.reset} Instructions written for ${tool}.`);
+  console.log(`  ${c.dim}${adapter.note}${c.reset}\n`);
+}
+
+export function cmdDoctor(args = []) {
+  const projectFlagIndex = args.indexOf('--project');
+  const projectDir = projectFlagIndex >= 0 ? resolve(args[projectFlagIndex + 1] || '.') : null;
+  const baseDir = projectDir || ROOT;
+  const titleBase = projectDir ? 'Project Check' : 'Health Check';
+
+  console.log(`${c.bold}${c.cyan}Vibe Coding OS — ${titleBase}${c.reset}\n`);
+
+  if (projectDir) {
+    console.log(`${info} Checking project readiness at: ${c.bold}${projectDir}${c.reset}\n`);
+    let adapterFound = false;
+    for (const signal of ['CLAUDE.md', 'AGENTS.md', '.cursorrules', 'GEMINI.md', '.cursor/rules']) {
+      if (existsSync(join(projectDir, signal))) {
+        adapterFound = true;
+        console.log(`${ok} ${signal}`);
+      }
+    }
+    if (!adapterFound) {
+      console.log(`${c.yellow}⚠ No adapter instruction file found${c.reset}`);
+      console.log(`  Tip: Run ${c.cyan}vibe init <tool>${c.reset} in this project directory.`);
+    }
+  }
 
   const checks = [
     { name: 'package.json', path: 'package.json', required: true },
@@ -440,7 +530,9 @@ if (isMainModule) {
 
   switch (cmd) {
     case 'init': cmdInit(args[0]); break;
-    case 'doctor': cmdDoctor(); break;
+    case 'doctor': cmdDoctor(args); break;
+    case 'version': case '--version': case '-V': cmdVersion(); break;
+    case 'export': cmdExport(args[0]); break;
     case 'list-skills': cmdListSkills(args[0] || null); break;
     case 'list-commands': cmdListCommands(); break;
     case 'stats': cmdStats(); break;

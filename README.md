@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.3.0 release notes](docs/releases/v1.3.0.md) · [v1.2.0 release notes](docs/releases/v1.2.0.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md) · [ROADMAP-STATUS](docs/ROADMAP-STATUS.md) · [Security model](docs/SECURITY-MODEL.md)
+**Current release (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Start here: [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Dashboard](docs/DASHBOARD.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.3.0 release notes](docs/releases/v1.3.0.md) · [v1.2.0 release notes](docs/releases/v1.2.0.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md) · [ROADMAP-STATUS](docs/ROADMAP-STATUS.md) · [Security model](docs/SECURITY-MODEL.md)
 
 ## What's new in v1.3.0
 

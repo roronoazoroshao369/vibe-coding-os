@@ -55,6 +55,8 @@ Task nhỏ có thể dùng phiên bản nhẹ của loop, nhưng task nhiều fi
 
 ## 5. Bắt đầu nhanh trong 10 phút
 
+Mới bắt đầu? Đọc [`FIRST-WORKFLOW.md`](FIRST-WORKFLOW.md) để có luồng công việc đầu tiên từ 0 → 1.
+
 1. Đọc [`README.vi.md`](../../README.vi.md) hoặc `README.md` để hiểu triết lý tổng quan.
 2. Chọn adapter theo tool:
    - Claude Code: đọc `CLAUDE.md` và `adapters/claude-code/README.md`.

@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const VERSION = readFileSync(join(__dirname, '..', 'package.json'), 'utf8').match(/"version"\s*:\s*"([^"]+)"/)?.[1] || '0.0.0';
+
 import { createStore } from '../runtime/core/fs-store.mjs';
 import {
   createTask,
@@ -48,6 +54,9 @@ function parsePositiveNumber(value, name, fallback) {
 }
 
 const { positionals, flags } = parseArgs(process.argv.slice(2));
+
+if (flags.help || flags.h || positionals[0] === 'help') { usage(); process.exit(0); }
+if (flags.version || flags.V) { console.log(VERSION); process.exit(0); }
 const store = createStore(process.cwd());
 const cmd = positionals[0];
 
