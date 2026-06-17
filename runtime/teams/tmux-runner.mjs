@@ -38,15 +38,15 @@ export function checkTmux() {
 export function requireTmux() {
   const r = checkTmux();
   if (!r.available) {
-    console.error('');
-    console.error('tmux is required but not found.');
-    console.error('');
-    console.error('  macOS:    brew install tmux');
-    console.error('  Ubuntu:   sudo apt install tmux');
-    console.error('  Fedora:   sudo dnf install tmux');
-    console.error('  Arch:     sudo pacman -S tmux');
-    console.error('');
-    process.exit(1);
+    const msg = [
+      '[tmux-runner] tmux is required but not found.',
+      '',
+      '  macOS:    brew install tmux',
+      '  Ubuntu:   sudo apt install tmux',
+      '  Fedora:   sudo dnf install tmux',
+      '  Arch:     sudo pacman -S tmux',
+    ].join('\n');
+    throw new Error(msg);
   }
   return r;
 }
@@ -272,8 +272,8 @@ export async function mapResults(store, teamRun, results, taskStore) {
     });
     // State machine: pending → in_progress → completed
     await taskStore.updateTaskStatus(store, task.id, 'in_progress');
-    await taskStore.updateTaskStatus(store, task.id, 'completed');
-    created.push(task);
+    const completed = await taskStore.updateTaskStatus(store, task.id, 'completed');
+    created.push(completed);
   }
   await appendEvent(store, 'team.run.mapped', {
     teamId: teamRun.teamId, runId: teamRun.runId, tasks: created.length,

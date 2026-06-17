@@ -2,6 +2,8 @@
 
 > Get from zero to a working spec→plan→implement→verify loop in under 15 minutes.
 
+**This doc is for first-time users.** If you already have the framework set up, this is your canonical onboarding workflow. For tool-specific setup only, see [`QUICKSTART.md`](QUICKSTART.md). For installation paths, see [`../INSTALL.md`](../INSTALL.md).
+
 ## Prerequisites
 
 | Requirement | Minimum |

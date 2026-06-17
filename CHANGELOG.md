@@ -9,24 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-## [1.4.2] — 2026-06-17
+## [1.4.3] — 2026-06-17
 
 ### Fixed
-- README.md/README.vi.md: release links now point to v1.4.2, "What's new" section updated for v1.4.2.
-- tmux-runner.mjs: `mapResults()` now transitions `pending → in_progress → completed` (was violating state machine by going `pending → completed`).
-- task-store.mjs: `heartbeatTask()` now enforces `maxTaskLease` cap from config.
-- task-store.mjs: `renewTaskLease()` now enforces `maxTaskLease` cap from config.
-- task-store.mjs: `updateTaskStatus()` now enforces `maxTaskLease` cap when transitioning to `in_progress`.
+- task-store.mjs: `claimTask()` now rejects terminal states (completed/cancelled) — state machine contract is solid.
+- task-store.mjs: `renewTaskLease()` now caps absolute expiration at `now + maxTaskLease`, preventing lease drift from migrated/corrupt data.
+- tmux-runner.mjs: `requireTmux()` now throws an Error instead of calling `process.exit(1)`, making it safe for library and test use.
+- tmux-runner.mjs: `mapResults()` now returns final task objects (after status updates) instead of stale pre-update objects.
+- runtime/mcp/server.mjs: `task.update` handler now forwards `actor: mcp` into `updateTaskStatus()`.
+- runtime/core/config.mjs: invalid `maxTaskLease` values (zero, negative, non-finite) silently reset to defaults with a `_configWarning` field.
+- README.md: reduced from 618 → ~260 lines. Product identity is now unmistakable on first load.
+- README.vi.md: updated to v1.4.3 with matching Vietnamese release notes.
+- docs/README.md: rewritten as a full docs navigation hub with categorized template links (resolves 12 orphan template warnings).
+- docs/vi/strategy-and-roadmap.md: updated from v1.4.0 → v1.4.2/v1.4.3 with current status metrics.
+- docs/RELEASE-PACKAGING.md: version header updated from 1.0.0 → current; workflow modernized.
 
 ### Changed
-- runtime-event.schema.json: added v2 fields (`seq`, `idempotencyKey`, `correlationId`, `causationId`) to schema.
-- runtime/core/validation.mjs: added `format: "date-time"` validation for ISO 8601 strings.
-- tmux-runner.mjs: `outFile` paths now use `shQuote()` for shell safety.
-- tmux-runner.mjs: `prepareTeamRun()` now detects duplicate sanitized role names and throws.
-- docs/vi/FIRST-WORKFLOW.md: added bilingual prompts (Vietnamese + English) for steps 6a-6d.
+- README.md: new "What's new in v1.4.3" section, clear "Core vs Optional Runtime" section, adapter bullet list for traceability.
+- docs/QUICKSTART.md: rewritten with explicit doc role ("tool setup only, not a workflow guide").
+- docs/FIRST-WORKFLOW.md: added scope statement linking to QUICKSTART and INSTALL.
+- docs/RELEASE-PACKAGING.md: rewritten for v1.4.x workflow with modern `npm pkg set` flow.
 
 ### Tests
-- Added maxTaskLease enforcement tests for claimTask, heartbeatTask, renewTaskLease, updateTaskStatus.
+- Added `claimTask rejects terminal tasks` test (verifies terminal state guard).
+- Added `renewTaskLease absolute expiration capped by config maxTaskLease` test (verifies absolute lease cap).
+- Runtime behavioral tests: 18/18 PASS (2 new tests).
 
 ## [1.4.1] — 2026-06-17
 

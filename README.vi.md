@@ -3,19 +3,22 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.4.2):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Bản phát hành hiện tại (v1.4.3):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
 
-**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.2.md)
+**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.3.md)
 
-## Có gì mới trong v1.4.2
+## Có gì mới trong v1.4.3
 
-- **Release stabilization:** fix docs trust, CLI cleanup, runtime boundary hardening.
-- **CLI polish:** bỏ unused imports, dead code, cập nhật help text cho `doctor --project`, `events --limit`, `install-pack`.
-- **Runtime safety:** tmux-runner `assertSafeAgentCommand()` + `shQuote()` cho prompt paths.
-- **Docs consistency:** retroactive CHANGELOG entries v1.1.0–v1.4.0, support-matrix version-neutral, rewrite Vietnamese strategy-and-roadmap.
-- 20/20 validation gates passing.
+- **Terminal state guard:** `claimTask()` từ chối task đã completed/cancelled.
+- **Absolute lease cap:** `renewTaskLease()` luôn cap ở `now + maxTaskLease`.
+- **Library-safe tmux:** `requireTmux()` throw Error thay vì `process.exit(1)`.
+- **README diet:** giảm từ 618 → ~260 dòng, product identity rõ ràng hơn.
+- **Docs hub mới:** `docs/README.md` là navigation hub đầy đủ với danh sách template.
+- **0 orphan templates:** tất cả template đã có link từ narrative docs.
+- **Config validation:** `maxTaskLease` âm/zero/reset về default.
+- **VI strategy doc:** cập nhật lên v1.4.2/v1.4.3.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>

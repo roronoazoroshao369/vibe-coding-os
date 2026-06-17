@@ -148,6 +148,13 @@ export async function claimTask(store, id, claimer, options = {}) {
       // If expired or same claimer, we proceed with re-claim below
     }
 
+    // --- Reject terminal states ---
+    if (task.status === 'completed' || task.status === 'cancelled') {
+      throw new Error(
+        `cannot claim task ${id}: task is in terminal state "${task.status}"`
+      );
+    }
+
     // --- Set claim ---
     const expiresAt = new Date(now.getTime() + ttl * 1000).toISOString();
     task.claim = {
@@ -160,18 +167,9 @@ export async function claimTask(store, id, claimer, options = {}) {
     // Update owner if not already set
     if (!task.owner) task.owner = claimer;
 
-    // Promote status (pending/blocked → in_progress)
+    // Promote status (pending/blocked → in_progress) via state machine
     if (task.status === 'pending' || task.status === 'blocked') {
-      const oldStatus = task.status;
-      task.status = 'in_progress';
-      if (!Array.isArray(task.history)) task.history = [];
-      task.history.push({
-        event: 'status.changed',
-        from: oldStatus,
-        to: 'in_progress',
-        actor,
-        timestamp: nowIsoStr
-      });
+      transitionTask(task, 'in_progress', { actor, ttl });
     }
 
     task.updatedAt = nowIsoStr;
@@ -296,9 +294,11 @@ export async function renewTaskLease(store, id, extraTtl = 300) {
     const now = new Date();
     const nowIsoStr = now.toISOString();
     const currentExpires = new Date(task.claim.expiresAt).getTime();
-    // Extend from max(now, currentExpires) + extraTtl
+    // Extend from max(now, currentExpires) + extraTtl, but never beyond now + maxTaskLease.
     const base = Math.max(now.getTime(), currentExpires);
-    task.claim.expiresAt = new Date(base + extraTtl * 1000).toISOString();
+    const requestedExpires = base + extraTtl * 1000;
+    const maxExpires = now.getTime() + maxLease * 1000;
+    task.claim.expiresAt = new Date(Math.min(requestedExpires, maxExpires)).toISOString();
     task.claim.heartbeat = nowIsoStr;
     task.updatedAt = nowIsoStr;
 

@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.4.2 |
+| Version | 1.4.3 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 416 |
+| Narrative files | 417 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -40,6 +40,7 @@
 | v1.4.0 | ✅ Complete | Runtime kernel, event store v2, observability, hardening |
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
+| v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
 
 ## Safety Metrics
 
@@ -88,7 +89,7 @@
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 11 (planned v1.1 placeholders) |
+| Orphan templates | 0 |
 | Broken references | 0 |
 
 ## How to Regenerate

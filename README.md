@@ -3,27 +3,68 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.4.2):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
-
-**Start here:** [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Examples](examples/)
-
-**Project status:** [Dashboard](docs/DASHBOARD.md) · [Skill Packs](docs/SKILL-PACKS.md) · [How to contribute](docs/CONTRIBUTING-SKILLS.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.2.md)
-
-## What's new in v1.4.2
-
-- **Release stabilization:** docs trust fix, CLI cleanup, and runtime boundary hardening.
-- **CLI polish:** removed unused imports, dead code, updated help text for `doctor --project`, `events --limit`, `install-pack`.
-- **Runtime safety:** tmux-runner `assertSafeAgentCommand()` + `shQuote()` for prompt paths.
-- **Docs consistency:** v1.1.0–v1.4.0 retroactive CHANGELOG entries, support-matrix version-neutral, Vietnamese strategy-and-roadmap rewrite.
-- 20/20 validation gates passing.
+> **Workflow contract first. Runtime optional. Human intent stays sovereign.**
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-**Vibe Coding OS** is a Claude/Codex-friendly skill framework for one person who wants to move fast with AI coding assistants without giving up engineering discipline. It is markdown-first, dependency-light, and usable as plain instructions, prompts, and templates. It also includes an optional JSON-first runtime companion for local task, memory, checkpoint, team, session, daemon, MCP, tmux, and vector-memory workflows.
+**Current release (v1.4.3):** validate:all 20/20 gates PASS · **90 skills** · **68 commands** · **56 templates** · 14 tracked sources
 
-It is not a required wrapper, product, hosted service, or mandatory agent runtime. It is a normalized operating system for AI-assisted software work: reusable skills, command prompts, templates, registries, adapters, reference maps, and optional local runtime helpers that help a human and an AI assistant repeatedly turn intent into reliable code. Its specific aim is to raise the quality of vibe coding with Claude Code and similar agents by selectively studying, merging, and re-normalizing the best reusable workflow ideas from leading public skill, agent-workflow, and engineering-practice sources without blindly copying or vendoring them.
+---
+
+**Vibe Coding OS** is a Claude/Codex-friendly skill framework for one person who wants to move fast with AI coding assistants without giving up engineering discipline. It is markdown-first, dependency-light, and usable as plain instructions, prompts, and templates.
+
+It is not a required wrapper, product, hosted service, or mandatory agent runtime. It is a portable operating system for AI-assisted software work: reusable skills, command prompts, templates, registries, adapters, reference maps, and optional local runtime helpers that help a human and an AI assistant repeatedly turn intent into reliable code.
+
+---
+
+## Start here
+
+| New to Vibe Coding OS | You want |
+|---|---|
+| [First Workflow](docs/FIRST-WORKFLOW.md) | Run one complete `spec → plan → verify` loop |
+| [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
+| [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
+| [Install guide](INSTALL.md) | Full installation options (plugin, clone, CLI, zero-runtime) |
+| [Examples](examples/) | Complete sample workflows |
+| [Tiếng Việt](docs/vi/index.md) | Onboarding và hướng dẫn tiếng Việt |
+
+---
+
+## Default workflow
+
+Use this loop for substantial work:
+
+```text
+Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
+```
+
+- **Intent** — capture what the human wants and why.
+- **Spec** — define behavior, constraints, non-goals, acceptance criteria.
+- **Plan** — break the change into reviewable tasks and verification steps.
+- **Implement** — make focused edits that match the plan.
+- **Test** — run the smallest meaningful checks first, then broader validation.
+- **Review** — inspect the diff for correctness, simplicity, security, and maintainability.
+- **Memory** — record durable decisions, gotchas, and follow-ups.
+- **Merge** — ship only after verification status is clear.
+
+---
+
+## What's new in v1.4.3
+
+- **Terminal state guard:** `claimTask()` now rejects completed/cancelled tasks — state machine contract is solid.
+- **Absolute lease cap:** `renewTaskLease()` never exceeds `now + maxTaskLease`, even for migrated or corrupt data.
+- **Library-safe tmux:** `requireTmux()` throws errors instead of calling `process.exit(1)` — safe for test and library use.
+- **MCP actor tracking:** `task.update` forwards `actor: mcp` for correct audit history.
+- **Config validation:** invalid `maxTaskLease` values (zero, negative, non-finite) silently reset to defaults.
+- **README diet:** 618 → ~260 lines. Product identity is now unmistakable.
+- **Docs navigation:** `docs/README.md` is now a full docs hub with categorized template links.
+- **Doc role clarity:** INSTALL / QUICKSTART / FIRST-WORKFLOW have explicit scope boundaries.
+- **12 orphan templates resolved:** all templates now referenced from narrative docs. 0 orphans.
+- **Vietnamese strategy doc updated:** current status reflects v1.4.2/v1.4.3 hardening.
+
+---
 
 ## Core vs Optional Runtime
 
@@ -31,19 +72,103 @@ The **core** is markdown-first and works with **zero runtime**: install the Clau
 
 The **runtime** is fully **opt-in**. Enable it only when you want local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, or a tmux team runner.
 
-See [INSTALL.md](INSTALL.md) for the full install guide, [docs/TUTORIAL.md](docs/TUTORIAL.md) for a 15-minute zero-to-workflow tutorial, and [docs/UPSTREAM_ADOPTION_POLICY.md](docs/UPSTREAM_ADOPTION_POLICY.md) for the upstream-adoption policy.
+See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-optional-runtime.md) for the detailed boundary.
 
-## Why this exists
+---
 
-Modern coding agents are powerful, but they are easiest to misuse when the task is vague, the context is stale, or success is declared before verification. Vibe Coding OS makes the desired behavior explicit:
+## What's included
 
-- clarify uncertainty before coding;
-- specify non-trivial work before implementation;
-- plan in small reversible steps;
-- write tests or checks that prove the change;
-- review the result before merge;
-- preserve useful project memory without leaking private data;
-- keep attribution clean when learning from the wider AI coding ecosystem.
+**90 skills**, **68 commands**, **56 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+
+| Layer | What it does |
+|---|---|
+| **Spec-driven workflow** | Constitution → specify → plan → tasks → checkpoints → implementation-readiness gates |
+| **Adaptive flow** | Tiny / small / medium / large / risky workflow tiers |
+| **Real engineering skills** | Grilling, PRD, ADRs, TDD, diagnosis, review, branch finishing |
+| **Prompt discipline** | Karpathy-style think / simplicity / surgical / goal-driven rules |
+| **Team-agent orchestration** | Role templates, handoffs, watchdogs, scaffold generation |
+| **Memory layer** | Session capture, summarization, privacy filtering, progressive retrieval, citations |
+| **Reference intelligence** | Source index, attribution, feature maps, update-impact maps, changelogs |
+| **Optional runtime** | JSON stores, task/memory/checkpoint/team/session CLI, daemon, MCP server, tmux runner, vector search |
+
+---
+
+## Quick start by tool
+
+### Claude Code — install as plugin (recommended)
+
+```text
+/plugin marketplace add https://github.com/roronoazoroshao369/vibe-coding-os
+/plugin install vibe-coding-os
+```
+
+After install, skills auto-activate and commands are available as `/vibe-*`.
+
+<details>
+<summary>Shell installer fallback</summary>
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/roronoazoroshao369/vibe-coding-os/main/install.sh | bash
+```
+
+</details>
+
+### Claude Code — manual (no plugin)
+
+```bash
+# Option A — point Claude Code at this repo
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cd ~/vibe-coding-os && claude
+
+# Option B — use it inside YOUR project
+cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+# then reference skills/commands by path in your prompts
+```
+
+### Codex CLI
+
+```bash
+git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md   # Codex reads AGENTS.md
+```
+
+### Gemini CLI
+
+```bash
+cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md
+```
+
+### Cursor / other assistants
+
+Paste the contents of `CLAUDE.md` into your project rules (e.g. `.cursorrules`), then paste individual `commands/*.md` prompts per phase.
+
+Adapter docs:
+
+- `adapters/claude-code/` — Claude Code plugin/manual usage
+- `adapters/codex/` — Codex CLI instruction surface
+- `adapters/cursor/` — Cursor project rules workflow
+
+See [`adapters/compatibility-matrix.md`](adapters/compatibility-matrix.md) for tool-specific setup details.
+
+---
+
+## Validation
+
+This repository is intentionally dependency-light. Run validation after any structural edit:
+
+```bash
+npm run validate        # core structural checks (4 gates)
+npm run validate:all    # full validation (20 gates)
+```
+
+**Coverage honesty labels:**
+
+- **COVERED-tooling** — enforced by a script that exits non-zero on violation
+- **COVERED-advice** — guidance in a SKILL.md, command, or template; value depends on actually applying it
+
+See [`docs/SECURITY-MODEL.md`](docs/SECURITY-MODEL.md) for the trust model and [`docs/support-matrix.md`](docs/support-matrix.md) for compatibility.
+
+---
 
 ## Philosophy
 
@@ -54,565 +179,93 @@ Modern coding agents are powerful, but they are easiest to misuse when the task 
 5. **Memory should be useful, current, and safe.** Store durable decisions and context, not secrets or irrelevant transcripts.
 6. **Attribution is a first-class artifact.** Ideas may be inspired by public work, but imported content must be tracked before it is used.
 
-## Default workflow
+---
 
-Use this loop for substantial work:
+## Optional runtime
 
-```text
-Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
-```
-
-- **Intent:** capture what the human wants and why.
-- **Spec:** define desired behavior, constraints, non-goals, and acceptance criteria.
-- **Plan:** break the change into reviewable tasks and verification steps.
-- **Implement:** make focused edits that match the plan.
-- **Test:** run the smallest meaningful checks first, then broader validation.
-- **Review:** inspect the diff for correctness, simplicity, security, and maintainability.
-- **Memory:** record durable decisions, gotchas, and follow-ups.
-- **Merge:** ship only after verification status is clear.
-
-## What is included now
-
-Current inventory: **90 skills**, **68 commands**, **56 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
-
-| Layer | What it contains | Pain it reduces |
-| --- | --- | --- |
-| Spec-driven workflow | Constitution, specify, plan, tasks, checkpoints, implementation-readiness gates | AI codes before understanding requirements |
-| Adaptive flow | Tiny/small/medium/large/risky workflow tiers | Process is either too heavy for small tasks or too light for risky work |
-| Real engineering skills | Grilling, PRD, ADRs, TDD, diagnosis, review, branch finishing | AI acts like a code generator instead of a disciplined engineer |
-| Prompt discipline | Karpathy-style think/simplicity/surgical/goal-driven rules plus book-inspired coding principles | Overengineering, vague naming, fragile design, unreviewable code |
-| Team-agent orchestration | Team architecture templates, role routing, handoffs, watchdogs, scaffold generation | Complex work cannot be split safely across agents |
-| Memory layer | Session capture, summarization, privacy filtering, progressive retrieval, citations | Context is lost between sessions or unsafe to reuse |
-| Reference intelligence | Source index, attribution policy, feature maps, update-impact maps, changelogs | Upstream ideas are copied blindly or become unmaintainable |
-| Optional runtime | JSON stores, task/memory/checkpoint/team/session CLI, daemon, MCP server, vector search, tmux team runner, installer | Markdown-only workflows need inspectable state or local automation |
-
-## Comprehensive usage guide
-
-This section is the practical map for using the whole repository. If you are new: choose the right adapter → choose a workflow tier → invoke the matching command → attach relevant skills → use templates for artifacts → run validation.
-
-### 1. Choose an entry point by environment
-
-| Tool | Main file/entry point | Fast path |
-| --- | --- | --- |
-| Claude Code plugin | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Install the plugin, then use `/vibe-*` commands and skill auto-triggers. |
-| Claude Code manual | `CLAUDE.md` | Work inside this repo or copy/append `CLAUDE.md` into your project. |
-| Codex CLI | `AGENTS.md`, `adapters/codex/README.md` | Copy `AGENTS.md`, paste prompts from `commands/`, attach skills by path. |
-| Gemini CLI | `AGENTS.md` or `GEMINI.md` | Copy the instruction surface, then reference `commands/` and `skills/`. |
-| Cursor / other assistants | `adapters/cursor/README.md`, `adapters/compatibility-matrix.md` | Paste rules into project rules, use commands/skills/templates as plain markdown. |
-| Optional local runtime | `scripts/runtime-install.mjs`, `.mcp.json` | Bootstrap `.omc/runtime/`, then use local CLI or MCP server tools. |
-
-### 2. Choose a workflow tier before work
-
-| Tier | Use when | Minimum artifact |
-| --- | --- | --- |
-| Tiny | typo, small docs edit, obvious rename | short intent + quick check |
-| Small | low-risk focused change | mini-spec or checklist + validation |
-| Medium | feature/bugfix with behavior | spec → plan → tasks → implement → verify |
-| Large | multiple modules, agents, migration | PRD/spec, ADR if needed, detailed plan, handoff |
-| Risky | auth, security, data loss, license, production stability | strict spec, TDD/checkpoint, independent reviewer, rollback |
-
-Useful commands: `vibe-flow`, `vibe-triage`, `vibe-checkpoints`, `vibe-verify`.
-
-### 3. Use commands by phase
-
-| Need | Command to invoke | Expected output |
-| --- | --- | --- |
-| Start a session | `vibe-init` | instructions, registries, repo state |
-| Clarify intent | `vibe-brainstorm`, `vibe-grill-me`, `vibe-grill-with-docs` | questions, assumptions, boundaries |
-| Write a spec | `vibe-spec`, `vibe-specify`, `vibe-brownfield-spec` | goals, non-goals, scenarios, acceptance criteria |
-| Audit a spec | `vibe-spec-audit`, `vibe-checklist` | ambiguity, missing criteria, scope creep findings |
-| Plan work | `vibe-plan`, `vibe-plan-from-spec`, `vibe-write-plan` | implementation steps, files, risks, checks |
-| Break into tasks | `vibe-tasks`, `vibe-to-issues` | dependency-aware tasks, parallel markers, test-first order |
-| Implement | `vibe-implement`, `vibe-implement-from-tasks`, `vibe-brief-execute` | focused patch matching the plan |
-| Debug | `vibe-debug`, `vibe-diagnose`, `vibe-tdd` | repro, hypotheses, root cause, regression check |
-| Review | `vibe-request-review`, `vibe-review`, `vibe-receive-review` | findings, fix/defer decisions, re-validation |
-| Memory/handoff | `vibe-memory`, `vibe-session-capture`, `vibe-session-summary`, `vibe-handoff` | safe memory, continuation summary |
-| Merge/finish | `vibe-merge`, `vibe-finish-branch`, `vibe-git-guardrails` | readiness report, checks, attribution status |
-| Reference | `vibe-reference-audit`, `vibe-reference-update`, `vibe-reference-index`, `vibe-upstream-sync` | upstream audit, changelog, mappings |
-| Team | `vibe-team`, `vibe-team-generate`, `vibe-subagents` | role plan, handoff, team scaffold |
-| Runtime/memory | `vibe-memory-*`, runtime npm scripts | local state/search/checkpoint evidence |
-
-### 4. Use skills by problem
-
-| Problem | Suggested skills |
-| --- | --- |
-| User intent is unclear | `clarify-before-code`, `what-before-how`, `grill-user-before-building` |
-| Need spec-first discipline | `spec-first-development`, `acceptance-criteria`, `requirements-quality-checklist` |
-| Existing system / legacy | `brownfield-spec-enhancement`, `working-with-legacy-code`, `bug-fix-lifecycle` |
-| Hard debugging | `disciplined-diagnosis`, `systematic-debugging`, `test-driven-development` |
-| Avoid overengineering | `anti-overengineering`, `karpathy-engineering-discipline`, `software-design-philosophy` |
-| Architecture | `zoom-out-system-context`, `improve-codebase-architecture`, `architecture-decision-records` |
-| Review/merge | `requesting-code-review`, `review-before-merge`, `finishing-a-development-branch` |
-| Multi-agent work | `subagent-driven-development`, `team-agent-orchestration`, `agent-handoff` |
-| Memory/context | `session-capture`, `session-summarizer`, `progressive-memory-disclosure`, `privacy-filter` |
-| Reference/upstream | `upstream-intelligence-loop`, `git-guardrails`, `project-constitution` |
-| Write a new skill | `write-reusable-skill`, `writing-skills`, `skillify-from-session` |
-
-### 5. Use templates to create artifacts
-
-| Artifact | Template |
-| --- | --- |
-| Spec | `templates/spec-template.md`, `templates/brownfield-spec-template.md` |
-| Plan | `templates/plan-template.md`, `templates/implementation-brief-template.md` |
-| Tasks | `templates/tasks-template.md`, `templates/task-template.md` |
-| PRD | `templates/prd-template.md` |
-| ADR/architecture | `templates/adr-template.md`, `templates/architecture-review-template.md` |
-| Review | `templates/review-template.md`, `templates/spec-audit-template.md` |
-| Debug | `templates/diagnosis-template.md`, `templates/prototype-report-template.md` |
-| Memory | `templates/memory-entry-template.md`, `templates/session-summary-template.md`, `templates/memory-privacy-review-template.md` |
-| Handoff/context | `templates/handoff-template.md`, `templates/context-injection-template.md` |
-| Reference | `templates/upstream-audit-template.md`, `templates/reference-scorecard-template.md` |
-| Team | `templates/team-spec-template.json`, `templates/team-architecture-template.md` |
-| Runtime | `templates/runtime-config-template.json` |
-| ROI/metrics | `templates/roi-metrics-template.md` |
-
-### 6. Use the optional local runtime
-
-The runtime is optional. Use it when you want inspectable state instead of markdown-only workflow artifacts.
+The runtime stores local JSON state under `.omc/runtime/` and never auto-starts.
 
 ```bash
-npm run runtime:install
-npm run runtime:init
-npm run runtime:validate
+npm run runtime:install    # bootstrap
+npm run runtime:init       # initialise
+npm run runtime:validate   # validate collections
 ```
 
 | Need | Script |
-| --- | --- |
+|---|---|
 | Task state | `npm run runtime:task` |
 | Local memory | `npm run runtime:memory` |
-| Checkpoint evidence | `npm run runtime:checkpoint` |
-| Team spec/state | `npm run runtime:team` |
+| Checkpoints | `npm run runtime:checkpoint` |
+| Team orchestration | `npm run runtime:team` |
 | Session capture | `npm run runtime:session` |
-| Opt-in daemon | `npm run runtime:daemon` |
 | MCP stdio server | `npm run runtime:mcp` |
 | Tmux team runner | `npm run runtime:team-run` |
-| Full bootstrap | `npm run runtime:install` |
 
-The MCP server is declared in `.mcp.json` and exposes task, memory, and checkpoint tools for MCP-capable agents.
+See [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) for full runtime documentation.
 
-### 7. Use the Reference Intelligence Layer
-
-Before adapting upstream ideas:
-
-1. Read `references/index.json`.
-2. Read the source document in `references/sources/`.
-3. Inspect feature docs in `references/features/`.
-4. Inspect mappings in `references/mappings/`.
-5. For a new upstream audit, clone/audit under `references/upstreams/`, then update the changelog.
-6. Run `npm run validate:references`.
-
-Useful scripts:
-
-```bash
-npm run references:index
-npm run references:clone
-npm run references:report
-npm run validate:references
-```
-
-Rule: study patterns, rewrite in local language, and do not vendor upstream code/docs/prompts without license and attribution review.
-
-### 8. Use team-agent orchestration
-
-The team layer splits complex work into clear roles:
-
-| Role | Responsibility |
-| --- | --- |
-| Architect | design the minimal technical approach |
-| Implementer | edit code according to the plan |
-| Tester | find and run the highest-value checks |
-| Reviewer | review correctness, simplicity, and risk |
-| Memory architect | preserve safe context and memory |
-
-Recommended flow: `vibe-team` to design the team → `vibe-team-generate` to scaffold a spec → `vibe-subagents` to delegate bounded work → `vibe-request-review` / `vibe-verify` before claiming done.
-
-### 9. Quick recipes
-
-| Situation | Fast sequence |
-| --- | --- |
-| New feature | `vibe-flow` → `vibe-specify` → `vibe-plan-from-spec` → `vibe-tasks` → `vibe-implement-from-tasks` → `vibe-verify` |
-| Hard bug | `vibe-diagnose` → `vibe-tdd` → `vibe-implement` → `vibe-review` → `vibe-verify` |
-| Refactor | `vibe-zoom-out` → `vibe-improve-architecture` → ADR if needed → `vibe-plan` → `vibe-review` |
-| Legacy enhancement | `vibe-brownfield-spec` → characterization tests → `vibe-plan-from-spec` → `vibe-implement` |
-| Multi-agent task | `vibe-team` → `vibe-subagents` → handoff → independent review → `vibe-verify` |
-| Long session | `vibe-session-capture` → `vibe-memory-privacy-check` → `vibe-session-summary` → `vibe-handoff` |
-| Learn from upstream | `vibe-reference-audit` → `vibe-reference-update` → `vibe-reference-index` → `npm run validate:references` |
-| Prepare to merge | `vibe-review` → `vibe-merge` → `vibe-finish-branch` |
-
-### 10. Required validation when editing this repo
-
-```bash
-npm run validate
-```
-
-If you edit the reference layer, also run:
-
-```bash
-npm run validate:references
-```
-
-If you edit runtime/state schemas, run:
-
-```bash
-npm run runtime:validate
-```
-
-## Pain points solved
-
-| Vibe-coding pain | Local answer |
-| --- | --- |
-| Requirements are vague | `clarify-before-code`, `what-before-how`, `vibe-specify`, acceptance criteria templates |
-| AI jumps into code too soon | spec → plan → tasks gates, implementation-readiness checkpoint |
-| AI overbuilds or rewrites too much | `anti-overengineering`, Karpathy engineering discipline, surgical-change checks |
-| AI changes are hard to verify | goal-driven execution, TDD, verifier/reviewer split, `npm run validate` |
-| Multi-step work loses progress | task-state tracking, runtime task store, handoff templates |
-| Multi-agent work causes conflicts | team-agent orchestration, file ownership, handoff contracts, tmux runner |
-| Context disappears after compaction/session end | memory/session capture, summarizer, observation citations, optional vector search |
-| Legacy code changes are risky | characterization tests, seams, bug-fix lifecycle, brownfield spec enhancement |
-| Production code is happy-path only | Release It! stability patterns, defensive programming, review checklists |
-| Borrowed upstream ideas create license/attribution risk | reference index, source docs, ATTRIBUTIONS/NOTICE, validation scripts |
-
-### How to read coverage claims
-
-Most rows above are reduced by **advice**, not automation. Two honesty labels:
-
-- **COVERED-tooling** — enforced by a script that exits non-zero on violation. Today that is the validate scripts: `validate-repo`, `validate-references`, `validate-traceability`, `validate-injection` (run via `npm run validate`), plus the opt-in git-state gates `validate-secrets` (`npm run validate:secrets`) and `validate-provenance` (`npm run validate:provenance`). These are the only checks that auto-run and can fail a change. The two opt-in gates read git state rather than repo structure, so they stay out of the default `npm run validate` chain and are invoked explicitly (e.g. in a pre-commit hook or CI).
-- **COVERED-advice** — guidance in a `SKILL.md`, command, or template that a human or agent must choose to follow. Nothing enforces it automatically; the value depends on actually applying it.
-
-Treat everything not backed by a validate script as advice, not a guarantee. Handling of untrusted external content at runtime (issues, PRs, web/tool/MCP output an agent reads while working) is still advice: see [`docs/workflows/prompt-injection-handling.md`](docs/workflows/prompt-injection-handling.md) — the framework cannot intercept a live injection, it only tells humans and agents how to behave. The one enforced slice is `validate-injection`: a best-effort static scan of the artifacts this repo *ships* (skill bodies, `.mcp.json`, commands, templates, docs) for injection and skill-poisoning signatures. It catches known shapes, not novel payloads, so the human checklist remains the backstop.
-
-
-## Quick start by tool
-
-Vibe Coding OS is markdown-first and dependency-light. Pick the path for your agent. In every case the goal is the same: make the agent read `CLAUDE.md` (or `AGENTS.md`), then pull in the specific `commands/*.md` and `skills/*/*/SKILL.md` files a task needs.
-
-### Claude Code — install as a plugin (recommended)
-
-Vibe Coding OS ships a Claude Code plugin manifest (`.claude-plugin/plugin.json`) and a marketplace manifest (`.claude-plugin/marketplace.json`), so it installs like other Claude Code plugins. Enter these slash commands **one at a time** in Claude Code:
-
-```text
-/plugin marketplace add https://github.com/roronoazoroshao369/vibe-coding-os
-```
-
-Then:
-
-```text
-/plugin install vibe-coding-os
-```
-
-The marketplace uses `source: "./"`, so the plugin installs from the already-cloned marketplace repo instead of cloning GitHub again; no SSH key is required.
-
-After install, skills auto-activate by trigger and commands are available as `/vibe-*`. Use `/plugin list`, `/plugin disable vibe-coding-os`, `/plugin enable vibe-coding-os`, and `/plugin update vibe-coding-os` to manage it.
-
-<details>
-<summary>Shell installer fallback</summary>
-
-If slash-command install is unavailable in your Claude Code build, use the idempotent shell installer:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/roronoazoroshao369/vibe-coding-os/main/install.sh | bash
-```
-
-Then restart Claude Code.
-
-</details>
-
-### Claude Code — manual (no plugin)
-
-```bash
-# Option A — point Claude Code at this repo and work inside it
-git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
-cd ~/vibe-coding-os
-claude          # CLAUDE.md auto-loads; skills/, commands/, templates/ are ready
-
-# Option B — use it inside YOUR project
-cd your-project
-# copy the framework's CLAUDE.md (or append it to your existing one)
-cp ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
-# then reference skills/commands by path, e.g. ask Claude Code:
-#   "Follow skills/core/spec-first-development/SKILL.md for this feature"
-```
-
-In a session, trigger a phase by naming a command or skill: `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, or "use `skills/prompts/pragmatic-programmer/SKILL.md`". Run `npm run validate` after structural edits. See [`adapters/claude-code/README.md`](adapters/claude-code/README.md) for the full workflow.
-
-### Codex CLI
-
-```bash
-git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
-cd your-project
-cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md   # Codex reads AGENTS.md as its instruction surface
-```
-
-Paste a command prompt from `commands/` (for example `vibe-spec.md`, `vibe-review.md`) at the start of a task, and attach the relevant `skills/*/*/SKILL.md`. See [`adapters/codex/README.md`](adapters/codex/README.md).
-
-### Gemini CLI
-
-```bash
-git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
-cd your-project
-cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md   # or paste CLAUDE.md content into your Gemini context file
-```
-
-Gemini CLI loads instruction context at session start; point it at the copied file and reference `commands/` and `skills/` by path as needed.
-
-### Cursor / other assistants
-
-```bash
-git clone https://github.com/<owner>/vibe-coding-os ~/vibe-coding-os
-```
-
-Paste the contents of `CLAUDE.md` into your project rules (e.g. `.cursorrules` or the chat system prompt), then paste individual `commands/*.md` prompts per phase and attach `skills/*/*/SKILL.md` when a task needs that procedure. See [`adapters/cursor/README.md`](adapters/cursor/README.md) and the [adapter compatibility matrix](adapters/compatibility-matrix.md).
-
-### Optional runtime (any tool)
-
-The framework works with zero runtime. If you want local JSON state for tasks, memory, checkpoints, teams, and sessions:
-
-```bash
-node scripts/runtime-install.mjs            # idempotent setup under .omc/runtime/
-node scripts/runtime-install.mjs --dry-run  # preview, no writes
-node scripts/runtime-install.mjs --mcp      # also register the MCP server in .mcp.json
-```
-
-It is fully opt-in, never auto-starts, and degrades gracefully if optional dependencies are absent. See the [Runtime](#runtime) section below.
-
-## Superpowers-style methodology adaptation
-
-Vibe Coding OS tracks [`obra/superpowers`](https://github.com/obra/superpowers) as an MIT-licensed inspiration source and adapts its composable-skill methodology into this repository's own local skill system. The local integration focuses on brainstorming before coding, spec/design approval for non-trivial work, isolated branches or worktrees, detailed plans, TDD, subagent-friendly task boundaries, review exchange, verification before completion, branch-finishing rituals, systematic debugging, skill-writing guidance, and multi-harness portability.
-
-The adapted workflow is documented in [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md). The reference audit and mapping live in `references/sources/obra-superpowers.md`, `references/changelogs/obra-superpowers.md`, and `references/mappings/`. No upstream code, skill files, or large documentation blocks are vendored.
-
-
-## Persistent Context Layer
-
-Vibe Coding OS includes a persistent context layer inspired by `thedotmack/claude-mem`, adapted as local skills, commands, workflows, templates, and adapter contracts rather than as a runtime dependency. The layer helps agents capture session observations, compress noisy work into concise summaries, search memory progressively, inject only relevant context, cite observation IDs or source artifacts, and exclude secrets before anything is stored or reused.
-
-Applied locally:
-
-- session capture lifecycle via `skills/memory/session-capture/SKILL.md` and `commands/vibe-session-capture.md`;
-- compression and handoff via `skills/memory/session-summarizer/SKILL.md`, `commands/vibe-session-summary.md`, and `docs/workflows/session-summary-and-handoff.md`;
-- context injection and progressive retrieval via `skills/memory/progressive-memory-disclosure/SKILL.md`, and `docs/workflows/progressive-memory-retrieval.md`;
-- observation citations and privacy exclusion via `skills/memory/observation-citations/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, and the related templates;
-- optional hook/adapter planning via `adapters/hooks/memory-hooks-contract.md` and `adapters/memory/claude-mem-adapter-plan.md`.
-
-Not applied locally: no copied hook scripts, Bun worker service, SQLite/Chroma stack, local web viewer clone, installer clone, background daemon, OpenClaw gateway, beta/endless mode, or hard dependency on `claude-mem`.
-
-**Ghi chú tiếng Việt:** Lớp Persistent Context giúp agent tiếp tục công việc giữa các phiên bằng bộ nhớ ngắn gọn, có trích dẫn và đã lọc bí mật. Không lưu token, mật khẩu, khóa riêng tư, dữ liệu cá nhân không cần thiết, hoặc transcript thô nhạy cảm.
-
-## Spec-Driven Development Layer
-
-Vibe Coding OS includes a spec-driven development layer inspired by [`github/spec-kit`](https://github.com/github/spec-kit) (MIT), adapted into local skills, commands, templates, and docs. It makes specifications the central, testable artifact that drives planning, tasks, and implementation. This layer is inspiration/adaptation only: no upstream templates, prompts, or CLI are vendored, and the Specify CLI is not required.
-
-The lifecycle is:
-
-```text
-Constitution → Specify → Plan → Tasks → Implement
-```
-
-with a checkpoint between phases and an implementation-readiness gate before any code.
-
-Applied locally:
-
-- a project constitution of short, testable principles (`CONSTITUTION.md`, `skills/core/project-constitution/SKILL.md`, `commands/vibe-constitution.md`);
-- what-before-how specs with observable acceptance criteria (`skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`, `commands/vibe-specify.md`);
-- plan-from-spec with separated technical context (`skills/core/plan-from-spec/SKILL.md`, `commands/vibe-plan-from-spec.md`);
-- dependency-aware, parallelizable, test-first task breakdown (`skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`, `commands/vibe-tasks.md`);
-- checkpoint validation and an implementation-readiness gate (`skills/core/checkpoint-validation/SKILL.md`, `commands/vibe-checkpoints.md`, `commands/vibe-implement-from-tasks.md`);
-- brownfield enhancement and creative parallel exploration (`skills/core/brownfield-spec-enhancement/SKILL.md`, `skills/core/creative-parallel-exploration/SKILL.md`).
-
-Not applied: the Specify CLI as a dependency, upstream command names as mandatory, copied templates, an agent installer, a full extension/preset runtime, or language-specific project generators.
-
-Canonical docs: `docs/specs/README.md`, `docs/workflows/spec-driven-development.md`, `references/sources/github-spec-kit.md`, and `references/mappings/`.
-
-**Ghi chú tiếng Việt:** Lớp spec-driven biến đặc tả thành tài liệu trung tâm: constitution → specify → plan → tasks → implement, làm rõ "cái gì" trước "làm thế nào", có checkpoint và cổng sẵn sàng triển khai. Học ý tưởng từ `github/spec-kit`, không copy template/CLI và không bắt buộc Specify CLI.
-
-## Validation and manual usage
-
-This repository is intentionally dependency-light. To validate the framework structure:
-
-```bash
-npm run validate
-```
-
-Manual usage options:
-
-1. Copy the relevant `CLAUDE.md` or `AGENTS.md` instructions into your agent environment.
-2. Invoke a command prompt from `commands/` such as `vibe-spec.md` or `vibe-review.md`.
-3. Attach one or more skills from `skills/` when you want a specific behavior.
-4. Use templates from `templates/` to create specs, plans, tasks, reviews, and memory notes.
-5. Walk through complete examples in `examples/`, starting with the [feature workflow](examples/feature-workflow/README.md), [bugfix workflow](examples/bugfix-workflow/README.md), or [React/Next.js booking workflow](examples/react-nextjs-booking-workflow/README.md).
-
-## Vietnamese documentation
-
-Vietnamese onboarding and reference docs are available under [`docs/vi/`](docs/vi/index.md):
-
-- [`docs/vi/index.md`](docs/vi/index.md) — overview, quick start, feature index, and glossary.
-- [`docs/vi/skills-and-commands.md`](docs/vi/skills-and-commands.md) — Vietnamese reference for commands, skills, and skill combos.
-- [`docs/vi/folders-and-workflows.md`](docs/vi/folders-and-workflows.md) — repository map and common workflows.
-- [`docs/vi/strategy-and-roadmap.md`](docs/vi/strategy-and-roadmap.md) — status review, strategic goal, metrics, and future roadmap.
-
-## New Documentation
-
-Additional guides and references:
-
-- [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — 10-minute quickstart for Claude Code, Codex CLI, and Cursor.
-- [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute zero-to-workflow tutorial (English).
-- [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — hướng dẫn 15 phút từ zero đến workflow (Tiếng Việt).
-- [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — getting started with the optional runtime layer.
-- [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — live project health dashboard, inventory counts, and validation summary.
-- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress tracker and release status.
-- [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — release tagging, changelog workflow, and packaging notes.
-- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes for the v1.0.0 release.
-- [`docs/releases/v1.1.0.md`](docs/releases/v1.1.0.md) — release notes for the v1.1.0 release.
-- [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — release plan for v1.0.
-- [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — quick reference table mapping problems to skills.
-- [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — behavioral evaluation scenarios for the framework.
-- [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Core Solo, Memory Safe, Multi-Agent).
-- [`CHANGELOG.md`](CHANGELOG.md) — version history following Keep a Changelog.
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to contribute skills, commands, templates, and references.
-
-## Skill system
-
-A skill is a portable operating procedure stored as `SKILL.md`. Every skill uses the same sections:
-
-- Title
-- Purpose
-- When to use
-- Inputs
-- Workflow
-- Outputs
-- Failure modes
-- Verification checklist
-
-The registry at `registry/skills.json` lists the local skills, paths, categories, and descriptions. Skills are designed to be composable. For example, a difficult feature might combine:
-
-- `clarify-before-code`
-- `spec-first-development`
-- `plan-driven-execution`
-- `test-driven-development`
-- `verification-before-done`
-- `session-summarizer`
-
-## Command system
-
-Commands in `commands/` are short reusable prompts. They are meant to be pasted into Claude Code, Codex, Cursor, or another assistant to trigger a disciplined workflow phase.
-
-The initial command set covers:
-
-- initialization
-- specification
-- planning
-- implementation
-- review
-- memory updates
-- merge readiness
-- repository diagnostics
-
-The registry at `registry/prompts.json` tracks these command prompts.
-
-## Adapters
-
-Adapters document how to use the framework in specific environments. Start with the [adapter compatibility matrix](adapters/compatibility-matrix.md) when choosing setup details across tools:
-
-- `adapters/claude-code/`
-- `adapters/codex/`
-- `adapters/cursor/`
-
-They started lightweight and will become more concrete as usage patterns stabilize.
+---
 
 ## Reference Intelligence Layer
 
-Vibe Coding OS tracks upstream inspirations through a markdown-first Reference Intelligence Layer in `references/`. The layer combines source docs, feature maps, local file mappings, audit changelogs, and `references/index.json` so future agents can understand what to study without copying or vendoring external content.
+Before adapting upstream ideas:
 
-Use it before adapting upstream ideas: read the source entry, inspect the linked feature and mapping docs, update the local changelog when auditing upstream, and keep attribution decisions explicit. Reference validation is available with `npm run validate:references`, and the main validation script includes it.
+1. Read `references/index.json`
+2. Read the source document in `references/sources/`
+3. Inspect feature docs in `references/features/`
+4. Inspect mappings in `references/mappings/`
+5. Run `npm run validate:references`
 
-For hands-on audits, `npm run references:clone` creates or updates shallow ignored working copies under `references/upstreams/<owner>-<repo>`. With no flags, the command processes every source; `npm run references:clone -- --all` makes that explicit. To refresh one source, pass either its source id or owner/repo name, for example `npm run references:clone -- --source obra-superpowers` or `npm run references:clone -- --source github/spec-kit`. The clone command retries transient network failures, continues processing remaining sources after a failure, prints a final `cloned` / `updated` / `failed` / `skipped` summary with local paths, and exits non-zero if any source failed. Treat those clones as disposable research material only; durable local knowledge belongs in `references/changelogs/`, source docs, feature mappings, skills, commands, templates, and attribution files. The detailed loop lives in `references/upstream-audit-workflow.md`.
+Rule: study patterns, rewrite in local language, and do not vendor upstream code/docs/prompts without license and attribution. See [`docs/UPSTREAM_ADOPTION_POLICY.md`](docs/UPSTREAM_ADOPTION_POLICY.md).
 
-## Roadmap
+---
 
-### Complete in the current kernel
+## Adapted methodology sources
 
-- Normalized repository structure with core, memory, meta, prompt, and agent skills.
-- 68 reusable command prompts and 56 templates.
-- Dynamic structural validation plus reference-layer validation.
-- Source, attribution, feature, and impact registries without vendoring upstream code.
-- Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.
-- Optional JSON-first runtime with task, memory, checkpoint, team, session, daemon, MCP, vector, tmux-runner, and installer entry points.
+Vibe Coding OS studies and adapts ideas from the following projects without vendoring their code:
 
-### Near-term
+- [`obra/superpowers`](https://github.com/obra/superpowers) — composable-skill methodology, brainstorming before coding, TDD, review exchange
+- [`github/spec-kit`](https://github.com/github/spec-kit) — spec-driven development, constitution → plan → tasks lifecycle
+- [`mattpocock/skills`](https://github.com/mattpocock/skills) — real engineering practices: grilling, ADRs, diagnosis, handoff
+- [`thedotmack/claude-mem`](https://github.com/thedotmack/claude-mem) — persistent context: session capture, privacy filtering, observation citations
 
-- Expand complete example workflows across more project types.
-- Add a repeatable reference intake scorecard for deciding which upstream ideas are worth adapting.
-- Add stronger schema validation for registry semantics beyond path existence.
-- Add redaction tests and memory-quality evaluation fixtures.
-- Add dashboard or lightweight viewer for `.omc/runtime/` state.
+All adaptations are documented in `references/sources/` and `references/mappings/`. No upstream templates, prompts, or CLI tools are required.
 
-### Later
+---
 
-- Add curated skill packs for common stacks.
-- Add compatibility tests for major agent tools.
-- Add richer IDE/editor snippets for quick command and skill insertion.
-- Add governance rules for external contributions and source intake.
+## Documentation map
 
-## Attribution and license policy
+**Core docs:**
+- [`docs/FIRST-WORKFLOW.md`](docs/FIRST-WORKFLOW.md) — first workflow walkthrough
+- [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — tool-specific quickstart
+- [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
+- [`INSTALL.md`](INSTALL.md) — installation options
+- [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — project health dashboard
+- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress
+- [`CHANGELOG.md`](CHANGELOG.md) — version history
 
-Vibe Coding OS is original content. It is inspired by patterns in the wider AI coding workflow community, including repositories listed in `registry/sources.json`, but it does not vendor their code or documentation.
+**Vietnamese docs:**
+- [`docs/vi/index.md`](docs/vi/index.md) — tổng quan, quick start, glossary
+- [`docs/vi/FIRST-WORKFLOW.md`](docs/vi/FIRST-WORKFLOW.md) — hướng dẫn workflow đầu tiên
+- [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — tutorial tiếng Việt
 
-Before importing external material:
+**Runtime & advanced:**
+- [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — optional runtime guide
+- [`docs/SECURITY-MODEL.md`](docs/SECURITY-MODEL.md) — trust and security model
+- [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — release process
 
-1. verify the source license;
-2. record the source in `registry/sources.json`;
-3. document the imported idea or artifact in `ATTRIBUTIONS.md`;
-4. preserve notices required by the upstream license;
-5. prefer adaptation and normalization over copying.
+---
 
-See `NOTICE.md` and `ATTRIBUTIONS.md` for the current policy and placeholders.
+## Contributing
 
-## Real Engineering Skills Layer
+- [How to contribute skills, commands, and templates](docs/CONTRIBUTING-SKILLS.md)
+- [Skill packs](docs/SKILL-PACKS.md) — curated bundles
+- [Adapters](adapters/) — tool-specific integration guides
+- [Release notes](docs/releases/) — per-version release documentation
 
-Vibe Coding OS adapts practical engineering-agent ideas from [`mattpocock/skills`](https://github.com/mattpocock/skills) into its own local skill system. This layer is inspiration/adaptation only: no upstream code, prompts, or large documentation blocks are vendored. It strengthens the default workflow with:
+---
 
-- grilling before building so the assistant does not invent requirements;
-- shared domain language in `CONTEXT.md`;
-- ADRs for important technical decisions;
-- TDD and disciplined diagnosis loops;
-- PRD creation from conversation context and issue slicing for independently grabbable work;
-- zoom-out and architecture-improvement workflows;
-- handoff documents for agent/session continuity;
-- git guardrails and quality gates before finishing work.
+## Attribution and license
 
-Canonical local docs: `references/sources/mattpocock-skills.md`, `docs/workflows/real-engineering-skills-workflow.md`, `references/mappings/source-to-local-skills.md`, and `references/mappings/update-impact-map.md`.
+Vibe Coding OS is original content inspired by patterns in the wider AI coding workflow community. It does not vendor upstream code or documentation. Before importing external material: verify the source license, record it in `registry/sources.json`, document in `ATTRIBUTIONS.md`, and prefer adaptation over copying.
 
-### Ghi chú tiếng Việt
-
-Layer này giúp maintainer Việt Nam dùng AI như kỹ sư thật: hỏi rõ trước khi làm, giữ glossary/context, ghi ADR, dùng TDD/debug có bằng chứng, chia issue nhỏ, handoff rõ, và chạy validation. Khi upstream `mattpocock/skills` thay đổi, hãy audit reference doc/changelog/mapping trước rồi mới sửa skill/command/template local. Không chép nội dung upstream.
-
-## Runtime
-
-The optional runtime layer stores local JSON state for tasks, memory, checkpoints, teams, sessions, events, vector memory, daemon state, MCP integration, and tmux team execution under `.omc/runtime/`. It is markdown-first, entirely opt-in, and never auto-starts.
-
-Available npm scripts:
-
-```text
-runtime:init       initialise .omc/runtime/
-runtime:validate   validate runtime collections
-runtime:task       manage local task state
-runtime:memory     ingest/search local memory
-runtime:checkpoint record readiness/checkpoint evidence
-runtime:team       import/scaffold team specs
-runtime:session    capture session records
-runtime:daemon     run the opt-in watch daemon
-runtime:mcp        start the stdio MCP server
-runtime:team-run   launch the opt-in tmux team runner
-runtime:install    bootstrap runtime config and optional MCP registration
-```
-
-Bootstrap a clone with the installer:
-
-```bash
-node scripts/runtime-install.mjs            # idempotent setup
-node scripts/runtime-install.mjs --dry-run  # preview steps, no writes
-node scripts/runtime-install.mjs --force    # overwrite config & collections
-node scripts/runtime-install.mjs --mcp      # also register MCP server in .mcp.json (merges, never clobbers)
-```
-
-The installer creates `.omc/runtime/`, writes config from `templates/runtime-config-template.json`, initialises empty collections, and prints next steps. No global or system installs are performed. Runtime components degrade gracefully when optional dependencies are absent. See [`docs/workflows/runtime-install.md`](docs/workflows/runtime-install.md), [`docs/workflows/runtime-daemon.md`](docs/workflows/runtime-daemon.md), [`docs/workflows/runtime-mcp-server.md`](docs/workflows/runtime-mcp-server.md), [`docs/workflows/runtime-vector-memory.md`](docs/workflows/runtime-vector-memory.md), [`docs/workflows/runtime-team-runner.md`](docs/workflows/runtime-team-runner.md), and [`docs/workflows/optional-runtime-architecture.md`](docs/workflows/optional-runtime-architecture.md).
+See [`NOTICE.md`](NOTICE.md) and [`ATTRIBUTIONS.md`](ATTRIBUTIONS.md) for details. Licensed under MIT.
