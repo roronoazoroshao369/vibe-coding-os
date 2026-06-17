@@ -1,7 +1,7 @@
 # Roadmap Status — Vibe Coding OS
 
 Auto-generated status check for the project roadmap.
-Last updated: 2026-06-16
+Last updated: 2026-06-17
 
 ## v0.1.1 — Validation Recovery & Vietnamese Onboarding
 **Status:** ✅ COMPLETE
@@ -62,7 +62,7 @@ Last updated: 2026-06-16
 | Versioned compatibility matrix | ✅ adapters/compatibility-matrix.md |
 
 ## v1.0 — Trusted Workflow Framework
-**Status:** ✅ DELIVERABLES COMPLETE — Final release pending signoff
+**Status:** ✅ COMPLETE — Released v1.0.0
 
 | Deliverable | Status |
 |---|---|
@@ -82,7 +82,7 @@ Last updated: 2026-06-16
 | Dashboard sync validation | ✅ scripts/check-dashboard-sync.mjs in validate:all |
 | v1.0 readiness report | ✅ docs/reports/v1.0-readiness-report.md |
 | v1.0 final audit | ✅ docs/reports/v1.0-final-audit.md |
-| README v1.0 positioning | ✅ README + README.vi updated for v0.4.0 → v1.0 RC path |
+| README v1.0 positioning | ✅ README + README.vi updated for v1.0.0 final release |
 
 Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../skills/core/bug-fix-lifecycle/SKILL.md) as part of the v1.0 trusted workflow framework.
 

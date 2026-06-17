@@ -41,7 +41,7 @@
 |---|---|
 | Secret scan | ✅ 0 secrets found |
 | Memory redaction | ✅ 30/30 tests |
-| Adapter smoke tests | ✅ 4/4 adapters |
+| Adapter smoke tests | ✅ 6/6 adapters (6 groups) |
 | Repo validation | ✅ Passed |
 | Injection scan | ✅ Passed |
 
@@ -72,7 +72,7 @@
 | Skills (90) | All have SKILL.md with required sections |
 | Commands (68) | All discovered dynamically from `commands/` |
 | Templates (41) | All discovered dynamically from `templates/` |
-| Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟡 |
+| Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |

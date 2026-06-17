@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v0.4.0):** validate:all 13/13 gates, 90 skills, 68 commands, 41 templates, 0 broken refs, 0 orphans. **Next: v1.0 RC.** Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v0.4.0 release notes](docs/releases/v0.4.0.md) · [v1.0 release plan](docs/v1.0-release-plan.md)
+**Current release (v1.0.0):** validate:all 13/13 gates, 90 skills, 68 commands, 41 templates, 0 broken refs, 0 orphans. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md) · [v1.0 release plan](docs/v1.0-release-plan.md)
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
@@ -449,8 +449,8 @@ Additional guides and references:
 - [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — live project health dashboard, inventory counts, and validation summary.
 - [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress tracker and v1.0 hardening status.
 - [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — release tagging, changelog workflow, and packaging notes.
-- [`docs/releases/v0.4.0.md`](docs/releases/v0.4.0.md) — release notes for the current v0.4.0 release.
-- [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — release plan for the next v1.0 release candidate and final v1.0 path.
+- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes for the current v1.0.0 release.
+- [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — release plan for v1.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — quick reference table mapping problems to skills.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — behavioral evaluation scenarios for the framework.
 - [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Core Solo, Memory Safe, Multi-Agent).

@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v0.4.0):** validate:all 13/13 gates, 90 skills, 68 commands, 41 templates, 0 broken refs, 0 orphans. **Tiếp theo: v1.0 RC.** Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v0.4.0](docs/releases/v0.4.0.md) · [kế hoạch release v1.0](docs/v1.0-release-plan.md)
+**Bản phát hành hiện tại (v1.0.0):** validate:all 13/13 gates, 90 skills, 68 commands, 41 templates, 0 broken refs, 0 orphans. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.0.0](docs/releases/v1.0.0.md) · [kế hoạch release v1.0](docs/v1.0-release-plan.md)
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
@@ -386,8 +386,8 @@ Các hướng dẫn và reference mới:
 - [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — dashboard sức khỏe dự án, inventory, và tóm tắt validation.
 - [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — trạng thái version và tiến độ hardening cho v1.0.
 - [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — hướng dẫn tag release, changelog, và đóng gói.
-- [`docs/releases/v0.4.0.md`](docs/releases/v0.4.0.md) — release notes cho bản phát hành hiện tại v0.4.0.
-- [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — kế hoạch cho v1.0 release candidate tiếp theo và đường tới v1.0 final.
+- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes cho bản phát hành hiện tại v1.0.0.
+- [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — kế hoạch release v1.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — bảng tra cứu skill theo vấn đề.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — kịch bản đánh giá behavioral cho framework.
 - [`docs/skill-packs/`](docs/skill-packs/) — curated skill packs (Solo Developer, Memory Safe, Multi-Agent).

@@ -21,6 +21,7 @@ const checks = [
   ['E2E workflow', 'node', ['scripts/test-e2e-workflow.mjs']],
   ['Dashboard data', 'node', ['scripts/dashboard-data.mjs']],
   ['Dashboard sync check', 'node', ['scripts/check-dashboard-sync.mjs']],
+  ['Release metadata', 'node', ['scripts/validate-release-metadata.mjs']],
   ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']]
 ];
 
