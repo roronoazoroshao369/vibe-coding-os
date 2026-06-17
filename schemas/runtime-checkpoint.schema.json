@@ -25,6 +25,36 @@
     "notes": {
       "type": "string"
     },
+    "phase": {
+      "type": "string",
+      "description": "Which phase the checkpoint gates (constitution/specify/plan/tasks/implementation)"
+    },
+    "command": {
+      "type": "string",
+      "description": "The command that produced this checkpoint"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "failed", "blocked", "skipped"],
+      "description": "Gate status for the checkpoint"
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths or references to artifacts produced during the phase"
+    },
+    "limitations": {
+      "type": "string",
+      "description": "What this checkpoint does not verify"
+    },
+    "resume_hint": {
+      "type": "string",
+      "description": "Instructions for resuming after this checkpoint"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Agent or user that created the checkpoint"
+    },
     "createdAt": {
       "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
     },

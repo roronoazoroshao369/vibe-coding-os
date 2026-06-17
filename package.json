@@ -38,7 +38,9 @@
     "dashboard:check": "node scripts/check-dashboard-sync.mjs",
     "release:dry-run": "node scripts/release.mjs --dry-run",
     "smoke-test:adapters": "node scripts/smoke-test-adapters.mjs",
-    "references:health": "node scripts/reference-health-report.mjs"
+    "references:health": "node scripts/reference-health-report.mjs",
+    "smoke-test:runtime": "node scripts/smoke-test-runtime.mjs",
+    "workflow:status": "node scripts/workflow-status.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

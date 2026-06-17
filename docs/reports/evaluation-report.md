@@ -6,10 +6,10 @@ Overall: **4/4 checks passed**
 
 ## Summary
 
-- ✅ **Repo Validation**: PASS (378 narrative files) — 749ms
-- ✅ **Secret Scanning**: PASS (0 secrets found) — 2.48s
-- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 60ms
-- ✅ **Adapter Smoke Tests**: PASS (6/6 adapters) — 54ms
+- ✅ **Repo Validation**: PASS (378 narrative files) — 775ms
+- ✅ **Secret Scanning**: PASS (0 secrets found) — 2.58s
+- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 58ms
+- ✅ **Adapter Smoke Tests**: PASS (6/6 adapters) — 57ms
 
 ## Details
 
@@ -18,7 +18,7 @@ Overall: **4/4 checks passed**
 - Command: `npm run validate`
 - Status: PASS
 - Exit code: 0
-- Duration: 749ms
+- Duration: 775ms
 - Last 10 lines of output:
 
 ```text
@@ -38,7 +38,7 @@ Injection scan passed: 288 text files + 1 MCP manifest(s) scanned, 0 blocking fi
 - Command: `node scripts/validate-secrets.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 2.48s
+- Duration: 2.58s
 - Last 10 lines of output:
 
 ```text
@@ -50,7 +50,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/verify-memory-redaction.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 60ms
+- Duration: 58ms
 - Last 10 lines of output:
 
 ```text
@@ -71,7 +71,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/smoke-test-adapters.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 54ms
+- Duration: 57ms
 - Last 10 lines of output:
 
 ```text

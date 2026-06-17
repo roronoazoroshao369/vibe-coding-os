@@ -6,53 +6,34 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "schemaVersion": {
-      "type": "integer",
-      "minimum": 1
-    },
-    "id": {
-      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
-    },
-    "name": {
-      "type": "string",
-      "description": "Team name"
-    },
-    "pattern": {
-      "type": "string"
-    },
-    "goal": {
-      "type": "string"
-    },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "name": { "type": "string", "description": "Team name" },
+    "pattern": { "type": "string" },
+    "goal": { "type": "string" },
     "roles": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": true,
         "properties": {
-          "role": {
-            "type": "string"
-          },
-          "responsibility": {
-            "type": "string"
-          }
+          "name": { "type": "string", "description": "Role name" },
+          "purpose": { "type": "string", "description": "Role purpose/scope" },
+          "owned_paths": { "type": "array", "items": { "type": "string" } },
+          "tools": { "type": "array", "items": { "type": "string" } },
+          "validation": { "type": "string", "description": "Validation criteria for this role" },
+          "handoff_fields": { "type": "array", "items": { "type": "string" } },
+          "role": { "type": "string", "description": "Legacy role name (kept for backward compat)" },
+          "responsibility": { "type": "string", "description": "Legacy responsibility text (kept for backward compat)" }
         }
       }
     },
-    "tasks": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "source": {
-      "$ref": "runtime-common.schema.json#/$defs/source"
-    },
-    "createdAt": {
-      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
-    },
-    "metadata": {
-      "$ref": "runtime-common.schema.json#/$defs/metadata"
-    }
+    "tasks": { "type": "array", "items": { "type": "string" } },
+    "orchestration_pattern": { "type": "string", "description": "How roles coordinate (sequential/parallel/reviewer-gate)" },
+    "stop_conditions": { "type": "array", "items": { "type": "string" }, "description": "Conditions that halt the team" },
+    "source": { "$ref": "runtime-common.schema.json#/$defs/source" },
+    "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
   },
   "required": ["id", "name"]
 }

@@ -6,32 +6,19 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "schemaVersion": {
-      "type": "integer",
-      "minimum": 1
-    },
-    "id": {
-      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
-    },
-    "content": {
-      "type": "string",
-      "description": "Memory entry content"
-    },
-    "scope": {
-      "type": "string"
-    },
-    "source": {
-      "$ref": "runtime-common.schema.json#/$defs/source"
-    },
-    "tags": {
-      "$ref": "runtime-common.schema.json#/$defs/tags"
-    },
-    "createdAt": {
-      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
-    },
-    "metadata": {
-      "$ref": "runtime-common.schema.json#/$defs/metadata"
-    }
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "content": { "type": "string", "description": "Memory entry content" },
+    "scope": { "type": "string" },
+    "source": { "$ref": "runtime-common.schema.json#/$defs/source" },
+    "tags": { "$ref": "runtime-common.schema.json#/$defs/tags" },
+    "sensitivity": { "type": "string", "enum": ["public", "internal", "sensitive", "secret-redacted"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "staleness": { "type": "string", "description": "Freshness/expiry hint for retrieval" },
+    "related_files": { "type": "array", "items": { "type": "string" } },
+    "citations": { "type": "array", "items": { "type": "string" } },
+    "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
   },
   "required": ["id", "content", "createdAt", "scope"]
 }

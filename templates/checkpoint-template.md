@@ -9,6 +9,14 @@
 
 Which phase is being gated: constitution / specify / plan / tasks / implementation.
 
+## Command
+
+What command or action produced this checkpoint.
+
+## Status
+
+Gate status: passed / failed / blocked / skipped.
+
 ## Exit criteria
 
 - [ ] <Criterion 1 for this phase.>
@@ -20,6 +28,24 @@ Which phase is being gated: constitution / specify / plan / tasks / implementati
 | Criterion | Checked how | Result | Notes |
 | --- | --- | --- | --- |
 | <criterion> | <command / review / observation> | pass / fail | <evidence> |
+
+## Limitations
+
+What this checkpoint does not verify.
+
+## Resume Hint
+
+Instructions for resuming after this checkpoint.
+
+## Artifact Refs
+
+List of files, docs, or artifacts produced during the phase.
+
+- `<path>`
+
+## Created By
+
+Agent or user that created the checkpoint.
 
 ## Implementation-readiness gate (implementation phase only)
 

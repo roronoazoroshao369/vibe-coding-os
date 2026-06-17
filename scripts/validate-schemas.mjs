@@ -13,8 +13,19 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadSchemas, validate } from './schema-validator.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const iso = '2026-01-01T00:00:00.000Z';
+const sampleItems = {
+  tasks: { id: 'task-1', title: 'Sample task', status: 'pending', createdAt: iso },
+  memory: { id: 'mem-1', content: 'Sample memory', scope: 'repo', createdAt: iso, sensitivity: 'internal', confidence: 'high' },
+  checkpoints: { id: 'chk-1', type: 'gate', result: 'passed', phase: 'plan', status: 'passed', createdAt: iso },
+  teams: { id: 'team-1', name: 'Sample team', roles: [{ name: 'implementer', purpose: 'Build', owned_paths: ['scripts/'], tools: ['node'], validation: 'npm run validate', handoff_fields: ['summary'] }] },
+  sessions: { id: 'session-1', goal: 'test', createdAt: iso },
+  'workflow-runs': { id: 'wf-1', status: 'pending', history: [{ event: 'init', timestamp: iso }] }
+};
+
 const ROOT = path.resolve(__dirname, '..');
 
 const errors = [];
@@ -286,7 +297,7 @@ async function validateCommands() {
 async function validateRuntimeSchemas() {
   const schemaDir = path.join(ROOT, 'schemas');
   const entries = await readdir(schemaDir);
-  const runtimeSchemas = entries.filter((f) => f.startsWith('runtime-') && f.endsWith('.schema.json'));
+  const runtimeSchemas = entries.filter((f) => (f.startsWith('runtime-') || f === 'workflow-run.schema.json') && f.endsWith('.schema.json'));
   for (const f of runtimeSchemas) {
     const fullPath = path.join(schemaDir, f);
     try {
@@ -300,6 +311,28 @@ async function validateRuntimeSchemas() {
   }
 }
 
+async function validateSampleInstances() {
+  const schemas = await loadSchemas(path.join(ROOT, 'schemas'));
+  const collSchema = schemas.get('runtime-collection.schema.json');
+  for (const [kind, sample] of Object.entries(sampleItems)) {
+    const itemSchemaKey = { tasks: 'runtime-task.schema.json', memory: 'runtime-memory.schema.json', checkpoints: 'runtime-checkpoint.schema.json', teams: 'runtime-team.schema.json', sessions: 'runtime-session.schema.json', 'workflow-runs': 'workflow-run.schema.json' }[kind];
+    const itemResult = validate(sample, schemas.get(itemSchemaKey), schemas, `sample.${kind}`);
+    for (const e of itemResult.errors) errors.push(e);
+    const collResult = validate({ schemaVersion: 1, kind, items: [sample] }, collSchema, schemas, `sample.collection.${kind}`);
+    for (const e of collResult.errors) errors.push(e);
+  }
+  const invalidSamples = [
+    { label: 'task empty id', schema: 'runtime-task.schema.json', data: { id: '', title: 't', status: 'pending' } },
+    { label: 'task bad status', schema: 'runtime-task.schema.json', data: { id: 't2', title: 't', status: 'bogus' } },
+    { label: 'memory missing content', schema: 'runtime-memory.schema.json', data: { id: 'm2', scope: 'repo', createdAt: iso } },
+    { label: 'workflow bad status', schema: 'workflow-run.schema.json', data: { id: 'wf2', status: 'bogus', history: [] } }
+  ];
+  for (const sample of invalidSamples) {
+    const result = validate(sample.data, schemas.get(sample.schema), schemas, `invalid.${sample.label}`);
+    if (result.valid) errors.push(`invalid sample passed unexpectedly: ${sample.label}`);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -309,6 +342,7 @@ await validateReferenceIndex();
 await validateSkills();
 await validateCommands();
 await validateRuntimeSchemas();
+await validateSampleInstances();
 
 // ---------------------------------------------------------------------------
 // Summary
