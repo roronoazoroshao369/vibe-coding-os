@@ -22,5 +22,92 @@
         "additionalProperties": true
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "tasks" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-task.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "memory" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-memory.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "checkpoints" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-checkpoint.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "teams" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-team.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "sessions" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-session.schema.json"
+            }
+          }
+        }
+      }
+    }
+  ]
 }

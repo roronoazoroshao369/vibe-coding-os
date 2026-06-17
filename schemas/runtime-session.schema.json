@@ -6,22 +6,28 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
     "id": {
-      "type": "string",
-      "minLength": 1
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
     },
-    "label": {
-      "type": "string",
-      "description": "Optional session label"
+    "goal": {
+      "type": "string"
     },
-    "startedAt": {
-      "type": "string",
-      "format": "date-time"
+    "summary": {
+      "type": "string"
     },
-    "endedAt": {
-      "type": "string",
-      "format": "date-time"
+    "createdAt": {
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "updatedAt": {
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata"
     }
   },
-  "required": ["id"]
+  "required": ["id", "goal", "createdAt"]
 }

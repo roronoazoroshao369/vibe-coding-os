@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/runtime-common.schema.json",
+  "title": "Vibe Coding OS Runtime Common Types",
+  "description": "Shared schema definitions for optional runtime layer persisted state.",
+  "$defs": {
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "runtimeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "taskStatusEnum": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "blocked", "completed", "cancelled"]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

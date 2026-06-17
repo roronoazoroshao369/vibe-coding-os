@@ -6,18 +6,31 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "id": {
-      "type": "string",
-      "minLength": 1
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
     },
-    "name": {
-      "type": "string",
-      "description": "Checkpoint label"
+    "id": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
+    },
+    "type": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
     },
     "createdAt": {
-      "type": "string",
-      "format": "date-time"
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata"
     }
   },
-  "required": ["id"]
+  "required": ["id", "type", "result"]
 }

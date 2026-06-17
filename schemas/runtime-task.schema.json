@@ -6,26 +6,44 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "id": {
-      "type": "string",
-      "minLength": 1
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
     },
-    "name": {
+    "id": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
+    },
+    "title": {
       "type": "string",
-      "description": "Human-readable task label"
+      "description": "Human-readable task title"
     },
     "status": {
-      "type": "string",
-      "enum": ["pending", "running", "done", "failed", "skipped"]
+      "$ref": "runtime-common.schema.json#/$defs/taskStatusEnum"
+    },
+    "dependsOn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner": {
+      "type": "string"
     },
     "createdAt": {
-      "type": "string",
-      "format": "date-time"
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
     },
     "updatedAt": {
-      "type": "string",
-      "format": "date-time"
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "source": {
+      "$ref": "runtime-common.schema.json#/$defs/source"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata"
+    },
+    "tags": {
+      "$ref": "runtime-common.schema.json#/$defs/tags"
     }
   },
-  "required": ["id", "status"]
+  "required": ["id", "title", "status"]
 }

@@ -6,18 +6,53 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
     "id": {
-      "type": "string",
-      "minLength": 1
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
     },
     "name": {
       "type": "string",
       "description": "Team name"
     },
+    "pattern": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "responsibility": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source": {
+      "$ref": "runtime-common.schema.json#/$defs/source"
+    },
     "createdAt": {
-      "type": "string",
-      "format": "date-time"
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata"
     }
   },
-  "required": ["id"]
+  "required": ["id", "name"]
 }
