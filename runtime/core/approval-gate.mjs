@@ -213,23 +213,20 @@ export function withApprovalGate(handler, store, actionName) {
       return handler(...args);
     }
 
-    const pending = await findPendingApproval(store, {
+    const decision = await findOrCreatePendingApproval(store, {
       subjectType: 'action',
       subjectId: action,
       risk,
-    });
-    if (pending) return handler(...args);
-
-    const approval = await createApproval(store, action, {
-      subjectType: 'action',
-      subjectId: action,
-      risk: risk || { level: 'review' },
-      reason: `Action "${action}" requires approval`,
+      action,
       actor: args[0]?.actor || 'unknown',
     });
 
+    if (decision.status === 'approved' || decision.status === 'not_required') {
+      return handler(...args);
+    }
+
     throw new Error(
-      `Action "${action}" requires approval. Pending approvalId: ${approval.id}`
+      `Action "${action}" requires approval. Pending approvalId: ${decision.approvalId}`
     );
   };
 }
@@ -253,4 +250,79 @@ async function findPendingApproval(store, { subjectType, subjectId, risk }) {
   return ['approved', 'not_required'].includes(latest.approval?.status)
     ? latest
     : null;
+}
+
+/**
+ * Atomically find an existing approval (approved/not_required) for the given
+ * action+risk, or reuse an existing pending approval, or create a new one.
+ * All three paths execute inside a single lock.
+ *
+ * @param {object} store - Runtime store
+ * @param {object} spec
+ * @param {string} spec.subjectType
+ * @param {string} spec.subjectId
+ * @param {object} [spec.risk]
+ * @param {string} spec.action
+ * @param {string} spec.actor
+ * @returns {Promise<{status:string, approvalId:string|null}>}
+ */
+async function findOrCreatePendingApproval(store, { subjectType, subjectId, risk, action, actor }) {
+  return withLock(store, 'approvals', async () => {
+    const items = await loadApprovals(store);
+
+    // 1. Look for an existing approved/not_required approval matching this subject
+    const existing = items
+      .filter(
+        (a) =>
+          a.subject &&
+          a.subject.type === subjectType &&
+          a.subject.id === subjectId &&
+          approvalsEqual(a, { subject: { type: subjectType, id: subjectId }, riskLevel: risk })
+      )
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))[0];
+
+    if (existing && ['approved', 'not_required'].includes(existing.approval?.status)) {
+      return { status: existing.approval.status, approvalId: existing.id };
+    }
+
+    // 2. Look for an existing *pending* approval for the same subject — reuse it
+    const pending = items.find(
+      (a) =>
+        a.subject &&
+        a.subject.type === subjectType &&
+        a.subject.id === subjectId &&
+        a.approval?.status === 'required'
+    );
+    if (pending) {
+      return { status: 'pending', approvalId: pending.id };
+    }
+
+    // 3. No existing approval found — create a new pending one
+    const id = makeId('apr');
+    const now = nowIso();
+    const approval = {
+      schemaVersion: CURRENT_SCHEMA_VERSION,
+      id,
+      subject: { type: subjectType, id: subjectId },
+      riskLevel: risk || { level: 'review' },
+      approval: {
+        status: 'required',
+        requiredBy: 'approval-gate',
+        reason: `Action "${action}" requires approval`,
+      },
+      createdAt: now,
+      metadata: { action, actor: actor || 'unknown' },
+    };
+
+    items.push(approval);
+    await saveApprovals(store, items);
+    await appendEvent(store, 'approval.created', {
+      approvalId: id,
+      action,
+      riskLevel: approval.riskLevel.level,
+      subjectType,
+      subjectId,
+    });
+    return { status: 'pending', approvalId: id };
+  });
 }

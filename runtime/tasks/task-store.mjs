@@ -4,10 +4,11 @@ import { makeId, nowIso } from '../core/ids.mjs';
 import { CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
-import { assertString } from '../core/validation.mjs';
+import { assertString, createItemValidator } from '../core/validation.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
 
-const enforcement = new Enforcement();
+const itemSchema = createItemValidator('runtime-task.schema.json');
+const enforcement = new Enforcement(itemSchema);
 
 const ALLOWED_TASK_INPUT_FIELDS = [
   'title', 'description', 'phase', 'priority', 'dependsOn',
@@ -23,7 +24,7 @@ function withoutNullish(obj) {
 }
 
 export async function listTasks(store) { return (await readJson(store, FILE, emptyCollection('tasks'))).items; }
-async function save(store, items) { await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'tasks', items }, { enforcement, source: 'runtime-track' }); }
+async function save(store, items) { await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'tasks', items }, { enforcement, source: 'runtime-track', itemSchema }); }
 
 export async function createTask(store, input) {
   assertString(input.title, 'title');

@@ -8,6 +8,8 @@ import {
   applyItemDefaults,
   generateTrace,
 } from '../runtime/core/enforcement.mjs';
+import { createItemValidator } from '../runtime/core/validation.mjs';
+import { createStore, writeJsonAtomic } from '../runtime/core/fs-store.mjs';
 
 const tests = [];
 function test(name, fn) { tests.push({ name, fn }); }
@@ -115,6 +117,34 @@ test('applyItemDefaults skips non-objects and arrays', () => {
   assert.equal(applyItemDefaults('x'), 'x');
   assert.equal(applyItemDefaults(arr), arr);
   assert.deepEqual(arr, []);
+});
+
+test('createItemValidator returns a working validator for runtime-task.schema.json', () => {
+  const validate = createItemValidator('runtime-task.schema.json');
+  const result = validate({ id: 'task_1', title: 'Test', status: 'pending', schemaVersion: 2 });
+  assert.equal(result.valid, true);
+  assert.equal(result.errors.length, 0);
+});
+
+test('createItemValidator rejects items missing required fields', () => {
+  const validate = createItemValidator('runtime-task.schema.json');
+  const result = validate({ id: 'task_1' });
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some(e => e.includes('title')));
+});
+
+test('createItemValidator rejects items with wrong type', () => {
+  const validate = createItemValidator('runtime-task.schema.json');
+  const result = validate({ id: 123, title: 'Test', status: 'pending', schemaVersion: 2 });
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some(e => e.includes('string')));
+});
+
+test('createItemValidator rejects unknown fields when additionalProperties: false', () => {
+  const validate = createItemValidator('runtime-task.schema.json');
+  const result = validate({ id: 'task_1', title: 'T', status: 'pending', surprise: true });
+  assert.equal(result.valid, false);
+  assert.ok(result.errors.some(e => e.includes('unexpected fields')));
 });
 
 let failures = 0;

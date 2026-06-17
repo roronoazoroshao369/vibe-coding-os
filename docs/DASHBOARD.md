@@ -11,7 +11,7 @@
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 403 |
+| Narrative files | 405 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -69,9 +69,10 @@
 | bilingual-readme-sync | ✅ PASS | ~53ms |
 | markdown-links | ✅ PASS | ~84ms |
 | readme-heading-version | ✅ PASS | ~56ms |
+| roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 18/18 gates passed**
+**Overall: 19/19 gates passed**
 
 ## Coverage Summary
 
@@ -79,7 +80,7 @@
 |---|---|
 | Skills (90) | All have SKILL.md with required sections |
 | Commands (68) | All discovered dynamically from `commands/` |
-| Templates (54) | All discovered dynamically from `templates/` |
+| Templates (56) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
