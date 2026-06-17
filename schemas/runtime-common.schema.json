@@ -22,8 +22,48 @@
         "type": "string"
       }
     },
-    "source": {
+    "sourceV1": {
       "type": "string"
+    },
+    "createdBy": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["human", "agent", "system", "mcp", "daemon"] },
+        "id": { "type": "string" },
+        "label": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "sourceV2": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["cli", "mcp", "daemon", "tmux", "import", "manual"] },
+        "ref": { "type": "string" },
+        "path": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "trace": {
+      "type": "object",
+      "properties": {
+        "sessionId": { "$ref": "#/$defs/runtimeId" },
+        "workflowRunId": { "$ref": "#/$defs/runtimeId" },
+        "taskId": { "$ref": "#/$defs/runtimeId" },
+        "parentEventId": { "$ref": "#/$defs/runtimeId" }
+      },
+      "additionalProperties": false
+    },
+    "risk": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "string", "enum": ["safe", "review", "dangerous", "blocked"] },
+        "approvalRequired": { "type": "boolean" },
+        "reasons": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["level"],
+      "additionalProperties": false
     },
     "metadata": {
       "type": "object",

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime-approval.schema.json",
+  "title": "Vibe Coding OS Runtime Approval Item",
+  "description": "Approval record persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "subject", "riskLevel", "approval"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["task", "action", "workflow-run"] },
+        "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+      },
+      "required": ["type", "id"],
+      "additionalProperties": false
+    },
+    "riskLevel": { "$ref": "runtime-common.schema.json#/$defs/risk" },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["not_required", "required", "approved", "denied", "expired"] },
+        "requiredBy": { "type": "string" },
+        "approvedBy": { "type": "string" },
+        "approvedAt": { "type": "string", "format": "date-time" },
+        "reason": { "type": "string" }
+      },
+      "required": ["status"],
+      "additionalProperties": false
+    },
+    "rollback": {
+      "type": "object",
+      "properties": {
+        "required": { "type": "boolean" },
+        "changeSummary": { "type": "string" },
+        "revertSteps": { "type": "array", "items": { "type": "string" } },
+        "dataLossRisk": { "type": "string", "enum": ["none", "low", "medium", "high"] },
+        "verification": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
+  }
+}

@@ -4,7 +4,7 @@
   "title": "Vibe Coding OS Memory Bundle",
   "description": "Memory retrieval bundle schema for ranked query results.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "query": { "type": "string", "minLength": 1 },
@@ -24,7 +24,9 @@
         },
         "additionalProperties": true
       }
-    }
+    },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
   },
   "required": ["schemaVersion", "query", "results"]
 }

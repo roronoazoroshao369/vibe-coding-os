@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime-migration.schema.json",
+  "title": "Vibe Coding OS Runtime Migration Manifest",
+  "description": "Manifest describing a runtime collection migration operation, including steps, summary, and error records.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "sourceVersion", "targetVersion", "status", "steps", "createdAt"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "sourceVersion": { "type": "integer", "minimum": 1 },
+    "targetVersion": { "type": "integer", "minimum": 1 },
+    "status": { "type": "string", "enum": ["pending", "dry-run", "running", "completed", "failed", "rolled-back"] },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "action"],
+        "properties": {
+          "id": { "type": "string" },
+          "action": { "type": "string", "enum": ["rename", "add-field", "remove-field", "transform-field", "revalidate", "migrate-enum", "schema-update", "custom"] },
+          "target": { "type": "string", "description": "Path to collection or store" },
+          "params": { "type": "object", "additionalProperties": true },
+          "dryRunSafe": { "type": "boolean" },
+          "reversible": { "type": "boolean" },
+          "status": { "type": "string", "enum": ["pending", "dry-run-ok", "skipped", "done", "failed"] }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "totalItems": { "type": "integer" },
+        "migrated": { "type": "integer" },
+        "skipped": { "type": "integer" },
+        "errors": { "type": "integer" },
+        "durationMs": { "type": "integer" }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "stepId": { "type": "string" },
+          "itemId": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
+  }
+}

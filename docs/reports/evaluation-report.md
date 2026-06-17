@@ -6,10 +6,10 @@ Overall: **4/4 checks passed**
 
 ## Summary
 
-- ✅ **Repo Validation**: PASS (394 narrative files) — 805ms
-- ✅ **Secret Scanning**: PASS (0 secrets found) — 2.74s
-- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 58ms
-- ✅ **Adapter Smoke Tests**: PASS (6/6 adapters) — 53ms
+- ✅ **Repo Validation**: PASS (397 narrative files) — 1.13s
+- ✅ **Secret Scanning**: PASS (0 secrets found) — 3.25s
+- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 75ms
+- ✅ **Adapter Smoke Tests**: PASS (6/6 adapters) — 66ms
 
 ## Details
 
@@ -18,7 +18,7 @@ Overall: **4/4 checks passed**
 - Command: `npm run validate`
 - Status: PASS
 - Exit code: 0
-- Duration: 805ms
+- Duration: 1.13s
 - Last 10 lines of output:
 
 ```text
@@ -29,8 +29,8 @@ Checked 11 required files, 90 skills, 68 commands, 52 templates, and 2 examples 
 Reference Intelligence Layer validation passed.
 Checked 14 sources, 26 feature docs, 4 mapping docs, and 5 reference commands.
 Traceability validation passed.
-Checked 68 commands, 90 skills, 54 templates against 394 narrative files. Broken references: 0. Orphans (warnings): 0 commands, 0 skills, 11 templates.
-Injection scan passed: 299 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
+Checked 68 commands, 90 skills, 54 templates against 397 narrative files. Broken references: 0. Orphans (warnings): 0 commands, 0 skills, 11 templates.
+Injection scan passed: 302 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
 ```
 
 ### Secret Scanning
@@ -38,7 +38,7 @@ Injection scan passed: 299 text files + 1 MCP manifest(s) scanned, 0 blocking fi
 - Command: `node scripts/validate-secrets.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 2.74s
+- Duration: 3.25s
 - Last 10 lines of output:
 
 ```text
@@ -50,7 +50,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/verify-memory-redaction.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 58ms
+- Duration: 75ms
 - Last 10 lines of output:
 
 ```text
@@ -71,7 +71,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/smoke-test-adapters.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 53ms
+- Duration: 66ms
 - Last 10 lines of output:
 
 ```text

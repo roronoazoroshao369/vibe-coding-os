@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://vibe-coding-os.local/schemas/runtime-checkpoint.schema.json",
-  "title": "Vibe Coding OS Runtime Checkpoint Item",
-  "description": "Item shape for checkpoints persisted under the optional runtime layer.",
+  "title": "Vibe Coding OS Runtime Checkpoint Item (v2)",
+  "description": "Item shape for checkpoints persisted under the optional runtime layer. v2 adds structured subject, evidence, decision, and resumeHint.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": {
       "type": "integer",
@@ -20,7 +20,17 @@
       "type": "string"
     },
     "subject": {
-      "type": "string"
+      "type": "string",
+      "description": "Subject identifier (string, for backward compatibility)"
+    },
+    "subjectType": {
+      "type": "string",
+      "enum": ["task", "workflow-run", "session", "team", "artifact"],
+      "description": "Structured subject type"
+    },
+    "subjectId": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId",
+      "description": "Structured subject runtime ID"
     },
     "notes": {
       "type": "string"
@@ -38,6 +48,34 @@
       "enum": ["passed", "failed", "blocked", "skipped"],
       "description": "Gate status for the checkpoint"
     },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["command", "file", "review", "manual-note"] },
+          "ref": { "type": "string" },
+          "status": { "type": "string", "enum": ["passed", "failed", "blocked", "skipped"] },
+          "timestamp": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Evidence items supporting this checkpoint"
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "approved": { "type": "boolean" },
+        "approvedBy": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "description": "Decision record for this checkpoint"
+    },
+    "resumeHint": {
+      "type": "string",
+      "description": "Instructions for resuming after this checkpoint (camelCase, v2+)"
+    },
     "artifact_refs": {
       "type": "array",
       "items": { "type": "string" },
@@ -49,7 +87,7 @@
     },
     "resume_hint": {
       "type": "string",
-      "description": "Instructions for resuming after this checkpoint"
+      "description": "Instructions for resuming after this checkpoint (snake_case, legacy compat)"
     },
     "created_by": {
       "type": "string",
@@ -60,6 +98,10 @@
     },
     "metadata": {
       "$ref": "runtime-common.schema.json#/$defs/metadata"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
     }
   },
   "required": ["id", "type", "result"]

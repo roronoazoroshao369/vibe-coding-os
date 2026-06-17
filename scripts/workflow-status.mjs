@@ -38,7 +38,7 @@ async function findRun(id) {
   return w.items.find((r) => r.id === id) || null;
 }
 async function loadRuns() { return (await loadWrapper()).items; }
-async function saveWrapper(w) { await writeJsonAtomic(store, 'workflow-runs.json', w); }
+async function saveWrapper(w) { await writeJsonAtomic(store, 'workflow-runs.json', { ...w, schemaVersion: CURRENT_SCHEMA_VERSION }); }
 function record(item, event, actor, details) {
   if (!Array.isArray(item.history)) item.history = [];
   item.history.push({ event, timestamp: now(), actor: actor || 'cli', details: details || {} });

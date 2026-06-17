@@ -1,4 +1,6 @@
-export const CURRENT_SCHEMA_VERSION = 1;
+export const CURRENT_SCHEMA_VERSION = 2;
+export const CONTRACT_VERSION = '1.2.0';
+export const RUNTIME_ID_PREFIX = 'rt_';
 
 export function assertSchemaVersion(record, label) {
   if (!record || record.schemaVersion !== CURRENT_SCHEMA_VERSION) {

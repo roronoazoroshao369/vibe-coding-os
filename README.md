@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphans. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md)
+**Current release (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md)
 
 ## What's new in v1.1.0
 
@@ -73,7 +73,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## What is included now
 
-Current inventory: **90 skills**, **68 commands**, **41 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
+Current inventory: **90 skills**, **68 commands**, **54 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
 
 | Layer | What it contains | Pain it reduces |
 | --- | --- | --- |
@@ -459,9 +459,10 @@ Additional guides and references:
 - [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — hướng dẫn 15 phút từ zero đến workflow (Tiếng Việt).
 - [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — getting started with the optional runtime layer.
 - [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — live project health dashboard, inventory counts, and validation summary.
-- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress tracker and v1.0 hardening status.
+- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress tracker and release status.
 - [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — release tagging, changelog workflow, and packaging notes.
-- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes for the current v1.0.0 release.
+- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes for the v1.0.0 release.
+- [`docs/releases/v1.1.0.md`](docs/releases/v1.1.0.md) — release notes for the v1.1.0 release.
 - [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — release plan for v1.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — quick reference table mapping problems to skills.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — behavioral evaluation scenarios for the framework.
@@ -516,7 +517,7 @@ Adapters document how to use the framework in specific environments. Start with 
 - `adapters/codex/`
 - `adapters/cursor/`
 
-They are intentionally lightweight in v0.1 and will become more concrete as usage patterns stabilize.
+They started lightweight and will become more concrete as usage patterns stabilize.
 
 ## Reference Intelligence Layer
 
@@ -531,7 +532,7 @@ For hands-on audits, `npm run references:clone` creates or updates shallow ignor
 ### Complete in the current kernel
 
 - Normalized repository structure with core, memory, meta, prompt, and agent skills.
-- 68 reusable command prompts and 41 templates.
+- 68 reusable command prompts and 54 templates.
 - Dynamic structural validation plus reference-layer validation.
 - Source, attribution, feature, and impact registries without vendoring upstream code.
 - Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.

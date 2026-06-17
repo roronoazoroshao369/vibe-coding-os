@@ -13,7 +13,7 @@
     },
     "kind": {
       "type": "string",
-      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions", "workflow-runs", "actions"]
+      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions", "workflow-runs", "actions", "events", "approvals"]
     },
     "items": {
       "type": "array",
@@ -21,6 +21,18 @@
         "type": "object",
         "additionalProperties": true
       }
+    },
+    "contractVersion": {
+      "type": "string",
+      "description": "Contract version identifier for the collection"
+    },
+    "runtimeId": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId",
+      "description": "Runtime instance identifier"
+    },
+    "revision": {
+      "type": "integer",
+      "description": "Revision number for the collection"
     }
   },
   "allOf": [
@@ -138,6 +150,40 @@
           "items": {
             "items": {
               "$ref": "runtime-action.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "events" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-event.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "approvals" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-approval.schema.json"
             }
           }
         }

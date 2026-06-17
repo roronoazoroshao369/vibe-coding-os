@@ -5,12 +5,15 @@
  * Uses the built-in schema-validator.mjs for zero-dependency JSON Schema
  * validation. Validates each collection file against runtime-collection.schema.json
  * which dispatches per-kind item validation via if/then/$ref.
+ *
+ * Supports both schemaVersion 1 (lightweight) and 2 (full strict) items
+ * during migration from v1.2.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createStore } from '../runtime/core/fs-store.mjs';
-import { CURRENT_SCHEMA_VERSION } from '../runtime/core/validation.mjs';
+import { CURRENT_SCHEMA_VERSION, CONTRACT_VERSION } from '../runtime/core/validation.mjs';
 import { loadSchemas, validate } from './schema-validator.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -28,6 +31,8 @@ const requiredSchemas = [
   'runtime-action.schema.json',
   'workflow-run.schema.json',
 ];
+
+const acceptedSchemaVersions = [CURRENT_SCHEMA_VERSION, CURRENT_SCHEMA_VERSION - 1];
 
 // Check schema files exist
 for (const schema of requiredSchemas) {
@@ -53,6 +58,31 @@ try {
 const collectionSchema = schemas.get('runtime-collection.schema.json');
 if (!collectionSchema) errors.push('runtime-collection.schema.json not loaded');
 
+function collectionWrapperSchema(schema) {
+  if (!schema || typeof schema !== 'object') return schema;
+  const wrapper = { ...schema };
+  delete wrapper.allOf;
+  return wrapper;
+}
+
+/**
+ * Strip additionalProperties from a schema (and nested schemas) to create
+ * a lightweight validation mode for legacy v1 items.
+ */
+function stripAdditionalProperties(schema) {
+  if (!schema || typeof schema !== 'object') return schema;
+  const patched = Array.isArray(schema) ? [...schema] : { ...schema };
+  if ('additionalProperties' in patched && patched.additionalProperties === false) {
+    delete patched.additionalProperties;
+  }
+  for (const key of Object.keys(patched)) {
+    if (typeof patched[key] === 'object' && patched[key] !== null) {
+      patched[key] = stripAdditionalProperties(patched[key]);
+    }
+  }
+  return patched;
+}
+
 for (const kind of expectedKinds) {
   const file = `${kind}.json`;
   const fullPath = path.join(store.runtimeDir, file);
@@ -66,9 +96,9 @@ for (const kind of expectedKinds) {
     continue;
   }
 
-  // Basic structural checks
-  if (!data || data.schemaVersion !== CURRENT_SCHEMA_VERSION) {
-    errors.push(`${file}: schemaVersion must be ${CURRENT_SCHEMA_VERSION}`);
+  // Basic structural checks — accept both v1 and v2
+  if (!data || !acceptedSchemaVersions.includes(data.schemaVersion)) {
+    errors.push(`${file}: schemaVersion must be one of [${acceptedSchemaVersions.join(', ')}]`);
     continue;
   }
   if (data.kind !== kind) { errors.push(`${file}: kind must be ${kind}`); continue; }
@@ -92,7 +122,19 @@ for (const kind of expectedKinds) {
   const itemSchema = schemas.get(itemSchemaKey);
   if (itemSchema && data.items.length > 0) {
     for (let i = 0; i < data.items.length; i++) {
-      const itemResult = validate(data.items[i], itemSchema, schemas, `${file}.items[${i}]`);
+      const item = data.items[i];
+      const itemVersion = item.schemaVersion || data.schemaVersion;
+
+      let effectiveSchema;
+      if (itemVersion === CURRENT_SCHEMA_VERSION) {
+        // v2 items: full strict validation (additionalProperties enforced)
+        effectiveSchema = itemSchema;
+      } else {
+        // v1 items: lightweight validation (skip additionalProperties checks)
+        effectiveSchema = stripAdditionalProperties(itemSchema);
+      }
+
+      const itemResult = validate(item, effectiveSchema, schemas, `${file}.items[${i}]`);
       for (const e of itemResult.errors) errors.push(e);
     }
   }
@@ -103,4 +145,4 @@ if (errors.length) {
   for (const e of errors) console.error(`- ${e}`);
   process.exit(1);
 }
-console.log('✅ Runtime validation passed.');
+console.log(`✅ Runtime validation passed. (schema v${CURRENT_SCHEMA_VERSION}, contract ${CONTRACT_VERSION})`);

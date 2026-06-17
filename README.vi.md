@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphans. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
+**Bản phát hành hiện tại (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
 
 ## Có gì mới trong v1.1.0
 
@@ -73,7 +73,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## Hiện tại có gì
 
-Inventory hiện tại: **90 skills**, **68 commands**, **41 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
+Inventory hiện tại: **90 skills**, **68 commands**, **54 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
 
 | Layer | Gồm gì | Giảm nỗi đau nào |
 | --- | --- | --- |
@@ -396,9 +396,10 @@ Các hướng dẫn và reference mới:
 - [`docs/vi/TUTORIAL.vi.md`](docs/vi/TUTORIAL.vi.md) — hướng dẫn 15 phút từ zero đến workflow (Tiếng Việt).
 - [`docs/RUNTIME-GUIDE.md`](docs/RUNTIME-GUIDE.md) — hướng dẫn bắt đầu với runtime layer tùy chọn.
 - [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — dashboard sức khỏe dự án, inventory, và tóm tắt validation.
-- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — trạng thái version và tiến độ hardening cho v1.0.
+- [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — trạng thái version và tiến độ release.
 - [`docs/RELEASE-PACKAGING.md`](docs/RELEASE-PACKAGING.md) — hướng dẫn tag release, changelog, và đóng gói.
-- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes cho bản phát hành hiện tại v1.0.0.
+- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — release notes cho bản phát hành v1.0.0.
+- [`docs/releases/v1.1.0.md`](docs/releases/v1.1.0.md) — release notes cho bản phát hành v1.1.0.
 - [`docs/v1.0-release-plan.md`](docs/v1.0-release-plan.md) — kế hoạch release v1.0.
 - [`docs/skill-decision-guide.md`](docs/skill-decision-guide.md) — bảng tra cứu skill theo vấn đề.
 - [`docs/eval-scenarios.md`](docs/eval-scenarios.md) — kịch bản đánh giá behavioral cho framework.
@@ -453,7 +454,7 @@ Adapters mô tả cách dùng framework trong từng môi trường. Bắt đầ
 - `adapters/codex/`
 - `adapters/cursor/`
 
-Các adapter hiện còn nhẹ ở v0.1 và sẽ cụ thể hơn khi pattern sử dụng ổn định.
+Các adapter bắt đầu nhẹ và sẽ cụ thể hơn khi pattern sử dụng ổn định.
 
 ## Reference Intelligence Layer
 
@@ -466,7 +467,7 @@ Trước khi adapt ý tưởng upstream: đọc source entry, xem feature/mappin
 ### Đã hoàn thành trong kernel hiện tại
 
 - Cấu trúc repo chuẩn hóa với skill core, memory, meta, prompt, agent.
-- 68 command prompt và 41 template tái sử dụng.
+- 68 command prompt và 54 template tái sử dụng.
 - Validation cấu trúc động cộng validation cho reference layer.
 - Registry source, attribution, feature, impact mà không vendor code upstream.
 - Quick start adapter cho Claude Code, Codex CLI, Gemini CLI, Cursor, và assistant khác.

@@ -15,6 +15,6 @@ function parseArgs(argv) {
 const { positionals, flags } = parseArgs(process.argv.slice(2));
 const store = createStore(process.cwd());
 const cmd = positionals[0];
-if (cmd === 'create') console.log(JSON.stringify(await createCheckpoint(store, { type: flags.type, result: flags.result, subject: flags.subject, notes: flags.notes }), null, 2));
+if (cmd === 'create') console.log(JSON.stringify(await createCheckpoint(store, { type: flags.type, result: flags.result, subject: flags.subject, subjectType: flags.subjectType, subjectId: flags.subjectId, notes: flags.notes, status: flags.status, command: flags.command, phase: flags.phase, created_by: flags.created_by }), null, 2));
 else if (cmd === 'list') console.log(JSON.stringify(await listCheckpoints(store), null, 2));
-else { console.error('usage: runtime-checkpoint <create|list> [--type --result --subject --notes]'); process.exit(1); }
+else { console.error('usage: runtime-checkpoint <create|list> [--type --result --subject --subjectType --subjectId --notes --status --command --phase --created_by]'); process.exit(1); }

@@ -15,6 +15,6 @@ function parseArgs(argv) {
 const { positionals, flags } = parseArgs(process.argv.slice(2));
 const store = createStore(process.cwd());
 const cmd = positionals[0];
-if (cmd === 'create') console.log(JSON.stringify(await createSession(store, { goal: flags.goal, summary: flags.summary }), null, 2));
+if (cmd === 'create') console.log(JSON.stringify(await createSession(store, { goal: flags.goal, summary: flags.summary, status: flags.status || 'active' }), null, 2));
 else if (cmd === 'list') console.log(JSON.stringify(await listSessions(store), null, 2));
-else { console.error('usage: runtime-session <create|list> [--goal --summary]'); process.exit(1); }
+else { console.error('usage: runtime-session <create|list> [--goal --summary --status]'); process.exit(1); }
