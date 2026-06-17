@@ -48,13 +48,8 @@ const GUARDS = {
     return { ok: true };
   },
 
-  // Can only complete if there are no unresolved subtasks
-  'in_progress→completed': (task) => {
-    if (task.subtaskIds && task.subtaskIds.length > 0) {
-      // Allow completion — subtasks are independent tracking
-    }
-    return { ok: true };
-  },
+  // Completion is allowed even when subtasks exist; subtasks are tracked independently.
+  'in_progress→completed': () => ({ ok: true }),
 
   // Moving back to pending clears the claim
   'in_progress→pending': () => {

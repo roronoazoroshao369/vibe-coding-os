@@ -68,9 +68,6 @@ export async function createTask(store, input) {
 
 export async function updateTaskStatus(store, id, status, options = {}) {
   if (!STATUSES.has(status)) throw new Error(`invalid status: ${status}`);
-  if (!canTransition('pending', status) && !canTransition('in_progress', status) && !canTransition('blocked', status) && !canTransition('completed', status) && !canTransition('cancelled', status)) {
-    // Basic sanity — the state machine will enforce actual transitions per current state
-  }
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store); const task = items.find(t => t.id === id); if (!task) throw new Error(`task not found: ${id}`);
     const oldStatus = task.status;

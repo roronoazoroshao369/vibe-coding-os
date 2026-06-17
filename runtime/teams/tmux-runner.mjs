@@ -7,6 +7,23 @@ import { appendEvent } from '../core/events.mjs';
 
 const TMUX_PREFIX = 'rt';
 
+// ── Shell-safe quoting -------------------------------------------------------
+
+/** Single-quote a string for POSIX shell safety. */
+function shQuote(s) {
+  return "'" + String(s).replace(/'/g, "'\\''") + "'";
+}
+
+/** Validate the agent command before inserting it into a shell pipeline. */
+function assertSafeAgentCommand(command) {
+  const value = String(command || '').trim();
+  if (!value) throw new Error('[tmux-runner] command must not be empty');
+  if (!/^[a-zA-Z0-9_./:-]+( [a-zA-Z0-9_./:=@%+-]+)*$/.test(value)) {
+    throw new Error('[tmux-runner] unsafe command: use a simple executable plus safe flags only');
+  }
+  return value;
+}
+
 // ── Tmux availability -------------------------------------------------------
 
 export function checkTmux() {
@@ -138,6 +155,7 @@ export async function prepareTeamRun(store, teamSpec) {
  */
 export function launchSession(store, teamRun, options = {}) {
   const { dryRun = false, command: claudeCommand = 'claude' } = options;
+  assertSafeAgentCommand(claudeCommand);
 
   if (!dryRun) requireTmux();
 
@@ -157,7 +175,7 @@ export function launchSession(store, teamRun, options = {}) {
       console.log(`[dry-run] tmux new-session -d -s "${sess}" -n "${role.name}"`);
       console.log(`[dry-run] tmux pipe-pane -t "${win}" -o "cat >> ${outFile}"`);
       const promptPath = path.join(role.dir, 'prompt.md');
-      console.log(`[dry-run] tmux send-keys -t "${win}" "cat ${promptPath} | ${claudeCommand}" Enter`);
+      console.log(`[dry-run] tmux send-keys -t "${win}" "cat ${shQuote(promptPath)} | ${claudeCommand}" Enter`);
       continue;
     }
 
@@ -175,7 +193,7 @@ export function launchSession(store, teamRun, options = {}) {
 
     // Send the command that runs claude with the role prompt
     const promptPath = path.join(role.dir, 'prompt.md');
-    const cmd = `cat '${promptPath}' | ${claudeCommand}`;
+    const cmd = `cat ${shQuote(promptPath)} | ${claudeCommand}`;
     execSync(`tmux send-keys -t "${win}" "${cmd}" Enter`, { stdio: 'pipe' });
   }
 

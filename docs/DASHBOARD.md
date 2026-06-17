@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.4.0 |
+| Version | 1.4.1 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 414 |
+| Narrative files | 415 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -38,6 +38,7 @@
 | v1.2.0 | ✅ Complete | Multi-agent contracts, safety, migration |
 | v1.3.0 | ✅ Complete | Runtime enforcement, claim/lease, safety & recovery |
 | v1.4.0 | ✅ Complete | Runtime kernel, event store v2, observability, hardening |
+| v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 
 ## Safety Metrics
 
