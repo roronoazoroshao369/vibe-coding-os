@@ -47,6 +47,13 @@ export async function writeJsonAtomic(store, name, value, options = {}) {
     if (options.enforcement) {
       options.enforcement.assertStrictCollection(value, ALLOWED_COLLECTION_KEYS);
     }
+
+    // Validate each persisted item when an item schema is configured.
+    if (options.enforcement && options.itemSchema) {
+      value.items.forEach((item, index) => {
+        options.enforcement.assertValidItem(item, options.itemSchema, `${name} item[${index}]`);
+      });
+    }
   }
 
   // Validate collection against its schema if enforcement is provided

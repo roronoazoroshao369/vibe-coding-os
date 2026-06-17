@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.3.0):** validate:all 18/18 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.3.0](docs/releases/v1.3.0.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
+**Bản phát hành hiện tại (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.3.0](docs/releases/v1.3.0.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
 
 ## Có gì mới trong v1.3.0
 
@@ -11,7 +11,7 @@
 - Migration dry-run engine: con đường an toàn hơn để nâng cấp runtime state lưu trữ với backup và rollback awareness.
 - Schema event, approval, tool-contract, và migration cho provenance, capability declarations, và risk inspection.
 - Paths validation backward-compatible v1→v2 cho runtime state hiện tại.
-- 17/17 validation gates passes với full repository integrity checks.
+- 19/19 validation gates passes với full repository integrity checks.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>

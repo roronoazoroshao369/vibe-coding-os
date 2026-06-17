@@ -26,6 +26,7 @@ const checks = [
   ['Bilingual README sync', 'node', ['scripts/validate-bilingual-sync.mjs']],
   ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']],
   ['README heading version', 'node', ['scripts/check-heading-version.mjs']],
+  ['ROADMAP-STATUS integrity', 'node', ['scripts/validate-roadmap-status.mjs']],
   ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']]
 ];
 

@@ -2,10 +2,11 @@ import { makeId, nowIso } from '../core/ids.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
 import { redactText } from '../core/privacy.mjs';
-import { assertString, CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
+import { assertString, CURRENT_SCHEMA_VERSION, createItemValidator } from '../core/validation.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
 
-const enforcement = new Enforcement();
+const itemSchema = createItemValidator('runtime-memory.schema.json');
+const enforcement = new Enforcement(itemSchema);
 
 const ALLOWED_MEMORY_INPUT_FIELDS = [
   'content', 'kind', 'scope', 'source', 'tags', 'freshness',
@@ -14,7 +15,7 @@ const ALLOWED_MEMORY_INPUT_FIELDS = [
 const FILE = 'memory.json';
 export async function listMemory(store) { return (await readJson(store, FILE, emptyCollection('memory'))).items; }
 async function save(store, items) {
-  await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'memory', items }, { enforcement, source: 'runtime-memory' });
+  await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'memory', items }, { enforcement, itemSchema, source: 'runtime-memory' });
 }
 
 export async function ingestMemory(store, input) {

@@ -95,6 +95,16 @@ test('withApprovalGate blocks dangerous action without approval', async () => wi
   assert.equal(items[0].approval.status, 'required');
 }));
 
+test('withApprovalGate reuses existing pending approval instead of creating duplicates', async () => withTempStore(async (store) => {
+  const handler = async () => 'executed';
+  const gated = withApprovalGate(handler, store, 'shell.command');
+  await assert.rejects(() => gated({ actor: 'test', risk: { level: 'dangerous' } }), /requires approval/);
+  await assert.rejects(() => gated({ actor: 'test', risk: { level: 'dangerous' } }), /Pending approvalId:/);
+  const items = await readApprovals(store);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].approval.status, 'required');
+}));
+
 test('withApprovalGate passes after approval created and approved', async () => withTempStore(async (store) => {
   let calls = 0;
   const gated = withApprovalGate(async () => { calls += 1; return 'executed'; }, store, 'shell.command');

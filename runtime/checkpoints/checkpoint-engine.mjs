@@ -1,12 +1,12 @@
 import { makeId, nowIso } from '../core/ids.mjs';
-import { CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
+import { CURRENT_SCHEMA_VERSION, assertString, createItemValidator } from '../core/validation.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
-import { assertString } from '../core/validation.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
 const FILE='checkpoints.json';
 
-const enforcement = new Enforcement();
+const itemSchema = createItemValidator('runtime-checkpoint.schema.json');
+const enforcement = new Enforcement(itemSchema);
 const ALLOWED_CHECKPOINT_INPUT_FIELDS = [
   'type', 'result', 'status', 'subject', 'subjectType', 'subjectId',
   'notes', 'evidence', 'decision', 'resumeHint', 'resume_hint',
@@ -17,7 +17,7 @@ const ALLOWED_CHECKPOINT_INPUT_FIELDS = [
 function withoutNullish(obj){return Object.fromEntries(Object.entries(obj).filter(([,value])=>value!==null&&value!==undefined));}
 
 export async function listCheckpoints(store){return (await readJson(store,FILE,emptyCollection('checkpoints'))).items;}
-async function save(store,items){await writeJsonAtomic(store,FILE,{schemaVersion:CURRENT_SCHEMA_VERSION,kind:'checkpoints',items},{enforcement,source:'runtime-checkpoint'});}
+async function save(store,items){await writeJsonAtomic(store,FILE,{schemaVersion:CURRENT_SCHEMA_VERSION,kind:'checkpoints',items},{enforcement,itemSchema,source:'runtime-checkpoint'});}
 
 export async function createCheckpoint(store,input){
   assertString(input.type,'type');

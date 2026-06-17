@@ -2,11 +2,12 @@ import { readFile } from 'node:fs/promises';
 import { makeId, nowIso } from '../core/ids.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
-import { CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
+import { CURRENT_SCHEMA_VERSION, createItemValidator } from '../core/validation.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
 const FILE='teams.json';
 
-const enforcement = new Enforcement();
+const itemSchema = createItemValidator('runtime-team.schema.json');
+const enforcement = new Enforcement(itemSchema);
 const ALLOWED_TEAM_SPEC_FIELDS = [
   'name', 'pattern', 'goal', 'roles', 'tasks', 'orchestration_pattern',
   'orchestration', 'reviewGates', 'stop_conditions', 'metadata',
@@ -14,7 +15,7 @@ const ALLOWED_TEAM_SPEC_FIELDS = [
 ];
 
 export async function listTeams(store){return (await readJson(store,FILE,emptyCollection('teams'))).items;}
-async function save(store,items){await writeJsonAtomic(store,FILE,{schemaVersion:CURRENT_SCHEMA_VERSION,kind:'teams',items},{enforcement,source:'runtime-team'});}
+async function save(store,items){await writeJsonAtomic(store,FILE,{schemaVersion:CURRENT_SCHEMA_VERSION,kind:'teams',items},{enforcement,itemSchema,source:'runtime-team'});}
 
 export async function importTeamSpec(store,file){
   const spec=JSON.parse(await readFile(file,'utf8'));
