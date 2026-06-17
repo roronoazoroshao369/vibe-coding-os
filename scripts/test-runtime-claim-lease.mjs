@@ -213,6 +213,43 @@ test('updateTaskStatus in_progress TTL capped by config maxTaskLease', async () 
   });
 });
 
+test('claimTask rejects terminal tasks', async () => {
+  await withStore(async (store) => {
+    const { id } = await createTask(store, { title: 'Terminal task' });
+    await updateTaskStatus(store, id, 'in_progress', { actor: 'dev' });
+    await updateTaskStatus(store, id, 'completed', { actor: 'dev' });
+    await assert.rejects(
+      () => claimTask(store, id, 'agent-1', { force: true }),
+      /terminal state "completed"/
+    );
+    const stored = (await readJson(store, 'tasks.json')).items.find(t => t.id === id);
+    assert.equal(stored.status, 'completed');
+    assert.equal(stored.claim?.claimedBy, 'dev');
+  });
+});
+
+test('renewTaskLease absolute expiration capped by config maxTaskLease', async () => {
+  await withStore(async (store) => {
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    writeFileSync(join(store.runtimeDir, 'config.json'), JSON.stringify({
+      version: '2.0.0',
+      runtime: { maxTaskLease: 30 },
+    }), 'utf8');
+    const { id } = await createTask(store, { title: 'Absolute cap' });
+    await claimTask(store, id, 'agent-1', { ttl: 30 });
+
+    const data = await readJson(store, 'tasks.json');
+    const task = data.items.find(t => t.id === id);
+    task.claim.expiresAt = new Date(Date.now() + 3600 * 1000).toISOString();
+    await writeJsonAtomic(store, 'tasks.json', data);
+
+    const renewed = await renewTaskLease(store, id, 9999);
+    const expiresIn = (new Date(renewed.claim.expiresAt).getTime() - Date.now()) / 1000;
+    assert.ok(expiresIn <= 35, `Expected absolute renew lease <= 35s, got ${expiresIn}s`);
+  });
+});
+
 let failures = 0;
 for (const { name, fn } of tests) {
   try {

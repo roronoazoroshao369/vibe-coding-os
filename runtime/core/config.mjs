@@ -93,6 +93,15 @@ export function loadConfig(store) {
   try {
     const raw = JSON.parse(readFileSync(configFile, 'utf8'));
     const merged = deepMerge(DEFAULT_CONFIG, raw);
+
+    // Validate numeric config values
+    if (typeof merged.runtime?.maxTaskLease === 'number') {
+      if (merged.runtime.maxTaskLease <= 0 || !Number.isFinite(merged.runtime.maxTaskLease)) {
+        merged.runtime.maxTaskLease = DEFAULT_CONFIG.runtime.maxTaskLease;
+        merged._configWarning = `runtime.maxTaskLease must be a positive finite number, reset to default`;
+      }
+    }
+
     merged._source = 'config.json';
     merged._loadedAt = nowIso();
     return merged;

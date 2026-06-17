@@ -64,7 +64,7 @@ export function buildTools(store) {
         required: ['id', 'status'],
         additionalProperties: false,
       },
-      handler: async (args) => updateTaskStatus(store, args.id, args.status),
+      handler: async (args) => updateTaskStatus(store, args.id, args.status, { actor: args.actor || 'mcp' }),
     },
     {
       name: 'memory.search',
