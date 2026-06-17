@@ -73,6 +73,8 @@
     },
     "stop_conditions": { "type": "array", "items": { "type": "string" }, "description": "Conditions that halt the team" },
     "source": { "$ref": "runtime-common.schema.json#/$defs/sourceV1" },
+    "createdBy": { "$ref": "runtime-common.schema.json#/$defs/createdBy" },
+    "trace": { "$ref": "runtime-common.schema.json#/$defs/trace" },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
     "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },
     "extensions": { "type": "object", "additionalProperties": true }

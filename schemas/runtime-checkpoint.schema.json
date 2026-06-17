@@ -93,6 +93,15 @@
       "type": "string",
       "description": "Agent or user that created the checkpoint"
     },
+    "createdBy": {
+      "$ref": "runtime-common.schema.json#/$defs/createdBy"
+    },
+    "source": {
+      "type": "string"
+    },
+    "trace": {
+      "$ref": "runtime-common.schema.json#/$defs/trace"
+    },
     "createdAt": {
       "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
     },

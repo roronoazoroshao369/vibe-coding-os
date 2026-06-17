@@ -96,6 +96,9 @@
         "required": ["event", "timestamp"]
       }
     },
+    "createdBy": { "type": "string" },
+    "trace": { "type": "string" },
+    "source": { "type": "string" },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
     "updatedAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
     "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },

@@ -55,6 +55,8 @@
     },
     "related_files": { "type": "array", "items": { "type": "string" } },
     "citations": { "type": "array", "items": { "type": "string" } },
+    "createdBy": { "$ref": "runtime-common.schema.json#/$defs/createdBy" },
+    "trace": { "$ref": "runtime-common.schema.json#/$defs/trace" },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
     "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },
     "extensions": { "type": "object", "additionalProperties": true }

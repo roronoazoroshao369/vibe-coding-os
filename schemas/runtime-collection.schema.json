@@ -4,7 +4,7 @@
   "title": "Vibe Coding OS Runtime Collection",
   "description": "Minimal persisted runtime collection contract for optional local runtime state files under .omc/runtime.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "required": ["schemaVersion", "kind", "items"],
   "properties": {
     "schemaVersion": {
@@ -33,6 +33,15 @@
     "revision": {
       "type": "integer",
       "description": "Revision number for the collection"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata",
+      "description": "Arbitrary metadata for the collection (escape hatch)"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Arbitrary extensions for the collection (escape hatch)"
     }
   },
   "allOf": [
