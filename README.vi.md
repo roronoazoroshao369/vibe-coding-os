@@ -3,19 +3,19 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.3.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Bản phát hành hiện tại (v1.4.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
 
-**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
+**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.0.md)
 
-## Có gì mới trong v1.3.0
+## Có gì mới trong v1.4.0
 
-- Runtime Contracts v2: schema chặt, multi-agent state contracts, và safety/traceability cơ bản.
-- Migration dry-run engine: con đường an toàn hơn để nâng cấp runtime state lưu trữ với backup và rollback awareness.
-- Schema event, approval, tool-contract, và migration cho provenance, capability declarations, và risk inspection.
-- Paths validation backward-compatible v1→v2 cho runtime state hiện tại.
-- 20/20 validation gates passes với full repository integrity checks.
+- **Runtime kernel:** config layer, task state machine, và broadened schema enforcement.
+- **Event Store v2:** sequence numbers, correlation/causation IDs, idempotency keys, và metadata consistency.
+- **Runtime observability:** `vibe doctor`, `vibe doctor --json`, và `vibe events --json`.
+- **Contract hardening:** JSON-only CLI output cho machine-readable surfaces, maxTaskLease enforcement, và runtime boundary documentation.
+- 20/20 validation gates passes với updated runtime behavior coverage.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
