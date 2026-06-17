@@ -12,6 +12,8 @@ import { listTasks, nextReadyTask, updateTaskStatus } from '../tasks/task-store.
 import { ingestMemory } from '../memory/memory-store.mjs';
 import { searchMemory } from '../memory/retrieval.mjs';
 import { createCheckpoint } from '../checkpoints/checkpoint-engine.mjs';
+import { withApprovalGate } from '../core/approval-gate.mjs';
+import { assertToolAllowed, defaultContracts } from '../core/tool-contract.mjs';
 
 export const SDK_PACKAGE = '@modelcontextprotocol/sdk';
 export const SERVER_NAME = 'vibe-coding-os-runtime';
@@ -38,18 +40,21 @@ export function buildTools(store) {
     {
       name: 'task.list',
       description: 'List all runtime tasks with status and dependencies.',
+      risk: { level: 'safe' },
       inputSchema: { type: 'object', properties: {}, additionalProperties: false },
       handler: async () => listTasks(store),
     },
     {
       name: 'task.next',
       description: 'Return the next ready task (pending with all dependencies completed), or null.',
+      risk: { level: 'safe' },
       inputSchema: { type: 'object', properties: {}, additionalProperties: false },
       handler: async () => nextReadyTask(store),
     },
     {
       name: 'task.update',
       description: 'Update a task status (pending|in_progress|blocked|completed|cancelled).',
+      risk: { level: 'review', approvalRequired: true, reasons: ['updates runtime task state'] },
       inputSchema: {
         type: 'object',
         properties: {
@@ -64,6 +69,7 @@ export function buildTools(store) {
     {
       name: 'memory.search',
       description: 'Search runtime memory by content/tag substring. Returns matching records.',
+      risk: { level: 'safe' },
       inputSchema: {
         type: 'object',
         properties: { query: { type: 'string', description: 'Search query.' } },
@@ -75,6 +81,7 @@ export function buildTools(store) {
     {
       name: 'memory.ingest',
       description: 'Ingest a memory record. Content is privacy-redacted before storage.',
+      risk: { level: 'review', approvalRequired: true, reasons: ['writes runtime memory state'] },
       inputSchema: {
         type: 'object',
         properties: {
@@ -97,6 +104,7 @@ export function buildTools(store) {
     {
       name: 'checkpoint.create',
       description: 'Record a checkpoint evidence entry (e.g. readiness/done gates).',
+      risk: { level: 'review', approvalRequired: true, reasons: ['writes runtime checkpoint state'] },
       inputSchema: {
         type: 'object',
         properties: {
@@ -156,7 +164,10 @@ export async function startServer({ root = process.cwd() } = {}) {
 
   const { Server, StdioServerTransport, ListToolsRequestSchema, CallToolRequestSchema } = sdk;
   const store = createStore(root);
-  const tools = buildTools(store);
+  const tools = buildTools(store).map((tool) => ({
+    ...tool,
+    handler: withApprovalGate(tool.handler, store, tool.name),
+  }));
   const byName = new Map(tools.map((t) => [t.name, t]));
 
   const server = new Server(
@@ -177,7 +188,8 @@ export async function startServer({ root = process.cwd() } = {}) {
       };
     }
     try {
-      const result = await tool.handler(request.params.arguments || {});
+      assertToolAllowed(tool.name, 'mcp', defaultContracts);
+      const result = await tool.handler({ ...(request.params.arguments || {}), risk: tool.risk, actor: 'mcp' });
       return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
     } catch (err) {
       return {

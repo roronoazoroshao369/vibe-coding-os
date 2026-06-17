@@ -40,6 +40,7 @@
     "smoke-test:adapters": "node scripts/smoke-test-adapters.mjs",
     "references:health": "node scripts/reference-health-report.mjs",
     "smoke-test:runtime": "node scripts/smoke-test-runtime.mjs",
+    "runtime:audit": "node scripts/runtime-audit.mjs",
     "workflow:status": "node scripts/workflow-status.mjs",
     "validate:bilingual-sync": "node scripts/validate-bilingual-sync.mjs",
     "validate:markdown-links": "node scripts/validate-markdown-links.mjs",
@@ -48,7 +49,10 @@
     "trace:list": "node scripts/runtime-log.mjs list",
     "reference:diff": "node scripts/reference-diff.mjs",
     "daemon:test": "node scripts/daemon-test.mjs",
-    "runtime:migrate": "node scripts/runtime-migrate.mjs"
+    "runtime:migrate": "node scripts/runtime-migrate.mjs",
+    "runtime:replay": "node scripts/runtime-replay.mjs",
+    "runtime:snapshot": "node scripts/runtime-snapshot.mjs",
+    "runtime:events": "node scripts/runtime-events.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"
