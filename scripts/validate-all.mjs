@@ -25,7 +25,8 @@ const checks = [
   ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']],
   ['Bilingual README sync', 'node', ['scripts/validate-bilingual-sync.mjs']],
   ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']],
-  ['README heading version', 'node', ['scripts/check-heading-version.mjs']]
+  ['README heading version', 'node', ['scripts/check-heading-version.mjs']],
+  ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']]
 ];
 
 function formatDuration(ms) {

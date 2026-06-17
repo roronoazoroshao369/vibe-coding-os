@@ -52,7 +52,8 @@
     "runtime:migrate": "node scripts/runtime-migrate.mjs",
     "runtime:replay": "node scripts/runtime-replay.mjs",
     "runtime:snapshot": "node scripts/runtime-snapshot.mjs",
-    "runtime:events": "node scripts/runtime-events.mjs"
+    "runtime:events": "node scripts/runtime-events.mjs",
+    "runtime:behavior-tests": "node scripts/runtime-behavior-tests.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"
