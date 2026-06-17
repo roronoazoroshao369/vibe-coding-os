@@ -36,7 +36,7 @@ Then run the framework's own validation suite:
 npm run validate:all
 ```
 
-> **Note:** `npm run validate:all` validates the framework itself (19 gates). It is separate from your app's tests.
+> **Note:** `npm run validate:all` validates the framework itself (20 gates). It is separate from your app's tests.
 
 ## Step 3 — Switch to Your Target Project
 

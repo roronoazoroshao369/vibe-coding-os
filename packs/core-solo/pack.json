@@ -19,6 +19,6 @@
     {"name": "zoom-out-system-context", "source": "core/zoom-out-system-context/SKILL.md"}
   ],
   "commands": [
-    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review"
   ]
 }

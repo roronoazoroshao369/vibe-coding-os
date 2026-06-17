@@ -200,24 +200,45 @@ export function cmdExport(tool) {
 
 export function cmdInstallPack(packName, args = []) {
   const packsDir = join(ROOT, 'packs');
+  let force = false;
+  let dryRun = false;
 
-  // Allow --dry-run as first arg instead of pack name
+  // Parse flags from args
+  while (args.length > 0 && args[0].startsWith('--')) {
+    const flag = args.shift();
+    if (flag === '--dry-run') {
+      dryRun = true;
+    } else if (flag === '--force') {
+      force = true;
+    } else {
+      console.error(`${fail} Unknown flag: ${flag}. Known flags: --dry-run, --force`);
+      process.exit(1);
+    }
+  }
+
+  // Allow --dry-run or --force as first arg instead of pack name
   if (!packName || packName.startsWith('--')) {
-    const dryRunFirst = packName === '--dry-run';
-    const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
-    if (dryRunFirst) {
-      packName = args[0];
-      args = ['--dry-run', ...args.slice(1)];
+    if (packName === '--dry-run') {
+      packName = args.shift() || null;
+      dryRun = true;
+    } else if (packName === '--force') {
+      packName = args.shift() || null;
+      force = true;
     }
   }
   if (!packName || packName.startsWith('--')) {
     const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
-    console.error(`${fail} Usage: vibe install-pack <pack-name> [--dry-run]`);
+    console.error(`${fail} Usage: vibe install-pack <pack-name> [--dry-run] [--force]`);
     console.error(`  Available packs: ${packs.join(', ') || '(none found)'}`);
     process.exit(1);
   }
 
-  const dryRun = args.includes('--dry-run');
+  // W1: Validate pack name is a safe slug
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(packName)) {
+    console.error(`${fail} Invalid pack name: ${packName}. Pack names must be lowercase alphanumeric with hyphens.`);
+    process.exit(1);
+  }
+
   const packFile = join(packsDir, packName, 'pack.json');
   if (!existsSync(packFile)) {
     const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
@@ -227,9 +248,25 @@ export function cmdInstallPack(packName, args = []) {
   }
 
   const pack = readJSON(packFile);
+
+  // W1: Validate all skill names are safe slugs
+  for (const skill of pack.skills || []) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(skill.name)) {
+      console.error(`${fail} Invalid skill name in pack: ${skill.name}. Must be lowercase alphanumeric with hyphens.`);
+      process.exit(1);
+    }
+  }
+
   const targetDir = resolve('.vibe', 'skills', pack.name);
   console.log(`${info} Installing skill pack ${c.bold}${pack.name}${c.reset}${dryRun ? ' (dry run)' : ''}...\n`);
   console.log(`${c.dim}${pack.description || ''}${c.reset}\n`);
+
+  // B3: Check for overwrite
+  if (!dryRun && existsSync(targetDir) && !force) {
+    console.error(`${warn} Target directory already exists: ${targetDir}`);
+    console.error(`  Use --force to overwrite existing files.`);
+    process.exit(1);
+  }
 
   const installed = [];
   for (const skill of pack.skills || []) {

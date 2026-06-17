@@ -11,7 +11,7 @@
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 410 |
+| Narrative files | 411 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -72,7 +72,7 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 19/19 gates passed**
+**Overall: 20/20 gates passed**
 
 ## Coverage Summary
 

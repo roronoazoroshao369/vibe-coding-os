@@ -12,6 +12,7 @@ const checks = [
   ['Repo structure', 'node', ['scripts/validate-repo.mjs']],
   ['References', 'node', ['scripts/validate-references.mjs']],
   ['Registry schemas', 'node', ['scripts/validate-schemas.mjs']],
+  ['Pack schemas', 'node', ['scripts/validate-pack-schemas.mjs']],
   ['Traceability', 'node', ['scripts/validate-traceability.mjs']],
   ['Injection scan', 'node', ['scripts/validate-injection.mjs']],
   ['Secret scan', 'node', ['scripts/validate-secrets.mjs']],

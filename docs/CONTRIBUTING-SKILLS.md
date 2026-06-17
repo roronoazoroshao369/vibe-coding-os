@@ -89,7 +89,7 @@ Keep each skill focused on one workflow or safeguard.
 2. Say when the skill should not be used.
 3. Do not duplicate another skill without justification.
 4. Make inputs and outputs explicit.
-5. Link related skills in the “Ghi chú tiếng Việt” section if helpful.
+5. Link related skills in a "Related skills" section if helpful.
 
 ## Adding the skill
 
