@@ -25,6 +25,11 @@ export function parseArgs(argv = process.argv.slice(2)) {
       continue;
     }
 
+    if (arg === '-V' || arg === '--version') {
+      flags.version = true;
+      continue;
+    }
+
     if (arg.startsWith('--')) {
       const raw = arg.slice(2);
       const eq = raw.indexOf('=');

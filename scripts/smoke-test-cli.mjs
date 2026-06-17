@@ -14,6 +14,9 @@ const commands = [
   { args: ['help'] },
   { args: ['--help'] },
   { args: ['-h'] },
+  { args: ['version'] },
+  { args: ['--version'] },
+  { args: ['-V'] },
   { args: ['stats'] },
   { args: ['templates'] },
   { args: ['spec'] },
@@ -21,6 +24,9 @@ const commands = [
   { args: ['memory'] },
   { args: ['task'] },
   { args: ['doctor'] },
+  { args: ['doctor', '--project', join(ROOT, 'docs')] },
+  { args: ['doctor', '--project', '/nonexistent-path'] , expectedStatus: 1 },
+  { args: ['doctor', '--project'], expectedStatus: 1 },
   { args: ['list-skills'] },
   { args: ['list-skills', 'memory'] },
   { args: ['list-commands'] },
@@ -80,6 +86,47 @@ for (const commandSpec of commands) {
     cwd: cwd === 'tmp' ? tmpCwd : cwd,
     expectedStatus,
     label: formatCommand(args),
+  });
+}
+
+// ── Export tests ──
+console.log('');
+console.log('--- Export tests ---');
+const exportTmp = mkdtempSync(join(tmpdir(), 'vibe-export-'));
+for (const tool of ['cursor', 'claude', 'codex', 'gemini', 'claude-code']) {
+  runCmd('vibe-cli.mjs', ['export', tool], {
+    cwd: exportTmp,
+    expectedStatus: 0,
+    label: `vibe export ${tool}`,
+  });
+}
+rmSync(exportTmp, { recursive: true, force: true });
+
+// export with invalid tool should fail
+runCmd('vibe-cli.mjs', ['export', 'invalid-tool'], {
+  expectedStatus: 1,
+  label: 'vibe export invalid-tool (expect fail)',
+});
+
+// ── Runtime script -h/-V tests ──
+console.log('');
+console.log('--- Runtime script --help/--version tests ---');
+for (const script of ['runtime-task.mjs', 'runtime-memory.mjs', 'runtime-session.mjs', 'runtime-team.mjs']) {
+  runCmd(script, ['-h'], {
+    expectedStatus: 0,
+    label: `node scripts/${script} -h`,
+  });
+  runCmd(script, ['-V'], {
+    expectedStatus: 0,
+    label: `node scripts/${script} -V`,
+  });
+  runCmd(script, ['--help'], {
+    expectedStatus: 0,
+    label: `node scripts/${script} --help`,
+  });
+  runCmd(script, ['--version'], {
+    expectedStatus: 0,
+    label: `node scripts/${script} --version`,
   });
 }
 
