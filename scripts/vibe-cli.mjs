@@ -58,7 +58,7 @@ ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 
 ${c.bold}Commands:${c.reset}
   ${c.green}init${c.reset} [tool]         Initialize a project with the selected adapter
-                            Tools: claude-code (default), codex, cursor
+                            Tools: claude-code (default), codex, cursor, gemini
   ${c.green}doctor${c.reset}              Check if vibe-coding-os is properly installed
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
@@ -82,7 +82,7 @@ ${c.bold}Examples:${c.reset}
 }
 
 export function cmdInit(tool = 'claude-code') {
-  const validTools = ['claude-code', 'codex', 'cursor'];
+  const validTools = ['claude-code', 'codex', 'cursor', 'gemini'];
   if (!validTools.includes(tool)) {
     console.error(`${fail} Unknown tool: ${tool}. Valid: ${validTools.join(', ')}`);
     process.exit(1);
@@ -94,6 +94,7 @@ export function cmdInit(tool = 'claude-code') {
     'claude-code': { file: 'CLAUDE.md', src: 'CLAUDE.md' },
     'codex': { file: 'AGENTS.md', src: 'AGENTS.md' },
     'cursor': { file: '.cursorrules', src: 'AGENTS.md' },
+    'gemini': { file: 'GEMINI.md', src: 'AGENTS.md' },
   };
 
   const adapter = adapters[tool];

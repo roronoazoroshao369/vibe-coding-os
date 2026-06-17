@@ -59,9 +59,9 @@ const cursorChecks = [
   check('Has install/setup section', cursorReadme && /(?:^|\n)## .*(?:setup|install)/im.test(cursorReadme)),
   check('References .cursorrules or rules', cursorReadme && /(?:\.cursorrules|\brules\b)/i.test(cursorReadme)),
   check('References commands/ or skills/', cursorReadme && /\b(?:commands\/|skills\/)/.test(cursorReadme)),
-  check('Install snippet references existing CLAUDE.md', (() => {
+  check('Install snippet references existing repo instruction files', (() => {
     const m = cursorReadme && cursorReadme.match(/cp\s+(?:~\/)?vibe-coding-os\/(?:CLAUDE|AGENTS)\.md\s+[^\n]+/);
-    return m && existsSync(resolve(ROOT, 'CLAUDE.md'));
+    return m && (existsSync(resolve(ROOT, 'AGENTS.md')) || existsSync(resolve(ROOT, 'CLAUDE.md')));
   })()),
   check('Consistent install path pattern', cursorReadme && /(?:vibe-coding-os\/CLAUDE\.md|vibe-coding-os\/AGENTS\.md)/.test(cursorReadme)),
 ];
@@ -95,11 +95,12 @@ const memoryChecks = [
 const matrix = readFile('adapters/compatibility-matrix.md');
 const matrixChecks = [
   check('File exists', !!matrix),
-  check('Entries for Claude Code, Codex, Cursor, Gemini', matrix &&
+  check('Entries for Claude Code, Codex, Cursor, Gemini, Memory', matrix &&
     /\bClaude Code\b/.test(matrix) &&
     /\bCodex\b/.test(matrix) &&
     /\bCursor\b/.test(matrix) &&
-    /\bGemini\b/.test(matrix)),
+    /\bGemini\b/.test(matrix) &&
+    /\bMemory\b/.test(matrix)),
   check('Contains tool comparison table', matrix && /\| Tool \|/.test(matrix)),
   check('References validation command', matrix && /npm run validate/.test(matrix)),
 ];
