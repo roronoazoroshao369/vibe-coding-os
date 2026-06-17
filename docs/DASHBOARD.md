@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 54 |
-| Narrative files | 397 |
+| Narrative files | 398 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -35,6 +35,7 @@
 | v0.4 | ✅ Complete | Packaging & Skill Packs |
 | v1.0 | ✅ Complete | Trusted Workflow Framework |
 | v1.1.0 | ✅ Complete | Runtime/schema/adapter hardening |
+| v1.2.0 | ✅ Complete | Multi-agent contracts, safety, migration |
 
 ## Safety Metrics
 
