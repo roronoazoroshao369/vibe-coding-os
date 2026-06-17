@@ -1,27 +1,17 @@
-import { appendFile, mkdir, readFile, writeFile, rename, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, rename, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { nowIso, makeId } from './ids.mjs';
 import { redactObject } from './privacy.mjs';
 import { CURRENT_SCHEMA_VERSION } from './validation.mjs';
+import { appendEventV2 } from './event-store.mjs';
 
 const EVENTS_FILE = 'events.jsonl';
 const SNAPSHOT_DIR = 'snapshots';
 
-export async function appendEvent(store, type, payload = {}) {
-  const event = {
-    schemaVersion: CURRENT_SCHEMA_VERSION,
-    id: makeId('evt'),
-    type,
-    createdAt: nowIso(),
-    actor: { type: 'system' },
-    redaction: { applied: false },
-    payload: redactObject(payload)
-  };
-  const file = path.join(store.runtimeDir, EVENTS_FILE);
-  await mkdir(path.dirname(file), { recursive: true });
-  await appendFile(file, `${JSON.stringify(event)}\n`, 'utf8');
-  return event;
+export async function appendEvent(store, type, payload = {}, options = {}) {
+  // Compatibility wrapper: Event Store v2 is canonical; legacy callers keep using appendEvent().
+  return appendEventV2(store, type, payload, options);
 }
 
 export async function listEvents(store, options = {}) {

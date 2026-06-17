@@ -66,14 +66,23 @@ export async function writeJsonAtomic(store, name, value, options = {}) {
   await rename(tmp, file);
 }
 
-export async function withLock(store, name, fn) {
+export async function withLock(store, name, fn, options = {}) {
   await ensureRuntime(store);
   const lock = path.join(store.runtimeDir, 'locks', `${name}.lock`);
-  try {
-    await writeFile(lock, String(process.pid), { flag: 'wx' });
-  } catch {
-    throw new Error(`Runtime store is locked: ${name}`);
+  const timeoutMs = options.timeoutMs ?? 5000;
+  const retryMs = options.retryMs ?? 25;
+  const start = Date.now();
+
+  while (true) {
+    try {
+      await writeFile(lock, String(process.pid), { flag: 'wx' });
+      break;
+    } catch {
+      if (Date.now() - start >= timeoutMs) throw new Error(`Runtime store is locked: ${name}`);
+      await new Promise((resolve) => setTimeout(resolve, retryMs));
+    }
   }
+
   try {
     return await fn();
   } finally {

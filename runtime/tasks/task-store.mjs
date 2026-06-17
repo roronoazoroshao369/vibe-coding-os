@@ -4,6 +4,7 @@ import { makeId, nowIso } from '../core/ids.mjs';
 import { CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
+import { loadConfig } from '../core/config.mjs';
 import { assertString, createItemValidator } from '../core/validation.mjs';
 import { transitionTask, canTransition } from '../core/task-state-machine.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
@@ -113,7 +114,9 @@ export async function importTasksFromMarkdown(store, file) {
  */
 export async function claimTask(store, id, claimer, options = {}) {
   assertString(claimer, 'claimer');
-  const ttl = options.ttl ?? 300;
+  const config = loadConfig(store);
+  const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
+  let ttl = Math.min(options.ttl ?? 300, maxLease);
   const actor = options.actor || claimer;
   const force = options.force === true;
 

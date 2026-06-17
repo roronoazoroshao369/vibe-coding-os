@@ -7,9 +7,9 @@
  * Returns a structured report with checks, warnings, and recommendations.
  */
 
-import { existsSync, statSync, readFileSync } from 'node:fs';
+import { existsSync, statSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { loadConfig, getConfig } from './config.mjs';
+import { loadConfig } from './config.mjs';
 import { createStore } from './fs-store.mjs';
 import { getStateMachineSummary } from './task-state-machine.mjs';
 import { getEventMetadata } from './event-store.mjs';
@@ -180,11 +180,9 @@ const checks = [
   }),
 ];
 
-// ---------------------------------------------------------------------------
+// ────────────────────────────────────────────────────────────────────────────
 // Main doctor function
 // ---------------------------------------------------------------------------
-
-import { readdirSync } from 'node:fs';
 
 /**
  * Run all health checks and return a structured report.
@@ -231,8 +229,14 @@ export async function runDoctor(root = process.cwd()) {
       warn: warnCount,
       error: errorCount,
       info: infoCount,
-      healthy: errorCount === 0,
+      healthy: errorCount === 0 && warnCount === 0,
+      operational: errorCount === 0,
+      clean: errorCount === 0 && warnCount === 0,
     },
+    healthy: errorCount === 0 && warnCount === 0,
+    operational: errorCount === 0,
+    clean: errorCount === 0 && warnCount === 0,
+    metadataConsistent: warnCount === 0,
     checks: results,
   };
 }

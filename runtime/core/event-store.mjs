@@ -13,6 +13,7 @@
  */
 
 import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { withLock } from './fs-store.mjs';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { nowIso, makeId } from './ids.mjs';
@@ -68,39 +69,51 @@ export async function appendEventV2(store, type, payload = {}, options = {}) {
   const eventId = makeId('evt');
   const now = nowIso();
 
-  // Idempotency check
-  if (options.idempotent) {
-    const recentEvents = await listEventsV2(store, { limit: 100, type });
-    if (recentEvents.some(e => e.id === eventId)) {
-      return recentEvents.find(e => e.id === eventId);
+  const idempotencyKey = options.idempotencyKey || options.id || null;
+
+  // Perform append under lock to avoid seq races and metadata divergence.
+  return withLock(store, 'events', async () => {
+    // Reconcile metadata from JSONL before assigning seq.
+    const existing = await listEventsV2(store, { strict: true });
+    const inferredTotal = existing.length;
+    const maxSeq = existing.reduce((m, e) => (typeof e.seq === 'number' && e.seq > m ? e.seq : m), 0);
+    const safeNextSeq = Math.max(meta.nextSeq || 1, (maxSeq > 0 ? maxSeq + 1 : inferredTotal + 1));
+    const safeTotal = Math.max(meta.totalEvents || 0, inferredTotal);
+
+    // Idempotency: return existing event if caller-provided key already present.
+    if (idempotencyKey) {
+      const match = existing.find((e) => (e.idempotencyKey || e.id) === idempotencyKey);
+      if (match) return match;
     }
-  }
 
-  const event = {
-    schemaVersion: CURRENT_SCHEMA_VERSION,
-    id: eventId,
-    seq: meta.nextSeq,
-    type,
-    createdAt: now,
-    actor: options.actor ? { type: 'agent', id: options.actor } : { type: 'system' },
-    correlationId: options.correlationId || null,
-    causationId: options.causationId || null,
-    redaction: { applied: false },
-    payload: redactObject(payload),
-  };
+    const event = {
+      schemaVersion: CURRENT_SCHEMA_VERSION,
+      id: eventId,
+      idempotencyKey,
+      seq: safeNextSeq,
+      type,
+      createdAt: now,
+      actor: options.actor ? { type: 'agent', id: options.actor } : { type: 'system' },
+      correlationId: options.correlationId || null,
+      causationId: options.causationId || null,
+      redaction: { applied: false },
+      payload: redactObject(payload),
+    };
 
-  const file = path.join(store.runtimeDir, EVENTS_FILE);
-  await mkdir(path.dirname(file), { recursive: true });
-  await appendFile(file, `${JSON.stringify(event)}\n`, 'utf8');
+    const file = path.join(store.runtimeDir, EVENTS_FILE);
+    await mkdir(path.dirname(file), { recursive: true });
+    await appendFile(file, `${JSON.stringify(event)}\n`, 'utf8');
 
-  // Update metadata
-  meta.nextSeq++;
-  meta.totalEvents++;
-  meta.lastEventId = eventId;
-  meta.lastEventAt = now;
-  await saveMetadata(store, meta);
+    // Persist updated metadata.
+    await saveMetadata(store, {
+      nextSeq: safeNextSeq + 1,
+      totalEvents: safeTotal + 1,
+      lastEventId: eventId,
+      lastEventAt: now,
+    });
 
-  return event;
+    return event;
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -156,13 +169,14 @@ export async function listEventsV2(store, options = {}) {
 
       events.push(event);
 
-      // limit
-      if (options.limit && events.length >= options.limit) break;
+  // limit
+  if (!options.tail && options.limit && events.length >= options.limit) break;
     } catch (err) {
       if (options.strict) throw new Error(`invalid event JSON at line ${index + 1}: ${err.message}`);
     }
   }
 
+  if (options.tail) return events.slice(-Number(options.limit || events.length));
   return events;
 }
 
@@ -262,11 +276,13 @@ export async function getEventMetadata(store) {
   // Backward compatibility: old event logs may not have metadata or seq fields.
   const inferredTotal = allEvents.length;
   const inferredNextSeq = maxSeq > 0 ? maxSeq + 1 : inferredTotal + 1;
+  const metadataConsistent = (meta.totalEvents || 0) === inferredTotal && (meta.nextSeq || 1) === inferredNextSeq;
 
   return {
     ...meta,
     totalEvents: Math.max(meta.totalEvents || 0, inferredTotal),
     nextSeq: Math.max(meta.nextSeq || 1, inferredNextSeq),
+    metadataConsistent,
     fileSize,
     typeCounts,
     eventsInFile: inferredTotal,

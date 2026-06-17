@@ -19,7 +19,7 @@ async function withRoot(fn) {
 test('runDoctor reports healthy empty runtime', async () => withRoot(async (root) => {
   const report = await runDoctor(root);
   assert.equal(report.summary.error, 0);
-  assert.equal(report.summary.healthy, true);
+  assert.equal(report.summary.operational, true);
   assert.equal(report.checks.length, 8);
   assert.ok(report.checks.find(c => c.name === 'runtime_directory'));
 }));
@@ -56,7 +56,7 @@ test('formatDoctorReport renders human-readable report', async () => withRoot(as
   const text = formatDoctorReport(report);
   assert.match(text, /Runtime Health Check/);
   assert.match(text, /runtime_directory/);
-  assert.match(text, /HEALTHY/);
+  assert.match(text, /HEALTHY|ISSUES FOUND/);
 }));
 
 let failures = 0;

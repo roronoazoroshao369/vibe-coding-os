@@ -23,6 +23,7 @@ const c = {
 };
 const ok = `${c.green}✓${c.reset}`;
 const fail = `${c.red}✗${c.reset}`;
+const warn = `${c.yellow}⚠${c.reset}`;
 const info = `${c.cyan}→${c.reset}`;
 
 // ─── Helpers ───
@@ -325,6 +326,8 @@ export async function cmdDoctor(args = []) {
     console.error(`${fail} Project directory not found: ${projectDir}`);
     process.exit(1);
   }
+
+  if (json) { const report = await runDoctor(projectDir || ROOT); console.log(JSON.stringify(report, null, 2)); return; }
 
   if (projectDir) {
     console.log(`${c.bold}${c.cyan}Vibe Coding OS — Project Readiness${c.reset}\n`);
@@ -661,12 +664,13 @@ export function cmdTemplates() {
 export async function cmdEvents(args = []) {
   const json = args.includes('--json');
   const limitArg = args.find((a) => a.startsWith('--limit='));
-  const limit = limitArg ? Number(limitArg.split('=')[1]) : 10;
+  let limit = limitArg ? Number(limitArg.split('=')[1]) : 10;
+  if (!Number.isFinite(limit) || limit < 1 || limit > 1000) limit = 10;
   const { createStore } = await import('../runtime/core/fs-store.mjs');
   const store = createStore(process.cwd());
 
   const meta = await getEventMetadata(store);
-  const events = await listEventsV2(store, { limit });
+  const events = await listEventsV2(store, { tail: true, limit });
   const result = { meta, events };
 
   if (json) {
