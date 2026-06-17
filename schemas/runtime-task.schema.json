@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/runtime-task.schema.json",
+  "title": "Vibe Coding OS Runtime Task Item",
+  "description": "Item shape for tasks persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable task label"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "done", "failed", "skipped"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "status"]
+}

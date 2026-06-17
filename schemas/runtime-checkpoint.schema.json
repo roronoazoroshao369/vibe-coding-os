@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/runtime-checkpoint.schema.json",
+  "title": "Vibe Coding OS Runtime Checkpoint Item",
+  "description": "Item shape for checkpoints persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "Checkpoint label"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id"]
+}

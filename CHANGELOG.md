@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Next: v1.0 hardening and release-candidate work.
+### Added
+
+## [1.0.0] — 2026-06-17
 
 ### Added
 - Dashboard sync validation (`scripts/check-dashboard-sync.mjs`, `npm run dashboard:check`) that verifies `docs/DASHBOARD.md` matches live package version, inventory counts, narrative file count, and orphan counts; added to `npm run validate:all`.
@@ -153,6 +155,7 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.1.0...v0.4.0
 [0.1.0]: https://github.com/roronoazoroshao369/vibe-coding-os/releases/tag/v0.1.0

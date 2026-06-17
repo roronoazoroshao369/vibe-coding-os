@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-os",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "private": true,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
@@ -36,7 +36,9 @@
     "dashboard:data": "node scripts/dashboard-data.mjs",
     "dashboard:generate": "node scripts/generate-dashboard.mjs",
     "dashboard:check": "node scripts/check-dashboard-sync.mjs",
-    "release:dry-run": "node scripts/release.mjs --dry-run"
+    "release:dry-run": "node scripts/release.mjs --dry-run",
+    "smoke-test:adapters": "node scripts/smoke-test-adapters.mjs",
+    "references:health": "node scripts/reference-health-report.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

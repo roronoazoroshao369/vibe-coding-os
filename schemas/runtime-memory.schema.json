@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/runtime-memory.schema.json",
+  "title": "Vibe Coding OS Runtime Memory Item",
+  "description": "Item shape for memory entries persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content": {
+      "type": "string",
+      "description": "Memory entry content"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "content"]
+}

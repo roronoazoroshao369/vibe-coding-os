@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "last_built": "2026-06-06T00:00:00.000Z",
+  "last_built": "2026-06-17T00:19:48.764Z",
   "sources": [
     {
       "id": "affaan-m-ecc",
@@ -27,6 +27,155 @@
       "last_checked": "2026-06-06",
       "last_known_commit": "7113b5bf63694b716f8b2413c5919824a82fc095",
       "notes": "Baseline audited from local clone on 2026-06-06. Study for cross-harness registries, placement policy, security guide rails, and workflow conventions."
+    },
+    {
+      "id": "automazeio-ccpm",
+      "name": "ccpm",
+      "owner": "automazeio",
+      "url": "https://github.com/automazeio/ccpm",
+      "category": "task-management",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/automazeio-ccpm.md",
+      "changelog": "references/changelogs/automazeio-ccpm.md",
+      "features": [
+        "source-of-truth-task-tracking",
+        "spec-issue-worktree-traceability"
+      ],
+      "local_targets": [
+        "skills/core/task-state-tracking/SKILL.md",
+        "templates/traceability-map-template.md",
+        "commands/vibe-worktree.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "notes": "Inspiration only; no /pm runtime, gh issue sync, bash engine, or GitHub-as-database workflow vendored."
+    },
+    {
+      "id": "bmad-code-org-bmad-method",
+      "name": "BMAD-METHOD",
+      "owner": "bmad-code-org",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "category": "project-method",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/bmad-code-org-bmad-method.md",
+      "changelog": "references/changelogs/bmad-code-org-bmad-method.md",
+      "features": [
+        "project-standards",
+        "product-mission-roadmap",
+        "adaptive-planning"
+      ],
+      "local_targets": [
+        "STANDARDS.md",
+        "ROADMAP.md",
+        "skills/core/adaptive-flow/SKILL.md",
+        "docs/workflows/adaptive-flow.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored."
+    },
+    {
+      "id": "buildermethods-agent-os",
+      "name": "agent-os",
+      "owner": "buildermethods",
+      "url": "https://github.com/buildermethods/agent-os",
+      "category": "project-method",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/buildermethods-agent-os.md",
+      "changelog": "references/changelogs/buildermethods-agent-os.md",
+      "features": [
+        "project-standards",
+        "standards-aware-planning",
+        "product-roadmap"
+      ],
+      "local_targets": [
+        "STANDARDS.md",
+        "ROADMAP.md",
+        "skills/core/adaptive-flow/SKILL.md",
+        "commands/vibe-flow.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored."
+    },
+    {
+      "id": "coleam00-context-engineering",
+      "name": "context-engineering-intro",
+      "owner": "coleam00",
+      "url": "https://github.com/coleam00/context-engineering-intro",
+      "category": "context-engineering",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/coleam00-context-engineering.md",
+      "changelog": "references/changelogs/coleam00-context-engineering.md",
+      "features": [
+        "context-rich-brief",
+        "research-phase",
+        "examples-library",
+        "project-rules",
+        "validation-gates",
+        "iterate-until-green",
+        "confidence-score"
+      ],
+      "local_targets": [
+        "templates/implementation-brief-template.md",
+        "commands/vibe-brief.md",
+        "commands/vibe-brief-execute.md",
+        "skills/core/context-rich-implementation/SKILL.md",
+        "docs/workflows/context-engineering.md",
+        "references/features/context-engineering.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "maintenance_priority": "high",
+      "upstream_watch_paths": [
+        "README.md",
+        "PRPs/",
+        "examples/",
+        ".claude/",
+        "use-cases/"
+      ],
+      "update_triggers": [
+        "blueprint/brief structure change",
+        "research or documentation-gathering guidance change",
+        "examples-library or project-rules convention change",
+        "validation-gate or iterate-until-green model change",
+        "confidence-scoring rubric change",
+        "license or attribution metadata change"
+      ],
+      "notes": "MIT (Copyright (c) 2025 Cole Medin) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Context-engineering integration completed on 2026-06-07: deepened the implementation brief (research, positive/negative examples, validation gates, confidence score), added research/confidence phases to vibe-brief, created vibe-brief-execute, and added the context-rich-implementation skill and context-engineering workflow doc. Inspiration/adaptation only; no upstream text, templates, example files, or PRP-runner code vendored."
+    },
+    {
+      "id": "eyaltoledano-claude-task-master",
+      "name": "claude-task-master",
+      "owner": "eyaltoledano",
+      "url": "https://github.com/eyaltoledano/claude-task-master",
+      "category": "task-management",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT+Commons-Clause",
+      "reference_doc": "references/sources/eyaltoledano-claude-task-master.md",
+      "changelog": "references/changelogs/eyaltoledano-claude-task-master.md",
+      "features": [
+        "task-state-tracking",
+        "next-task-selection",
+        "spec-issue-worktree-traceability"
+      ],
+      "local_targets": [
+        "skills/core/task-state-tracking/SKILL.md",
+        "templates/tasks-template.md",
+        "templates/traceability-map-template.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "notes": "Inspiration only; no MCP server, CLI engine, tasks.json runtime, or model config vendored."
     },
     {
       "id": "github-spec-kit",
@@ -134,54 +283,6 @@
         "brownfield workflow changes"
       ],
       "notes": "Spec-driven-development integration completed on 2026-06-06. Inspiration/adaptation only; no Specify CLI dependency, no upstream command names required, and no vendored templates or code."
-    },
-    {
-      "id": "coleam00-context-engineering",
-      "name": "context-engineering-intro",
-      "owner": "coleam00",
-      "url": "https://github.com/coleam00/context-engineering-intro",
-      "category": "context-engineering",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "MIT",
-      "reference_doc": "references/sources/coleam00-context-engineering.md",
-      "changelog": "references/changelogs/coleam00-context-engineering.md",
-      "features": [
-        "context-rich-brief",
-        "research-phase",
-        "examples-library",
-        "project-rules",
-        "validation-gates",
-        "iterate-until-green",
-        "confidence-score"
-      ],
-      "local_targets": [
-        "templates/implementation-brief-template.md",
-        "commands/vibe-brief.md",
-        "commands/vibe-brief-execute.md",
-        "skills/core/context-rich-implementation/SKILL.md",
-        "docs/workflows/context-engineering.md",
-        "references/features/context-engineering.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "maintenance_priority": "high",
-      "upstream_watch_paths": [
-        "README.md",
-        "PRPs/",
-        "examples/",
-        ".claude/",
-        "use-cases/"
-      ],
-      "update_triggers": [
-        "blueprint/brief structure change",
-        "research or documentation-gathering guidance change",
-        "examples-library or project-rules convention change",
-        "validation-gate or iterate-until-green model change",
-        "confidence-scoring rubric change",
-        "license or attribution metadata change"
-      ],
-      "notes": "MIT (Copyright (c) 2025 Cole Medin) verified from upstream LICENSE via raw GitHub during the 2026-06-07 audit. Context-engineering integration completed on 2026-06-07: deepened the implementation brief (research, positive/negative examples, validation gates, confidence score), added research/confidence phases to vibe-brief, created vibe-brief-execute, and added the context-rich-implementation skill and context-engineering workflow doc. Inspiration/adaptation only; no upstream text, templates, example files, or PRP-runner code vendored."
     },
     {
       "id": "mattpocock-skills",
@@ -385,6 +486,48 @@
       "last_checked": "2026-06-06",
       "last_known_commit": "6fd4507659784c351abbd2bc264c7162cfd386dc",
       "notes": "Integrated as inspiration/adaptation on 2026-06-06. Local content is original and maps Superpowers-style workflow discipline into Vibe Coding OS skills, commands, docs, and registries."
+    },
+    {
+      "id": "revfactory-harness",
+      "name": "harness",
+      "owner": "revfactory",
+      "url": "https://github.com/revfactory/harness",
+      "category": "agent-team-orchestration",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "Apache-2.0",
+      "reference_doc": "references/sources/revfactory-harness.md",
+      "changelog": "references/changelogs/revfactory-harness.md",
+      "features": [
+        "team-agent-orchestration",
+        "multi-agent-workflow",
+        "progressive-disclosure"
+      ],
+      "local_targets": [
+        "skills/core/team-agent-orchestration/SKILL.md",
+        "commands/vibe-team.md",
+        "templates/team-architecture-template.md",
+        "docs/workflows/team-agent-orchestration.md",
+        "references/features/team-agent-orchestration.md"
+      ],
+      "last_checked": "2026-06-07",
+      "last_known_commit": "unknown",
+      "maintenance_priority": "high",
+      "upstream_watch_paths": [
+        "README.md",
+        "docs/",
+        ".claude/agents/",
+        ".claude/skills/",
+        "src/"
+      ],
+      "update_triggers": [
+        "new team pattern",
+        "phase workflow change",
+        "validation method change",
+        "progressive disclosure change",
+        "generated artifact boundary change"
+      ],
+      "notes": "Apache-2.0 Copyright 2025 robin from provided upstream facts. Used as inspiration for team architecture patterns and validation workflow only; no generated agent/skill files or runtime are vendored."
     },
     {
       "id": "supermemoryai-supermemory",
@@ -592,149 +735,6 @@
       "last_checked": "2026-06-06",
       "last_known_commit": "3e945671dcf3ed1c1bcc422862815f92c1999143",
       "notes": "Baseline audited from local clone on 2026-06-06. Study for Claude Code agent boundaries, skill budgets, memory merge behavior, and plugin compatibility tests."
-    },
-    {
-      "id": "revfactory-harness",
-      "name": "harness",
-      "owner": "revfactory",
-      "url": "https://github.com/revfactory/harness",
-      "category": "agent-team-orchestration",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "Apache-2.0",
-      "reference_doc": "references/sources/revfactory-harness.md",
-      "changelog": "references/changelogs/revfactory-harness.md",
-      "features": [
-        "team-agent-orchestration",
-        "multi-agent-workflow",
-        "progressive-disclosure"
-      ],
-      "local_targets": [
-        "skills/core/team-agent-orchestration/SKILL.md",
-        "commands/vibe-team.md",
-        "templates/team-architecture-template.md",
-        "docs/workflows/team-agent-orchestration.md",
-        "references/features/team-agent-orchestration.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "maintenance_priority": "high",
-      "upstream_watch_paths": [
-        "README.md",
-        "docs/",
-        ".claude/agents/",
-        ".claude/skills/",
-        "src/"
-      ],
-      "update_triggers": [
-        "new team pattern",
-        "phase workflow change",
-        "validation method change",
-        "progressive disclosure change",
-        "generated artifact boundary change"
-      ],
-      "notes": "Apache-2.0 Copyright 2025 robin from provided upstream facts. Used as inspiration for team architecture patterns and validation workflow only; no generated agent/skill files or runtime are vendored."
-    },
-    {
-      "id": "bmad-code-org-bmad-method",
-      "name": "BMAD-METHOD",
-      "owner": "bmad-code-org",
-      "url": "https://github.com/bmad-code-org/BMAD-METHOD",
-      "category": "project-method",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "MIT",
-      "reference_doc": "references/sources/bmad-code-org-bmad-method.md",
-      "changelog": "references/changelogs/bmad-code-org-bmad-method.md",
-      "features": [
-        "project-standards",
-        "product-mission-roadmap",
-        "adaptive-planning"
-      ],
-      "local_targets": [
-        "STANDARDS.md",
-        "ROADMAP.md",
-        "skills/core/adaptive-flow/SKILL.md",
-        "docs/workflows/adaptive-flow.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored."
-    },
-    {
-      "id": "buildermethods-agent-os",
-      "name": "agent-os",
-      "owner": "buildermethods",
-      "url": "https://github.com/buildermethods/agent-os",
-      "category": "project-method",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "MIT",
-      "reference_doc": "references/sources/buildermethods-agent-os.md",
-      "changelog": "references/changelogs/buildermethods-agent-os.md",
-      "features": [
-        "project-standards",
-        "standards-aware-planning",
-        "product-roadmap"
-      ],
-      "local_targets": [
-        "STANDARDS.md",
-        "ROADMAP.md",
-        "skills/core/adaptive-flow/SKILL.md",
-        "commands/vibe-flow.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored."
-    },
-    {
-      "id": "eyaltoledano-claude-task-master",
-      "name": "claude-task-master",
-      "owner": "eyaltoledano",
-      "url": "https://github.com/eyaltoledano/claude-task-master",
-      "category": "task-management",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "MIT+Commons-Clause",
-      "reference_doc": "references/sources/eyaltoledano-claude-task-master.md",
-      "changelog": "references/changelogs/eyaltoledano-claude-task-master.md",
-      "features": [
-        "task-state-tracking",
-        "next-task-selection",
-        "spec-issue-worktree-traceability"
-      ],
-      "local_targets": [
-        "skills/core/task-state-tracking/SKILL.md",
-        "templates/tasks-template.md",
-        "templates/traceability-map-template.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "notes": "Inspiration only; no MCP server, CLI engine, tasks.json runtime, or model config vendored."
-    },
-    {
-      "id": "automazeio-ccpm",
-      "name": "ccpm",
-      "owner": "automazeio",
-      "url": "https://github.com/automazeio/ccpm",
-      "category": "task-management",
-      "status": "tracked",
-      "import_mode": "inspiration",
-      "license": "MIT",
-      "reference_doc": "references/sources/automazeio-ccpm.md",
-      "changelog": "references/changelogs/automazeio-ccpm.md",
-      "features": [
-        "source-of-truth-task-tracking",
-        "spec-issue-worktree-traceability"
-      ],
-      "local_targets": [
-        "skills/core/task-state-tracking/SKILL.md",
-        "templates/traceability-map-template.md",
-        "commands/vibe-worktree.md"
-      ],
-      "last_checked": "2026-06-07",
-      "last_known_commit": "unknown",
-      "notes": "Inspiration only; no /pm runtime, gh issue sync, bash engine, or GitHub-as-database workflow vendored."
     }
   ]
 }
