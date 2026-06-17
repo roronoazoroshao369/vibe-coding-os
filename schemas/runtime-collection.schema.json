@@ -13,7 +13,7 @@
     },
     "kind": {
       "type": "string",
-      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions"]
+      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions", "workflow-runs", "actions"]
     },
     "items": {
       "type": "array",
@@ -22,5 +22,126 @@
         "additionalProperties": true
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "tasks" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-task.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "memory" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-memory.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "checkpoints" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-checkpoint.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "teams" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-team.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "sessions" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-session.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "workflow-runs" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "workflow-run.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "actions" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-action.schema.json"
+            }
+          }
+        }
+      }
+    }
+  ]
 }

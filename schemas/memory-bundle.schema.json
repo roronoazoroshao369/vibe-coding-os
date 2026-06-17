@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/memory-bundle.schema.json",
+  "title": "Vibe Coding OS Memory Bundle",
+  "description": "Memory retrieval bundle schema for ranked query results.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "query": { "type": "string", "minLength": 1 },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "content", "scope", "confidence", "freshness", "citations", "score"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "content": { "type": "string", "minLength": 1 },
+          "scope": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "freshness": { "type": "string", "enum": ["fresh", "stale", "stale_ok"] },
+          "citations": { "type": "array", "items": { "type": "string" } },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "required": ["schemaVersion", "query", "results"]
+}

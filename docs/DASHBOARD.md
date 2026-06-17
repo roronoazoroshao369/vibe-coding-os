@@ -10,8 +10,8 @@
 | Version | 1.0.0 |
 | Skills | 90 |
 | Commands | 68 |
-| Templates | 41 |
-| Narrative files | 369 |
+| Templates | 54 |
+| Narrative files | 393 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -41,7 +41,7 @@
 |---|---|
 | Secret scan | ✅ 0 secrets found |
 | Memory redaction | ✅ 30/30 tests |
-| Adapter smoke tests | ✅ 4/4 adapters |
+| Adapter smoke tests | ✅ 6/6 adapters (6 groups) |
 | Repo validation | ✅ Passed |
 | Injection scan | ✅ Passed |
 
@@ -71,12 +71,12 @@
 |---|---|
 | Skills (90) | All have SKILL.md with required sections |
 | Commands (68) | All discovered dynamically from `commands/` |
-| Templates (41) | All discovered dynamically from `templates/` |
-| Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟡 |
+| Templates (54) | All discovered dynamically from `templates/` |
+| Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 0 |
+| Orphan templates | 11 (planned v1.1 placeholders) |
 | Broken references | 0 |
 
 ## How to Regenerate

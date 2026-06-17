@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/runtime-action.schema.json",
+  "title": "Vibe Coding OS Runtime Action Item",
+  "description": "Agent execution trace entry persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "tool": { "type": "string", "minLength": 1 },
+    "command": { "type": "string" },
+    "cwd": { "type": "string" },
+    "exit_code": { "type": "integer" },
+    "risk_level": { "type": "string", "enum": ["safe", "review", "dangerous", "blocked"] },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "session_id": { "type": "string" },
+    "output_snippet": { "type": "string", "maxLength": 500 },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "required": ["id", "tool", "timestamp"]
+}

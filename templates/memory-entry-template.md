@@ -8,7 +8,7 @@ Ghi chú tiếng Việt: Mẫu này dùng để capture one durable memory item 
 
 ## Purpose
 
-Capture one durable memory item with source, sensitivity, and expiry.
+Capture one durable memory item with source, sensitivity, confidence, staleness, and citations.
 
 ## Placeholder fields
 
@@ -26,6 +26,14 @@ Capture one durable memory item with source, sensitivity, and expiry.
 - `{optional_provider_notes}`
 - `{verification}`
 - `{follow_ups}`
+
+## Schema fields
+
+- `sensitivity`: public | internal | sensitive | secret-redacted
+- `confidence`: low | medium | high
+- `staleness`: natural-language freshness hint (e.g., "fresh", "needs-recheck-after-v1.1")
+- `related_files`: paths referenced by this memory entry
+- `citations`: source pointers (file paths, commit hashes, docs, URLs)
 
 ## Do not store secrets checklist
 

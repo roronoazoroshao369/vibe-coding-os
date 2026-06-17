@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/workflow-run.schema.json",
+  "title": "Vibe Coding OS Workflow Run",
+  "description": "State document for a single workflow execution.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
+    },
+    "workflow": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "blocked", "completed", "failed", "cancelled"]
+    },
+    "phase": {
+      "type": "string"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "event": { "type": "string" },
+          "timestamp": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+          "actor": { "type": "string" },
+          "details": { "type": "object" }
+        },
+        "required": ["event", "timestamp"]
+      }
+    },
+    "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+    "updatedAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
+  },
+  "required": ["id", "status", "history"]
+}

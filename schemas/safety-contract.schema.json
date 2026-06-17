@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibe-coding-os.local/schemas/safety-contract.schema.json",
+  "title": "Agent Safety Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "risk_levels", "write_scope", "network_policy", "rollback", "requires_approval"],
+  "properties": {
+    "version": { "type": "string" },
+    "risk_levels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/riskLevel" }
+    },
+    "write_scope": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/writeScope" }
+    },
+    "network_policy": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/networkPolicy" }
+    },
+    "rollback": { "$ref": "#/$defs/rollback" },
+    "requires_approval": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/approvalRule" }
+    },
+    "examples": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/example" }
+    }
+  },
+  "$defs": {
+    "riskLevel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "description", "approval_required"],
+      "properties": {
+        "level": { "enum": ["safe", "review", "dangerous", "blocked"] },
+        "description": { "type": "string" },
+        "approval_required": { "type": "boolean" },
+        "examples": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "writeScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "description", "approval_required"],
+      "properties": {
+        "scope": { "enum": ["local", "global", "sandbox"] },
+        "description": { "type": "string" },
+        "approval_required": { "type": "boolean" },
+        "allowed_paths": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "networkPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "description"],
+      "properties": {
+        "policy": { "enum": ["allow", "deny", "restricted"] },
+        "description": { "type": "string" },
+        "allowed_hosts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_for", "fields"],
+      "properties": {
+        "required_for": {
+          "type": "array",
+          "items": { "enum": ["safe", "review", "dangerous", "blocked"] }
+        },
+        "fields": {
+          "type": "array",
+          "items": { "enum": ["change_summary", "revert_steps", "data_loss_risk", "verification"] }
+        }
+      }
+    },
+    "approvalRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when", "approval"],
+      "properties": {
+        "when": { "type": "string" },
+        "approval": { "enum": ["none", "self_review", "explicit_user", "blocked"] }
+      }
+    },
+    "example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "risk_level", "reason"],
+      "properties": {
+        "command": { "type": "string" },
+        "risk_level": { "enum": ["safe", "review", "dangerous", "blocked"] },
+        "write_scope": { "enum": ["local", "global", "sandbox"] },
+        "network_policy": { "enum": ["allow", "deny", "restricted"] },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

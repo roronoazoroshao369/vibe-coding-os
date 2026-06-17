@@ -58,7 +58,7 @@ ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 
 ${c.bold}Commands:${c.reset}
   ${c.green}init${c.reset} [tool]         Initialize a project with the selected adapter
-                            Tools: claude-code (default), codex, cursor
+                            Tools: claude-code (default), codex, cursor, gemini
   ${c.green}doctor${c.reset}              Check if vibe-coding-os is properly installed
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
@@ -68,6 +68,7 @@ ${c.bold}Commands:${c.reset}
   ${c.green}memory${c.reset} [name]      Show memory entry template (use --copy to copy to cwd)
   ${c.green}task${c.reset} [name]        Show task template (use --copy to copy to cwd)
   ${c.green}templates${c.reset}          List all available templates
+  ${c.green}workflow${c.reset} status    Show optional runtime workflow status
   ${c.green}help${c.reset}               Show this help message
 
 ${c.bold}Examples:${c.reset}
@@ -82,7 +83,7 @@ ${c.bold}Examples:${c.reset}
 }
 
 export function cmdInit(tool = 'claude-code') {
-  const validTools = ['claude-code', 'codex', 'cursor'];
+  const validTools = ['claude-code', 'codex', 'cursor', 'gemini'];
   if (!validTools.includes(tool)) {
     console.error(`${fail} Unknown tool: ${tool}. Valid: ${validTools.join(', ')}`);
     process.exit(1);
@@ -94,6 +95,7 @@ export function cmdInit(tool = 'claude-code') {
     'claude-code': { file: 'CLAUDE.md', src: 'CLAUDE.md' },
     'codex': { file: 'AGENTS.md', src: 'AGENTS.md' },
     'cursor': { file: '.cursorrules', src: 'AGENTS.md' },
+    'gemini': { file: 'GEMINI.md', src: 'AGENTS.md' },
   };
 
   const adapter = adapters[tool];
@@ -124,7 +126,7 @@ export function cmdDoctor() {
 
   const checks = [
     { name: 'package.json', path: 'package.json', required: true },
-    { name: 'node_modules', path: 'node_modules', required: true, isDir: true },
+    { name: 'node_modules', path: 'node_modules', required: false, isDir: true },
     { name: 'skills/', path: 'skills', required: true, isDir: true },
     { name: 'commands/', path: 'commands', required: true, isDir: true },
     { name: 'templates/', path: 'templates', required: true, isDir: true },
@@ -142,6 +144,8 @@ export function cmdDoctor() {
     if (exists) {
       console.log(`${ok} ${check.name}`);
       passed++;
+    } else if (check.required === false) {
+      console.log(`${c.yellow}⚠ ${check.name} — not found (optional)${c.reset}`);
     } else {
       console.log(`${fail} ${check.name} ${c.red}— not found${c.reset}`);
       failed++;
@@ -443,6 +447,16 @@ if (isMainModule) {
     case 'memory': cmdMemory(args); break;
     case 'task': cmdTask(args); break;
     case 'templates': cmdTemplates(); break;
+    case 'workflow': {
+      const { spawnSync } = await import('node:child_process');
+      const result = spawnSync(process.execPath, [join(__dirname, 'workflow-status.mjs'), ...args], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+        stdio: ['inherit', 'inherit', 'inherit'],
+      });
+      process.exit(result.status ?? 1);
+      break;
+    }
     case 'help': case '--help': case '-h': case undefined: cmdHelp(); break;
     default:
       console.error(`${fail} Unknown command: ${cmd}`);

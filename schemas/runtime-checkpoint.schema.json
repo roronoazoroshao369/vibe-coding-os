@@ -6,18 +6,61 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
-    "id": {
-      "type": "string",
-      "minLength": 1
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
     },
-    "name": {
+    "id": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId"
+    },
+    "type": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "phase": {
       "type": "string",
-      "description": "Checkpoint label"
+      "description": "Which phase the checkpoint gates (constitution/specify/plan/tasks/implementation)"
+    },
+    "command": {
+      "type": "string",
+      "description": "The command that produced this checkpoint"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "failed", "blocked", "skipped"],
+      "description": "Gate status for the checkpoint"
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Paths or references to artifacts produced during the phase"
+    },
+    "limitations": {
+      "type": "string",
+      "description": "What this checkpoint does not verify"
+    },
+    "resume_hint": {
+      "type": "string",
+      "description": "Instructions for resuming after this checkpoint"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Agent or user that created the checkpoint"
     },
     "createdAt": {
-      "type": "string",
-      "format": "date-time"
+      "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
+    },
+    "metadata": {
+      "$ref": "runtime-common.schema.json#/$defs/metadata"
     }
   },
-  "required": ["id"]
+  "required": ["id", "type", "result"]
 }
