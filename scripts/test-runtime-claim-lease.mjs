@@ -150,6 +150,69 @@ test('updateTaskStatus from pending to in_progress auto-claims', async () => {
   });
 });
 
+test('claimTask TTL capped by config maxTaskLease', async () => {
+  await withStore(async (store) => {
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    // Set a low maxTaskLease
+    writeFileSync(join(store.runtimeDir, 'config.json'), JSON.stringify({
+      version: '2.0.0',
+      runtime: { maxTaskLease: 30 },
+    }), 'utf8');
+    const { id } = await createTask(store, { title: 'Capped claim' });
+    const claimed = await claimTask(store, id, 'agent-1', { ttl: 9999 });
+    const expiresIn = (new Date(claimed.claim.expiresAt).getTime() - Date.now()) / 1000;
+    assert.ok(expiresIn <= 35, `Expected lease <= 35s, got ${expiresIn}s`); // 30 + buffer
+  });
+});
+
+test('heartbeatTask TTL capped by config maxTaskLease', async () => {
+  await withStore(async (store) => {
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    writeFileSync(join(store.runtimeDir, 'config.json'), JSON.stringify({
+      version: '2.0.0',
+      runtime: { maxTaskLease: 30 },
+    }), 'utf8');
+    const { id } = await createTask(store, { title: 'HB capped' });
+    await claimTask(store, id, 'agent-1', { ttl: 10 });
+    const heartbeated = await heartbeatTask(store, id, 9999);
+    const expiresIn = (new Date(heartbeated.claim.expiresAt).getTime() - Date.now()) / 1000;
+    assert.ok(expiresIn <= 35, `Expected heartbeat lease <= 35s, got ${expiresIn}s`);
+  });
+});
+
+test('renewTaskLease extraTtl capped by config maxTaskLease', async () => {
+  await withStore(async (store) => {
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    writeFileSync(join(store.runtimeDir, 'config.json'), JSON.stringify({
+      version: '2.0.0',
+      runtime: { maxTaskLease: 30 },
+    }), 'utf8');
+    const { id } = await createTask(store, { title: 'Renew capped' });
+    await claimTask(store, id, 'agent-1', { ttl: 10 });
+    const renewed = await renewTaskLease(store, id, 9999);
+    const expiresIn = (new Date(renewed.claim.expiresAt).getTime() - Date.now()) / 1000;
+    assert.ok(expiresIn <= 45, `Expected renew lease <= 45s, got ${expiresIn}s`); // 10 initial + 30 max = 40 + buffer
+  });
+});
+
+test('updateTaskStatus in_progress TTL capped by config maxTaskLease', async () => {
+  await withStore(async (store) => {
+    const { writeFileSync } = await import('node:fs');
+    const { join } = await import('node:path');
+    writeFileSync(join(store.runtimeDir, 'config.json'), JSON.stringify({
+      version: '2.0.0',
+      runtime: { maxTaskLease: 30 },
+    }), 'utf8');
+    const { id } = await createTask(store, { title: 'Status TTL capped' });
+    const updated = await updateTaskStatus(store, id, 'in_progress', { actor: 'dev', ttl: 9999 });
+    const expiresIn = (new Date(updated.claim.expiresAt).getTime() - Date.now()) / 1000;
+    assert.ok(expiresIn <= 35, `Expected status cap <= 35s, got ${expiresIn}s`);
+  });
+});
+
 let failures = 0;
 for (const { name, fn } of tests) {
   try {

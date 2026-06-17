@@ -32,6 +32,10 @@
       "additionalProperties": false
     },
     "metadata": { "type": "object", "additionalProperties": true },
-    "extensions": { "type": "object", "additionalProperties": true }
+    "extensions": { "type": "object", "additionalProperties": true },
+    "seq": { "type": "integer", "minimum": 1 },
+    "idempotencyKey": { "type": "string" },
+    "correlationId": { "type": "string" },
+    "causationId": { "type": "string" }
   }
 }

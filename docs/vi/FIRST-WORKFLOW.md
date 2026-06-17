@@ -93,35 +93,58 @@ Mở project trong AI coding assistant và đi theo vòng lặp sau:
 
 ### 6a. Bắt Đầu Với Spec
 
-```
+Bạn có thể dùng prompt tiếng Anh để AI tool hiểu nhất quán, hoặc dùng bản tiếng Việt ngay dưới.
+
+```text
 Define a feature spec for a simple counter app with increment, decrement, and reset.
 Include goals, non-goals, and acceptance criteria. Do not implement yet.
+```
+
+```text
+Hãy định nghĩa spec cho một app counter đơn giản có increment, decrement, và reset.
+Bao gồm goals, non-goals, và acceptance criteria. Chưa implement.
 ```
 
 Lưu output vào `docs/specs/counter-app.md`.
 
 ### 6b. Tạo Plan
 
-```
+```text
 Based on the spec at docs/specs/counter-app.md, create an implementation plan.
 List the files to create, the steps to take, and the verification commands.
+```
+
+```text
+Dựa trên spec tại docs/specs/counter-app.md, hãy tạo implementation plan.
+Liệt kê file cần tạo, các bước thực hiện, và lệnh verification.
 ```
 
 Lưu output vào `docs/plans/counter-app.md`.
 
 ### 6c. Implement
 
-```
+```text
 Implement the plan from docs/plans/counter-app.md.
 Create the files one at a time and verify each step.
 ```
 
+```text
+Implement plan từ docs/plans/counter-app.md.
+Tạo từng file một và verify sau mỗi bước.
+```
+
 ### 6d. Review
 
-```
+```text
 Review the implementation against the spec.
 List any bugs, missing features, or security concerns.
 Do not make changes — just report.
+```
+
+```text
+Review implementation so với spec.
+Liệt kê bug, feature còn thiếu, hoặc vấn đề bảo mật.
+Không chỉnh sửa code — chỉ báo cáo.
 ```
 
 ### 6e. Verify
