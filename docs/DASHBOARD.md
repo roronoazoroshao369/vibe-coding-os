@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.2.0 |
+| Version | 1.3.0 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 402 |
+| Narrative files | 403 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -36,6 +36,7 @@
 | v1.0 | ✅ Complete | Trusted Workflow Framework |
 | v1.1.0 | ✅ Complete | Runtime/schema/adapter hardening |
 | v1.2.0 | ✅ Complete | Multi-agent contracts, safety, migration |
+| v1.3.0 | ✅ Complete | Runtime enforcement, claim/lease, safety & recovery |
 
 ## Safety Metrics
 
