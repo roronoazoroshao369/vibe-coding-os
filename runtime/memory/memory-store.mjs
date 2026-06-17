@@ -3,12 +3,23 @@ import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs
 import { appendEvent } from '../core/events.mjs';
 import { redactText } from '../core/privacy.mjs';
 import { assertString, CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
+import { Enforcement } from '../core/enforcement.mjs';
+
+const enforcement = new Enforcement();
+
+const ALLOWED_MEMORY_INPUT_FIELDS = [
+  'content', 'kind', 'scope', 'source', 'tags', 'freshness',
+];
 
 const FILE = 'memory.json';
 export async function listMemory(store) { return (await readJson(store, FILE, emptyCollection('memory'))).items; }
-async function save(store, items) { await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'memory', items }); }
+async function save(store, items) {
+  await writeJsonAtomic(store, FILE, { schemaVersion: CURRENT_SCHEMA_VERSION, kind: 'memory', items }, { enforcement, source: 'runtime-memory' });
+}
+
 export async function ingestMemory(store, input) {
   assertString(input.content, 'content');
+  enforcement.assertKnownFields(input, ALLOWED_MEMORY_INPUT_FIELDS, 'memory input');
   return withLock(store, 'memory', async () => {
     const items = await listMemory(store);
     const item = {

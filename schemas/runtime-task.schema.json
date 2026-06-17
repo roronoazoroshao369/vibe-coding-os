@@ -71,8 +71,8 @@
       "properties": {
         "claimedBy": { "type": "string" },
         "claimedAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
-        "leaseExpiresAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
-        "heartbeatAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
+        "expiresAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+        "heartbeat": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
       },
       "additionalProperties": false,
       "description": "Task claim/lock information"
@@ -126,8 +126,8 @@
         "type": "object",
         "properties": {
           "event": { "type": "string" },
-          "from": { "type": "string" },
-          "to": { "type": "string" },
+          "from": { "type": ["string", "null"] },
+          "to": { "type": ["string", "null"] },
           "actor": { "type": "string" },
           "timestamp": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
         },
