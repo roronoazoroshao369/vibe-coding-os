@@ -49,8 +49,10 @@ function countFiles(dir, ext) {
 // ─── Commands ───
 
 export function cmdHelp() {
+  const pkg = readJSON(join(ROOT, 'package.json'));
+  const version = pkg.version || '0.0.0';
   console.log(`
-${c.bold}${c.cyan}Vibe Coding OS CLI${c.reset} v0.2.0
+${c.bold}${c.cyan}Vibe Coding OS CLI${c.reset} v${version}
 
 ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 
@@ -91,7 +93,7 @@ export function cmdInit(tool = 'claude-code') {
   const adapters = {
     'claude-code': { file: 'CLAUDE.md', src: 'CLAUDE.md' },
     'codex': { file: 'AGENTS.md', src: 'AGENTS.md' },
-    'cursor': { file: '.cursorrules', src: 'adapters/cursor/.cursorrules' },
+    'cursor': { file: '.cursorrules', src: 'AGENTS.md' },
   };
 
   const adapter = adapters[tool];
@@ -246,7 +248,7 @@ export function cmdStats() {
   const refIndex = join(ROOT, 'references', 'index.json');
   if (existsSync(refIndex)) {
     const data = readJSON(refIndex);
-    upstreams = data.upstream_sources?.length || 0;
+    upstreams = data.sources?.length || data.upstream_sources?.length || 0;
   }
 
   const stats = [
@@ -441,7 +443,7 @@ if (isMainModule) {
     case 'memory': cmdMemory(args); break;
     case 'task': cmdTask(args); break;
     case 'templates': cmdTemplates(); break;
-    case 'help': case undefined: cmdHelp(); break;
+    case 'help': case '--help': case '-h': case undefined: cmdHelp(); break;
     default:
       console.error(`${fail} Unknown command: ${cmd}`);
       console.log(`Run ${c.cyan}node scripts/vibe-cli.mjs help${c.reset} for usage.\n`);

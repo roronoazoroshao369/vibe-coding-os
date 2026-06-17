@@ -62,7 +62,7 @@ Last updated: 2026-06-16
 | Versioned compatibility matrix | ✅ adapters/compatibility-matrix.md |
 
 ## v1.0 — Trusted Workflow Framework
-**Status:** ✅ COMPLETE
+**Status:** ✅ DELIVERABLES COMPLETE — Final release pending signoff
 
 | Deliverable | Status |
 |---|---|

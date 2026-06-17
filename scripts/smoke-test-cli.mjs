@@ -10,6 +10,8 @@ const ROOT = resolve(__dirname, '..');
 
 const commands = [
   ['help'],
+  ['--help'],
+  ['-h'],
   ['stats'],
   ['templates'],
   ['spec'],

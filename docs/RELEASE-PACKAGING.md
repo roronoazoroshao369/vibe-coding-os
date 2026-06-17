@@ -2,13 +2,13 @@
 
 How to version, tag, and ship releases for Vibe Coding OS.
 
-> **Current version:** `0.4.0` (see `package.json`)
+> **Current version:** `1.0.0` (see `package.json`)
 >
 > **Tagging note:** Do **not** create or push git tags on a PR branch. Create and push the actual `v<version>` tag only after the release PR has merged into the target branch (e.g. `main`).
 >
-> **Draft release notes:** See [`docs/releases/v0.4.0.md`](releases/v0.4.0.md) for the current v0.4.0 GitHub Release draft.
+> **Draft release notes:** See [`docs/releases/v1.0.0.md`](releases/v1.0.0.md) for the current v1.0.0 GitHub Release draft.
 >
-> **Post-release next step:** Create the v1.0 branch only after `v0.4.0` has been tagged and pushed from the merged release commit.
+> **Post-release next step:** Create and push the final `v1.0.0` tag only after this release metadata lands on the release branch and signoff is complete.
 
 ---
 ## Version Numbering

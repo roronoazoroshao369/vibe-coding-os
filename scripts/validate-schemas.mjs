@@ -281,6 +281,26 @@ async function validateCommands() {
 }
 
 // ---------------------------------------------------------------------------
+// 5. Validate runtime schemas have consistent shape
+// ---------------------------------------------------------------------------
+async function validateRuntimeSchemas() {
+  const schemaDir = path.join(ROOT, 'schemas');
+  const entries = await readdir(schemaDir);
+  const runtimeSchemas = entries.filter((f) => f.startsWith('runtime-') && f.endsWith('.schema.json'));
+  for (const f of runtimeSchemas) {
+    const fullPath = path.join(schemaDir, f);
+    try {
+      const parsed = await readJson(fullPath);
+      if (!isNonEmptyString(parsed.$id)) warnings.push(`${f}: missing $id`);
+      if (typeof parsed.description !== 'string' || parsed.description.trim() === '') warnings.push(`${f}: missing or empty description`);
+      if (!Array.isArray(parsed.required)) warnings.push(`${f}: missing required array`);
+    } catch (err) {
+      errors.push(`Runtime schema ${f} is not valid JSON: ${err.message}`);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -288,6 +308,7 @@ const schemaFiles = await validateSchemaFiles();
 await validateReferenceIndex();
 await validateSkills();
 await validateCommands();
+await validateRuntimeSchemas();
 
 // ---------------------------------------------------------------------------
 // Summary
