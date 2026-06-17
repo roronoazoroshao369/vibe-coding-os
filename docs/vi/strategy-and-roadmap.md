@@ -4,15 +4,17 @@ Tài liệu này tổng hợp review trạng thái repo và plan chiến lược
 
 ## 1. Status hiện tại
 
-Vibe Coding OS hiện là một framework v0.1 tập trung vào disciplined AI-assisted coding. Repo đã có:
+Vibe Coding OS hiện là một framework v0.4.0 tập trung vào disciplined AI-assisted coding. Repo đã vượt khỏi giai đoạn prompt pack nhỏ và đã có trạng thái release hiện tại:
 
 - workflow mặc định `Intent → Spec → Plan → Implement → Test → Review → Memory → Merge`;
-- command prompts cho init/spec/plan/implement/review/memory/merge/doctor/reference;
-- 19 skills trong các nhóm core, agents, memory, prompts;
-- templates cho spec, plan, task, review, memory, upstream audit, reference scorecard, memory redaction;
+- 68 command prompts cho init/spec/plan/implement/review/memory/merge/doctor/reference và các workflow mở rộng;
+- 90 skills trong các nhóm core, agents, memory, meta, prompts và runtime-adjacent workflow;
+- 41 templates cho spec, plan, task, review, memory, upstream audit, reference scorecard, memory redaction và release/governance;
 - adapters cho Claude Code, Codex, Cursor;
 - Reference Intelligence Layer để học upstream có kiểm soát;
-- package scripts cho validation và reference maintenance.
+- package scripts cho validation và reference maintenance;
+- `validate:all` pass 13/13 gates, 0 broken refs, 0 orphans;
+- trạng thái kế tiếp: v1.0 RC-ready hardening.
 
 ## 2. Điểm mạnh
 
@@ -34,7 +36,7 @@ Vibe Coding OS hiện là một framework v0.1 tập trung vào disciplined AI-a
 
 ## 4. Goal chiến lược 12–18 tháng
 
-Biến Vibe Coding OS từ một kernel prompt/skill v0.1 thành một framework vận hành AI coding có thể cài đặt, kiểm chứng, đo lường và mở rộng qua nhiều assistant/toolchain — với trọng tâm giảm lỗi do ambiguity, thiếu verification, context/memory sai và scope creep.
+Biến Vibe Coding OS từ framework v0.4.0 đã có inventory/validation đầy đủ thành một framework vận hành AI coding v1.0 ổn định, có thể cài đặt, kiểm chứng, đo lường và mở rộng qua nhiều assistant/toolchain — với trọng tâm giảm lỗi do ambiguity, thiếu verification, context/memory sai và scope creep.
 
 Nói ngắn:
 
@@ -55,9 +57,9 @@ Verified Change Rate =
 
 ## 6. Roadmap đề xuất
 
-### v0.1.1 — Validation Recovery & Vietnamese Onboarding
+### v0.1.1 — Validation Recovery & Vietnamese Onboarding ✅
 
-Outcome: repo validate được, người dùng Việt có entrypoint rõ.
+Outcome: repo validate được, người dùng Việt có entrypoint rõ. **Trạng thái: đã hoàn tất.**
 
 Deliverables:
 
@@ -66,9 +68,9 @@ Deliverables:
 - README link tới docs tiếng Việt.
 - Known validation scope được report rõ trong PR/final message.
 
-### v0.2 — Adoption MVP
+### v0.2 — Adoption MVP ✅
 
-Outcome: người dùng mới setup và chạy workflow đầu tiên trong khoảng 10 phút.
+Outcome: người dùng mới setup và chạy workflow đầu tiên trong khoảng 10 phút. **Trạng thái: đã hoàn tất ở mức MVP.**
 
 Deliverables:
 
@@ -78,9 +80,9 @@ Deliverables:
 - `vibe-doctor` documented như health check chính.
 - Memory redaction examples pass/fail.
 
-### v0.3 — Evidence & Safety
+### v0.3 — Evidence & Safety ✅
 
-Outcome: framework có evidence về chất lượng/safety, không chỉ là artifact collection.
+Outcome: framework có evidence về chất lượng/safety, không chỉ là artifact collection. **Trạng thái: đã hoàn tất nền tảng evidence/safety.**
 
 Deliverables:
 
@@ -94,9 +96,9 @@ Deliverables:
 - Import review scorecard mandatory.
 - Reference report workflow ổn định.
 
-### v0.4 — Packaging & Skill Packs
+### v0.4.0 — Packaging & Skill Packs ✅ Current release
 
-Outcome: framework dễ dùng hơn, ít context overload.
+Outcome: framework dễ dùng hơn, ít context overload. **Trạng thái: current release v0.4.0.**
 
 Deliverables:
 
@@ -112,10 +114,12 @@ Deliverables:
   - Multi-Agent Review Pack
   - Upstream Intelligence Pack
 - Adapter smoke tests và versioned compatibility matrix.
+- Inventory hiện tại: 90 skills, 68 commands, 41 templates.
+- Validation hiện tại: `validate:all` pass 13/13 gates; 0 broken refs; 0 orphans.
 
-### v1.0 — Trusted Workflow Framework
+### v1.0 RC — Trusted Workflow Framework ⏭ Next
 
-Outcome: có thể dùng bền vững cho cá nhân/team nhỏ với governance rõ.
+Outcome: có thể dùng bền vững cho cá nhân/team nhỏ với governance rõ. **Trạng thái: bước tiếp theo là v1.0 release-candidate hardening.**
 
 Deliverables:
 
