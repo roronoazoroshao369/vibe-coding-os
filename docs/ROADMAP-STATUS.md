@@ -101,6 +101,17 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 | Bilingual sync validation (English/Vietnamese docs alignment) | ✅ Done |
 | Markdown link validation (broken reference catch) | ✅ Done |
 
+## v1.2 — Runtime Contracts v2, Safety, Migration
+**Status:** ✅ COMPLETE — Released v1.2.0
+
+| Deliverable | Status |
+|---|---|
+| Docs drift hotfix (dashboard gate counts, README/template counts, orphan wording, vi docs, expanded validators) | ✅ Done |
+| Runtime schema v2 foundation (envelope, createdBy, source, trace, risk, strict items, metadata/extensions placeholders) | ✅ Done |
+| Multi-agent state contracts v2 (task/workflow-run/checkpoint/session/team/memory) | ✅ Done |
+| Safety + traceability (action v2, event schema, approval schema, tool-contract schema) | ✅ Done |
+| Migration manifest + dry-run engine | ✅ Done |
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
@@ -109,3 +120,4 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v0.4:   ████████████ 100%
 - v1.0:   ████████████ 100%
 - v1.1:   ████████████ 100%
+- v1.2:   ████████████ 100%

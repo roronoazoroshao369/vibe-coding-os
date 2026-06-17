@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
+**Bản phát hành hiện tại (v1.2.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
 
 ## Có gì mới trong v1.1.0
 
