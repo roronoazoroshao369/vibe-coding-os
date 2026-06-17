@@ -70,6 +70,7 @@ ${c.bold}Commands:${c.reset}
   ${c.green}templates${c.reset}          List all available templates
   ${c.green}runtime-task${c.reset}       Manage optional runtime tasks
   ${c.green}workflow${c.reset} status    Show optional runtime workflow status
+  ${c.green}runtime-audit${c.reset}      Run safety audit on runtime state
   ${c.green}help${c.reset}               Show this help message
 
 ${c.bold}Examples:${c.reset}
@@ -461,6 +462,16 @@ if (isMainModule) {
     case 'workflow': {
       const { spawnSync } = await import('node:child_process');
       const result = spawnSync(process.execPath, [join(__dirname, 'workflow-status.mjs'), ...args], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+        stdio: ['inherit', 'inherit', 'inherit'],
+      });
+      process.exit(result.status ?? 1);
+      break;
+    }
+    case 'runtime-audit': {
+      const { spawnSync } = await import('node:child_process');
+      const result = spawnSync(process.execPath, [join(__dirname, 'runtime-audit.mjs'), ...args], {
         cwd: process.cwd(),
         encoding: 'utf8',
         stdio: ['inherit', 'inherit', 'inherit'],
