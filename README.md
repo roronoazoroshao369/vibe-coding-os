@@ -7,7 +7,7 @@
 
 **Start here:** [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Examples](examples/)
 
-**Project status:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
+**Project status:** [Dashboard](docs/DASHBOARD.md) · [Skill Packs](docs/SKILL-PACKS.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
 
 ## What's new in v1.3.0
 

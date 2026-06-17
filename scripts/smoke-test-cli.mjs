@@ -74,6 +74,7 @@ function runCmd(script, args, opts = {}) {
 
 const results = [];
 const tmpCwd = mkdtempSync(join(tmpdir(), 'vibe-cli-smoke-'));
+const packTmp = mkdtempSync(join(tmpdir(), 'vibe-pack-'));
 
 console.log('=== Vibe CLI Smoke Tests ===');
 console.log(`Started: ${new Date().toISOString()}`);
@@ -129,6 +130,25 @@ for (const script of ['runtime-task.mjs', 'runtime-memory.mjs', 'runtime-session
     label: `node scripts/${script} --version`,
   });
 }
+
+// ── Skill pack install tests ──
+console.log('');
+console.log('--- Skill pack install tests ---');
+for (const packName of ['core-solo', 'react-nextjs', 'memory-safe', 'multi-agent']) {
+  runCmd('vibe-cli.mjs', ['install-pack', packName, '--dry-run'], {
+    expectedStatus: 0,
+    label: `vibe install-pack ${packName} --dry-run`,
+  });
+}
+runCmd('vibe-cli.mjs', ['install-pack', 'core-solo'], {
+  cwd: packTmp,
+  expectedStatus: 0,
+  label: 'vibe install-pack core-solo (tmp project)',
+});
+runCmd('vibe-cli.mjs', ['install-pack', 'invalid-pack'], {
+  expectedStatus: 1,
+  label: 'vibe install-pack invalid-pack (expect fail)',
+});
 
 // ── Runtime task claim/lease lifecycle test ──
 console.log('');
@@ -204,6 +224,7 @@ if (taskId) {
 }
 
 rmSync(tmpCwd, { recursive: true, force: true });
+rmSync(packTmp, { recursive: true, force: true });
 
 console.log('');
 const passedCount = results.filter((result) => result.passed).length;

@@ -1,0 +1,23 @@
+{
+  "name": "react-nextjs",
+  "version": "1.0.0",
+  "description": "React / Next.js focused skill pack: component testing, hooks, performance, Next.js patterns",
+  "skills": [
+    {"name": "test-driven-development", "source": "core/test-driven-development/SKILL.md"},
+    {"name": "writing-plans", "source": "core/writing-plans/SKILL.md"},
+    {"name": "systematic-debugging", "source": "core/systematic-debugging/SKILL.md"},
+    {"name": "requirements-quality-checklist", "source": "core/requirements-quality-checklist/SKILL.md"},
+    {"name": "prototype-before-commitment", "source": "core/prototype-before-commitment/SKILL.md"},
+    {"name": "task-state-tracking", "source": "core/task-state-tracking/SKILL.md"},
+    {"name": "requesting-code-review", "source": "core/requesting-code-review/SKILL.md"},
+    {"name": "setup-pre-commit-quality-gates", "source": "core/setup-pre-commit-quality-gates/SKILL.md"},
+    {"name": "zoom-out-system-context", "source": "core/zoom-out-system-context/SKILL.md"},
+    {"name": "anti-overengineering", "source": "prompts/anti-overengineering/SKILL.md"},
+    {"name": "karpathy-engineering-discipline", "source": "prompts/karpathy-engineering-discipline/SKILL.md"},
+    {"name": "clean-code-discipline", "source": "prompts/clean-code-discipline/SKILL.md"},
+    {"name": "code-complete-construction", "source": "prompts/code-complete-construction/SKILL.md"}
+  ],
+  "commands": [
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+  ]
+}

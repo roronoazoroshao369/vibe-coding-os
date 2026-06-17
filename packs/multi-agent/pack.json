@@ -1,0 +1,24 @@
+{
+  "name": "multi-agent",
+  "version": "1.0.0",
+  "description": "Multi-agent coordination: orchestration, delegation, specialized roles, review gates",
+  "skills": [
+    {"name": "vibe-bootstrap", "source": "core/vibe-bootstrap/SKILL.md"},
+    {"name": "writing-plans", "source": "core/writing-plans/SKILL.md"},
+    {"name": "task-state-tracking", "source": "core/task-state-tracking/SKILL.md"},
+    {"name": "team-agent-orchestration", "source": "core/team-agent-orchestration/SKILL.md"},
+    {"name": "subagent-driven-development", "source": "core/subagent-driven-development/SKILL.md"},
+    {"name": "triage-workflow", "source": "core/triage-workflow/SKILL.md"},
+    {"name": "setup-pre-commit-quality-gates", "source": "core/setup-pre-commit-quality-gates/SKILL.md"},
+    {"name": "verification-before-completion", "source": "core/verification-before-completion/SKILL.md"},
+    {"name": "requirements-quality-checklist", "source": "core/requirements-quality-checklist/SKILL.md"},
+    {"name": "context-budget", "source": "meta/context-budget/SKILL.md"},
+    {"name": "architect-agent", "source": "agents/architect-agent/SKILL.md"},
+    {"name": "implementer-agent", "source": "agents/implementer-agent/SKILL.md"},
+    {"name": "tester-agent", "source": "agents/tester-agent/SKILL.md"},
+    {"name": "reviewer-agent", "source": "agents/reviewer-agent/SKILL.md"}
+  ],
+  "commands": [
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+  ]
+}

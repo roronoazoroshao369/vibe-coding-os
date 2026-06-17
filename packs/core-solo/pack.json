@@ -1,0 +1,24 @@
+{
+  "name": "core-solo",
+  "version": "1.0.0",
+  "description": "Essential skills for solo AI coding: bootstrap, plan, TDD, debug, review, verify",
+  "skills": [
+    {"name": "vibe-bootstrap", "source": "core/vibe-bootstrap/SKILL.md"},
+    {"name": "test-driven-development", "source": "core/test-driven-development/SKILL.md"},
+    {"name": "writing-plans", "source": "core/writing-plans/SKILL.md"},
+    {"name": "systematic-debugging", "source": "core/systematic-debugging/SKILL.md"},
+    {"name": "requesting-code-review", "source": "core/requesting-code-review/SKILL.md"},
+    {"name": "receiving-code-review", "source": "core/receiving-code-review/SKILL.md"},
+    {"name": "requirements-quality-checklist", "source": "core/requirements-quality-checklist/SKILL.md"},
+    {"name": "prototype-before-commitment", "source": "core/prototype-before-commitment/SKILL.md"},
+    {"name": "task-state-tracking", "source": "core/task-state-tracking/SKILL.md"},
+    {"name": "subagent-driven-development", "source": "core/subagent-driven-development/SKILL.md"},
+    {"name": "what-before-how", "source": "core/what-before-how/SKILL.md"},
+    {"name": "verification-before-completion", "source": "core/verification-before-completion/SKILL.md"},
+    {"name": "triage-workflow", "source": "core/triage-workflow/SKILL.md"},
+    {"name": "zoom-out-system-context", "source": "core/zoom-out-system-context/SKILL.md"}
+  ],
+  "commands": [
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-test"
+  ]
+}

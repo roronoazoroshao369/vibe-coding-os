@@ -1,0 +1,22 @@
+{
+  "name": "memory-safe",
+  "version": "1.0.0",
+  "description": "Memory-safe skill pack: context management, session capture, project memory, privacy",
+  "skills": [
+    {"name": "vibe-bootstrap", "source": "core/vibe-bootstrap/SKILL.md"},
+    {"name": "writing-plans", "source": "core/writing-plans/SKILL.md"},
+    {"name": "task-state-tracking", "source": "core/task-state-tracking/SKILL.md"},
+    {"name": "context-budget", "source": "meta/context-budget/SKILL.md"},
+    {"name": "session-capture", "source": "memory/session-capture/SKILL.md"},
+    {"name": "project-memory", "source": "memory/project-memory/SKILL.md"},
+    {"name": "privacy-filter", "source": "memory/privacy-filter/SKILL.md"},
+    {"name": "local-first-memory", "source": "memory/local-first-memory/SKILL.md"},
+    {"name": "observation-citations", "source": "memory/observation-citations/SKILL.md"},
+    {"name": "memory-evaluation", "source": "memory/memory-evaluation/SKILL.md"},
+    {"name": "memory-troubleshooting", "source": "memory/memory-troubleshooting/SKILL.md"},
+    {"name": "memory-provider-adapter", "source": "memory/memory-provider-adapter/SKILL.md"}
+  ],
+  "commands": [
+    "vibe-spec", "vibe-plan", "vibe-implement", "vibe-review", "vibe-memory"
+  ]
+}
