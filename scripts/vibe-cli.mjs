@@ -61,6 +61,8 @@ ${c.bold}Commands:${c.reset}
                             Tools: claude-code (default), codex, cursor, gemini
   ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
                             Tools: cursor, claude, codex, gemini
+  ${c.green}install-pack${c.reset} [name] Install a skill pack into .vibe/skills/<name>
+                            --dry-run to preview without installing
   ${c.green}doctor${c.reset} [--project] Check if vibe-coding-os is properly installed
                             --project <path> checks a project directory for vibe readiness
   ${c.green}version${c.reset}            Show version number
@@ -80,6 +82,8 @@ ${c.bold}Commands:${c.reset}
 ${c.bold}Examples:${c.reset}
   vibe init claude-code
   vibe export cursor
+  vibe install-pack core-solo
+  vibe install-pack core-solo --dry-run
   vibe doctor
   vibe doctor --project ~/my-app
   vibe version
@@ -192,6 +196,80 @@ export function cmdExport(tool) {
 
   console.log(`\n${c.green}${c.bold}Export complete!${c.reset} Instructions written for ${tool}.`);
   console.log(`  ${c.dim}${adapter.note}${c.reset}\n`);
+}
+
+export function cmdInstallPack(packName, args = []) {
+  const packsDir = join(ROOT, 'packs');
+
+  // Allow --dry-run as first arg instead of pack name
+  if (!packName || packName.startsWith('--')) {
+    const dryRunFirst = packName === '--dry-run';
+    const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
+    if (dryRunFirst) {
+      packName = args[0];
+      args = ['--dry-run', ...args.slice(1)];
+    }
+  }
+  if (!packName || packName.startsWith('--')) {
+    const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
+    console.error(`${fail} Usage: vibe install-pack <pack-name> [--dry-run]`);
+    console.error(`  Available packs: ${packs.join(', ') || '(none found)'}`);
+    process.exit(1);
+  }
+
+  const dryRun = args.includes('--dry-run');
+  const packFile = join(packsDir, packName, 'pack.json');
+  if (!existsSync(packFile)) {
+    const packs = existsSync(packsDir) ? getSubdirs(packsDir) : [];
+    console.error(`${fail} Unknown pack: ${packName}`);
+    console.error(`  Available packs: ${packs.join(', ') || '(none found)'}`);
+    process.exit(1);
+  }
+
+  const pack = readJSON(packFile);
+  const targetDir = resolve('.vibe', 'skills', pack.name);
+  console.log(`${info} Installing skill pack ${c.bold}${pack.name}${c.reset}${dryRun ? ' (dry run)' : ''}...\n`);
+  console.log(`${c.dim}${pack.description || ''}${c.reset}\n`);
+
+  const installed = [];
+  for (const skill of pack.skills || []) {
+    const srcPath = join(ROOT, 'skills', skill.source);
+    const destPath = join(targetDir, `${skill.name}.md`);
+    if (!existsSync(srcPath)) {
+      console.error(`${fail} Missing skill source: ${skill.source}`);
+      process.exit(1);
+    }
+    installed.push({ name: skill.name, source: skill.source, dest: destPath });
+    if (!dryRun) {
+      mkdirSync(dirname(destPath), { recursive: true });
+      writeFileSync(destPath, readFileSync(srcPath, 'utf8'), 'utf8');
+    }
+    console.log(`${ok} ${skill.name}`);
+  }
+
+  const manifest = {
+    installedAt: new Date().toISOString(),
+    pack: pack.name,
+    version: pack.version || '1.0.0',
+    description: pack.description || '',
+    skills: installed.map(({ name, source }) => ({ name, source })),
+    commands: pack.commands || [],
+  };
+
+  if (!dryRun) {
+    mkdirSync(targetDir, { recursive: true });
+    writeFileSync(join(targetDir, 'pack-manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+    writeFileSync(join(targetDir, 'README.md'), renderInstalledPackReadme(manifest), 'utf8');
+  }
+
+  console.log(`\n${c.green}${c.bold}${dryRun ? 'Dry run complete!' : 'Pack installed!'}${c.reset}`);
+  console.log(`  Target: ${targetDir}`);
+  console.log(`  Skills: ${(pack.skills || []).length}`);
+  if ((pack.commands || []).length) console.log(`  Suggested commands: ${(pack.commands || []).join(', ')}`);
+}
+
+function renderInstalledPackReadme(manifest) {
+  return `# Installed Vibe Skill Pack: ${manifest.pack}\n\n${manifest.description}\n\n- Version: ${manifest.version}\n- Installed at: ${manifest.installedAt}\n- Skills: ${manifest.skills.length}\n\n## Skills\n\n${manifest.skills.map((skill) => `- ${skill.name} — source: ${skill.source}`).join('\n')}\n\n## Suggested commands\n\n${manifest.commands.map((command) => `- ${command}`).join('\n') || '- None'}\n`;
 }
 
 export function cmdDoctor(args = []) {
@@ -544,6 +622,7 @@ if (isMainModule) {
     case 'doctor': cmdDoctor(args); break;
     case 'version': case '--version': case '-V': cmdVersion(); break;
     case 'export': cmdExport(args[0]); break;
+    case 'install-pack': cmdInstallPack(args[0], args.slice(1)); break;
     case 'list-skills': cmdListSkills(args[0] || null); break;
     case 'list-commands': cmdListCommands(); break;
     case 'stats': cmdStats(); break;
