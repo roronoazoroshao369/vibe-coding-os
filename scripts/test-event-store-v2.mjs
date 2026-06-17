@@ -107,6 +107,30 @@ test('getEventMetadata reports counts and file size', async () => withStore(asyn
   assert.equal(meta.typeCounts['task.created'], 1);
 }));
 
+test('appendEventV2 deduplicates by idempotencyKey', async () => withStore(async (store) => {
+  const e1 = await appendEventV2(store, 'task.created', { attempt: 1 }, { idempotencyKey: 'idem-1' });
+  const e2 = await appendEventV2(store, 'task.created', { attempt: 2 }, { idempotencyKey: 'idem-1' });
+  const events = await listEventsV2(store);
+  assert.equal(e2.id, e1.id);
+  assert.equal(events.length, 1);
+  assert.equal(events[0].seq, 1);
+}));
+
+test('appendEventV2 concurrent appends have unique seq values', async () => withStore(async (store) => {
+  const events = await Promise.all(Array.from({ length: 8 }, (_, i) => appendEventV2(store, 'concurrent', { i })));
+  const seqs = events.map(e => e.seq).sort((a, b) => a - b);
+  assert.deepEqual(seqs, [1, 2, 3, 4, 5, 6, 7, 8]);
+  const meta = await getEventMetadata(store);
+  assert.equal(meta.nextSeq, 9);
+  assert.equal(meta.metadataConsistent, true);
+}));
+
+test('listEventsV2 tail returns newest events', async () => withStore(async (store) => {
+  for (let i = 1; i <= 5; i++) await appendEventV2(store, `e${i}`, {});
+  const events = await listEventsV2(store, { tail: true, limit: 2 });
+  assert.deepEqual(events.map(e => e.type), ['e4', 'e5']);
+}));
+
 let failures = 0;
 for (const { name, fn } of tests) {
   try { await fn(); console.log(`PASS ${name}`); }

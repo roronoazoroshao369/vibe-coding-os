@@ -18,6 +18,7 @@ const testFiles = [
   'scripts/test-runtime-config.mjs',
   'scripts/test-event-store-v2.mjs',
   'scripts/test-runtime-doctor.mjs',
+  'scripts/test-cli-json-contracts.mjs',
   'scripts/test-runtime-audit.mjs',
   'scripts/test-runtime-replay.mjs',
   'scripts/test-runtime-snapshot.mjs',
