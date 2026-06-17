@@ -126,7 +126,7 @@ export function cmdDoctor() {
 
   const checks = [
     { name: 'package.json', path: 'package.json', required: true },
-    { name: 'node_modules', path: 'node_modules', required: true, isDir: true },
+    { name: 'node_modules', path: 'node_modules', required: false, isDir: true },
     { name: 'skills/', path: 'skills', required: true, isDir: true },
     { name: 'commands/', path: 'commands', required: true, isDir: true },
     { name: 'templates/', path: 'templates', required: true, isDir: true },
@@ -144,6 +144,8 @@ export function cmdDoctor() {
     if (exists) {
       console.log(`${ok} ${check.name}`);
       passed++;
+    } else if (check.required === false) {
+      console.log(`${c.yellow}⚠ ${check.name} — not found (optional)${c.reset}`);
     } else {
       console.log(`${fail} ${check.name} ${c.red}— not found${c.reset}`);
       failed++;
