@@ -48,6 +48,9 @@ function countFiles(dir, ext) {
 
 // ─── Commands ───
 
+import { runDoctor, formatDoctorReport } from '../runtime/core/doctor.mjs';
+import { appendEventV2, listEventsV2, getEventMetadata } from '../runtime/core/event-store.mjs';
+
 export function cmdHelp() {
   const pkg = readJSON(join(ROOT, 'package.json'));
   const version = pkg.version || '0.0.0';
@@ -61,10 +64,10 @@ ${c.bold}Commands:${c.reset}
                             Tools: claude-code (default), codex, cursor, gemini
   ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
                             Tools: cursor, claude, codex, gemini
+  ${c.green}doctor${c.reset} [--project] Check runtime health (add --json for output)
+  ${c.green}events${c.reset} [--json]   Show event store metadata and recent events
   ${c.green}install-pack${c.reset} [name] Install a skill pack into .vibe/skills/<name>
                             --dry-run to preview without installing
-  ${c.green}doctor${c.reset} [--project] Check if vibe-coding-os is properly installed
-                            --project <path> checks a project directory for vibe readiness
   ${c.green}version${c.reset}            Show version number
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
@@ -309,7 +312,9 @@ function renderInstalledPackReadme(manifest) {
   return `# Installed Vibe Skill Pack: ${manifest.pack}\n\n${manifest.description}\n\n- Version: ${manifest.version}\n- Installed at: ${manifest.installedAt}\n- Skills: ${manifest.skills.length}\n\n## Skills\n\n${manifest.skills.map((skill) => `- ${skill.name} — source: ${skill.source}`).join('\n')}\n\n## Suggested commands\n\n${manifest.commands.map((command) => `- ${command}`).join('\n') || '- None'}\n`;
 }
 
-export function cmdDoctor(args = []) {
+export async function cmdDoctor(args = []) {
+  const json = args.includes('--json');
+  const runtime = args.includes('--runtime') || json;
   const projectFlagIndex = args.indexOf('--project');
   if (projectFlagIndex >= 0 && !args[projectFlagIndex + 1]) {
     console.error(`${fail} --project requires a directory path. Usage: vibe doctor --project <path>`);
@@ -336,6 +341,11 @@ export function cmdDoctor(args = []) {
       console.log(`  Tip: Run ${c.cyan}vibe init <tool>${c.reset} in this project directory.`);
     } else {
       console.log(`\n${c.green}${c.bold}Project is ready!${c.reset} Your AI coding assistant can read the instruction file.`);
+    }
+    if (projectDir) {
+      const report = await runDoctor(projectDir);
+      console.log('\n' + formatDoctorReport(report));
+      if (json) console.log(JSON.stringify(report, null, 2));
     }
     return;
   }
@@ -384,6 +394,12 @@ export function cmdDoctor(args = []) {
       console.log(`${fail} package.json is invalid JSON`);
       failed++;
     }
+  }
+
+  if (runtime) {
+    const report = await runDoctor(ROOT);
+    console.log('\n' + formatDoctorReport(report));
+    if (json) { console.log(JSON.stringify(report, null, 2)); return; }
   }
 
   console.log(`\n${c.bold}Results: ${c.green}${passed} passed${c.reset}, ${failed > 0 ? c.red : c.green}${failed} failed${c.reset}`);
@@ -642,6 +658,36 @@ export function cmdTemplates() {
 }
 
 // ─── Main ───
+export async function cmdEvents(args = []) {
+  const json = args.includes('--json');
+  const limitArg = args.find((a) => a.startsWith('--limit='));
+  const limit = limitArg ? Number(limitArg.split('=')[1]) : 10;
+  const { createStore } = await import('../runtime/core/fs-store.mjs');
+  const store = createStore(process.cwd());
+
+  const meta = await getEventMetadata(store);
+  const events = await listEventsV2(store, { limit });
+  const result = { meta, events };
+
+  if (json) {
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
+  console.log(`${c.bold}${c.cyan}Event Store${c.reset}\n`);
+  console.log(`${info} Total events: ${meta.totalEvents}`);
+  console.log(`${info} Last sequence: ${meta.nextSeq - 1}`);
+  console.log(`${info} File size: ${meta.fileSize} bytes`);
+  if (Object.keys(meta.typeCounts || {}).length) {
+    console.log(`\n${c.bold}Event types:${c.reset}`);
+    for (const [type, count] of Object.entries(meta.typeCounts)) console.log(`  ${type}: ${count}`);
+  }
+  if (events.length) {
+    console.log(`\n${c.bold}Recent events:${c.reset}`);
+    for (const e of events.slice(-limit)) console.log(`  #${e.seq ?? '?'} ${e.type} ${e.id}`);
+  }
+}
+
 const isMainModule = (() => {
   const entry = process.argv[1];
   try {
@@ -656,10 +702,11 @@ if (isMainModule) {
 
   switch (cmd) {
     case 'init': cmdInit(args[0]); break;
-    case 'doctor': cmdDoctor(args); break;
+    case 'doctor': await cmdDoctor(args); break;
     case 'version': case '--version': case '-V': cmdVersion(); break;
     case 'export': cmdExport(args[0]); break;
     case 'install-pack': cmdInstallPack(args[0], args.slice(1)); break;
+    case 'events': await cmdEvents(args); break;
     case 'list-skills': cmdListSkills(args[0] || null); break;
     case 'list-commands': cmdListCommands(); break;
     case 'stats': cmdStats(); break;

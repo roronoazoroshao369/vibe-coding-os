@@ -109,6 +109,12 @@ runCmd('vibe-cli.mjs', ['export', 'invalid-tool'], {
   label: 'vibe export invalid-tool (expect fail)',
 });
 
+// ── Doctor & events JSON smoke tests ──
+console.log('');
+console.log('--- Runtime doctor & events JSON smoke tests ---');
+runCmd('vibe-cli.mjs', ['doctor', '--json'], { expectedStatus: 0, label: 'vibe doctor --json' });
+runCmd('vibe-cli.mjs', ['events', '--json'], { expectedStatus: 0, label: 'vibe events --json' });
+
 // ── Runtime script -h/-V tests ──
 console.log('');
 console.log('--- Runtime script --help/--version tests ---');
