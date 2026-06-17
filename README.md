@@ -3,19 +3,15 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.2.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.2.0 release notes](docs/releases/v1.2.0.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md)
+**Current release (v1.2.0):** validate:all 17/17 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.2.0 release notes](docs/releases/v1.2.0.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md)
 
-## What's new in v1.1.0
+## What's new in v1.2.0
 
-- Schema alignment across registries, runtime payloads, adapter metadata, and validation expectations.
-- Workflow state hardening for task, checkpoint, memory, team, session, daemon, MCP, and tmux runner flows.
-- Runtime validation expanded with stricter config checks, safer installer behavior, and runtime smoke coverage.
-- CLI expansion with broader read-only command coverage and 20 passing CLI smoke tests.
-- Cursor, Codex, and Claude adapter packs refreshed for consistent setup, capability boundaries, and portable usage.
-- Safety and hook contracts clarified for secret scanning, injection checks, memory redaction, and agent handoffs.
-- Execution trace support added for local runtime activity logging and inspection.
-- Bilingual English/Vietnamese documentation sync validation added to keep major onboarding surfaces aligned.
-- Markdown link validation added to catch broken documentation references before release.
+- Runtime Contracts v2: strict schemas, multi-agent state contracts, and safety/traceability foundations.
+- Migration dry-run engine: safer path for upgrading persisted runtime state with backup and rollback awareness.
+- Event, approval, tool-contract, and migration schemas for provenance, capability declarations, and risk inspection.
+- Backward-compatible v1→v2 validation paths for existing runtime state.
+- 17/17 validation gates passing with full repository integrity checks.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>

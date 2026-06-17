@@ -16,7 +16,7 @@ Vibe Coding OS hiện là framework v1.1.0 tập trung vào disciplined AI-assis
 - package scripts cho validation và reference maintenance;
 - CLI helper (`vibe init`, `vibe doctor`, `vibe stats`, `vibe list-skills`, `vibe list-commands`);
 - behavioral eval scenarios và eval runner cơ bản;
-- `validate:all` pass 16/16 gates, 0 broken refs, 0 orphan commands/skills, 11 orphan templates;
+- `validate:all` pass 17/17 gates, 0 broken refs, 0 orphan commands/skills, 11 orphan templates;
 - trạng thái kế tiếp: v1.2 — runtime contracts v2, adoption UX, positioning.
 
 ## 2. Điểm mạnh
@@ -26,7 +26,7 @@ Vibe Coding OS hiện là framework v1.1.0 tập trung vào disciplined AI-assis
 - Reference Intelligence Layer là khác biệt mạnh vì giúp học upstream mà không copy/vendor bừa.
 - Memory/privacy đã có conventions và redaction checklist.
 - Adapter matrix giúp framework portable qua nhiều assistant.
-- Validation kernel mạnh: 16/16 gates, traceability checks, reference integrity.
+- Validation kernel mạnh: 17/17 gates, traceability checks, reference integrity.
 - CLI helper và doctor command hỗ trợ setup và health check.
 
 ## 3. Điểm yếu/rủi ro
@@ -137,12 +137,12 @@ Deliverables:
 
 ### v1.1 — Current Release ✅
 
-Outcome: inventory validation đầy đủ, 16/16 gates, 0 broken refs. **Trạng thái: release hiện tại v1.1.0 (2026-06-17).**
+Outcome: inventory validation đầy đủ, 17/17 gates, 0 broken refs. **Trạng thái: release hiện tại v1.1.0 (2026-06-17).**
 
 Deliverables:
 
 - Inventory hoàn chỉnh: 90 skills, 68 commands, 54 templates.
-- Validation kernel mở rộng: 16/16 gates pass.
+- Validation kernel mở rộng: 17/17 gates pass.
 - Traceability checks: 0 broken refs, 0 orphan commands/skills.
 - 14 upstream sources tracked trong Reference Intelligence Layer.
 - Orphan templates audit (11 orphan templates được identify và review).
@@ -161,7 +161,7 @@ Deliverables (preview):
 
 ## 7. Priority stack
 
-1. P0: giữ `npm run validate` pass 100% — 16/16 gates luôn xanh.
+1. P0: giữ `npm run validate` pass 100% — 17/17 gates luôn xanh.
 2. P1: v1.2 runtime contracts v2 — interface rõ ràng giữa Core và Runtime.
 3. P1: adoption UX — onboarding flow mượt, fewer friction points.
 4. P1: positioning — value proposition rõ ràng cho thị trường.
@@ -179,7 +179,7 @@ Deliverables (preview):
 | Adoption | Time to first workflow, workflow completion rate, adapter adoption, pack usage |
 | Quality | Verified Change Rate, spec coverage, plan coverage, verification evidence rate, review blocker catch rate |
 | Safety | memory redaction pass rate, secret leakage count = 0, attribution completeness, unknown-license import count = 0 |
-| Maintainability | validation pass rate (16/16 gates), registry drift count = 0, adapter drift count, audit freshness |
+| Maintainability | validation pass rate (17/17 gates), registry drift count = 0, adapter drift count, audit freshness |
 
 ## 9. Tham mưu chiến lược
 
