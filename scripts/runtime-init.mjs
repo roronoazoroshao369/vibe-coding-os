@@ -19,7 +19,7 @@ function parseArgs(argv) {
 const { flags } = parseArgs(process.argv.slice(2));
 const store = createStore(process.cwd());
 await ensureRuntime(store);
-const collections = ['tasks', 'memory', 'checkpoints', 'teams', 'sessions', 'workflow-runs'];
+const collections = ['tasks', 'memory', 'checkpoints', 'teams', 'sessions', 'workflow-runs', 'actions'];
 for (const kind of collections) {
   const file = `${kind}.json`;
   if (!existsSync(path.join(store.runtimeDir, file)) || flags.force) {

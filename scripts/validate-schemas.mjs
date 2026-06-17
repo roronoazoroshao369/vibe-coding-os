@@ -23,7 +23,8 @@ const sampleItems = {
   checkpoints: { id: 'chk-1', type: 'gate', result: 'passed', phase: 'plan', status: 'passed', createdAt: iso },
   teams: { id: 'team-1', name: 'Sample team', roles: [{ name: 'implementer', purpose: 'Build', owned_paths: ['scripts/'], tools: ['node'], validation: 'npm run validate', handoff_fields: ['summary'] }] },
   sessions: { id: 'session-1', goal: 'test', createdAt: iso },
-  'workflow-runs': { id: 'wf-1', status: 'pending', history: [{ event: 'init', timestamp: iso }] }
+  'workflow-runs': { id: 'wf-1', status: 'pending', history: [{ event: 'init', timestamp: iso }] },
+  actions: { id: 'act-1', tool: 'terminal', timestamp: iso, risk_level: 'safe' }
 };
 
 const ROOT = path.resolve(__dirname, '..');

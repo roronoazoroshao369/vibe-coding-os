@@ -13,7 +13,7 @@
     },
     "kind": {
       "type": "string",
-      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions", "workflow-runs"]
+      "enum": ["tasks", "memory", "checkpoints", "teams", "sessions", "workflow-runs", "actions"]
     },
     "items": {
       "type": "array",
@@ -121,6 +121,23 @@
           "items": {
             "items": {
               "$ref": "workflow-run.schema.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": { "const": "actions" }
+        },
+        "required": ["kind"]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "runtime-action.schema.json"
             }
           }
         }

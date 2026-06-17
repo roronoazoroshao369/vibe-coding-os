@@ -17,7 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const store = createStore(process.cwd());
 const ROOT = path.resolve(__dirname, '..');
 const errors = [];
-const expectedKinds = ['tasks', 'memory', 'checkpoints', 'teams', 'sessions', 'workflow-runs'];
+const expectedKinds = ['tasks', 'memory', 'checkpoints', 'teams', 'sessions', 'workflow-runs', 'actions'];
 const requiredSchemas = [
   'runtime-collection.schema.json',
   'runtime-task.schema.json',
@@ -25,6 +25,7 @@ const requiredSchemas = [
   'runtime-checkpoint.schema.json',
   'runtime-team.schema.json',
   'runtime-session.schema.json',
+  'runtime-action.schema.json',
   'workflow-run.schema.json',
 ];
 
@@ -84,6 +85,7 @@ for (const kind of expectedKinds) {
     checkpoints: 'runtime-checkpoint.schema.json',
     teams: 'runtime-team.schema.json',
     sessions: 'runtime-session.schema.json',
+    actions: 'runtime-action.schema.json',
     'workflow-runs': 'workflow-run.schema.json',
   }[kind];
 

@@ -42,7 +42,11 @@
     "smoke-test:runtime": "node scripts/smoke-test-runtime.mjs",
     "workflow:status": "node scripts/workflow-status.mjs",
     "validate:bilingual-sync": "node scripts/validate-bilingual-sync.mjs",
-    "validate:markdown-links": "node scripts/validate-markdown-links.mjs"
+    "validate:markdown-links": "node scripts/validate-markdown-links.mjs",
+    "trace:log": "node scripts/runtime-log.mjs log",
+    "trace:list": "node scripts/runtime-log.mjs list",
+    "reference:diff": "node scripts/reference-diff.mjs",
+    "daemon:test": "node scripts/daemon-test.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"
