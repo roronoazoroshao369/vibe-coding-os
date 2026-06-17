@@ -1,5 +1,16 @@
+/**
+ * runtime/core/approval-gate.mjs — Approval gate middleware
+ *
+ * Wraps write handlers with an approval workflow.
+ * Approvals are scoped by subject (action + optional args hash) + risk level.
+ *
+ * v1.5.0: subject now includes argsHash for write tools,
+ * so approving task.update(task-A) does NOT auto-approve task.update(task-B).
+ */
+
 import { makeId, nowIso } from './ids.mjs';
 import { CURRENT_SCHEMA_VERSION } from './validation.mjs';
+import { createHash } from 'node:crypto';
 import {
   readJson,
   writeJsonAtomic,
@@ -43,14 +54,35 @@ function riskLevelScore(level) {
   return idx === -1 ? 0 : idx;
 }
 
+/**
+ * Compute a stable hash of action arguments for approval subject matching.
+ * Deterministic JSON serialization: keys sorted, no whitespace.
+ */
+function computeArgsHash(args) {
+  if (!args || typeof args !== 'object' || Object.keys(args).length === 0) return undefined;
+  // Strip non-arg metadata to avoid accidental hash churn
+  const stripped = { ...args };
+  delete stripped.risk;
+  delete stripped.actor;
+  const sorted = Object.keys(stripped).sort().reduce((obj, k) => {
+    obj[k] = stripped[k];
+    return obj;
+  }, {});
+  return createHash('sha256').update(JSON.stringify(sorted)).digest('hex').slice(0, 16);
+}
+
+function subjectEquals(a, b) {
+  if (!a || !b) return false;
+  if (a.type !== b.type || a.id !== b.id) return false;
+  // argsHash: both undefined = match; both equal = match; one defined, other not = mismatch
+  if (a.argsHash !== b.argsHash) return false;
+  return true;
+}
+
 function approvalsEqual(a, b) {
+  if (!a || !b) return false;
   return (
-    a &&
-    b &&
-    a.subject &&
-    b.subject &&
-    a.subject.type === b.subject.type &&
-    a.subject.id === b.subject.id &&
+    subjectEquals(a.subject, b.subject) &&
     riskLevelScore(a.riskLevel?.level) === riskLevelScore(b.riskLevel?.level)
   );
 }
@@ -80,11 +112,13 @@ async function saveApprovals(store, items) {
  * @param {object} [context.risk] - Risk object with level
  * @param {string} [context.reason] - Human-readable reason for approval
  * @param {string} [context.actor] - Who/what initiated the action
+ * @param {object} [context.args] - Tool call arguments (for argsHash in subject)
  * @returns {Promise<object>} The created approval record
  */
 export async function createApproval(store, action, context = {}) {
   const id = makeId('apr');
   const now = nowIso();
+  const argsHash = computeArgsHash(context.args);
 
   const approval = {
     schemaVersion: CURRENT_SCHEMA_VERSION,
@@ -92,6 +126,7 @@ export async function createApproval(store, action, context = {}) {
     subject: {
       type: context.subjectType || 'action',
       id: context.subjectId || action,
+      ...(argsHash && { argsHash }),
     },
     riskLevel: context.risk || { level: 'review' },
     approval: {
@@ -193,6 +228,9 @@ export async function denyAction(store, approvalId, reason, denier) {
  *     throws an error so the caller knows the action was blocked.
  *  4. Otherwise, delegates to the original handler.
  *
+ * v1.5.0: subject now includes argsHash when args are provided,
+ * so approval is scoped per-argument-set, not per-action-name.
+ *
  * @param {Function} handler - The original handler function
  * @param {object} store - Runtime store
  * @param {string} [actionName] - Explicit action name (default: extracted from args)
@@ -208,6 +246,7 @@ export function withApprovalGate(handler, store, actionName) {
       args[0]?.tool ||
       'unknown';
     const risk = args[0]?.risk;
+    const toolArgs = args[0]?.args || args[0];
 
     if (!requiresApproval(action, risk)) {
       return handler(...args);
@@ -219,6 +258,7 @@ export function withApprovalGate(handler, store, actionName) {
       risk,
       action,
       actor: args[0]?.actor || 'unknown',
+      args: toolArgs,
     });
 
     if (decision.status === 'approved' || decision.status === 'not_required') {
@@ -231,31 +271,11 @@ export function withApprovalGate(handler, store, actionName) {
   };
 }
 
-async function findPendingApproval(store, { subjectType, subjectId, risk }) {
-  const items = await loadApprovals(store);
-  const latest = items
-    .filter(
-      (a) =>
-        a.subject &&
-        a.subject.type === subjectType &&
-        a.subject.id === subjectId &&
-        approvalsEqual(a, {
-          subject: { type: subjectType, id: subjectId },
-          riskLevel: risk,
-        })
-    )
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))[0];
-
-  if (!latest) return null;
-  return ['approved', 'not_required'].includes(latest.approval?.status)
-    ? latest
-    : null;
-}
-
 /**
  * Atomically find an existing approval (approved/not_required) for the given
- * action+risk, or reuse an existing pending approval, or create a new one.
- * All three paths execute inside a single lock.
+ * subject+risk, or reuse an existing pending approval, or create a new one.
+ *
+ * v1.5.0: subject matching includes argsHash when args are provided.
  *
  * @param {object} store - Runtime store
  * @param {object} spec
@@ -264,20 +284,24 @@ async function findPendingApproval(store, { subjectType, subjectId, risk }) {
  * @param {object} [spec.risk]
  * @param {string} spec.action
  * @param {string} spec.actor
+ * @param {object} [spec.args] - Tool call arguments for argsHash
  * @returns {Promise<{status:string, approvalId:string|null}>}
  */
-async function findOrCreatePendingApproval(store, { subjectType, subjectId, risk, action, actor }) {
+async function findOrCreatePendingApproval(store, { subjectType, subjectId, risk, action, actor, args }) {
+  const argsHash = computeArgsHash(args);
+
   return withLock(store, 'approvals', async () => {
     const items = await loadApprovals(store);
+
+    // Build matching subject
+    const matchSubject = { type: subjectType, id: subjectId, ...(argsHash && { argsHash }) };
 
     // 1. Look for an existing approved/not_required approval matching this subject
     const existing = items
       .filter(
         (a) =>
           a.subject &&
-          a.subject.type === subjectType &&
-          a.subject.id === subjectId &&
-          approvalsEqual(a, { subject: { type: subjectType, id: subjectId }, riskLevel: risk })
+          approvalsEqual(a, { subject: matchSubject, riskLevel: risk })
       )
       .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))[0];
 
@@ -289,8 +313,7 @@ async function findOrCreatePendingApproval(store, { subjectType, subjectId, risk
     const pending = items.find(
       (a) =>
         a.subject &&
-        a.subject.type === subjectType &&
-        a.subject.id === subjectId &&
+        subjectEquals(a.subject, matchSubject) &&
         a.approval?.status === 'required'
     );
     if (pending) {
@@ -303,7 +326,7 @@ async function findOrCreatePendingApproval(store, { subjectType, subjectId, risk
     const approval = {
       schemaVersion: CURRENT_SCHEMA_VERSION,
       id,
-      subject: { type: subjectType, id: subjectId },
+      subject: { type: subjectType, id: subjectId, ...(argsHash && { argsHash }) },
       riskLevel: risk || { level: 'review' },
       approval: {
         status: 'required',

@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+## [1.5.0] — 2026-06-17
+
+### Added
+- docs/adr/0002-runtime-scope-freeze.md: formal runtime scope freeze declaration.
+- docs/vi/QUICKSTART.md: Vietnamese quickstart guide.
+- .github/ISSUE_TEMPLATE/adoption-feedback.md: structured adoption feedback issue template.
+
+### Fixed
+- runtime/core/config.mjs: normalize unknown maxRiskLevel to default on load.
+- runtime/core/config.mjs: validate tools.allowed / tools.denied are arrays of strings.
+- runtime/core/approval-gate.mjs: approval subject includes argsHash so approval is scoped per argument set.
+- runtime/tasks/task-store.mjs: reject negative TTL in claimTask, heartbeatTask, renewTaskLease.
+- scripts/test-runtime-claim-lease.mjs: replace negative TTL test setup with backdated store writes; add explicit negative TTL rejection tests.
+
+### Changed
+- README.vi.md: dieted from 536 to 194 lines.
+- docs/ROADMAP-STATUS.md: added v1.4.1, v1.4.2, v1.4.3, v1.5.0 sections.
+- docs/support-matrix.md: runtime layer now documents scope freeze and ADR 0002.
+- docs/adr/0001-optional-runtime-layer.md: reconcile with ADR 0002 scope freeze.
+- CHANGELOG.md: fix runtime test count claim from 18/18 to 14/14 test files.
+- docs/releases/v1.4.3.md: reconcile runtime test count.
+
 ## [1.4.3] — 2026-06-17
 
 ### Fixed
@@ -33,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Tests
 - Added `claimTask rejects terminal tasks` test (verifies terminal state guard).
 - Added `renewTaskLease absolute expiration capped by config maxTaskLease` test (verifies absolute lease cap).
-- Runtime behavioral tests: 18/18 PASS (2 new tests).
+- Runtime behavior aggregate: 14/14 test files PASS; claim/lease test file includes terminal state, lease cap, and negative TTL cases.
 
 ## [1.4.1] — 2026-06-17
 

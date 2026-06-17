@@ -119,8 +119,13 @@ test('listExpiredClaims returns only expired claims', async () => {
   await withStore(async (store) => {
     const t1 = await createTask(store, { title: 'Expired' });
     const t2 = await createTask(store, { title: 'Active' });
-    await claimTask(store, t1.id, 'agent-1', { ttl: -1 });
+    // Claim t1 then manually backdate expiration via raw store write
+    await claimTask(store, t1.id, 'agent-1', { ttl: 300 });
     await claimTask(store, t2.id, 'agent-2', { ttl: 3600 });
+    const items = (await readJson(store, 'tasks.json')).items;
+    const t1Data = items.find(t => t.id === t1.id);
+    t1Data.claim.expiresAt = new Date(Date.now() - 10_000).toISOString(); // 10s ago
+    await writeJsonAtomic(store, 'tasks.json', { schemaVersion: '2.0.0', kind: 'tasks', items }, { source: 'test-backdate' });
     const expired = await listExpiredClaims(store);
     assert.equal(expired.length, 1);
     assert.equal(expired[0].id, t1.id);
@@ -131,12 +136,17 @@ test('cancelExpiredClaims releases only expired claims', async () => {
   await withStore(async (store) => {
     const t1 = await createTask(store, { title: 'Exp' });
     const t2 = await createTask(store, { title: 'Act' });
-    await claimTask(store, t1.id, 'agent-1', { ttl: -1 });
+    await claimTask(store, t1.id, 'agent-1', { ttl: 300 });
     await claimTask(store, t2.id, 'agent-2', { ttl: 3600 });
+    // Backdate t1 expiration manually
+    const items = (await readJson(store, 'tasks.json')).items;
+    const t1Data = items.find(t => t.id === t1.id);
+    t1Data.claim.expiresAt = new Date(Date.now() - 10_000).toISOString();
+    await writeJsonAtomic(store, 'tasks.json', { schemaVersion: '2.0.0', kind: 'tasks', items }, { source: 'test-backdate' });
     const count = await cancelExpiredClaims(store);
     assert.equal(count, 1);
-    const items = (await readJson(store, 'tasks.json')).items;
-    const active = items.find(t => t.id === t2.id);
+    const updatedItems = (await readJson(store, 'tasks.json')).items;
+    const active = updatedItems.find(t => t.id === t2.id);
     assert.ok(active.claim, 'Active claim should remain');
   });
 });
@@ -147,6 +157,38 @@ test('updateTaskStatus from pending to in_progress auto-claims', async () => {
     const updated = await updateTaskStatus(store, id, 'in_progress', { actor: 'dev', ttl: 120 });
     assert.equal(updated.status, 'in_progress');
     assert.equal(updated.claim.claimedBy, 'dev');
+  });
+});
+
+test('claimTask rejects negative TTL', async () => {
+  await withStore(async (store) => {
+    const { id } = await createTask(store, { title: 'Negative claim TTL' });
+    await assert.rejects(
+      () => claimTask(store, id, 'agent-1', { ttl: -1 }),
+      /ttl must not be negative/
+    );
+  });
+});
+
+test('heartbeatTask rejects negative TTL', async () => {
+  await withStore(async (store) => {
+    const { id } = await createTask(store, { title: 'Negative heartbeat TTL' });
+    await claimTask(store, id, 'agent-1', { ttl: 300 });
+    await assert.rejects(
+      () => heartbeatTask(store, id, -1),
+      /ttl must not be negative/
+    );
+  });
+});
+
+test('renewTaskLease rejects negative extraTtl', async () => {
+  await withStore(async (store) => {
+    const { id } = await createTask(store, { title: 'Negative renew TTL' });
+    await claimTask(store, id, 'agent-1', { ttl: 300 });
+    await assert.rejects(
+      () => renewTaskLease(store, id, -1),
+      /extraTtl must not be negative/
+    );
   });
 });
 

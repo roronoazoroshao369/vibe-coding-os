@@ -135,6 +135,67 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 | Runtime hardening (locking, idempotencyKey, JSON-only surfaces, maxTaskLease enforcement) | ✅ Done |
 | Runtime boundary docs and release prep | ✅ Done |
 
+## v1.4.1 — Release Polish
+**Status:** ✅ COMPLETE — Released v1.4.1
+
+| Deliverable | Status |
+|---|---|
+| Stale docs counts fixed (READ ME.vi template count, support-matrix version-neutral) | ✅ Done |
+| CHANGELOG retroactive entries v1.1.0–v1.4.0 | ✅ Done |
+| CLI cleanup (unused imports, dead code, help text fixes) | ✅ Done |
+| Task state machine docs fix (subtask guard comment) | ✅ Done |
+| Tmux runner shell safety (assertSafeAgentCommand, shQuote) | ✅ Done |
+
+## v1.4.2 — Runtime Hardening & Adoption Trust
+**Status:** ✅ COMPLETE — Released v1.4.2
+
+| Deliverable | Status |
+|---|---|
+| claimTask terminal state guard (reject completed/cancelled) | ✅ Done |
+| Absolute lease cap enforced across all lease paths | ✅ Done |
+| Event schema v2 fields (seq, correlation, causation, idempotency) | ✅ Done |
+| Date-time format validation in runtime validation layer | ✅ Done |
+| Duplicate role name detection in tmux prepareTeamRun | ✅ Done |
+| Bilingual FIRST-WORKFLOW prompts (Vietnamese + English) | ✅ Done |
+
+## v1.4.3 — Operational Hygiene
+**Status:** ✅ COMPLETE — Released v1.4.3
+
+| Deliverable | Status |
+|---|---|
+| claimTask rejects terminal states (completed/cancelled) | ✅ Done |
+| renewTaskLease caps absolute lease at now + maxTaskLease | ✅ Done |
+| requireTmux throws Error instead of process.exit(1) | ✅ Done |
+| mapResults returns final task objects | ✅ Done |
+| MCP actor tracking (task.update forwards actor: mcp) | ✅ Done |
+| Config validation (reject zero/negative maxTaskLease) | ✅ Done |
+| README diet 618→~260 lines | ✅ Done |
+| Docs hub (docs/README.md full navigation) | ✅ Done |
+| 0 orphan templates (all templates referenced) | ✅ Done |
+| Vietnamese strategy doc updated to v1.4.3 | ✅ Done |
+
+## v1.5.0 — Core Adoption & Runtime Freeze (Planned)
+**Status:** ✅ COMPLETE — Released v1.5.0
+
+| Deliverable | Status |
+|---|---|
+| ADR 0002 — Runtime Scope Freeze formal declaration | ✅ Done |
+| Propagate freeze language across all governance docs | ✅ Done |
+| Diet README.vi.md (536→~194 lines) | ✅ Done |
+| ROADMAP-STATUS updated through v1.5.0 | ✅ Done |
+| Config hardening (normalize maxRiskLevel, validate tool lists) | ✅ Done |
+| MCP approval specificity (argsHash in approval subject) | ✅ Done |
+| Reject negative TTL at public APIs | ✅ Done |
+| Vietnamese QUICKSTART (docs/vi/QUICKSTART.md) | ✅ Done |
+| Adoption feedback issue template | ✅ Done |
+| Reconcile test reporting (14 test files aggregate) | ✅ Done |
+| Runtime behavioral tests: 14/14 PASS | ✅ Done |
+
+**Scope rules for v1.5.0:**
+- New ideas land in markdown core first (skills, commands, templates, docs, examples, adapters, validation).
+- Runtime changes limited to bug fix, security, compat, docs, tests.
+- Runtime expansion requires ADR 0002 exception process + Engine Adoption Gate.
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
@@ -146,3 +207,7 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v1.2:   ████████████ 100%
 - v1.3.0: ████████████ 100%
 - v1.4.0: ████████████ 100%
+- v1.4.1: ████████████ 100%
+- v1.4.2: ████████████ 100%
+- v1.4.3: ████████████ 100%
+- v1.5.0: ░░░░░░░░░░░░ Planned — Core Adoption & Runtime Freeze
