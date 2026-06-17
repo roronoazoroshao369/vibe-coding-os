@@ -4,18 +4,70 @@
   "title": "Vibe Coding OS Runtime Action Item",
   "description": "Agent execution trace entry persisted under the optional runtime layer.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "minLength": 1 },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "type": { "type": "string", "enum": ["tool.call", "shell.command", "file.write", "mcp.call", "daemon.work", "tmux.launch"] },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["human", "agent", "system", "mcp", "daemon"] },
+        "id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "tool": { "type": "string", "minLength": 1 },
+    "tool_v2": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "adapter": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "command": { "type": "string" },
     "cwd": { "type": "string" },
+    "input": {
+      "type": "object",
+      "properties": {
+        "command": { "type": "string" },
+        "cwd": { "type": "string" },
+        "args": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
     "exit_code": { "type": "integer" },
+    "result": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["started", "succeeded", "failed", "cancelled"] },
+        "exitCode": { "type": "integer" },
+        "outputSnippet": { "type": "string" },
+        "errorSnippet": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
     "risk_level": { "type": "string", "enum": ["safe", "review", "dangerous", "blocked"] },
+    "risk": { "$ref": "runtime-common.schema.json#/$defs/risk" },
+    "trace": { "$ref": "runtime-common.schema.json#/$defs/trace" },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["file", "path"] },
+          "path": { "type": "string" },
+          "operation": { "type": "string", "enum": ["read", "write", "delete", "execute"] }
+        },
+        "additionalProperties": false
+      }
+    },
     "timestamp": { "type": "string", "format": "date-time" },
     "session_id": { "type": "string" },
     "output_snippet": { "type": "string", "maxLength": 500 },
-    "metadata": { "type": "object", "additionalProperties": true }
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
   },
   "required": ["id", "tool", "timestamp"]
 }

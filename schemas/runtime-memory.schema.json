@@ -4,21 +4,60 @@
   "title": "Vibe Coding OS Runtime Memory Item",
   "description": "Item shape for memory entries persisted under the optional runtime layer.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
     "content": { "type": "string", "description": "Memory entry content" },
+    "kind": { "type": "string", "enum": ["decision", "observation", "preference", "constraint", "handoff", "risk", "fact"] },
     "scope": { "type": "string" },
-    "source": { "$ref": "runtime-common.schema.json#/$defs/source" },
+    "source": { "$ref": "runtime-common.schema.json#/$defs/sourceV1" },
     "tags": { "$ref": "runtime-common.schema.json#/$defs/tags" },
     "sensitivity": { "type": "string", "enum": ["public", "internal", "sensitive", "secret-redacted"] },
     "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
     "staleness": { "type": "string", "description": "Freshness/expiry hint for retrieval" },
+    "freshness": {
+      "type": "object",
+      "properties": {
+        "createdAt": { "type": "string", "format": "date-time" },
+        "validUntil": { "type": "string", "format": "date-time" },
+        "staleness": { "type": "string", "enum": ["fresh", "review-soon", "stale"] }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "sessionId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "taskId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "actionId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "citations": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "redacted": { "type": "boolean" },
+        "reviewed": { "type": "boolean" },
+        "exclusionReason": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "retrieval": {
+      "type": "object",
+      "properties": {
+        "injectable": { "type": "boolean" },
+        "allowedContexts": { "type": "array", "items": { "type": "string" } },
+        "embeddingStatus": { "type": "string", "enum": ["not_indexed", "indexed", "excluded"] }
+      },
+      "additionalProperties": false
+    },
     "related_files": { "type": "array", "items": { "type": "string" } },
     "citations": { "type": "array", "items": { "type": "string" } },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
-    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },
+    "extensions": { "type": "object", "additionalProperties": true }
   },
   "required": ["id", "content", "createdAt", "scope"]
 }

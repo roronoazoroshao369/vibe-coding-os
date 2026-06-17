@@ -1,11 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://vibe-coding-os.local/schemas/workflow-run.schema.json",
-  "title": "Vibe Coding OS Workflow Run",
-  "description": "State document for a single workflow execution.",
+  "title": "Vibe Coding OS Workflow Run (v2)",
+  "description": "State document for a single workflow execution. v2 adds intent, refs, gates, artifacts, and resume state.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
     "id": {
       "$ref": "runtime-common.schema.json#/$defs/runtimeId"
     },
@@ -18,6 +22,65 @@
     },
     "phase": {
       "type": "string"
+    },
+    "intent": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "requester": { "type": "string" },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false,
+      "description": "Original user or workflow intent"
+    },
+    "refs": {
+      "type": "object",
+      "properties": {
+        "sessionId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "teamId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "rootTaskId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+        "specRefs": { "type": "array", "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" } },
+        "planRefs": { "type": "array", "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" } },
+        "checkpointRefs": { "type": "array", "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" } }
+      },
+      "additionalProperties": false,
+      "description": "References to related runtime items"
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phase": { "type": "string" },
+          "status": { "type": "string", "enum": ["passed", "failed", "blocked", "skipped"] },
+          "checkpointId": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Workflow phase gate results"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["file", "url", "runtime-item"] },
+          "ref": { "type": "string" },
+          "hash": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Artifacts produced or referenced by the workflow"
+    },
+    "resume": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "nextAction": { "type": "string" },
+        "safeToResume": { "type": "boolean" }
+      },
+      "additionalProperties": false,
+      "description": "Resume guidance for interrupted workflow runs"
     },
     "history": {
       "type": "array",
@@ -35,7 +98,8 @@
     },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
     "updatedAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
-    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },
+    "extensions": { "type": "object", "additionalProperties": true }
   },
   "required": ["id", "status", "history"]
 }

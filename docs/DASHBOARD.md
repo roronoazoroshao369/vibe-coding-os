@@ -11,7 +11,7 @@
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 54 |
-| Narrative files | 394 |
+| Narrative files | 397 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -34,6 +34,7 @@
 | v0.3 | ✅ Complete | Evidence & Safety |
 | v0.4 | ✅ Complete | Packaging & Skill Packs |
 | v1.0 | ✅ Complete | Trusted Workflow Framework |
+| v1.1.0 | ✅ Complete | Runtime/schema/adapter hardening |
 
 ## Safety Metrics
 
@@ -62,8 +63,11 @@
 | dashboard-data | ✅ PASS | ~319ms |
 | dashboard-sync | ✅ PASS | ~316ms |
 | evaluation-report | ✅ PASS | ~959ms |
+| release-metadata | ✅ PASS | ~55ms |
+| bilingual-readme-sync | ✅ PASS | ~53ms |
+| markdown-links | ✅ PASS | ~84ms |
 
-**Overall: 13/13 gates passed**
+**Overall: 16/16 gates passed**
 
 ## Coverage Summary
 

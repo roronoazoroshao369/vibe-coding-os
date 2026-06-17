@@ -46,7 +46,8 @@
     "trace:log": "node scripts/runtime-log.mjs log",
     "trace:list": "node scripts/runtime-log.mjs list",
     "reference:diff": "node scripts/reference-diff.mjs",
-    "daemon:test": "node scripts/daemon-test.mjs"
+    "daemon:test": "node scripts/daemon-test.mjs",
+    "runtime:migrate": "node scripts/runtime-migrate.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

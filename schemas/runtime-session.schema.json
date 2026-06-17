@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://vibe-coding-os.local/schemas/runtime-session.schema.json",
-  "title": "Vibe Coding OS Runtime Session Item",
-  "description": "Item shape for sessions persisted under the optional runtime layer.",
+  "title": "Vibe Coding OS Runtime Session Item (v2)",
+  "description": "Item shape for sessions persisted under the optional runtime layer. v2 adds status, participants, runtime refs, decisions, questions, and handoff.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": {
       "type": "integer",
@@ -19,6 +19,56 @@
     "summary": {
       "type": "string"
     },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "completed", "abandoned"]
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["human", "agent"] },
+          "id": { "type": "string" },
+          "role": { "type": "string" }
+        },
+        "required": ["type", "id"],
+        "additionalProperties": false
+      }
+    },
+    "workflowRunIds": {
+      "type": "array",
+      "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+    },
+    "taskIds": {
+      "type": "array",
+      "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+    },
+    "memoryIds": {
+      "type": "array",
+      "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+    },
+    "checkpointIds": {
+      "type": "array",
+      "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "safeToResume": { "type": "boolean" },
+        "nextSteps": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
     "createdAt": {
       "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
     },
@@ -27,6 +77,10 @@
     },
     "metadata": {
       "$ref": "runtime-common.schema.json#/$defs/metadata"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
     }
   },
   "required": ["id", "goal", "createdAt"]

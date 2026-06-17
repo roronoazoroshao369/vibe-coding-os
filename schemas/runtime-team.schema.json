@@ -4,7 +4,7 @@
   "title": "Vibe Coding OS Runtime Team Item",
   "description": "Item shape for teams persisted under the optional runtime layer.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": { "type": "integer", "minimum": 1 },
     "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
@@ -15,12 +15,31 @@
       "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": true,
+        "additionalProperties": false,
         "properties": {
+          "id": { "type": "string" },
           "name": { "type": "string", "description": "Role name" },
           "purpose": { "type": "string", "description": "Role purpose/scope" },
           "owned_paths": { "type": "array", "items": { "type": "string" } },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "allowedPaths": { "type": "array", "items": { "type": "string" } },
+          "deniedPaths": { "type": "array", "items": { "type": "string" } },
           "tools": { "type": "array", "items": { "type": "string" } },
+          "inputContract": {
+            "type": "object",
+            "properties": {
+              "requiredRefs": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          },
+          "outputContract": {
+            "type": "object",
+            "properties": {
+              "requiredFields": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          },
+          "safetyPolicyRef": { "type": "string" },
           "validation": { "type": "string", "description": "Validation criteria for this role" },
           "handoff_fields": { "type": "array", "items": { "type": "string" } },
           "role": { "type": "string", "description": "Legacy role name (kept for backward compat)" },
@@ -30,10 +49,33 @@
     },
     "tasks": { "type": "array", "items": { "type": "string" } },
     "orchestration_pattern": { "type": "string", "description": "How roles coordinate (sequential/parallel/reviewer-gate)" },
+    "orchestration": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string", "enum": ["sequential", "parallel", "reviewer-gate", "swarm"] },
+        "taskAssignment": { "type": "string", "enum": ["manual", "next-ready", "role-owned-paths"] },
+        "conflictPolicy": { "type": "string", "enum": ["block-overlap", "allow-readonly-overlap", "manual-review"] },
+        "mergePolicy": { "type": "string", "enum": ["human-only", "reviewer-approved", "auto-after-checks"] }
+      },
+      "additionalProperties": false
+    },
+    "reviewGates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phase": { "type": "string" },
+          "requiredRole": { "type": "string" },
+          "requiredCheckpointType": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
     "stop_conditions": { "type": "array", "items": { "type": "string" }, "description": "Conditions that halt the team" },
-    "source": { "$ref": "runtime-common.schema.json#/$defs/source" },
+    "source": { "$ref": "runtime-common.schema.json#/$defs/sourceV1" },
     "createdAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
-    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" }
+    "metadata": { "$ref": "runtime-common.schema.json#/$defs/metadata" },
+    "extensions": { "type": "object", "additionalProperties": true }
   },
   "required": ["id", "name"]
 }

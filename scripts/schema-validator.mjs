@@ -58,12 +58,31 @@ function visit(value, schema, at, errors, schemas) {
   if (schema.enum && !schema.enum.includes(value)) errors.push(`${at}: value ${JSON.stringify(value)} not in enum`);
   if (typeof value === 'string') {
     if (schema.minLength !== undefined && value.length < schema.minLength) errors.push(`${at}: minLength ${schema.minLength}`);
+    if (schema.maxLength !== undefined && value.length > schema.maxLength) errors.push(`${at}: maxLength ${schema.maxLength}`);
+    if (schema.pattern !== undefined && !new RegExp(schema.pattern).test(value)) errors.push(`${at}: pattern mismatch ${schema.pattern}`);
     if (schema.format === 'date-time' && Number.isNaN(Date.parse(value))) errors.push(`${at}: invalid date-time`);
   }
   if (typeof value === 'number' && schema.minimum !== undefined && value < schema.minimum) errors.push(`${at}: minimum ${schema.minimum}`);
   if (Array.isArray(value) && schema.items) value.forEach((item, i) => visit(item, schema.items, `${at}[${i}]`, errors, schemas));
+  if (Array.isArray(value) && schema.minItems !== undefined && value.length < schema.minItems) errors.push(`${at}: minItems ${schema.minItems}`);
+  if (Array.isArray(value) && schema.uniqueItems) {
+    const seen = new Set();
+    for (const item of value) {
+      const key = JSON.stringify(item);
+      if (seen.has(key)) { errors.push(`${at}: duplicate item`); break; }
+      seen.add(key);
+    }
+  }
   if (value && typeof value === 'object' && !Array.isArray(value)) {
     for (const k of schema.required || []) if (value[k] === undefined) errors.push(`${at}: missing required ${k}`);
     for (const [k, s] of Object.entries(schema.properties || {})) if (value[k] !== undefined) visit(value[k], s, `${at}.${k}`, errors, schemas);
+    if (schema.additionalProperties === false) {
+      const allowed = new Set([...(schema.required || []), ...Object.keys(schema.properties || {})]);
+      for (const k of Object.keys(value)) {
+        if (!allowed.has(k) && !Object.keys(schema.patternProperties || {}).some((p) => new RegExp(p).test(k))) {
+          errors.push(`${at}: unexpected property ${k}`);
+        }
+      }
+    }
   }
 }

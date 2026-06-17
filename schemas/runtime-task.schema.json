@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://vibe-coding-os.local/schemas/runtime-task.schema.json",
-  "title": "Vibe Coding OS Runtime Task Item",
-  "description": "Item shape for tasks persisted under the optional runtime layer.",
+  "title": "Vibe Coding OS Runtime Task Item (v2)",
+  "description": "Item shape for tasks persisted under the optional runtime layer. v2 adds phase, priority, hierarchy, claim, verification, handoff, and history.",
   "type": "object",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "schemaVersion": {
       "type": "integer",
@@ -17,8 +17,22 @@
       "type": "string",
       "description": "Human-readable task title"
     },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the task"
+    },
     "status": {
       "$ref": "runtime-common.schema.json#/$defs/taskStatusEnum"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["intent", "spec", "plan", "tasks", "implementation", "test", "review", "memory", "merge"],
+      "description": "Workflow phase this task belongs to"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "normal", "high", "urgent"],
+      "description": "Task priority level"
     },
     "dependsOn": {
       "type": "array",
@@ -26,8 +40,113 @@
         "type": "string"
       }
     },
+    "parentTaskId": {
+      "$ref": "runtime-common.schema.json#/$defs/runtimeId",
+      "description": "Parent task ID for hierarchical tasks"
+    },
+    "subtaskIds": {
+      "type": "array",
+      "items": {
+        "$ref": "runtime-common.schema.json#/$defs/runtimeId"
+      },
+      "description": "Child task IDs"
+    },
     "owner": {
-      "type": "string"
+      "type": "string",
+      "description": "Owner identifier (string for backward compatibility)"
+    },
+    "ownerRef": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["human", "agent", "system", "mcp", "daemon"] },
+        "id": { "type": "string" },
+        "label": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false,
+      "description": "Structured owner reference (v2+)"
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "claimedBy": { "type": "string" },
+        "claimedAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+        "leaseExpiresAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" },
+        "heartbeatAt": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
+      },
+      "additionalProperties": false,
+      "description": "Task claim/lock information"
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of acceptance criteria for task completion"
+    },
+    "allowedPaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File/directory paths the task is allowed to modify"
+    },
+    "touchedPaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File/directory paths the task has modified"
+    },
+    "blockedReason": {
+      "type": "string",
+      "description": "Reason the task is blocked"
+    },
+    "risk": {
+      "$ref": "runtime-common.schema.json#/$defs/risk",
+      "description": "Risk assessment for the task"
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "commands": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["not_run", "passed", "failed", "skipped"] },
+        "evidenceRefs": { "type": "array", "items": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" } }
+      },
+      "additionalProperties": false,
+      "description": "Verification status and evidence"
+    },
+    "handoff": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "nextSteps": { "type": "array", "items": { "type": "string" } },
+        "openQuestions": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false,
+      "description": "Handoff information for agent transitions"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "actor": { "type": "string" },
+          "timestamp": { "$ref": "runtime-common.schema.json#/$defs/isoDateTime" }
+        },
+        "required": ["event", "timestamp"],
+        "additionalProperties": false
+      },
+      "description": "Task event history log"
+    },
+    "createdBy": {
+      "$ref": "runtime-common.schema.json#/$defs/createdBy",
+      "description": "Who or what created the task"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source identifier (for backward compatibility)"
+    },
+    "trace": {
+      "$ref": "runtime-common.schema.json#/$defs/trace",
+      "description": "Runtime trace context"
     },
     "createdAt": {
       "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
@@ -35,11 +154,12 @@
     "updatedAt": {
       "$ref": "runtime-common.schema.json#/$defs/isoDateTime"
     },
-    "source": {
-      "$ref": "runtime-common.schema.json#/$defs/source"
-    },
     "metadata": {
       "$ref": "runtime-common.schema.json#/$defs/metadata"
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true
     },
     "tags": {
       "$ref": "runtime-common.schema.json#/$defs/tags"

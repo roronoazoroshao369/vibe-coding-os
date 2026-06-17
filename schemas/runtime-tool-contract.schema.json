@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime-tool-contract.schema.json",
+  "title": "Vibe Coding OS Runtime Tool Contract",
+  "description": "Contract schema for runtime tools, defining risk, write scope, network policy, and approval requirements.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "risk", "writeScope", "networkPolicy"],
+  "properties": {
+    "name": { "type": "string" },
+    "adapter": { "type": "string", "enum": ["native", "mcp", "daemon", "tmux", "hermes", "ai-assistant"] },
+    "risk": { "$ref": "runtime-common.schema.json#/$defs/risk" },
+    "writeScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowedPaths": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "deniedPaths": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "maxFileSize": { "type": "integer" }
+      }
+    },
+    "networkPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowedOrigins": { "type": "array", "items": { "type": "string" } },
+        "maxRequests": { "type": "integer" },
+        "timeoutSeconds": { "type": "integer" }
+      }
+    },
+    "requiresApproval": { "type": "boolean" },
+    "approvalPattern": { "type": "string" },
+    "rollbackStrategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "supportsRollback": { "type": "boolean" },
+        "revertSteps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
+  }
+}

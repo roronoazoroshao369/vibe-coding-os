@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime-event.schema.json",
+  "title": "Vibe Coding OS Runtime Event Item",
+  "description": "Event record persisted under the optional runtime layer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "createdAt"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "id": { "$ref": "runtime-common.schema.json#/$defs/runtimeId" },
+    "type": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "trace": { "$ref": "runtime-common.schema.json#/$defs/trace" },
+    "payload": { "type": "object", "additionalProperties": true },
+    "redaction": {
+      "type": "object",
+      "properties": {
+        "applied": { "type": "boolean" },
+        "patternsVersion": { "type": "string" }
+      },
+      "required": ["applied"],
+      "additionalProperties": false
+    },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "extensions": { "type": "object", "additionalProperties": true }
+  }
+}
