@@ -10,8 +10,8 @@
 | Version | 1.0.0 |
 | Skills | 90 |
 | Commands | 68 |
-| Templates | 41 |
-| Narrative files | 369 |
+| Templates | 46 |
+| Narrative files | 378 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -71,12 +71,12 @@
 |---|---|
 | Skills (90) | All have SKILL.md with required sections |
 | Commands (68) | All discovered dynamically from `commands/` |
-| Templates (41) | All discovered dynamically from `templates/` |
+| Templates (46) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 0 |
+| Orphan templates | 5 (planned v1.1 placeholders) |
 | Broken references | 0 |
 
 ## How to Regenerate
