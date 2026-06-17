@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Runtime Configuration",
+  "description": "Configuration schema for Vibe Coding OS runtime",
+  "type": "object",
+  "required": ["version", "runtime", "tools", "policies"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "runtime": {
+      "type": "object",
+      "required": ["maxRiskLevel", "requireApproval", "approvalTimeout", "maxTaskLease", "heartbeatInterval", "eventRetentionDays"],
+      "additionalProperties": false,
+      "properties": {
+        "maxRiskLevel": {
+          "type": "string",
+          "enum": ["safe", "review", "dangerous", "blocked"]
+        },
+        "requireApproval": { "type": "boolean" },
+        "approvalTimeout": { "type": "integer", "minimum": 1 },
+        "maxTaskLease": { "type": "integer", "minimum": 1 },
+        "heartbeatInterval": { "type": "integer", "minimum": 1 },
+        "eventRetentionDays": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "required": ["allowed", "denied"],
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "denied": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "policies": {
+      "type": "object",
+      "required": ["requireTrace", "requireSource", "maxItemsPerStore"],
+      "additionalProperties": false,
+      "properties": {
+        "requireTrace": { "type": "boolean" },
+        "requireSource": { "type": "boolean" },
+        "maxItemsPerStore": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

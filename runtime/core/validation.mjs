@@ -110,6 +110,83 @@ function validateInstance(instance, rawSchema, schemaMap, path, errors) {
       validateInstance(instance[i], schema.items, schemaMap, `${path}[${i}]`, errors);
     }
   }
+
+  // minimum / maximum (numbers and integers)
+  if (typeof instance === 'number') {
+    if (schema.minimum !== undefined && instance < schema.minimum) {
+      errors.push(`${path || 'value'}: ${instance} is less than minimum ${schema.minimum}`);
+    }
+    if (schema.maximum !== undefined && instance > schema.maximum) {
+      errors.push(`${path || 'value'}: ${instance} is greater than maximum ${schema.maximum}`);
+    }
+  }
+
+  // minLength / maxLength (strings)
+  if (typeof instance === 'string') {
+    if (schema.minLength !== undefined && instance.length < schema.minLength) {
+      errors.push(`${path || 'value'}: string length ${instance.length} < minLength ${schema.minLength}`);
+    }
+    if (schema.maxLength !== undefined && instance.length > schema.maxLength) {
+      errors.push(`${path || 'value'}: string length ${instance.length} > maxLength ${schema.maxLength}`);
+    }
+    // pattern (regex)
+    if (schema.pattern) {
+      try {
+        const re = new RegExp(schema.pattern);
+        if (!re.test(instance)) {
+          errors.push(`${path || 'value'}: string does not match pattern "${schema.pattern}"`);
+        }
+      } catch {
+        // Invalid regex in schema — skip validation rather than crash
+      }
+    }
+  }
+
+  // minItems / maxItems (arrays)
+  if (Array.isArray(instance)) {
+    if (schema.minItems !== undefined && instance.length < schema.minItems) {
+      errors.push(`${path || 'value'}: array has ${instance.length} items, minimum is ${schema.minItems}`);
+    }
+    if (schema.maxItems !== undefined && instance.length > schema.maxItems) {
+      errors.push(`${path || 'value'}: array has ${instance.length} items, maximum is ${schema.maxItems}`);
+    }
+  }
+
+  // oneOf — exactly one sub-schema must match
+  if (schema.oneOf && Array.isArray(schema.oneOf)) {
+    const matchCount = schema.oneOf.filter((sub) => {
+      const subErrors = [];
+      validateInstance(instance, sub, schemaMap, path, subErrors);
+      return subErrors.length === 0;
+    }).length;
+    if (matchCount !== 1) {
+      errors.push(`${path || 'value'}: must match exactly one of ${schema.oneOf.length} schemas (matched ${matchCount})`);
+    }
+  }
+
+  // anyOf — at least one sub-schema must match
+  if (schema.anyOf && Array.isArray(schema.anyOf)) {
+    const anyMatch = schema.anyOf.some((sub) => {
+      const subErrors = [];
+      validateInstance(instance, sub, schemaMap, path, subErrors);
+      return subErrors.length === 0;
+    });
+    if (!anyMatch) {
+      errors.push(`${path || 'value'}: must match at least one of ${schema.anyOf.length} schemas`);
+    }
+  }
+
+  // allOf — all sub-schemas must match
+  if (schema.allOf && Array.isArray(schema.allOf)) {
+    for (const sub of schema.allOf) {
+      validateInstance(instance, sub, schemaMap, path, errors);
+    }
+  }
+
+  // const — exact value match
+  if (schema.const !== undefined && instance !== schema.const) {
+    errors.push(`${path || 'value'}: must be exactly ${JSON.stringify(schema.const)}`);
+  }
 }
 
 /**

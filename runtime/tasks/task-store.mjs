@@ -5,6 +5,7 @@ import { CURRENT_SCHEMA_VERSION } from '../core/validation.mjs';
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
 import { assertString, createItemValidator } from '../core/validation.mjs';
+import { transitionTask, canTransition } from '../core/task-state-machine.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
 
 const itemSchema = createItemValidator('runtime-task.schema.json');
@@ -66,52 +67,17 @@ export async function createTask(store, input) {
 
 export async function updateTaskStatus(store, id, status, options = {}) {
   if (!STATUSES.has(status)) throw new Error(`invalid status: ${status}`);
+  if (!canTransition('pending', status) && !canTransition('in_progress', status) && !canTransition('blocked', status) && !canTransition('completed', status) && !canTransition('cancelled', status)) {
+    // Basic sanity — the state machine will enforce actual transitions per current state
+  }
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store); const task = items.find(t => t.id === id); if (!task) throw new Error(`task not found: ${id}`);
     const oldStatus = task.status;
-    const actor = options.actor || 'cli';
-    const now = nowIso();
 
-    task.status = status;
-    task.updatedAt = now;
+    // Use the formal state machine for the transition
+    const updated = transitionTask(task, status, options);
 
-    // Append history entry
-    if (!Array.isArray(task.history)) task.history = [];
-    const historyEntry = {
-      event: 'status.changed',
-      from: oldStatus,
-      to: status,
-      actor,
-      timestamp: now
-    };
-    task.history.push(historyEntry);
-
-    // Set blocked reason if status is blocked
-    if (status === 'blocked' && options.blockedReason) {
-      task.blockedReason = options.blockedReason;
-    }
-
-    // Auto-claim when moving blocked→in_progress or pending→in_progress
-    if (status === 'in_progress' && (oldStatus === 'pending' || oldStatus === 'blocked')) {
-      const ttl = options.ttl || 300;
-      const expiresAt = new Date(Date.now() + ttl * 1000).toISOString();
-      task.claim = {
-        claimedBy: actor,
-        claimedAt: now,
-        expiresAt,
-        heartbeat: now
-      };
-      if (!task.owner) task.owner = actor;
-    }
-
-    // Heartbeat update on any status change (refresh expiration for existing claims)
-    if (task.claim && status !== oldStatus) {
-      const ttl = options.ttl || 300;
-      task.claim.heartbeat = now;
-      task.claim.expiresAt = new Date(Date.now() + ttl * 1000).toISOString();
-    }
-
-    await save(store, items); await appendEvent(store, 'task.status', { id, status }); return task;
+    await save(store, items); await appendEvent(store, 'task.status', { id, status }); return updated;
   });
 }
 
