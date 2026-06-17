@@ -1,6 +1,6 @@
 # Support Matrix
 
-This document summarizes adapter support tiers, runtime optionality, and compatibility expectations for Vibe Coding OS v1.0.
+This document summarizes adapter support tiers, runtime optionality, and compatibility expectations for current stable Vibe Coding OS releases.
 
 ## Adapter Support Tiers
 
@@ -35,7 +35,7 @@ Vibe Coding OS separates framework identity from optional runtime behavior.
 
 ### Core Layer (Release-Blocking)
 
-Core is the project's portable identity and must meet v1.0 standards.
+Core is the project's portable identity and must meet the current stable release standards.
 
 Core includes:
 
@@ -45,7 +45,7 @@ Core includes:
 - Docs and reference documentation
 - Validation scripts and registry contracts
 
-Core expectations for v1.0:
+Core expectations:
 
 - Stable workflow contract
 - Stable registry schemas
@@ -63,7 +63,7 @@ Runtime includes:
 - Optional MCP and daemon workflow support
 - Optional memory, task, or team runner features beyond the core markdown workflow
 
-Runtime expectations for v1.0:
+Runtime expectations:
 
 - May evolve faster than core
 - Must not alter core workflow semantics

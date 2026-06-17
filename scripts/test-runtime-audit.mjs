@@ -52,8 +52,8 @@ test('Runtime audit counts tasks correctly', async () => withRuntime(async (root
     kind: 'tasks',
     items: [
       { id: 't1', title: 'completed task', status: 'completed' },
-      { id: 't2', title: 'active task', status: 'active' },
-      { id: 't3', title: 'dangerous task', status: 'active', risk: { level: 'dangerous' } },
+      { id: 't2', title: 'in-progress task', status: 'in_progress' },
+      { id: 't3', title: 'dangerous task', status: 'in_progress', risk: { level: 'dangerous' } },
       { id: 't4', title: 'blocked task', status: 'blocked' },
     ],
   }, null, 2) + '\n');
@@ -63,7 +63,7 @@ test('Runtime audit counts tasks correctly', async () => withRuntime(async (root
   const parsed = JSON.parse(result.stdout);
   assert.equal(parsed.summary.tasks.total, 4);
   assert.equal(parsed.summary.tasks.statusCounts.completed, 1);
-  assert.equal(parsed.summary.tasks.statusCounts.active, 2);
+  assert.equal(parsed.summary.tasks.statusCounts.in_progress, 2);
   assert.equal(parsed.summary.tasks.statusCounts.blocked, 1);
   assert.equal(parsed.dangerous.taskCount, 1);
   assert.equal(parsed.dangerous.activeCount, 1);

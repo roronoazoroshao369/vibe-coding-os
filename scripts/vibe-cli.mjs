@@ -50,7 +50,7 @@ function countFiles(dir, ext) {
 // ─── Commands ───
 
 import { runDoctor, formatDoctorReport } from '../runtime/core/doctor.mjs';
-import { appendEventV2, listEventsV2, getEventMetadata } from '../runtime/core/event-store.mjs';
+import { listEventsV2, getEventMetadata } from '../runtime/core/event-store.mjs';
 
 export function cmdHelp() {
   const pkg = readJSON(join(ROOT, 'package.json'));
@@ -65,10 +65,10 @@ ${c.bold}Commands:${c.reset}
                             Tools: claude-code (default), codex, cursor, gemini
   ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
                             Tools: cursor, claude, codex, gemini
-  ${c.green}doctor${c.reset} [--project] Check runtime health (add --json for output)
-  ${c.green}events${c.reset} [--json]   Show event store metadata and recent events
-  ${c.green}install-pack${c.reset} [name] Install a skill pack into .vibe/skills/<name>
-                            --dry-run to preview without installing
+  ${c.green}doctor${c.reset} [--project <path>] Check runtime health (add --json for output)
+  ${c.green}events${c.reset} [--json] [--limit=N] Show event store metadata and recent events
+  ${c.green}install-pack${c.reset} <name> [--dry-run] [--force] Install a skill pack into .vibe/skills/<name>
+                            --dry-run to preview; --force to overwrite existing installs
   ${c.green}version${c.reset}            Show version number
   ${c.green}list-skills${c.reset} [cat]  List available skills (optional: core|memory|meta|prompts)
   ${c.green}list-commands${c.reset}       List all vibe-* commands
@@ -348,7 +348,6 @@ export async function cmdDoctor(args = []) {
     if (projectDir) {
       const report = await runDoctor(projectDir);
       console.log('\n' + formatDoctorReport(report));
-      if (json) console.log(JSON.stringify(report, null, 2));
     }
     return;
   }

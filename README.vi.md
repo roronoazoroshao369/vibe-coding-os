@@ -3,7 +3,7 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.4.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Bản phát hành hiện tại (v1.4.1):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
 
@@ -467,7 +467,7 @@ Trước khi adapt ý tưởng upstream: đọc source entry, xem feature/mappin
 ### Đã hoàn thành trong kernel hiện tại
 
 - Cấu trúc repo chuẩn hóa với skill core, memory, meta, prompt, agent.
-- 68 command prompt và 54 template tái sử dụng.
+- 68 command prompt và 56 template tái sử dụng.
 - Validation cấu trúc động cộng validation cho reference layer.
 - Registry source, attribution, feature, impact mà không vendor code upstream.
 - Quick start adapter cho Claude Code, Codex CLI, Gemini CLI, Cursor, và assistant khác.

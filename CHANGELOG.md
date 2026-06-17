@@ -9,6 +9,78 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+## [1.4.1] — 2026-06-17
+
+### Fixed
+- Stale docs counts: README.vi template count (54→56), support-matrix version references, Vietnamese strategy/roadmap refreshed for v1.4.
+- CHANGELOG.md now includes v1.1.0–v1.4.0 and v1.4.1 entries (previously missing).
+- CLI pack `install-pack` usage help shows flags and required/optional args correctly.
+- CLI `doctor` help now shows `--project <path>` (not `[--project]`), `events` shows `--limit=N`.
+- Removed unused import `appendEventV2` in vibe-cli.mjs.
+- Removed unreachable `if (json)` branch in `cmdDoctor` after early return.
+- Task state machine: fixed misleading subtask guard comment.
+- task-store.mjs: removed dead no-op conditional block.
+- test-runtime-audit.mjs test data now uses valid status `in_progress` instead of `active`.
+- tmux-runner.mjs: validated agent command before shell interpolation, single-quoted prompt path.
+
+## [1.4.0] — 2026-06-17
+
+### Added
+- Runtime kernel with optional config layer, formal task state machine, and broader schema enforcement.
+- Event Store v2 with sequence numbers, correlation/causation IDs, idempotency keys, and metadata consistency checks.
+- Runtime observability via `vibe doctor --json` and `vibe events --json`.
+- Config-enforced `maxTaskLease` behavior in claim/renew APIs.
+- Event-store v2 tests, doctor tests, and CLI JSON contract tests.
+
+### Changed
+- Legacy events.mjs append path now wraps canonical v2 behavior.
+- Expanded runtime behavioral test coverage to 14 suites.
+
+### Fixed
+- `vibe doctor --json` now emits JSON-only output.
+- `vibe events` shows latest/recent events correctly.
+- `--limit` validation for event CLI output.
+
+## [1.3.0] — 2026-06-17
+
+### Added
+- Runtime enforcement core: centralized validation layer before runtime store writes with `assertValidItem`, `assertStrictCollection`, `assertKnownFields`, `assertRiskWithin`, `assertAction`.
+- Claim/lease task APIs: `claimTask`, `releaseTask`, `heartbeatTask`, `renewTaskLease`, `listExpiredClaims`, `cancelExpiredClaims`.
+- Safety & recovery: approval gate middleware, tool boundary enforcement (fail-closed), runtime safety audit, event replay/snapshot/migration utilities.
+- Behavioral integration tests: 9 test files, 76 test cases (validation gate #18).
+- 2 new templates: `session-metrics`, `skill-proposal`.
+
+### Fixed
+- Release-facing README, README.vi, and roadmap history updated.
+- Heading-version validator added as validation gate #17.
+
+## [1.2.0] — 2026-06-17
+
+### Added
+- Runtime schema v2 foundation with `contractVersion`, `runtimeId`, `revision`, `createdBy`, `source`, `trace`, `risk` fields.
+- Multi-agent state contracts v2 for task, workflow-run, checkpoint, session, team, and memory schemas.
+- Safety + traceability: action v2, runtime event, approval, tool-contract schemas.
+- Migration manifest + dry-run engine for safer runtime-state upgrades.
+
+### Fixed
+- Docs drift hotfix: dashboard gate count, version progress, orphan wording, Vietnamese strategy wording corrected.
+- Validators expanded to catch stale counts and dashboard/version drift earlier.
+
+## [1.1.0] — 2026-06-17
+
+### Added
+- Schema alignment across registries, runtime payloads, and validation scripts.
+- Workflow state hardening for task, memory, checkpoint, team, session, and MCP flows.
+- Expanded CLI coverage: 20 CLI smoke tests passing.
+- Adapter packs refreshed for Cursor, Codex, and Claude setups.
+- Execution trace support for local runtime activity logging.
+- Bilingual sync validation for English/Vietnamese documentation alignment.
+- Markdown link validation to catch broken references before release.
+
+### Changed
+- Expanded release validation from 13 to 16 gates.
+- Refreshed adapter documentation for portability across tools.
+
 ## [1.0.0] — 2026-06-17
 
 ### Added
@@ -155,7 +227,12 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.0...v1.4.1
+[1.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v0.1.0...v0.4.0
 [0.1.0]: https://github.com/roronoazoroshao369/vibe-coding-os/releases/tag/v0.1.0
