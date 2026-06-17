@@ -14,6 +14,8 @@ const testFiles = [
   'scripts/test-runtime-collection-envelope.mjs',
   'scripts/test-runtime-approval-gate.mjs',
   'scripts/test-runtime-tool-contract.mjs',
+  'scripts/test-task-state-machine.mjs',
+  'scripts/test-runtime-config.mjs',
   'scripts/test-runtime-audit.mjs',
   'scripts/test-runtime-replay.mjs',
   'scripts/test-runtime-snapshot.mjs',
