@@ -9,7 +9,7 @@
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-**Current release (v1.4.3):** validate:all 20/20 gates PASS · **90 skills** · **68 commands** · **56 templates** · 14 tracked sources
+**Current release (v1.5.0):** validate:all 20/20 gates PASS · **90 skills** · **68 commands** · **56 templates** · 14 tracked sources
 
 ---
 
@@ -51,18 +51,15 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v1.4.3
+## What's new in v1.5.0
 
-- **Terminal state guard:** `claimTask()` now rejects completed/cancelled tasks — state machine contract is solid.
-- **Absolute lease cap:** `renewTaskLease()` never exceeds `now + maxTaskLease`, even for migrated or corrupt data.
-- **Library-safe tmux:** `requireTmux()` throws errors instead of calling `process.exit(1)` — safe for test and library use.
-- **MCP actor tracking:** `task.update` forwards `actor: mcp` for correct audit history.
-- **Config validation:** invalid `maxTaskLease` values (zero, negative, non-finite) silently reset to defaults.
-- **README diet:** 618 → ~260 lines. Product identity is now unmistakable.
-- **Docs navigation:** `docs/README.md` is now a full docs hub with categorized template links.
-- **Doc role clarity:** INSTALL / QUICKSTART / FIRST-WORKFLOW have explicit scope boundaries.
-- **12 orphan templates resolved:** all templates now referenced from narrative docs. 0 orphans.
-- **Vietnamese strategy doc updated:** current status reflects v1.4.2/v1.4.3 hardening.
+- **Runtime freeze:** Scope formally frozen via ADR 0002 — runtime only receives bug fix, safety, compat, docs, and tests.
+- **Config hardening:** Unknown `maxRiskLevel` → normalized; tool lists validated as arrays of strings.
+- **MCP approval scoped by args:** `task.update(task-A)` approval does NOT auto-approve `task.update(task-B)`.
+- **Negative TTL rejected:** `claimTask`, `heartbeatTask`, `renewTaskLease` reject negative TTL at public APIs.
+- **Vietnamese docs improved:** README.vi.md dieted (536→194 lines). New `docs/vi/QUICKSTART.md`.
+- **Adoption feedback:** GitHub issue template for structured onboarding feedback.
+- **Config validation cleanup:** maxTaskLease, maxRiskLevel, tool lists all validated on load.
 
 ---
 

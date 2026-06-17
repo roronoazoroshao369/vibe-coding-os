@@ -119,6 +119,7 @@ export async function claimTask(store, id, claimer, options = {}) {
   const config = loadConfig(store);
   const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
   let ttl = Math.min(options.ttl ?? 300, maxLease);
+  if (ttl < 0) throw new Error(`ttl must not be negative (got ${options.ttl})`);
   const actor = options.actor || claimer;
   const force = options.force === true;
 
@@ -247,6 +248,7 @@ export async function heartbeatTask(store, id, ttl = 300, options = {}) {
   const config = loadConfig(store);
   const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
   ttl = Math.min(ttl, maxLease);
+  if (ttl < 0) throw new Error(`ttl must not be negative (got ${ttl})`);
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store);
     const task = items.find(t => t.id === id);
@@ -285,6 +287,7 @@ export async function renewTaskLease(store, id, extraTtl = 300) {
   const config = loadConfig(store);
   const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
   extraTtl = Math.min(extraTtl, maxLease);
+  if (extraTtl < 0) throw new Error(`extraTtl must not be negative (got ${extraTtl})`);
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store);
     const task = items.find(t => t.id === id);

@@ -102,6 +102,26 @@ export function loadConfig(store) {
       }
     }
 
+    // Validate risk level — normalize unknown values to default
+    if (typeof merged.runtime?.maxRiskLevel !== 'string' || !RISK_LEVELS.includes(merged.runtime.maxRiskLevel)) {
+      const invalidRiskLevel = merged.runtime?.maxRiskLevel;
+      merged.runtime.maxRiskLevel = DEFAULT_CONFIG.runtime.maxRiskLevel;
+      merged._configWarning = (merged._configWarning || '') +
+        ` runtime.maxRiskLevel "${invalidRiskLevel}" invalid, reset to "${DEFAULT_CONFIG.runtime.maxRiskLevel}"`;
+    }
+
+    // Validate tool lists are arrays of strings
+    if (merged.tools) {
+      for (const listName of ['allowed', 'denied']) {
+        const val = merged.tools[listName];
+        if (!Array.isArray(val) || !val.every((item) => typeof item === 'string' && item.length > 0)) {
+          merged.tools[listName] = DEFAULT_CONFIG.tools[listName];
+          merged._configWarning = (merged._configWarning || '') +
+            ` tools.${listName} must be an array of non-empty strings, reset to default`;
+        }
+      }
+    }
+
     merged._source = 'config.json';
     merged._loadedAt = nowIso();
     return merged;

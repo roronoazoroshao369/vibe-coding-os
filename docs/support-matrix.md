@@ -65,10 +65,11 @@ Runtime includes:
 
 Runtime expectations:
 
-- May evolve faster than core
-- Must not alter core workflow semantics
-- Must not be required for normal markdown-first usage
-- Should not expand release blocking scope beyond what is documented in the core gates
+- **Scope frozen from v1.5.0.** Runtime additions require an explicit ADR exception per [ADR 0002](adr/0002-runtime-scope-freeze.md).
+- Must not alter core workflow semantics.
+- Must not be required for normal markdown-first usage.
+- Changes limited to: bug fixes, security/safety hardening, compatibility maintenance, test/validation coverage, documentation.
+- Should not expand release blocking scope beyond what is documented in the core gates.
 
 ### Boundary Rule
 

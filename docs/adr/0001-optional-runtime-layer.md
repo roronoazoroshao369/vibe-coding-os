@@ -18,7 +18,7 @@ The MVP uses one-shot Node CLI scripts, atomic JSON writes, a simple lock file, 
 
 - Users can keep using the repo without runtime setup.
 - Runtime state is local, reviewable, and disposable.
-- Later adapters may add SQLite, vector search, GitHub issue sync, or live team execution behind explicit opt-in contracts.
+- Runtime scope is frozen by [ADR 0002: Runtime Scope Freeze](0002-runtime-scope-freeze.md). Later runtime expansion (SQLite, vector services, GitHub sync, live execution, daemons, or new MCP write tools) requires a new ADR exception and must pass the Engine Adoption Gate.
 - Runtime memory must redact likely secrets before write.
 
 ## Verification

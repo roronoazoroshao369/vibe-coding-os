@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.4.3 |
+| Version | 1.5.0 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 417 |
+| Narrative files | 420 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -41,6 +41,7 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
+| v1.5.0 | ✅ Complete | Core adoption, runtime free
 
 ## Safety Metrics
 
