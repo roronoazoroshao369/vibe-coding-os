@@ -1,46 +1,70 @@
 # Traceability Map Template
 
-> Copy this into a plan, an issue tracker, or a `docs/` note when one piece of work spans a spec, multiple issues, and isolated branches/worktrees. Markdown only — no `gh` automation, MCP server, or GitHub-as-database is implied.
+Copy this into a plan, issue, or docs note when one piece of work spans a spec, tasks, and verification checkpoints.
 
 ## Purpose
-
-Keep a single, source-of-truth link between an accepted spec, the issues sliced from it, and the branches or worktrees where each issue is implemented, so progress and ownership stay clear without runtime tooling.
+Map acceptance criteria → plan steps → tasks → files → tests → checkpoints so the work is auditable and completion is verifiable.
 
 ## Header
+- **Spec:** `<path or link>`
+- **Plan:** `<path or link>`
+- **Owner:** `<person or agent>`
+- **Status:** `planning | in-progress | review | done`
+- **Last updated:** `<YYYY-MM-DD>`
 
-- Spec: `<path or link to accepted spec>`
-- Plan: `<path or link to plan>`
-- Owner: `<person or agent>`
-- Status: `planning | in-progress | review | done`
-- Last updated: `<date>`
+## Human-readable traceability
 
-## Traceability table
-
-| Issue ID | Slice (vertical behavior) | Spec criteria covered | Branch / worktree | Status | Verification |
-| --- | --- | --- | --- | --- | --- |
-| `<id>` | `<one user-visible slice>` | `<criteria IDs from spec>` | `<branch or .git worktree path>` | `todo / ready / in-progress / blocked / done` | `<command + result or not-run reason>` |
+- Acceptance criterion AC-01
+  - Plan step: step 1 — create adapter rules
+  - Task: task-01
+  - Files: `adapters/cursor/rules/vibe-core.md`
+  - Tests: `npm run validate`
+  - Checkpoint: adapter rule file exists and passes validation
+- Acceptance criterion AC-02
+  - Plan step: step 2 — add Codex response templates
+  - Task: task-02
+  - Files: `templates/codex-response-minimal.md`, `templates/codex-response-research.md`
+  - Tests: `npm run validate`
+  - Checkpoint: templates render correctly and validate
 
 ## Rules
+- Every criterion should trace forward to at least one task.
+- Every task should trace back to at least one criterion.
+- Each file should map to a task and checkpoint.
+- Each checkpoint should have a reproducible verification command or review note.
 
-- Every issue traces back to at least one observable spec acceptance criterion; flag any issue that does not.
-- Every spec criterion is covered by at least one issue before implementation is called complete; list uncovered criteria explicitly.
-- One branch or worktree per independently mergeable issue; record exclusive-file conflicts in the status cell.
-- Update the status column when an issue changes state, and update dependent issues at the same time.
-- Mark an issue `done` only with a passed verification command or an explicit not-run reason.
+## Coverage checklist
+- [ ] Every acceptance criterion has a plan step and task.
+- [ ] Every task lists affected files.
+- [ ] Every file has a checkpoint and test/validation command.
+- [ ] Uncovered criteria are noted explicitly.
 
-## Coverage check
-
-- [ ] Every issue links to a spec criterion.
-- [ ] Every spec criterion links to at least one issue.
-- [ ] Every in-progress issue names its branch/worktree and owner.
-- [ ] No two active issues edit the same exclusive file without a recorded plan.
-- [ ] Done issues carry verification evidence.
-
-## Out of scope
-
-- This template does not require GitHub, `gh`, an issue-sync script, or any MCP/runtime engine.
-- It does not replace `templates/tasks-template.md`; use it when work crosses issue and branch boundaries and needs end-to-end traceability.
-
-## Ghi chú tiếng Việt
-
-Dùng bảng truy vết này khi một việc trải dài qua spec → nhiều issue → nhiều nhánh/worktree. Mỗi issue phải nối ngược về tiêu chí spec; mỗi tiêu chí phải có issue phủ; mỗi issue đang làm phải ghi nhánh/worktree và chủ sở hữu. Chỉ markdown, không cần `gh`, MCP, hay runtime.
+## Machine-readable section
+```json
+{
+  "map_id": "trace-001",
+  "status": "planning",
+  "last_updated": "2026-06-17",
+  "spec": "docs/specs/example-spec.md",
+  "plan": "docs/plans/example-plan.md",
+  "criteria": [
+    {
+      "id": "AC-01",
+      "title": "Cursor rules exist",
+      "tasks": ["task-01"],
+      "files": ["adapters/cursor/rules/vibe-core.md"],
+      "tests": ["npm run validate"],
+      "checkpoints": ["rule-file-present"]
+    },
+    {
+      "id": "AC-02",
+      "title": "Codex response templates exist",
+      "tasks": ["task-02"],
+      "files": ["templates/codex-response-minimal.md", "templates/codex-response-research.md"],
+      "tests": ["npm run validate"],
+      "checkpoints": ["template-files-present"]
+    }
+  ],
+  "coverage_notes": "Fill in actual IDs, tasks, files, and verification commands during planning."
+}
+```
