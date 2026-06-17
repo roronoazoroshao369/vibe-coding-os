@@ -3,19 +3,15 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.2.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
+**Bản phát hành hiện tại (v1.2.0):** validate:all 17/17 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
 
-## Có gì mới trong v1.1.0
+## Có gì mới trong v1.2.0
 
-- Căn chỉnh schema giữa các registry, runtime payload, adapter metadata, và validation expectations.
-- Nâng cứng workflow state cho task, checkpoint, memory, team, session, daemon, MCP, và tmux runner.
-- Runtime validation mở rộng với config checks chặt hơn, installer behavior an toàn hơn, và runtime smoke coverage.
-- CLI mở rộng với phạm vi command read-only rộng hơn và 20 CLI smoke test pass.
-- Cursor, Codex, và Claude adapter pack được refresh cho setup đồng nhất, ranh giới năng lực, và usage portable.
-- Safety và hook contracts được làm rõ cho secret scanning, injection checks, memory redaction, và agent handoffs.
-- Execution trace hỗ trợ logging và inspection runtime activity local.
-- Validation sync song ngữ English/Vietnamese được thêm vào để giữ các onboarding surfaces chính đồng bộ.
-- Validation markdown link được thêm vào để bắt broken documentation references trước khi release.
+- Runtime Contracts v2: schema chặt, multi-agent state contracts, và safety/traceability cơ bản.
+- Migration dry-run engine: con đường an toàn hơn để nâng cấp runtime state lưu trữ với backup và rollback awareness.
+- Schema event, approval, tool-contract, và migration cho provenance, capability declarations, và risk inspection.
+- Paths validation backward-compatible v1→v2 cho runtime state hiện tại.
+- 17/17 validation gates passes với full repository integrity checks.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>

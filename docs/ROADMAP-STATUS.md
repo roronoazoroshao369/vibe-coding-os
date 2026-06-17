@@ -112,6 +112,17 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 | Safety + traceability (action v2, event schema, approval schema, tool-contract schema) | ✅ Done |
 | Migration manifest + dry-run engine | ✅ Done |
 
+## v1.3 — Production Readiness + Adoption UX
+**Status:** 🔄 IN PROGRESS — Planned
+
+| Deliverable | Status |
+|---|---|
+| P0 Trust cleanup (docs correct, validator) | 🔄 In progress |
+| P1 Runtime enforcement core | 📋 Planned |
+| P1 Safety & recovery (approval, tool boundaries, replay, migration) | 📋 Planned |
+| P2 Adoption UX (first workflow, install-pack, doctor) | 📋 Planned |
+| P3 Ecosystem & positioning (comparison docs, skill catalog, security model) | 📋 Planned |
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%

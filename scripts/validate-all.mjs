@@ -24,7 +24,8 @@ const checks = [
   ['Release metadata', 'node', ['scripts/validate-release-metadata.mjs']],
   ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']],
   ['Bilingual README sync', 'node', ['scripts/validate-bilingual-sync.mjs']],
-  ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']]
+  ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']],
+  ['README heading version', 'node', ['scripts/check-heading-version.mjs']]
 ];
 
 function formatDuration(ms) {

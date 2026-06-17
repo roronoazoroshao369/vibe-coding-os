@@ -10,8 +10,8 @@
 | Version | 1.2.0 |
 | Skills | 90 |
 | Commands | 68 |
-| Templates | 54 |
-| Narrative files | 398 |
+| Templates | 56 |
+| Narrative files | 402 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -67,8 +67,9 @@
 | release-metadata | ✅ PASS | ~55ms |
 | bilingual-readme-sync | ✅ PASS | ~53ms |
 | markdown-links | ✅ PASS | ~84ms |
+| readme-heading-version | ✅ PASS | ~56ms |
 
-**Overall: 16/16 gates passed**
+**Overall: 17/17 gates passed**
 
 ## Coverage Summary
 
