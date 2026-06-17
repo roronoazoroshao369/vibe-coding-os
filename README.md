@@ -3,7 +3,19 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.0.0):** validate:all 13/13 gates, 90 skills, 68 commands, 41 templates, 0 broken refs, 0 orphans. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md) · [v1.0 release plan](docs/v1.0-release-plan.md)
+**Current release (v1.1.0):** validate:all 16/16 gates, 90 skills, 68 commands, 54 templates, 0 broken refs, 0 orphans. Start here: [Dashboard](docs/DASHBOARD.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md)
+
+## What's new in v1.1.0
+
+- Schema alignment across registries, runtime payloads, adapter metadata, and validation expectations.
+- Workflow state hardening for task, checkpoint, memory, team, session, daemon, MCP, and tmux runner flows.
+- Runtime validation expanded with stricter config checks, safer installer behavior, and runtime smoke coverage.
+- CLI expansion with broader read-only command coverage and 20 passing CLI smoke tests.
+- Cursor, Codex, and Claude adapter packs refreshed for consistent setup, capability boundaries, and portable usage.
+- Safety and hook contracts clarified for secret scanning, injection checks, memory redaction, and agent handoffs.
+- Execution trace support added for local runtime activity logging and inspection.
+- Bilingual English/Vietnamese documentation sync validation added to keep major onboarding surfaces aligned.
+- Markdown link validation added to catch broken documentation references before release.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
