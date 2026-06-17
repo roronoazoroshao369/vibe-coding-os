@@ -29,6 +29,7 @@ const commands = [
   { args: ['init', 'cursor'], cwd: 'tmp' },
   { args: ['init', 'gemini'], cwd: 'tmp' },
   { args: ['spec', '--copy'], cwd: 'tmp' },
+  { args: ['workflow', 'status'] },
   { args: ['invalid-command'], expectedStatus: 1 },
 ];
 

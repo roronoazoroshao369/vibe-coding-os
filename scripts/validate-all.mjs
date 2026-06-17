@@ -22,7 +22,9 @@ const checks = [
   ['Dashboard data', 'node', ['scripts/dashboard-data.mjs']],
   ['Dashboard sync check', 'node', ['scripts/check-dashboard-sync.mjs']],
   ['Release metadata', 'node', ['scripts/validate-release-metadata.mjs']],
-  ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']]
+  ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']],
+  ['Bilingual README sync', 'node', ['scripts/validate-bilingual-sync.mjs']],
+  ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']]
 ];
 
 function formatDuration(ms) {

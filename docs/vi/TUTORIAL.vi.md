@@ -216,7 +216,7 @@ Bạn đã hoàn thành vòng lặp workflow đầy đủ. Đây là các hướ
 | Tất cả lệnh CLI | [`examples/cli-workflows/README.md`](../../examples/cli-workflows/README.md) |
 | Hướng dẫn chọn skill | [skill-decision-guide.md](../skill-decision-guide.md) |
 | Tài liệu tiếng Việt khác | [`docs/vi/index.md`](index.md) |
-| Đóng góp | [CONTRIBUTING.md](../CONTRIBUTING.md) |
+| Đóng góp | [CONTRIBUTING.md](../../CONTRIBUTING.md) |
 
 ## Khắc phục Sự cố
 

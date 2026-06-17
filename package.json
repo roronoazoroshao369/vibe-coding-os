@@ -40,7 +40,9 @@
     "smoke-test:adapters": "node scripts/smoke-test-adapters.mjs",
     "references:health": "node scripts/reference-health-report.mjs",
     "smoke-test:runtime": "node scripts/smoke-test-runtime.mjs",
-    "workflow:status": "node scripts/workflow-status.mjs"
+    "workflow:status": "node scripts/workflow-status.mjs",
+    "validate:bilingual-sync": "node scripts/validate-bilingual-sync.mjs",
+    "validate:markdown-links": "node scripts/validate-markdown-links.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

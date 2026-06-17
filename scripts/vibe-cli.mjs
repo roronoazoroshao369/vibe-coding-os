@@ -68,6 +68,7 @@ ${c.bold}Commands:${c.reset}
   ${c.green}memory${c.reset} [name]      Show memory entry template (use --copy to copy to cwd)
   ${c.green}task${c.reset} [name]        Show task template (use --copy to copy to cwd)
   ${c.green}templates${c.reset}          List all available templates
+  ${c.green}workflow${c.reset} status    Show optional runtime workflow status
   ${c.green}help${c.reset}               Show this help message
 
 ${c.bold}Examples:${c.reset}
@@ -444,6 +445,16 @@ if (isMainModule) {
     case 'memory': cmdMemory(args); break;
     case 'task': cmdTask(args); break;
     case 'templates': cmdTemplates(); break;
+    case 'workflow': {
+      const { spawnSync } = await import('node:child_process');
+      const result = spawnSync(process.execPath, [join(__dirname, 'workflow-status.mjs'), ...args], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+        stdio: ['inherit', 'inherit', 'inherit'],
+      });
+      process.exit(result.status ?? 1);
+      break;
+    }
     case 'help': case '--help': case '-h': case undefined: cmdHelp(); break;
     default:
       console.error(`${fail} Unknown command: ${cmd}`);
