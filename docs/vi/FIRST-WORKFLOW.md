@@ -7,12 +7,12 @@
 | Yêu cầu | Tối thiểu |
 |---------|-----------|
 | Node.js | 18+ |
-| Git | phiên bản bất kỳ |
-| Trợ lý AI coding | Claude Code, Codex, Cursor, hoặc Gemini (chọn một) |
+| Git | phiên bản gần đây |
+| AI coding assistant | Claude Code, Codex, Cursor, hoặc Gemini (chọn một) |
 
-Không cần `npm install` cho framework. Chỉ cần Node và Git.
+Framework khá nhẹ dependency. Bạn chỉ cần Node và Git để bắt đầu.
 
-## Bước 1 — Clone và Link
+## Bước 1 — Clone và Link Framework
 
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
@@ -20,91 +20,125 @@ cd ~/vibe-coding-os
 npm link
 ```
 
-Sau khi `npm link`, lệnh `vibe` có sẵn trên toàn hệ thống.
+Sau `npm link`, lệnh `vibe` sẽ có sẵn toàn cục. Đây là bước setup một lần.
 
-## Bước 2 — Kiểm Tra Sức Khoẻ
+## Bước 2 — Validate Framework
 
 ```bash
 vibe doctor
 ```
 
-Tất cả các kiểm tra phải xanh. Nếu thiếu gì, chạy `npm install` trong thư mục vibe-coding-os.
+Bạn nên thấy tất cả checks pass. Nếu thiếu gì đó, chạy `npm install` trong `~/vibe-coding-os`.
 
-## Bước 3 — Chọn Công Cụ
-
-Chọn adapter phù hợp với trợ lý coding của bạn:
-
-```bash
-# Dành cho Claude Code
-vibe init claude-code
-
-# Dành cho Cursor
-vibe init cursor
-
-# Dành cho Codex
-vibe init codex
-
-# Dành cho Gemini
-vibe init gemini
-```
-
-Lệnh này copy file hướng dẫn phù hợp vào thư mục hiện tại của bạn.
-
-## Bước 4 — Chạy Validation
+Sau đó chạy bộ validation của framework:
 
 ```bash
 npm run validate:all
 ```
 
-Tất cả 19 cổng kiểm tra phải xanh. Điều này xác nhận framework khoẻ mạnh trước khi bạn bắt đầu xây dựng.
+> **Lưu ý:** `npm run validate:all` validate chính framework này (19 gates). Nó khác với test của app/project của bạn.
 
-## Bước 5 — Luồng Công Việc Đầu Tiên
+## Bước 3 — Chuyển Sang Project Thật Của Bạn
 
-### 5a. Bắt Đầu với Spec
-
-Mở dự án của bạn trong trợ lý AI coding. Nói với nó:
-
-```
-Hãy định nghĩa một feature spec cho ứng dụng đếm đơn giản (counter):
-tăng, giảm, và reset. Bao gồm goals, non-goals, và tiêu chí chấp nhận.
-Chưa implement — chỉ spec thôi.
-```
-
-Lưu kết quả vào `docs/specs/counter-app.md`.
-
-### 5b. Tạo Plan
-
-```
-Dựa trên spec tại docs/specs/counter-app.md, hãy tạo implementation plan.
-Liệt kê các file cần tạo, các bước thực hiện, và lệnh kiểm tra.
-```
-
-Lưu kết quả vào `docs/plans/counter-app.md`.
-
-### 5c. Implement
-
-```
-Hãy implement plan từ docs/plans/counter-app.md.
-Tạo từng file một và kiểm tra từng bước.
-```
-
-### 5d. Review
-
-```
-Hãy review implementation so với spec.
-Liệt kê bug, thiếu sót, hoặc vấn đề bảo mật.
-Chỉ report — không sửa.
-```
-
-### 5e. Kiểm Tra
-
-Chạy test hoặc validation mà trợ lý của bạn đã tạo. Sau đó chạy:
+Bây giờ chuyển vào project nơi bạn sẽ build feature:
 
 ```bash
-npm run validate
+cd ~/your-project
 ```
 
-## Bước 6 — Các Bước Tiếp Theo
+Nếu chưa có project, tạo một project nhỏ:
+
+```bash
+mkdir ~/my-first-vibe-app && cd ~/my-first-vibe-app
+npm init -y
+```
+
+## Bước 4 — Khởi Tạo Adapter Cho Tool Của Bạn
+
+Chọn adapter khớp với AI coding assistant bạn dùng:
+
+```bash
+# Claude Code users
+vibe init claude-code
+
+# Cursor users
+vibe init cursor
+
+# Codex users
+vibe init codex
+
+# Gemini users
+vibe init gemini
+```
+
+Lệnh này copy instruction file phù hợp (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, hoặc `GEMINI.md`) vào thư mục project thật của bạn.
+
+## Bước 5 — Kiểm Tra Project Đã Sẵn Sàng
+
+```bash
+vibe doctor --project .
+```
+
+Lệnh này xác nhận project thật đã có instruction file mà AI assistant cần.
+
+## Bước 6 — Luồng Công Việc Đầu Tiên
+
+Tạo thư mục để lưu spec và plan:
+
+```bash
+mkdir -p docs/specs docs/plans
+```
+
+Mở project trong AI coding assistant và đi theo vòng lặp sau:
+
+### 6a. Bắt Đầu Với Spec
+
+```
+Define a feature spec for a simple counter app with increment, decrement, and reset.
+Include goals, non-goals, and acceptance criteria. Do not implement yet.
+```
+
+Lưu output vào `docs/specs/counter-app.md`.
+
+### 6b. Tạo Plan
+
+```
+Based on the spec at docs/specs/counter-app.md, create an implementation plan.
+List the files to create, the steps to take, and the verification commands.
+```
+
+Lưu output vào `docs/plans/counter-app.md`.
+
+### 6c. Implement
+
+```
+Implement the plan from docs/plans/counter-app.md.
+Create the files one at a time and verify each step.
+```
+
+### 6d. Review
+
+```
+Review the implementation against the spec.
+List any bugs, missing features, or security concerns.
+Do not make changes — just report.
+```
+
+### 6e. Verify
+
+Chạy test/validation bình thường của project bạn:
+
+```bash
+npm test        # hoặc: npm run lint, npm run typecheck
+```
+
+Sau đó kiểm tra lại project readiness:
+
+```bash
+vibe doctor --project .
+```
+
+## Bước 7 — Làm Gì Tiếp Theo
 
 | Bước tiếp theo | Lệnh hoặc link |
 |----------------|----------------|
@@ -115,20 +149,24 @@ npm run validate
 | Đọc tutorial đầy đủ | [docs/TUTORIAL.md](../TUTORIAL.md) |
 | Đọc quickstart cho tool của bạn | [QUICKSTART.md](../QUICKSTART.md) |
 | Xem tài liệu adapter | [adapters/](../../adapters/) |
+| Ví dụ React/Next.js thực tế | [examples/react-nextjs-booking-workflow/](../../examples/react-nextjs-booking-workflow/) |
 
 ## Mẹo
 
 - **Bắt đầu nhỏ.** Một feature một file là luồng công việc đầu tiên tốt nhất.
 - **Đừng bỏ qua spec.** Một spec 3 dòng còn tốt hơn nhảy thẳng vào code.
 - **Một skill mỗi lần.** Dán lệnh, rồi gắn kèm một skill nếu cần.
-- **Validate thường xuyên.** `npm run validate` phát hiện lỗi cấu trúc sớm.
+- **Validate framework, rồi validate app.** Đây là 2 bước khác nhau, đều quan trọng.
 - **Lưu quyết định vào file.** Lịch sử chat mất đi; file tồn tại mãi.
 
 ## Tóm Tắt Luồng Công Việc
 
 ```
-Clone → npm link → vibe doctor → vibe init <tool> → validate:all
+Clone → npm link → vibe doctor → validate:all (trong framework)
+    → cd ~/your-project → vibe init <tool> → vibe doctor --project .
     → Spec → Plan → Implement → Review → Verify → Xong
 ```
+
+Muốn xem ví dụ chi tiết hơn? Hãy thử [React/Next.js booking workflow](../../examples/react-nextjs-booking-workflow/README.md).
 
 Xem [ROADMAP-STATUS.md](../ROADMAP-STATUS.md) cho roadmap dự án và [SECURITY-MODEL.md](../SECURITY-MODEL.md) để biết framework xử lý bảo mật thế nào.

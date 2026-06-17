@@ -149,7 +149,7 @@ check(
 // Body stats checks
 const skillCount = (readme.match(/\*\*90 skills\*\*/i) || []).length;
 const commandCount = (readme.match(/\*\*68 commands\*\*/i) || []).length;
-const templateCount = (readme.match(/\*\*54 templates\*\*/i) || []).length;
+const templateCount = (readme.match(/\*\*56 templates\*\*/i) || []).length;
 
 check(skillCount > 0, 'README.md includes skill count');
 check(commandCount > 0, 'README.md includes command count');

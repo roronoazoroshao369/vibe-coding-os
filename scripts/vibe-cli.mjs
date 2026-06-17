@@ -136,10 +136,11 @@ export function cmdVersion() {
 }
 
 export function cmdExport(tool) {
+  const aliases = { 'claude-code': 'claude', 'claude': 'claude', 'codex': 'codex', 'cursor': 'cursor', 'gemini': 'gemini' };
   const validTools = ['cursor', 'claude', 'codex', 'gemini'];
-  if (!tool || !validTools.includes(tool)) {
+  if (!tool || !aliases[tool]) {
     console.error(`${fail} Usage: vibe export <tool>`);
-    console.error(`  Valid tools: ${validTools.join(', ')}`);
+    console.error(`  Valid tools: ${validTools.join(', ')} (alias: claude-code → claude)`);
     process.exit(1);
   }
 
@@ -172,7 +173,7 @@ export function cmdExport(tool) {
     },
   };
 
-  const adapter = adapters[tool];
+  const adapter = adapters[aliases[tool]];
   for (const { src, dest } of adapter.files) {
     const srcPath = join(ROOT, src);
     const destPath = resolve(dest);
@@ -195,14 +196,19 @@ export function cmdExport(tool) {
 
 export function cmdDoctor(args = []) {
   const projectFlagIndex = args.indexOf('--project');
-  const projectDir = projectFlagIndex >= 0 ? resolve(args[projectFlagIndex + 1] || '.') : null;
-  const baseDir = projectDir || ROOT;
-  const titleBase = projectDir ? 'Project Check' : 'Health Check';
-
-  console.log(`${c.bold}${c.cyan}Vibe Coding OS — ${titleBase}${c.reset}\n`);
+  if (projectFlagIndex >= 0 && !args[projectFlagIndex + 1]) {
+    console.error(`${fail} --project requires a directory path. Usage: vibe doctor --project <path>`);
+    process.exit(1);
+  }
+  const projectDir = projectFlagIndex >= 0 ? resolve(args[projectFlagIndex + 1]) : null;
+  if (projectDir && !existsSync(projectDir)) {
+    console.error(`${fail} Project directory not found: ${projectDir}`);
+    process.exit(1);
+  }
 
   if (projectDir) {
-    console.log(`${info} Checking project readiness at: ${c.bold}${projectDir}${c.reset}\n`);
+    console.log(`${c.bold}${c.cyan}Vibe Coding OS — Project Readiness${c.reset}\n`);
+    console.log(`${info} Checking: ${c.bold}${projectDir}${c.reset}\n`);
     let adapterFound = false;
     for (const signal of ['CLAUDE.md', 'AGENTS.md', '.cursorrules', 'GEMINI.md', '.cursor/rules']) {
       if (existsSync(join(projectDir, signal))) {
@@ -213,8 +219,13 @@ export function cmdDoctor(args = []) {
     if (!adapterFound) {
       console.log(`${c.yellow}⚠ No adapter instruction file found${c.reset}`);
       console.log(`  Tip: Run ${c.cyan}vibe init <tool>${c.reset} in this project directory.`);
+    } else {
+      console.log(`\n${c.green}${c.bold}Project is ready!${c.reset} Your AI coding assistant can read the instruction file.`);
     }
+    return;
   }
+
+  console.log(`${c.bold}${c.cyan}Vibe Coding OS — Health Check${c.reset}\n`);
 
   const checks = [
     { name: 'package.json', path: 'package.json', required: true },

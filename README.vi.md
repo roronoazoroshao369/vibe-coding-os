@@ -3,7 +3,11 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Bắt đầu tại: [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Dashboard](docs/DASHBOARD.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [release notes v1.3.0](docs/releases/v1.3.0.md) · [release notes v1.2.0](docs/releases/v1.2.0.md) · [release notes v1.1.0](docs/releases/v1.1.0.md) · [release notes v1.0.0](docs/releases/v1.0.0.md)
+**Bản phát hành hiện tại (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+
+**Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
+
+**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
 
 ## Có gì mới trong v1.3.0
 
@@ -69,7 +73,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## Hiện tại có gì
 
-Inventory hiện tại: **90 skills**, **68 commands**, **54 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
+Inventory hiện tại: **90 skills**, **68 commands**, **56 templates**, **14 nguồn cảm hứng được track**, cùng một runtime layer tùy chọn. Repo đã vượt khỏi một bộ prompt nhỏ để trở thành một hệ điều hành local đầy đủ cho kỹ thuật phần mềm có AI hỗ trợ.
 
 | Layer | Gồm gì | Giảm nỗi đau nào |
 | --- | --- | --- |
@@ -372,7 +376,7 @@ Các cách dùng thủ công:
 2. Invoke hoặc paste command prompt trong `commands/`, ví dụ `vibe-spec.md` hoặc `vibe-review.md`.
 3. Attach một hoặc nhiều skill từ `skills/` khi cần hành vi cụ thể.
 4. Dùng template trong `templates/` để tạo spec, plan, task, review, và memory note.
-5. Xem luồng hoàn chỉnh trong `examples/`, bắt đầu với [feature workflow](examples/feature-workflow/README.md) hoặc [bugfix workflow](examples/bugfix-workflow/README.md).
+5. Xem luồng hoàn chỉnh trong `examples/`, bắt đầu với [feature workflow](examples/feature-workflow/README.md), [bugfix workflow](examples/bugfix-workflow/README.md), hoặc [React/Next.js booking workflow](examples/react-nextjs-booking-workflow/README.md).
 
 ## Tài liệu tiếng Việt
 

@@ -10,9 +10,9 @@
 | Git | any recent version |
 | An AI coding assistant | Claude Code, Codex, Cursor, or Gemini (pick one) |
 
-No npm install required for the framework itself. You only need Node and Git.
+The framework itself is dependency-light. You only need Node and Git to get started.
 
-## Step 1 — Clone and Link
+## Step 1 — Clone and Link the Framework
 
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
@@ -20,17 +20,40 @@ cd ~/vibe-coding-os
 npm link
 ```
 
-After `npm link`, the `vibe` command is available globally.
+After `npm link`, the `vibe` command is available globally. This is a one-time setup.
 
-## Step 2 — Health Check
+## Step 2 — Validate the Framework Installation
 
 ```bash
 vibe doctor
 ```
 
-You should see all checks pass. If something is missing, run `npm install` inside the vibe-coding-os directory.
+You should see all checks pass. If something is missing, run `npm install` inside `~/vibe-coding-os`.
 
-## Step 3 — Pick Your Tool
+Then run the framework's own validation suite:
+
+```bash
+npm run validate:all
+```
+
+> **Note:** `npm run validate:all` validates the framework itself (19 gates). It is separate from your app's tests.
+
+## Step 3 — Switch to Your Target Project
+
+Now move to the project where you'll build features:
+
+```bash
+cd ~/your-project
+```
+
+If you don't have a project yet, create one:
+
+```bash
+mkdir ~/my-first-vibe-app && cd ~/my-first-vibe-app
+npm init -y
+```
+
+## Step 4 — Initialize Your Tool Adapter
 
 Choose the adapter that matches your coding assistant:
 
@@ -48,21 +71,27 @@ vibe init codex
 vibe init gemini
 ```
 
-This copies the right instruction file to your current directory.
+This copies the right instruction file (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`, or `GEMINI.md`) into your target project directory.
 
-## Step 4 — Run Validation
+## Step 5 — Check Project Readiness
 
 ```bash
-npm run validate:all
+vibe doctor --project .
 ```
 
-All 19 gates should pass. This confirms the framework is healthy before you start building.
+This confirms your target project has the instruction file your AI assistant needs.
 
-## Step 5 — Your First Workflow
+## Step 6 — Your First Workflow
 
-### 5a. Start with a Spec
+Create the directories your spec and plan will live in:
 
-Open your project in your AI coding assistant. Tell it:
+```bash
+mkdir -p docs/specs docs/plans
+```
+
+Now open your project in your AI coding assistant and follow the loop:
+
+### 6a. Start with a Spec
 
 ```
 Define a feature spec for a simple counter app with increment, decrement, and reset.
@@ -71,7 +100,7 @@ Include goals, non-goals, and acceptance criteria. Do not implement yet.
 
 Save the output to `docs/specs/counter-app.md`.
 
-### 5b. Create a Plan
+### 6b. Create a Plan
 
 ```
 Based on the spec at docs/specs/counter-app.md, create an implementation plan.
@@ -80,14 +109,14 @@ List the files to create, the steps to take, and the verification commands.
 
 Save the output to `docs/plans/counter-app.md`.
 
-### 5c. Implement
+### 6c. Implement
 
 ```
 Implement the plan from docs/plans/counter-app.md.
 Create the files one at a time and verify each step.
 ```
 
-### 5d. Review
+### 6d. Review
 
 ```
 Review the implementation against the spec.
@@ -95,15 +124,21 @@ List any bugs, missing features, or security concerns.
 Do not make changes — just report.
 ```
 
-### 5e. Verify
+### 6e. Verify
 
-Run whatever tests or validation your assistant produced. Then run:
+Run whatever tests your project normally uses:
 
 ```bash
-npm run validate
+npm test        # or: npm run lint, npm run typecheck
 ```
 
-## Step 6 — What to Do Next
+Then also run the validation accessible from your project directory:
+
+```bash
+vibe doctor --project .
+```
+
+## Step 7 — What to Do Next
 
 | Next step | Command or link |
 |-----------|-----------------|
@@ -114,20 +149,24 @@ npm run validate
 | Read the full tutorial | [docs/TUTORIAL.md](TUTORIAL.md) |
 | Read the quickstart for your tool | [docs/QUICKSTART.md](QUICKSTART.md) |
 | View adapter docs | [adapters/](../adapters/) |
+| Real-world React/Next.js example | [examples/react-nextjs-booking-workflow/](../examples/react-nextjs-booking-workflow/) |
 
 ## Tips
 
 - **Start small.** A one-file feature is the best first workflow.
 - **Don't skip the spec.** Even a 3-line spec saves time compared to jumping straight to code.
 - **One skill at a time.** Paste the command, then optionally attach one matching skill.
-- **Validate often.** `npm run validate` catches structural problems early.
+- **Validate the framework, then validate your app.** Two separate steps, both important.
 - **Save decisions to files.** Chat history fades; files persist.
 
 ## Complete Workflow Summary
 
 ```
-Clone → npm link → vibe doctor → vibe init <tool> → validate:all
+Clone → npm link → vibe doctor → validate:all (in framework)
+    → cd ~/your-project → vibe init <tool> → vibe doctor --project .
     → Spec → Plan → Implement → Review → Verify → Done
 ```
+
+Want a more detailed example? Try the [React/Next.js booking workflow](../examples/react-nextjs-booking-workflow/README.md).
 
 See [ROADMAP-STATUS.md](ROADMAP-STATUS.md) for the project roadmap and [SECURITY-MODEL.md](SECURITY-MODEL.md) for how the framework handles safety.

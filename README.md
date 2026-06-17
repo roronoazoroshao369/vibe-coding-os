@@ -3,7 +3,11 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills. Start here: [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Dashboard](docs/DASHBOARD.md) · [Roadmap status](docs/ROADMAP-STATUS.md) · [Release packaging](docs/RELEASE-PACKAGING.md) · [v1.3.0 release notes](docs/releases/v1.3.0.md) · [v1.2.0 release notes](docs/releases/v1.2.0.md) · [v1.1.0 release notes](docs/releases/v1.1.0.md) · [v1.0.0 release notes](docs/releases/v1.0.0.md) · [ROADMAP-STATUS](docs/ROADMAP-STATUS.md) · [Security model](docs/SECURITY-MODEL.md)
+**Current release (v1.3.0):** validate:all 19/19 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+
+**Start here:** [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Examples](examples/)
+
+**Project status:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
 
 ## What's new in v1.3.0
 
@@ -69,7 +73,7 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ## What is included now
 
-Current inventory: **90 skills**, **68 commands**, **54 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
+Current inventory: **90 skills**, **68 commands**, **56 templates**, **14 tracked inspiration sources**, and an optional runtime layer. The repository has moved beyond a small prompt pack into a full local operating system for AI-assisted engineering.
 
 | Layer | What it contains | Pain it reduces |
 | --- | --- | --- |
@@ -435,7 +439,7 @@ Manual usage options:
 2. Invoke a command prompt from `commands/` such as `vibe-spec.md` or `vibe-review.md`.
 3. Attach one or more skills from `skills/` when you want a specific behavior.
 4. Use templates from `templates/` to create specs, plans, tasks, reviews, and memory notes.
-5. Walk through complete examples in `examples/`, starting with the [feature workflow](examples/feature-workflow/README.md) or [bugfix workflow](examples/bugfix-workflow/README.md).
+5. Walk through complete examples in `examples/`, starting with the [feature workflow](examples/feature-workflow/README.md), [bugfix workflow](examples/bugfix-workflow/README.md), or [React/Next.js booking workflow](examples/react-nextjs-booking-workflow/README.md).
 
 ## Vietnamese documentation
 
@@ -528,7 +532,7 @@ For hands-on audits, `npm run references:clone` creates or updates shallow ignor
 ### Complete in the current kernel
 
 - Normalized repository structure with core, memory, meta, prompt, and agent skills.
-- 68 reusable command prompts and 54 templates.
+- 68 reusable command prompts and 56 templates.
 - Dynamic structural validation plus reference-layer validation.
 - Source, attribution, feature, and impact registries without vendoring upstream code.
 - Adapter quick starts for Claude Code, Codex CLI, Gemini CLI, Cursor, and other assistants.
