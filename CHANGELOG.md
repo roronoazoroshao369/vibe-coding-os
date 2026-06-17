@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+## [1.4.2] — 2026-06-17
+
+### Fixed
+- README.md/README.vi.md: release links now point to v1.4.2, "What's new" section updated for v1.4.2.
+- tmux-runner.mjs: `mapResults()` now transitions `pending → in_progress → completed` (was violating state machine by going `pending → completed`).
+- task-store.mjs: `heartbeatTask()` now enforces `maxTaskLease` cap from config.
+- task-store.mjs: `renewTaskLease()` now enforces `maxTaskLease` cap from config.
+- task-store.mjs: `updateTaskStatus()` now enforces `maxTaskLease` cap when transitioning to `in_progress`.
+
+### Changed
+- runtime-event.schema.json: added v2 fields (`seq`, `idempotencyKey`, `correlationId`, `causationId`) to schema.
+- runtime/core/validation.mjs: added `format: "date-time"` validation for ISO 8601 strings.
+- tmux-runner.mjs: `outFile` paths now use `shQuote()` for shell safety.
+- tmux-runner.mjs: `prepareTeamRun()` now detects duplicate sanitized role names and throws.
+- docs/vi/FIRST-WORKFLOW.md: added bilingual prompts (Vietnamese + English) for steps 6a-6d.
+
+### Tests
+- Added maxTaskLease enforcement tests for claimTask, heartbeatTask, renewTaskLease, updateTaskStatus.
+
 ## [1.4.1] — 2026-06-17
 
 ### Fixed

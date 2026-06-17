@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.4.1 |
+| Version | 1.4.2 |
 | Skills | 90 |
 | Commands | 68 |
 | Templates | 56 |
-| Narrative files | 415 |
+| Narrative files | 416 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -39,6 +39,7 @@
 | v1.3.0 | ✅ Complete | Runtime enforcement, claim/lease, safety & recovery |
 | v1.4.0 | ✅ Complete | Runtime kernel, event store v2, observability, hardening |
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
+| v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 
 ## Safety Metrics
 

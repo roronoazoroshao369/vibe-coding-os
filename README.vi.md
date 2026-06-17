@@ -3,19 +3,19 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Bản phát hành hiện tại (v1.4.1):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Bản phát hành hiện tại (v1.4.2):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Bắt đầu:** [Luồng công việc đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/vi/TUTORIAL.vi.md) · [Ví dụ](examples/)
 
-**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.0.md)
+**Trạng thái dự án:** [Dashboard](docs/DASHBOARD.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Bảo mật](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.2.md)
 
-## Có gì mới trong v1.4.0
+## Có gì mới trong v1.4.2
 
-- **Runtime kernel:** config layer, task state machine, và broadened schema enforcement.
-- **Event Store v2:** sequence numbers, correlation/causation IDs, idempotency keys, và metadata consistency.
-- **Runtime observability:** `vibe doctor`, `vibe doctor --json`, và `vibe events --json`.
-- **Contract hardening:** JSON-only CLI output cho machine-readable surfaces, maxTaskLease enforcement, và runtime boundary documentation.
-- 20/20 validation gates passes với updated runtime behavior coverage.
+- **Release stabilization:** fix docs trust, CLI cleanup, runtime boundary hardening.
+- **CLI polish:** bỏ unused imports, dead code, cập nhật help text cho `doctor --project`, `events --limit`, `install-pack`.
+- **Runtime safety:** tmux-runner `assertSafeAgentCommand()` + `shQuote()` cho prompt paths.
+- **Docs consistency:** retroactive CHANGELOG entries v1.1.0–v1.4.0, support-matrix version-neutral, rewrite Vietnamese strategy-and-roadmap.
+- 20/20 validation gates passing.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>

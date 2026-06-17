@@ -129,18 +129,25 @@ function validateInstance(instance, rawSchema, schemaMap, path, errors) {
     if (schema.maxLength !== undefined && instance.length > schema.maxLength) {
       errors.push(`${path || 'value'}: string length ${instance.length} > maxLength ${schema.maxLength}`);
     }
-    // pattern (regex)
-    if (schema.pattern) {
-      try {
-        const re = new RegExp(schema.pattern);
-        if (!re.test(instance)) {
-          errors.push(`${path || 'value'}: string does not match pattern "${schema.pattern}"`);
+      // pattern (regex)
+      if (schema.pattern) {
+        try {
+          const re = new RegExp(schema.pattern);
+          if (!re.test(instance)) {
+            errors.push(`${path || 'value'}: string does not match pattern "${schema.pattern}"`);
+          }
+        } catch {
+          // Invalid regex in schema — skip validation rather than crash
         }
-      } catch {
-        // Invalid regex in schema — skip validation rather than crash
+      }
+      // format: date-time (ISO 8601)
+      if (schema.format === 'date-time') {
+        const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:?\d{2})?$/;
+        if (!isoRegex.test(instance)) {
+          errors.push(`${path || 'value'}: string is not a valid date-time format (expected ISO 8601)`);
+        }
       }
     }
-  }
 
   // minItems / maxItems (arrays)
   if (Array.isArray(instance)) {

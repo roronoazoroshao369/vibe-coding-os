@@ -135,11 +135,22 @@ export async function prepareTeamRun(store, teamSpec) {
       teamId: teamSpec.id,
       name: teamSpec.name || 'Unnamed team',
       sessionName: sessionName(teamSpec.id),
-      roles: teamSpec.roles.map(r => ({
-        name: sanitizeName(r.name),
-        original: r,
-        dir: roleDir(store, teamSpec.id, r.name),
-      })),
+      roles: (() => {
+        const sanitized = teamSpec.roles.map(r => ({
+          name: sanitizeName(r.name),
+          original: r,
+          dir: roleDir(store, teamSpec.id, r.name),
+        }));
+        const nameCounts = {};
+        for (const r of sanitized) {
+          nameCounts[r.name] = (nameCounts[r.name] || 0) + 1;
+        }
+        const dupes = Object.entries(nameCounts).filter(([, c]) => c > 1);
+        if (dupes.length > 0) {
+          throw new Error(`[tmux-runner] duplicate role names after sanitization: ${dupes.map(([n]) => n).join(', ')}. Use unique role names.`);
+        }
+        return sanitized;
+      })(),
       createdAt: nowIso(),
     };
   } finally {
@@ -173,7 +184,7 @@ export function launchSession(store, teamRun, options = {}) {
 
     if (dryRun) {
       console.log(`[dry-run] tmux new-session -d -s "${sess}" -n "${role.name}"`);
-      console.log(`[dry-run] tmux pipe-pane -t "${win}" -o "cat >> ${outFile}"`);
+      console.log(`[dry-run] tmux pipe-pane -t "${win}" -o "cat >> ${shQuote(outFile)}"`);
       const promptPath = path.join(role.dir, 'prompt.md');
       console.log(`[dry-run] tmux send-keys -t "${win}" "cat ${shQuote(promptPath)} | ${claudeCommand}" Enter`);
       continue;
@@ -184,11 +195,11 @@ export function launchSession(store, teamRun, options = {}) {
       execSync(`tmux new-session -d -s "${sess}" -n "${role.name}"`, { stdio: 'pipe' });
       // Small sleep ensures the session is ready for subsequent commands
       execSync('sleep 0.1', { stdio: 'ignore' });
-      execSync(`tmux pipe-pane -t "${win}" -o "cat >> '${outFile}'"`, { stdio: 'pipe' });
+      execSync(`tmux pipe-pane -t "${win}" -o "cat >> ${shQuote(outFile)}"`, { stdio: 'pipe' });
     } else {
       execSync(`tmux new-window -t "${sess}" -n "${role.name}"`, { stdio: 'pipe' });
       execSync('sleep 0.1', { stdio: 'ignore' });
-      execSync(`tmux pipe-pane -t "${win}" -o "cat >> '${outFile}'"`, { stdio: 'pipe' });
+      execSync(`tmux pipe-pane -t "${win}" -o "cat >> ${shQuote(outFile)}"`, { stdio: 'pipe' });
     }
 
     // Send the command that runs claude with the role prompt
@@ -259,7 +270,8 @@ export async function mapResults(store, teamRun, results, taskStore) {
       source: `tmux-runner:${teamRun.runId}`,
       dependsOn: [],
     });
-    // Immediately mark as completed since the tmux pane did its work
+    // State machine: pending → in_progress → completed
+    await taskStore.updateTaskStatus(store, task.id, 'in_progress');
     await taskStore.updateTaskStatus(store, task.id, 'completed');
     created.push(task);
   }

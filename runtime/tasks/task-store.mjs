@@ -68,6 +68,11 @@ export async function createTask(store, input) {
 
 export async function updateTaskStatus(store, id, status, options = {}) {
   if (!STATUSES.has(status)) throw new Error(`invalid status: ${status}`);
+  if (status === 'in_progress' && options.ttl) {
+    const config = loadConfig(store);
+    const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
+    options.ttl = Math.min(options.ttl, maxLease);
+  }
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store); const task = items.find(t => t.id === id); if (!task) throw new Error(`task not found: ${id}`);
     const oldStatus = task.status;
@@ -241,6 +246,9 @@ export async function releaseTask(store, id, options = {}) {
  * @returns {Promise<object>} The updated task
  */
 export async function heartbeatTask(store, id, ttl = 300, options = {}) {
+  const config = loadConfig(store);
+  const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
+  ttl = Math.min(ttl, maxLease);
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store);
     const task = items.find(t => t.id === id);
@@ -276,6 +284,9 @@ export async function heartbeatTask(store, id, ttl = 300, options = {}) {
  * @returns {Promise<object>} The updated task
  */
 export async function renewTaskLease(store, id, extraTtl = 300) {
+  const config = loadConfig(store);
+  const maxLease = (config && config.runtime && config.runtime.maxTaskLease) || 1800;
+  extraTtl = Math.min(extraTtl, maxLease);
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store);
     const task = items.find(t => t.id === id);
