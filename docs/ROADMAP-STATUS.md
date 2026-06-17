@@ -124,6 +124,17 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 | P1D Behavioral integration tests (9 test files, 76 test cases, runtime behavior gate #18 in `validate:all`) | ✅ Done |
 | Release inventory baseline (90 skills, 68 commands, 56 templates, 20 schemas, 6 adapters, 14 upstream sources, 18 validation gates) | ✅ Done |
 
+## v1.4.0 — Runtime Kernel + Hardening
+**Status:** ✅ COMPLETE — Released v1.4.0
+
+| Deliverable | Status |
+|---|---|
+| Runtime kernel (config layer, task state machine, schema enforcement) | ✅ Done |
+| Event Store v2 (seq, correlation, causation, idempotency, metadata consistency) | ✅ Done |
+| Runtime observability (doctor/events CLI and JSON contracts) | ✅ Done |
+| Runtime hardening (locking, idempotencyKey, JSON-only surfaces, maxTaskLease enforcement) | ✅ Done |
+| Runtime boundary docs and release prep | ✅ Done |
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
@@ -134,3 +145,4 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v1.1:   ████████████ 100%
 - v1.2:   ████████████ 100%
 - v1.3.0: ████████████ 100%
+- v1.4.0: ████████████ 100%

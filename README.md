@@ -3,19 +3,19 @@
 [![Validate Repository](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/validate.yml)
 [![Adapter Smoke Tests](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/roronoazoroshao369/vibe-coding-os/actions/workflows/smoke-test.yml)
 
-**Current release (v1.3.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
+**Current release (v1.4.0):** validate:all 20/20 gates, 90 skills, 68 commands, 56 templates, 0 broken refs, 0 orphan commands/skills.
 
 **Start here:** [First Workflow](docs/FIRST-WORKFLOW.md) · [Quickstart](docs/QUICKSTART.md) · [Tutorial](docs/TUTORIAL.md) · [Examples](examples/)
 
-**Project status:** [Dashboard](docs/DASHBOARD.md) · [Skill Packs](docs/SKILL-PACKS.md) · [How to contribute](docs/CONTRIBUTING-SKILLS.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.3.0.md)
+**Project status:** [Dashboard](docs/DASHBOARD.md) · [Skill Packs](docs/SKILL-PACKS.md) · [How to contribute](docs/CONTRIBUTING-SKILLS.md) · [Roadmap](docs/ROADMAP-STATUS.md) · [Security](docs/SECURITY-MODEL.md) · [Release notes](docs/releases/v1.4.0.md)
 
-## What's new in v1.3.0
+## What's new in v1.4.0
 
-- Runtime Contracts v2: strict schemas, multi-agent state contracts, and safety/traceability foundations.
-- Migration dry-run engine: safer path for upgrading persisted runtime state with backup and rollback awareness.
-- Event, approval, tool-contract, and migration schemas for provenance, capability declarations, and risk inspection.
-- Backward-compatible v1→v2 validation paths for existing runtime state.
-- 20/20 validation gates passing with full repository integrity checks.
+- **Runtime kernel:** config layer, task state machine, and broader schema enforcement.
+- **Event Store v2:** sequence numbers, correlation/causation IDs, idempotency keys, metadata consistency, and canonical event path.
+- **Runtime observability:** `vibe doctor`, `vibe doctor --json`, and `vibe events --json` for health diagnostics.
+- **Contract hardening:** JSON-only CLI output for machine-readable surfaces, maxTaskLease enforcement, and runtime boundary documentation.
+- 20/20 validation gates passing with updated runtime behavior coverage.
 
 <p align="right">
   <a href="README.md">English</a> · <a href="README.vi.md">Tiếng Việt</a>
