@@ -360,6 +360,21 @@
       "name": "vibe-zoom-out",
       "path": "commands/vibe-zoom-out.md",
       "description": "Explain system context before architecture-sensitive changes."
+    },
+    {
+      "name": "vibe-red-team-review",
+      "path": "commands/vibe-red-team-review.md",
+      "description": "Run an adversarial red-team code review focused on correctness, safety, tests, compatibility, and minimal diff."
+    },
+    {
+      "name": "vibe-critique-pass",
+      "path": "commands/vibe-critique-pass.md",
+      "description": "Run a writer-then-critic quality pass using the critique pass template before finalizing work."
+    },
+    {
+      "name": "vibe-agents-md",
+      "path": "commands/vibe-agents-md.md",
+      "description": "Generate or adapt a compact AGENTS.md with validation commands, layout, constraints, and quality gates."
     }
   ]
 }

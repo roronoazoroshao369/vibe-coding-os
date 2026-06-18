@@ -15,6 +15,7 @@
     "validate:provenance": "node scripts/validate-provenance.mjs",
     "validate:all": "node scripts/validate-all.mjs",
     "validate:quality-diff": "node scripts/validate-quality-diff.mjs",
+    "quality:scorecard": "node scripts/quality-scorecard.mjs",
     "eval:report": "node scripts/evaluation-report.mjs",
     "references:index": "node scripts/build-reference-index.mjs",
     "references:report": "node scripts/generate-update-report.mjs",

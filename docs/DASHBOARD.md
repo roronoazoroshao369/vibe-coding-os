@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 94 |
-| Commands | 72 |
-| Templates | 60 |
-| Narrative files | 437 |
+| Skills | 100 |
+| Commands | 75 |
+| Templates | 63 |
+| Narrative files | 451 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -19,11 +19,14 @@
 
 | Category | Count |
 |---|---|
-| agents | 4 |
-| core | 50 |
+| agents | 5 |
+| core | 51 |
 | memory | 17 |
 | meta | 9 |
-| prompts | 14 |
+| prompts | 15 |
+| quality-evaluation-scenarios | 1 |
+| repo-map-concept | 1 |
+| templates | 1 |
 
 ## Version Progress
 
@@ -83,14 +86,14 @@
 
 | Area | Status |
 |---|---|
-| Skills (94) | All have SKILL.md with required sections |
-| Commands (72) | All discovered dynamically from `commands/` |
-| Templates (60) | All discovered dynamically from `templates/` |
+| Skills (100) | All have SKILL.md with required sections |
+| Commands (75) | All discovered dynamically from `commands/` |
+| Templates (63) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 3 (warnings — review signal) |
-| Orphan skills | 4 (warnings — review signal) |
-| Orphan templates | 1 |
+| Orphan commands | 6 (warnings — review signal) |
+| Orphan skills | 7 (warnings — review signal) |
+| Orphan templates | 2 |
 | Broken references | 0 |
 
 ## How to Regenerate

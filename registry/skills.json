@@ -564,6 +564,42 @@
       "path": "skills/prompts/software-engineering-at-google/SKILL.md",
       "category": "prompts",
       "description": "Apply Google's review, testing, documentation, and sustainable-development culture to AI-generated code."
+    },
+    {
+      "name": "compact-agents-md-template",
+      "path": "skills/templates/agents-md-compact/SKILL.md",
+      "category": "templates",
+      "description": "Generate or adapt a concise AGENTS.md with validation commands, layout, constraints, and quality gates."
+    },
+    {
+      "name": "repo-map-concept",
+      "path": "skills/repo-map-concept/SKILL.md",
+      "category": "core",
+      "description": "Build or consult a lightweight repo map to orient coding agents before making changes."
+    },
+    {
+      "name": "adversarial-code-review",
+      "path": "skills/core/adversarial-code-review/SKILL.md",
+      "category": "core",
+      "description": "Red-team code review focused on correctness, safety, tests, compatibility, and minimal diff."
+    },
+    {
+      "name": "writer-critic-pair",
+      "path": "skills/agents/writer-critic-pair/SKILL.md",
+      "category": "agents",
+      "description": "Use a two-role agent pattern with separate writer and critic phases before delivery."
+    },
+    {
+      "name": "critique-pass",
+      "path": "skills/prompts/critique-pass/SKILL.md",
+      "category": "prompts",
+      "description": "Run writer and critic phases to challenge a draft or implementation before final response."
+    },
+    {
+      "name": "quality-evaluation-scenarios",
+      "path": "skills/quality-evaluation-scenarios/SKILL.md",
+      "category": "quality",
+      "description": "Evaluate whether the Quality Shield improves mid-tier coding behavior."
     }
   ]
 }
