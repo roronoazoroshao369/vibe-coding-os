@@ -17,10 +17,13 @@ Use a skill when the task needs a repeatable method, for example:
 - Writing specs, plans, tasks, or acceptance criteria.
 - Debugging with disciplined diagnosis.
 - Running TDD, review, verification, or branch-finishing rituals.
+- Applying Quality Shield skills such as `quality-rubric`, `quality-execution-contract`, `code-context-pack`, `self-review-before-response`, and `quality-evaluation-scenarios`.
 - Capturing memory or preparing an agent handoff.
 - Applying a domain checklist such as API, auth, frontend state, async job, or DB migration quality.
 
 Use a command when you want a direct prompt entrypoint. Use a template when you need a concrete artifact format.
+
+Quality Shield's canonical guide and deliverable audit map lives at [`docs/quality-shield.md`](../docs/quality-shield.md).
 
 ## How to pick a good skill
 
