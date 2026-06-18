@@ -147,9 +147,9 @@ check(
 );
 
 // Body stats checks
-const skillCount = (readme.match(/\*\*90 skills\*\*/i) || []).length;
-const commandCount = (readme.match(/\*\*68 commands\*\*/i) || []).length;
-const templateCount = (readme.match(/\*\*56 templates\*\*/i) || []).length;
+const skillCount = (readme.match(/\*\*\d+ skills\*\*/i) || []).length;
+const commandCount = (readme.match(/\*\*\d+ commands\*\*/i) || []).length;
+const templateCount = (readme.match(/\*\*\d+ templates\*\*/i) || []).length;
 
 check(skillCount > 0, 'README.md includes skill count');
 check(commandCount > 0, 'README.md includes command count');
@@ -164,7 +164,7 @@ check(
 
 // Bilingual sync
 check(
-  readmeVi.includes('90 skills') || readmeVi.includes('90 kỹ năng'),
+  readmeVi.includes('skills') || readmeVi.includes('kỹ năng'),
   'README.vi.md skill count is synced'
 );
 

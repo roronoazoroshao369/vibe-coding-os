@@ -20,7 +20,7 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.5.0):** validate:all 20/20 gates PASS · **90 skills** · **68 commands** · **56 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.5.0):** validate:all 21/21 gates PASS · **94 skills** · **72 commands** · **60 templates** · 14 tracked sources
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Docs hub](docs/README.md)
 
@@ -135,7 +135,7 @@ Gate này kiểm tra:
 - runtime behavior tests;
 - adapter smoke tests.
 
-Mục tiêu release: **20/20 PASS**.
+Mục tiêu release: **21/21 PASS**.
 
 ---
 

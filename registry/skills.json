@@ -290,6 +290,12 @@
       "description": "Universal code quality checklist to inject before every coding task."
     },
     {
+      "name": "code-context-pack",
+      "path": "skills/core/code-context-pack/SKILL.md",
+      "category": "core",
+      "description": "Assemble a context pack of local patterns, examples, and gotchas before coding."
+    },
+    {
       "name": "verification-before-completion",
       "path": "skills/core/verification-before-completion/SKILL.md",
       "category": "core",

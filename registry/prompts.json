@@ -332,6 +332,11 @@
       "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
     },
     {
+      "name": "vibe-code-context",
+      "path": "commands/vibe-code-context.md",
+      "description": "Assemble a code context pack before coding."
+    },
+    {
       "name": "vibe-verify",
       "path": "commands/vibe-verify.md",
       "description": "Verify acceptance criteria before completion with exact commands, outcomes, and limitations."

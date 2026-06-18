@@ -28,7 +28,8 @@ const checks = [
   ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']],
   ['README heading version', 'node', ['scripts/check-heading-version.mjs']],
   ['ROADMAP-STATUS integrity', 'node', ['scripts/validate-roadmap-status.mjs']],
-  ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']]
+  ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']],
+  ['Quality diff audit', 'node', ['scripts/validate-quality-diff.mjs']]
 ];
 
 function formatDuration(ms) {

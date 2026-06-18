@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 93 |
-| Commands | 71 |
-| Templates | 59 |
-| Narrative files | 429 |
+| Skills | 94 |
+| Commands | 72 |
+| Templates | 60 |
+| Narrative files | 437 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -20,7 +20,7 @@
 | Category | Count |
 |---|---|
 | agents | 4 |
-| core | 49 |
+| core | 50 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 14 |
@@ -77,19 +77,19 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 20/20 gates passed**
+**Overall: 21/21 gates passed**
 
 ## Coverage Summary
 
 | Area | Status |
 |---|---|
-| Skills (90) | All have SKILL.md with required sections |
-| Commands (68) | All discovered dynamically from `commands/` |
-| Templates (56) | All discovered dynamically from `templates/` |
+| Skills (94) | All have SKILL.md with required sections |
+| Commands (72) | All discovered dynamically from `commands/` |
+| Templates (60) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 2 (warnings — review signal) |
-| Orphan skills | 3 (warnings — review signal) |
+| Orphan commands | 3 (warnings — review signal) |
+| Orphan skills | 4 (warnings — review signal) |
 | Orphan templates | 1 |
 | Broken references | 0 |
 
