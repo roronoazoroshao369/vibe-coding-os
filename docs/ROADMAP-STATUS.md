@@ -1,7 +1,7 @@
 # Roadmap Status — Vibe Coding OS
 
 Auto-generated status check for the project roadmap.
-Last updated: 2026-06-17
+Last updated: 2026-06-18
 
 ## v0.1.1 — Validation Recovery & Vietnamese Onboarding
 **Status:** ✅ COMPLETE
@@ -218,38 +218,41 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - **Adversarial review** — critic pass, cross-examination patterns
 - **Model-adaptive intelligence** — adapt prompts and verification to model strengths/weaknesses
 
-## v1.7.0 — Quality Shield (planned)
-**Status:** 📋 PLANNED
+## v1.7.0 — Quality Shield
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
-| Universal Code Quality Rubric | 📋 Planned |
-| Quality Execution Contract | 📋 Planned |
-| Self-Review Before Response | 📋 Planned |
-| Compact AGENTS.md Template | 📋 Planned |
-| Code Context Pack | 📋 Planned |
-| Pattern Library Starter | 📋 Planned |
-| Quality Diff Audit Script | 📋 Planned |
+| Universal Code Quality Rubric | ✅ Done |
+| Quality Execution Contract | ✅ Done |
+| Self-Review Before Response | ✅ Done |
+| Compact AGENTS.md Template | ✅ Done |
+| Code Context Pack | ✅ Done |
+| Pattern Library Starter | ✅ Done |
+| Quality Diff Audit Script | ✅ Done |
+| Repo Map Concept | ✅ Done |
+| Quality Elevation eval scenarios | ✅ Done |
+| Quality Scorecard | ✅ Done |
 
-## v1.8.0 — Expert Mode (planned)
-**Status:** 📋 PLANNED
-
-| Deliverable | Status |
-|---|---|
-| Adversarial Code Review | 📋 Planned |
-| Critique Pass Protocol | 📋 Planned |
-| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async) | 📋 Planned |
-| Writer-Critic Pair / Quality Council multi-agent patterns | 📋 Planned |
-
-## v1.9.0 — Smart Adapt (planned)
-**Status:** 📋 PLANNED
+## v1.8.0 — Expert Mode
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
-| Model Weakness Memory | 📋 Planned |
-| Adaptive Prompt Selection | 📋 Planned |
-| Quality Score Card | 📋 Planned |
-| Lessons Learned DB / Golden Example Library v2 | 📋 Planned |
+| Adversarial Code Review | ✅ Done |
+| Critique Pass Protocol | ✅ Done |
+| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async jobs) | ✅ Done |
+| Writer-Critic Pair / Quality Council multi-agent patterns | ✅ Done |
+
+## v1.9.0 — Smart Adapt
+**Status:** ✅ COMPLETE
+
+| Deliverable | Status |
+|---|---|
+| Model Weakness Memory | ✅ Done |
+| Adaptive Prompt Selection | ✅ Done |
+| Quality Score Card (session + report) | ✅ Done |
+| Lessons Learned DB / Golden Example Library v2 | ✅ Done |
 
 ---
 
@@ -269,6 +272,6 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.4.3: ████████████ 100%
 - v1.5.0: ████████████ 100%
 - v1.6.0: ███░░░░░░░░░ 25% (Sprint 1 partially done)
-- v1.7.0: ░░░░░░░░░░░░ 0% (planned)
-- v1.8.0: ░░░░░░░░░░░░ 0% (planned)
-- v1.9.0: ░░░░░░░░░░░░ 0% (planned)
+- v1.7.0: ████████████ 100%
+- v1.8.0: ████████████ 100%
+- v1.9.0: ████████████ 100%
