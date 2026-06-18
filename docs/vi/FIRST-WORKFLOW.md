@@ -1,6 +1,6 @@
 # Luồng Công Việc Đầu Tiên
 
-> Từ con số 0 đến vòng lặp spec→plan→implement→verify hoàn chỉnh trong chưa đầy 15 phút.
+> Từ con số 0 đến vòng lặp spec→plan→implement→verify hoàn chỉnh trong 10 phút.
 
 ## Yêu Cầu
 
@@ -81,7 +81,7 @@ vibe doctor --project .
 
 Lệnh này xác nhận project thật đã có instruction file mà AI assistant cần.
 
-## Bước 6 — Luồng Công Việc Đầu Tiên
+## Bước 6 — Luồng Công Việc Đầu Tiên Trong 10 Phút
 
 Tạo thư mục để lưu spec và plan:
 
@@ -89,7 +89,16 @@ Tạo thư mục để lưu spec và plan:
 mkdir -p docs/specs docs/plans
 ```
 
-Mở project trong AI coding assistant và đi theo vòng lặp sau:
+Mở project trong AI coding assistant. Dán đúng prompt này trước:
+
+```text
+Use Vibe Coding OS.
+Goal: build a simple counter app with increment, decrement, and reset.
+Follow this loop: Spec → Plan → Implement → Review → Verify.
+First, create the feature spec only. Include goals, non-goals, constraints, edge cases, and acceptance criteria. Do not implement yet.
+```
+
+Sau đó đi theo vòng lặp sau:
 
 ### 6a. Bắt Đầu Với Spec
 
@@ -171,7 +180,7 @@ vibe doctor --project .
 | Xem thống kê repo | `vibe stats` |
 | Đọc tutorial đầy đủ | [docs/TUTORIAL.md](../TUTORIAL.md) |
 | Đọc quickstart cho tool của bạn | [QUICKSTART.md](../QUICKSTART.md) |
-| Xem tài liệu adapter | [adapters/](../../adapters/) |
+| Xem tài liệu adapter | [docs/adapters/README.md](../adapters/README.md) |
 | Ví dụ React/Next.js thực tế | [examples/react-nextjs-booking-workflow/](../../examples/react-nextjs-booking-workflow/) |
 
 ## Mẹo

@@ -22,7 +22,7 @@ Scope labels used below:
 - **Manual:** no install; paste/attach only what you need.
 - **Runtime-local:** optional state in `.omc/runtime/` where initialized.
 
-For full install details, see [`../INSTALL.md`](../INSTALL.md). For a deeper explanation, see [`setup-scope-guide.md`](setup-scope-guide.md).
+For full install details, see [`../INSTALL.md`](../INSTALL.md). For adapter-specific setup, see [`adapters/README.md`](adapters/README.md). For a deeper explanation, see [`setup-scope-guide.md`](setup-scope-guide.md).
 
 ---
 
@@ -100,7 +100,7 @@ cd ~/your-project
 cp ~/vibe-coding-os/AGENTS.md ./AGENTS.md
 ```
 
-Paste a phase prompt from `~/vibe-coding-os/commands/` and attach relevant skills from `~/vibe-coding-os/skills/`. See [`../adapters/codex/README.md`](../adapters/codex/README.md).
+Paste a phase prompt from `~/vibe-coding-os/commands/` and attach relevant skills from `~/vibe-coding-os/skills/`. See [`adapters/codex.md`](adapters/codex.md).
 
 ### Gemini CLI
 
@@ -109,11 +109,11 @@ cd ~/your-project
 cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md
 ```
 
-Reference `commands/` and `skills/` paths as needed.
+Reference `commands/` and `skills/` paths as needed. See [`adapters/gemini.md`](adapters/gemini.md).
 
 ### Cursor / other assistants
 
-Paste the contents of `CLAUDE.md` into project rules, then paste specific `commands/*.md` prompts per phase. See [`../adapters/cursor/README.md`](../adapters/cursor/README.md) and [`../adapters/compatibility-matrix.md`](../adapters/compatibility-matrix.md).
+Paste the contents of `CLAUDE.md` into project rules, then paste specific `commands/*.md` prompts per phase. See [`adapters/cursor.md`](adapters/cursor.md) and the adapter hub at [`adapters/README.md`](adapters/README.md).
 
 ---
 
