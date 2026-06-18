@@ -174,7 +174,7 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 | 0 orphan templates (all templates referenced) | ✅ Done |
 | Vietnamese strategy doc updated to v1.4.3 | ✅ Done |
 
-## v1.5.0 — Core Adoption & Runtime Freeze (Planned)
+## v1.5.0 — Core Adoption & Runtime Freeze
 **Status:** ✅ COMPLETE — Released v1.5.0
 
 | Deliverable | Status |
@@ -210,4 +210,4 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v1.4.1: ████████████ 100%
 - v1.4.2: ████████████ 100%
 - v1.4.3: ████████████ 100%
-- v1.5.0: ░░░░░░░░░░░░ Planned — Core Adoption & Runtime Freeze
+- v1.5.0: ████████████ 100%

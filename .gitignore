@@ -13,3 +13,4 @@ references/upstreams/*
 *.swp
 .idea/
 .vscode/
+.hermes/

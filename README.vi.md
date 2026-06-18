@@ -4,9 +4,15 @@
 
 > **Workflow contract first. Runtime optional. Human intent stays sovereign.**
 
-Vibe Coding OS là framework markdown-first để điều phối AI-assisted development một cách có kỷ luật: spec → plan → implement → verify → remember.
+### Vì sao điều này quan trọng
 
-Nó không cố trở thành runtime/task manager bắt buộc. Core product là bộ contract portable gồm skills, commands, templates, docs, adapters và validation.
+AI coding assistants có thể tạo code rất nhanh — nhưng tốc độ thiếu cấu trúc dễ dẫn tới scope creep, quên edge cases và output khó bảo trì. Vibe Coding OS thêm một lớp kỷ luật nhẹ bên trên: workflow spec-driven, verification gates và engineering practices để giữ human intent sovereign trong khi vẫn ship ở tốc độ AI.
+
+Vibe Coding OS là framework markdown-first, thân thiện với Claude/Codex, cho một người muốn đi nhanh với AI coding assistants mà không đánh đổi engineering discipline: spec → plan → implement → verify → remember.
+
+Nó không cố trở thành wrapper, product, hosted service, runtime hay task manager bắt buộc. Core product là bộ contract portable gồm skills, commands, templates, docs, adapters và validation.
+
+> **Về tên gọi:** “Vibe coding” thường chỉ kiểu code nhanh, thiếu cấu trúc với AI. Vibe Coding OS là phần đối trọng có kỷ luật — spec-first, verification-gated và nghiêm túc về engineering. Vẫn nhanh, nhưng có guardrails.
 
 **English:** [README.md](README.md)
 
