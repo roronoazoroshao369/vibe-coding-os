@@ -11,7 +11,7 @@
 | Skills | 112 |
 | Commands | 87 |
 | Templates | 79 |
-| Narrative files | 500 |
+| Narrative files | 501 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -81,15 +81,15 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 23/23 gates passed**
+**Overall: 25/25 gates passed**
 
 ## Coverage Summary
 
 | Area | Status |
 |---|---|
-| Skills (109) | All have SKILL.md with required sections |
-| Commands (84) | All discovered dynamically from `commands/` |
-| Templates (69) | All discovered dynamically from `templates/` |
+| Skills (112) | All have SKILL.md with required sections |
+| Commands (87) | All discovered dynamically from `commands/` |
+| Templates (79) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
