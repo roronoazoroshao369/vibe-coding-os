@@ -20,8 +20,8 @@ function tempProject(name = 'vibe-project-setup-') {
   return dir;
 }
 
-function runInit(args, { cwd = tempProject(), expectedStatus = 0 } = {}) {
-  const result = spawnSync(process.execPath, [CLI, 'init', ...args], {
+function runCli(args, { cwd = tempProject(), expectedStatus = 0 } = {}) {
+  const result = spawnSync(process.execPath, [CLI, ...args], {
     cwd,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
@@ -30,6 +30,10 @@ function runInit(args, { cwd = tempProject(), expectedStatus = 0 } = {}) {
   const output = `${result.stdout || ''}${result.stderr || ''}`;
   assert.equal(result.status, expectedStatus, `vibe init ${args.join(' ')} exited ${result.status}, expected ${expectedStatus}\n${output}`);
   return { ...result, output, cwd };
+}
+
+function runInit(args, options = {}) {
+  return runCli(['init', ...args], options);
 }
 
 function test(name, fn) {
@@ -45,6 +49,14 @@ function test(name, fn) {
 }
 
 try {
+  test('init help documents onboarding flags', () => {
+    const { output } = runCli(['init', '--help']);
+    for (const flag of ['--tool', '--scope', '--current-terminal', '--project', '--dry-run', '--force']) {
+      assert.match(output, new RegExp(flag), `${flag} should be documented`);
+    }
+    assert.match(output, /Examples:/);
+  });
+
   test('dry-run writes no project files', () => {
     const cwd = tempProject();
     const { output } = runInit(['claude-code', '--dry-run'], { cwd });
@@ -119,6 +131,15 @@ try {
     const cwd = tempProject();
     const { output } = runInit(['claude-code', '--scope', 'nowhere'], { cwd, expectedStatus: 1 });
     assert.match(output, /Unknown scope|Valid/i);
+  });
+
+  test('doctor after init shows project guidance', () => {
+    const cwd = tempProject();
+    runInit(['claude-code', '--scope', 'recommended'], { cwd });
+    const { output } = runCli(['doctor', '--project', cwd]);
+    assert.match(output, /Next steps:/);
+    assert.match(output, /Claude Code:/);
+    assert.match(output, /Runtime:.*optional/s);
   });
 } finally {
   for (const dir of tempRoots) rmSync(dir, { recursive: true, force: true });
