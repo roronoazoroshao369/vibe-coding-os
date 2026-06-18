@@ -58,7 +58,7 @@ Bốn trụ cột:
 | v1.4.3 | Operational hygiene: shell safety, docs hub, config validation | ✅ Released | docs hub, 0 orphan templates |
 | **v1.5.0** | **Core adoption + runtime scope freeze** | ✅ **Released** | ADR 0002, README.vi diet, QUICKSTART tiếng Việt |
 | **v1.6.0** | **Adoption Trust + Quality Elevation kick-off** | 🔄 **In progress** | docs/onboarding/landing improvements (Sprint 1) |
-| **v1.7.0** | **Quality Shield** | 📋 **Planned** | Quality Rubric, Quality Execution Contract, Self-Review, AGENTS.md Template, Code Context Pack, Pattern Library, Quality Diff Audit Script |
+| **v1.7.0** | **Quality Shield** | 🔄 **In progress** | Quality Rubric, Quality Execution Contract, Self-Review, AGENTS.md Template, Code Context Pack, Pattern Library, Quality Diff Audit Script |
 | **v1.8.0** | **Expert Mode** | 📋 **Planned** | Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council |
 | **v1.9.0** | **Smart Adapt** | 📋 **Planned** | Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2 |
 
@@ -90,7 +90,7 @@ Bốn trụ cột:
 2. ✅ Tuyên bố runtime scope freeze qua ADR 0002 trong v1.5.0
 3. ✅ Resolve orphan templates bằng docs hub
 4. 🔄 **v1.6.0 Adoption Trust** — cải thiện docs/onboarding/landing (đang tiến hành Sprint 1)
-5. ⏭️ **v1.7.0 Quality Shield** — Universal Code Quality Rubric, Quality Execution Contract, Self-Review, Compact AGENTS.md Template, Code Context Pack, Pattern Library Starter, Quality Diff Audit Script
+5. 🔄 **v1.7.0 Quality Shield** — Canonical guide [`docs/quality-shield.md`](../quality-shield.md) đã được tạo; tài liệu Quality Shield hiện tại gồm rubric, execution contract, self-review, code context pack, compact AGENTS.md template, repo map starter, quality diff audit, evaluation scenarios, và scorecard. Boundary giữa **Quality Shield** (portable markdown discipline) và **Quality Engine** (orchestration/future) đã được xác nhận trong tài liệu trung tâm.
 6. ⏭️ **v1.8.0 Expert Mode** — Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council
 7. ⏭️ **v1.9.0 Smart Adapt** — Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2
 

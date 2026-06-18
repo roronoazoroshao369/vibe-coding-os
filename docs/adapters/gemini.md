@@ -2,7 +2,7 @@
 
 Use this when your coding assistant is Gemini.
 
-Related: [setup scope guide](../setup-scope-guide.md), [first workflow](../FIRST-WORKFLOW.md).
+Related: [setup scope guide](../setup-scope-guide.md), [first workflow](../FIRST-WORKFLOW.md), [Quality Shield](../quality-shield.md).
 
 ## Quick setup: project-local file
 
