@@ -90,7 +90,7 @@ Bốn trụ cột:
 2. ✅ Tuyên bố runtime scope freeze qua ADR 0002 trong v1.5.0
 3. ✅ Resolve orphan templates bằng docs hub
 4. 🔄 **v1.6.0 Adoption Trust** — cải thiện docs/onboarding/landing (đang tiến hành Sprint 1)
-5. 🔄 **v1.7.0 Quality Shield** — Canonical guide [`docs/quality-shield.md`](../quality-shield.md) đã được tạo; tài liệu Quality Shield hiện tại gồm rubric, execution contract, self-review, code context pack, compact AGENTS.md template, repo map starter, quality diff audit, evaluation scenarios, và scorecard. Boundary giữa **Quality Shield** (portable markdown discipline) và **Quality Engine** (orchestration/future) đã được xác nhận trong tài liệu trung tâm.
+5. ✅ **v1.7.0 Quality Shield** — Canonical guide [`docs/quality-shield.md`](../quality-shield.md) đã hoàn tất; tài liệu Quality Shield hiện tại gồm rubric, execution contract, self-review, code context pack, compact AGENTS.md template, repo map starter, quality diff audit, evaluation scenarios, và scorecard. Boundary giữa **Quality Shield** (portable markdown discipline) và **Quality Engine** (orchestration/future) đã được xác nhận trong tài liệu trung tâm.
 6. ⏭️ **v1.8.0 Expert Mode** — Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council
 7. ⏭️ **v1.9.0 Smart Adapt** — Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2
 

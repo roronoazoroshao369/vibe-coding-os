@@ -228,22 +228,29 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - **Model-adaptive intelligence** — adapt prompts and verification to model strengths/weaknesses
 
 ## v1.7.0 — Quality Shield
-**Status:** 🔄 IN PROGRESS — Sprint 0+1 reconciled
+**Status:** ✅ COMPLETE — Release readiness
 
 | Deliverable | Status |
 |---|---|
-| Universal Code Quality Rubric | ✅ Present |
-| Quality Execution Contract | ✅ Present |
-| Self-Review Before Response | ✅ Present |
-| Compact AGENTS.md Template | ✅ Present |
-| Code Context Pack | ✅ Present |
-| Pattern Library Starter | ✅ Present |
-| Quality Diff Audit Script | ✅ Present |
-| Repo Map Concept | ✅ Present |
-| Quality Elevation eval scenarios | ✅ Present |
-| Quality Scorecard | ✅ Present |
+| Canonical Quality Shield guide and artifact audit map | ✅ Done |
+| Quality Shield vs Quality Engine boundary | ✅ Done |
+| Registry/discovery sync across README, docs hub, layer READMEs, and adapter docs | ✅ Done |
+| Copy-paste workflow: contract → context pack → smallest safe diff → self-review → scorecard | ✅ Done |
+| Concrete `examples/quality-shield/` scenario | ✅ Done |
+| Dashboard/release metadata sync | ✅ Done |
+| v1.7.0 release notes | ✅ Done |
 
-Canonical guide and audit map: [`docs/quality-shield.md`](quality-shield.md). Quality Shield is the portable markdown-first quality layer; Quality Engine remains the future/advanced orchestration boundary.
+**Release posture:** v1.7.0 turns scattered quality artifacts into a discoverable, portable, markdown-first Quality Shield. It does not expand runtime scope.
+
+**Quality Shield boundary:**
+- Quality Shield = portable discipline layer for prompting, context, self-review, and scorecards.
+- Quality Engine = advanced orchestration/runner layer for later releases.
+- Runtime remains frozen under ADR 0002.
+
+**Canonical docs:**
+- [`docs/quality-shield.md`](quality-shield.md)
+- [`docs/quality-shield-workflow.md`](quality-shield-workflow.md)
+- [`examples/quality-shield/README.md`](../examples/quality-shield/README.md)
 
 ## v1.8.0 — Expert Mode
 **Status:** 🗓️ PLANNED
@@ -350,7 +357,7 @@ Canonical guide and audit map: [`docs/quality-shield.md`](quality-shield.md). Qu
 - v1.4.3: ████████████ 100%
 - v1.5.0: ████████████ 100%
 - v1.6.0: ████████████ 100%
-- v1.7.0: ░░░░░░░░░░░ 0% (planned)
+- v1.7.0: ████████████ 100%
 - v1.8.0: ░░░░░░░░░░░ 0% (planned)
 - v1.9.0: ░░░░░░░░░░░ 0% (planned)
 - v2.0:   ░░░░░░░░░░░ 0% (planned)
