@@ -104,7 +104,64 @@ ${c.bold}Examples:${c.reset}
 `);
 }
 
+export function cmdInitHelp() {
+  console.log(`
+${c.bold}${c.cyan}vibe init${c.reset} — Set up Vibe Coding OS in a project
+
+${c.bold}Usage:${c.reset}
+  vibe init [tool] [options]
+  vibe init --tool <tool> [options]
+
+${c.bold}Tools:${c.reset}
+  claude-code (default), codex, cursor, gemini (alias: claude)
+
+${c.bold}Options:${c.reset}
+  --tool <tool>              Adapter to configure
+  --scope <scope>            minimal | recommended | full | runtime | team
+  --current-terminal         Record that setup targets this terminal/session
+  --project <path>           Project directory to initialize (default: cwd)
+  --dry-run                  Preview planned writes without changing files
+  --force                    Overwrite existing generated files
+  -h, --help                 Show this help
+
+${c.bold}Examples:${c.reset}
+  vibe init --tool claude-code --scope recommended --current-terminal
+  vibe init codex --scope minimal --project .
+  vibe init cursor --scope full --dry-run
+  vibe init gemini --scope team --force
+
+${c.dim}Runtime note: core setup is project-local. Optional runtime state is not installed or started unless you explicitly opt in.${c.reset}
+`);
+}
+
+function formatToolName(tool) {
+  return ({ 'claude-code': 'Claude Code', claude: 'Claude Code', codex: 'Codex', cursor: 'Cursor', gemini: 'Gemini' })[tool] || tool;
+}
+
+function projectGuidance(projectDir) {
+  const signals = [
+    { path: 'CLAUDE.md', tool: 'claude-code', next: 'Open this folder in Claude Code; it reads CLAUDE.md automatically.' },
+    { path: 'AGENTS.md', tool: 'codex', next: 'Open this repo with Codex; it reads AGENTS.md as repository guidance.' },
+    { path: '.cursorrules', tool: 'cursor', next: 'Open this folder in Cursor; .cursorrules provides project guidance.' },
+    { path: '.cursor/rules', tool: 'cursor', next: 'Open this folder in Cursor; rules under .cursor/rules provide project guidance.' },
+    { path: 'GEMINI.md', tool: 'gemini', next: 'Open this repo with Gemini Code Assist; it reads GEMINI.md.' },
+  ].filter((signal) => existsSync(join(projectDir, signal.path)));
+  let manifest = null;
+  const manifestPath = join(projectDir, '.vibe', 'setup.json');
+  if (existsSync(manifestPath)) {
+    try {
+      manifest = readJSON(manifestPath);
+    } catch (err) {
+      if (process.env.VIBE_DEBUG) {
+        console.warn(`${c.yellow}Warning:${c.reset} could not read .vibe/setup.json: ${err.message}`);
+      }
+    }
+  }
+  return { signals, manifest };
+}
+
 export async function cmdInit(toolOrArg = 'claude-code', rawArgs = []) {
+  if ([toolOrArg, ...rawArgs].some((arg) => arg === '--help' || arg === '-h')) { cmdInitHelp(); return; }
   const { parseSetupProjectArgs, planProjectSetup, applyProjectSetup, SETUP_TOOLS } = await import('./setup-project.mjs');
   const options = parseSetupProjectArgs([toolOrArg, ...rawArgs]);
   const validTools = Object.keys(SETUP_TOOLS).filter((t) => t !== 'claude');
@@ -138,8 +195,9 @@ export async function cmdInit(toolOrArg = 'claude-code', rawArgs = []) {
     }
     console.log(`${info} Global settings modified: ${plan.manifest.globalSettingsModified ? 'yes' : 'no'}`);
     console.log(`${info} Project-local manifest written to: ${join(plan.targetDir, '.vibe', 'setup.json')}`);
-    console.log(`\n${c.green}${c.bold}Done!${c.reset} Your project is ready for ${plan.tool}.`);
-    console.log(`  Next: Open your project in ${plan.tool} and start vibing! 🚀\n`);
+    console.log(`\n${c.green}${c.bold}Done!${c.reset} Your project is ready for ${formatToolName(plan.tool)}.`);
+    console.log(`  Next: Open your project in ${formatToolName(plan.tool)} and run ${c.cyan}vibe doctor --project .${c.reset} to verify setup.`);
+    console.log(`  Runtime: optional; this setup did not start a daemon or require .omc/runtime.\n`);
   } catch (err) {
     console.error(`${fail} ${err.message}`);
     process.exit(1);
@@ -347,12 +405,26 @@ export async function cmdDoctor(args = []) {
         console.log(`${ok} ${signal}`);
       }
     }
-    if (!adapterFound) {
-      console.log(`${c.yellow}⚠ No adapter instruction file found${c.reset}`);
-      console.log(`  Tip: Run ${c.cyan}vibe init <tool>${c.reset} in this project directory.`);
-    } else {
-      console.log(`\n${c.green}${c.bold}Project is ready!${c.reset} Your AI coding assistant can read the instruction file.`);
-    }
+      if (!adapterFound) {
+        console.log(`${c.yellow}⚠ No adapter instruction file found${c.reset}`);
+        console.log(`  Tip: Run ${c.cyan}vibe init <tool>${c.reset} in this project directory.`);
+      } else {
+        console.log(`\n${c.green}${c.bold}Project is ready!${c.reset} Your AI coding assistant can read the instruction file.`);
+        const { signals, manifest } = projectGuidance(projectDir);
+        if (signals.length) {
+          console.log(`\n${c.bold}Next steps:${c.reset}`);
+          const seen = new Set();
+          for (const signal of signals) {
+            const key = `${signal.tool}:${signal.next}`;
+            if (seen.has(key)) continue;
+            seen.add(key);
+            console.log(`  - ${formatToolName(signal.tool)}: ${signal.next}`);
+          }
+          console.log(`  - Re-run setup safely with ${c.cyan}vibe init --tool <tool> --project . --dry-run${c.reset} before overwriting anything.`);
+        }
+        const runtimeIntent = manifest?.optionalRuntime === true || manifest?.scope === 'runtime' || manifest?.scope === 'team';
+        console.log(`\n${c.bold}Runtime:${c.reset} optional. ${runtimeIntent ? 'This project records runtime/team intent, but runtime state is still opt-in and no daemon is required.' : 'Adapter files work without .omc/runtime, daemons, or MCP servers.'}`);
+      }
     if (projectDir) {
       const report = await runDoctor(projectDir);
       console.log('\n' + formatDoctorReport(report));
