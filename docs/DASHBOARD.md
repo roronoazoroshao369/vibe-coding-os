@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.5.0 |
+| Version | 1.6.0 |
 | Skills | 112 |
 | Commands | 88 |
 | Templates | 80 |
-| Narrative files | 510 |
+| Narrative files | 511 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -45,7 +45,8 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
-| v1.5.0 | ✅ Complete | Core adoption, runtime free
+| v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
+| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
 
 ## Safety Metrics
 
@@ -88,8 +89,8 @@
 | Area | Status |
 |---|---|
 | Skills (112) | All have SKILL.md with required sections |
-| Commands (87) | All discovered dynamically from `commands/` |
-| Templates (79) | All discovered dynamically from `templates/` |
+| Commands (88) | All discovered dynamically from `commands/` |
+| Templates (80) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |

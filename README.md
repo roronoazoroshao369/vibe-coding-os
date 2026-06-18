@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
+**Current release (v1.6.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
 
 ---
 
@@ -60,15 +60,15 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v1.5.0
+## What's new in v1.6.0
 
-- **Runtime freeze:** Scope formally frozen via ADR 0002 — runtime only receives bug fix, safety, compat, docs, and tests.
-- **Config hardening:** Unknown `maxRiskLevel` → normalized; tool lists validated as arrays of strings.
-- **MCP approval scoped by args:** `task.update(task-A)` approval does NOT auto-approve `task.update(task-B)`.
-- **Negative TTL rejected:** `claimTask`, `heartbeatTask`, `renewTaskLease` reject negative TTL at public APIs.
-- **Vietnamese docs improved:** README.vi.md dieted (536→194 lines). New `docs/vi/QUICKSTART.md`.
-- **Adoption feedback:** GitHub issue template for structured onboarding feedback.
-- **Config validation cleanup:** maxTaskLease, maxRiskLevel, tool lists all validated on load.
+- **Adoption trust foundation:** Roadmap/version drift guards, release metadata validation, dashboard sync, and runtime freeze guard are now part of `validate:all`.
+- **Clear onboarding paths:** README and Vietnamese README separate user, maintainer, and optional-runtime paths.
+- **Adapter onboarding docs:** New docs for Claude Code, Codex, Cursor, and Gemini with copy-paste setup and first prompts.
+- **Layer entrypoints:** `commands/`, `skills/`, `templates/`, and `registry/` now have README entrypoints for choosing and extending artifacts.
+- **CLI onboarding UX:** `vibe init --help` documents setup flags/examples; `vibe doctor --project .` now prints tool-specific next steps and runtime-optional guidance.
+- **Examples hub:** `examples/README.md` points users to the smallest workflow example for their job.
+- **Runtime stays frozen:** v1.6.0 improves adoption without expanding runtime scope beyond ADR 0002.
 
 ---
 

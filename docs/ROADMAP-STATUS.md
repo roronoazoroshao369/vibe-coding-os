@@ -198,15 +198,21 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 
 ---
 
-## v1.6.0 — Adoption Trust (next)
-**Status:** 🔄 IN PROGRESS — planning / P0 start
+## v1.6.0 — Adoption Trust
+**Status:** ✅ COMPLETE — Release readiness
 
 | Deliverable | Status |
 |---|---|
-| Onboarding path clarity (user / maintainer / optional runtime) | 🔄 In progress |
-| Validation metadata source-of-truth hardening | 🔄 Planned |
-| Runtime freeze validation gate | 🔄 Planned |
-| Examples hub and entry docs polish | 🔄 Planned |
+| Onboarding path clarity (user / maintainer / optional runtime) | ✅ Done |
+| Validation metadata source-of-truth hardening | ✅ Done |
+| Runtime freeze validation gate | ✅ Done |
+| Examples hub and entry docs polish | ✅ Done |
+| Adapter docs for Claude Code, Codex, Cursor, Gemini | ✅ Done |
+| Layer README entrypoints for commands, skills, templates, registry | ✅ Done |
+| CLI onboarding UX for `vibe init` and `vibe doctor --project .` | ✅ Done |
+| Release metadata and v1.6.0 notes | ✅ Done |
+
+**Release posture:** v1.6.0 focuses on adoption trust. It improves docs, CLI guidance, release metadata, and validation guardrails without expanding runtime scope.
 
 **Quality Elevation — Strategic Target:**
 Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
@@ -341,7 +347,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.4.2: ████████████ 100%
 - v1.4.3: ████████████ 100%
 - v1.5.0: ████████████ 100%
-- v1.6.0: ██░░░░░░░░░ 20% (P0 in progress)
+- v1.6.0: ████████████ 100%
 - v1.7.0: ░░░░░░░░░░░ 0% (planned)
 - v1.8.0: ░░░░░░░░░░░ 0% (planned)
 - v1.9.0: ░░░░░░░░░░░ 0% (planned)
