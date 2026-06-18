@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "enabled_gates": [
+    "repo-structure",
+    "references",
+    "registry-schemas",
+    "pack-schemas",
+    "traceability",
+    "injection-scan",
+    "secret-scan",
+    "memory-redaction",
+    "adapter-smoke-tests",
+    "cli-smoke-tests",
+    "e2e-workflow",
+    "dashboard-data",
+    "dashboard-sync-check",
+    "release-metadata",
+    "evaluation-report",
+    "bilingual-readme-sync",
+    "markdown-links",
+    "readme-heading-version",
+    "roadmap-status-integrity",
+    "runtime-behavioral-tests",
+    "quality-diff-audit",
+    "quality-scorecard-report"
+  ],
+  "disabled_gates": [],
+  "gate_overrides": {},
+  "model_profile": "standard",
+  "task_profile": "any",
+  "telemetry_enabled": false,
+  "output_dir": ".quality-engine/reports"
+}

@@ -254,6 +254,19 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 | Quality Score Card (session + report) | ✅ Done |
 | Lessons Learned DB / Golden Example Library v2 | ✅ Done |
 
+## v2.0 — Quality Engine
+**Status:** 📋 IN PROGRESS — Team C (Quality Engine)
+
+| Deliverable | Status |
+|:---|---|
+| Quality engine schemas and data contracts | 📋 In progress |
+| Quality engine runner (core logic) | 📋 In progress |
+| Report generator (markdown + structured output) | 📋 In progress |
+| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | ✅ Done |
+| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | ✅ Done |
+| Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Done |
+| Quality Engine registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+
 ---
 
 ## Overall Progress

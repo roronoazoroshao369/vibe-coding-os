@@ -415,6 +415,11 @@
       "name": "vibe-lessons-learned",
       "path": "commands/vibe-lessons-learned.md",
       "description": "Search, add, or review recent lessons learned from coding mistakes, fixes, reviews, and quality audits."
+    },
+    {
+      "name": "vibe-quality-engine",
+      "path": "commands/vibe-quality-engine.md",
+      "description": "Run the Quality Engine to execute selected quality gates, report timing, and recommend targeted fixes."
     }
   ]
 }

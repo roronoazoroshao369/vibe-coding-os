@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 108 |
-| Commands | 83 |
-| Templates | 67 |
-| Narrative files | 473 |
+| Skills | 109 |
+| Commands | 84 |
+| Templates | 69 |
+| Narrative files | 480 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 5 |
 | checklists | 5 |
-| core | 54 |
+| core | 55 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |
@@ -81,20 +81,20 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 22/22 gates passed**
+**Overall: 23/23 gates passed**
 
 ## Coverage Summary
 
 | Area | Status |
 |---|---|
-| Skills (108) | All have SKILL.md with required sections |
-| Commands (83) | All discovered dynamically from `commands/` |
-| Templates (67) | All discovered dynamically from `templates/` |
+| Skills (109) | All have SKILL.md with required sections |
+| Commands (84) | All discovered dynamically from `commands/` |
+| Templates (69) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 0 |
+| Orphan templates | 2 |
 | Broken references | 0 |
 
 ## How to Regenerate

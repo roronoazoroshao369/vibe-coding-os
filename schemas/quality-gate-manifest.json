@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality Gate Manifest",
+  "description": "Schema for Vibe Coding OS quality gate manifest — defines all available validation gates, their metadata, and minimum gate requirements per project size",
+  "type": "object",
+  "required": ["version", "gates", "minimum_requirements"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Manifest schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "gates": {
+      "type": "array",
+      "description": "Array of all available quality gates",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "level", "category", "script", "timeout", "auto_fixable"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this gate (e.g., 'validate-repo-structure')",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable gate name",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of what this gate validates"
+          },
+          "level": {
+            "type": "string",
+            "description": "Severity level: critical gates block release, warning gates flag issues, advisory gates inform",
+            "enum": ["critical", "warning", "advisory"]
+          },
+          "category": {
+            "type": "string",
+            "description": "Quality domain category",
+            "enum": ["security", "quality", "docs", "tests", "regression"]
+          },
+          "script": {
+            "type": "string",
+            "description": "Path to the validation script, relative to project root",
+            "minLength": 1
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "Maximum execution time in seconds before the gate is considered failed",
+            "minimum": 1,
+            "default": 60
+          },
+          "auto_fixable": {
+            "type": "boolean",
+            "description": "Whether this gate supports automatic fix suggestions or remediation"
+          }
+        }
+      },
+      "uniqueItemProperties": ["id"]
+    },
+    "minimum_requirements": {
+      "type": "object",
+      "description": "Minimum gate requirements per project size tier",
+      "required": ["small", "medium", "large"],
+      "additionalProperties": false,
+      "properties": {
+        "small": {
+          "type": "object",
+          "required": ["min_gates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "min_gates": {
+              "type": "integer",
+              "description": "Minimum total number of gates to run",
+              "minimum": 1
+            },
+            "required_categories": {
+              "type": "array",
+              "description": "Categories that must have at least one gate enabled",
+              "items": {
+                "type": "string",
+                "enum": ["security", "quality", "docs", "tests", "regression"]
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "medium": {
+          "type": "object",
+          "required": ["min_gates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "min_gates": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required_categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["security", "quality", "docs", "tests", "regression"]
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "large": {
+          "type": "object",
+          "required": ["min_gates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "min_gates": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "required_categories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["security", "quality", "docs", "tests", "regression"]
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

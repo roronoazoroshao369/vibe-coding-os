@@ -30,7 +30,8 @@ const checks = [
   ['ROADMAP-STATUS integrity', 'node', ['scripts/validate-roadmap-status.mjs']],
   ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']],
   ['Quality diff audit', 'node', ['scripts/validate-quality-diff.mjs']],
-  ['Quality scorecard report', 'node', ['scripts/quality-scorecard-report.mjs']]
+  ['Quality scorecard report', 'node', ['scripts/quality-scorecard-report.mjs']],
+  ['Quality engine', 'node', ['scripts/quality-engine.mjs', '--profile=lean', '--output-json']]
 ];
 
 function formatDuration(ms) {

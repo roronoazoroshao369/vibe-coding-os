@@ -56,7 +56,11 @@
     "runtime:replay": "node scripts/runtime-replay.mjs",
     "runtime:snapshot": "node scripts/runtime-snapshot.mjs",
     "runtime:events": "node scripts/runtime-events.mjs",
-    "runtime:behavior-tests": "node scripts/runtime-behavior-tests.mjs"
+    "runtime:behavior-tests": "node scripts/runtime-behavior-tests.mjs",
+    "quality:engine": "node scripts/quality-engine.mjs",
+    "quality:engine:lean": "node scripts/quality-engine.mjs --profile=lean",
+    "quality:engine:heavy": "node scripts/quality-engine.mjs --profile=heavy",
+    "quality:engine:report": "node scripts/quality-engine-report.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

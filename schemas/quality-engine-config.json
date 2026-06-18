@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality Engine Configuration",
+  "description": "Project-level configuration schema for Vibe Coding OS quality engine — controls which gates run, their overrides, model profile, and task context",
+  "type": "object",
+  "required": ["version", "enabled_gates", "model_profile", "task_profile"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Config schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "enabled_gates": {
+      "type": "array",
+      "description": "Array of gate IDs to explicitly enable. If empty, defaults to all gates in the manifest",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "uniqueItems": true
+    },
+    "disabled_gates": {
+      "type": "array",
+      "description": "Array of gate IDs to explicitly skip during validation runs",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "uniqueItems": true
+    },
+    "gate_overrides": {
+      "type": "object",
+      "description": "Per-gate override settings keyed by gate ID",
+      "additionalProperties": {
+        "type": "object",
+        "required": [],
+        "additionalProperties": false,
+        "properties": {
+          "timeout": {
+            "type": "integer",
+            "description": "Override timeout in seconds for this specific gate",
+            "minimum": 1
+          },
+          "level": {
+            "type": "string",
+            "description": "Override severity level for this specific gate",
+            "enum": ["critical", "warning", "advisory"]
+          },
+          "auto_fix": {
+            "type": "boolean",
+            "description": "Override auto-fix setting for this specific gate"
+          }
+        }
+      },
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "model_profile": {
+      "type": "string",
+      "description": "Determines which advisory gates run based on available compute/capability. 'lean' skips heavy advisory gates, 'standard' runs typical checks, 'heavy' runs all gates including expensive analysis",
+      "enum": ["lean", "standard", "heavy"]
+    },
+    "task_profile": {
+      "type": "string",
+      "description": "Describes the type of work being done, influencing which gates are most relevant. 'any' is the default that runs all appropriate gates",
+      "enum": ["feature", "bugfix", "refactor", "security", "migration", "any"]
+    },
+    "telemetry_enabled": {
+      "type": "boolean",
+      "description": "Whether to emit telemetry events for gate execution results",
+      "default": false
+    },
+    "output_dir": {
+      "type": "string",
+      "description": "Directory path for storing gate execution reports and artifacts, relative to project root",
+      "minLength": 1
+    }
+  }
+}

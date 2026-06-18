@@ -1,0 +1,239 @@
+{
+  "version": "2.0.0",
+  "gates": [
+    {
+      "id": "repo-structure",
+      "name": "Repo structure",
+      "description": "Validates repository structure and layout conform to Vibe Coding OS conventions",
+      "level": "critical",
+      "category": "quality",
+      "script": "scripts/validate-repo.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "references",
+      "name": "References",
+      "description": "Validates references/index.json and ensures upstream references are properly tracked and attributed",
+      "level": "critical",
+      "category": "quality",
+      "script": "scripts/validate-references.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "registry-schemas",
+      "name": "Registry schemas",
+      "description": "Validates registry and schema files are well-formed JSON and conform to their declared schemas",
+      "level": "critical",
+      "category": "quality",
+      "script": "scripts/validate-schemas.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "pack-schemas",
+      "name": "Pack schemas",
+      "description": "Validates pack schema definitions are structurally sound and internally consistent",
+      "level": "critical",
+      "category": "quality",
+      "script": "scripts/validate-pack-schemas.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "traceability",
+      "name": "Traceability",
+      "description": "Validates internal cross-references: broken links to commands, skills, or templates; detects orphaned inventory items",
+      "level": "warning",
+      "category": "quality",
+      "script": "scripts/validate-traceability.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "injection-scan",
+      "name": "Injection scan",
+      "description": "Scans for prompt injection, role hijacking, and unsafe instruction patterns across templates and skills",
+      "level": "critical",
+      "category": "security",
+      "script": "scripts/validate-injection.mjs",
+      "timeout": 60,
+      "auto_fixable": false
+    },
+    {
+      "id": "secret-scan",
+      "name": "Secret scan",
+      "description": "Scans repository for leaked secrets, credentials, private keys, and sensitive data",
+      "level": "critical",
+      "category": "security",
+      "script": "scripts/validate-secrets.mjs",
+      "timeout": 60,
+      "auto_fixable": false
+    },
+    {
+      "id": "memory-redaction",
+      "name": "Memory redaction",
+      "description": "Verifies memory entries have been properly redacted of sensitive data before storage or export",
+      "level": "critical",
+      "category": "security",
+      "script": "scripts/verify-memory-redaction.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "adapter-smoke-tests",
+      "name": "Adapter smoke tests",
+      "description": "Runs smoke tests against runtime adapters to verify basic connectivity and contract compliance",
+      "level": "warning",
+      "category": "tests",
+      "script": "scripts/smoke-test-adapters.mjs",
+      "timeout": 120,
+      "auto_fixable": false
+    },
+    {
+      "id": "cli-smoke-tests",
+      "name": "CLI smoke tests",
+      "description": "Runs smoke tests against CLI commands to verify basic invocation and response behavior",
+      "level": "warning",
+      "category": "tests",
+      "script": "scripts/smoke-test-cli.mjs",
+      "timeout": 120,
+      "auto_fixable": false
+    },
+    {
+      "id": "e2e-workflow",
+      "name": "E2E workflow",
+      "description": "End-to-end workflow test validating the full lifecycle from task initiation through completion",
+      "level": "critical",
+      "category": "tests",
+      "script": "scripts/test-e2e-workflow.mjs",
+      "timeout": 180,
+      "auto_fixable": false
+    },
+    {
+      "id": "dashboard-data",
+      "name": "Dashboard data",
+      "description": "Validates dashboard data generation and ensures all required data fields are present",
+      "level": "advisory",
+      "category": "docs",
+      "script": "scripts/dashboard-data.mjs",
+      "timeout": 30,
+      "auto_fixable": true
+    },
+    {
+      "id": "dashboard-sync-check",
+      "name": "Dashboard sync check",
+      "description": "Verifies DASHBOARD.md is in sync with actual repository state and generated data",
+      "level": "warning",
+      "category": "docs",
+      "script": "scripts/check-dashboard-sync.mjs",
+      "timeout": 30,
+      "auto_fixable": true
+    },
+    {
+      "id": "release-metadata",
+      "name": "Release metadata",
+      "description": "Validates release metadata files are consistent, well-formed, and match expected versioning",
+      "level": "critical",
+      "category": "regression",
+      "script": "scripts/validate-release-metadata.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "evaluation-report",
+      "name": "Evaluation report",
+      "description": "Generates and validates the quality evaluation report covering all repo health metrics",
+      "level": "advisory",
+      "category": "docs",
+      "script": "scripts/evaluation-report.mjs",
+      "timeout": 60,
+      "auto_fixable": true
+    },
+    {
+      "id": "bilingual-readme-sync",
+      "name": "Bilingual README sync",
+      "description": "Ensures README.md and README.vi.md have consistent structure and parallel content sections",
+      "level": "warning",
+      "category": "docs",
+      "script": "scripts/validate-bilingual-sync.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "markdown-links",
+      "name": "Markdown links",
+      "description": "Validates all internal and external markdown links resolve to existing files or reachable URLs",
+      "level": "warning",
+      "category": "docs",
+      "script": "scripts/validate-markdown-links.mjs",
+      "timeout": 30,
+      "auto_fixable": true
+    },
+    {
+      "id": "readme-heading-version",
+      "name": "README heading version",
+      "description": "Verifies README heading version string matches the declared project version",
+      "level": "warning",
+      "category": "docs",
+      "script": "scripts/check-heading-version.mjs",
+      "timeout": 10,
+      "auto_fixable": true
+    },
+    {
+      "id": "roadmap-status-integrity",
+      "name": "ROADMAP-STATUS integrity",
+      "description": "Validates ROADMAP-STATUS.md integrity, milestone status consistency, and cross-reference accuracy",
+      "level": "warning",
+      "category": "docs",
+      "script": "scripts/validate-roadmap-status.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "runtime-behavioral-tests",
+      "name": "Runtime behavioral tests",
+      "description": "Runs behavioral tests against runtime components to verify correct execution patterns and error handling",
+      "level": "critical",
+      "category": "tests",
+      "script": "scripts/runtime-behavior-tests.mjs",
+      "timeout": 120,
+      "auto_fixable": false
+    },
+    {
+      "id": "quality-diff-audit",
+      "name": "Quality diff audit",
+      "description": "Audits quality-metric changes in the diff to detect regressions or improvements in code and documentation quality",
+      "level": "warning",
+      "category": "quality",
+      "script": "scripts/validate-quality-diff.mjs",
+      "timeout": 30,
+      "auto_fixable": false
+    },
+    {
+      "id": "quality-scorecard-report",
+      "name": "Quality scorecard report",
+      "description": "Generates the quality scorecard report aggregating results from all gate executions",
+      "level": "advisory",
+      "category": "quality",
+      "script": "scripts/quality-scorecard-report.mjs",
+      "timeout": 30,
+      "auto_fixable": true
+    }
+  ],
+  "minimum_requirements": {
+    "small": {
+      "min_gates": 6,
+      "required_categories": ["security", "quality"]
+    },
+    "medium": {
+      "min_gates": 12,
+      "required_categories": ["security", "quality", "tests"]
+    },
+    "large": {
+      "min_gates": 18,
+      "required_categories": ["security", "quality", "docs", "tests", "regression"]
+    }
+  }
+}
