@@ -1,6 +1,6 @@
 # Quickstart — Hướng dẫn nhanh
 
-> Hoàn thành setup trong dưới 10 phút. Sau khi setup, chạy [luồng đầu tiên](FIRST-WORKFLOW.md) để thấy framework hoạt động.
+> Hoàn thành setup trong dưới 10 phút. Sau khi setup, chạy [luồng đầu tiên](FIRST-WORKFLOW.md) để thấy framework hoạt động. Xem thêm [adapter hub](../adapters/README.md) để chọn tool.
 
 ---
 
@@ -13,11 +13,13 @@ npm install
 npm run validate:all
 ```
 
-Mục tiêu: 20/20 PASS.
+Mục tiêu hiện tại: 25/25 PASS.
 
 ---
 
 ## Bước 2: Chọn adapter
+
+Xem đầy đủ tại [docs/adapters/README.md](../adapters/README.md), gồm Claude Code, Codex, Cursor và Gemini.
 
 ### Claude Code
 
@@ -25,7 +27,7 @@ Mục tiêu: 20/20 PASS.
 cp adapters/claude-code/skills.md docs/  # hoặc paste nội dung vào CLAUDE.md
 ```
 
-Sau đó mở Claude Code trong repo và chạy prompt từ docs/FIRST-WORKFLOW.md.
+Sau đó mở Claude Code trong repo và chạy prompt từ [docs/vi/FIRST-WORKFLOW.md](FIRST-WORKFLOW.md). Chi tiết: [Claude Code adapter](../adapters/claude-code.md).
 
 ### Codex CLI
 
@@ -33,7 +35,7 @@ Sau đó mở Claude Code trong repo và chạy prompt từ docs/FIRST-WORKFLOW.
 cp adapters/codex/AGENTS.md ./AGENTS.md
 ```
 
-Sau đó chạy Codex CLI trong repo.
+Sau đó chạy Codex CLI trong repo. Chi tiết: [Codex adapter](../adapters/codex.md).
 
 ### Cursor
 
@@ -41,7 +43,7 @@ Sau đó chạy Codex CLI trong repo.
 cp adapters/cursor/rules.md .cursor/rules/  # hoặc paste .cursorrules
 ```
 
-Sau đó mở Cursor trong repo.
+Sau đó mở Cursor trong repo. Chi tiết: [Cursor adapter](../adapters/cursor.md).
 
 ---
 
@@ -51,7 +53,7 @@ Sau đó mở Cursor trong repo.
 npm run validate:all
 ```
 
-Nếu 20/20 PASS, framework đã sẵn sàng.
+Nếu 25/25 PASS, framework đã sẵn sàng.
 
 ---
 

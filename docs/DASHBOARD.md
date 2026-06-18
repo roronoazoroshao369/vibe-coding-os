@@ -9,9 +9,9 @@
 |---|---|
 | Version | 1.5.0 |
 | Skills | 112 |
-| Commands | 87 |
-| Templates | 79 |
-| Narrative files | 501 |
+| Commands | 88 |
+| Templates | 80 |
+| Narrative files | 510 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 

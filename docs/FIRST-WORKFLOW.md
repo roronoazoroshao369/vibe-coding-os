@@ -1,6 +1,6 @@
 # Your First Workflow
 
-> Get from zero to a working spec→plan→implement→verify loop in under 15 minutes.
+> Get from zero to a working spec→plan→implement→verify loop in 10 minutes.
 
 **This doc is for first-time users.** If you already have the framework set up, this is your canonical onboarding workflow. For tool-specific setup only, see [`QUICKSTART.md`](QUICKSTART.md). For installation paths, see [`../INSTALL.md`](../INSTALL.md).
 
@@ -83,7 +83,7 @@ vibe doctor --project .
 
 This confirms your target project has the instruction file your AI assistant needs.
 
-## Step 6 — Your First Workflow
+## Step 6 — Your 10-Minute First Workflow
 
 Create the directories your spec and plan will live in:
 
@@ -91,7 +91,16 @@ Create the directories your spec and plan will live in:
 mkdir -p docs/specs docs/plans
 ```
 
-Now open your project in your AI coding assistant and follow the loop:
+Now open your project in your AI coding assistant. Paste this exact prompt first:
+
+```text
+Use Vibe Coding OS.
+Goal: build a simple counter app with increment, decrement, and reset.
+Follow this loop: Spec → Plan → Implement → Review → Verify.
+First, create the feature spec only. Include goals, non-goals, constraints, edge cases, and acceptance criteria. Do not implement yet.
+```
+
+Then follow the loop:
 
 ### 6a. Start with a Spec
 
@@ -150,7 +159,7 @@ vibe doctor --project .
 | View repo stats | `vibe stats` |
 | Read the full tutorial | [docs/TUTORIAL.md](TUTORIAL.md) |
 | Read the quickstart for your tool | [docs/QUICKSTART.md](QUICKSTART.md) |
-| View adapter docs | [adapters/](../adapters/) |
+| View adapter docs | [docs/adapters/README.md](adapters/README.md) |
 | Real-world React/Next.js example | [examples/react-nextjs-booking-workflow/](../examples/react-nextjs-booking-workflow/) |
 
 ## Tips

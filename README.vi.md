@@ -20,11 +20,11 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
-**Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Docs hub](docs/README.md)
+**Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
 ---
 
@@ -70,6 +70,12 @@ Xem ranh giới chi tiết tại [Runtime Boundary](docs/workflows/core-vs-optio
 - `templates/` — specs, plans, review, feedback, handoff.
 - `docs/` — contract, onboarding, governance, roadmap.
 - `adapters/` — Claude Code, Codex, Cursor, Gemini, OpenCode, Qwen.
+- `adapters/claude-code/` — plugin/manual usage cho Claude Code.
+- `adapters/codex/` — instruction surface cho Codex CLI.
+- `adapters/cursor/` — project rules workflow cho Cursor.
+- `adapters/gemini/` — instruction surface cho Gemini CLI.
+- `adapters/hooks/` — optional hook contracts.
+- `adapters/memory/` — optional memory adapter plans.
 - `scripts/` — validation, reporting, smoke tests.
 
 ### Optional runtime layer
@@ -93,7 +99,7 @@ Từ **v1.5.0**, runtime scope được freeze bởi [ADR 0002](docs/adr/0002-ru
 Người dùng bình thường không cần clone để chạy validation hay `npm install`. Chọn adapter phù hợp rồi bắt đầu bằng [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md):
 
 - Claude Code: cài plugin theo [Quickstart](docs/vi/QUICKSTART.md).
-- Codex/Cursor/Gemini: dùng adapter docs và copy instruction file tương ứng.
+- Codex/Cursor/Gemini: dùng [adapter hub](docs/adapters/README.md) và copy instruction file tương ứng.
 - Markdown-only: mở `skills/`, `commands/`, `templates/` và dùng như prompt/instructions.
 
 ### Maintainer/contributor path — cần npm để validate repo
@@ -129,11 +135,10 @@ Docs liên quan:
 
 Adapter docs:
 
-- `adapters/claude-code/` — Claude Code
-- `adapters/codex/` — Codex CLI
-- `adapters/cursor/` — Cursor rules workflow
+- [Adapter hub](docs/adapters/README.md) — chọn tool và setup nhanh
+- [Claude Code](docs/adapters/claude-code.md), [Codex](docs/adapters/codex.md), [Cursor](docs/adapters/cursor.md), [Gemini](docs/adapters/gemini.md)
 
-Xem thêm: [Compatibility Matrix](adapters/compatibility-matrix.md)
+Layer READMEs: [skills](skills/README.md), [commands](commands/README.md), [templates](templates/README.md), [registry](registry/README.md).
 
 ---
 

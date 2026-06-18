@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
+**Current release (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
 
 ---
 
@@ -33,6 +33,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 |---|---|
 | [First Workflow](docs/FIRST-WORKFLOW.md) | Run one complete `spec → plan → verify` loop |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
+| [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
 | [Install guide](INSTALL.md) | Full installation options (plugin, clone, CLI, zero-runtime) |
 | [Examples](examples/) | Complete sample workflows |
@@ -85,7 +86,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**112 skills**, **87 commands**, **79 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**112 skills**, **88 commands**, **80 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -154,8 +155,11 @@ Adapter docs:
 - `adapters/claude-code/` — Claude Code plugin/manual usage
 - `adapters/codex/` — Codex CLI instruction surface
 - `adapters/cursor/` — Cursor project rules workflow
+- `adapters/gemini/` — Gemini CLI instruction surface
+- `adapters/hooks/` — optional hook contracts
+- `adapters/memory/` — optional memory adapter plans
 
-See [`adapters/compatibility-matrix.md`](adapters/compatibility-matrix.md) for tool-specific setup details.
+See the [`docs/adapters/README.md`](docs/adapters/README.md) hub for tool-specific setup details.
 
 ---
 
@@ -244,8 +248,10 @@ All adaptations are documented in `references/sources/` and `references/mappings
 **Core docs:**
 - [`docs/FIRST-WORKFLOW.md`](docs/FIRST-WORKFLOW.md) — first workflow walkthrough
 - [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — tool-specific quickstart
+- [`docs/adapters/README.md`](docs/adapters/README.md) — adapter hub
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
+- [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs
 - [`docs/DASHBOARD.md`](docs/DASHBOARD.md) — project health dashboard
 - [`docs/ROADMAP-STATUS.md`](docs/ROADMAP-STATUS.md) — version progress
 - [`CHANGELOG.md`](CHANGELOG.md) — version history

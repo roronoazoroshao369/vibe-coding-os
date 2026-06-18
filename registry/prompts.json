@@ -7,6 +7,11 @@
       "description": "Classify task type and recommend the right quality prompt stack from the registry."
     },
     {
+      "name": "commands-readme",
+      "path": "commands/README.md",
+      "description": "Onboarding entrypoint explaining commands, usage, anti-patterns, validation, and how to add new commands."
+    },
+    {
       "name": "vibe-agents-md",
       "path": "commands/vibe-agents-md.md",
       "description": "Generate or adapt a compact AGENTS.md with validation commands, layout, constraints, and quality gates."
