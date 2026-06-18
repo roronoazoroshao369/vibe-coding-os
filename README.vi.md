@@ -20,11 +20,21 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.6.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v1.6.0
+
+- Nền móng adoption trust: guard chống drift roadmap/version, release metadata, dashboard sync và runtime freeze guard trong `validate:all`.
+- Onboarding rõ hơn: tách user path, maintainer path và optional-runtime path.
+- Adapter docs cho Claude Code, Codex, Cursor, Gemini với lệnh setup và prompt copy-paste.
+- README entrypoint cho `commands/`, `skills/`, `templates/`, `registry/`.
+- CLI onboarding UX: `vibe init --help` rõ flags/examples; `vibe doctor --project .` có next steps theo tool và nhắc runtime optional.
+- `examples/README.md` giúp chọn example nhỏ nhất phù hợp với task.
+- Runtime vẫn freeze theo ADR 0002; v1.6.0 tập trung adoption, không mở rộng runtime.
 
 ---
 
