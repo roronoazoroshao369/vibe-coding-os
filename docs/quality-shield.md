@@ -79,6 +79,7 @@ These assets extend Quality Shield but are not the core shield itself:
 
 - Expert review: [`skills/core/adversarial-code-review/SKILL.md`](../skills/core/adversarial-code-review/SKILL.md), [`skills/prompts/critique-pass/SKILL.md`](../skills/prompts/critique-pass/SKILL.md), [`skills/agents/writer-critic-pair/SKILL.md`](../skills/agents/writer-critic-pair/SKILL.md)
 - Task-specific quality packs: `skills/checklists/*-quality/SKILL.md` and `commands/vibe-quality-*.md`
+- **Expert Mode guide:** [`docs/expert-mode.md`](expert-mode.md) — escalation pathways, adversarial review, critique pass, quality packs, Writer-Critic Pair, and Quality Council
 - Smart Adapt: [`skills/core/model-weakness-memory/SKILL.md`](../skills/core/model-weakness-memory/SKILL.md), [`skills/core/adaptive-prompt-selection/SKILL.md`](../skills/core/adaptive-prompt-selection/SKILL.md), [`skills/core/lessons-learned-db/SKILL.md`](../skills/core/lessons-learned-db/SKILL.md)
 
 ### Quality Engine foundation assets
@@ -103,6 +104,17 @@ These are related to future/advanced engine orchestration, not required for basi
 7. Final response must list what changed, evidence, and any unverified risks.
 
 For a copy-paste version of this workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md).
+
+## Escalating to Expert Mode
+
+When the standard Quality Shield workflow is not enough — security-sensitive changes, complex migrations, low confidence in tests, or a strong desire to avoid rubber-stamping — escalate to **Expert Mode** (v1.8.0):
+
+- Run an **[Adversarial Code Review](expert-mode.md#1-adversarial-code-review)** before merge or release.
+- Use the **[Critique Pass Protocol](expert-mode.md#2-critique-pass-protocol)** for a structured writer-then-critic review.
+- Apply a **[task-specific quality pack](expert-mode.md#3-task-specific-quality-packs)** for API endpoints, database migrations, auth, frontend state, or async jobs.
+- Activate the **[Writer-Critic Pair](expert-mode.md#4-writer-critic-pair)** or **Quality Council** multi-agent patterns for high-stakes work.
+
+Expert Mode is markdown-first, uses the same portable skills and commands as Quality Shield, and does not require runtime expansion. See the full guide at [`docs/expert-mode.md`](expert-mode.md).
 
 ## Adapter usage
 

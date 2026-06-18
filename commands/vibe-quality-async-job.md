@@ -19,7 +19,7 @@ Use before implementing or reviewing any async/background work: queue jobs, cron
 - Expected volume and peak load.
 - Deployment target.
 
-## Step-by-step behavior
+## Step-by-step behaviour
 
 1. Classify the delivery guarantee: at-most-once, at-least-once, or exactly-once. State why.
 2. Define the idempotency strategy: stable job ID, deduplication key, or idempotent writes. State how duplicate processing is safe.
@@ -39,3 +39,29 @@ A completed async-job quality checklist and, where applicable, the implementatio
 ## Stopping conditions
 
 Stop before proceeding if the delivery guarantee is ambiguous, the retry strategy is undefined, or test coverage for retry and idempotency cannot be determined. Resolve these gaps before claiming the job is production-ready.
+
+## Verification checklist
+
+- [ ] Delivery guarantee is stated and matches the queue/trigger semantics.
+- [ ] Idempotency strategy is defined and tested.
+- [ ] Retry policy has backoff, max attempts, and dead-letter routing.
+- [ ] Errors are logged with job ID, attempt count, and error class.
+- [ ] Key failure rates are exposed as metrics.
+- [ ] Dead-letter or exhausted-retry conditions produce alerts.
+- [ ] Timeout is configured and tested for the failure path.
+- [ ] Concurrency limits are defined and enforced.
+- [ ] Job ordering or dependency requirements are addressed.
+- [ ] Manual intervention triggers and runbook exist where needed.
+- [ ] Test coverage exists for success, failure, retry, and idempotency paths.
+
+## Related skills/commands
+
+- `skills/checklists/async-job-quality/SKILL.md`
+- `skills/core/acceptance-criteria/SKILL.md`
+- `skills/core/test-driven-development/SKILL.md`
+- `commands/vibe-plan.md`
+
+## Handoffs / next-step suggestion
+
+- Failures in delivery semantics, retry/idempotency, observability, or tests → update the job design or implementation, then re-run.
+- All items pass → proceed with `commands/vibe-request-review.md` or merge preparation.

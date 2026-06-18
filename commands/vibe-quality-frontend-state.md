@@ -19,7 +19,7 @@ Run for React, Vue, or Svelte state changes, new stores, composables, hooks, dat
 - Data-fetching strategy, caching behavior, mutation behavior, and form validation rules.
 - Existing tests for state transitions, side effects, and user interactions.
 
-## Step-by-step behavior
+## Step-by-step behaviour
 
 1. Identify where the new or changed state lives: local component state, store, server cache, route state, form state, or derived state.
 2. Confirm global state is justified; prefer local or colocated state when only one consumer needs the source of truth.
@@ -42,3 +42,26 @@ Run for React, Vue, or Svelte state changes, new stores, composables, hooks, dat
 ## Stopping conditions
 
 Stop before marking the change ready if empty, error, and retry states are missing, side effects are uncleaned, optimistic updates have no rollback behavior, server-authoritative validation is missing, or state transitions are untested.
+
+## Verification checklist
+
+- [ ] State ownership is explicit and global state is justified.
+- [ ] Loading, empty, error, success, stale, retry, and disabled states are handled where relevant.
+- [ ] State mutations are predictable and follow framework conventions.
+- [ ] Side effects have correct dependencies and cleanup behavior.
+- [ ] Form validation includes client UX checks and server-authoritative validation.
+- [ ] Optimistic updates include rollback and conflict behavior.
+- [ ] Stale-while-revalidate behavior is deliberate for data fetching where applicable.
+- [ ] Tests cover state transitions, cleanup, validation paths, optimistic rollback, and stale refresh behavior.
+
+## Related skills/commands
+
+- `skills/checklists/frontend-state-quality/SKILL.md`
+- `skills/core/acceptance-criteria/SKILL.md`
+- `skills/core/test-driven-development/SKILL.md`
+- `commands/vibe-quality-api.md`
+
+## Handoffs / next-step suggestion
+
+- Failures in state modelling, side effects, validation, or tests → update the UI implementation or test coverage, then re-run.
+- All items pass → proceed with `commands/vibe-request-review.md` or merge preparation.
