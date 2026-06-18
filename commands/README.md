@@ -15,10 +15,13 @@ Use a command when you want the assistant to perform a named workflow from start
 - `vibe-spec` for turning intent into a spec.
 - `vibe-plan` for turning a spec into an implementation plan.
 - `vibe-debug` or `vibe-diagnose` for systematic bug work.
+- Quality Shield entrypoints: `vibe-quality-rubric`, `vibe-quality-gate`, `vibe-code-context`, and `vibe-self-review` for intent, context, verification, and pre-response self-review.
 - `vibe-review` or `vibe-self-review` before handoff.
 - `vibe-reference-*` when auditing or adding upstream inspiration.
 
 If you only need background guidance, load a skill instead. If you need a fill-in artifact shape, use a template.
+
+For the complete Quality Shield flow and boundary with the future Quality Engine, see [`docs/quality-shield.md`](../docs/quality-shield.md).
 
 ## How to pick a good command
 

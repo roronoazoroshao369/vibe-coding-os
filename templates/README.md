@@ -18,10 +18,13 @@ Use a template when you need to create or standardize an artifact, for example:
 - `tasks-template.md` for ordered implementation tasks.
 - `adr-template.md` for important design decisions.
 - `review-template.md` for structured review findings.
+- Quality Shield templates: `quality-rubric.md`, `quality-contract.md`, `code-context-pack-template.md`, `self-review-checklist.md`, `quality-scorecard.md`, and `quality-scorecard-session.md`.
 - `handoff-template.md` or `session-summary-template.md` for continuity.
 - JSON templates for workflow, quality, team, or config examples.
 
 Use a skill to learn the method. Use a command to drive the workflow.
+
+For how these templates fit together, see the Quality Shield guide: [`docs/quality-shield.md`](../docs/quality-shield.md).
 
 ## How to pick a good template
 

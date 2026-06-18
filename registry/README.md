@@ -10,6 +10,8 @@ The registry layer is the machine-readable index for discoverable Vibe Coding OS
 - `sources.json` records tracked upstream inspiration and attribution policy.
 - `runtime-freeze-allowlist.json` documents the frozen optional-runtime surface allowed by ADR 0002.
 
+Quality Shield is discoverable through existing registries rather than a separate registry: `registry/skills.json` covers its skills (`quality-rubric`, `quality-execution-contract`, `code-context-pack`, `self-review-before-response`, `quality-evaluation-scenarios`, `agents-md-compact`), and `registry/prompts.json` covers its commands (`vibe-quality-rubric`, `vibe-quality-gate`, `vibe-code-context`, `vibe-self-review`, `vibe-agents-md`). Template files are linked from [`docs/quality-shield.md`](../docs/quality-shield.md).
+
 Registries describe artifacts; they should not replace the artifact files themselves.
 
 ## When to use it

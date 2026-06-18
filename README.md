@@ -32,6 +32,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | New to Vibe Coding OS | You want |
 |---|---|
 | [First Workflow](docs/FIRST-WORKFLOW.md) | Run one complete `spec → plan → verify` loop |
+| [Quality Shield](docs/quality-shield.md) | Use the portable quality discipline layer for intent, context, verification, and self-review |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -94,6 +95,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 | **Adaptive flow** | Tiny / small / medium / large / risky workflow tiers |
 | **Real engineering skills** | Grilling, PRD, ADRs, TDD, diagnosis, review, branch finishing |
 | **Prompt discipline** | Karpathy-style think / simplicity / surgical / goal-driven rules |
+| **Quality Shield** | Portable markdown-first quality discipline: rubric, execution contract, context pack, verification honesty, self-review, and scorecards |
 | **Team-agent orchestration** | Role templates, handoffs, watchdogs, scaffold generation |
 | **Memory layer** | Session capture, summarization, privacy filtering, progressive retrieval, citations |
 | **Reference intelligence** | Source index, attribution, feature maps, update-impact maps, changelogs |
@@ -249,6 +251,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/FIRST-WORKFLOW.md`](docs/FIRST-WORKFLOW.md) — first workflow walkthrough
 - [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — tool-specific quickstart
 - [`docs/adapters/README.md`](docs/adapters/README.md) — adapter hub
+- [`docs/quality-shield.md`](docs/quality-shield.md) — Quality Shield guide and audit map
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs
