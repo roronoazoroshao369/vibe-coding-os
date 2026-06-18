@@ -12,6 +12,7 @@ Use this page to pick the smallest example that matches your current job. Start 
 | Coordinate multiple agents | [`multi-agent-task/`](multi-agent-task/) | Role split, handoff, review, integration |
 | Refactor with discipline | [`refactor-workflow/`](refactor-workflow/) | Non-goals, safety checks, regression verification |
 | Elevate AI output quality | [`quality-elevation/`](quality-elevation/) | Quality rubric, self-review, adversarial review |
+| Run the Quality Shield end-to-end | [`quality-shield/`](quality-shield/) | Contract → context pack → minimal diff → self-review → scorecard |
 | Use CLI-oriented workflows | [`cli-workflows/`](cli-workflows/) | `vibe spec`, `vibe plan`, `vibe memory`, install packs |
 | See a product-style Next.js flow | [`react-nextjs-booking-workflow/`](react-nextjs-booking-workflow/) | Realistic app workflow and acceptance criteria |
 

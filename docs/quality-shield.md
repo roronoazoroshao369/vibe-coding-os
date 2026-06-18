@@ -102,6 +102,8 @@ These are related to future/advanced engine orchestration, not required for basi
 6. Run Self-Review Before Response.
 7. Final response must list what changed, evidence, and any unverified risks.
 
+For a copy-paste version of this workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md).
+
 ## Adapter usage
 
 Quality Shield is adapter-agnostic. Claude Code, Codex, Cursor, Gemini, and similar tools can use it by reading the relevant `AGENTS.md`/`CLAUDE.md` instructions plus the linked skills and templates. No runtime setup is required.
