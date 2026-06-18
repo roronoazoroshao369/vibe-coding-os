@@ -267,6 +267,16 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 | Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Done |
 | Quality Engine registry entries (`skills.json`, `prompts.json`) | ✅ Done |
 
+## v2.1 — Model-Aware Config
+**Status:** ✅ COMPLETE
+
+| Deliverable | Status |
+|---|---|
+| Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | ✅ Done |
+| `vibe-model-config` command (`commands/vibe-model-config.md`) | ✅ Done |
+| Model-Aware Config guide (`docs/model-aware-config-guide.md`) | ✅ Done |
+| Model-Aware Config registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+
 ---
 
 ## Overall Progress
@@ -288,3 +298,5 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.7.0: ████████████ 100%
 - v1.8.0: ████████████ 100%
 - v1.9.0: ████████████ 100%
+- v2.0:   ████████████ 100%
+- v2.1:   ████████████ 100%

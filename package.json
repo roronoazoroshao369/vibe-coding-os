@@ -60,7 +60,8 @@
     "quality:engine": "node scripts/quality-engine.mjs",
     "quality:engine:lean": "node scripts/quality-engine.mjs --profile=lean",
     "quality:engine:heavy": "node scripts/quality-engine.mjs --profile=heavy",
-    "quality:engine:report": "node scripts/quality-engine-report.mjs"
+    "quality:engine:report": "node scripts/quality-engine-report.mjs",
+    "quality:select-gates": "node scripts/adaptive-gate-selector.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

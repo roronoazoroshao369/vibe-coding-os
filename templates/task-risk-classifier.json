@@ -1,0 +1,127 @@
+{
+  "version": "2.1.0",
+  "taskRiskProfiles": {
+    "bugfix": {
+      "taskType": "bugfix",
+      "risk": "low",
+      "minQualityStack": "standard",
+      "requiredGates": [
+        "repo-structure",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit"
+      ]
+    },
+    "refactor": {
+      "taskType": "refactor",
+      "risk": "low",
+      "minQualityStack": "standard",
+      "requiredGates": [
+        "repo-structure",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit",
+        "traceability"
+      ]
+    },
+    "feature": {
+      "taskType": "feature",
+      "risk": "medium",
+      "minQualityStack": "standard",
+      "requiredGates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit",
+        "quality-scorecard-report"
+      ]
+    },
+    "security": {
+      "taskType": "security",
+      "risk": "high",
+      "minQualityStack": "heavy",
+      "requiredGates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "pack-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "memory-redaction",
+        "quality-diff-audit",
+        "quality-scorecard-report"
+      ]
+    },
+    "migration": {
+      "taskType": "migration",
+      "risk": "high",
+      "minQualityStack": "heavy",
+      "requiredGates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "pack-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "e2e-workflow",
+        "quality-diff-audit",
+        "quality-scorecard-report"
+      ]
+    },
+    "init": {
+      "taskType": "init",
+      "risk": "medium",
+      "minQualityStack": "standard",
+      "requiredGates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit"
+      ]
+    }
+  },
+  "keywordSets": {
+    "bugfix": [
+      "fix", "bug", "patch", "resolve", "correct", "repair", "hotfix",
+      "crash", "error", "broken", "regression", "issue", "defect",
+      "typo", "off-by-one", "null pointer", "edge case"
+    ],
+    "refactor": [
+      "refactor", "restructure", "reorganize", "clean up", "cleanup",
+      "simplify", "extract", "rename", "move", "relocate", "decouple",
+      "consolidate", "deduplicate", "decompose", "improve structure",
+      "code smell", "technical debt", "reformat"
+    ],
+    "feature": [
+      "feature", "implement", "add", "create", "build", "develop",
+      "new", "introduce", "enhance", "extend", "support", "enable",
+      "provision", "scaffold", "generate", "integrate", "add support for"
+    ],
+    "security": [
+      "security", "vulnerability", "cve", "exploit", "auth", "authentication",
+      "authorization", "permission", "access control", "encrypt", "decrypt",
+      "xss", "csrf", "sql injection", "injection", "sanitize", "validate input",
+      "token", "secret", "credential", "audit", "compliance", "secure"
+    ],
+    "migration": [
+      "migration", "migrate", "upgrade", "downgrade", "backfill",
+      "convert", "transform", "port", "schema change", "data migration",
+      "breaking change", "deprecation", "version bump", "release",
+      "import data", "export data", "legacy", "transition"
+    ],
+    "init": [
+      "init", "initialize", "setup", "set up", "scaffold", "bootstrap",
+      "new project", "new module", "new package", "new workspace",
+      "start", "create from scratch", "template", "boilerplate",
+      "initial commit", "foundation", "base", "skeleton"
+    ]
+  }
+}

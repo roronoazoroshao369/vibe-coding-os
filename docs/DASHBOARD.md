@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 109 |
-| Commands | 84 |
-| Templates | 69 |
-| Narrative files | 480 |
+| Skills | 110 |
+| Commands | 85 |
+| Templates | 72 |
+| Narrative files | 484 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 5 |
 | checklists | 5 |
-| core | 55 |
+| core | 56 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |
@@ -94,7 +94,7 @@
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 2 |
+| Orphan templates | 5 |
 | Broken references | 0 |
 
 ## How to Regenerate

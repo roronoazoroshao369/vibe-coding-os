@@ -212,6 +212,12 @@
       "description": "Force explicit intent declaration before any code edit with a pre-coding contract."
     },
     {
+      "name": "model-aware-config",
+      "path": "skills/core/model-aware-config/SKILL.md",
+      "category": "core",
+      "description": "Configure quality gates from model capability and task risk before Quality Engine execution."
+    },
+    {
       "name": "receiving-code-review",
       "path": "skills/core/receiving-code-review/SKILL.md",
       "category": "core",

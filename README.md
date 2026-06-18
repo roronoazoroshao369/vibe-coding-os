@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.5.0):** validate:all 23/23 gates PASS · **109 skills** · **84 commands** · **69 templates** · 14 tracked sources
+**Current release (v1.5.0):** validate:all 23/23 gates PASS · **110 skills** · **85 commands** · **72 templates** · 14 tracked sources
 
 ---
 

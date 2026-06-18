@@ -420,6 +420,11 @@
       "name": "vibe-quality-engine",
       "path": "commands/vibe-quality-engine.md",
       "description": "Run the Quality Engine to execute selected quality gates, report timing, and recommend targeted fixes."
+    },
+    {
+      "name": "vibe-model-config",
+      "path": "commands/vibe-model-config.md",
+      "description": "Configure model-aware quality gates from model capability, task risk, and project settings."
     }
   ]
 }

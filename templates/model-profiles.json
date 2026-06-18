@@ -1,0 +1,69 @@
+{
+  "version": "2.1.0",
+  "modelProfiles": {
+    "claude-sonnet-4": {
+      "modelId": "claude-sonnet-4",
+      "vendor": "anthropic",
+      "name": "Claude Sonnet 4",
+      "capability": "high",
+      "qualityStack": "heavy",
+      "advisoryLevel": "thorough"
+    },
+    "claude-haiku-3.5": {
+      "modelId": "claude-haiku-3.5",
+      "vendor": "anthropic",
+      "name": "Claude Haiku 3.5",
+      "capability": "medium",
+      "qualityStack": "standard",
+      "advisoryLevel": "normal"
+    },
+    "gpt-4o": {
+      "modelId": "gpt-4o",
+      "vendor": "openai",
+      "name": "GPT-4o",
+      "capability": "high",
+      "qualityStack": "heavy",
+      "advisoryLevel": "thorough"
+    },
+    "gpt-4o-mini": {
+      "modelId": "gpt-4o-mini",
+      "vendor": "openai",
+      "name": "GPT-4o mini",
+      "capability": "medium",
+      "qualityStack": "standard",
+      "advisoryLevel": "normal"
+    },
+    "gemini-2.0-flash": {
+      "modelId": "gemini-2.0-flash",
+      "vendor": "google",
+      "name": "Gemini 2.0 Flash",
+      "capability": "medium",
+      "qualityStack": "standard",
+      "advisoryLevel": "normal"
+    },
+    "deepseek-v3": {
+      "modelId": "deepseek-v3",
+      "vendor": "deepseek",
+      "name": "DeepSeek V3",
+      "capability": "high",
+      "qualityStack": "heavy",
+      "advisoryLevel": "thorough"
+    },
+    "llama-3-70b": {
+      "modelId": "llama-3-70b",
+      "vendor": "meta",
+      "name": "Llama 3 70B",
+      "capability": "medium",
+      "qualityStack": "standard",
+      "advisoryLevel": "normal"
+    },
+    "hermes-3": {
+      "modelId": "hermes-3",
+      "vendor": "nous-research",
+      "name": "Hermes 3",
+      "capability": "medium",
+      "qualityStack": "standard",
+      "advisoryLevel": "normal"
+    }
+  }
+}
