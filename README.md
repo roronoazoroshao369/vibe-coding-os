@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.6.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
+**Current release (v1.7.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
 
 ---
 
@@ -61,15 +61,14 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v1.6.0
+## What's new in v1.7.0
 
-- **Adoption trust foundation:** Roadmap/version drift guards, release metadata validation, dashboard sync, and runtime freeze guard are now part of `validate:all`.
-- **Clear onboarding paths:** README and Vietnamese README separate user, maintainer, and optional-runtime paths.
-- **Adapter onboarding docs:** New docs for Claude Code, Codex, Cursor, and Gemini with copy-paste setup and first prompts.
-- **Layer entrypoints:** `commands/`, `skills/`, `templates/`, and `registry/` now have README entrypoints for choosing and extending artifacts.
-- **CLI onboarding UX:** `vibe init --help` documents setup flags/examples; `vibe doctor --project .` now prints tool-specific next steps and runtime-optional guidance.
-- **Examples hub:** `examples/README.md` points users to the smallest workflow example for their job.
-- **Runtime stays frozen:** v1.6.0 improves adoption without expanding runtime scope beyond ADR 0002.
+- **Quality Shield canonical guide:** `docs/quality-shield.md` maps the quality discipline layer across skills, commands, templates, examples, and validation.
+- **Copy-paste quality workflow:** `docs/quality-shield-workflow.md` packages contract → context pack → smallest safe diff → self-review → scorecard.
+- **Concrete example:** `examples/quality-shield/README.md` shows a real bug-fix flow using the Quality Shield.
+- **Discovery sync:** README, docs hub, layer READMEs, registry docs, and adapter docs now surface the Quality Shield path.
+- **Boundary clarified:** Quality Shield stays portable and markdown-first; Quality Engine remains the advanced/future orchestration layer.
+- **Runtime unchanged:** v1.7.0 respects ADR 0002 and does not expand runtime scope.
 
 ---
 

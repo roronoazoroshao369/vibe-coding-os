@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.6.0 |
+| Version | 1.7.0 |
 | Skills | 112 |
 | Commands | 88 |
 | Templates | 80 |
-| Narrative files | 514 |
+| Narrative files | 515 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -47,6 +47,9 @@
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
 | v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
 | v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
+| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |ze |
+| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
+| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
 
 ## Safety Metrics
 
