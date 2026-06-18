@@ -35,6 +35,7 @@
     "runtime:team-run": "node scripts/runtime-team-run.mjs",
     "runtime:install": "node scripts/runtime-install.mjs",
     "smoke-test:cli": "node scripts/smoke-test-cli.mjs",
+    "test:project-setup": "node scripts/test-project-setup.mjs",
     "test:e2e": "node scripts/test-e2e-workflow.mjs",
     "dashboard:data": "node scripts/dashboard-data.mjs",
     "dashboard:generate": "node scripts/generate-dashboard.mjs",

@@ -2,11 +2,18 @@
 
 **Portable-first, Runtime optional.** The core is markdown-first and works with **zero runtime and zero dependencies**: skills, commands, templates, and docs are plain instructions. The optional runtime adds local automation and is fully opt-in via `npm run runtime:*`.
 
-Pick the path that fits you:
+Pick the path that fits you. If you are unsure, start with the quick scope decision below or read [`docs/setup-scope-guide.md`](docs/setup-scope-guide.md).
 
-- **Path A — Claude Code plugin** (primary, recommended). One command, no clone.
-- **Path B — Core only.** Clone and use skills/commands/templates/docs. No runtime, no deps.
-- **Path C — Optional runtime.** Opt in to local task/memory/checkpoint/team/session/MCP automation.
+- **Path A — Claude Code plugin (Scope: global for Claude Code)**. Recommended. One command, no clone, available across repos.
+- **Path B — Core only (Scope: local checkout + manual/per-repo use)**. Clone and use skills/commands/templates/docs. No runtime, no deps.
+- **Path C — Optional runtime (Scope: local checkout/runtime state)**. Opt in to local task/memory/checkpoint/team/session/MCP automation.
+
+## Quick scope decision / Chọn scope nhanh
+
+- **Dùng Claude Code cho nhiều repo?** Chọn **Path A — global plugin**.
+- **Muốn instruction được commit/review trong từng repo?** Chọn **per-repo adapter copy** from Path B, e.g. copy `CLAUDE.md`, `AGENTS.md`, or adapter rules into the target project.
+- **Chỉ thử nhanh hoặc không muốn ghi file vào repo?** Chọn **manual** from Path B: paste prompts from `commands/` and attach relevant `skills/`.
+- **Cần CLI, validate scripts, hoặc runtime?** Clone repo first (Path B), then optionally enable Path C.
 
 ## Prerequisites
 
@@ -16,6 +23,8 @@ Pick the path that fits you:
 - **tmux** — only if you use the optional runtime team runner (`npm run runtime:team-run`).
 
 ## Path A — Use as a Claude Code plugin
+
+**Scope label:** **Global for Claude Code.** Once enabled, the plugin is available to Claude Code across repositories without copying Vibe Coding OS files into each project.
 
 The one-command installer registers the Vibe Coding OS marketplace and enables the plugin in your Claude Code settings. It uses the HTTPS-backed `github` plugin source, so no SSH key is required. Re-running is safe (idempotent).
 
@@ -57,6 +66,8 @@ claude plugin list
 
 ## Path B — Core only (no runtime, no deps)
 
+**Scope label:** **Local checkout, then per-repo or manual use.** The checkout is your source of truth; your target projects only use it if you copy adapter files into them or paste/attach prompts manually.
+
 Clone the repo and use it directly. Nothing to install, no `npm install`.
 
 ```bash
@@ -70,9 +81,17 @@ Then:
 - Use prompts in `commands/`, operating procedures in `skills/`, and artifacts in `templates/`.
 - For other assistants, see `adapters/` and `adapters/compatibility-matrix.md`.
 
+Common scope choices:
+
+- **Per-repo:** copy `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, or adapter rules into each target project that should use the framework.
+- **Manual:** do not copy files; paste a `commands/*.md` prompt and relevant `skills/*/SKILL.md` content into your assistant when needed.
+- **Global-ish CLI:** run `npm link` from this checkout if you want the `vibe` CLI available globally; project instructions still remain per-repo unless you use the Claude Code plugin.
+
 Core uses no daemon, database, MCP server, or tmux session.
 
 ## Path C — Optional runtime (opt-in)
+
+**Scope label:** **Local runtime state.** Runtime state lives under `.omc/runtime/` in the checkout/project where you initialize it. It is not required for normal markdown-first usage.
 
 The runtime adds local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, vector search, and a tmux team runner. Use it only when you want inspectable state or local automation.
 

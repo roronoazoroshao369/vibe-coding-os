@@ -61,8 +61,10 @@ ${c.bold}${c.cyan}Vibe Coding OS CLI${c.reset} v${version}
 ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 
 ${c.bold}Commands:${c.reset}
-  ${c.green}init${c.reset} [tool]         Initialize a project with the selected adapter
-                            Tools: claude-code (default), codex, cursor, gemini
+  ${c.green}init${c.reset} [tool] [flags] Initialize a project with the selected adapter
+                            Tools: claude-code (default), codex, cursor, gemini (alias: claude)
+                            Flags: --scope <minimal|recommended|full|runtime|team>
+                                   --dry-run, --force, --current-terminal, --project <path>
   ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
                             Tools: cursor, claude, codex, gemini
   ${c.green}doctor${c.reset} [--project <path>] Check runtime health (add --json for output)
@@ -85,6 +87,9 @@ ${c.bold}Commands:${c.reset}
 
 ${c.bold}Examples:${c.reset}
   vibe init claude-code
+  vibe init --tool claude-code --scope recommended --current-terminal
+  vibe init claude-code --scope minimal --dry-run
+  vibe init cursor --scope full --force
   vibe export cursor
   vibe install-pack core-solo
   vibe install-pack core-solo --dry-run
@@ -99,43 +104,46 @@ ${c.bold}Examples:${c.reset}
 `);
 }
 
-export function cmdInit(tool = 'claude-code') {
-  const validTools = ['claude-code', 'codex', 'cursor', 'gemini'];
-  if (!validTools.includes(tool)) {
-    console.error(`${fail} Unknown tool: ${tool}. Valid: ${validTools.join(', ')}`);
+export async function cmdInit(toolOrArg = 'claude-code', rawArgs = []) {
+  const { parseSetupProjectArgs, planProjectSetup, applyProjectSetup, SETUP_TOOLS } = await import('./setup-project.mjs');
+  const options = parseSetupProjectArgs([toolOrArg, ...rawArgs]);
+  const validTools = Object.keys(SETUP_TOOLS).filter((t) => t !== 'claude');
+  if (!SETUP_TOOLS[options.tool]) {
+    console.error(`${fail} Unknown tool: ${options.tool}. Valid: ${validTools.join(', ')} (alias: claude)`);
     process.exit(1);
   }
-
-  console.log(`${info} Initializing project with ${c.bold}${tool}${c.reset} adapter...\n`);
-
-  const adapters = {
-    'claude-code': { file: 'CLAUDE.md', src: 'CLAUDE.md' },
-    'codex': { file: 'AGENTS.md', src: 'AGENTS.md' },
-    'cursor': { file: '.cursorrules', src: 'AGENTS.md' },
-    'gemini': { file: 'GEMINI.md', src: 'AGENTS.md' },
-  };
-
-  const adapter = adapters[tool];
-  const src = join(ROOT, adapter.src);
-  const dest = resolve(adapter.file);
-
-  if (!existsSync(src)) {
-    console.error(`${fail} Source file not found: ${adapter.src}`);
-    console.error(`  Run this command from the vibe-coding-os directory or after cloning.`);
+  if (!options.scope || !options.scope.trim()) {
+    console.error(`${fail} Missing --scope value.`);
     process.exit(1);
   }
-
-  if (existsSync(dest)) {
-    console.log(`${c.yellow}⚠ File already exists: ${adapter.file}${c.reset}`);
-    console.log(`  Skipping copy. Delete it first if you want to re-initialize.`);
-  } else {
-    const content = readFileSync(src, 'utf8');
-    writeFileSync(dest, content, 'utf8');
-    console.log(`${ok} Copied ${adapter.src} → ${adapter.file}`);
+  try {
+    const plan = planProjectSetup({ rootDir: ROOT, projectDir: options.projectDir, tool: options.tool, scope: options.scope, force: options.force, dryRun: options.dryRun, currentTerminal: options.currentTerminal });
+    if (options.dryRun) {
+      console.log(`${info} Dry run — planned actions:`);
+      for (const action of plan.actions) {
+        const status = action.skip ? action.reason : 'write';
+        console.log(`  ${c.cyan}${status}${c.reset} ${action.displayPath}`);
+      }
+      console.log(`\n  Scope: ${plan.scope}${plan.currentTerminal ? ' (current-terminal)' : ''}`);
+      return;
+    }
+    const result = applyProjectSetup(plan);
+    console.log(`${info} Initializing project with ${c.bold}${plan.tool}${c.reset} adapter (scope: ${plan.scope})...\n`);
+    for (const entry of result.results) {
+      if (entry.status === 'skipped') {
+        console.log(`${c.yellow}⚠ ${entry.displayPath} ${entry.reason}${c.reset}`);
+      } else {
+        console.log(`${ok} ${entry.displayPath} (${entry.type})`);
+      }
+    }
+    console.log(`${info} Global settings modified: ${plan.manifest.globalSettingsModified ? 'yes' : 'no'}`);
+    console.log(`${info} Project-local manifest written to: ${join(plan.targetDir, '.vibe', 'setup.json')}`);
+    console.log(`\n${c.green}${c.bold}Done!${c.reset} Your project is ready for ${plan.tool}.`);
+    console.log(`  Next: Open your project in ${plan.tool} and start vibing! 🚀\n`);
+  } catch (err) {
+    console.error(`${fail} ${err.message}`);
+    process.exit(1);
   }
-
-  console.log(`${c.green}${c.bold}Done!${c.reset} Your project is ready for ${tool}.`);
-  console.log(`  Next: Open your project in ${tool} and start vibing! 🚀\n`);
 }
 
 export function cmdVersion() {
@@ -704,7 +712,7 @@ if (isMainModule) {
   const [,, cmd, ...args] = process.argv;
 
   switch (cmd) {
-    case 'init': cmdInit(args[0]); break;
+    case 'init': await cmdInit(args[0], args.slice(1)); break;
     case 'doctor': await cmdDoctor(args); break;
     case 'version': case '--version': case '-V': cmdVersion(); break;
     case 'export': cmdExport(args[0]); break;

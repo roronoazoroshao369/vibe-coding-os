@@ -8,18 +8,27 @@ Get up and running with Vibe Coding OS in under 10 minutes. This page covers **t
 
 ## Choose your path
 
-| Path | Best for | Start with |
-|---|---|---|
-| Claude Code plugin | Fastest setup, slash commands | [Claude Code plugin](#claude-code-plugin-recommended) |
-| Local checkout / CLI | Maintainers or users who want `vibe` CLI | [Local CLI](#local-cli-workflow) |
-| Codex / Gemini / Cursor | Any assistant that reads markdown instructions | [Markdown adapters](#markdown-adapters) |
-| Optional runtime | Local JSON task/memory/checkpoint state | [Optional runtime](#optional-runtime) |
+Quick decision / chọn nhanh:
 
-For full install details, see [`../INSTALL.md`](../INSTALL.md).
+- **Want one setup for many Claude Code projects?** Use **Global scope** → [Claude Code plugin](#claude-code-plugin-recommended).
+- **Want instructions committed and reviewed inside each project?** Use **Per-repo scope** → [Markdown adapters](#markdown-adapters) or `vibe init` from [Local CLI](#local-cli-workflow).
+- **Want to try without changing project files?** Use **Manual scope** → paste prompts from `commands/` and relevant `skills/` from a local checkout.
+- **Need `vibe` CLI, repo validation, or optional runtime?** Use **Local checkout scope** → [Local CLI](#local-cli-workflow).
+
+Scope labels used below:
+
+- **Global:** configured once in the assistant/tool; available across repos.
+- **Per-repo:** instruction/rule files live in each target project.
+- **Manual:** no install; paste/attach only what you need.
+- **Runtime-local:** optional state in `.omc/runtime/` where initialized.
+
+For full install details, see [`../INSTALL.md`](../INSTALL.md). For a deeper explanation, see [`setup-scope-guide.md`](setup-scope-guide.md).
 
 ---
 
 ## Claude Code plugin (recommended)
+
+**Scope label:** **Global.** Best when you use Claude Code across multiple repositories and want `/vibe-*` commands without copying files.
 
 In Claude Code, run:
 
@@ -48,7 +57,7 @@ Restart Claude Code afterwards.
 
 ## Local CLI workflow
 
-Use this path if you want to work from a repo checkout or use the `vibe` CLI.
+**Scope label:** **Local checkout + global CLI; target project setup is usually per-repo.** Use this path if you want to work from a repo checkout or use the `vibe` CLI.
 
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
@@ -61,7 +70,15 @@ Then move to your target project:
 
 ```bash
 cd ~/your-project
-vibe init claude   # or: codex, cursor, generic
+# Recommended project-local setup for the current terminal/session
+vibe init --tool claude-code --scope recommended --current-terminal
+
+# Preview only
+vibe init --tool codex --scope minimal --current-terminal --dry-run
+
+# Target a specific project directory
+vibe init --tool cursor --scope full --project ~/your-project
+
 vibe doctor --project .
 ```
 
@@ -71,7 +88,9 @@ Continue to [`FIRST-WORKFLOW.md`](FIRST-WORKFLOW.md).
 
 ## Markdown adapters
 
-Vibe Coding OS is markdown-first. You can use it without runtime or CLI.
+**Scope label:** **Per-repo by default.** Vibe Coding OS is markdown-first. You can use it without runtime or CLI by copying/pasting instruction files into the target project.
+
+Manual alternative: keep `~/vibe-coding-os` as a reference checkout and paste a specific `commands/*.md` prompt plus relevant `skills/*/SKILL.md` content when needed.
 
 ### Codex CLI
 
@@ -100,7 +119,7 @@ Paste the contents of `CLAUDE.md` into project rules, then paste specific `comma
 
 ## Optional runtime
 
-Skip this unless you want local JSON task/memory/checkpoint/team/session state.
+**Scope label:** **Runtime-local.** Skip this unless you want local JSON task/memory/checkpoint/team/session state.
 
 Run in the **Vibe Coding OS repo**:
 

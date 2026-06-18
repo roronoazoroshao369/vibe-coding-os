@@ -98,14 +98,14 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## Quick start by tool
 
-### Claude Code — install as plugin (recommended)
+### Claude Code — install as plugin (global Claude Code scope, recommended)
 
 ```text
 /plugin marketplace add https://github.com/roronoazoroshao369/vibe-coding-os
 /plugin install vibe-coding-os
 ```
 
-After install, skills auto-activate and commands are available as `/vibe-*`.
+After install, skills auto-activate and commands are available as `/vibe-*`. For project-local setup instead, use `vibe init --tool claude-code --scope recommended --current-terminal`; see [setup scope guide](docs/setup-scope-guide.md).
 
 <details>
 <summary>Shell installer fallback</summary>
