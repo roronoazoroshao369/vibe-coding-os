@@ -1,0 +1,130 @@
+{
+  "_doc": "Quality Telemetry v2.2 — example event payload for each supported eventType.",
+  "_schema": "schemas/quality-telemetry-schema.json",
+  "examples": [
+    {
+      "_purpose": "Emitted when the quality engine finishes a gate run.",
+      "version": "2.2.0",
+      "eventId": "evt-engine-run-001",
+      "eventType": "quality-engine-run",
+      "timestamp": "2026-06-18T12:00:00.000Z",
+      "source": "engine-runner",
+      "private": false,
+      "data": {
+        "sessionId": "sess-001",
+        "profile": "standard",
+        "gatesRun": 10,
+        "gatesPassed": 8,
+        "gatesFailed": 2,
+        "duration": 5320
+      }
+    },
+    {
+      "_purpose": "Emitted for each individual gate result within a run.",
+      "version": "2.2.0",
+      "eventId": "evt-gate-result-001",
+      "eventType": "gate-result",
+      "timestamp": "2026-06-18T12:00:05.120Z",
+      "source": "engine-runner",
+      "private": false,
+      "data": {
+        "gateId": "secret-scan",
+        "pass": true,
+        "duration": 210,
+        "warnings": 0
+      }
+    },
+    {
+      "_purpose": "Emitted when a quality session begins.",
+      "version": "2.2.0",
+      "eventId": "evt-session-start-001",
+      "eventType": "session-start",
+      "timestamp": "2026-06-18T11:59:54.680Z",
+      "source": "adapter-gate-selector",
+      "private": false,
+      "data": {
+        "sessionId": "sess-001",
+        "modelId": "claude-sonnet-4",
+        "taskType": "feature",
+        "gatesRun": 0,
+        "gatesPassed": 0,
+        "gatesFailed": 0,
+        "duration": 0,
+        "outcomes": {
+          "status": "started"
+        }
+      }
+    },
+    {
+      "_purpose": "Emitted when a quality session ends.",
+      "version": "2.2.0",
+      "eventId": "evt-session-end-001",
+      "eventType": "session-end",
+      "timestamp": "2026-06-18T12:00:20.100Z",
+      "source": "engine-runner",
+      "private": false,
+      "data": {
+        "sessionId": "sess-001",
+        "modelId": "claude-sonnet-4",
+        "taskType": "feature",
+        "gatesRun": 10,
+        "gatesPassed": 8,
+        "gatesFailed": 2,
+        "duration": 25420,
+        "outcomes": {
+          "summary": "8/10 gates passed, 2 failures in secret-scan and traceability.",
+          "status": "failed",
+          "warnings": 1,
+          "artifacts": [
+            "docs/reports/quality-session-sess-001.md"
+          ]
+        }
+      }
+    },
+    {
+      "_purpose": "Emitted when model configuration changes.",
+      "version": "2.2.0",
+      "eventId": "evt-config-change-001",
+      "eventType": "model-config-change",
+      "timestamp": "2026-06-18T12:01:00.000Z",
+      "source": "user-command",
+      "private": false,
+      "data": {
+        "modelId": "gpt-4o",
+        "previousProfile": "heavy",
+        "newProfile": "standard"
+      }
+    },
+    {
+      "_purpose": "Emitted when a model weakness is logged.",
+      "version": "2.2.0",
+      "eventId": "evt-weakness-001",
+      "eventType": "weakness-logged",
+      "timestamp": "2026-06-18T12:01:30.000Z",
+      "source": "engine-runner",
+      "private": false,
+      "data": {
+        "modelId": "gpt-4o-mini",
+        "category": "secret-scan",
+        "summary": "Repeats false positives for base64-encoded example tokens in docs."
+      }
+    },
+    {
+      "_purpose": "Emitted when a quality lesson is logged.",
+      "version": "2.2.0",
+      "eventId": "evt-lesson-001",
+      "eventType": "lesson-logged",
+      "timestamp": "2026-06-18T12:02:00.000Z",
+      "source": "user-command",
+      "private": true,
+      "data": {
+        "lessonId": "lesson-001",
+        "summary": "Gate failures in traceability can be reduced by referencing skill files earlier in session.",
+        "relatedEventIds": [
+          "evt-gate-result-001",
+          "evt-session-end-001"
+        ]
+      }
+    }
+  ]
+}

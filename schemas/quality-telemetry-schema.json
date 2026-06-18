@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality Telemetry Event",
+  "description": "Schema for Vibe Coding OS v2.2 quality telemetry events. Events are local-first and may be filtered from shared logs using the private flag.",
+  "type": "object",
+  "required": ["version", "eventId", "eventType", "timestamp", "source", "private", "data"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Telemetry schema version for event evolution.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "eventId": {
+      "type": "string",
+      "description": "Unique event identifier, preferably a UUID or stable run-scoped ID.",
+      "minLength": 1
+    },
+    "eventType": {
+      "type": "string",
+      "description": "Kind of quality telemetry event.",
+      "enum": [
+        "quality-engine-run",
+        "gate-result",
+        "session-start",
+        "session-end",
+        "model-config-change",
+        "weakness-logged",
+        "lesson-logged"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Event timestamp in ISO 8601 format.",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "description": "Subsystem or actor that emitted the event.",
+      "enum": ["engine-runner", "adapter-gate-selector", "user-command"]
+    },
+    "private": {
+      "type": "boolean",
+      "description": "When true, exclude this event from shared or exported logs. Local retention is allowed."
+    },
+    "data": {
+      "type": "object",
+      "description": "Event payload. Required fields depend on eventType."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "eventType": { "const": "gate-result" } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/gateResultData" } } }
+    },
+    {
+      "if": { "properties": { "eventType": { "enum": ["session-start", "session-end"] } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/sessionData" } } }
+    },
+    {
+      "if": { "properties": { "eventType": { "const": "model-config-change" } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/modelConfigChangeData" } } }
+    },
+    {
+      "if": { "properties": { "eventType": { "const": "quality-engine-run" } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/qualityEngineRunData" } } }
+    },
+    {
+      "if": { "properties": { "eventType": { "const": "weakness-logged" } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/weaknessLoggedData" } } }
+    },
+    {
+      "if": { "properties": { "eventType": { "const": "lesson-logged" } } },
+      "then": { "properties": { "data": { "$ref": "#/definitions/lessonLoggedData" } } }
+    }
+  ],
+  "definitions": {
+    "gateResultData": {
+      "type": "object",
+      "required": ["gateId", "pass", "duration", "warnings"],
+      "additionalProperties": true,
+      "properties": {
+        "gateId": { "type": "string", "minLength": 1 },
+        "pass": { "type": "boolean" },
+        "duration": { "type": "integer", "description": "Gate duration in milliseconds.", "minimum": 0 },
+        "warnings": { "type": "integer", "description": "Number of warnings emitted by the gate.", "minimum": 0 }
+      }
+    },
+    "sessionData": {
+      "type": "object",
+      "required": ["sessionId", "modelId", "taskType", "gatesRun", "gatesPassed", "gatesFailed", "duration", "outcomes"],
+      "additionalProperties": true,
+      "properties": {
+        "sessionId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "taskType": { "type": "string", "minLength": 1 },
+        "gatesRun": { "type": "integer", "minimum": 0 },
+        "gatesPassed": { "type": "integer", "minimum": 0 },
+        "gatesFailed": { "type": "integer", "minimum": 0 },
+        "duration": { "type": "integer", "description": "Session duration in milliseconds.", "minimum": 0 },
+        "outcomes": {
+          "type": "object",
+          "description": "Outcome summary for the session.",
+          "additionalProperties": true,
+          "properties": {
+            "summary": { "type": "string" },
+            "status": { "type": "string", "enum": ["started", "passed", "failed", "partial", "cancelled"] },
+            "warnings": { "type": "integer", "minimum": 0 },
+            "artifacts": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "modelConfigChangeData": {
+      "type": "object",
+      "required": ["modelId", "previousProfile", "newProfile"],
+      "additionalProperties": true,
+      "properties": {
+        "modelId": { "type": "string", "minLength": 1 },
+        "previousProfile": { "type": ["string", "object", "null"] },
+        "newProfile": { "type": ["string", "object"] }
+      }
+    },
+    "qualityEngineRunData": {
+      "type": "object",
+      "required": ["sessionId", "profile", "gatesRun", "gatesPassed", "gatesFailed", "duration"],
+      "additionalProperties": true,
+      "properties": {
+        "sessionId": { "type": "string", "minLength": 1 },
+        "profile": { "type": "string", "minLength": 1 },
+        "gatesRun": { "type": "integer", "minimum": 0 },
+        "gatesPassed": { "type": "integer", "minimum": 0 },
+        "gatesFailed": { "type": "integer", "minimum": 0 },
+        "duration": { "type": "integer", "description": "Run duration in milliseconds.", "minimum": 0 }
+      }
+    },
+    "weaknessLoggedData": {
+      "type": "object",
+      "required": ["modelId", "category", "summary"],
+      "additionalProperties": true,
+      "properties": {
+        "modelId": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 }
+      }
+    },
+    "lessonLoggedData": {
+      "type": "object",
+      "required": ["lessonId", "summary"],
+      "additionalProperties": true,
+      "properties": {
+        "lessonId": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "relatedEventIds": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -425,6 +425,11 @@
       "name": "vibe-model-config",
       "path": "commands/vibe-model-config.md",
       "description": "Configure model-aware quality gates from model capability, task risk, and project settings."
+    },
+    {
+      "name": "vibe-quality-telemetry",
+      "path": "commands/vibe-quality-telemetry.md",
+      "description": "Emit quality events, aggregate session metrics, and generate local trend reports."
     }
   ]
 }

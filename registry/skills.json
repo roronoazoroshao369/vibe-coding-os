@@ -660,6 +660,12 @@
       "path": "skills/core/quality-engine/SKILL.md",
       "category": "core",
       "description": "Run a coordinated quality engine that selects gates by profile, captures timing, and produces actionable fix recommendations."
+    },
+    {
+      "name": "quality-telemetry",
+      "path": "skills/core/quality-telemetry/SKILL.md",
+      "category": "core",
+      "description": "Collect local quality telemetry from engine runs, aggregate session metrics, and generate trend reports for continuous improvement."
     }
   ]
 }

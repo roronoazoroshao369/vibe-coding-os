@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "2.2.0",
+  "generatedAt": "2026-06-18T12:34:56.789Z",
+  "source": "docs/metrics/quality-events.ndjson",
+  "filters": {
+    "since": null,
+    "model": null
+  },
+  "summary": {
+    "totalEvents": 12,
+    "totalSessions": 3,
+    "totalGateRuns": 12,
+    "totalGatePasses": 9,
+    "totalGateFailures": 3,
+    "overallPassRate": 75
+  },
+  "sessions": [
+    {
+      "sessionId": "session-alpha",
+      "gatesRun": 5,
+      "gatesPassed": 4,
+      "gatesFailed": 1,
+      "passRate": 80,
+      "durationMs": 8720,
+      "modelId": "gpt-4o",
+      "taskType": "auth-bugfix",
+      "startedAt": "2026-06-18T10:00:00.000Z",
+      "finishedAt": "2026-06-18T10:00:08.720Z"
+    },
+    {
+      "sessionId": "session-bravo",
+      "gatesRun": 4,
+      "gatesPassed": 3,
+      "gatesFailed": 1,
+      "passRate": 75,
+      "durationMs": 6150,
+      "modelId": "claude-3.5-sonnet",
+      "taskType": "data-migration",
+      "startedAt": "2026-06-18T10:05:00.000Z",
+      "finishedAt": "2026-06-18T10:05:06.150Z"
+    },
+    {
+      "sessionId": "session-charlie",
+      "gatesRun": 3,
+      "gatesPassed": 2,
+      "gatesFailed": 1,
+      "passRate": 66.67,
+      "durationMs": 5340,
+      "modelId": "gpt-4o",
+      "taskType": "ui-polish",
+      "startedAt": "2026-06-18T10:12:00.000Z",
+      "finishedAt": "2026-06-18T10:12:05.340Z"
+    }
+  ],
+  "gates": [
+    {
+      "gateId": "repo-structure",
+      "totalRuns": 3,
+      "totalPasses": 3,
+      "totalFailures": 0,
+      "passRate": 100,
+      "avgDurationMs": 1240
+    },
+    {
+      "gateId": "secret-scan",
+      "totalRuns": 3,
+      "totalPasses": 2,
+      "totalFailures": 1,
+      "passRate": 66.67,
+      "avgDurationMs": 1890
+    },
+    {
+      "gateId": "traceability",
+      "totalRuns": 3,
+      "totalPasses": 2,
+      "totalFailures": 1,
+      "passRate": 66.67,
+      "avgDurationMs": 2110
+    },
+    {
+      "gateId": "injection-scan",
+      "totalRuns": 3,
+      "totalPasses": 2,
+      "totalFailures": 1,
+      "passRate": 66.67,
+      "avgDurationMs": 2350
+    }
+  ],
+  "models": [
+    {
+      "modelId": "gpt-4o",
+      "totalSessions": 2,
+      "avgPassRate": 73.33,
+      "topGates": [
+        { "gate": "repo-structure", "count": 2 },
+        { "gate": "secret-scan", "count": 2 }
+      ],
+      "commonlyFailedGates": [
+        { "gate": "injection-scan", "count": 1 },
+        { "gate": "traceability", "count": 1 }
+      ]
+    },
+    {
+      "modelId": "claude-3.5-sonnet",
+      "totalSessions": 1,
+      "avgPassRate": 75,
+      "topGates": [
+        { "gate": "repo-structure", "count": 1 },
+        { "gate": "secret-scan", "count": 1 }
+      ],
+      "commonlyFailedGates": [
+        { "gate": "traceability", "count": 1 }
+      ]
+    }
+  ],
+  "warnings": []
+}
