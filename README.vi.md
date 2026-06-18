@@ -20,7 +20,7 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.5.0):** validate:all 23/23 gates PASS · **111 skills** · **86 commands** · **74 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.5.0):** validate:all 23/23 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Docs hub](docs/README.md)
 

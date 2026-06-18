@@ -1,0 +1,161 @@
+name: Vibe Quality Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+concurrency:
+  group: vibe-quality-gate-${{ github.event.pull_request.number }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: Quality gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect changed files
+        id: changed-files
+        shell: bash
+        run: |
+          git diff --name-only --diff-filter=ACMRT "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > changed-files.txt
+          echo "count=$(wc -l < changed-files.txt | tr -d ' ')" >> "$GITHUB_OUTPUT"
+          sed 's/^/- /' changed-files.txt >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run quality gates
+        id: gates
+        shell: bash
+        continue-on-error: true
+        run: |
+          mkdir -p quality-reports
+          set +e
+          npm run validate:all 2>&1 | tee quality-reports/validate-all.log
+          status=${PIPESTATUS[0]}
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -eq 0 ]; then
+            echo "status=passed" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=failed" >> "$GITHUB_OUTPUT"
+            echo "::error title=Vibe quality gates failed::npm run validate:all exited with $status. See quality report artifact for details."
+          fi
+          exit 0
+
+      - name: Run secret scan
+        id: secrets
+        shell: bash
+        continue-on-error: true
+        run: |
+          mkdir -p quality-reports
+          set +e
+          npm run validate:secrets 2>&1 | tee quality-reports/secret-scan.log
+          status=${PIPESTATUS[0]}
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -eq 0 ]; then
+            echo "status=passed" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=failed" >> "$GITHUB_OUTPUT"
+            echo "::error title=Secret scan failed::Potential secret exposure detected. Review the scan log before merging."
+          fi
+          exit 0
+
+      - name: Generate quality report
+        id: report
+        shell: bash
+        run: |
+          mkdir -p quality-reports
+          node scripts/quality-engine.mjs --output-json --timeout-ms=540000 > quality-reports/quality-engine.json || true
+          node scripts/quality-engine-report.mjs --output-json=quality-reports/quality-engine.json --output-dir=quality-reports || true
+          latest_md=$(ls -t quality-reports/*.md 2>/dev/null | head -n 1 || true)
+          if [ -n "$latest_md" ]; then
+            cp "$latest_md" quality-reports/quality-summary.md
+          else
+            {
+              echo "# Vibe Quality Report"
+              echo
+              echo "- Quality gates: ${{ steps.gates.outputs.status }}"
+              echo "- Secret scan: ${{ steps.secrets.outputs.status }}"
+              echo "- Changed files: ${{ steps.changed-files.outputs.count }}"
+            } > quality-reports/quality-summary.md
+          fi
+          cat quality-reports/quality-summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Annotate failed gates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'quality-reports/quality-engine.json';
+            if (!fs.existsSync(path)) return;
+            let report;
+            try { report = JSON.parse(fs.readFileSync(path, 'utf8')); } catch { return; }
+            for (const result of report.results || []) {
+              if (result.passed) continue;
+              const command = result.critical ? 'error' : 'warning';
+              const message = `${result.name || result.id} ${result.timedOut ? 'timed out' : 'failed'} after ${result.durationMs || 0}ms`;
+              core[command](message, { title: `Vibe gate: ${result.id || result.name}` });
+            }
+
+      - name: Upload quality report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vibe-quality-report-${{ github.event.pull_request.number }}
+          path: quality-reports/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Comment PR quality summary
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- vibe-quality-gate-summary -->';
+            const gatesStatus = '${{ steps.gates.outputs.status }}' || 'unknown';
+            const secretsStatus = '${{ steps.secrets.outputs.status }}' || 'unknown';
+            const changedCount = '${{ steps.changed-files.outputs.count }}' || '0';
+            let score = gatesStatus === 'passed' && secretsStatus === 'passed' ? 100 : 50;
+            let gateRows = [
+              `| validate:all | ${gatesStatus === 'passed' ? '✅ passed' : '❌ failed'} | see log |`,
+              `| secret scan | ${secretsStatus === 'passed' ? '✅ passed' : '❌ failed'} | see log |`
+            ];
+            let warnings = [];
+            if (gatesStatus !== 'passed') warnings.push('Quality gates failed. Review `validate-all.log`.');
+            if (secretsStatus !== 'passed') warnings.push('Secret scan failed. Review `secret-scan.log`.');
+            let body = `${marker}\n## Vibe Quality Gate — ![score](https://img.shields.io/badge/quality-${score}%25-${score === 100 ? 'brightgreen' : 'orange'})\n\n` +
+              `Changed files scanned when available: **${changedCount}**\n\n` +
+              `| Gate | Status | Duration |\n| --- | --- | --- |\n${gateRows.join('\n')}\n\n` +
+              `### Warnings\n${warnings.length ? warnings.map(w => `- ${w}`).join('\n') : '- None'}\n\n` +
+              `### Action items\n${score === 100 ? '- No action required.' : '- Fix failed gates and push an update.'}\n\n` +
+              `Full report: download the \`vibe-quality-report-${{ github.event.pull_request.number }}\` workflow artifact.`;
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.rest.issues.listComments({ owner, repo, issue_number, per_page: 100 });
+            const existing = comments.data.find(c => c.user.type === 'Bot' && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Fail on quality gate errors
+        if: steps.gates.outputs.status != 'passed' || steps.secrets.outputs.status != 'passed'
+        run: exit 1

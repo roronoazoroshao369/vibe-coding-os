@@ -289,6 +289,38 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 | Registry entries (`skills.json`, `prompts.json`) | ✅ Done |
 | Runtime script implementations (`quality-event-emitter`, `session-metrics-collector`, `quality-trend-report`) | ✅ Done |
 
+## v2.3 — Multi-Repository Learning
+**Status:** ✅ COMPLETE
+
+| Deliverable | Status |
+|---|---|
+| Lesson exchange schema (`schemas/lesson-exchange-format.json`) | ✅ Done |
+| Lesson exporter/importer scripts | ✅ Done |
+| Lesson quality checker | ✅ Done |
+| Lesson exchange sample template | ✅ Done |
+
+## v2.4 — CI/CD Integration
+**Status:** ✅ COMPLETE
+
+| Deliverable | Status |
+|---|---|
+| PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | ✅ Done |
+| Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | ✅ Done |
+| Reusable GitHub composite action | ✅ Done |
+| PR quality summary template | ✅ Done |
+| CI/CD integration guide | ✅ Done |
+
+## v2.5 — Advanced Orchestration
+**Status:** ✅ COMPLETE
+
+| Deliverable | Status |
+|---|---|
+| Orchestration workflow schema (`schemas/orchestration-workflow.json`) | ✅ Done |
+| Workflow templates (feature, bugfix, security audit) | ✅ Done |
+| Workflow runner (`scripts/orchestrate-workflow.mjs`) | ✅ Done |
+| Orchestration skill and command | ✅ Done |
+| Orchestration guide | ✅ Done |
+
 ---
 
 ## Overall Progress
@@ -313,3 +345,6 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.0:   ████████████ 100%
 - v2.1:   ████████████ 100%
 - v2.2:   ████████████ 100%
+- v2.3:   ████████████ 100%
+- v2.4:   ████████████ 100%
+- v2.5:   ████████████ 100%

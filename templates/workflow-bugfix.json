@@ -1,0 +1,69 @@
+{
+  "workflowId": "bugfix",
+  "name": "Bugfix Workflow",
+  "description": "Streamlined analyze-fix-review-verify pipeline for bug resolution with quality gates focused on correctness and security.",
+  "stages": [
+    {
+      "stageId": "analyze",
+      "name": "Root Cause Analysis",
+      "type": "plan",
+      "agentRole": "debugger",
+      "inputs": ["bug-report", "logs", "reproduction-steps"],
+      "outputs": ["root-cause.md"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT30M",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 5000 }
+    },
+    {
+      "stageId": "fix",
+      "name": "Implement Fix",
+      "type": "implement",
+      "agentRole": "engineer",
+      "inputs": ["root-cause.md"],
+      "outputs": ["code-changes"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 2, "backoffMs": 10000 }
+    },
+    {
+      "stageId": "review",
+      "name": "Review Fix",
+      "type": "review",
+      "agentRole": "reviewer",
+      "inputs": ["code-changes", "root-cause.md"],
+      "outputs": ["review-notes.md"],
+      "gates": [
+        { "gateId": "quality-diff-audit", "level": "warning", "requiredForAdvance": false }
+      ],
+      "optional": false,
+      "timeout": "PT30M",
+      "retryPolicy": { "maxRetries": 0, "backoffMs": 0 }
+    },
+    {
+      "stageId": "verify",
+      "name": "Verify Fix",
+      "type": "verify",
+      "agentRole": "tester",
+      "inputs": ["code-changes", "root-cause.md"],
+      "outputs": ["verification-report.md"],
+      "gates": [
+        { "gateId": "validate-all", "level": "critical", "requiredForAdvance": true }
+      ],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 5000 }
+    }
+  ],
+  "triggers": [
+    { "event": "manual" },
+    { "event": "on-push", "branch": "fix/*" }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "author": "vibe-coding-os",
+    "createdAt": "2026-06-18T00:00:00Z",
+    "tags": ["bugfix", "hotfix", "streamlined"]
+  }
+}

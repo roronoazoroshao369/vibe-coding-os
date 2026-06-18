@@ -38,10 +38,22 @@
       "description": "Validate API endpoint changes for contract correctness, error handling, auth, rate limiting, backwards compatibility, and test coverage."
     },
     {
+      "name": "auth-quality",
+      "path": "skills/checklists/auth-quality/SKILL.md",
+      "category": "checklists",
+      "description": "Review authentication, session, and permissions changes for security controls and negative test coverage."
+    },
+    {
       "name": "db-migration-quality",
       "path": "skills/checklists/db-migration-quality/SKILL.md",
       "category": "checklists",
       "description": "Validate database migrations for safety, reversibility, data integrity, and zero-downtime compatibility."
+    },
+    {
+      "name": "frontend-state-quality",
+      "path": "skills/checklists/frontend-state-quality/SKILL.md",
+      "category": "checklists",
+      "description": "Review frontend state changes for predictable mutations, complete UI states, side-effect cleanup, and transition tests."
     },
     {
       "name": "acceptance-criteria",
@@ -54,6 +66,12 @@
       "path": "skills/core/adaptive-flow/SKILL.md",
       "category": "core",
       "description": "Select the lightest useful workflow tier for a task while preserving required verification."
+    },
+    {
+      "name": "adaptive-prompt-selection",
+      "path": "skills/core/adaptive-prompt-selection/SKILL.md",
+      "category": "core",
+      "description": "Auto-classify task type and select relevant quality packs from the registry."
     },
     {
       "name": "adversarial-code-review",
@@ -176,6 +194,30 @@
       "description": "Slice PRDs and plans into independently grabbable vertical issues."
     },
     {
+      "name": "lessons-learned-db",
+      "path": "skills/core/lessons-learned-db/SKILL.md",
+      "category": "core",
+      "description": "Maintain a structured searchable record of coding mistakes, fixes, and prevention rules for future similar work."
+    },
+    {
+      "name": "model-aware-config",
+      "path": "skills/core/model-aware-config/SKILL.md",
+      "category": "core",
+      "description": "Configure quality gates from model capability and task risk before Quality Engine execution."
+    },
+    {
+      "name": "model-weakness-memory",
+      "path": "skills/core/model-weakness-memory/SKILL.md",
+      "category": "core",
+      "description": "Track known failure patterns for model types and auto-inject relevant checks before tasks."
+    },
+    {
+      "name": "orchestration-workflows",
+      "path": "skills/core/orchestration-workflows/SKILL.md",
+      "category": "core",
+      "description": "Define and execute stage-gated multi-agent workflows with quality gates."
+    },
+    {
       "name": "plan-driven-execution",
       "path": "skills/core/plan-driven-execution/SKILL.md",
       "category": "core",
@@ -206,16 +248,22 @@
       "description": "Use disposable prototypes to reduce uncertainty before commitment."
     },
     {
+      "name": "quality-engine",
+      "path": "skills/core/quality-engine/SKILL.md",
+      "category": "core",
+      "description": "Run a coordinated quality engine that selects gates by profile, captures timing, and produces actionable fix recommendations."
+    },
+    {
       "name": "quality-execution-contract",
       "path": "skills/core/quality-execution-contract/SKILL.md",
       "category": "core",
       "description": "Force explicit intent declaration before any code edit with a pre-coding contract."
     },
     {
-      "name": "model-aware-config",
-      "path": "skills/core/model-aware-config/SKILL.md",
+      "name": "quality-telemetry",
+      "path": "skills/core/quality-telemetry/SKILL.md",
       "category": "core",
-      "description": "Configure quality gates from model capability and task risk before Quality Engine execution."
+      "description": "Collect local quality telemetry from engine runs, aggregate session metrics, and generate trend reports for continuous improvement."
     },
     {
       "name": "receiving-code-review",
@@ -608,10 +656,10 @@
       "description": "Change existing code safely using characterization tests, seams, and dependency-breaking patterns."
     },
     {
-      "name": "compact-agents-md-template",
-      "path": "skills/templates/agents-md-compact/SKILL.md",
-      "category": "templates",
-      "description": "Generate or adapt a concise AGENTS.md with validation commands, layout, constraints, and quality gates."
+      "name": "async-job-quality",
+      "path": "skills/checklists/async-job-quality/SKILL.md",
+      "category": "quality",
+      "description": "Checklist-driven quality review for queue jobs, scheduled tasks, background workers, webhook handlers, and batch processing."
     },
     {
       "name": "quality-evaluation-scenarios",
@@ -620,52 +668,10 @@
       "description": "Evaluate whether the Quality Shield improves mid-tier coding behavior."
     },
     {
-      "name": "async-job-quality",
-      "path": "skills/checklists/async-job-quality/SKILL.md",
-      "category": "quality",
-      "description": "Checklist-driven quality review for queue jobs, scheduled tasks, background workers, webhook handlers, and batch processing."
-    },
-    {
-      "name": "auth-quality",
-      "path": "skills/checklists/auth-quality/SKILL.md",
-      "category": "checklists",
-      "description": "Review authentication, session, and permissions changes for security controls and negative test coverage."
-    },
-    {
-      "name": "frontend-state-quality",
-      "path": "skills/checklists/frontend-state-quality/SKILL.md",
-      "category": "checklists",
-      "description": "Review frontend state changes for predictable mutations, complete UI states, side-effect cleanup, and transition tests."
-    },
-    {
-      "name": "model-weakness-memory",
-      "path": "skills/core/model-weakness-memory/SKILL.md",
-      "category": "core",
-      "description": "Track known failure patterns for model types and auto-inject relevant checks before tasks."
-    },
-    {
-      "name": "adaptive-prompt-selection",
-      "path": "skills/core/adaptive-prompt-selection/SKILL.md",
-      "category": "core",
-      "description": "Auto-classify task type and select relevant quality packs from the registry."
-    },
-    {
-      "name": "lessons-learned-db",
-      "path": "skills/core/lessons-learned-db/SKILL.md",
-      "category": "core",
-      "description": "Maintain a structured searchable record of coding mistakes, fixes, and prevention rules for future similar work."
-    },
-    {
-      "name": "quality-engine",
-      "path": "skills/core/quality-engine/SKILL.md",
-      "category": "core",
-      "description": "Run a coordinated quality engine that selects gates by profile, captures timing, and produces actionable fix recommendations."
-    },
-    {
-      "name": "quality-telemetry",
-      "path": "skills/core/quality-telemetry/SKILL.md",
-      "category": "core",
-      "description": "Collect local quality telemetry from engine runs, aggregate session metrics, and generate trend reports for continuous improvement."
+      "name": "compact-agents-md-template",
+      "path": "skills/templates/agents-md-compact/SKILL.md",
+      "category": "templates",
+      "description": "Generate or adapt a concise AGENTS.md with validation commands, layout, constraints, and quality gates."
     }
   ]
 }

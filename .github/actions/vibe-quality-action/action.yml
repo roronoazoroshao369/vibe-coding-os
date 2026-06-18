@@ -1,0 +1,103 @@
+name: 'Vibe Quality Action'
+description: 'Run Vibe Coding OS quality gates and emit a Markdown or JSON report.'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  model:
+    description: 'Model profile to run (lean, standard, heavy). Falls back to the repository default.'
+    required: false
+    default: ''
+  gates:
+    description: 'Comma-separated gate IDs to run. Defaults to the repository profile or config.'
+    required: false
+    default: ''
+  output-format:
+    description: 'Report format: json or markdown.'
+    required: false
+    default: 'markdown'
+
+outputs:
+  status:
+    description: 'passed or failed'
+    value: ${{ steps.run-gates.outputs.status }}
+  report-path:
+    description: 'Path to the generated report.'
+    value: ${{ steps.generate-report.outputs.report-path }}
+  report-content:
+    description: 'Text content of the generated report for quick inline use.'
+    value: ${{ steps.generate-report.outputs.report-content }}
+  gate-summary:
+    description: 'One-line gate summary for annotations and summaries.'
+    value: ${{ steps.generate-report.outputs.gate-summary }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Run vibe quality gates
+      id: run-gates
+      shell: bash
+      run: |
+        mkdir -p vibe-quality-action
+        profile_input=$(echo "${{ inputs.model }}" | tr '[:upper:]' '[:lower:]' | xargs)
+        gates_input=$(echo "${{ inputs.gates }}" | xargs)
+        set +e
+        if [ -n "$gates_input" ]; then
+          node scripts/quality-engine.mjs --output-json --gates="$gates_input" > vibe-quality-action/engine.json
+        elif [ -n "$profile_input" ]; then
+          node scripts/quality-engine.mjs --output-json --profile="$profile_input" > vibe-quality-action/engine.json
+        else
+          node scripts/quality-engine.mjs --output-json > vibe-quality-action/engine.json
+        fi
+        status=$?
+        echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+        if [ "$status" -eq 0 ]; then
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+        else
+          echo "status=failed" >> "$GITHUB_OUTPUT"
+          echo "::warning title=Vibe quality gates failed::One or more quality gates failed."
+        fi
+        exit 0
+
+    - name: Generate report
+      id: generate-report
+      shell: bash
+      run: |
+        mkdir -p vibe-quality-action
+        format=$(echo "${{ inputs.output-format }}" | tr '[:upper:]' '[:lower:]' | xargs)
+        report_path=""
+        if [ "$format" = "json" ]; then
+          report_path="vibe-quality-action/quality-report.json"
+          cp vibe-quality-action/engine.json "$report_path" 2>/dev/null || echo '{}' > "$report_path"
+        else
+          report_path="vibe-quality-action/quality-report.md"
+          node scripts/quality-engine-report.mjs --output-json=vibe-quality-action/engine.json --output-dir=vibe-quality-action >/dev/null 2>&1 || true
+          generated=$(ls -t vibe-quality-action/*.md 2>/dev/null | head -n 1 || true)
+          if [ -n "$generated" ]; then
+            cp "$generated" "$report_path"
+          else
+            {
+              echo '# Vibe Quality Report'
+              echo
+              echo "- status: ${{ steps.run-gates.outputs.status }}"
+            } > "$report_path"
+          fi
+        fi
+        echo "report-path=$report_path" >> "$GITHUB_OUTPUT"
+        content=$(cat "$report_path" 2>/dev/null || true)
+        echo "report-content<<EOF" >> "$GITHUB_OUTPUT"
+        echo "$content" >> "$GITHUB_OUTPUT"
+        echo "EOF" >> "$GITHUB_OUTPUT"
+        exit_code=$(jq -r '.summary.failed // 0' vibe-quality-action/engine.json 2>/dev/null || echo 0)
+        echo "gate-summary=${{ steps.run-gates.outputs.status }} | failed=$exit_code | report=$report_path" >> "$GITHUB_OUTPUT"

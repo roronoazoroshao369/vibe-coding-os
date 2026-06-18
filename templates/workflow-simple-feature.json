@@ -1,0 +1,83 @@
+{
+  "workflowId": "simple-feature",
+  "name": "Simple Feature Workflow",
+  "description": "Standard plan-implement-review-verify-handoff pipeline for typical feature development with quality gates at review and verify stages.",
+  "stages": [
+    {
+      "stageId": "plan",
+      "name": "Planning",
+      "type": "plan",
+      "agentRole": "architect",
+      "inputs": ["task-description", "requirements"],
+      "outputs": ["task-plan.md", "file-list.md"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT30M",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 5000 }
+    },
+    {
+      "stageId": "implement",
+      "name": "Implementation",
+      "type": "implement",
+      "agentRole": "engineer",
+      "inputs": ["task-plan.md", "file-list.md"],
+      "outputs": ["code-changes", "test-results"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT2H",
+      "retryPolicy": { "maxRetries": 2, "backoffMs": 10000 }
+    },
+    {
+      "stageId": "review",
+      "name": "Code Review",
+      "type": "review",
+      "agentRole": "reviewer",
+      "inputs": ["code-changes", "task-plan.md"],
+      "outputs": ["review-notes.md"],
+      "gates": [
+        { "gateId": "quality-diff-audit", "level": "warning", "requiredForAdvance": false },
+        { "gateId": "secret-scan", "level": "critical", "requiredForAdvance": true }
+      ],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 0, "backoffMs": 0 }
+    },
+    {
+      "stageId": "verify",
+      "name": "Verification",
+      "type": "verify",
+      "agentRole": "tester",
+      "inputs": ["code-changes", "test-results"],
+      "outputs": ["verification-report.md"],
+      "gates": [
+        { "gateId": "validate-all", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "quality-engine", "level": "warning", "requiredForAdvance": false }
+      ],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 5000 }
+    },
+    {
+      "stageId": "handoff",
+      "name": "Handoff",
+      "type": "handoff",
+      "agentRole": "orchestrator",
+      "inputs": ["review-notes.md", "verification-report.md"],
+      "outputs": ["summary.md"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT15M",
+      "retryPolicy": { "maxRetries": 0, "backoffMs": 0 }
+    }
+  ],
+  "triggers": [
+    { "event": "manual" },
+    { "event": "on-push", "branch": "feat/*" }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "author": "vibe-coding-os",
+    "createdAt": "2026-06-18T00:00:00Z",
+    "tags": ["feature", "standard", "default"]
+  }
+}

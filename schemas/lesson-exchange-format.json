@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Lesson Exchange Format",
+  "description": "Portable Vibe Coding OS v2.3 lesson exchange format for auditable cross-repository lesson sharing.",
+  "oneOf": [
+    { "$ref": "#/definitions/lesson" },
+    { "$ref": "#/definitions/exchangeBatch" }
+  ],
+  "definitions": {
+    "version": {
+      "type": "string",
+      "description": "Schema version for format evolution.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isoDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lesson": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "lessonId",
+        "repoId",
+        "repoName",
+        "modelId",
+        "timestamp",
+        "lessonType",
+        "pattern",
+        "context",
+        "fix",
+        "tags",
+        "confidence",
+        "scope",
+        "source",
+        "expiry",
+        "crossRepoVerified"
+      ],
+      "properties": {
+        "version": { "$ref": "#/definitions/version" },
+        "lessonId": { "type": "string", "minLength": 1 },
+        "repoId": { "type": "string", "minLength": 1 },
+        "repoName": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "timestamp": { "$ref": "#/definitions/isoDateTime" },
+        "lessonType": {
+          "type": "string",
+          "enum": ["code-pattern", "mistake-fix", "anti-pattern", "gotcha", "performance-trick"]
+        },
+        "pattern": { "type": "string", "minLength": 1 },
+        "context": { "type": "string", "minLength": 1 },
+        "fix": { "type": "string", "minLength": 1 },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "scope": { "type": "string", "enum": ["global", "language", "framework", "repo"] },
+        "source": { "type": "string", "enum": ["user", "quality-engine", "telemetry-analysis"] },
+        "expiry": {
+          "description": "ISO calendar date when the lesson should stop being imported, or null for no expiry.",
+          "anyOf": [
+            { "$ref": "#/definitions/isoDate" },
+            { "type": "null" }
+          ]
+        },
+        "crossRepoVerified": { "type": "boolean" }
+      }
+    },
+    "exchangeBatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "exportedAt", "exportedBy", "lessons"],
+      "properties": {
+        "version": { "$ref": "#/definitions/version" },
+        "exportedAt": { "$ref": "#/definitions/isoDateTime" },
+        "exportedBy": { "type": "string", "minLength": 1 },
+        "lessons": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/lesson" }
+        }
+      }
+    }
+  }
+}

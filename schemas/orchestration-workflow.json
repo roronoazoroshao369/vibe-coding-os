@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vibe-coding-os/schemas/orchestration-workflow.schema.json",
+  "title": "Orchestration Workflow",
+  "description": "JSON Schema for multi-agent orchestration workflows with stage-gated pipelines in Vibe Coding OS v2.5",
+  "type": "object",
+  "required": ["workflowId", "name", "stages", "metadata"],
+  "properties": {
+    "workflowId": {
+      "type": "string",
+      "description": "Unique identifier for this workflow",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable workflow name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Purpose and scope of this workflow"
+    },
+    "stages": {
+      "type": "array",
+      "description": "Ordered list of stages to execute sequentially",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/stage" }
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Events that can initiate this workflow",
+      "items": { "$ref": "#/definitions/trigger" }
+    },
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    }
+  },
+  "definitions": {
+    "stage": {
+      "type": "object",
+      "description": "A single stage in the workflow pipeline",
+      "required": ["stageId", "name", "type", "agentRole"],
+      "properties": {
+        "stageId": {
+          "type": "string",
+          "description": "Unique identifier for this stage within the workflow",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable stage name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Stage type determining default behavior",
+          "enum": ["plan", "implement", "review", "verify", "handoff"]
+        },
+        "agentRole": {
+          "type": "string",
+          "description": "Role of the agent responsible for this stage (e.g., architect, engineer, reviewer, tester, orchestrator)"
+        },
+        "inputs": {
+          "type": "array",
+          "description": "Artifacts or data this stage consumes",
+          "items": { "type": "string" }
+        },
+        "outputs": {
+          "type": "array",
+          "description": "Artifacts or data this stage produces",
+          "items": { "type": "string" }
+        },
+        "gates": {
+          "type": "array",
+          "description": "Quality gates enforced at this stage",
+          "items": { "$ref": "#/definitions/gateRef" }
+        },
+        "optional": {
+          "type": "boolean",
+          "description": "If true, this stage can be skipped without blocking downstream stages",
+          "default": false
+        },
+        "timeout": {
+          "type": "string",
+          "description": "Maximum allowed duration in ISO 8601 duration format (e.g., PT30M, PT2H)",
+          "pattern": "^P.*T.*"
+        },
+        "retryPolicy": {
+          "$ref": "#/definitions/retryPolicy"
+        }
+      }
+    },
+    "gateRef": {
+      "type": "object",
+      "description": "Reference to a quality gate to enforce during stage advancement",
+      "required": ["gateId", "level", "requiredForAdvance"],
+      "properties": {
+        "gateId": {
+          "type": "string",
+          "description": "ID of the gate from quality-gate-manifest.json or a custom gate"
+        },
+        "level": {
+          "type": "string",
+          "description": "Severity level of this gate",
+          "enum": ["critical", "warning", "advisory"]
+        },
+        "requiredForAdvance": {
+          "type": "boolean",
+          "description": "If true, stage cannot advance until this gate passes"
+        }
+      }
+    },
+    "retryPolicy": {
+      "type": "object",
+      "description": "Retry configuration for stage execution failures",
+      "properties": {
+        "maxRetries": {
+          "type": "integer",
+          "description": "Maximum number of retry attempts",
+          "minimum": 0,
+          "default": 0
+        },
+        "backoffMs": {
+          "type": "integer",
+          "description": "Milliseconds between retries (linear backoff)",
+          "minimum": 0,
+          "default": 0
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "description": "Event trigger for workflow execution",
+      "required": ["event"],
+      "properties": {
+        "event": {
+          "type": "string",
+          "description": "Trigger event type",
+          "enum": ["on-merge", "on-push", "on-schedule", "manual"]
+        },
+        "branch": {
+          "type": ["string", "null"],
+          "description": "Branch pattern to match (null or omitted = any branch)"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Workflow metadata",
+      "required": ["version", "author", "createdAt"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Semantic version of this workflow definition"
+        },
+        "author": {
+          "type": "string",
+          "description": "Workflow author"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO 8601 creation timestamp",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Categorization tags",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

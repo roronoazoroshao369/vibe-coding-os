@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 111 |
-| Commands | 86 |
-| Templates | 74 |
-| Narrative files | 489 |
+| Skills | 112 |
+| Commands | 87 |
+| Templates | 79 |
+| Narrative files | 498 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 5 |
 | checklists | 5 |
-| core | 57 |
+| core | 58 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |

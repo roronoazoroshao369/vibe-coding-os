@@ -2,6 +2,16 @@
   "version": "0.1.0",
   "prompts": [
     {
+      "name": "vibe-adaptive-prompt",
+      "path": "commands/vibe-adaptive-prompt.md",
+      "description": "Classify task type and recommend the right quality prompt stack from the registry."
+    },
+    {
+      "name": "vibe-agents-md",
+      "path": "commands/vibe-agents-md.md",
+      "description": "Generate or adapt a compact AGENTS.md with validation commands, layout, constraints, and quality gates."
+    },
+    {
       "name": "vibe-analyze",
       "path": "commands/vibe-analyze.md",
       "description": "Check spec, plan, and tasks for cross-artifact consistency before implementation."
@@ -42,6 +52,11 @@
       "description": "Run phase-boundary validation and the implementation-readiness gate with recorded evidence."
     },
     {
+      "name": "vibe-code-context",
+      "path": "commands/vibe-code-context.md",
+      "description": "Assemble a code context pack before coding."
+    },
+    {
       "name": "vibe-constitution",
       "path": "commands/vibe-constitution.md",
       "description": "Create or update the project constitution of short, testable governing principles."
@@ -50,6 +65,11 @@
       "name": "vibe-context-inject",
       "path": "commands/vibe-context-inject.md",
       "description": "Build a scoped, citation-backed context injection bundle."
+    },
+    {
+      "name": "vibe-critique-pass",
+      "path": "commands/vibe-critique-pass.md",
+      "description": "Run a writer-then-critic quality pass using the critique pass template before finalizing work."
     },
     {
       "name": "vibe-debug",
@@ -122,6 +142,11 @@
       "description": "Orient a new session by inspecting instructions, repository state, registries, templates, skills, and next workflow step."
     },
     {
+      "name": "vibe-lessons-learned",
+      "path": "commands/vibe-lessons-learned.md",
+      "description": "Search, add, or review recent lessons learned from coding mistakes, fixes, reviews, and quality audits."
+    },
+    {
       "name": "vibe-memory",
       "path": "commands/vibe-memory.md",
       "description": "Create a privacy-filtered durable session summary with decisions, changed files, verification, questions, and next actions."
@@ -182,6 +207,21 @@
       "description": "Assess merge readiness by checking scope, acceptance criteria, validation, attribution, security, and follow-ups."
     },
     {
+      "name": "vibe-model-config",
+      "path": "commands/vibe-model-config.md",
+      "description": "Configure model-aware quality gates from model capability, task risk, and project settings."
+    },
+    {
+      "name": "vibe-model-weakness",
+      "path": "commands/vibe-model-weakness.md",
+      "description": "Load the model weakness log and recommend targeted checks for the current task."
+    },
+    {
+      "name": "vibe-orchestrate",
+      "path": "commands/vibe-orchestrate.md",
+      "description": "Run stage-gated orchestration workflows with plan, implement, review, verify, and handoff stages."
+    },
+    {
       "name": "vibe-parallel-explore",
       "path": "commands/vibe-parallel-explore.md",
       "description": "Compare candidate approaches against explicit criteria and record a deliberate decision."
@@ -202,9 +242,59 @@
       "description": "Run a disposable prototype to answer a design question."
     },
     {
+      "name": "vibe-quality-api",
+      "path": "commands/vibe-quality-api.md",
+      "description": "Run the API endpoint quality checklist for REST or GraphQL endpoint changes."
+    },
+    {
+      "name": "vibe-quality-async-job",
+      "path": "commands/vibe-quality-async-job.md",
+      "description": "Review or implement an async/background job using the async-job quality checklist."
+    },
+    {
+      "name": "vibe-quality-auth",
+      "path": "commands/vibe-quality-auth.md",
+      "description": "Run the auth and permissions quality checklist for login, session, token, role, or permission changes."
+    },
+    {
+      "name": "vibe-quality-db-migration",
+      "path": "commands/vibe-quality-db-migration.md",
+      "description": "Run the database migration quality checklist for schema changes, migrations, or backfills."
+    },
+    {
+      "name": "vibe-quality-engine",
+      "path": "commands/vibe-quality-engine.md",
+      "description": "Run the Quality Engine to execute selected quality gates, report timing, and recommend targeted fixes."
+    },
+    {
+      "name": "vibe-quality-frontend-state",
+      "path": "commands/vibe-quality-frontend-state.md",
+      "description": "Run the frontend state quality checklist for stores, side effects, forms, data fetching, and UI state transitions."
+    },
+    {
+      "name": "vibe-quality-gate",
+      "path": "commands/vibe-quality-gate.md",
+      "description": "Complete a quality execution contract before any code edit."
+    },
+    {
+      "name": "vibe-quality-rubric",
+      "path": "commands/vibe-quality-rubric.md",
+      "description": "Apply the universal code quality rubric before coding."
+    },
+    {
+      "name": "vibe-quality-telemetry",
+      "path": "commands/vibe-quality-telemetry.md",
+      "description": "Emit quality events, aggregate session metrics, and generate local trend reports."
+    },
+    {
       "name": "vibe-receive-review",
       "path": "commands/vibe-receive-review.md",
       "description": "Triage and address review feedback, rerun checks, and document deferred items."
+    },
+    {
+      "name": "vibe-red-team-review",
+      "path": "commands/vibe-red-team-review.md",
+      "description": "Run an adversarial red-team code review focused on correctness, safety, tests, compatibility, and minimal diff."
     },
     {
       "name": "vibe-reference-add",
@@ -235,6 +325,11 @@
       "name": "vibe-review",
       "path": "commands/vibe-review.md",
       "description": "Review the current diff against the spec and plan, prioritizing blockers, missing tests, security, attribution, and scope control."
+    },
+    {
+      "name": "vibe-self-review",
+      "path": "commands/vibe-self-review.md",
+      "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
     },
     {
       "name": "vibe-session-capture",
@@ -277,16 +372,6 @@
       "description": "Coordinate bounded subagent or parallel-agent work with clear ownership and integration."
     },
     {
-      "name": "vibe-team",
-      "path": "commands/vibe-team.md",
-      "description": "Design and coordinate a proportional team-agent workflow with roles, ownership, handoffs, and validation."
-    },
-    {
-      "name": "vibe-team-generate",
-      "path": "commands/vibe-team-generate.md",
-      "description": "Generate reviewable team-agent scaffold files (agent definitions, plan, optional role routing) from a deterministic JSON spec without starting a runtime."
-    },
-    {
       "name": "vibe-tasks",
       "path": "commands/vibe-tasks.md",
       "description": "Decompose an agreed plan into ordered tasks with dependencies, parallel markers, and TDD ordering."
@@ -295,6 +380,16 @@
       "name": "vibe-tdd",
       "path": "commands/vibe-tdd.md",
       "description": "Use red-green-refactor for behavior changes."
+    },
+    {
+      "name": "vibe-team",
+      "path": "commands/vibe-team.md",
+      "description": "Design and coordinate a proportional team-agent workflow with roles, ownership, handoffs, and validation."
+    },
+    {
+      "name": "vibe-team-generate",
+      "path": "commands/vibe-team-generate.md",
+      "description": "Generate reviewable team-agent scaffold files (agent definitions, plan, optional role routing) from a deterministic JSON spec without starting a runtime."
     },
     {
       "name": "vibe-to-issues",
@@ -315,41 +410,6 @@
       "name": "vibe-upstream-sync",
       "path": "commands/vibe-upstream-sync.md",
       "description": "Audit tracked upstream references, update reference metadata, and adapt high-fit ideas without vendoring upstream source."
-    },
-    {
-      "name": "vibe-quality-gate",
-      "path": "commands/vibe-quality-gate.md",
-      "description": "Complete a quality execution contract before any code edit."
-    },
-    {
-      "name": "vibe-quality-rubric",
-      "path": "commands/vibe-quality-rubric.md",
-      "description": "Apply the universal code quality rubric before coding."
-    },
-    {
-      "name": "vibe-quality-async-job",
-      "path": "commands/vibe-quality-async-job.md",
-      "description": "Review or implement an async/background job using the async-job quality checklist."
-    },
-    {
-      "name": "vibe-quality-api",
-      "path": "commands/vibe-quality-api.md",
-      "description": "Run the API endpoint quality checklist for REST or GraphQL endpoint changes."
-    },
-    {
-      "name": "vibe-quality-db-migration",
-      "path": "commands/vibe-quality-db-migration.md",
-      "description": "Run the database migration quality checklist for schema changes, migrations, or backfills."
-    },
-    {
-      "name": "vibe-self-review",
-      "path": "commands/vibe-self-review.md",
-      "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
-    },
-    {
-      "name": "vibe-code-context",
-      "path": "commands/vibe-code-context.md",
-      "description": "Assemble a code context pack before coding."
     },
     {
       "name": "vibe-verify",
@@ -375,61 +435,6 @@
       "name": "vibe-zoom-out",
       "path": "commands/vibe-zoom-out.md",
       "description": "Explain system context before architecture-sensitive changes."
-    },
-    {
-      "name": "vibe-red-team-review",
-      "path": "commands/vibe-red-team-review.md",
-      "description": "Run an adversarial red-team code review focused on correctness, safety, tests, compatibility, and minimal diff."
-    },
-    {
-      "name": "vibe-critique-pass",
-      "path": "commands/vibe-critique-pass.md",
-      "description": "Run a writer-then-critic quality pass using the critique pass template before finalizing work."
-    },
-    {
-      "name": "vibe-agents-md",
-      "path": "commands/vibe-agents-md.md",
-      "description": "Generate or adapt a compact AGENTS.md with validation commands, layout, constraints, and quality gates."
-    },
-    {
-      "name": "vibe-quality-auth",
-      "path": "commands/vibe-quality-auth.md",
-      "description": "Run the auth and permissions quality checklist for login, session, token, role, or permission changes."
-    },
-    {
-      "name": "vibe-quality-frontend-state",
-      "path": "commands/vibe-quality-frontend-state.md",
-      "description": "Run the frontend state quality checklist for stores, side effects, forms, data fetching, and UI state transitions."
-    },
-    {
-      "name": "vibe-model-weakness",
-      "path": "commands/vibe-model-weakness.md",
-      "description": "Load the model weakness log and recommend targeted checks for the current task."
-    },
-    {
-      "name": "vibe-adaptive-prompt",
-      "path": "commands/vibe-adaptive-prompt.md",
-      "description": "Classify task type and recommend the right quality prompt stack from the registry."
-    },
-    {
-      "name": "vibe-lessons-learned",
-      "path": "commands/vibe-lessons-learned.md",
-      "description": "Search, add, or review recent lessons learned from coding mistakes, fixes, reviews, and quality audits."
-    },
-    {
-      "name": "vibe-quality-engine",
-      "path": "commands/vibe-quality-engine.md",
-      "description": "Run the Quality Engine to execute selected quality gates, report timing, and recommend targeted fixes."
-    },
-    {
-      "name": "vibe-model-config",
-      "path": "commands/vibe-model-config.md",
-      "description": "Configure model-aware quality gates from model capability, task risk, and project settings."
-    },
-    {
-      "name": "vibe-quality-telemetry",
-      "path": "commands/vibe-quality-telemetry.md",
-      "description": "Emit quality events, aggregate session metrics, and generate local trend reports."
     }
   ]
 }

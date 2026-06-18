@@ -1,0 +1,92 @@
+{
+  "workflowId": "security-audit",
+  "name": "Security Audit Workflow",
+  "description": "High-rigor scan-analyze-remediate-verify-report pipeline for security-sensitive changes with all critical gates required at every stage.",
+  "stages": [
+    {
+      "stageId": "scan",
+      "name": "Security Scan",
+      "type": "plan",
+      "agentRole": "security-analyst",
+      "inputs": ["change-diff", "repo-context"],
+      "outputs": ["scan-results.md", "vulnerability-list.md"],
+      "gates": [
+        { "gateId": "injection-scan", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "secret-scan", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "memory-redaction", "level": "critical", "requiredForAdvance": true }
+      ],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 10000 }
+    },
+    {
+      "stageId": "analyze",
+      "name": "Threat Analysis",
+      "type": "plan",
+      "agentRole": "security-analyst",
+      "inputs": ["scan-results.md", "vulnerability-list.md"],
+      "outputs": ["threat-model.md", "remediation-plan.md"],
+      "gates": [],
+      "optional": false,
+      "timeout": "PT1H",
+      "retryPolicy": { "maxRetries": 0, "backoffMs": 0 }
+    },
+    {
+      "stageId": "remediate",
+      "name": "Apply Remediation",
+      "type": "implement",
+      "agentRole": "engineer",
+      "inputs": ["remediation-plan.md", "threat-model.md"],
+      "outputs": ["code-changes", "remediation-report.md"],
+      "gates": [
+        { "gateId": "secret-scan", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "injection-scan", "level": "critical", "requiredForAdvance": true }
+      ],
+      "optional": false,
+      "timeout": "PT2H",
+      "retryPolicy": { "maxRetries": 2, "backoffMs": 15000 }
+    },
+    {
+      "stageId": "verify",
+      "name": "Security Verification",
+      "type": "verify",
+      "agentRole": "tester",
+      "inputs": ["code-changes", "threat-model.md", "remediation-report.md"],
+      "outputs": ["verification-report.md"],
+      "gates": [
+        { "gateId": "validate-all", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "quality-engine", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "injection-scan", "level": "critical", "requiredForAdvance": true },
+        { "gateId": "secret-scan", "level": "critical", "requiredForAdvance": true }
+      ],
+      "optional": false,
+      "timeout": "PT2H",
+      "retryPolicy": { "maxRetries": 1, "backoffMs": 10000 }
+    },
+    {
+      "stageId": "report",
+      "name": "Audit Report",
+      "type": "handoff",
+      "agentRole": "orchestrator",
+      "inputs": ["verification-report.md", "scan-results.md", "remediation-report.md"],
+      "outputs": ["audit-summary.md"],
+      "gates": [
+        { "gateId": "quality-diff-audit", "level": "advisory", "requiredForAdvance": false },
+        { "gateId": "quality-scorecard-report", "level": "advisory", "requiredForAdvance": false }
+      ],
+      "optional": false,
+      "timeout": "PT30M",
+      "retryPolicy": { "maxRetries": 0, "backoffMs": 0 }
+    }
+  ],
+  "triggers": [
+    { "event": "manual" },
+    { "event": "on-push", "branch": "security/*" }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "author": "vibe-coding-os",
+    "createdAt": "2026-06-18T00:00:00Z",
+    "tags": ["security", "audit", "high-rigor", "compliance"]
+  }
+}
