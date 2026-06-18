@@ -272,6 +272,24 @@
       "description": "Isolate risky or parallel work in git worktrees without disrupting user changes."
     },
     {
+      "name": "quality-execution-contract",
+      "path": "skills/core/quality-execution-contract/SKILL.md",
+      "category": "core",
+      "description": "Force explicit intent declaration before any code edit with a pre-coding contract."
+    },
+    {
+      "name": "self-review-before-response",
+      "path": "skills/core/self-review-before-response/SKILL.md",
+      "category": "core",
+      "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
+    },
+    {
+      "name": "quality-rubric",
+      "path": "skills/prompts/quality-rubric/SKILL.md",
+      "category": "prompts",
+      "description": "Universal code quality checklist to inject before every coding task."
+    },
+    {
       "name": "verification-before-completion",
       "path": "skills/core/verification-before-completion/SKILL.md",
       "category": "core",

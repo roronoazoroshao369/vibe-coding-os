@@ -317,6 +317,21 @@
       "description": "Audit tracked upstream references, update reference metadata, and adapt high-fit ideas without vendoring upstream source."
     },
     {
+      "name": "vibe-quality-gate",
+      "path": "commands/vibe-quality-gate.md",
+      "description": "Complete a quality execution contract before any code edit."
+    },
+    {
+      "name": "vibe-quality-rubric",
+      "path": "commands/vibe-quality-rubric.md",
+      "description": "Apply the universal code quality rubric before coding."
+    },
+    {
+      "name": "vibe-self-review",
+      "path": "commands/vibe-self-review.md",
+      "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
+    },
+    {
       "name": "vibe-verify",
       "path": "commands/vibe-verify.md",
       "description": "Verify acceptance criteria before completion with exact commands, outcomes, and limitations."

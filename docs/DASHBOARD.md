@@ -1,17 +1,17 @@
 # Vibe Coding OS — Project Health Dashboard
 
 > **Auto-generated** by `scripts/generate-dashboard.mjs` — do not edit manually.
-> Last generated: 2026-06-17
+> Last generated: 2026-06-18
 
 ## Quick Status
 
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 90 |
-| Commands | 68 |
-| Templates | 56 |
-| Narrative files | 420 |
+| Skills | 93 |
+| Commands | 71 |
+| Templates | 59 |
+| Narrative files | 429 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -20,10 +20,10 @@
 | Category | Count |
 |---|---|
 | agents | 4 |
-| core | 47 |
+| core | 49 |
 | memory | 17 |
 | meta | 9 |
-| prompts | 13 |
+| prompts | 14 |
 
 ## Version Progress
 
@@ -88,9 +88,9 @@
 | Templates (56) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 0 (warnings — review signal) |
-| Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 0 |
+| Orphan commands | 2 (warnings — review signal) |
+| Orphan skills | 3 (warnings — review signal) |
+| Orphan templates | 1 |
 | Broken references | 0 |
 
 ## How to Regenerate

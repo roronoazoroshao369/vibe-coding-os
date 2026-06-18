@@ -1,6 +1,6 @@
 # Status, Goal chiến lược và Roadmap — Bản tiếng Việt
 
-> Cập nhật cho v1.5.0. Tài liệu này tóm tắt trạng thái repo hiện tại và hướng đi chiến lược.
+> Cập nhật cho v1.6.0. Tài liệu này tóm tắt trạng thái repo hiện tại và hướng đi chiến lược.
 
 ## 1. Status hiện tại
 
@@ -37,11 +37,14 @@ Sau v1.4.0 → v1.5.0, strategic focus được xác nhận lại:
 
 **Mục tiêu:** Vibe Coding OS là **portable workflow contract + discipline layer** số 1 cho AI-assisted coding. Runtime là optional companion.
 
-Ba trụ cột:
+Bốn trụ cột:
 
 1. **Core workflow contract** — spec → plan → implement → verify → memory → merge, portable mọi tool.
 2. **Adoption trust** — docs rõ, onboarding nhanh, product identity sắc nét.
 3. **Optional runtime** — hardened nhưng frozen: không thêm feature mới, chỉ bảo trì.
+4. **Quality Elevation** — nâng chất lượng AI coding agent ngay cả khi dùng model trung bình/mid-tier bằng prompt discipline, rules, skills, quản lý knowledge/context, workflow discipline, verification gates, self-review, adversarial review và model-adaptive intelligence.
+
+**Công thức chất lượng:** Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
 
 ## 4. Version roadmap
 
@@ -54,6 +57,10 @@ Ba trụ cột:
 | v1.4.2 | Runtime hardening: lease caps, terminal guard, tmux safety | ✅ Released | State machine fix, absolute lease cap |
 | v1.4.3 | Operational hygiene: shell safety, docs hub, config validation | ✅ Released | docs hub, 0 orphan templates |
 | **v1.5.0** | **Core adoption + runtime scope freeze** | ✅ **Released** | ADR 0002, README.vi diet, QUICKSTART tiếng Việt |
+| **v1.6.0** | **Adoption Trust + Quality Elevation kick-off** | 🔄 **In progress** | docs/onboarding/landing improvements (Sprint 1) |
+| **v1.7.0** | **Quality Shield** | 📋 **Planned** | Quality Rubric, Quality Execution Contract, Self-Review, AGENTS.md Template, Code Context Pack, Pattern Library, Quality Diff Audit Script |
+| **v1.8.0** | **Expert Mode** | 📋 **Planned** | Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council |
+| **v1.9.0** | **Smart Adapt** | 📋 **Planned** | Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2 |
 
 ## 5. Metrics
 
@@ -82,6 +89,11 @@ Ba trụ cột:
 1. ✅ Hoàn thành v1.4.3: operational hygiene + config validation + docs hub
 2. ✅ Tuyên bố runtime scope freeze qua ADR 0002 trong v1.5.0
 3. ✅ Resolve orphan templates bằng docs hub
-4. ⏭️ Tiếp tục adoption feedback, tài liệu onboarding và core markdown-first improvements
+4. 🔄 **v1.6.0 Adoption Trust** — cải thiện docs/onboarding/landing (đang tiến hành Sprint 1)
+5. ⏭️ **v1.7.0 Quality Shield** — Universal Code Quality Rubric, Quality Execution Contract, Self-Review, Compact AGENTS.md Template, Code Context Pack, Pattern Library Starter, Quality Diff Audit Script
+6. ⏭️ **v1.8.0 Expert Mode** — Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council
+7. ⏭️ **v1.9.0 Smart Adapt** — Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2
+
+**Công thức nền tảng:** Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
 
 > **Nguyên tắc:** Workflow contract first. Runtime optional. Human intent stays sovereign.

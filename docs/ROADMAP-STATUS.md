@@ -196,6 +196,63 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - Runtime changes limited to bug fix, security, compat, docs, tests.
 - Runtime expansion requires ADR 0002 exception process + Engine Adoption Gate.
 
+---
+
+## v1.6.0 — Adoption Trust (in progress)
+**Status:** 🔄 IN PROGRESS — Sprint 1 partially done
+
+| Deliverable | Status |
+|---|---|
+| docs/onboarding/landing improvements | 🔄 Partially done (Sprint 1) |
+
+**Quality Elevation — Strategic Target:**
+Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
+
+This target runs across v1.7–v1.9, elevating AI coding agent quality even with average/mid-tier models through:
+- **Prompt discipline** — structured, consistent prompting patterns
+- **Rules & skills** — composable discipline layer
+- **Knowledge/context management** — reference intelligence, memory, context packs
+- **Workflow discipline** — spec → plan → implement → verify → memory → merge
+- **Verification gates** — validate:all, traceability checks, smoke tests
+- **Self-review** — automated quality checks before response
+- **Adversarial review** — critic pass, cross-examination patterns
+- **Model-adaptive intelligence** — adapt prompts and verification to model strengths/weaknesses
+
+## v1.7.0 — Quality Shield (planned)
+**Status:** 📋 PLANNED
+
+| Deliverable | Status |
+|---|---|
+| Universal Code Quality Rubric | 📋 Planned |
+| Quality Execution Contract | 📋 Planned |
+| Self-Review Before Response | 📋 Planned |
+| Compact AGENTS.md Template | 📋 Planned |
+| Code Context Pack | 📋 Planned |
+| Pattern Library Starter | 📋 Planned |
+| Quality Diff Audit Script | 📋 Planned |
+
+## v1.8.0 — Expert Mode (planned)
+**Status:** 📋 PLANNED
+
+| Deliverable | Status |
+|---|---|
+| Adversarial Code Review | 📋 Planned |
+| Critique Pass Protocol | 📋 Planned |
+| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async) | 📋 Planned |
+| Writer-Critic Pair / Quality Council multi-agent patterns | 📋 Planned |
+
+## v1.9.0 — Smart Adapt (planned)
+**Status:** 📋 PLANNED
+
+| Deliverable | Status |
+|---|---|
+| Model Weakness Memory | 📋 Planned |
+| Adaptive Prompt Selection | 📋 Planned |
+| Quality Score Card | 📋 Planned |
+| Lessons Learned DB / Golden Example Library v2 | 📋 Planned |
+
+---
+
 ## Overall Progress
 
 - v0.1.1: ████████████ 100%
@@ -211,3 +268,7 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 - v1.4.2: ████████████ 100%
 - v1.4.3: ████████████ 100%
 - v1.5.0: ████████████ 100%
+- v1.6.0: ███░░░░░░░░░ 25% (Sprint 1 partially done)
+- v1.7.0: ░░░░░░░░░░░░ 0% (planned)
+- v1.8.0: ░░░░░░░░░░░░ 0% (planned)
+- v1.9.0: ░░░░░░░░░░░░ 0% (planned)
