@@ -400,6 +400,21 @@
       "name": "vibe-quality-frontend-state",
       "path": "commands/vibe-quality-frontend-state.md",
       "description": "Run the frontend state quality checklist for stores, side effects, forms, data fetching, and UI state transitions."
+    },
+    {
+      "name": "vibe-model-weakness",
+      "path": "commands/vibe-model-weakness.md",
+      "description": "Load the model weakness log and recommend targeted checks for the current task."
+    },
+    {
+      "name": "vibe-adaptive-prompt",
+      "path": "commands/vibe-adaptive-prompt.md",
+      "description": "Classify task type and recommend the right quality prompt stack from the registry."
+    },
+    {
+      "name": "vibe-lessons-learned",
+      "path": "commands/vibe-lessons-learned.md",
+      "description": "Search, add, or review recent lessons learned from coding mistakes, fixes, reviews, and quality audits."
     }
   ]
 }

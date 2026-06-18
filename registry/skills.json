@@ -630,6 +630,24 @@
       "path": "skills/checklists/frontend-state-quality/SKILL.md",
       "category": "checklists",
       "description": "Review frontend state changes for predictable mutations, complete UI states, side-effect cleanup, and transition tests."
+    },
+    {
+      "name": "model-weakness-memory",
+      "path": "skills/core/model-weakness-memory/SKILL.md",
+      "category": "core",
+      "description": "Track known failure patterns for model types and auto-inject relevant checks before tasks."
+    },
+    {
+      "name": "adaptive-prompt-selection",
+      "path": "skills/core/adaptive-prompt-selection/SKILL.md",
+      "category": "core",
+      "description": "Auto-classify task type and select relevant quality packs from the registry."
+    },
+    {
+      "name": "lessons-learned-db",
+      "path": "skills/core/lessons-learned-db/SKILL.md",
+      "category": "core",
+      "description": "Maintain a structured searchable record of coding mistakes, fixes, and prevention rules for future similar work."
     }
   ]
 }
