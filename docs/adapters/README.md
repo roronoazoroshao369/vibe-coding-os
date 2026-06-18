@@ -16,6 +16,7 @@ This directory contains tool-specific setup guides for Vibe Coding OS. Each adap
 - **First Workflow:** [../FIRST-WORKFLOW.md](../FIRST-WORKFLOW.md) — Run your first `spec → plan → verify` loop.
 - **Quickstart:** [../QUICKSTART.md](../QUICKSTART.md) — 10-minute setup guide.
 - **Setup Scope Guide:** [../setup-scope-guide.md](../setup-scope-guide.md) — Understand global, per-repo, and manual setup options.
+- **Quality Shield:** [../quality-shield.md](../quality-shield.md) — Portable quality discipline for adapters and repos.
 
 ## How to use
 

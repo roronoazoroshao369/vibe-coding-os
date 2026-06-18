@@ -228,20 +228,22 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - **Model-adaptive intelligence** — adapt prompts and verification to model strengths/weaknesses
 
 ## v1.7.0 — Quality Shield
-**Status:** 🗓️ PLANNED
+**Status:** 🔄 IN PROGRESS — Sprint 0+1 reconciled
 
 | Deliverable | Status |
 |---|---|
-| Universal Code Quality Rubric | 🗓️ Planned |
-| Quality Execution Contract | 🗓️ Planned |
-| Self-Review Before Response | 🗓️ Planned |
-| Compact AGENTS.md Template | 🗓️ Planned |
-| Code Context Pack | 🗓️ Planned |
-| Pattern Library Starter | 🗓️ Planned |
-| Quality Diff Audit Script | 🗓️ Planned |
-| Repo Map Concept | 🗓️ Planned |
-| Quality Elevation eval scenarios | 🗓️ Planned |
-| Quality Scorecard | 🗓️ Planned |
+| Universal Code Quality Rubric | ✅ Present |
+| Quality Execution Contract | ✅ Present |
+| Self-Review Before Response | ✅ Present |
+| Compact AGENTS.md Template | ✅ Present |
+| Code Context Pack | ✅ Present |
+| Pattern Library Starter | ✅ Present |
+| Quality Diff Audit Script | ✅ Present |
+| Repo Map Concept | ✅ Present |
+| Quality Elevation eval scenarios | ✅ Present |
+| Quality Scorecard | ✅ Present |
+
+Canonical guide and audit map: [`docs/quality-shield.md`](quality-shield.md). Quality Shield is the portable markdown-first quality layer; Quality Engine remains the future/advanced orchestration boundary.
 
 ## v1.8.0 — Expert Mode
 **Status:** 🗓️ PLANNED
@@ -264,17 +266,17 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 | Lessons Learned DB / Golden Example Library v2 | 🗓️ Planned |
 
 ## v2.0 — Quality Engine
-**Status:** 🗓️ PLANNED
+**Status:** 🧭 FUTURE / FOUNDATION PRESENT
 
 | Deliverable | Status |
 |:---|---|
-| Quality engine schemas and data contracts | 🗓️ Planned |
-| Quality engine runner (core logic) | 🗓️ Planned |
-| Report generator (markdown + structured output) | 🗓️ Planned |
-| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | 🗓️ Planned |
-| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | 🗓️ Planned |
-| Quality Engine guide (`docs/quality-engine-guide.md`) | 🗓️ Planned |
-| Quality Engine registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
+| Quality engine schemas and data contracts | ✅ Foundation present |
+| Quality engine runner (core logic) | ✅ Foundation present |
+| Report generator (markdown + structured output) | ✅ Foundation present |
+| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | ✅ Foundation present |
+| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | ✅ Foundation present |
+| Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Foundation present |
+| Quality Engine registry entries (`skills.json`, `prompts.json`) | 🧭 Future hardening |
 
 ## v2.1 — Model-Aware Config
 **Status:** 🗓️ PLANNED

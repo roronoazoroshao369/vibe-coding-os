@@ -11,7 +11,7 @@
 | Skills | 112 |
 | Commands | 88 |
 | Templates | 80 |
-| Narrative files | 511 |
+| Narrative files | 512 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -95,7 +95,7 @@
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 7 |
+| Orphan templates | 6 |
 | Broken references | 0 |
 
 ## How to Regenerate
