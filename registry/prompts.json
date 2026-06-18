@@ -327,6 +327,21 @@
       "description": "Apply the universal code quality rubric before coding."
     },
     {
+      "name": "vibe-quality-async-job",
+      "path": "commands/vibe-quality-async-job.md",
+      "description": "Review or implement an async/background job using the async-job quality checklist."
+    },
+    {
+      "name": "vibe-quality-api",
+      "path": "commands/vibe-quality-api.md",
+      "description": "Run the API endpoint quality checklist for REST or GraphQL endpoint changes."
+    },
+    {
+      "name": "vibe-quality-db-migration",
+      "path": "commands/vibe-quality-db-migration.md",
+      "description": "Run the database migration quality checklist for schema changes, migrations, or backfills."
+    },
+    {
       "name": "vibe-self-review",
       "path": "commands/vibe-self-review.md",
       "description": "Run a mandatory self-review checklist on your own diff before responding to the user."
@@ -375,6 +390,16 @@
       "name": "vibe-agents-md",
       "path": "commands/vibe-agents-md.md",
       "description": "Generate or adapt a compact AGENTS.md with validation commands, layout, constraints, and quality gates."
+    },
+    {
+      "name": "vibe-quality-auth",
+      "path": "commands/vibe-quality-auth.md",
+      "description": "Run the auth and permissions quality checklist for login, session, token, role, or permission changes."
+    },
+    {
+      "name": "vibe-quality-frontend-state",
+      "path": "commands/vibe-quality-frontend-state.md",
+      "description": "Run the frontend state quality checklist for stores, side effects, forms, data fetching, and UI state transitions."
     }
   ]
 }

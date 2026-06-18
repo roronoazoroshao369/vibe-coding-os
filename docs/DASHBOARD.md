@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 1.5.0 |
-| Skills | 100 |
-| Commands | 75 |
+| Skills | 105 |
+| Commands | 80 |
 | Templates | 63 |
-| Narrative files | 451 |
+| Narrative files | 461 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -20,6 +20,7 @@
 | Category | Count |
 |---|---|
 | agents | 5 |
+| checklists | 5 |
 | core | 51 |
 | memory | 17 |
 | meta | 9 |
@@ -91,8 +92,8 @@
 | Templates (63) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 6 (warnings — review signal) |
-| Orphan skills | 7 (warnings — review signal) |
+| Orphan commands | 11 (warnings — review signal) |
+| Orphan skills | 10 (warnings — review signal) |
 | Orphan templates | 2 |
 | Broken references | 0 |
 
