@@ -13,6 +13,8 @@
     "validate:secrets": "node scripts/validate-secrets.mjs",
     "validate:injection": "node scripts/validate-injection.mjs",
     "validate:provenance": "node scripts/validate-provenance.mjs",
+    "validate:runtime-freeze": "node scripts/validate-runtime-freeze.mjs",
+    "validate:roadmap-future-drift": "node scripts/validate-roadmap-future-drift.mjs",
     "validate:all": "node scripts/validate-all.mjs",
     "validate:quality-diff": "node scripts/validate-quality-diff.mjs",
     "quality:scorecard": "node scripts/quality-scorecard.mjs",

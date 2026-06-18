@@ -38,7 +38,8 @@ try {
   const validateAll = read('scripts/validate-all.mjs');
   const gateMatch = validateAll.match(/const checks = \[([\s\S]*?)\];/);
   if (gateMatch) {
-    const gateCount = (gateMatch[1].match(/\[/g) || []).length;
+    const rows = gateMatch[1].split('\n').filter(l => /\[['"]/.test(l));
+    const gateCount = rows.length;
     if (gateCount > 0) expectedGates = gateCount;
   }
 } catch {
@@ -51,17 +52,10 @@ console.log(`Expected gate count: ${expectedGates}`);
 let detectedGates = 0;
 try {
   const validateAll = read('scripts/validate-all.mjs');
-  // Count checks array entries in validate-all.mjs
   const checksMatch = validateAll.match(/const checks = \[([\s\S]*?)\];/);
   if (checksMatch) {
-    // Count lines with ['...', patterns (each check is an array entry)
-    const checkLines = checksMatch[1].split('\n').filter(l => l.includes("['") || l.includes('["'));
-
-    // Also count lines with /* ... */  comments between checks
-    const rawCount = (checksMatch[1].match(/\n/g) || []).length;
-    // Better: count the actual check names (lines with a string label)
-    const nameCount = (checksMatch[1].match(/\[('|")[^\]]+\]/g) || []).length;
-    detectedGates = nameCount;
+    const checkRows = checksMatch[1].split('\n').filter(l => /\[['"]/.test(l));
+    detectedGates = checkRows.length;
   }
 } catch {
   // fallback

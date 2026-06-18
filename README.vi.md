@@ -20,7 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.5.0):** validate:all 23/23 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
+
+**CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Docs hub](docs/README.md)
 
@@ -44,6 +46,16 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 - Không khuyến khích “vibe code rồi tin đại”.
 - Không coi runtime là product center.
 - Không thêm runtime features nếu có thể giải quyết bằng markdown core.
+
+---
+
+## Ba đường onboarding: User, Maintainer, Optional Runtime
+
+- **User path (mặc định):** Dùng core markdown-first với **zero runtime**. Cài Claude Code plugin, copy adapter files cho Codex/Cursor/Gemini, hoặc dùng skills/commands/templates như prompt và instructions bình thường. Không cần `npm install`, daemon, database, MCP server hay tmux.
+- **Maintainer/contributor path:** Clone repo khi bạn muốn sửa skills, commands, templates, docs, adapters, registries hoặc validation scripts. Chỉ đường này mới cần `npm install` và các lệnh validation để bảo trì repo.
+- **Optional runtime path:** Chỉ bật runtime khi bạn thật sự cần local JSON state cho task, checkpoint, memory, team/session, MCP wrapper hoặc tmux team runner.
+
+Xem ranh giới chi tiết tại [Runtime Boundary](docs/workflows/core-vs-optional-runtime.md).
 
 ---
 
@@ -76,6 +88,16 @@ Từ **v1.5.0**, runtime scope được freeze bởi [ADR 0002](docs/adr/0002-ru
 
 ## Cài đặt nhanh
 
+### User path — dùng workflow, không cần npm
+
+Người dùng bình thường không cần clone để chạy validation hay `npm install`. Chọn adapter phù hợp rồi bắt đầu bằng [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md):
+
+- Claude Code: cài plugin theo [Quickstart](docs/vi/QUICKSTART.md).
+- Codex/Cursor/Gemini: dùng adapter docs và copy instruction file tương ứng.
+- Markdown-only: mở `skills/`, `commands/`, `templates/` và dùng như prompt/instructions.
+
+### Maintainer/contributor path — cần npm để validate repo
+
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os.git
 cd vibe-coding-os
@@ -83,7 +105,7 @@ npm install
 npm run validate:all
 ```
 
-Nếu bạn chỉ muốn dùng workflow markdown, không cần runtime setup.
+Nếu bạn chỉ muốn dùng workflow markdown, không cần runtime setup và cũng không cần `npm install`.
 
 ---
 
@@ -135,7 +157,7 @@ Gate này kiểm tra:
 - runtime behavior tests;
 - adapter smoke tests.
 
-Mục tiêu release: **21/21 PASS**.
+Mục tiêu release: **25/25 PASS**.
 
 ---
 

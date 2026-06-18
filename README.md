@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.5.0):** validate:all 23/23 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
+**Current release (v1.5.0):** validate:all 25/25 gates PASS · **112 skills** · **87 commands** · **79 templates** · 14 tracked sources
 
 ---
 
@@ -26,6 +26,8 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 ---
 
 ## Start here
+
+**First workflow CTA:** If you are new, start with [First Workflow](docs/FIRST-WORKFLOW.md) and run one complete `spec → plan → verify` loop before exploring runtime or maintainer tooling.
 
 | New to Vibe Coding OS | You want |
 |---|---|
@@ -69,11 +71,13 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## Core vs Optional Runtime
+## Onboarding paths: User, Maintainer, Optional Runtime
 
-The **core** is markdown-first and works with **zero runtime**: install the Claude Code plugin and use `/vibe-*` commands, skills, and templates as plain instructions. No daemon, database, MCP server, or tmux session is required.
+- **User path (default):** Use the markdown-first core with **zero runtime**. Install the Claude Code plugin, copy the adapter files for Codex/Cursor/Gemini, or use skills, commands, and templates as plain instructions. No `npm install`, daemon, database, MCP server, or tmux session is required.
+- **Maintainer/contributor path:** Clone the repo when you want to edit skills, commands, templates, docs, adapters, registries, or validation scripts. Use `npm install` and validation commands only for repo maintenance and contribution work.
+- **Optional runtime path:** Enable runtime only when you explicitly need local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, or a tmux team runner.
 
-The **runtime** is fully **opt-in**. Enable it only when you want local JSON state for tasks, memory, checkpoints, teams, sessions, daemon workflows, MCP tools, or a tmux team runner.
+The **core** is the product identity; the **runtime** is opt-in and frozen-scope under ADR 0002.
 
 See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-optional-runtime.md) for the detailed boundary.
 
@@ -81,7 +85,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**90 skills**, **68 commands**, **56 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**112 skills**, **87 commands**, **79 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -161,7 +165,7 @@ This repository is intentionally dependency-light. Run validation after any stru
 
 ```bash
 npm run validate        # core structural checks (4 gates)
-npm run validate:all    # full validation (20 gates)
+npm run validate:all    # full validation (25 gates)
 ```
 
 **Coverage honesty labels:**

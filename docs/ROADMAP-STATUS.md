@@ -198,12 +198,15 @@ Bug-fix workflows are covered by [`skills/core/bug-fix-lifecycle/SKILL.md`](../s
 
 ---
 
-## v1.6.0 — Adoption Trust (in progress)
-**Status:** 🔄 IN PROGRESS — Sprint 1 partially done
+## v1.6.0 — Adoption Trust (next)
+**Status:** 🔄 IN PROGRESS — planning / P0 start
 
 | Deliverable | Status |
 |---|---|
-| docs/onboarding/landing improvements | 🔄 Partially done (Sprint 1) |
+| Onboarding path clarity (user / maintainer / optional runtime) | 🔄 In progress |
+| Validation metadata source-of-truth hardening | 🔄 Planned |
+| Runtime freeze validation gate | 🔄 Planned |
+| Examples hub and entry docs polish | 🔄 Planned |
 
 **Quality Elevation — Strategic Target:**
 Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
@@ -219,107 +222,107 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - **Model-adaptive intelligence** — adapt prompts and verification to model strengths/weaknesses
 
 ## v1.7.0 — Quality Shield
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Universal Code Quality Rubric | ✅ Done |
-| Quality Execution Contract | ✅ Done |
-| Self-Review Before Response | ✅ Done |
-| Compact AGENTS.md Template | ✅ Done |
-| Code Context Pack | ✅ Done |
-| Pattern Library Starter | ✅ Done |
-| Quality Diff Audit Script | ✅ Done |
-| Repo Map Concept | ✅ Done |
-| Quality Elevation eval scenarios | ✅ Done |
-| Quality Scorecard | ✅ Done |
+| Universal Code Quality Rubric | 🗓️ Planned |
+| Quality Execution Contract | 🗓️ Planned |
+| Self-Review Before Response | 🗓️ Planned |
+| Compact AGENTS.md Template | 🗓️ Planned |
+| Code Context Pack | 🗓️ Planned |
+| Pattern Library Starter | 🗓️ Planned |
+| Quality Diff Audit Script | 🗓️ Planned |
+| Repo Map Concept | 🗓️ Planned |
+| Quality Elevation eval scenarios | 🗓️ Planned |
+| Quality Scorecard | 🗓️ Planned |
 
 ## v1.8.0 — Expert Mode
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Adversarial Code Review | ✅ Done |
-| Critique Pass Protocol | ✅ Done |
-| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async jobs) | ✅ Done |
-| Writer-Critic Pair / Quality Council multi-agent patterns | ✅ Done |
+| Adversarial Code Review | 🗓️ Planned |
+| Critique Pass Protocol | 🗓️ Planned |
+| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async jobs) | 🗓️ Planned |
+| Writer-Critic Pair / Quality Council multi-agent patterns | 🗓️ Planned |
 
 ## v1.9.0 — Smart Adapt
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Model Weakness Memory | ✅ Done |
-| Adaptive Prompt Selection | ✅ Done |
-| Quality Score Card (session + report) | ✅ Done |
-| Lessons Learned DB / Golden Example Library v2 | ✅ Done |
+| Model Weakness Memory | 🗓️ Planned |
+| Adaptive Prompt Selection | 🗓️ Planned |
+| Quality Score Card (session + report) | 🗓️ Planned |
+| Lessons Learned DB / Golden Example Library v2 | 🗓️ Planned |
 
 ## v2.0 — Quality Engine
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |:---|---|
-| Quality engine schemas and data contracts | ✅ Done |
-| Quality engine runner (core logic) | ✅ Done |
-| Report generator (markdown + structured output) | ✅ Done |
-| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | ✅ Done |
-| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | ✅ Done |
-| Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Done |
-| Quality Engine registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+| Quality engine schemas and data contracts | 🗓️ Planned |
+| Quality engine runner (core logic) | 🗓️ Planned |
+| Report generator (markdown + structured output) | 🗓️ Planned |
+| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | 🗓️ Planned |
+| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | 🗓️ Planned |
+| Quality Engine guide (`docs/quality-engine-guide.md`) | 🗓️ Planned |
+| Quality Engine registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
 
 ## v2.1 — Model-Aware Config
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | ✅ Done |
-| `vibe-model-config` command (`commands/vibe-model-config.md`) | ✅ Done |
-| Model-Aware Config guide (`docs/model-aware-config-guide.md`) | ✅ Done |
-| Model-Aware Config registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+| Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | 🗓️ Planned |
+| `vibe-model-config` command (`commands/vibe-model-config.md`) | 🗓️ Planned |
+| Model-Aware Config guide (`docs/model-aware-config-guide.md`) | 🗓️ Planned |
+| Model-Aware Config registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
 
 ## v2.2 — Quality Telemetry & Analytics
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Quality Telemetry skill (`skills/core/quality-telemetry/SKILL.md`) | ✅ Done |
-| `vibe-quality-telemetry` command (`commands/vibe-quality-telemetry.md`) | ✅ Done |
-| Quality Telemetry guide (`docs/quality-telemetry-guide.md`) | ✅ Done |
-| Package scripts for telemetry emit, metrics, and trend report | ✅ Done |
-| Registry entries (`skills.json`, `prompts.json`) | ✅ Done |
-| Runtime script implementations (`quality-event-emitter`, `session-metrics-collector`, `quality-trend-report`) | ✅ Done |
+| Quality Telemetry skill (`skills/core/quality-telemetry/SKILL.md`) | 🗓️ Planned |
+| `vibe-quality-telemetry` command (`commands/vibe-quality-telemetry.md`) | 🗓️ Planned |
+| Quality Telemetry guide (`docs/quality-telemetry-guide.md`) | 🗓️ Planned |
+| Package scripts for telemetry emit, metrics, and trend report | 🗓️ Planned |
+| Registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
+| Runtime script implementations (`quality-event-emitter`, `session-metrics-collector`, `quality-trend-report`) | 🗓️ Planned |
 
 ## v2.3 — Multi-Repository Learning
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Lesson exchange schema (`schemas/lesson-exchange-format.json`) | ✅ Done |
-| Lesson exporter/importer scripts | ✅ Done |
-| Lesson quality checker | ✅ Done |
-| Lesson exchange sample template | ✅ Done |
+| Lesson exchange schema (`schemas/lesson-exchange-format.json`) | 🗓️ Planned |
+| Lesson exporter/importer scripts | 🗓️ Planned |
+| Lesson quality checker | 🗓️ Planned |
+| Lesson exchange sample template | 🗓️ Planned |
 
 ## v2.4 — CI/CD Integration
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | ✅ Done |
-| Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | ✅ Done |
-| Reusable GitHub composite action | ✅ Done |
-| PR quality summary template | ✅ Done |
-| CI/CD integration guide | ✅ Done |
+| PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | 🗓️ Planned |
+| Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | 🗓️ Planned |
+| Reusable GitHub composite action | 🗓️ Planned |
+| PR quality summary template | 🗓️ Planned |
+| CI/CD integration guide | 🗓️ Planned |
 
 ## v2.5 — Advanced Orchestration
-**Status:** ✅ COMPLETE
+**Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
 |---|---|
-| Orchestration workflow schema (`schemas/orchestration-workflow.json`) | ✅ Done |
-| Workflow templates (feature, bugfix, security audit) | ✅ Done |
-| Workflow runner (`scripts/orchestrate-workflow.mjs`) | ✅ Done |
-| Orchestration skill and command | ✅ Done |
-| Orchestration guide | ✅ Done |
+| Orchestration workflow schema (`schemas/orchestration-workflow.json`) | 🗓️ Planned |
+| Workflow templates (feature, bugfix, security audit) | 🗓️ Planned |
+| Workflow runner (`scripts/orchestrate-workflow.mjs`) | 🗓️ Planned |
+| Orchestration skill and command | 🗓️ Planned |
+| Orchestration guide | 🗓️ Planned |
 
 ---
 
@@ -338,13 +341,14 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.4.2: ████████████ 100%
 - v1.4.3: ████████████ 100%
 - v1.5.0: ████████████ 100%
-- v1.6.0: ███░░░░░░░░░ 25% (Sprint 1 partially done)
-- v1.7.0: ████████████ 100%
-- v1.8.0: ████████████ 100%
-- v1.9.0: ████████████ 100%
-- v2.0:   ████████████ 100%
-- v2.1:   ████████████ 100%
-- v2.2:   ████████████ 100%
-- v2.3:   ████████████ 100%
-- v2.4:   ████████████ 100%
-- v2.5:   ████████████ 100%
+- v1.6.0: ██░░░░░░░░░ 20% (P0 in progress)
+- v1.7.0: ░░░░░░░░░░░ 0% (planned)
+- v1.8.0: ░░░░░░░░░░░ 0% (planned)
+- v1.9.0: ░░░░░░░░░░░ 0% (planned)
+- v2.0:   ░░░░░░░░░░░ 0% (planned)
+- v2.1:   ░░░░░░░░░░░ 0% (planned)
+- v2.2:   ░░░░░░░░░░░ 0% (planned)
+- v2.3:   ░░░░░░░░░░░ 0% (planned)
+- v2.4:   ░░░░░░░░░░░ 0% (planned)
+- v2.5:   ░░░░░░░░░░░ 0% (planned)
+
