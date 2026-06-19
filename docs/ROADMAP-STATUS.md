@@ -366,6 +366,18 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 
 **Release posture:** v2.5.0 completes Advanced Orchestration and closes the v1.7→v2.5 roadmap at 100%. Validation gate count remains 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
+## v2.6.0 — AI Testing Suite
+**Status:** ⏳ PENDING — Proposed; not yet started
+
+| Deliverable | Status |
+|:---|---|
+| Property-based testing schema + runner (fuzz skills/commands/templates) | ⏳ PENDING |
+| Benchmark harness for validation gate performance | ⏳ PENDING |
+| Test generator from existing skills/commands | ⏳ PENDING |
+| Quality score trend dashboard (time-series from telemetry) | ⏳ PENDING |
+| GitHub Actions PR comment with quality summary | ⏳ PENDING |
+
+**Release posture:** v2.6.0 starts the transition from Agent Framework → Agent Platform, beginning with infrastructure for testing & quality. Property-based testing, benchmark harness, test generation, quality dashboards, and CI quality summaries are proposed as the first deliverables. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added. Validation gate count remains at 26/26 unless new gates are added.
 
 ---
 

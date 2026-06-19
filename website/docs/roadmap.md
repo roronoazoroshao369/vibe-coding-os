@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Product Mission and Roadmap
 
 > Use this file to keep long-running product direction visible without turning specs into strategy documents.

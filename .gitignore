@@ -25,3 +25,7 @@ skills/core/lessons-learned-db/lessons.json
 .idea/
 .vscode/
 .hermes/
+# Docusaurus website build
+website/build/
+website/node_modules/
+website/.docusaurus/

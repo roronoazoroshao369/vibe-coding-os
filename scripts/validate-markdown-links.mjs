@@ -31,7 +31,7 @@ function collectMarkdownFiles(dir) {
   try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return files; }
   for (const entry of entries) {
     const full = join(dir, entry.name);
-    if (entry.name === 'node_modules' || entry.name === '.git') continue;
+    if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === 'website') continue;
     if (entry.isDirectory()) {
       files.push(...collectMarkdownFiles(full));
     } else if (entry.name.endsWith('.md')) {
