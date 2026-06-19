@@ -27,6 +27,11 @@
       "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding."
     },
     {
+      "name": "vibe-ci-quality-summary",
+      "path": "commands/vibe-ci-quality-summary.md",
+      "description": "Generate a GitHub PR quality summary from CI gate results, quality reports, and validation output."
+    },
+    {
       "name": "vibe-brief",
       "path": "commands/vibe-brief.md",
       "description": "Create a compact implementation brief with scoped context, examples, and validation gates."

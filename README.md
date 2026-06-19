@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.3.0):** validate:all 26/26 gates PASS · **115 skills** · **89 commands** · **84 templates** · 14 tracked sources
+**Current release (v2.4.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **84 templates** · 14 tracked sources
 
 ---
 
@@ -64,6 +64,21 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Review** — inspect the diff for correctness, simplicity, security, and maintainability.
 - **Memory** — record durable decisions, gotchas, and follow-ups.
 - **Merge** — ship only after verification status is clear.
+
+---
+
+## What's new in v2.4.0
+
+CI/CD Integration brings Vibe Coding OS quality gates into GitHub Actions — automated PR checks, reusable composite actions, and weekly quality trend reports.
+
+- **CI/CD Integration skill:** `skills/core/cicd-integration/SKILL.md` documents the full CI/CD workflow: PR quality gate, reusable action, weekly report, and failure-mode remediation.
+- **`vibe-ci-quality-summary` command:** `commands/vibe-ci-quality-summary.md` generates structured PR quality summaries from CI gate results and validation output.
+- **Canonical guide:** `docs/cicd-integration-guide.md` explains setup from start to finish: workflows, composite action, weekly reports, and troubleshooting.
+- **PR quality gate workflow:** `.github/workflows/vibe-quality-gate.yml` runs validate:all on every PR and posts a quality summary comment.
+- **Weekly report workflow:** `.github/workflows/vibe-quality-report.yml` generates automated weekly trend issues.
+- **Reusable composite action:** `.github/actions/vibe-quality-action/action.yml` lets other repos reference Vibe Coding OS quality gates with `uses:`.
+- **Registry sync:** cicd-integration skill and vibe-ci-quality-summary command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v2.4.0 respects ADR 0002 and does not require a daemon or hosted service.
 
 ---
 
@@ -120,7 +135,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**115 skills**, **89 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**116 skills**, **90 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|

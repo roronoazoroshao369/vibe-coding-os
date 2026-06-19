@@ -20,15 +20,28 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.3.0):** validate:all 26/26 gates PASS · **115 skills** · **89 commands** · **84 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v2.4.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **84 templates** · 14 tracked sources
 
-**Mới nhất:** v2.3.0 Multi-Repository Learning — xuất, kiểm tra và nhập bài học lập trình có thể chia sẻ giữa các repository.
+**Mới nhất:** v2.4.0 CI/CD Integration — tích hợp quality gates vào GitHub Actions, PR quality gate workflow, reusable composite action và báo cáo hàng tuần.
 
-**v2.1.0 trước đó:** Model-Aware Config — cấu hình Quality Engine gates theo năng lực model, rủi ro task và thiết lập dự án trước khi chạy. Runtime không đổi.
+**v2.3.0 trước đó:** Multi-Repository Learning — xuất, kiểm tra và nhập bài học lập trình có thể chia sẻ giữa các repository.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.4.0
+
+CI/CD Integration tích hợp quality gates của Vibe Coding OS vào GitHub Actions — kiểm tra PR tự động, reusable composite action và báo cáo chất lượng hàng tuần.
+
+- **PR quality gate workflow:** `.github/workflows/vibe-quality-gate.yml` chạy `validate:all` trên mỗi PR và đăng comment tóm tắt chất lượng.
+- **Weekly report workflow:** `.github/workflows/vibe-quality-report.yml` tạo issue báo cáo xu hướng hàng tuần.
+- **Reusable composite action:** `.github/actions/vibe-quality-action/action.yml` cho phép repo khác tham chiếu quality gates.
+- **Skill mới:** `skills/core/cicd-integration/SKILL.md` hướng dẫn CI/CD workflow.
+- **Command mới:** `commands/vibe-ci-quality-summary.md` tạo PR quality summary từ kết quả CI.
+- **Guide chính:** `docs/cicd-integration-guide.md` giải thích setup chi tiết.
+- **Registry sync:** cicd-integration skill và vibe-ci-quality-summary command đã đăng ký trong `registry/skills.json` và `registry/prompts.json`.
+- **Runtime không đổi:** v2.4.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ## Có gì mới trong v2.3.0
 
