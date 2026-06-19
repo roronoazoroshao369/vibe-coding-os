@@ -1,7 +1,7 @@
 # Roadmap Status — Vibe Coding OS
 
 Auto-generated status check for the project roadmap.
-Last updated: 2026-06-18
+Last updated: 2026-06-19
 
 ## v0.1.1 — Validation Recovery & Vietnamese Onboarding
 **Status:** ✅ COMPLETE
@@ -302,7 +302,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
-|---|---|
+|:---|---|
 | Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | ✅ Done |
 | `vibe-model-config` command (`commands/vibe-model-config.md`) | ✅ Done |
 | Model-Aware Config guide (`docs/model-aware-config-guide.md`) | ✅ Done |
@@ -310,23 +310,25 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 
 **Release posture:** v2.1.0 adds model-aware Quality Engine configuration while keeping the validation gate count at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
-## v2.2 — Quality Telemetry & Analytics
-**Status:** 🗓️ PLANNED
+## v2.2.0 — Quality Telemetry & Analytics
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
-|---|---|
-| Quality Telemetry skill (`skills/core/quality-telemetry/SKILL.md`) | 🗓️ Planned |
-| `vibe-quality-telemetry` command (`commands/vibe-quality-telemetry.md`) | 🗓️ Planned |
-| Quality Telemetry guide (`docs/quality-telemetry-guide.md`) | 🗓️ Planned |
-| Package scripts for telemetry emit, metrics, and trend report | 🗓️ Planned |
-| Registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
-| Runtime script implementations (`quality-event-emitter`, `session-metrics-collector`, `quality-trend-report`) | 🗓️ Planned |
+|:---|---|
+| Quality Telemetry skill (`skills/core/quality-telemetry/SKILL.md`) | ✅ Done |
+| `vibe-quality-telemetry` command (`commands/vibe-quality-telemetry.md`) | ✅ Done |
+| Quality Telemetry guide (`docs/quality-telemetry-guide.md`) | ✅ Done |
+| Package scripts for telemetry emit, metrics, and trend report (`quality:emit-event`, `quality:session-metrics`, `quality:trend-report`) | ✅ Done |
+| Registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+| Runtime script implementations (`quality-event-emitter`, `session-metrics-collector`, `quality-trend-report`) | ✅ Done |
+
+**Release posture:** v2.2.0 turns quality telemetry into release-ready metadata. Telemetry skill, command, guide, registry entries, and runtime scripts are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.3 — Multi-Repository Learning
 **Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
-|---|---|
+|:---|---|
 | Lesson exchange schema (`schemas/lesson-exchange-format.json`) | 🗓️ Planned |
 | Lesson exporter/importer scripts | 🗓️ Planned |
 | Lesson quality checker | 🗓️ Planned |
@@ -336,7 +338,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
-|---|---|
+|:---|---|
 | PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | 🗓️ Planned |
 | Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | 🗓️ Planned |
 | Reusable GitHub composite action | 🗓️ Planned |
@@ -347,7 +349,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Status:** 🗓️ PLANNED
 
 | Deliverable | Status |
-|---|---|
+|:---|---|
 | Orchestration workflow schema (`schemas/orchestration-workflow.json`) | 🗓️ Planned |
 | Workflow templates (feature, bugfix, security audit) | 🗓️ Planned |
 | Workflow runner (`scripts/orchestrate-workflow.mjs`) | 🗓️ Planned |
@@ -377,8 +379,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.9.0: ████████████ 100%
 - v2.0.0: ████████████ 100%
 - v2.1.0: ████████████ 100%
-- v2.2:   ░░░░░░░░░░░ 0% (planned)
+- v2.2.0: ████████████ 100%
 - v2.3:   ░░░░░░░░░░░ 0% (planned)
 - v2.4:   ░░░░░░░░░░░ 0% (planned)
 - v2.5:   ░░░░░░░░░░░ 0% (planned)
-

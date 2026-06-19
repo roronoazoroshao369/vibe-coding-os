@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.1.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **82 templates** · 14 tracked sources
+**Current release (v2.2.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **84 templates** · 14 tracked sources
 
 ---
 
@@ -37,6 +37,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | [Smart Adapt](docs/smart-adapt.md) | Adapt prompt stacks to task risk, model weaknesses, and lessons learned |
 | [Quality Engine](docs/quality-engine-guide.md) | Run orchestrated quality gates, timing reports, and targeted fix recommendations |
 | [Model-Aware Config](docs/model-aware-config-guide.md) | Configure Quality Engine gates from model capability, task risk, and project settings |
+| [Quality Telemetry](docs/quality-telemetry-guide.md) | Emit local quality events, aggregate session metrics, and generate trend reports |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -62,6 +63,19 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Review** — inspect the diff for correctness, simplicity, security, and maintainability.
 - **Memory** — record durable decisions, gotchas, and follow-ups.
 - **Merge** — ship only after verification status is clear.
+
+---
+
+## What's new in v2.2.0
+
+Quality Telemetry & Analytics makes quality observable at the local level — emit events from engine runs, aggregate session metrics, and generate trend reports for continuous improvement.
+
+- **Quality Telemetry skill:** `skills/core/quality-telemetry/SKILL.md` documents collecting local quality telemetry from engine runs.
+- **`vibe-quality-telemetry` command:** `commands/vibe-quality-telemetry.md` provides emit, metrics, and trend-report interfaces.
+- **Canonical guide:** `docs/quality-telemetry-guide.md` explains the event schema, emit workflow, session aggregation, trend reporting, and privacy patterns.
+- **Package scripts:** `quality:emit-event`, `quality:session-metrics`, `quality:trend-report` scripts are wired and ready.
+- **Registry sync:** quality-telemetry skill and command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v2.2.0 respects ADR 0002 and does not require a daemon or hosted service.
 
 ---
 
@@ -91,7 +105,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**114 skills**, **88 commands**, **82 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**114 skills**, **88 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -260,6 +274,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/smart-adapt.md`](docs/smart-adapt.md) — Smart Adapt guide (v1.9)
 - [`docs/quality-engine-guide.md`](docs/quality-engine-guide.md) — Quality Engine guide (v2.0)
 - [`docs/model-aware-config-guide.md`](docs/model-aware-config-guide.md) — Model-Aware Config guide (v2.1)
+- [`docs/quality-telemetry-guide.md`](docs/quality-telemetry-guide.md) — Quality Telemetry guide (v2.2)
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs

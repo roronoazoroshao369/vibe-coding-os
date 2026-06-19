@@ -1,0 +1,12 @@
+{
+  "event_id": "evt-quality-20260619-0001",
+  "timestamp": "2026-06-19T12:00:00.000Z",
+  "version": "2.2.0",
+  "gate_id": "traceability",
+  "status": "pass",
+  "duration_ms": 842,
+  "model_id": "unknown",
+  "task_type": "feature",
+  "profile": "standard",
+  "evidence_hash": "sha256:3f37125b2b21dbe505d10fcf5fe5aa8bb946153145726780019eaac78d0dc4f7"
+}
