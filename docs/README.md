@@ -22,6 +22,7 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
 - [`quality-shield.md`](quality-shield.md) — Quality Shield canonical guide and deliverable audit.
 - [`expert-mode.md`](expert-mode.md) — Expert Mode escalation guide for adversarial review, critique passes, quality packs, and multi-agent review.
 - [`smart-adapt.md`](smart-adapt.md) — Smart Adapt guide for model-adaptive quality (v1.9).
+- [`quality-engine-guide.md`](quality-engine-guide.md) — Quality Engine guide for orchestrated quality gates, reports, and fix recommendations (v2.0).
 - [`specs/README.md`](specs/README.md) — spec-driven development docs.
 - [`workflows/spec-driven-development.md`](workflows/spec-driven-development.md) — constitution → specify → plan → tasks → implement.
 - [`workflows/real-engineering-skills-workflow.md`](workflows/real-engineering-skills-workflow.md) — practical engineering-agent workflow.

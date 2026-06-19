@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Quality Gate Manifest",
-  "description": "Schema for Vibe Coding OS quality gate manifest — defines all available validation gates, their metadata, and minimum gate requirements per project size",
+  "description": "Schema for Vibe Coding OS quality gate manifest — defines all available validation gates, their metadata, runtime result fields, and minimum gate requirements per project size",
   "type": "object",
   "required": ["version", "gates", "minimum_requirements"],
   "additionalProperties": false,
@@ -16,7 +16,7 @@
       "description": "Array of all available quality gates",
       "items": {
         "type": "object",
-        "required": ["id", "name", "description", "level", "category", "script", "timeout", "auto_fixable"],
+        "required": ["id", "name", "description", "level", "category", "auto_fixable"],
         "additionalProperties": false,
         "properties": {
           "id": {
@@ -38,6 +38,10 @@
             "description": "Severity level: critical gates block release, warning gates flag issues, advisory gates inform",
             "enum": ["critical", "warning", "advisory"]
           },
+          "critical": {
+            "type": "boolean",
+            "description": "Whether this gate is considered critical (derived from level === 'critical'). When both level and critical are set, level takes precedence for display"
+          },
           "category": {
             "type": "string",
             "description": "Quality domain category",
@@ -48,6 +52,18 @@
             "description": "Path to the validation script, relative to project root",
             "minLength": 1
           },
+          "command": {
+            "type": "string",
+            "description": "Arbitrary shell command to run instead of a script. When both script and command are set, command takes precedence",
+            "minLength": 1
+          },
+          "args": {
+            "type": "array",
+            "description": "Additional arguments passed to the script or command",
+            "items": {
+              "type": "string"
+            }
+          },
           "timeout": {
             "type": "integer",
             "description": "Maximum execution time in seconds before the gate is considered failed",
@@ -57,6 +73,20 @@
           "auto_fixable": {
             "type": "boolean",
             "description": "Whether this gate supports automatic fix suggestions or remediation"
+          },
+          "passed": {
+            "type": "boolean",
+            "description": "Runtime result: whether this gate passed its last execution. Only present in output/manifest results"
+          },
+          "durationMs": {
+            "type": "integer",
+            "description": "Runtime result: execution duration in milliseconds",
+            "minimum": 0
+          },
+          "status": {
+            "type": "integer",
+            "description": "Runtime result: exit code from gate execution (0 = success)",
+            "minimum": 0
           }
         }
       },
@@ -126,6 +156,133 @@
               "uniqueItems": true
             }
           }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "GateResult": {
+      "type": "object",
+      "description": "Runtime result object produced by running a quality gate",
+      "required": ["id", "name", "critical", "category", "auto_fixable", "passed", "durationMs", "status", "command"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Gate identifier matching a manifest gate id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable gate name"
+        },
+        "critical": {
+          "type": "boolean",
+          "description": "Whether this gate is a critical gate"
+        },
+        "category": {
+          "type": "string",
+          "description": "Quality domain category",
+          "enum": ["security", "quality", "docs", "tests", "regression", "uncategorized"]
+        },
+        "auto_fixable": {
+          "type": "boolean",
+          "description": "Whether this gate supports auto-fix"
+        },
+        "passed": {
+          "type": "boolean",
+          "description": "Whether the gate passed successfully"
+        },
+        "timedOut": {
+          "type": "boolean",
+          "description": "Whether the gate timed out"
+        },
+        "durationMs": {
+          "type": "integer",
+          "description": "Execution duration in milliseconds",
+          "minimum": 0
+        },
+        "status": {
+          "type": "integer",
+          "description": "Exit code (0 = success, non-zero = failure)",
+          "minimum": 0
+        },
+        "signal": {
+          "type": "string",
+          "description": "Process signal that terminated the gate (e.g., SIGTERM)"
+        },
+        "command": {
+          "type": "string",
+          "description": "Full command string that was executed"
+        },
+        "stdout": {
+          "type": "string",
+          "description": "Standard output from the gate execution"
+        },
+        "stderr": {
+          "type": "string",
+          "description": "Standard error from the gate execution"
+        }
+      }
+    },
+    "EngineOutput": {
+      "type": "object",
+      "description": "Top-level output from the quality engine run",
+      "required": ["engine", "version", "profile", "startedAt", "finishedAt", "durationMs", "totalTimeoutMs", "passed", "summary", "results"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "description": "Engine name (e.g., 'quality-engine')"
+        },
+        "version": {
+          "type": "integer",
+          "description": "Engine version"
+        },
+        "profile": {
+          "type": "string",
+          "description": "Profile used (lean/standard/heavy)"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the engine started"
+        },
+        "finishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the engine finished"
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total execution duration in milliseconds"
+        },
+        "totalTimeoutMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total timeout configured for this run"
+        },
+        "passed": {
+          "type": "boolean",
+          "description": "Whether all critical gates passed"
+        },
+        "summary": {
+          "type": "object",
+          "required": ["total", "passed", "failed", "criticalFailures", "advisoryFailures"],
+          "properties": {
+            "total": { "type": "integer", "minimum": 0 },
+            "passed": { "type": "integer", "minimum": 0 },
+            "failed": { "type": "integer", "minimum": 0 },
+            "criticalFailures": { "type": "integer", "minimum": 0 },
+            "advisoryFailures": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "results": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/GateResult" }
         }
       }
     }

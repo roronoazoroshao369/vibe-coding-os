@@ -1,0 +1,339 @@
+{
+  "engine": "quality-engine",
+  "version": 2,
+  "profile": "lean",
+  "taskType": "feature",
+  "configVersion": "2.0.0",
+  "startedAt": "2026-06-19T01:18:01.044Z",
+  "finishedAt": "2026-06-19T01:18:05.537Z",
+  "durationMs": 4492,
+  "totalTimeoutMs": 120000,
+  "passed": true,
+  "selected_gates": [
+    "repo-structure",
+    "injection-scan",
+    "secret-scan",
+    "quality-diff-audit"
+  ],
+  "skipped_gates": [
+    {
+      "id": "references",
+      "name": "References",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "registry-schemas",
+      "name": "Registry schemas",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "pack-schemas",
+      "name": "Pack schemas",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "traceability",
+      "name": "Traceability",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "memory-redaction",
+      "name": "Memory redaction",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "adapter-smoke-tests",
+      "name": "Adapter smoke tests",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "cli-smoke-tests",
+      "name": "CLI smoke tests",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "e2e-workflow",
+      "name": "E2E workflow",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "dashboard-data",
+      "name": "Dashboard data",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "dashboard-sync-check",
+      "name": "Dashboard sync check",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "release-metadata",
+      "name": "Release metadata",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "evaluation-report",
+      "name": "Evaluation report",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "bilingual-readme-sync",
+      "name": "Bilingual README sync",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "markdown-links",
+      "name": "Markdown links",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "readme-heading-version",
+      "name": "README heading version",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "roadmap-status-integrity",
+      "name": "ROADMAP-STATUS integrity",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "runtime-behavioral-tests",
+      "name": "Runtime behavioral tests",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "id": "quality-scorecard-report",
+      "name": "Quality scorecard report",
+      "reason": "not selected by profile/task-type filter"
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "criticalFailures": 0,
+    "advisoryFailures": 0
+  },
+  "warnings": [],
+  "results": [
+    {
+      "id": "repo-structure",
+      "name": "Repo structure",
+      "critical": true,
+      "category": "quality",
+      "auto_fixable": false,
+      "passed": true,
+      "timedOut": false,
+      "status": 0,
+      "signal": null,
+      "durationMs": 148,
+      "command": "node scripts/validate-repo.mjs",
+      "stdout": "Vibe Coding OS validation passed.\nChecked 11 required files, 114 skills, 88 commands, 68 templates, and 2 examples (skills/commands/templates discovered dynamically).",
+      "stderr": ""
+    },
+    {
+      "id": "injection-scan",
+      "name": "Injection scan",
+      "critical": true,
+      "category": "security",
+      "auto_fixable": false,
+      "passed": true,
+      "timedOut": false,
+      "status": 0,
+      "signal": null,
+      "durationMs": 337,
+      "command": "node scripts/validate-injection.mjs",
+      "stdout": "Injection scan passed: 409 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.",
+      "stderr": ""
+    },
+    {
+      "id": "secret-scan",
+      "name": "Secret scan",
+      "critical": true,
+      "category": "security",
+      "auto_fixable": false,
+      "passed": true,
+      "timedOut": false,
+      "status": 0,
+      "signal": null,
+      "durationMs": 3932,
+      "command": "node scripts/validate-secrets.mjs",
+      "stdout": "Secret scan passed: no secrets detected in tracked repository files.",
+      "stderr": ""
+    },
+    {
+      "id": "quality-diff-audit",
+      "name": "Quality diff audit",
+      "critical": false,
+      "category": "quality",
+      "auto_fixable": false,
+      "passed": true,
+      "timedOut": false,
+      "status": 0,
+      "signal": null,
+      "durationMs": 75,
+      "command": "node scripts/validate-quality-diff.mjs",
+      "stdout": "=== Quality Diff Audit Report ===\nTotal findings: 13\n\n[WARNING] Formatting churn (whitespace-only) (9)\n  docs/quality-engine-guide.md:38 — trailing whitespace change\n  docs/quality-engine-guide.md:192 — trailing whitespace change\n  scripts/adaptive-gate-selector.mjs:211 — trailing whitespace change\n  scripts/adaptive-gate-selector.mjs:222 — trailing whitespace change\n  scripts/adaptive-gate-selector.mjs:225 — trailing whitespace change\n  scripts/adaptive-gate-selector.mjs:602 — trailing whitespace change\n  scripts/quality-engine-report.mjs:73 — trailing whitespace change\n  scripts/quality-engine-report.mjs:77 — trailing whitespace change\n  scripts/quality-engine.mjs:401 — trailing whitespace change\n\n[WARNING] Large code block addition (50+ lines) (4)\n  schemas/quality-engine-config.json:79 — 138 consecutive non-blank lines added\n  schemas/quality-gate-manifest.json:162 — 127 consecutive non-blank lines added\n  scripts/quality-engine-report.mjs:110 — 67 consecutive non-blank lines added\n  templates/quality-engine-config.json:32 — 62 consecutive non-blank lines added\n\nSummary: 0 blocker(s), 13 warning(s)\n\nQuality diff audit PASSED (warnings only).",
+      "stderr": ""
+    }
+  ],
+  "evidence": {
+    "repo-structure": {
+      "command": "node scripts/validate-repo.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 148,
+      "timedOut": false,
+      "snippets": [
+        {
+          "source": "stdout",
+          "lines": [
+            "Vibe Coding OS validation passed.",
+            "Checked 11 required files, 114 skills, 88 commands, 68 templates, and 2 examples (skills/commands/templates discovered dynamically)."
+          ]
+        }
+      ]
+    },
+    "injection-scan": {
+      "command": "node scripts/validate-injection.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 337,
+      "timedOut": false,
+      "snippets": [
+        {
+          "source": "stdout",
+          "lines": [
+            "Injection scan passed: 409 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md."
+          ]
+        }
+      ]
+    },
+    "secret-scan": {
+      "command": "node scripts/validate-secrets.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 3932,
+      "timedOut": false,
+      "snippets": [
+        {
+          "source": "stdout",
+          "lines": [
+            "Secret scan passed: no secrets detected in tracked repository files."
+          ]
+        }
+      ]
+    },
+    "quality-diff-audit": {
+      "command": "node scripts/validate-quality-diff.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "durationMs": 75,
+      "timedOut": false,
+      "snippets": [
+        {
+          "source": "stdout",
+          "lines": [
+            "schemas/quality-gate-manifest.json:162 — 127 consecutive non-blank lines added",
+            "scripts/quality-engine-report.mjs:110 — 67 consecutive non-blank lines added",
+            "templates/quality-engine-config.json:32 — 62 consecutive non-blank lines added",
+            "Summary: 0 blocker(s), 13 warning(s)",
+            "Quality diff audit PASSED (warnings only)."
+          ]
+        }
+      ]
+    }
+  },
+  "residual_risks": [
+    {
+      "gate": "references",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "registry-schemas",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "pack-schemas",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "traceability",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "memory-redaction",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "adapter-smoke-tests",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "cli-smoke-tests",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "e2e-workflow",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "dashboard-data",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "dashboard-sync-check",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "release-metadata",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "evaluation-report",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "bilingual-readme-sync",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "markdown-links",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "readme-heading-version",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "roadmap-status-integrity",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "runtime-behavioral-tests",
+      "severity": "critical (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    },
+    {
+      "gate": "quality-scorecard-report",
+      "severity": "advisory (skipped)",
+      "reason": "not selected by profile/task-type filter"
+    }
+  ]
+}
