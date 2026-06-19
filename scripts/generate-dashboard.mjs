@@ -155,7 +155,27 @@ if (validationGate) {
 }
 
 if (coverageSummary) {
-  sections.push(coverageSummary);
+  // Refresh orphan counts from live traceability data
+  let updatedSummary = coverageSummary;
+  if (trace.orphanCommands !== null) {
+    updatedSummary = updatedSummary.replace(
+      /(\| Orphan commands \|)\s*\d+/,
+      `$1 ${trace.orphanCommands}`
+    );
+  }
+  if (trace.orphanSkills !== null) {
+    updatedSummary = updatedSummary.replace(
+      /(\| Orphan skills \|)\s*\d+/,
+      `$1 ${trace.orphanSkills}`
+    );
+  }
+  if (trace.orphanTemplates !== null) {
+    updatedSummary = updatedSummary.replace(
+      /(\| Orphan templates \|)\s*\d+/,
+      `$1 ${trace.orphanTemplates}`
+    );
+  }
+  sections.push(updatedSummary);
   sections.push(``);
 }
 

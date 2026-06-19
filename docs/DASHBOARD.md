@@ -8,10 +8,10 @@
 | Metric | Value |
 |---|---|
 | Version | 2.8.0 |
-| Skills | 128 |
-| Commands | 98 |
-| Templates | 95 |
-| Narrative files | 638 |
+| Skills | 129 |
+| Commands | 99 |
+| Templates | 96 |
+| Narrative files | 641 |
 | Upstream sources | 20 |
 | Broken refs | 0 |
 
@@ -22,7 +22,7 @@
 | agents | 7 |
 | checklists | 5 |
 | core | 68 |
-| memory | 18 |
+| memory | 19 |
 | meta | 12 |
 | prompts | 15 |
 | quality-evaluation-scenarios | 1 |
@@ -126,9 +126,9 @@
 | Templates (86) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 0 (warnings — review signal) |
-| Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 0 |
+| Orphan commands | 2 (warnings — review signal) |
+| Orphan skills | 1 (warnings — review signal) |
+| Orphan templates | 1 |
 | Broken references | 0 |
 
 ## How to Regenerate

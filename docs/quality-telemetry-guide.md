@@ -201,3 +201,111 @@ Telemetry-derived patterns can also feed cross-repo learning after privacy revie
 - **"Invalid telemetry event"** — run with `--dry-run` to see detailed validation errors; verify the source file is valid JSON
 - **Evidence hash mismatch** — the hash depends on stable serialization of the evidence object; different node versions should produce the same hash for identical input
 - **No events collected** — check that the engine JSON file has a `results` array (even if empty); for scorecard reports, ensure the markdown is from a quality scorecard run
+
+## CI/CD Integration
+
+### Trend persistence in GitHub Actions
+
+The `quality-gates.yml` workflow automatically persists CI trend data on every push to `main`. This provides a continuous record of gate pass/fail outcomes across commits, independent of the local NDJSON telemetry store.
+
+#### How it works
+
+1. **Gate results collection** — After all quality gates run, the workflow builds a `gate-details.json` file containing per-gate status (pass/fail/warn), gate IDs, and durations.
+2. **Trend archive download** — The `trend-persist-action` composite action (`.github/actions/trend-persist-action/action.yml`) downloads the previous `trend-archive` artifact from GitHub Actions.
+3. **Append current run** — A new entry is appended to the archive with the current run's data:
+   ```json
+   {
+     "run_id": "12345",
+     "sha": "abc123...",
+     "branch": "main",
+     "timestamp": "2026-06-19T15:00:00.000Z",
+     "total_gates": 3,
+     "passed_gates": 3,
+     "failed_gates": 0,
+     "pass_rate": 100,
+     "gate_details": [
+       { "gate_id": "validate:all", "status": "pass", "duration_ms": 1200 },
+       { "gate_id": "quality-engine", "status": "pass", "duration_ms": 5400 },
+       { "gate_id": "secret-scan", "status": "pass", "duration_ms": 300 }
+     ],
+     "workflow_run_url": "https://github.com/owner/repo/actions/runs/12345"
+   }
+   ```
+4. **Upload updated archive** — The updated `trend-archive.json` is uploaded as a workflow artifact with 90-day retention, overwriting the previous version.
+5. **First-run handling** — If no previous archive exists (first workflow run after enabling the feature), the action starts with an empty array `[]` and creates the initial archive.
+
+The trend archive is capped at 500 entries to prevent unbounded artifact growth. Older entries beyond the limit are pruned automatically.
+
+#### Configuration
+
+Trend persistence only runs on pushes to `main` (not on pull requests), controlled by:
+
+```yaml
+if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+```
+
+The step uses `continue-on-error: true` so a failure in trend persistence never blocks the quality gate workflow itself.
+
+### Reading the CI trend archive
+
+#### Downloading the archive
+
+```bash
+# Download the latest trend-archive artifact from GitHub CLI
+gh api repos/OWNER/REPO/actions/artifacts \
+  --jq '.artifacts[] | select(.name == "trend-archive") | .archive_download_url' \
+  | head -1 \
+  | xargs -I{} gh api {} > trend-archive.zip
+unzip trend-archive.zip trend-archive.json
+```
+
+#### Using the HTML dashboard
+
+Open `docs/reports/ci-trend.html` in any browser, then click "Load trend-archive.json" and select the downloaded file. The dashboard renders:
+
+- **Pass Rate Over Time** — A sparkline chart showing pass rate percentage, passed gate count, and failed gate count across all persisted runs
+- **Gate Breakdown** — Horizontal bar chart showing duration and status of each gate in the latest run
+- **Summary stats** — Total runs, average pass rate, latest pass rate, and unique gate count
+- **Gate History table** — Scrollable table showing per-gate status, duration, and run ID for the last 50 runs
+
+No build step required — the HTML file is self-contained with inline Chart.js loaded from CDN.
+
+#### Using the trend dashboard script
+
+The existing `scripts/quality-trend-dashboard.mjs` works with the NDJSON telemetry store. To combine CI archive data with local telemetry:
+
+```bash
+# Generate trend dashboard from local telemetry events
+node scripts/quality-trend-dashboard.mjs --since 30d
+
+# Output JSON for custom visualization
+node scripts/quality-trend-dashboard.mjs --json --since 7d
+```
+
+### Troubleshooting
+
+#### Scorecard NDJSON store issues
+
+- **NDJSON file not found** — Verify the file exists at `docs/metrics/quality-telemetry-events.ndjson`. Run the telemetry collector first: `node scripts/quality-telemetry.mjs --engine path/to/engine.json`
+- **Invalid JSON on line N** — A malformed line in the NDJSON file. The dashboard script skips invalid lines with a warning. Fix or remove the corrupted line manually
+- **NDJSON file growing too large** — Add `docs/metrics/quality-telemetry-events.ndjson` to `.gitignore` and set up periodic rotation:
+  ```bash
+  # Archive and reset (keep last 30 days)
+  head -n 1000 docs/metrics/quality-telemetry-events.ndjson > /tmp/telemetry-backup.ndjson
+  tail -n 1000 docs/metrics/quality-telemetry-events.ndjson > docs/metrics/quality-telemetry-events.ndjson
+  ```
+- **Duplicate events in NDJSON** — Events are append-only with no built-in deduplication. Use `evidence_hash` to detect duplicates:
+  ```bash
+  sort docs/metrics/quality-telemetry-events.ndjson | uniq -d
+  ```
+- **Scorecard report not generating** — Ensure `quality-engine.json` exists in the reports directory and contains a valid `results` array. Run with `--dry-run` first to validate:
+  ```bash
+  node scripts/quality-engine-report.mjs --output-json=quality-reports/quality-engine.json --output-dir=quality-reports/ --dry-run
+  ```
+
+#### Trend persist artifact issues
+
+- **No trend-archive artifact found** — This is expected on the first run. The action will create an empty archive and populate it with the first entry
+- **Artifact upload fails** — Check that the workflow has `actions: write` permission (needed for artifact upload). The step uses `continue-on-error: true` so it won't block the workflow
+- **Archive shows only recent entries** — The archive is capped at 500 entries. Older entries beyond this limit are automatically pruned
+- **Stale archive data** — If the `trend-archive` artifact retention (90 days) expires, the archive resets. This is expected behavior for long-running repositories

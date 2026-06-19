@@ -236,6 +236,12 @@
       "maturity": "stable"
     },
     {
+      "name": "vibe-memory-compress",
+      "path": "commands/vibe-memory-compress.md",
+      "description": "Compress noisy session observations into durable memory entries with confidence scoring.",
+      "maturity": "alpha"
+    },
+    {
       "name": "vibe-memory-config",
       "path": "commands/vibe-memory-config.md",
       "description": "Define or audit local memory configuration.",

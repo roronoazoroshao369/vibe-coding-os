@@ -388,6 +388,15 @@
       "description": "Evaluate memory relevance, freshness, safety, cost, and latency."
     },
     {
+      "name": "memory-compression",
+      "path": "skills/memory/memory-compression/SKILL.md",
+      "category": "memory",
+      "description": "Compress noisy session observations into concise durable facts with confidence and staleness scoring.",
+      "tags": ["memory", "compression", "confidence", "privacy"],
+      "bundle": "memory-workflow",
+      "platforms": ["*"]
+    },
+    {
       "name": "memory-ingestion",
       "path": "skills/memory/memory-ingestion/SKILL.md",
       "category": "memory",

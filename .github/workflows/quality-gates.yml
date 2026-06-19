@@ -269,3 +269,67 @@ jobs:
         run: |
           echo "::error::Quality gates failed. Check the workflow summary and artifact for details."
           exit 1
+
+      - name: Build gate details JSON
+        id: gate-details
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          REPORT_DIR="quality-reports"
+          GATE_DETAILS="[]"
+
+          # Build gate details array from step outputs
+          if node -e "
+            const details = [];
+            const validate = { gate_id: 'validate:all', status: '${{ steps.validate-all.outputs.status || 'unknown' }}' };
+            const engine = { gate_id: 'quality-engine', status: '${{ steps.quality-engine.outputs.status || 'unknown' }}' };
+            const secrets = { gate_id: 'secret-scan', status: '${{ steps.secrets.outputs.status || 'unknown' }}' };
+
+            // Try to extract durations from engine report
+            const fs = require('fs');
+            const enginePath = '${REPORT_DIR}/quality-engine.json';
+            let engineReport = null;
+            try { engineReport = JSON.parse(fs.readFileSync(enginePath, 'utf8')); } catch (_e) { /* engine report not available */ }
+
+            if (engineReport && Array.isArray(engineReport.results)) {
+              for (const r of engineReport.results) {
+                details.push({
+                  gate_id: r.id || r.name || 'unknown',
+                  status: r.passed ? 'pass' : (r.timedOut ? 'timeout' : 'fail'),
+                  duration_ms: r.durationMs || 0
+                });
+              }
+            } else {
+              // Fallback: just the top-level gates
+              details.push(validate);
+              details.push(engine);
+              details.push(secrets);
+            }
+
+            // Ensure top-level gates are present
+            const ids = details.map(d => d.gate_id);
+            if (!ids.includes('validate:all')) details.unshift(validate);
+            if (!ids.includes('quality-engine')) details.push(engine);
+            if (!ids.includes('secret-scan')) details.push(secrets);
+
+            console.log(JSON.stringify(details));
+          " > "$REPORT_DIR/gate-details.json" 2>/dev/null; then
+            echo "details_file=$REPORT_DIR/gate-details.json" >> "$GITHUB_OUTPUT"
+          else
+            echo '[]' > "$REPORT_DIR/gate-details.json"
+            echo "details_file=$REPORT_DIR/gate-details.json" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Persist CI trend archive
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: ./.github/actions/trend-persist-action
+        continue-on-error: true
+        with:
+          total_gates: ${{ steps.quality-engine.outputs.status != '' && '3' || '1' }}
+          passed_gates: >-
+            ${{
+              (steps.validate-all.outputs.status == 'passed' ? 1 : 0)
+              + (steps.quality-engine.outputs.status == 'passed' ? 1 : 0)
+              + (steps.secrets.outputs.status == 'passed' ? 1 : 0)
+            }}
+          gate_details_file: ${{ steps.gate-details.outputs.details_file }}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI Quality Trend Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-dim: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --blue: #58a6ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 { margin-bottom: 0.5rem; font-size: 1.8rem; }
+    .subtitle { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.9rem; }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .stat-card .label {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+    .chart-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .chart-container h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .chart-wrapper { position: relative; height: 300px; }
+    .gate-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .gate-table th, .gate-table td {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .gate-table th {
+      background: var(--surface);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .gate-table tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-green { background: rgba(63,185,80,0.15); color: var(--green); }
+    .badge-red { background: rgba(248,81,73,0.15); color: var(--red); }
+    .badge-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); }
+    #loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-dim);
+    }
+    #error {
+      text-align: center;
+      padding: 2rem;
+      color: var(--red);
+      display: none;
+    }
+    #dashboard { display: none; }
+    .file-input-wrapper {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .file-input-wrapper label {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .file-input-wrapper label:hover { opacity: 0.9; }
+    .file-input-wrapper input[type="file"] { display: none; }
+    .timestamp { color: var(--text-dim); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>📊 CI Quality Trend Dashboard</h1>
+  <p class="subtitle">Visualizes gate pass rate trends from CI trend-archive.json</p>
+
+  <div class="file-input-wrapper">
+    <label for="archive-file">Load trend-archive.json
+      <input type="file" id="archive-file" accept=".json" />
+    </label>
+  </div>
+
+  <div id="loading">Select a trend-archive.json file to view the dashboard.</div>
+  <div id="error"></div>
+
+  <div id="dashboard">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="value" id="total-runs">-</div>
+        <div class="label">Total Runs</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="avg-pass-rate" style="color:var(--green)">-</div>
+        <div class="label">Avg Pass Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="latest-pass-rate">-</div>
+        <div class="label">Latest Pass Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="total-gates-seen">-</div>
+        <div class="label">Unique Gates</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <h2>Pass Rate Over Time</h2>
+      <div class="chart-wrapper">
+        <canvas id="pass-rate-chart"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <h2>Gate Breakdown (Latest Run)</h2>
+      <div class="chart-wrapper">
+        <canvas id="gate-chart"></canvas>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom:0.8rem;">Gate History</h2>
+    <table class="gate-table">
+      <thead>
+        <tr>
+          <th>Gate</th>
+          <th>Status</th>
+          <th>Duration</th>
+          <th>Run ID</th>
+        </tr>
+      </thead>
+      <tbody id="gate-table-body"></tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById('archive-file').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        try {
+          const archive = JSON.parse(ev.target.result);
+          renderDashboard(archive);
+        } catch (err) {
+          showError('Failed to parse JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    function showError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').textContent = msg;
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('dashboard').style.display = 'none';
+    }
+
+    let passRateChart = null;
+    let gateChart = null;
+
+    function renderDashboard(archive) {
+      if (!Array.isArray(archive) || archive.length === 0) {
+        showError('Archive is empty or invalid.');
+        return;
+      }
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+
+      // Summary stats
+      const totalRuns = archive.length;
+      const avgPassRate = archive.reduce((s, e) => s + (e.pass_rate || 0), 0) / totalRuns;
+      const latest = archive[archive.length - 1];
+
+      document.getElementById('total-runs').textContent = totalRuns;
+      document.getElementById('avg-pass-rate').textContent = avgPassRate.toFixed(1) + '%';
+      document.getElementById('latest-pass-rate').textContent = (latest.pass_rate || 0).toFixed(1) + '%';
+      document.getElementById('latest-pass-rate').style.color =
+        (latest.pass_rate || 0) >= 80 ? 'var(--green)' : (latest.pass_rate || 0) >= 50 ? 'var(--yellow)' : 'var(--red)';
+
+      // Collect unique gate IDs
+      const allGates = new Set();
+      archive.forEach(e => (e.gate_details || []).forEach(g => allGates.add(g.gate_id)));
+      document.getElementById('total-gates-seen').textContent = allGates.size;
+
+      // Pass rate over time chart
+      const labels = archive.map((e, i) => {
+        const d = new Date(e.timestamp);
+        const short = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return short + ' #' + (i + 1);
+      });
+      const passRates = archive.map(e => e.pass_rate || 0);
+      const passCounts = archive.map(e => e.passed_gates || 0);
+      const failCounts = archive.map(e => (e.total_gates || 0) - (e.passed_gates || 0));
+
+      if (passRateChart) passRateChart.destroy();
+      passRateChart = new Chart(document.getElementById('pass-rate-chart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Pass Rate %',
+              data: passRates,
+              borderColor: 'rgba(88,166,255,1)',
+              backgroundColor: 'rgba(88,166,255,0.1)',
+              fill: true,
+              tension: 0.3,
+              pointRadius: 3,
+              yAxisID: 'y'
+            },
+            {
+              label: 'Passed Gates',
+              data: passCounts,
+              borderColor: 'rgba(63,185,80,0.7)',
+              backgroundColor: 'rgba(63,185,80,0.1)',
+              fill: false,
+              tension: 0.3,
+              pointRadius: 2,
+              yAxisID: 'y1'
+            },
+            {
+              label: 'Failed Gates',
+              data: failCounts,
+              borderColor: 'rgba(248,81,73,0.7)',
+              backgroundColor: 'rgba(248,81,73,0.1)',
+              fill: false,
+              tension: 0.3,
+              pointRadius: 2,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#e6edf3' } }
+          },
+          scales: {
+            x: { ticks: { color: '#8b949e', maxRotation: 45 }, grid: { color: '#30363d' } },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0, max: 100,
+              title: { display: true, text: 'Pass Rate %', color: '#8b949e' },
+              ticks: { color: '#8b949e' },
+              grid: { color: '#30363d' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              min: 0,
+              title: { display: true, text: 'Gate Count', color: '#8b949e' },
+              ticks: { color: '#8b949e', stepSize: 1 },
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+
+      // Gate breakdown bar chart (latest run)
+      const latestGates = latest.gate_details || [];
+      if (gateChart) gateChart.destroy();
+      if (latestGates.length > 0) {
+        const gateLabels = latestGates.map(g => g.gate_id || g.name || 'unknown');
+        const gateColors = latestGates.map(g => {
+          if (g.status === 'pass') return 'rgba(63,185,80,0.7)';
+          if (g.status === 'fail') return 'rgba(248,81,73,0.7)';
+          if (g.status === 'warn') return 'rgba(210,153,34,0.7)';
+          return 'rgba(139,148,158,0.5)';
+        });
+        const gateDurations = latestGates.map(g => g.duration_ms || 0);
+
+        gateChart = new Chart(document.getElementById('gate-chart'), {
+          type: 'bar',
+          data: {
+            labels: gateLabels,
+            datasets: [
+              {
+                label: 'Duration (ms)',
+                data: gateDurations,
+                backgroundColor: gateColors,
+                borderWidth: 0,
+                borderRadius: 4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  afterLabel: function(ctx) {
+                    const g = latestGates[ctx.dataIndex];
+                    return 'Status: ' + (g.status || 'unknown');
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                title: { display: true, text: 'Duration (ms)', color: '#8b949e' },
+                ticks: { color: '#8b949e' },
+                grid: { color: '#30363d' }
+              },
+              y: {
+                ticks: { color: '#e6edf3', font: { size: 11 } },
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      } else {
+        document.getElementById('gate-chart').parentElement.querySelector('h2').textContent =
+          'Gate Breakdown (No gate details in latest run)';
+      }
+
+      // Gate history table (show last 50 entries, most recent first)
+      const tbody = document.getElementById('gate-table-body');
+      tbody.innerHTML = '';
+      const recentEntries = archive.slice(-50).reverse();
+      for (const entry of recentEntries) {
+        const details = entry.gate_details || [];
+        if (details.length === 0) {
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><em>All gates</em></td>' +
+            '<td><span class="badge ' + (entry.pass_rate >= 80 ? 'badge-green' : entry.pass_rate >= 50 ? 'badge-yellow' : 'badge-red') + '">' +
+            entry.pass_rate + '%</span></td>' +
+            '<td>-</td>' +
+            '<td class="timestamp">' + (entry.run_id || '-') + '</td>';
+          tbody.appendChild(tr);
+        } else {
+          for (const g of details) {
+            const tr = document.createElement('tr');
+            const statusClass = g.status === 'pass' ? 'badge-green' : g.status === 'fail' ? 'badge-red' : 'badge-yellow';
+            tr.innerHTML =
+              '<td>' + (g.gate_id || g.name || 'unknown') + '</td>' +
+              '<td><span class="badge ' + statusClass + '">' + (g.status || '-') + '</span></td>' +
+              '<td>' + (g.duration_ms != null ? g.duration_ms + 'ms' : '-') + '</td>' +
+              '<td class="timestamp">' + (entry.run_id || '-') + '</td>';
+            tbody.appendChild(tr);
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

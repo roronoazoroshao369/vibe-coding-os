@@ -1,149 +1,50 @@
-# Claude Code Instructions for Vibe Coding OS
+# Claude Code Instructions — Vibe Coding OS
 
-> **New to Vibe Coding OS?** Start here for a 2-minute setup, then use the workflow below.
+**Quick start:** `git clone`, then `cp CLAUDE.md commands/ skills/ templates/ /your-project/`. See [`docs/QUICKSTART.md`](docs/QUICKSTART.md).
 
-## Quick setup for Claude Code
+**Prime directive:** Build software quickly while preserving clarity, correctness, verification, and attribution hygiene.
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
+## Workflow
 
-# 2. Link instructions into your project
-cd /your-project
-cp ~/vibe-coding-os/CLAUDE.md ./
-# OR: ln -s ~/vibe-coding-os/CLAUDE.md ./CLAUDE.md
+`Intent → Spec → Plan → Implement → Test → Review → Memory → Merge`
 
-# 3. Copy skills and commands (optional but recommended)
-cp -r ~/vibe-coding-os/commands/ ~/vibe-coding-os/skills/ ./
+| Layer | When | Key commands |
+|-------|------|--------------|
+| **Default** | Every session | all `vibe-*` |
+| **Superpowers** | Brainstorming, exploration | `vibe-brainstorm`, `vibe-parallel-explore` |
+| **Spec-Driven** | Multi-file features | `vibe-specify` → `vibe-plan` → `vibe-tasks` |
+| **Real Engineering** | Debugging, legacy code | `vibe-diagnose`, TDD |
 
-# 4. Verify
-claude -p "Run npm run validate in vibe-coding-os"
-```
+## Quick reference
 
-For detailed setup, see [`adapters/claude-code/README.md`](adapters/claude-code/README.md) or [`docs/QUICKSTART.md`](docs/QUICKSTART.md).
-
-## Prime directive
-
-Help the user build and maintain software quickly while preserving clarity, correctness, verification, and attribution hygiene.
-
-## Default workflow
-
-For meaningful work, follow:
-
-```text
-Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
-```
-
-Use the lightest useful version of each step. Tiny edits may only need intent, implementation, and verification. Larger work should create or update a spec and plan first.
-
-### Choose your workflow layer
-
-| Layer | When to use | Key commands |
-|-------|-------------|--------------|
-| **Default** (always) | Every session — Intent→Spec→Plan→Implement→Test→Review→Memory→Merge | all `vibe-*` |
-| **Superpowers** | Inspired by upstream references, brainstorming, or parallel exploration | `vibe-brainstorm`, `vibe-parallel-explore` |
-| **Real Engineering** | Debugging, refactoring, legacy code, architecture decisions | `vibe-diagnose`, `vibe-improve-architecture`, TDD |
-| **Spec-Driven** | Non-trivial behavior changes, multi-file features | constitution → `vibe-specify` → `vibe-plan` → `vibe-tasks` → implement |
-
-When unsure, start with the **Default** workflow and escalate as needed.
-
-## How to use skills and commands
-
-- Use `skills/*/*/SKILL.md` as operating procedures.
-- Use `commands/*.md` as reusable prompts for workflow phases.
-- Use `templates/*.md` when creating specs, plans, tasks, reviews, or memory notes.
-- Combine skills when needed, but do not over-orchestrate simple work.
-
-| Command | When to use |
-|---------|-------------|
+| Command | When |
+|---------|------|
 | `vibe-spec` | Requirements or edge cases matter |
-| `vibe-plan` | Converting spec to file-oriented plan |
-| `vibe-implement` | Focused edits matching the plan |
-| `vibe-review` | Before considering task complete |
-| `vibe-memory` | Capturing durable session decisions |
-| `vibe-merge` | Final readiness confirmation |
-| `vibe-init` | First-time project setup |
-| `vibe-doctor` | Check repo health and setup |
+| `vibe-plan` | Spec → file-oriented plan |
+| `vibe-implement` | Focused edits |
+| `vibe-review` | Before task-complete |
+| `vibe-merge` | Final readiness |
+
+## Skills & commands
+
+`skills/*/*/SKILL.md` for procedures, `commands/*.md` for prompts, `templates/*.md` for specs/plans/tasks/reviews/memory. Combine as needed; don't over-orchestrate simple work.
 
 ## Anti-patterns
 
-Avoid:
-- coding before understanding the request;
-- silently expanding scope;
-- large rewrites without a plan;
-- claiming tests passed when they were not run;
-- hiding uncertainty;
-- storing secrets in memory;
-- copying external repository content without attribution review.
+Coding before understanding, scope creep, large rewrites without plan, faking tests, hiding uncertainty, storing secrets, copying content without attribution.
 
-## Proficiency-level awareness
+## Verification
 
-When starting a new session, consider the user's likely proficiency level from `docs/proficiency-path.md`:
+`npm run validate` for structure. Targeted tests first, broader checks when feasible. Report honestly: passed, failed, or not run (with reason). Merge-ready: diff reviewed, criteria satisfied, verification clear, attribution clean.
 
-- **Level 1:** Prefer simple commands, avoid deep orchestration patterns. Use `vibe-init`, `vibe-spec`, `vibe-implement`, `vibe-review`.
-- **Level 2:** Introduce skill-writing and bundle concepts. Use `vibe-write-skill`, reference `skills/meta/writing-skills/SKILL.md`.
-- **Level 3:** Apply SuperAgent orchestration, checkpoint gates, subagent delegation. Use `vibe-superagent`, `vibe-checkpoints`.
-- **Level 4:** Use team-agent orchestration, hook patterns, and advanced multi-agent workflows.
+## On-demand deep dives
 
-When unsure, run `commands/vibe-proficiency.md` for a self-assessment prompt. Adjust workflow depth proportionally.
-
-## Memory rules
-
-- Record durable decisions, constraints, commands, gotchas, and follow-ups.
-- Do not store secrets, tokens, private keys, or sensitive personal data.
-- Prefer concise summaries over transcripts.
-- Mark stale or uncertain memory instead of treating it as fact.
-
-## Verification rules
-
-- Run the most relevant checks available.
-- For structure changes, run `npm run validate` (repo structure, references, and traceability).
-- Traceability (`npm run validate:traceability`) fails on broken `commands/`, `skills/`, or `templates/` references and warns on orphan inventory items that no narrative markdown links to.
-- For code changes, run targeted tests first and broader checks when feasible.
-- Report every check honestly as passed, failed, or not run with a reason.
-
-## Merge readiness
-
-A change is merge-ready only when the diff is reviewed, acceptance criteria are satisfied, verification status is clear, and attribution obligations are clean.
-
-## Reference Intelligence Layer
-
-When Claude uses upstream inspiration, first read `references/index.json`, the matching source document, and relevant feature or mapping docs. Use `npm run references:clone` only for ignored local audit working copies under `references/upstreams/`. Treat upstream repositories as inspiration only: summarize ideas in original language, update changelogs when auditing, and never copy large upstream content or vendor code without license and attribution review. Run `npm run validate:references` after reference-layer edits.
-
-Before adopting anything from an upstream repo, follow `docs/UPSTREAM_ADOPTION_POLICY.md`: classify the item (adapt-skill / adapt-command / adapt-template / adapt-doc / adapt-rule / adapter-only / runtime-local / reject-runtime / inspiration-only / blocked-license), apply the 7-point engine adoption gate, and record the decision in `references/mappings/adoption-classification.md`. The repo is **Portable-first, Runtime optional**: never vendor external engines; see `docs/workflows/core-vs-optional-runtime.md` for the Core vs Runtime boundary and the frozen runtime scope.
-## Superpowers-inspired Claude workflow
-
-For meaningful tasks, do not skip the local Superpowers-inspired rituals: brainstorm before coding, write or update a spec/design when behavior or architecture is non-trivial, write a concrete plan before broad implementation, use TDD or targeted checks for behavior changes, request and receive review when a patch is ready, verify before claiming completion, and finish the branch with clear validation, attribution, memory, and handoff status. Use `docs/workflows/superpowers-inspired-workflow.md` plus the matching skills in `skills/core/` and `skills/meta/` as the canonical local guidance, not upstream text.
-
-## Real Engineering Skills Layer
-
-When using the mattpocock-inspired local layer, prefer grilling before implementation, keep `CONTEXT.md` and `docs/adr/` useful, use TDD and disciplined diagnosis loops, zoom out before architecture-sensitive work, and hand off unfinished work with exact validation status. Use compressed technical communication only when the user wants terse expert output or token pressure is high; do not hide caveats. Preserve attribution by reading `references/sources/mattpocock-skills.md` and related mappings before adapting upstream ideas.
-
-## Spec-Driven Development Layer
-
-When tackling non-trivial work, Claude should follow the local spec-driven layer adapted from `github/spec-kit`:
-
-- Move through constitution → specify → plan → tasks → implement, using the lightest useful version of each phase.
-- Read `CONSTITUTION.md` first; ensure goals and non-goals respect the project principles.
-- Write specs that describe behavior (the "what") with observable acceptance criteria; defer technology choices (the "how") to the plan. Use `commands/vibe-specify.md` and `skills/core/what-before-how/SKILL.md`.
-- Translate the spec into a plan with separated technical context and spec traceability (`commands/vibe-plan-from-spec.md`), then into ordered tasks with dependencies, parallel markers, and test-first sequencing (`commands/vibe-tasks.md`).
-- Do not write implementation code until the implementation-readiness gate clears (spec, plan, and tasks all pass their checkpoint). Use `commands/vibe-checkpoints.md` and `skills/core/checkpoint-validation/SKILL.md`.
-- Record assumptions in the spec instead of guessing; surface open questions that would change the work.
-- For existing systems, use `skills/core/brownfield-spec-enhancement/SKILL.md` and add characterization tests before changing behavior.
-- Treat `github/spec-kit` as inspiration only: do not vendor upstream templates, prompts, or CLI code, do not require the Specify CLI, and do not adopt upstream command names as mandatory.
-
-## Claude persistent context guidance
-
-- At session start, retrieve only task-relevant memory and inject it as a small bundle with citations, confidence, and staleness labels.
-- During work, capture durable observations: user intent, constraints, decisions, material tool outcomes, files touched, validation status, risks, and follow-ups.
-- Before storing or injecting memory, apply privacy exclusions for secrets, credentials, tokens, private keys, unnecessary personal data, and sensitive raw transcripts.
-- At session end or handoff, compress noisy context into a concise summary that preserves citations, uncertainty, failed checks, and next actions.
-- Use progressive disclosure: search broad memory first, inspect candidate summaries, then include full details only when directly relevant.
-- Treat `thedotmack/claude-mem` as an inspiration source only. Do not copy upstream hooks, require its Bun worker, clone its storage/search stack, or depend on its installer.
+- **Superpowers:** [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md)
+- **Spec-driven:** [`commands/vibe-specify.md`](commands/vibe-specify.md)
+- **Memory rules:** [`skills/memory/memory-architecture/SKILL.md`](skills/memory/memory-architecture/SKILL.md)
+- **Reference intelligence:** [`docs/workflows/runtime-mcp-server.md`](docs/workflows/runtime-mcp-server.md)
+- **Proficiency levels:** [`commands/vibe-proficiency.md`](commands/vibe-proficiency.md)
 
 ## Ghi chú tiếng Việt
 
-*Claude nên theo lớp spec-driven: constitution → specify → plan → tasks → implement, làm rõ "cái gì" trước "làm thế nào", ghi assumptions, và chỉ code sau khi qua cổng sẵn sàng. Coi `github/spec-kit` là nguồn cảm hứng: không vendor template/prompt/CLI, không bắt buộc Specify CLI.*
-
-*Về bộ nhớ: nạp vừa đủ cho nhiệm vụ, luôn lọc dữ liệu nhạy cảm trước khi lưu/chèn, và ghi rõ trích dẫn hoặc observation ID khi dùng thông tin từ phiên trước.*
-
+*Làm theo lớp spec-driven: constitution → specify → plan → tasks → implement, "cái gì" trước "làm thế nào". Coi `github/spec-kit` là cảm hứng, không vendor. Bộ nhớ: nạp vừa đủ, lọc dữ liệu nhạy cảm, ghi rõ trích dẫn.*

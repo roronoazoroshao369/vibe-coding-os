@@ -1,0 +1,172 @@
+name: 'Trend Persist Action'
+description: >
+  Downloads the previous trend-archive artifact, appends current run's
+  gate pass/fail data, and re-uploads the updated archive as an artifact.
+  Gracefully handles the first run when no previous artifact exists.
+
+branding:
+  icon: 'trending-up'
+  color: 'blue'
+
+inputs:
+  run_id:
+    description: 'GitHub Actions run ID (defaults to github.run_id)'
+    required: false
+    default: ''
+  total_gates:
+    description: 'Total number of gates evaluated in this run'
+    required: true
+  passed_gates:
+    description: 'Number of gates that passed in this run'
+    required: true
+  gate_details_json:
+    description: >
+      JSON string array of gate detail objects. Each object should have:
+      { "gate_id": "string", "status": "pass|fail|warn|skip|timeout", "duration_ms": number }
+      Alternatively, set gate_details_file to read from a JSON file.
+    required: false
+    default: '[]'
+  gate_details_file:
+    description: >
+      Path to a JSON file containing the gate details array.
+      If both gate_details_file and gate_details_json are set, the file takes precedence.
+    required: false
+    default: ''
+
+outputs:
+  archive_entries:
+    description: 'Total number of entries in the updated trend archive'
+    value: ${{ steps.persist.outputs.archive_entries }}
+  is_first_run:
+    description: 'true if this is the first run (no previous archive existed)'
+    value: ${{ steps.persist.outputs.is_first_run }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Persist CI trend data
+      id: persist
+      shell: bash
+      env:
+        TOTAL_GATES: ${{ inputs.total_gates }}
+        PASSED_GATES: ${{ inputs.passed_gates }}
+        GATE_DETAILS: ${{ inputs.gate_details_json }}
+        GATE_DETAILS_FILE: ${{ inputs.gate_details_file }}
+        RUN_ID: ${{ inputs.run_id || github.run_id }}
+        ARCHIVE_NAME: trend-archive
+        ARCHIVE_FILE: trend-archive.json
+      run: |
+        set -euo pipefail
+
+        ARCHIVE_DIR=".trend-archive"
+        mkdir -p "$ARCHIVE_DIR"
+
+        # Try to download previous trend archive artifact
+        IS_FIRST="false"
+        echo "Attempting to download previous trend-archive artifact..."
+        if gh api \
+          -H "Accept: application/vnd.github+json" \
+          "/repos/${{ github.repository }}/actions/runs/${RUN_ID}/artifacts" \
+          --jq ".artifacts[] | select(.name == \"${ARCHIVE_NAME}\") | .id" \
+          2>/dev/null | head -1 | read -r artifact_id && [ -n "$artifact_id" ]; then
+          echo "Found previous artifact: $artifact_id"
+        fi
+        # Use the download-artifact action via a separate approach:
+        # We attempt to download via the REST API since composite actions
+        # cannot nest other actions directly.
+        echo "Trying artifact download via gh CLI..."
+        # Find latest trend-archive artifact from recent workflow runs
+        LATEST_ARTIFACT_URL=$(gh api \
+          -H "Accept: application/vnd.github+json" \
+          "/repos/${{ github.repository }}/actions/artifacts?per_page=20" \
+          --jq "[.artifacts[] | select(.name == \"${ARCHIVE_NAME}\")][0] | .archive_download_url // empty" \
+          2>/dev/null || echo "")
+
+        if [ -n "$LATEST_ARTIFACT_URL" ]; then
+          echo "Downloading previous trend archive..."
+          if gh api "$LATEST_ARTIFACT_URL" > "${ARCHIVE_DIR}/${ARCHIVE_NAME}.zip" 2>/dev/null; then
+            cd "$ARCHIVE_DIR"
+            unzip -o "${ARCHIVE_NAME}.zip" "${ARCHIVE_NAME}.json" 2>/dev/null || true
+            cd -
+          fi
+        fi
+
+        if [ -f "${ARCHIVE_DIR}/${ARCHIVE_NAME}.json" ]; then
+          echo "Previous archive loaded successfully."
+        else
+          echo "No previous archive found — this is the first run."
+          echo "[]" > "${ARCHIVE_DIR}/${ARCHIVE_NAME}.json"
+          IS_FIRST="true"
+        fi
+
+        # Build the new entry using a Node.js script for reliable JSON handling
+        node -e "
+          const fs = require('fs');
+          const path = '${ARCHIVE_DIR}/${ARCHIVE_NAME}.json';
+          let archive = [];
+          try {
+            const raw = fs.readFileSync(path, 'utf8').trim();
+            if (raw) archive = JSON.parse(raw);
+          } catch (e) {
+            console.error('Warning: failed to parse previous archive, starting fresh:', e.message);
+            archive = [];
+          }
+
+          const gateDetails = (() => {
+            const filePath = process.env.GATE_DETAILS_FILE;
+            if (filePath) {
+              try {
+                const raw = fs.readFileSync(filePath, 'utf8');
+                return JSON.parse(raw);
+              } catch (e) {
+                console.warn('Warning: failed to read gate_details_file, falling back to gate_details_json:', e.message);
+              }
+            }
+            try {
+              return JSON.parse(process.env.GATE_DETAILS || '[]');
+            } catch {
+              return [];
+            }
+          })();
+          const total = parseInt(process.env.TOTAL_GATES, 10);
+          const passed = parseInt(process.env.PASSED_GATES, 10);
+          const passRate = total > 0 ? Math.round((passed / total) * 10000) / 100 : 0;
+
+          const entry = {
+            run_id: process.env.RUN_ID,
+            sha: '${{ github.sha }}',
+            branch: '${{ github.ref_name }}',
+            timestamp: new Date().toISOString(),
+            total_gates: total,
+            passed_gates: passed,
+            failed_gates: total - passed,
+            pass_rate: passRate,
+            gate_details: gateDetails,
+            workflow_run_url: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          };
+
+          archive.push(entry);
+
+          // Keep at most 500 entries to prevent unbounded growth
+          if (archive.length > 500) {
+            archive = archive.slice(-500);
+          }
+
+          fs.writeFileSync(path, JSON.stringify(archive, null, 2), 'utf8');
+          console.log(JSON.stringify({ archive_entries: archive.length }));
+        " | tee "${ARCHIVE_DIR}/persist-output.json"
+
+        ARCHIVE_ENTRIES=$(node -e "const d=JSON.parse(require('fs').readFileSync('${ARCHIVE_DIR}/persist-output.json','utf8')); console.log(d.archive_entries)")
+
+        echo "archive_entries=$ARCHIVE_ENTRIES" >> "$GITHUB_OUTPUT"
+        echo "is_first_run=$IS_FIRST" >> "$GITHUB_OUTPUT"
+        echo "Trend archive updated: $ARCHIVE_ENTRIES total entries."
+
+    - name: Upload updated trend archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: trend-archive
+        path: .trend-archive/trend-archive.json
+        if-no-files-found: error
+        retention-days: 90
+        overwrite: true
