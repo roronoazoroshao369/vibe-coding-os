@@ -406,5 +406,9 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.3.0: ████████████ 100%
 - v2.4.0: ████████████ 100%
 - v2.5.0: ████████████ 100%
+- v2.6.0: ████████████ 100%
+- v2.7.0: ████████████ 100%
+- v2.8.0: ████████████ 100%
+- v2.9.0: ████████████ 100%
 
-**Overall roadmap through v2.5.0: ████████████ 100% COMPLETE**
+**Overall roadmap through v2.9.0: ████████████ 100% COMPLETE**

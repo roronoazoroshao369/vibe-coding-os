@@ -6,10 +6,10 @@ Overall: **4/4 checks passed**
 
 ## Summary
 
-- ✅ **Repo Validation**: PASS (570 narrative files) — 947ms
-- ✅ **Secret Scanning**: PASS (0 secrets found) — 4.16s
-- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 62ms
-- ✅ **Adapter Smoke Tests**: PASS (6/6 adapters) — 57ms
+- ✅ **Repo Validation**: PASS (651 narrative files) — 824ms
+- ✅ **Secret Scanning**: PASS (0 secrets found) — 4.06s
+- ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 52ms
+- ✅ **Adapter Smoke Tests**: PASS (10/10 adapters) — 52ms
 
 ## Details
 
@@ -18,19 +18,19 @@ Overall: **4/4 checks passed**
 - Command: `npm run validate`
 - Status: PASS
 - Exit code: 0
-- Duration: 947ms
+- Duration: 824ms
 - Last 10 lines of output:
 
 ```text
-> vibe-coding-os@2.5.0 validate
+> vibe-coding-os@2.9.0 validate
 > node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs
 Vibe Coding OS validation passed.
-Checked 11 required files, 118 skills, 90 commands, 72 templates, and 2 examples (skills/commands/templates discovered dynamically).
+Checked 11 required files, 130 skills, 100 commands, 83 templates, and 2 examples (skills/commands/templates discovered dynamically).
 Reference Intelligence Layer validation passed.
-Checked 14 sources, 26 feature docs, 4 mapping docs, and 5 reference commands.
+Checked 20 sources, 26 feature docs, 4 mapping docs, and 5 reference commands.
 Traceability validation passed.
-Checked 90 commands, 118 skills, 86 templates against 570 narrative files. Broken references: 0. Orphans (warnings): 0 commands, 0 skills, 0 templates.
-Injection scan passed: 442 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
+Checked 100 commands, 130 skills, 98 templates against 651 narrative files. Broken references: 0. Orphans (warnings): 2 commands, 1 skills, 1 templates.
+Injection scan passed: 496 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
 ```
 
 ### Secret Scanning
@@ -38,7 +38,7 @@ Injection scan passed: 442 text files + 1 MCP manifest(s) scanned, 0 blocking fi
 - Command: `node scripts/validate-secrets.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 4.16s
+- Duration: 4.06s
 - Last 10 lines of output:
 
 ```text
@@ -50,7 +50,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/verify-memory-redaction.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 62ms
+- Duration: 52ms
 - Last 10 lines of output:
 
 ```text
@@ -71,18 +71,19 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/smoke-test-adapters.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 57ms
+- Duration: 52ms
 - Last 10 lines of output:
 
 ```text
-Adapter Smoke Tests
-===================
-✅ Claude Code adapter: OK (7/7 checks passed)
 ✅ Codex adapter: OK (5/5 checks passed)
 ✅ Cursor adapter: OK (6/6 checks passed)
 ✅ Gemini adapter: OK (7/7 checks passed)
 ✅ Memory adapters: OK (5/5 checks passed)
+✅ Cline adapter: OK (8/8 checks passed)
+✅ Continue.dev adapter: OK (10/10 checks passed)
+✅ Aider adapter: OK (9/9 checks passed)
+✅ Windsurf adapter: OK (9/9 checks passed)
 ✅ Compatibility matrix: OK (4/4 checks passed)
-Results: 6/6 adapters passed
+Results: 10/10 adapters passed
 ```
 

@@ -58,7 +58,8 @@
 | v2.5.0 | ✅ Complete | Quality Engine v3 — quality packs, skill packs, compliance checks
 | v2.6.0 | ✅ Complete | Full Reference Implementation — 20 sources, 43 new files, 70 modified
 | v2.7.0 | ✅ Complete | AI Testing Suite — property testing, benchmark, test gen, trend dashboard, PR comments
-| v2.8.0 | 🚧 In Progress | Adapter Expansion — Cline, Continue.dev, Aider, Windsurf
+| v2.8.0 | ✅ Complete | Adapter Expansion — Cline, Continue.dev, Aider, Windsurf |
+| v2.9.0 | 🚧 In Progress | Release Pipeline & Plugin Polish — MCP tools, memory compression, agent alignment |
 
 ## Safety Metrics
 
