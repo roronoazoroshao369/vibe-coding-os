@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-os",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",

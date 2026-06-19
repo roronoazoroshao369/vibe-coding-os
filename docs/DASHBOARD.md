@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.0.0 |
+| Version | 2.1.0 |
 | Skills | 114 |
 | Commands | 88 |
-| Templates | 81 |
-| Narrative files | 527 |
+| Templates | 82 |
+| Narrative files | 529 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -51,6 +51,7 @@
 | v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
 | v1.9.0 | ✅ Complete | Smart Adapt, adaptive prompts, scorecards, lessons |
 | v2.0.0 | ✅ Complete | Quality Engine, schemas, integration tests, gate #26 |
+| v2.1.0 | ✅ Complete | Model-Aware Config, model risk profiles, Quality Engine configuration |
 
 ## Safety Metrics
 
@@ -94,7 +95,7 @@
 |---|---|
 | Skills (114) | All discovered dynamically from `skills/` |
 | Commands (88) | All discovered dynamically from `commands/` |
-| Templates (81) | All discovered dynamically from `templates/` |
+| Templates (82) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |

@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality Packs Configuration",
+  "description": "Schema for Vibe Coding OS quality packs config — maps task types to ordered quality packs, each containing required and optional validation checks with priority weights.",
+  "type": "object",
+  "required": ["version", "task_type_packs"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Config schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "task_type_packs": {
+      "type": "object",
+      "description": "Mapping from task type to a list of quality packs. Each task type defines what quality validation is required.",
+      "additionalProperties": {
+        "type": "array",
+        "description": "Ordered list of quality packs for this task type. Earlier packs are considered higher priority.",
+        "items": {
+          "$ref": "#/definitions/qualityPack"
+        },
+        "minItems": 1
+      },
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "minProperties": 1
+    }
+  },
+  "definitions": {
+    "qualityPack": {
+      "type": "object",
+      "description": "A quality pack groups validation checks for a particular quality concern within a task type.",
+      "required": ["id", "name", "required_checks", "optional_checks", "priority_weight"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this quality pack, used for referencing in model profiles.",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name for this quality pack.",
+          "minLength": 1
+        },
+        "required_checks": {
+          "type": "array",
+          "description": "Gate IDs that must always run for this quality pack.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "optional_checks": {
+          "type": "array",
+          "description": "Gate IDs that are recommended but not mandatory.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "uniqueItems": true
+        },
+        "priority_weight": {
+          "type": "number",
+          "description": "Numeric priority weight. Higher values indicate higher priority. Used for ordering and scoring.",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -2,68 +2,140 @@
   "version": "2.1.0",
   "modelProfiles": {
     "claude-sonnet-4": {
-      "modelId": "claude-sonnet-4",
+      "model_id": "claude-sonnet-4",
       "vendor": "anthropic",
       "name": "Claude Sonnet 4",
-      "capability": "high",
-      "qualityStack": "heavy",
-      "advisoryLevel": "thorough"
+      "capabilities": ["vision", "code", "long_context", "reasoning", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 8192,
+      "context_window": 200000,
+      "recommended_profile": "lean"
     },
     "claude-haiku-3.5": {
-      "modelId": "claude-haiku-3.5",
+      "model_id": "claude-haiku-3.5",
       "vendor": "anthropic",
       "name": "Claude Haiku 3.5",
-      "capability": "medium",
-      "qualityStack": "standard",
-      "advisoryLevel": "normal"
+      "capabilities": ["vision", "code", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 4096,
+      "context_window": 200000,
+      "recommended_profile": "standard"
     },
     "gpt-4o": {
-      "modelId": "gpt-4o",
+      "model_id": "gpt-4o",
       "vendor": "openai",
       "name": "GPT-4o",
-      "capability": "high",
-      "qualityStack": "heavy",
-      "advisoryLevel": "thorough"
+      "capabilities": ["vision", "code", "long_context", "reasoning", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 16384,
+      "context_window": 128000,
+      "recommended_profile": "lean"
     },
     "gpt-4o-mini": {
-      "modelId": "gpt-4o-mini",
+      "model_id": "gpt-4o-mini",
       "vendor": "openai",
       "name": "GPT-4o mini",
-      "capability": "medium",
-      "qualityStack": "standard",
-      "advisoryLevel": "normal"
+      "capabilities": ["vision", "code", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 16384,
+      "context_window": 128000,
+      "recommended_profile": "standard"
     },
     "gemini-2.0-flash": {
-      "modelId": "gemini-2.0-flash",
+      "model_id": "gemini-2.0-flash",
       "vendor": "google",
       "name": "Gemini 2.0 Flash",
-      "capability": "medium",
-      "qualityStack": "standard",
-      "advisoryLevel": "normal"
+      "capabilities": ["vision", "code", "long_context", "reasoning", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 8192,
+      "context_window": 1048576,
+      "recommended_profile": "standard"
     },
     "deepseek-v3": {
-      "modelId": "deepseek-v3",
+      "model_id": "deepseek-v3",
       "vendor": "deepseek",
       "name": "DeepSeek V3",
-      "capability": "high",
-      "qualityStack": "heavy",
-      "advisoryLevel": "thorough"
+      "capabilities": ["code", "long_context", "reasoning"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 8192,
+      "context_window": 65536,
+      "recommended_profile": "standard"
     },
     "llama-3-70b": {
-      "modelId": "llama-3-70b",
+      "model_id": "llama-3-70b",
       "vendor": "meta",
       "name": "Llama 3 70B",
-      "capability": "medium",
-      "qualityStack": "standard",
-      "advisoryLevel": "normal"
+      "capabilities": ["code", "reasoning", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 4096,
+      "context_window": 8192,
+      "recommended_profile": "standard"
     },
     "hermes-3": {
-      "modelId": "hermes-3",
+      "model_id": "hermes-3",
       "vendor": "nous-research",
       "name": "Hermes 3",
-      "capability": "medium",
-      "qualityStack": "standard",
-      "advisoryLevel": "normal"
+      "capabilities": ["code", "reasoning", "tool_use"],
+      "quality_config": {
+        "bugfix": "standard-pack",
+        "feature": "standard-pack",
+        "refactor": "standard-pack",
+        "security": "heavy-pack",
+        "migration": "heavy-pack",
+        "init": "lean-pack"
+      },
+      "max_tokens": 4096,
+      "context_window": 8192,
+      "recommended_profile": "standard"
     }
   }
 }

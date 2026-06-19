@@ -2,61 +2,79 @@
 
 ## Purpose
 
-Configure quality gates based on model capability and task risk so the Quality Engine applies proportional verification. Use this skill to translate a model ID, task description, and project config into an explicit gate profile before execution.
+Select model-aware quality packs and checks by combining the current `model_id`, the task type, stack/domain signals, the model profile registry, and known model weakness memory. Use this skill before implementation or review so the prompt stack is proportional to both task risk and model capability.
 
 ## When to use
 
-Use this skill when you need to configure which Quality Engine gates to run based on the model that produced the code and the risk of the task. Common triggers are choosing between `lean`, `standard`, and `heavy` verification, overriding automatic gate selection for a known model or domain, and deciding whether to skip or tighten checks for auth, data, API, frontend state, or migration tasks.
+Use at the start of any coding or review task when the model is known and you want tailored quality-pack advice instead of a generic checklist. Common triggers include:
+
+- choosing quality packs for a specific model such as `claude-sonnet-4`, `gpt-4o-mini`, `llama-3-70b`, or `hermes-3`;
+- inspecting whether a model should use `lean`, `standard`, or `heavy` verification for a task;
+- adapting `adaptive-prompt-selection` recommendations for a model's capability tier;
+- adding extra guardrails for known model weaknesses before execution;
+- preparing a `vibe-model-config` output for handoff to Quality Engine or manual review.
 
 ## Inputs
 
-- **Model ID** — the model identifier used for the task, such as `claude-haiku-3.5`, `claude-sonnet`, `gpt-4`, `local-qwen`, or a project-defined alias.
-- **Task description** — the requested change or review target, including known domains such as auth, API, database, frontend state, or async jobs.
-- **Project config** — model profiles, task-risk rules, quality gate defaults, and project-specific overrides when available.
-- **Optional profile override** — `lean`, `standard`, or `heavy` when the operator intentionally overrides automatic selection.
-
-## Outputs
-
-- Selected model profile: `lean`, `standard`, or `heavy`, with rationale.
-- Task risk classification: `low`, `medium`, or `high`, with matched risk signals.
-- Quality gate selection: required, recommended, and skipped gates.
-- Quality Engine execution plan using the selected gates and evidence expectations.
-- Review notes for any overrides, missing config, or uncertainty.
+- **model_id** — required model identifier, matched against `templates/model-profiles.json` or the default profiles in `schemas/model-profile-registry.json`.
+- **task_type** — one of the known task-risk profile keys such as `feature`, `bugfix`, `refactor`, `security`, `migration`, or `init`.
+- **stack** — task stack/domain signals such as API, database, auth, frontend state, async jobs, CLI, docs, testing, or project-specific technologies.
+- **Task description / changed files** — optional context used to refine task type and domain amplifiers.
+- **Weakness log** — `templates/model-weakness-log.md` or project-local equivalent, used by `skills/core/model-weakness-memory/SKILL.md`.
 
 ## Workflow
 
-1. **Classify task risk.** Read the task description and project context. Treat security, auth, data migrations, production incidents, broad refactors, and irreversible changes as higher risk. Treat docs-only, comments, formatting, and isolated low-impact changes as lower risk.
-2. **Select model profile.** Map the model ID to a configured capability profile. If unknown, use `standard` unless project policy says fail closed; raise uncertainty for review.
-3. **Combine model capability with risk.** Start from the selected model profile, then increase rigor when task risk is high or when model capability is weaker than the task demands. Respect explicit `--profile` overrides, but record the reason.
-4. **Run the adaptive gate selector.** Use the task risk, model profile, domain amplifiers, and project config to choose quality gates. Compose with `adaptive-prompt-selection`, `model-weakness-memory`, and task-specific checklist skills when relevant.
-5. **Review selection.** Present the chosen gates, skipped gates, and rationale before execution. Confirm high-risk skips and resolve contradictions such as `lean` profile on security-sensitive work.
-6. **Execute Quality Engine.** Run `quality-engine` with the selected gates, profile, task scope, and evidence expectations. Capture pass/warn/fail results and remediation guidance.
-7. **Record feedback.** If the run exposes model-specific weakness patterns or inaccurate risk classification, update the appropriate project notes or weakness log.
+1. **Lookup profile.** Normalize `model_id` and find the matching model profile in `templates/model-profiles.json`; if unavailable, use the default examples in `schemas/model-profile-registry.json`. Record `vendor`, `name`, `capability`, `qualityStack`, and `advisoryLevel`. If unknown, fall back to `standard` quality stack and raise a warning note.
+2. **Lookup task risk.** Match `task_type` to `taskRiskProfiles` in `schemas/model-profile-registry.json`. Record `risk`, `minQualityStack`, and `requiredGates`. If the supplied task type is uncertain, use `skills/core/adaptive-prompt-selection/SKILL.md` to classify it or ask for clarification.
+3. **Select quality packs.** Start with the adaptive prompt matrix for the task type, then add domain amplifiers from `stack`:
+   - API changes → API quality pack.
+   - Database schema/data changes → DB migration quality pack.
+   - Auth/session/permission changes → Auth quality pack.
+   - Frontend state/navigation changes → Frontend state quality pack.
+   - Async/queue/retry changes → Async jobs quality pack.
+   - Any non-trivial task → Self-review and verification packs.
+4. **Adjust for model capability.** Compare model `qualityStack` with task `minQualityStack`; choose the stricter stack (`lean` < `standard` < `heavy`). High-risk task types (`security`, `migration`) must not be reduced below `heavy` without an explicit warning and human approval. Medium/low capability models should receive more explicit checklists and narrower implementation steps.
+5. **Check model weakness.** Load `templates/model-weakness-log.md` and apply `skills/core/model-weakness-memory/SKILL.md`: match by model/provider and stack/task domain, then add actionable prevention checks to the tailored checklist. State "no weakness matches found" when none apply.
+6. **Compose output.** Use `templates/model-config-output.md` to report model info, capabilities, selected stack, recommended quality packs, required gates, warning notes, and a tailored checklist.
+7. **Confirm before execution.** For medium/high-risk work, ask the user or orchestrator to confirm the recommended packs before loading them. For overrides, document rationale and residual risk.
+
+## Outputs
+
+- **Recommended quality packs** — prioritized list of pack/skill names and paths, including task-type packs and stack/domain amplifiers.
+- **Warning notes** — unknown model fallback, task-type uncertainty, quality-stack escalation, skipped gates, missing weakness log, or unsafe overrides.
+- **Tailored checklist** — concrete pre-flight/review checks combining model capability, required gates, stack-specific risks, and matched weakness-memory prevention checks.
 
 ## Failure modes
 
-- Unknown model ID is silently treated as strong and under-verifies the task.
-- Low-risk classification misses hidden security, data, compatibility, or migration impact.
-- Profile override is accepted without documenting the risk trade-off.
-- Project config is stale, missing, or conflicts with registry paths.
-- Gate selector chooses too many checks for a tiny task, causing review fatigue.
-- Gate selector skips required project or compliance checks.
-- Quality Engine results are treated as final without reviewing warnings and evidence quality.
+- Treating an unknown model as high capability and under-verifying the task.
+- Selecting packs only from task type while ignoring stack/domain amplifiers.
+- Ignoring `minQualityStack` for high-risk security or migration work.
+- Loading weakness memory but failing to convert matches into actionable checks.
+- Producing a checklist without model profile evidence or rationale.
+- Overloading tiny low-risk tasks with heavy packs when no risk signal justifies it.
 
 ## Verification checklist
 
-- [ ] Model ID is recorded and matched to a profile, or the unknown-model fallback is explicit.
-- [ ] Task risk is classified with concrete signals from the task description or project context.
-- [ ] Profile choice reflects both model capability and task risk.
-- [ ] Any manual override is documented with rationale and residual risk.
-- [ ] Selected gates include domain-specific checks for auth, API, DB migration, frontend state, or async work when applicable.
-- [ ] Skipped gates are listed with reasons, especially for medium/high-risk tasks.
-- [ ] Quality Engine is executed with the selected gates or a clear blocking reason is reported.
-- [ ] Results include pass/warn/fail status, evidence, and next actions.
+- [ ] `model_id`, `task_type`, and `stack` are recorded.
+- [ ] Model profile lookup result is shown, or unknown-model fallback is explicit.
+- [ ] Task risk and minimum quality stack are shown.
+- [ ] Recommended packs include task-type base packs plus relevant domain amplifiers.
+- [ ] Final quality stack is at least as strict as the task minimum.
+- [ ] Weakness memory is checked and matched checks are injected, or "no matches" is stated.
+- [ ] Warning notes call out uncertainty, overrides, and skipped required gates.
+- [ ] Tailored checklist is actionable enough to execute during review.
 
 ## Related skills/commands
 
-- `skills/core/quality-engine/SKILL.md`
-- `skills/core/adaptive-prompt-selection/SKILL.md`
-- `skills/core/model-weakness-memory/SKILL.md`
-- `commands/vibe-model-config.md`
+- `commands/vibe-model-config.md` — command entry point for model-aware config output
+- `templates/model-config-output.md` — standard report template
+- `templates/model-profiles.json` — model profile registry data
+- `schemas/model-profile-registry.json` — schema and default task-risk profiles
+- `skills/core/adaptive-prompt-selection/SKILL.md` — task-type quality pack selection
+- `skills/core/model-weakness-memory/SKILL.md` — model-specific weakness checks
+- `skills/core/quality-engine/SKILL.md` — executes selected gates
+- `skills/core/verification-before-completion/SKILL.md` — final verification gate
+
+## Ghi chú tiếng Việt
+
+Skill này tra cứu profile model, chọn quality packs theo task/stack, rồi kiểm tra weakness memory để tạo checklist riêng cho model. Luồng chính: `model_id` → profile/capability → task risk/min stack → adaptive quality packs + domain amplifiers → weakness checks → output theo `templates/model-config-output.md`.

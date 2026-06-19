@@ -1,92 +1,84 @@
 {
   "version": "2.1.0",
-  "description": "Stack profile matrix for adaptive gate selection based on model capability × task risk",
-  "stackProfiles": {
-    "lean": {
-      "label": "Lean — minimal gates for high-capability models",
-      "gates": [
-        "repo-structure",
-        "quality-diff-audit",
-        "secret-scan",
-        "traceability",
-        "injection-scan"
-      ],
-      "minGates": 4,
-      "advisory": [
-        "quality-scorecard-report"
-      ],
-      "required_categories": ["security", "quality"]
+  "description": "Example stack profile matrix — maps technology stack features to recommended model profiles and quality pack overrides.",
+  "tech_stacks": [
+    {
+      "id": "react-node-postgres",
+      "framework": "React",
+      "language": "TypeScript",
+      "database": "PostgreSQL",
+      "profile_hint": "standard",
+      "quality_pack_overrides": {
+        "feature": "frontend-full",
+        "security": "backend-hardening"
+      }
     },
-    "standard": {
-      "label": "Standard — default gates for medium-capability models",
-      "gates": [
-        "repo-structure",
-        "references",
-        "registry-schemas",
-        "traceability",
-        "injection-scan",
-        "secret-scan",
-        "quality-diff-audit",
-        "quality-scorecard-report",
-        "memory-redaction",
-        "pack-schemas"
-      ],
-      "minGates": 8,
-      "advisory": [
-        "quality-scorecard-report",
-        "dashboard-data",
-        "evaluation-report"
-      ],
-      "required_categories": ["security", "quality", "tests"]
+    {
+      "id": "nextjs-mongodb",
+      "framework": "Next.js",
+      "language": "TypeScript",
+      "database": "MongoDB",
+      "profile_hint": "standard",
+      "quality_pack_overrides": {
+        "feature": "fullstack-check",
+        "security": "database-audit"
+      }
     },
-    "heavy": {
-      "label": "Heavy — all gates for low-capability models or high-risk tasks",
-      "gates": [
-        "repo-structure",
-        "references",
-        "registry-schemas",
-        "pack-schemas",
-        "traceability",
-        "injection-scan",
-        "secret-scan",
-        "memory-redaction",
-        "adapter-smoke-tests",
-        "cli-smoke-tests",
-        "e2e-workflow",
-        "dashboard-data",
-        "dashboard-sync-check",
-        "release-metadata",
-        "evaluation-report",
-        "bilingual-readme-sync",
-        "markdown-links",
-        "readme-heading-version",
-        "roadmap-status-integrity",
-        "runtime-behavioral-tests",
-        "quality-diff-audit",
-        "quality-scorecard-report"
-      ],
-      "minGates": 18,
-      "advisory": [
-        "quality-scorecard-report",
-        "dashboard-data",
-        "evaluation-report"
-      ],
-      "required_categories": ["security", "quality", "docs", "tests", "regression"]
+    {
+      "id": "fastapi-python-postgres",
+      "framework": "FastAPI",
+      "language": "Python",
+      "database": "PostgreSQL",
+      "profile_hint": "heavy",
+      "quality_pack_overrides": {
+        "security": "api-security-hardening",
+        "migration": "data-integrity-check"
+      }
+    },
+    {
+      "id": "flask-sqlite",
+      "framework": "Flask",
+      "language": "Python",
+      "database": "SQLite",
+      "profile_hint": "lean",
+      "quality_pack_overrides": {}
+    },
+    {
+      "id": "spring-boot-java-mysql",
+      "framework": "Spring Boot",
+      "language": "Java",
+      "database": "MySQL",
+      "profile_hint": "heavy",
+      "quality_pack_overrides": {
+        "refactor": "enterprise-refactor-pack",
+        "security": "enterprise-security-pack"
+      }
+    },
+    {
+      "id": "express-node-mongo",
+      "framework": "Express",
+      "language": "JavaScript",
+      "database": "MongoDB",
+      "profile_hint": "standard",
+      "quality_pack_overrides": {}
+    },
+    {
+      "id": "vanilla-js-no-db",
+      "framework": "any",
+      "language": "JavaScript",
+      "database": "",
+      "profile_hint": "lean",
+      "quality_pack_overrides": {}
+    },
+    {
+      "id": "rust-cli-tool",
+      "framework": "any",
+      "language": "Rust",
+      "database": "",
+      "profile_hint": "standard",
+      "quality_pack_overrides": {
+        "security": "memory-safety-pack"
+      }
     }
-  },
-  "model_capability_map": {
-    "high": "lean",
-    "medium": "standard",
-    "low": "heavy"
-  },
-  "risk_adjustments": {
-    "low": {
-      "description": "Remove advisory gates for low-risk tasks",
-      "action": "remove_advisory"
-    },
-    "high": {
-      "description": "Add ALL gates from manifest plus extra checks for high-risk tasks",
-      "action": "add_all"
-    }
-  }
+  ]
 }
