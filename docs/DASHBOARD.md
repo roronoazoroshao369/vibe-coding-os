@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.7.0 |
-| Skills | 112 |
+| Version | 1.8.0 |
+| Skills | 114 |
 | Commands | 88 |
-| Templates | 80 |
-| Narrative files | 515 |
+| Templates | 81 |
+| Narrative files | 521 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -19,9 +19,9 @@
 
 | Category | Count |
 |---|---|
-| agents | 5 |
+| agents | 6 |
 | checklists | 5 |
-| core | 58 |
+| core | 59 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |
@@ -45,11 +45,7 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
-| v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
-| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
-| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |ze |
-| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
-| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
+| v1.5.0 | ✅ Complete | Core adoption, runtime free
 
 ## Safety Metrics
 

@@ -19,7 +19,7 @@ Run for login, registration, credential reset, API authentication, session manag
 - Current session, role, credential, and security policy assumptions.
 - Existing test coverage for protected and unprotected flows.
 
-## Step-by-step behavior
+## Step-by-step behaviour
 
 1. Identify protected assets, actors, roles, and trust boundaries touched by the change.
 2. Review credential and reset behavior: complexity or passphrase policy, reuse constraints where applicable, and safe error messaging.
@@ -41,3 +41,26 @@ Run for login, registration, credential reset, API authentication, session manag
 ## Stopping conditions
 
 Stop before marking the change ready if brute-force protections are missing, server authorization is missing or bypassable, negative test coverage is absent, or auth artifacts may be exposed through logs, URLs, or client storage.
+
+## Verification checklist
+
+- [ ] Credential rules and reset behavior are explicit and tested.
+- [ ] MFA behavior is reviewed when applicable.
+- [ ] Brute-force and rate-limiting protections are present for auth-sensitive endpoints.
+- [ ] Session expiry, refresh, revocation, logout, and disabled-user handling are covered.
+- [ ] Auth artifacts are stored and transported securely and are not leaked through logs or URLs.
+- [ ] Server-side authorization follows least privilege and default-deny behavior.
+- [ ] OWASP authentication, session, and access-control guidance has been considered.
+- [ ] Positive and negative auth tests exist, including wrong credential input, expired auth data, disabled user, and insufficient permission cases.
+
+## Related skills/commands
+
+- `skills/checklists/auth-quality/SKILL.md`
+- `skills/core/acceptance-criteria/SKILL.md`
+- `skills/core/test-driven-development/SKILL.md`
+- `commands/vibe-quality-api.md`
+
+## Handoffs / next-step suggestion
+
+- Failures in auth controls or tests → update the implementation, policy documentation, or test coverage, then re-run.
+- All items pass → proceed with `commands/vibe-request-review.md` or merge preparation.

@@ -20,20 +20,21 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.7.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.8.0):** validate:all 25/25 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
+
+**Mới:** v1.8.0 Expert Mode — xem `docs/expert-mode.md` để dùng adversarial review, critique pass, quality packs, Writer-Critic Pair và Quality Council. Runtime không đổi.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v1.7.0
+## Có gì mới trong v1.8.0
 
-- **Quality Shield canonical guide:** `docs/quality-shield.md` gom quality discipline layer qua skills, commands, templates, examples và validation.
-- **Workflow copy-paste:** `docs/quality-shield-workflow.md` đóng gói flow contract → context pack → smallest safe diff → self-review → scorecard.
-- **Ví dụ cụ thể:** `examples/quality-shield/README.md` minh họa bug-fix flow dùng Quality Shield.
-- **Discovery sync:** README, docs hub, layer README, registry docs và adapter docs đều trỏ tới Quality Shield.
-- **Boundary rõ:** Quality Shield là markdown-first discipline layer; Quality Engine là orchestration/future layer.
-- **Không mở runtime:** v1.7.0 tiếp tục tuân thủ ADR 0002.
+- **Expert Mode:** thêm Adversarial Code Review, Critique Pass Protocol, 5 quality packs theo tác vụ (API, DB migration, auth, frontend state, async jobs), Writer-Critic Pair và Quality Council.
+- **Guide canonical:** `docs/expert-mode.md` giải thích khi nào nâng cấp từ Quality Shield sang Expert Mode.
+- **Templates mới:** `critique-pass-template.md` và `quality-pack-scorecard.md` để ghi evidence, blocker, residual risks và verdict.
+- **Registry sync:** skills/commands mới đã được đăng ký trong `registry/skills.json` và `registry/prompts.json`.
+- **Không mở runtime:** v1.8.0 tiếp tục tuân thủ ADR 0002.
 
 ---
 

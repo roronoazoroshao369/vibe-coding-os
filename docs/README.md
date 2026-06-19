@@ -20,6 +20,7 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
 
 - [`workflows/core-vs-optional-runtime.md`](workflows/core-vs-optional-runtime.md) — the boundary between markdown-first core and opt-in runtime.
 - [`quality-shield.md`](quality-shield.md) — Quality Shield canonical guide and deliverable audit.
+- [`expert-mode.md`](expert-mode.md) — Expert Mode escalation guide for adversarial review, critique passes, quality packs, and multi-agent review.
 - [`specs/README.md`](specs/README.md) — spec-driven development docs.
 - [`workflows/spec-driven-development.md`](workflows/spec-driven-development.md) — constitution → specify → plan → tasks → implement.
 - [`workflows/real-engineering-skills-workflow.md`](workflows/real-engineering-skills-workflow.md) — practical engineering-agent workflow.

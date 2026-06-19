@@ -253,14 +253,20 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - [`examples/quality-shield/README.md`](../examples/quality-shield/README.md)
 
 ## v1.8.0 — Expert Mode
-**Status:** 🗓️ PLANNED
+**Status:** ✅ COMPLETE
 
 | Deliverable | Status |
 |---|---|
-| Adversarial Code Review | 🗓️ Planned |
-| Critique Pass Protocol | 🗓️ Planned |
-| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async jobs) | 🗓️ Planned |
-| Writer-Critic Pair / Quality Council multi-agent patterns | 🗓️ Planned |
+| Adversarial Code Review | ✅ Done |
+| Critique Pass Protocol | ✅ Done |
+| Task-Specific Quality Packs (API, DB migration, auth, frontend state, async jobs) | ✅ Done |
+| Writer-Critic Pair / Quality Council multi-agent patterns | ✅ Done |
+
+**Canonical docs:**
+- [`docs/expert-mode.md`](expert-mode.md)
+- [`docs/releases/v1.8.0-release-notes.md`](releases/v1.8.0-release-notes.md)
+
+**Release posture:** v1.8.0 adds Expert Mode as a portable, markdown-first escalation layer on top of Quality Shield. Runtime remains frozen under ADR 0002; no new validation gate is added.
 
 ## v1.9.0 — Smart Adapt
 **Status:** 🗓️ PLANNED

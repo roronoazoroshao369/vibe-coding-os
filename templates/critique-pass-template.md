@@ -5,13 +5,14 @@
 - Goal:
 - Constraints:
 - Acceptance criteria:
+- Files or areas out of scope:
 
 ## Writer summary
 
 - Proposed or implemented solution:
 - Files or artifacts changed:
 - Verification run:
-- Known limitations:
+- Known limitations / assumptions:
 
 ## Critic findings
 
@@ -41,4 +42,13 @@
 
 ## Final verdict
 
-Approve / Approve with reservations / Request changes / Needs clarification
+- [ ] Proceed
+- [ ] Proceed with reservations
+- [ ] Revise first
+- [ ] Escalate / Needs clarification
+
+## Notes for verifier or release manager
+
+- Residual risk:
+- Files to own:
+- Decision chain:

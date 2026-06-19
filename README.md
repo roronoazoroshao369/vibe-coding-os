@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.7.0):** validate:all 25/25 gates PASS · **112 skills** · **88 commands** · **80 templates** · 14 tracked sources
+**Current release (v1.8.0):** validate:all 25/25 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
 
 ---
 
@@ -33,6 +33,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 |---|---|
 | [First Workflow](docs/FIRST-WORKFLOW.md) | Run one complete `spec → plan → verify` loop |
 | [Quality Shield](docs/quality-shield.md) | Use the portable quality discipline layer for intent, context, verification, and self-review |
+| [Expert Mode](docs/expert-mode.md) | Escalate risky work to adversarial review, critique passes, task-specific quality packs, and writer-critic patterns |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -61,14 +62,17 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v1.7.0
+## What's new in v1.8.0
 
-- **Quality Shield canonical guide:** `docs/quality-shield.md` maps the quality discipline layer across skills, commands, templates, examples, and validation.
-- **Copy-paste quality workflow:** `docs/quality-shield-workflow.md` packages contract → context pack → smallest safe diff → self-review → scorecard.
-- **Concrete example:** `examples/quality-shield/README.md` shows a real bug-fix flow using the Quality Shield.
-- **Discovery sync:** README, docs hub, layer READMEs, registry docs, and adapter docs now surface the Quality Shield path.
-- **Boundary clarified:** Quality Shield stays portable and markdown-first; Quality Engine remains the advanced/future orchestration layer.
-- **Runtime unchanged:** v1.7.0 respects ADR 0002 and does not expand runtime scope.
+Expert Mode extends Quality Shield with adversarial review, critique passes, task-specific quality packs, Writer-Critic Pair, and Quality Council patterns for high-risk work. It remains markdown-first and does not expand runtime scope. See the [Expert Mode guide](docs/expert-mode.md).
+
+## What's new in v1.8.0
+
+- **Expert Mode:** Adversarial Code Review, Critique Pass Protocol, 5 domain-specific quality packs (API, DB migration, auth, frontend state, async jobs), Writer-Critic Pair and Quality Council patterns.
+- **Canonical guide:** `docs/expert-mode.md` — full Expert Mode reference with escalation paths from Quality Shield.
+- **New templates:** `critique-pass-template.md` (fillable report), `quality-pack-scorecard.md` (generic scorecard for all 5 quality packs).
+- **Registry sync:** all new skills and commands registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v1.8.0 respects ADR 0002 and does not expand runtime scope.
 
 ---
 
@@ -86,7 +90,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**112 skills**, **88 commands**, **80 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**114 skills**, **88 commands**, **81 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -251,6 +255,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/QUICKSTART.md`](docs/QUICKSTART.md) — tool-specific quickstart
 - [`docs/adapters/README.md`](docs/adapters/README.md) — adapter hub
 - [`docs/quality-shield.md`](docs/quality-shield.md) — Quality Shield guide and audit map
+- [`docs/expert-mode.md`](docs/expert-mode.md) — Expert Mode escalation guide
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs
