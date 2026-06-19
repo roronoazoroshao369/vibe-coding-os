@@ -24,6 +24,12 @@ Task/spec; current diff; changed files; validation results; known risks; reviewe
 4. Provide exact validation commands and outcomes.
 5. Ask focused questions for risky or uncertain areas.
 
+## Options
+
+- `--incremental` — Indicate that this change has been reviewed before. Include the previous review output and baseline diff so the reviewer can use incremental review mode.
+- `--intelligence` — Request that the reviewer build a code intelligence map before analysis. Best for cross-module or high-risk changes.
+- `--spec-compliance` — Request explicit spec-compliance analysis as part of the review. The reviewer maps each acceptance criterion and user scenario to the diff, reports scenario coverage, flags scope creep, and cites the originating spec lines. Default when a spec, PRD, or issue is available.
+
 ## Outputs
 
 Review request with scope, changed files, risks, checks, and questions.

@@ -27,13 +27,19 @@ obvious edits where intent, files, and verification are already clear.
 2. Gather only decision-changing documentation, citing the exact section.
 3. Curate examples: positive prior art to copy and negative patterns to avoid, each with a
    path and a one-line reason.
-4. Define validation gates as ordered, executable commands with observable pass conditions.
-5. Write the brief from `templates/implementation-brief-template.md`, keeping scope minimal
+4. Synthesize findings into the implementation brief. Map research to concrete design
+   decisions: which patterns to follow, which to avoid, which API contracts to honor.
+   Resolve any contradictions in the research before writing the brief.
+5. Define validation gates as ordered, executable commands with observable pass conditions.
+6. Write the brief from `templates/implementation-brief-template.md`, keeping scope minimal
    and traced to acceptance criteria.
-6. Self-score confidence 1-10. If below 7, gather the missing context before handing off.
-7. Execute the brief (`commands/vibe-brief-execute.md`): implement the smallest correct
+7. Self-score confidence 1-10. If below 7, gather the missing context before handing off.
+8. Execute the brief (`commands/vibe-brief-execute.md`): implement the smallest correct
    change, then run the gates and iterate until every one is green, fixing root causes in the
    code rather than weakening checks.
+9. Validate against research: after implementation passes all gates, cross-check the
+   result against the research findings. Did we handle the documented edge cases? Did we
+   follow the positive patterns identified? Did we avoid the known pitfalls?
 
 ## Outputs
 

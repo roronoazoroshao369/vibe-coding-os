@@ -75,6 +75,18 @@ If test results conflict with implementation claims, report the command, output 
 - Use a deep model for risky, security-sensitive, or hard-to-reproduce behavior where test strategy is unclear.
 - Verification is a separate lane: the agent that wrote the code should not be the sole judge that its tests pass — route the pass/fail call to a verifier or the main chat.
 
+### Test-strategy guidance
+
+The tester agent does not simply run the existing test suite — it designs a test strategy proportional to the change's risk profile. Follow these guidelines:
+
+- **Risk-driven selection.** Start with the acceptance criteria from the spec. For each criterion, identify the minimal test that proves it. If the change has no spec, infer the intended behavior from the diff and the issue or task description, then test the inferred contract.
+- **Coverage expectations by depth:**
+  - *Quick check (low risk, small diff):* Run existing tests in the affected module only. Verify the diff does not break pre-existing behavior.
+  - *Standard coverage (moderate risk, feature work):* Run existing tests plus new tests for each acceptance criterion. Cover the happy path and at least one error path or edge case per criterion.
+  - *Deep coverage (high risk, cross-system, security):* Run full test suite plus new tests for every user scenario category — happy path, error path, edge case, performance (if measurable), and security boundary. Add integration or end-to-end tests where unit tests cannot capture the interaction.
+- **What to test, not how.** State the behavior to verify in terms of inputs, actions, and observable outcomes. Leave the implementation of the test itself to the implementer or a separate test-writing step. The tester agent's output is a test plan with expected results, not necessarily test code.
+- **Gap reporting.** If coverage is incomplete (missing tests for a scenario, no way to verify an acceptance criterion, test environment limitations), report each gap explicitly with its risk impact and a suggested remediation. A silent gap is a future regression.
+
 ## Ghi chú tiếng Việt
 
 Tester agent chọn và chạy test giá trị nhất, ưu tiên test nhắm trúng trước. Chọn model theo rủi ro: nhẹ cho thay đổi nhỏ, chuẩn cho feature thường, sâu cho hành vi rủi ro/khó tái hiện. Verify là lane riêng; người viết code không tự kết luận test pass một mình.

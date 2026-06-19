@@ -37,3 +37,12 @@ This source contributes prompt-portable workflow conventions that improve Vibe C
 ## Ghi chú tiếng Việt
 
 Repo này chỉ là nguồn cảm hứng. Vibe Coding OS học convention portable, viết lại bằng ngôn ngữ local, không copy runtime/CLI/template/prompt upstream.
+
+## Merge note — bmad-code-org/BMAD-METHOD overlap
+
+The agent-os and BMAD-METHOD repos overlap significantly in their `project-standards` and
+`product-mission-roadmap` features. Both inform the same local targets (`STANDARDS.md`,
+`ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, and `docs/workflows/adaptive-flow.md`).
+The local adaptation treats them as complementary inspirations with no duplicated upstream
+content. If one upstream changes, inspect both `references/sources/` docs and both
+`references/index.json` entries before updating shared local files.

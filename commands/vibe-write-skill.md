@@ -17,7 +17,8 @@ Workflow, triggers, inputs, outputs, related files.
 1. Check for existing similar skills.
 2. Keep scope narrow.
 3. Use required headings.
-4. Add registry entry and validation.
+4. Validate tag, bundle, and platform metadata in the registry entry.
+5. Add registry entry, mapping docs, and validation.
 
 ## Outputs
 

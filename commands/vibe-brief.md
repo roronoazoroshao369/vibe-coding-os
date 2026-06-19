@@ -34,16 +34,17 @@ Skip for tiny edits where intent, files, and verification are obvious.
    home page. Skip links that do not change the implementation.
 4. Summarize only task-relevant context; omit broad transcript history.
 5. Record source links and acceptance criteria covered.
-6. Define the smallest in-scope change and explicit non-goals.
-7. List files to inspect/change, patterns to follow, and constraints that matter.
-8. Select examples to mimic — positive prior art to copy and negative patterns to avoid —
+6. Synthesize research findings into design decisions before defining the change: map each finding to what it means for the implementation, resolve any contradictions between sources, and record which patterns to follow or avoid.
+7. Define the smallest in-scope change and explicit non-goals.
+8. List files to inspect/change, patterns to follow, and constraints that matter.
+9. Select examples to mimic — positive prior art to copy and negative patterns to avoid —
    with file paths and a one-line reason for each.
-9. Define validation gates: the ordered, executable checks that must pass, each with an
-   observable pass condition, plus the iterate-until-green expectation.
-10. Self-score confidence (1-10) that the brief is sufficient for a one-pass, validation-green
+10. Define validation gates: the ordered, executable checks that must pass, each with an
+    observable pass condition, plus the iterate-until-green expectation.
+11. Self-score confidence (1-10) that the brief is sufficient for a one-pass, validation-green
     implementation. If the score is below 7, list the missing context and gather it before
     handing the brief off.
-11. Save the brief using `templates/implementation-brief-template.md`.
+12. Save the brief using `templates/implementation-brief-template.md`.
 
 ## Outputs
 

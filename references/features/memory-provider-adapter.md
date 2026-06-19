@@ -20,6 +20,22 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 - Separate ingestion, retrieval, search, privacy, evaluation, and provider concerns.
 - Keep provider integrations behind an optional abstraction.
 - Evaluate recall quality rather than assuming stored memory is useful.
+- **Concrete interface contract with required operations (store, retrieve, search, delete) and optional operations (batch, stream, rank).**
+- **Error semantics for six operation classes: connection, auth, rate-limit, schema validation, timeout, unimplemented.**
+- **Stability expectations with compliance levels: full, partial, planned.**
+
+## Implementation status
+
+**Implemented:** `skills/memory/memory-provider-adapter/SKILL.md`, `adapters/memory/README.md`, `templates/memory-provider-adapter-template.md`, `docs/workflows/memory-provider-adapter.md`.
+
+The memory provider adapter feature now has:
+
+- A concrete interface contract in the skill doc with four required operations (store, retrieve, search, delete), three optional operations (batch, stream, rank), each with signature, description, and error semantics.
+- Error semantics documented for six operation classes with specific error codes and recovery hints.
+- Stability expectations section covering versioning, compliance levels (full, partial, planned), and breaking change policy.
+- The `adapters/memory/README.md` now references the interface contract as the authoritative compliance standard.
+- The `memory-provider-adapter-template` enhanced with a provider contract compliance checklist covering required ops, optional ops, error semantics, and compliance level.
+- The `memory-provider-adapter` workflow deepened with a six-step provider decision flow.
 
 ## Not applied upstream ideas
 

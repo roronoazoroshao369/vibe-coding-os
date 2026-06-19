@@ -20,6 +20,21 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 - Separate ingestion, retrieval, search, privacy, evaluation, and provider concerns.
 - Keep provider integrations behind an optional abstraction.
 - Evaluate recall quality rather than assuming stored memory is useful.
+- **Ingestion lifecycle with five phases: capture → filter → extract → format → store.**
+- **Source-type routing table (session, decision, review, debug) with scope and retention defaults.**
+- **Privacy-filter integration at every lifecycle phase gate.**
+
+## Implementation status
+
+**Implemented:** `skills/memory/memory-ingestion/SKILL.md`, `commands/vibe-memory-ingest.md`, `templates/memory-entry-template.md`.
+
+The memory ingestion feature now has:
+
+- Five explicit lifecycle phases with gate checks at each phase.
+- Source-type routing table classifying entries as session, decision, review, or debug, each with default scope, privacy profile, and retention hint.
+- Privacy-filter integration documented as a multi-gate check (before capture, during filter, before format, before store) rather than a single step.
+- `--source` flag in `vibe-memory-ingest` command with structured ingestion steps.
+- `source_type`, `lifecycle_stage`, and `quality_checks_passed` fields added to the memory entry template.
 
 ## Not applied upstream ideas
 

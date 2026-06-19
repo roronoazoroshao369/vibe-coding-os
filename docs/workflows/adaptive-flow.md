@@ -91,6 +91,23 @@ explicit review-before-merge pass.
 auth behavior before touching it, a rollback plan in the implementation plan, a security
 review, and a reviewer pass from a separate context. Never skip any of these to save time.
 
+## Standards-flow mapping
+
+Specific `STANDARDS.md` entries impose flow requirements that override the tier rubric.
+The table below maps each standard to the flow tier that activates it and the step it adds.
+
+| Standard section | Trigger | Added step | Overrides which skip |
+| --- | --- | --- | --- |
+| Coding — smallest change | Any coding task | None (always satisified by any tier) | — |
+| Documentation — file layout | Creating/renaming a command, skill, or template | Validate file path matches convention | tier that skips validation |
+| Testing — `npm run validate` | Structural changes | Run `npm run validate` before marking done | any tier that skips testing |
+| Attribution — update index.json | Adapting a tracked idea | Update `references/index.json` + changelogs | tier that skips reference updates |
+| Maintenance — revise this file | Convention becomes stable | Propose a STANDARDS.md update in memory notes | any tier that skips memory |
+
+When a standard is active, the flow must cite the standard that forced the extra step in
+the one-line tier announcement. For example: "Treating as small (standards mandate:
+update index.json + changelogs)."
+
 ## Re-classification
 
 Tiers are not locked in. A "tiny" rename that turns out to touch a database migration is no

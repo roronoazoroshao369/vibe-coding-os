@@ -49,3 +49,7 @@ Reference notice: Vibe Coding OS tracks `bytedance/deer-flow` (https://github.co
 Reference notice: Vibe Coding OS tracks `sickn33/antigravity-awesome-skills` (https://github.com/sickn33/antigravity-awesome-skills), MIT license verified 2026-06-19, as an inspiration source for massive-scale skill library design patterns, SKILL.md composability conventions, plugin bundle systems, and multi-platform skill conventions. No upstream content is vendored.
 
 Reference notice: Vibe Coding OS tracks `tirth8205/code-review-graph` (https://github.com/tirth8205/code-review-graph), MIT license verified 2026-06-19, as an inspiration source for local-first code intelligence graph patterns, MCP-native tool integration, incremental code review analysis, and dependency graph / call hierarchy mapping for AI-assisted review. No upstream content is vendored.
+
+Reference notice: Vibe Coding OS tracks `othmanadi/planning-with-files` (https://github.com/OthmanAdi/planning-with-files), MIT license verified 2026-06-19, as an inspiration source for persistent plan files that survive context resets, completion markers, checkpoint systems, and recovery workflows. No upstream content is vendored.
+
+Reference notice: Vibe Coding OS tracks `yvgude/lean-ctx` (https://github.com/yvgude/lean-ctx), Apache-2.0 license verified 2026-06-19, as an inspiration source for policy-based context control with allow/block/flag rules, severity levels, scope declarations, and sensitive content patterns for AI coding agents. No upstream content is vendored.

@@ -16,13 +16,23 @@ Link or summarize the spec and plan this task list implements.
 
 ## Tasks
 
-Status values: `todo`, `ready`, `in-progress`, `blocked`, `done`, `deferred`.
+Status values: `proposed`, `approved`, `in-progress`, `review`, `done`, `blocked`, `abandoned`.
 
-| ID | Status | Subject | Files | depends-on | Markers | Done condition | Acceptance criteria covered |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| T1 | ready | <write test for X> | `<path>` | — | `[test]` | <test fails for the right reason> | AC1 |
-| T2 | todo | <implement X> | `<path>` | T1 | — | <T1 test passes> | AC1 |
-| T3 | ready | <independent change Y> | `<path>` | — | `[parallel]` | <observable outcome> | AC2 |
+Status badge convention: `![status](https://img.shields.io/badge/<status>-<color>)` or plain-text
+`[<status>]` in front of the task subject. Use colors: proposed=lightgrey, approved=blue,
+in-progress=yellow, review=orange, done=green, blocked=red, abandoned=black.
+
+|| ID | Status | Subject | Files | depends-on | Markers | Done condition | Acceptance criteria covered |
+|| --- | --- | --- | --- | --- | --- | --- | --- |
+|| T1 | approved | <write test for X> | `<path>` | — | `[test]` | <test fails for the right reason> | AC1 |
+|| T2 | proposed | <implement X> | `<path>` | T1 | — | <T1 test passes> | AC1 |
+|| T3 | approved | <independent change Y> | `<path>` | — | `[parallel]` | <observable outcome> | AC2 |
+
+## State-transition log
+
+Record each transition as `YYYY-MM-DD: <from> → <to> — <reason>` in a log block after the
+task table. This provides the rollback and audit trail required by the task-state-tracking
+skill. The log is append-only — never delete or rewrite entries.
 
 ## Dependency notes
 

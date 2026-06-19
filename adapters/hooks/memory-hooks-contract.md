@@ -4,6 +4,23 @@
 
 Define a portable, optional memory-hook vocabulary for Vibe Coding OS agents. The contract is inspired by lifecycle patterns from `thedotmack/claude-mem` but is not an implementation and does not copy upstream hooks.
 
+This contract extends the general hook pattern taxonomy defined in `docs/workflows/hook-patterns.md`. The taxonomy defines four hook categories — command hooks, session hooks, workflow hooks, and verification hooks — plus a lifecycle event table and contract format. This document narrows that general taxonomy to memory-specific lifecycle events.
+
+## Lifecycle event taxonomy
+
+The general hook taxonomy (`docs/workflows/hook-patterns.md`) defines a portable matrix of hooks by category (command, session, workflow, verification) and timing (pre, post, entry, exit, fail). Memory-specific hooks are a subset of session and command hooks:
+
+| Category | General hook | Memory specialization |
+|---|---|---|
+| Session | `session-start` | Retrieve scoped memory context |
+| Session | `session-end` | Compress and store session memory |
+| Command | `post-command` | Capture tool output as memory observations |
+| Command | `post-tool` | Capture material tool evidence |
+| Workflow | `phase-exit` | Compress noisy observations into summaries |
+| Verification | `pre-verification` | Search memory for relevant prior context |
+| Verification | `pre-context-injection` | Filter and rank memory candidates |
+| Verification | `verification-fail` | Log privacy exclusion failures |
+
 ## Optional hook-based memory adapter
 
 Adapters may observe lifecycle events and produce local memory artifacts. Hooks must be safe by default, disableable, auditable, and privacy-filtered before persistence or context injection.

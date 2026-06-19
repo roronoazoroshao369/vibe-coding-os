@@ -72,6 +72,16 @@ Preserve other agents' edits. If outputs conflict, report affected files, assump
 - Use a deep model for complex changes, ambiguous requirements, or work touching critical paths.
 - Do not self-approve: implementation and its review/verification belong in separate lanes, never the same active context.
 
+### Communication protocol with reviewer
+
+The implementer and reviewer operate in separate lanes, but their interaction must follow a clear protocol to avoid wasted work and conflicting signals:
+
+- **Pre-submit self-review.** Before submitting a patch for review, the implementer runs a self-review: verify the diff matches the plan, check for unrelated changes, confirm tests pass, and record any known risks or incomplete areas. The self-review output accompanies the patch as context for the reviewer.
+- **Scope declaration.** The implementer must explicitly state the patch scope: which files were changed, what behavior was added or modified, what was intentionally left out, and which acceptance criteria are addressed. A reviewer cannot evaluate scope creep without knowing the declared scope.
+- **Responding to review findings.** When a reviewer returns findings, the implementer classifies each as: blocker (must fix before merge), suggestion (optional improvement informed by reviewer expertise), or clarification (reviewer misread the intent). Blockers are addressed in order; suggestions are evaluated against scope and timeline; clarifications are resolved with a brief explanation.
+- **No silent rework.** If the implementer disagrees with a reviewer finding, they state the disagreement and the rationale rather than silently ignoring it. Unresolved disagreements are escalated to the main agent or a human decider.
+- **Verification handoff.** After addressing review findings, the implementer re-runs verification and hands back a delta summary: what changed, what was re-verified, and whether any new risks were introduced. The reviewer does not re-review the entire patch — only the delta and the new risks.
+
 ## Ghi chú tiếng Việt
 
 Implementer agent thực hiện thay đổi nhỏ, bám plan và quy ước repo. Chọn model theo độ phức tạp: nhẹ cho fix rõ ràng, chuẩn cho thay đổi đa file thường, sâu cho việc phức tạp/critical path. Không tự approve; review/verify ở lane riêng.

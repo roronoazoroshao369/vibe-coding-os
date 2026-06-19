@@ -85,6 +85,18 @@ If Gemini outputs conflict, the main session remains responsible for comparing h
 - Keep generated specs, plans, and memory notes in project files when they must survive beyond the chat.
 - Do not paste upstream docs or third-party prompt packs into Gemini unless attribution and license decisions are already recorded.
 
+## Skill format convention
+
+Skills used with Gemini CLI follow the Vibe Coding OS SKILL.md format with these Gemini-specific conventions:
+
+- **Session-start loading**: Gemini CLI loads instruction context at session start. Reference skill paths in `GEMINI.md` or paste skill content into the initial context. Skill content loaded mid-session must be explicitly provided.
+- **Multi-turn sessions**: Gemini supports multi-turn conversational workflows. Skills designed for Gemini should work across multiple turns, with each turn referencing the skill's guidance rather than reloading it.
+- **Action verbs**: Use Gemini-compatible verbs: "read", "write", "update", "verify", "run", "check", "analyze". Avoid verbs tied to specific tool APIs.
+- **Context budget**: Gemini context is shared between instructions, skills, and conversation history. Skills should be compact and linked rather than fully embedded when possible.
+- **GEMINI.md integration**: Add "Load `skills/...` for task X" directives in `GEMINI.md` so Gemini discovers relevant skills at session initialization.
+
+Skills that are Gemini-specific should list `platforms: ["gemini"]` in their registry entry. Universal skills omit platforms or use `["*"]`.
+
 ## Example session
 
 For a non-trivial bug fix, ask Gemini to run this flow:

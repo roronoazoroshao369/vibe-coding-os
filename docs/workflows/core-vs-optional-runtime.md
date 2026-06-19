@@ -85,6 +85,7 @@ Runtime additions must pass the engine-vs-skill gate in [`docs/UPSTREAM_ADOPTION
 - If a feature needs an upstream daemon, hosted service, database, queue, team engine, or installer, reject runtime adoption by default.
 - If an adapter is useful, keep the adapter boundary small and removable.
 - The runtime may support the core; it must not replace it.
+- MCP tool adapters (see `adapters/mcp/`) follow the same rule: define the contract and markdown-first default in core, provide an optional MCP harness as an adapter for agents that support the protocol. The core skill works without MCP; the adapter accelerates it.
 
 ## Examples
 

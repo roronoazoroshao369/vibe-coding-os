@@ -88,6 +88,23 @@ weight, and verification evidence appropriate to the tier.
 - `skills/prompts/anti-overengineering/SKILL.md` — keeps the chosen flow from bloating.
 - `skills/core/verification-before-completion/SKILL.md` — the non-skippable verify step.
 
+## Standards-mandated steps
+
+Some standards in `STANDARDS.md` impose flow requirements that override the tier rubric.
+When a standard is active for the current work, the flow must include the standard's mandatory
+steps regardless of the tier.
+
+| Standard in STANDARDS.md | Flow requirement | Triggered by |
+| --- | --- | --- |
+| Coding — smallest change | Always applies; no extra step | Any coding task |
+| Testing — `npm run validate` | Run after structural changes | Template, registry, reference, skill, or command changes |
+| Attribution — update references/index.json | Run after adapting tracked ideas | Any source adaptation |
+| Attribution — update changelogs and mappings | Run after adapting tracked ideas | Any source adaptation |
+
+If the tier says `skip spec` but a standard says `update index.json`, the standard wins —
+add the index.json update as a step even though the tier would skip it. The flow must cite
+the standard that forced the extra step when reporting the chosen tier.
+
 ## Constitution alignment
 
 This skill operationalizes Principle 3 (simplicity beats cleverness) and Principle 4

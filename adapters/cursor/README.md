@@ -68,6 +68,18 @@ npm run validate
 - Cursor may continue implementing when you wanted review. Use separate messages for `vibe-review` and ask for blockers before edits.
 - Store long-lived decisions in files, not only chat history, so later agents and teammates can inspect them.
 
+## Skill format convention
+
+Skills used with Cursor follow the Vibe Coding OS SKILL.md format with these Cursor-specific adaptations:
+
+- **Manual loading**: Cursor does not auto-load skill files. Paste selected skill content directly into chat context per workflow phase. The skill's description field (WHEN to use) helps decide what to load.
+- **Chat-driven workflow**: Each Cursor chat is a discrete session. Skills should be self-contained enough to work when pasted without surrounding framework context.
+- **Action verbs**: Use Cursor-compatible verbs: "read", "paste", "attach", "run", "check", "verify". Avoid verbs that imply automatic multi-file awareness.
+- **Context economy**: Cursor context fills quickly. Skills should be compact (under ~500 words) with clear phase triggers so only the relevant skill is loaded at each step.
+- **.cursorrules integration**: Add skill references as "When working on X, attach `skills/...`" directives in `.cursorrules` or `.cursor/rules/` for automatic suggestion.
+
+Skills that are Cursor-specific should list `platforms: ["cursor"]` in their registry entry. Universal skills omit platforms or use `["*"]`.
+
 ## Example session
 
 For a non-trivial refactor in Cursor:

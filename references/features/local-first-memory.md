@@ -20,6 +20,20 @@ Local implementation is documentation and workflow-first: `skills/memory/local-f
 - Separate ingestion, retrieval, search, privacy, evaluation, and provider concerns.
 - Keep provider integrations behind an optional abstraction.
 - Evaluate recall quality rather than assuming stored memory is useful.
+- **Cloud-vs-local decision rubric with five criteria: privacy, latency, offline, sovereignty, cost.**
+- **Decision flow with six sequential gates, defaulting to local unless all gates clear.**
+
+## Implementation status
+
+**Implemented:** `skills/memory/local-first-memory/SKILL.md`, `docs/workflows/memory-provider-adapter.md`.
+
+The local-first memory feature now has:
+
+- A cloud-vs-local decision rubric with five criteria (privacy, latency, offline, sovereignty, cost), each with a local and cloud description and a tiebreaker rule.
+- A six-step decision flow that gates cloud usage: sensitivity check → offline need → sovereignty → latency → cost → unique capability.
+- The decision rubric and flow integrated into the local-first-memory skill's workflow and verification checklist.
+- The `memory-provider-adapter` workflow updated with a provider decision flow that references the rubric.
+- Default remains local unless all rubric gates are cleared for cloud use.
 
 ## Not applied upstream ideas
 

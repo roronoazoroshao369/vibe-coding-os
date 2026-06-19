@@ -4,6 +4,8 @@
 
 Describe optional hook moments for memory capture/retrieval without requiring a hook daemon or copying implementation scripts.
 
+The general hook architecture in `docs/workflows/hook-patterns.md` defines a portable taxonomy of four hook categories (command, session, workflow, verification) with lifecycle timing, contract format, and manual fallback patterns. This skill narrows that general architecture to memory-specific hook moments: session start/end for context retrieval and compression, post-command/post-tool for observation capture, phase-exit for summary compression, and verification hooks for privacy-filtered context injection. When designing a new memory hook, first consult the general taxonomy to classify it, then specialize the contract format to memory-specific fields (observation IDs, privacy constraints, retention policy).
+
 ## When to use
 
 Use when designing memory around lifecycle events: session start, before tool use, after validation, before compaction, handoff, or shutdown.

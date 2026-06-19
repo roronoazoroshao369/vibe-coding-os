@@ -73,6 +73,31 @@ holds enough context for a one-pass, validation-green implementation. A score be
 signal to gather what is missing — an unread file, an undocumented dependency, a missing
 example, an unresolved open question — before any code is written.
 
+## Policy-based context control
+
+Vibe Coding OS also supports *policy-based context control* as an additional discipline
+upstream of context engineering. While context engineering is about assembling the *right*
+context for a task, policy-based context control is about keeping *sensitive* context out
+of the agent's working window.
+
+The `skills/core/context-policy/SKILL.md` skill provides a rule-based system where agents
+define which files and directories are allowed, blocked, or flagged for review. This brings
+data-loss-prevention (DLP) discipline to context management:
+
+- **Block rules** exclude sensitive files entirely (credentials, secrets, private keys).
+- **Allow rules** explicitly permit task-relevant paths.
+- **Flag rules** permit access but log for post-session audit review.
+
+Policies declare a scope (project, directory, task, or session) and a default mode
+(restrictive or permissive). The integration with `skills/memory/privacy-filter/SKILL.md`
+creates a defense-in-depth pipeline: context policy gates what files enter, then the
+privacy filter sanitizes the loaded content.
+
+When preparing a context-rich brief (`vibe-brief`), consider whether a context policy
+should be defined or consulted first. The policy prevents accidental context leaks before
+the brief is even assembled. See `templates/context-policy-template.md` for the policy
+definition format.
+
 ## Related artifacts
 
 - `templates/implementation-brief-template.md`

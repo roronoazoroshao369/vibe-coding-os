@@ -22,11 +22,16 @@
         "skills/core/spec-first-development/SKILL.md",
         "skills/core/test-driven-development/SKILL.md",
         "commands/vibe-spec.md",
-        "commands/vibe-implement.md"
+        "commands/vibe-implement.md",
+        "skills/meta/instinct-extraction/SKILL.md",
+        "skills/meta/context-budget/SKILL.md",
+        "commands/vibe-instinct.md",
+        "templates/instinct-template.md",
+        "references/features/continuous-learning.md"
       ],
-      "last_checked": "2026-06-06",
+      "last_checked": "2026-06-19",
       "last_known_commit": "7113b5bf63694b716f8b2413c5919824a82fc095",
-      "notes": "Baseline audited from local clone on 2026-06-06. Study for cross-harness registries, placement policy, security guide rails, and workflow conventions."
+      "notes": "Baseline audited from local clone on 2026-06-06. Updated on 2026-06-19 with continuous-learning/instinct-extraction (B6.1) and context-budget audit heuristics (B6.2)."
     },
     {
       "id": "automazeio-ccpm",
@@ -76,7 +81,7 @@
       ],
       "last_checked": "2026-06-07",
       "last_known_commit": "unknown",
-      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored."
+      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored. Cross-reference: buildermethods/agent-os overlaps on project-standards and product-mission-roadmap features — update both entries when adapting new ideas from either source."
     },
     {
       "id": "buildermethods-agent-os",
@@ -102,7 +107,7 @@
       ],
       "last_checked": "2026-06-07",
       "last_known_commit": "unknown",
-      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored."
+      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored. Cross-reference: bmad-code-org/BMAD-METHOD overlaps on project-standards and product-mission-roadmap features — update both entries when adapting new ideas from either source."
     },
     {
       "id": "coleam00-context-engineering",
@@ -282,7 +287,7 @@
         "TDD/checkpoint validation changes",
         "brownfield workflow changes"
       ],
-      "notes": "Spec-driven-development integration completed on 2026-06-06. Inspiration/adaptation only; no Specify CLI dependency, no upstream command names required, and no vendored templates or code."
+      "notes": "Spec-driven-development integration completed on 2026-06-06. Inspiration/adaptation only; no Specify CLI dependency, no upstream command names required, and no vendored templates or code. Extensions-and-presets feature is design-doc-only (ADR 0002) — no runtime engine, installer, or CLI built for this feature."
     },
     {
       "id": "mattpocock-skills",
@@ -753,6 +758,22 @@
         "hook-patterns",
         "best-practice-workflow"
       ],
+      "local_targets": [
+        "docs/proficiency-path.md",
+        "commands/vibe-proficiency.md",
+        "skills/meta/using-vibe-coding-os/SKILL.md",
+        "CLAUDE.md",
+        "registry/skills.json",
+        "registry/prompts.json",
+        "skills/meta/writing-skills/SKILL.md",
+        "skills/core/superagent-orchestration/SKILL.md",
+        "skills/core/subagent-driven-development/SKILL.md",
+        "docs/workflows/team-agent-orchestration.md",
+        "docs/workflows/hook-patterns.md",
+        "adapters/hooks/memory-hooks-contract.md",
+        "skills/memory/hook-based-memory/SKILL.md",
+        "references/features/hook-patterns.md"
+      ],
       "last_checked": "2026-06-19",
       "last_known_commit": "unknown",
       "notes": "Initial tracking from upstream research report 2026-06-19. 58k-star comprehensive Claude Code best-practice collection. Study for structured learning path, subagent patterns, hook patterns, and skill orchestration conventions."
@@ -775,6 +796,22 @@
         "structured-memory",
         "research-to-code-pipeline"
       ],
+      "local_targets": [
+        "skills/core/superagent-orchestration/SKILL.md",
+        "commands/vibe-superagent.md",
+        "skills/core/subagent-driven-development/SKILL.md",
+        "skills/core/sandboxed-execution/SKILL.md",
+        "templates/sandbox-scope-template.md",
+        "references/features/sandboxed-execution.md",
+        "docs/workflows/research-to-code-pipeline.md",
+        "templates/research-findings-template.md",
+        "skills/core/context-rich-implementation/SKILL.md",
+        "commands/vibe-brief.md",
+        "commands/vibe-brief-execute.md",
+        "references/features/research-to-code-pipeline.md",
+        "skills/memory/memory-architecture/SKILL.md",
+        "docs/workflows/memory-lifecycle.md"
+      ],
       "last_checked": "2026-06-19",
       "last_known_commit": "unknown",
       "notes": "Initial tracking from upstream research report 2026-06-19. 71k-star ByteDance-backed SuperAgent harness for scalable subagent orchestration. Study for orchestrator-agent patterns, sandboxed execution, and structured memory in agent harnesses."
@@ -796,9 +833,27 @@
         "plugin-bundle-system",
         "skill-catalog"
       ],
+      "local_targets": [
+        "skills/meta/skill-catalog/SKILL.md",
+        "registry/skill-categories.json",
+        "references/features/skill-composability.md",
+        "skills/meta/multi-platform-skill-guide/SKILL.md",
+        "registry/bundles.json",
+        "skills/meta/plugin-bundle-system/SKILL.md",
+        "references/features/plugin-bundle-system.md",
+        "skills/meta/writing-skills/SKILL.md",
+        "skills/meta/using-vibe-coding-os/SKILL.md",
+        "adapters/claude-code/README.md",
+        "adapters/codex/README.md",
+        "adapters/cursor/README.md",
+        "adapters/gemini/README.md",
+        "adapters/compatibility-matrix.md",
+        "commands/vibe-init.md",
+        "commands/vibe-write-skill.md"
+      ],
       "last_checked": "2026-06-19",
       "last_known_commit": "unknown",
-      "notes": "Initial tracking from upstream research report 2026-06-19. 41k-star massive skill library with 1,595+ SKILL.md playbooks across 6 platforms. Study for skill design patterns, composability, plugin bundling, and multi-platform conventions."
+      "notes": "Initial tracking from upstream research report 2026-06-19. 41k-star massive skill library with 1,595+ SKILL.md playbooks across 6 platforms. Study for skill design patterns, composability, plugin bundling, and multi-platform conventions. Adaptation completed 2026-06-19: added skill-catalog, multi-platform skill guide, plugin bundle system, and composability metadata patterns."
     },
     {
       "id": "tirth8205-code-review-graph",
@@ -817,9 +872,76 @@
         "incremental-review",
         "dependency-graph"
       ],
+      "local_targets": [
+        "skills/core/code-intelligence-review/SKILL.md",
+        "skills/core/incremental-review/SKILL.md",
+        "commands/vibe-review-intelligence.md",
+        "templates/code-intelligence-review-template.md",
+        "templates/incremental-review-template.md",
+        "references/features/code-intelligence-review.md",
+        "adapters/mcp/code-intelligence-tool-pattern.md"
+      ],
       "last_checked": "2026-06-19",
       "last_known_commit": "unknown",
       "notes": "Initial tracking from upstream research report 2026-06-19. 18k-star local-first code intelligence graph for AI code review. Study for code graph patterns, MCP-native tool integration, and incremental review techniques."
+    },
+    {
+      "id": "othmanadi-planning-with-files",
+      "name": "planning-with-files",
+      "owner": "othmanadi",
+      "url": "https://github.com/OthmanAdi/planning-with-files",
+      "category": "planning-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/othmanadi-planning-with-files.md",
+      "changelog": "references/changelogs/othmanadi-planning-with-files.md",
+      "features": [
+        "persistent-plan-format",
+        "completion-markers",
+        "checkpoint-system",
+        "recovery-workflow",
+        "recovery-attempt-tracking",
+        "crash-scenario-taxonomy"
+      ],
+      "local_targets": [
+        "skills/core/crash-proof-planning/SKILL.md",
+        "commands/vibe-session-catchup.md",
+        "templates/crash-proof-plan-template.md",
+        "references/features/crash-proof-planning.md"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 23k-star planning system for persistent plan files that survive context resets. Adapted as crash-proof planning skill, session catchup command, and persistent plan template. No upstream content copied."
+    },
+    {
+      "id": "yvgude-lean-ctx",
+      "name": "lean-ctx",
+      "owner": "yvgude",
+      "url": "https://github.com/yvgude/lean-ctx",
+      "category": "context-control",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "Apache-2.0",
+      "reference_doc": "references/sources/yvgude-lean-ctx.md",
+      "changelog": "references/changelogs/yvgude-lean-ctx.md",
+      "features": [
+        "policy-based-context-control",
+        "allow-block-flag-rules",
+        "severity-levels",
+        "default-modes",
+        "sensitive-content-patterns",
+        "scope-declaration"
+      ],
+      "local_targets": [
+        "skills/core/context-policy/SKILL.md",
+        "templates/context-policy-template.md",
+        "skills/memory/privacy-filter/SKILL.md",
+        "docs/workflows/context-engineering.md"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 2.7k-star Apache-2.0 context control system for policy-based file ingress. Adapted as context-policy skill, policy template, and integrated with privacy-filter and context-engineering workflow. No upstream content copied."
     }
   ]
 }

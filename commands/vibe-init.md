@@ -23,10 +23,11 @@ Use this command at the start of a new session, after switching repositories or 
 1. Read applicable `AGENTS.md` files and any session-level instructions that govern the files likely to be touched.
 2. Inspect repository structure without making edits. Prefer targeted file discovery over broad recursive dumps.
 3. Check git status and note the current branch, dirty files, and whether existing user changes are present.
-4. Inspect relevant registries, including `registry/skills.json`, `registry/prompts.json`, and `references/index.json` when upstream inspiration may matter.
-5. Identify likely skills, templates, commands, and validation scripts for the user's goal.
-6. Summarize assumptions, risks, and the next safest workflow step.
-7. Stop before editing files unless the user explicitly asked for immediate changes.
+4. Inspect relevant registries, including `registry/skills.json`, `registry/prompts.json`, `registry/bundles.json`, and `references/index.json` when upstream inspiration may matter.
+5. If the user specified `--bundle <name>`, look up the bundle in `registry/bundles.json` and read the listed skills for the session.
+6. Identify likely skills, templates, commands, and validation scripts for the user's goal.
+7. Summarize assumptions, risks, and the next safest workflow step.
+8. Stop before editing files unless the user explicitly asked for immediate changes.
 
 ## Output format
 

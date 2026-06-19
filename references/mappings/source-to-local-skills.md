@@ -38,7 +38,7 @@ This map shows which local skills and commands are influenced by tracked sources
 
 - Source doc: `references/sources/affaan-m-ecc.md`
 - Changelog: `references/changelogs/affaan-m-ecc.md`
-- Feature links: `spec-driven-development`, `tdd-loop`, `review-before-merge`
+- Feature links: `spec-driven-development`, `tdd-loop`, `review-before-merge`, `continuous-learning`, `instinct-extraction`, `context-budget-audit`
 - Local targets:
   - `skills/core/spec-first-development/SKILL.md`
   - `skills/core/plan-driven-execution/SKILL.md`
@@ -46,6 +46,11 @@ This map shows which local skills and commands are influenced by tracked sources
   - `skills/core/review-before-merge/SKILL.md`
   - `commands/vibe-spec.md`
   - `commands/vibe-implement.md`
+  - `skills/meta/instinct-extraction/SKILL.md`
+  - `skills/meta/context-budget/SKILL.md`
+  - `commands/vibe-instinct.md`
+  - `templates/instinct-template.md`
+  - `references/features/continuous-learning.md`
 
 ## github/spec-kit
 
@@ -194,6 +199,94 @@ Import mode: inspiration/adaptation only; no vendored content.
 
 Mapping này cho maintainer biết ý tưởng từ `mattpocock/skills` ảnh hưởng skill/command/template/workflow nào. Khi upstream update, kiểm tra danh sách này trước khi sửa file local và ghi changelog.
 
+## bytedance/deer-flow
+
+Source: https://github.com/bytedance/deer-flow
+
+Import mode: inspiration/adaptation only; no vendored content.
+
+### Feature links
+
+`superagent-harness`, `sandboxed-execution`, `structured-memory`, `research-to-code-pipeline`
+
+### Local skills
+
+- `skills/core/superagent-orchestration/SKILL.md` — orchestrator-agent pattern with lifecycle states
+- `skills/core/sandboxed-execution/SKILL.md` — work-scoping with write/read-only/forbidden zones
+- `skills/core/subagent-driven-development/SKILL.md` — enhanced with orchestrator role and sandbox scoping
+- `skills/core/context-rich-implementation/SKILL.md` — enhanced with research→synthesis→code→validate phases
+- `skills/memory/memory-architecture/SKILL.md` — enhanced with harness-scoped memory layer
+
+### Local commands
+
+- `commands/vibe-superagent.md` — SuperAgent orchestration command
+- `commands/vibe-brief.md` — enhanced with research-and-synthesis sub-steps
+- `commands/vibe-brief-execute.md` — enhanced with validate-against-research step
+
+### Local templates
+
+- `templates/sandbox-scope-template.md` — scope declaration template
+- `templates/research-findings-template.md` — structured research output
+
+### Local workflows
+
+- `docs/workflows/research-to-code-pipeline.md` — four-phase pipeline workflow
+- `docs/workflows/memory-lifecycle.md` — enhanced with harness-memory lifecycle
+
+### Local reference features
+
+- `references/features/sandboxed-execution.md` — design rationale
+- `references/features/research-to-code-pipeline.md` — design rationale
+
+## othmanadi/planning-with-files
+
+Source: https://github.com/OthmanAdi/planning-with-files
+
+Import mode: inspiration only; no vendored content.
+
+### Feature links
+
+`persistent-plan-format`, `completion-markers`, `checkpoint-system`, `recovery-workflow`, `recovery-attempt-tracking`, `crash-scenario-taxonomy`
+
+### Local skills
+
+- `skills/core/crash-proof-planning/SKILL.md` — Persistent plan format with YAML frontmatter, bracket completion markers, checkpoint block, and recovery workflow
+
+### Local commands
+
+- `commands/vibe-session-catchup.md` — Session catchup recovery command that locates plan, parses state, checks workspace, reports, and suggests next action
+
+### Local templates
+
+- `templates/crash-proof-plan-template.md` — Plan template with frontmatter, completion markers, checkpoint block, and recovery instructions
+
+### Local reference features
+
+- `references/features/crash-proof-planning.md` — Design rationale
+
+## yvgude/lean-ctx
+
+Source: https://github.com/yvgude/lean-ctx
+
+Import mode: inspiration only; no vendored content.
+
+### Feature links
+
+`policy-based-context-control`, `allow-block-flag-rules`, `severity-levels`, `default-modes`, `sensitive-content-patterns`, `scope-declaration`
+
+### Local skills
+
+- `skills/core/context-policy/SKILL.md` — Policy-based context control with allow/block/flag rules, severity levels, scope declarations, and sensitive content scanning
+
+### Local templates
+
+- `templates/context-policy-template.md` — Policy definition format with scope, rules (allow/block/flag), severity, inheritance, and audit log
+
+### Enhanced existing files
+
+- `skills/memory/privacy-filter/SKILL.md` — Added integration section documenting defense-in-depth pipeline with context-policy
+- `docs/workflows/context-engineering.md` — Added policy-based context control section
+
 ## supermemoryai/supermemory update impact rules
 
 - If upstream changes memory API, inspect `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `templates/memory-provider-adapter-template.md`, `skills/memory/memory-provider-adapter/SKILL.md`, and `references/features/memory-provider-adapter.md`.
@@ -293,6 +386,31 @@ Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/comma
   - `docs/workflows/context-engineering.md`
   - `references/features/context-engineering.md`
 
+## tirth8205/code-review-graph
+
+- Source doc: `references/sources/tirth8205-code-review-graph.md`
+- Changelog: `references/changelogs/tirth8205-code-review-graph.md`
+- Feature links: `code-intelligence-graph`, `mcp-native-review`, `incremental-review`, `dependency-graph`
+
+### Feature mapping
+
+| Upstream concept | Local skills | Local commands/templates/docs | Applied / not applied |
+| --- | --- | --- | --- |
+| Code intelligence graph | `skills/core/code-intelligence-review/SKILL.md` | `commands/vibe-review-intelligence.md`, `templates/code-intelligence-review-template.md`, `references/features/code-intelligence-review.md` | Applied as 6-step workflow; no code graph CLI vendored. |
+| Incremental review | `skills/core/incremental-review/SKILL.md` | `templates/incremental-review-template.md`, `commands/vibe-request-review.md` (--incremental) | Applied as baseline-capture + diff-analysis workflow; no token optimization engine vendored. |
+| Dependency graph for review | `skills/core/code-intelligence-review/SKILL.md` (Step 2) | `templates/code-intelligence-review-template.md` (Dependency Graph section) | Applied as enumeration step; no persistent graph database vendored. |
+| MCP-native tool integration | — | `adapters/mcp/code-intelligence-tool-pattern.md`, `docs/workflows/core-vs-optional-runtime.md` | Applied as optional adapter contract; no MCP server vendored. |
+
+### Local targets
+
+- `skills/core/code-intelligence-review/SKILL.md`
+- `skills/core/incremental-review/SKILL.md`
+- `commands/vibe-review-intelligence.md`
+- `templates/code-intelligence-review-template.md`
+- `templates/incremental-review-template.md`
+- `references/features/code-intelligence-review.md`
+- `adapters/mcp/code-intelligence-tool-pattern.md`
+
 ## 2026-06-07 portable feature additions
 
 ### bmad-code-org/BMAD-METHOD
@@ -309,6 +427,14 @@ Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/comma
 - Feature links: `project-standards`, `standards-aware-planning`, `product-roadmap`
 - Local targets: `STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`, `commands/vibe-flow.md`.
 
+### BMAD-METHOD / agent-os merge note
+
+These two sources overlap significantly on `project-standards` and `product-mission-roadmap`.
+Both inform the same local targets (`STANDARDS.md`, `ROADMAP.md`, `skills/core/adaptive-flow/SKILL.md`,
+`docs/workflows/adaptive-flow.md`). The local adaptation treats them as complementary inspirations
+with no duplicated upstream content. When either upstream changes, inspect both source docs and
+both `references/index.json` entries before updating shared local files.
+
 ### eyaltoledano/claude-task-master
 
 - Source doc: `references/sources/eyaltoledano-claude-task-master.md`
@@ -322,3 +448,85 @@ Bảng này cho biết ý tưởng nào từ `spec-kit` trở thành skill/comma
 - Changelog: `references/changelogs/automazeio-ccpm.md`
 - Feature links: `source-of-truth-task-tracking`, `spec-issue-worktree-traceability`
 - Local targets: `skills/core/task-state-tracking/SKILL.md`, `templates/traceability-map-template.md`, `commands/vibe-worktree.md`.
+
+## sickn33/antigravity-awesome-skills
+
+- Source doc: `references/sources/sickn33-antigravity-awesome-skills.md`
+- Changelog: `references/changelogs/sickn33-antigravity-awesome-skills.md`
+- License: MIT
+- Import mode: inspiration only; no upstream text or metadata format copied.
+- Feature links: `skill-composability`, `multi-platform-skills`, `plugin-bundle-system`, `skill-catalog`
+
+### Local skills (new)
+
+- `skills/meta/skill-catalog/SKILL.md` — Catalog organization with tags, bundles, composability metadata
+- `skills/meta/multi-platform-skill-guide/SKILL.md` — Portable skill conventions across 6 agent harnesses
+- `skills/meta/plugin-bundle-system/SKILL.md` — Bundle definition, composition, and activation
+
+### Enhanced existing skills
+
+- `skills/meta/writing-skills/SKILL.md` — Added composability/discoverability requirements, frontmatter fields, failure-modes format, token-budget guidance
+- `skills/meta/using-vibe-coding-os/SKILL.md` — Added skill discovery workflow, bundle activation workflow
+
+### Local registries (new)
+
+- `registry/skill-categories.json` — Machine-readable category→tag→bundle mapping
+- `registry/bundles.json` — Bundle manifest with 5 domain bundles
+
+### Enhanced registries
+
+- `registry/skills.json` — Added tags[], bundle, platforms[] fields to existing entries; added new skill entries
+
+### Local adapter docs (enhanced)
+
+- `adapters/claude-code/README.md` — Skill format convention section
+- `adapters/codex/README.md` — Skill format convention section
+- `adapters/cursor/README.md` — Skill format convention section
+- `adapters/gemini/README.md` — Skill format convention section
+- `adapters/compatibility-matrix.md` — Skill support column
+
+### Local commands (enhanced)
+
+- `commands/vibe-init.md` — Added --bundle option, bundle registry inspection
+- `commands/vibe-write-skill.md` — Added validation prompts for metadata and format
+
+### Local reference features (new)
+
+- `references/features/skill-composability.md` — Design principles
+- `references/features/plugin-bundle-system.md` — Design rationale
+
+## shanraisshan/claude-code-best-practice
+
+Source: https://github.com/shanraisshan/claude-code-best-practice
+
+Import mode: inspiration only; no vendored content. Upstream is MIT licensed, 58k★ comprehensive best-practice collection.
+
+### Feature links
+
+`best-practice-workflow`, `skill-orchestration`, `subagent-orchestration`, `hook-patterns`
+
+### Local docs (new)
+
+- `docs/proficiency-path.md` — Four-level proficiency progression from vibe basics to multi-agent orchestration
+- `docs/workflows/hook-patterns.md` — General hook pattern taxonomy (command, session, workflow, verification)
+
+### Local commands (new)
+
+- `commands/vibe-proficiency.md` — Self-assessment for proficiency level
+
+### Enhanced existing files
+
+- `skills/meta/using-vibe-coding-os/SKILL.md` — Added proficiency-path alignment section
+- `CLAUDE.md` — Added proficiency-level awareness
+- `registry/skills.json` — Added "maturity" field (stable/beta/experimental/draft) to 10+ entries
+- `registry/prompts.json` — Added "maturity" field to all command entries
+- `skills/meta/writing-skills/SKILL.md` — Added maturity-level guidelines
+- `skills/core/superagent-orchestration/SKILL.md` — Added orchestration patterns (fan-out/fan-in, pipeline, supervisor-with-reviewer, producer-consumer)
+- `skills/core/subagent-driven-development/SKILL.md` — Added error-handling patterns for subagent failures
+- `docs/workflows/team-agent-orchestration.md` — Reference to expanded orchestration patterns
+- `adapters/hooks/memory-hooks-contract.md` — Generalized with lifecycle event taxonomy
+- `skills/memory/hook-based-memory/SKILL.md` — Reference to general hook architecture
+
+### Local reference features (new)
+
+- `references/features/hook-patterns.md` — Hook pattern taxonomy rationale and design decisions

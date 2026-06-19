@@ -27,6 +27,38 @@ Describe an optional memory provider without implementing a client.
 - `{verification}`
 - `{follow_ups}`
 
+## Provider Contract Compliance Checklist
+
+Before finalizing the adapter plan, verify compliance with the interface contract defined in `skills/memory/memory-provider-adapter/SKILL.md`:
+
+### Required Operations
+
+- [ ] `store(entry)` — signature documented, accepts structured entry, returns entry ID or error
+- [ ] `retrieve(query)` — signature documented, supports scope filtering, returns matching entries or empty set
+- [ ] `search(terms, filters)` — signature documented, supports keyword/entity/path search, returns ranked entries
+- [ ] `delete(entry_id)` — signature documented, supports soft-delete or hard-delete, idempotent
+
+### Optional Operations (mark as not-yet-implemented if absent)
+
+- [ ] `batch(operations)` — documented as planned or not implemented
+- [ ] `stream(query)` — documented as planned or not implemented
+- [ ] `rank(entries, query)` — documented as planned or not implemented
+
+### Error Semantics
+
+- [ ] Connection errors return `provider_unavailable` with retry hint
+- [ ] Auth errors return `auth_required` or `auth_expired`
+- [ ] Rate limits return `rate_limited` with retry-after hint
+- [ ] Schema validation returns `validation_error` with field-level details
+- [ ] Timeout returns `timeout` with configurable duration
+- [ ] Unimplemented optional ops return `not_implemented`
+
+### Compliance Level
+
+- [ ] `full` — all required operations implemented and tested
+- [ ] `partial` — subset of required operations documented (list which)
+- [ ] `planned` — not yet implemented, contract documented for future use
+
 ## Do not store secrets checklist
 
 - [ ] No credentials, API keys, tokens, or private keys.

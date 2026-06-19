@@ -145,6 +145,22 @@
       "status": "tracked_inspiration",
       "import_mode": "inspiration",
       "notes": "MIT verified from upstream LICENSE during the 2026-06-19 audit. 18k-star local-first code intelligence graph for AI code review, MCP-native with incremental analysis. Initial tracking only; no upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "othmanadi/planning-with-files",
+      "url": "https://github.com/OthmanAdi/planning-with-files",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT verified from upstream metadata during the 2026-06-19 audit. 23k-star planning system for persistent plan files that survive context resets. Adapted as crash-proof planning skill, session catchup command, and persistent plan template. No upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "yvgude/lean-ctx",
+      "url": "https://github.com/yvgude/lean-ctx",
+      "license": "Apache-2.0",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Apache-2.0 verified from upstream metadata during the 2026-06-19 audit. 2.7k-star context control system for policy-based file ingress for AI coding agents. Adapted as context-policy skill, policy template, and integrated with privacy-filter and context-engineering workflow. No upstream content copied. See ATTRIBUTIONS.md."
     }
   ]
 }

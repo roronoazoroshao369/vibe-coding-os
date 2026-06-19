@@ -16,12 +16,16 @@ The constitution defines durable principles. This standards file defines the cur
 
 ## Coding standards
 
+> Flow requirement: always applies — any tier that touches code must satisfy these.
+
 - Prefer the smallest change that satisfies accepted behavior.
 - Match local naming, formatting, file layout, error handling, and test style before adding new patterns.
 - Do not introduce a new abstraction unless at least two current use cases need it or the accepted plan explicitly calls for it.
 - Keep generated or adapted markdown in original wording; never paste large upstream prose.
 
 ## Documentation standards
+
+> Flow requirement: medium+ tier, or any tier that creates/renames a command, skill, or template.
 
 - Commands live in `commands/vibe-*.md`.
 - Skills live in `skills/<category>/<name>/SKILL.md`.
@@ -31,12 +35,16 @@ The constitution defines durable principles. This standards file defines the cur
 
 ## Command authoring standards
 
+> Flow requirement: medium+ tier, or any tier that creates a new command.
+
 - Each command file states purpose, when to use, required inputs, step-by-step behavior, outputs, stopping conditions, and a verification checklist.
 - Every command ends with a `## Handoffs / next-step suggestion` section that names the most likely next command or skill for each outcome (success, blocked, needs-rework). This keeps multi-phase work flowing without guesswork.
 - Keep handoff suggestions conditional ("if X → command Y"), not a fixed pipeline, so the agent still chooses the lightest useful next step.
 - Add a `## Ghi chú tiếng Việt` note when the command guides a major workflow phase.
 
 ## Testing and validation standards
+
+> Flow requirement: any tier that changes structure, registry, references, or commands (tiny/small must still run targeted validation; medium+ must run full `npm run validate`).
 
 - Run `npm run validate` after structural, registry, reference, skill, command, or template changes.
 - Run `npm run validate:references` after reference-layer changes.
@@ -45,11 +53,15 @@ The constitution defines durable principles. This standards file defines the cur
 
 ## Attribution standards
 
+> Flow requirement: any tier that adapts a tracked idea (tiny excluded unless the change touches references/).
+
 - Treat upstream repositories as inspiration unless a closer import has explicit approval.
 - Update `ATTRIBUTIONS.md`, `references/index.json`, source changelogs, mappings, and the upstream control map when adapting a tracked idea.
 - Do not vendor runtimes, installers, generated agent files, upstream command packs, or large documentation blocks.
 
 ## Maintenance
+
+> Flow requirement: medium+ tier; tiny/small may propose a note for future revision.
 
 Revise this file when a repeated project convention becomes stable enough to guide future agents. Keep it concrete; move philosophy back to `CONSTITUTION.md` and volatile session facts to memory/handoff notes.
 

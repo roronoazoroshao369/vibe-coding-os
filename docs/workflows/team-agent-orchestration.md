@@ -36,6 +36,8 @@ Domain Analysis
 | Supervisor | Many tasks need coordination. | team lead owns task graph and unblocks workers. |
 | Hierarchical Delegation | Very broad domain. | domain leads summarize sub-areas to one integrator. |
 
+These patterns are expanded in `skills/core/superagent-orchestration/SKILL.md` with full orchestration topology guidance (fan-out/fan-in, pipeline, supervisor-with-reviewer, producer-consumer) and a decision table for choosing among them. The SuperAgent orchestrator from `skills/core/superagent-orchestration/SKILL.md` can wrap any of these patterns for lifecycle tracking and integration validation.
+
 ## Progressive disclosure
 
 Do not paste the whole repo into every role. Give each worker:
@@ -70,6 +72,28 @@ This workflow does not vendor or require upstream orchestration runtimes, tmux/s
 - Handoffs omit validation status.
 - Attribution/reference files are updated by multiple workers inconsistently.
 - Runtime features are documented as if Vibe Coding OS can enforce them.
+
+## Role-transition protocols
+
+When work moves between agent roles — architect → implementer → tester → reviewer → finisher — each transition must follow a consistent protocol that preserves context, validation status, and accountability.
+
+### Architect → Implementer transition
+
+The architect hands off an architecture note that includes: the spec reference, the component boundaries and interfaces, the file/module ownership map, known risks and trade-offs, and explicit task decomposition. The implementer must confirm they can execute the plan before beginning work. If the plan is ambiguous, the implementer escalates to the architect or main agent for clarification — never guesses the architecture.
+
+### Implementer → Tester transition
+
+The implementer hands off a patch summary: the diff, the declared scope, a self-review output, and the specific acceptance criteria the patch addresses. The tester selects coverage proportional to risk (quick/standard/deep per the tester-agent test-strategy guidance) and produces a test plan with results and gap report. The implementer does not self-certify test coverage — the tester owns that assessment independently.
+
+### Tester → Reviewer transition
+
+The tester hands off the test plan, execution results, coverage gaps, and any environment limitations. The reviewer incorporates the test evidence into the spec-compliance pass: if a behavior has no passing test, it is not yet verified and must be flagged as a risk even if the code implements it correctly. The reviewer does not re-run tests unless the test plan is inadequate or the test results are inconclusive.
+
+### Reviewer → Finisher transition
+
+The reviewer hands off an approval summary: per-axis findings (standards and spec), the review depth level applied, blocker count and resolution status, the spec-compliance verdict, and an explicit merge-readiness statement ("approve", "blocked", or "follow-ups required"). The finisher (or main agent) acts on the verdict: merge on approval, return for fixes on blockers, or schedule follow-ups. No handoff proceeds past a blocker without an explicit resolution record.
+
+Each transition includes a `Context` payload containing the originating spec, the relevant artifacts, the validation status, and the open questions for the next role. The `vibe-handoff` command or an explicit handoff note is the minimum vehicle; in team-agent workflows, the integrator tracks transition state and blocks progression until the handoff is complete.
 
 ## Ghi chú tiếng Việt
 

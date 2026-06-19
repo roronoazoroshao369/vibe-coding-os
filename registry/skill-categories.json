@@ -1,0 +1,78 @@
+{
+  "version": "0.1.0",
+  "description": "Machine-readable mapping of categories to tags, domains, and bundles for skill discovery.",
+  "categories": [
+    {
+      "category": "core",
+      "tags": ["workflow", "spec", "plan", "implement", "review", "verify", "merge", "bootstrap", "tdd", "debug", "architecture", "discipline", "guardrails"],
+      "bundles": ["web-dev", "data-science", "security-review", "cli-tools", "memory-workflow"]
+    },
+    {
+      "category": "memory",
+      "tags": ["memory", "context", "handoff", "session", "privacy", "retrieval", "search", "capture"],
+      "bundles": ["memory-workflow"]
+    },
+    {
+      "category": "prompts",
+      "tags": ["prompt", "behavior", "nudge", "guardrail", "discipline", "discipline"],
+      "bundles": ["cli-tools"]
+    },
+    {
+      "category": "checklists",
+      "tags": ["quality", "checklist", "review", "scan", "security", "lint", "test", "database", "auth", "frontend", "api", "async"],
+      "bundles": ["web-dev", "security-review"]
+    },
+    {
+      "category": "agents",
+      "tags": ["agent", "architect", "implementer", "reviewer", "tester", "orchestrator", "role"],
+      "bundles": ["web-dev", "data-science", "security-review"]
+    },
+    {
+      "category": "meta",
+      "tags": ["meta", "template", "workflow", "catalog", "bundle", "skill-design", "instinct"],
+      "bundles": []
+    },
+    {
+      "category": "quality",
+      "tags": ["quality", "evaluation", "telemetry", "checklist"],
+      "bundles": ["web-dev", "security-review"]
+    },
+    {
+      "category": "templates",
+      "tags": ["template", "spec", "plan", "tasks", "memory", "adr", "handoff", "review"],
+      "bundles": ["web-dev", "data-science", "memory-workflow"]
+    }
+  ],
+  "domain_bundles": [
+    {
+      "name": "web-dev",
+      "description": "Full-stack web development: API, frontend state, DB migrations, authentication, and code review.",
+      "tags": ["api", "frontend", "database", "auth", "review", "quality"],
+      "suggested_categories": ["checklists", "core", "agents", "quality"]
+    },
+    {
+      "name": "data-science",
+      "description": "Data pipelines, ML workflows, async jobs, and reproducible analysis.",
+      "tags": ["data", "ml", "pipeline", "async", "quality"],
+      "suggested_categories": ["checklists", "core", "agents"]
+    },
+    {
+      "name": "security-review",
+      "description": "Security-focused code review, adversarial testing, auth audit, and dependency scanning.",
+      "tags": ["security", "review", "auth", "adversarial", "quality"],
+      "suggested_categories": ["checklists", "core", "agents", "quality"]
+    },
+    {
+      "name": "cli-tools",
+      "description": "Command-line tools, prompts, and discipline nudges for focused engineering work.",
+      "tags": ["cli", "prompt", "discipline", "guardrails", "nudge"],
+      "suggested_categories": ["prompts", "core"]
+    },
+    {
+      "name": "memory-workflow",
+      "description": "Memory capture, retrieval, handoff, privacy filtering, and context management.",
+      "tags": ["memory", "context", "handoff", "session", "privacy", "retrieval"],
+      "suggested_categories": ["memory", "meta", "templates"]
+    }
+  ]
+}

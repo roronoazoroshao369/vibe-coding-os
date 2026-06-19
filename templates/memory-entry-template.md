@@ -15,6 +15,9 @@ Capture one durable memory item with source, sensitivity, confidence, staleness,
 - `{memory_id}`
 - `{date}`
 - `{task_or_scope}`
+- `{source_type}` — one of: session, decision, review, debug
+- `{lifecycle_stage}` — one of: captured, filtered, extracted, formatted, stored
+- `{quality_checks_passed}` — comma-separated list of checks that passed before storage
 - `{source}`
 - `{summary}`
 - `{evidence_or_citations}`
@@ -29,6 +32,9 @@ Capture one durable memory item with source, sensitivity, confidence, staleness,
 
 ## Schema fields
 
+- `source_type`: session | decision | review | debug
+- `lifecycle_stage`: captured | filtered | extracted | formatted | stored
+- `quality_checks_passed`: list of verification checks that completed
 - `sensitivity`: public | internal | sensitive | secret-redacted
 - `confidence`: low | medium | high
 - `staleness`: natural-language freshness hint (e.g., "fresh", "needs-recheck-after-v1.1")

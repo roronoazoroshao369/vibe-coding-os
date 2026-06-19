@@ -19,6 +19,19 @@ Use for end-to-end memory continuity across capture, compression, retrieval, inj
 7. Cite observation IDs, files, handoff notes, or summaries when relying on memory.
 8. At session end, create a summary and handoff with validation status and remaining risks.
 
+## Lifecycle event flow
+
+The persistent context lifecycle progresses through six distinct events, each with a specific memory action:
+
+1. **Session start** → *Retrieve.* Before beginning work, load relevant context from prior sessions: ongoing decisions, active constraints, unresolved risks, and the last handoff summary. Do not load the entire memory store — scope the retrieval to the current task plan or spec.
+2. **Task definition** → *Index.* After the task scope is clear, tag the session with searchable context keys (feature name, module path, risk markers) so subsequent retrievals can find it. Record what the task is expected to produce and the acceptance criteria it must meet.
+3. **Mid-task checkpoints** → *Capture.* At natural breakpoints — after completing a subtask, after verification, before a handoff — capture a thin observation: what changed, what was verified, and what remains. Keep observations under five lines unless a finding is novel or blocking.
+4. **Phase transitions** → *Handoff.* When moving between spec → plan → tasks → implementation phases, create a phase-summary observation that records phase outputs, open questions, and decisions made. The next phase loads this summary rather than re-deriving context.
+5. **Verification and review** → *Attach.* Link validation results and review findings to the session observations so the handoff includes evidence, not just claims. An observation without a verification link is an untested claim.
+6. **Session end** → *Summarize and handoff.* Compress the session into a handoff note with validation status, remaining risks, files touched, and explicit next-start instructions. The handoff becomes the first context loaded on the next session start, closing the lifecycle loop.
+
+Each event maps to one or more hook points in the general hook taxonomy (`docs/workflows/hook-patterns.md`): session-start/end hooks for events 1 and 6, command hooks for events 2-3, workflow phase-entry/exit hooks for event 4, and verification-pass/fail hooks for event 5. The taxonomy defines the contract; this lifecycle defines the order and the data each event carries.
+
 ## Required inputs
 
 - Task description and repository scope.

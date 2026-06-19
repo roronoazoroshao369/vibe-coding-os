@@ -198,3 +198,23 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration only.
 - Vendored code: no.
 - Notes: Initial tracking entry. No local adaptations created yet. Study for code graph patterns, MCP-native tool integration, and incremental review techniques for the requesting-code-review and receiving-code-review skills.
+
+## othmanadi/planning-with-files
+
+- Name: `othmanadi/planning-with-files`
+- URL: https://github.com/OthmanAdi/planning-with-files
+- License: MIT, verified from upstream metadata during the 2026-06-19 audit.
+- Used for: idea-level inspiration for persistent plan files that survive context resets, completion markers, checkpoint system, and recovery workflow.
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Adapted as crash-proof planning skill (`skills/core/crash-proof-planning/SKILL.md`), session catchup command (`commands/vibe-session-catchup.md`), and persistent plan template (`templates/crash-proof-plan-template.md`). All local content is original wording; no upstream text, file format, or templates are copied.
+
+## yvgude/lean-ctx
+
+- Name: `yvgude/lean-ctx`
+- URL: https://github.com/yvgude/lean-ctx
+- License: Apache-2.0, verified from upstream metadata during the 2026-06-19 audit.
+- Used for: idea-level inspiration for policy-based context control with allow/block/flag rules, severity levels, scope declarations, and sensitive content patterns.
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Adapted as context-policy skill (`skills/core/context-policy/SKILL.md`) and policy template (`templates/context-policy-template.md`). Integrated with `skills/memory/privacy-filter/SKILL.md` as defense-in-depth pipeline and `docs/workflows/context-engineering.md` with policy-based context section. All local content is original wording; no upstream code, configuration, or documentation is copied.

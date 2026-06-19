@@ -1,0 +1,75 @@
+{
+  "version": "0.1.0",
+  "description": "Bundle manifest for Vibe Coding OS skill bundles. Bundles are discovery groupings, not runtime loaders.",
+  "bundles": [
+    {
+      "name": "web-dev",
+      "description": "Full-stack web development: API contracts, frontend state, database migrations, authentication, and adversarial code review.",
+      "skills": [
+        "api-endpoint-quality",
+        "frontend-state-quality",
+        "db-migration-quality",
+        "auth-quality",
+        "adversarial-code-review",
+        "acceptance-criteria"
+      ],
+      "dependencies": [],
+      "category": "domain"
+    },
+    {
+      "name": "data-science",
+      "description": "Data pipelines, ML workflows, async jobs, and reproducible analysis with quality checklists and acceptance criteria.",
+      "skills": [
+        "async-job-quality",
+        "acceptance-criteria",
+        "api-endpoint-quality",
+        "quality-engine",
+        "verification-before-completion"
+      ],
+      "dependencies": [],
+      "category": "domain"
+    },
+    {
+      "name": "security-review",
+      "description": "Security-focused code review: adversarial testing, auth audit, dependency scanning, and privacy filtering.",
+      "skills": [
+        "adversarial-code-review",
+        "auth-quality",
+        "adversarial-code-review",
+        "privacy-filter",
+        "code-intelligence-review"
+      ],
+      "dependencies": [],
+      "category": "domain"
+    },
+    {
+      "name": "cli-tools",
+      "description": "Command-line tools, prompts, and discipline nudges for focused engineering work and quality discipline.",
+      "skills": [
+        "anti-overengineering",
+        "karpathy-engineering-discipline",
+        "karpathy-guardrails",
+        "compressed-technical-communication",
+        "clean-code-discipline"
+      ],
+      "dependencies": [],
+      "category": "domain"
+    },
+    {
+      "name": "memory-workflow",
+      "description": "Memory capture, retrieval, handoff, privacy filtering, context management, and evaluation.",
+      "skills": [
+        "memory-ingestion",
+        "memory-search",
+        "memory-evaluation",
+        "privacy-filter",
+        "agent-handoff",
+        "local-first-memory",
+        "memory-configuration",
+        "context-retrieval"
+      ],
+      "dependencies": [],
+      "category": "domain"
+    }
+  ]
+}

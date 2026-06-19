@@ -18,6 +18,17 @@ Use for non-trivial memory changes, before work that may depend on prior context
 6. Evaluate whether retrieved memory was relevant, fresh, and safe.
 7. Record follow-ups, audit triggers, and any provider assumptions.
 
+## Harness-memory lifecycle
+
+When operating within a SuperAgent orchestration session, an additional **harness-scoped memory** layer is active:
+
+- **Session start**: harness memory is initialized by the orchestrator. No prior harness state is inherited.
+- **During orchestration**: subtask lifecycle states, handoff summaries, integration notes, orchestrator decisions, and ephemeral findings are stored in harness memory.
+- **Promotion gate**: at any point, the orchestrator may promote harness memory entries to durable memory if they have lasting value (e.g., a rescoping decision that future sessions should know).
+- **Session end**: harness memory is cleared. All entries are either promoted to durable memory or discarded. No orphaned harness state persists across sessions.
+
+This keeps ephemeral orchestration state separate from the durable memory that future sessions depend on. See `skills/memory/memory-architecture/SKILL.md` for the harness-scoped memory layer definition.
+
 ## Required inputs
 
 - Task or decision.

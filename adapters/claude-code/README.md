@@ -88,6 +88,18 @@ npm run validate
 - Keep generated specs, plans, and memory notes in project files when they must survive beyond the chat.
 - Do not paste upstream docs or third-party prompt packs into Claude Code unless attribution and license decisions are already recorded.
 
+## Skill format convention
+
+Skills developed or adapted for Claude Code follow the Vibe Coding OS SKILL.md format with these Claude Code specifics:
+
+- **File references**: Attach `skills/*/*/SKILL.md` directly in Claude Code via file attachment or `CLAUDE.md` directive. Claude Code reads attached files automatically.
+- **Subagent support**: Skills may use Claude Code's native subagent capability for parallel work. When a skill references subagents, include a `## Platform notes` section in the skill body with explicit Claude Code subagent invocation patterns.
+- **Action verbs**: Prefer Claude Code-compatible action verbs: "read", "write", "update", "verify", "check", "run", "attach". Avoid verbs that imply automatic tool invocation unavailable in Claude Code.
+- **Context budget**: Claude Code context is shared between instructions, skills, and code. Skills loaded via attachment consume context tokens. Token-budget guidance in the skill body helps agents decide what to load.
+- **CLAUDE.md integration**: Add `- Attach skills/core/my-skill for X` directives in CLAUDE.md when a skill should be loaded automatically for specific task types.
+
+Skills that are Claude Code-specific should list `platforms: ["claude-code"]` in their `registry/skills.json` entry. Universal skills omit platforms or use `["*"]`.
+
 ## Example session
 
 For a non-trivial bug fix, ask Claude Code to run this flow:

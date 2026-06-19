@@ -72,6 +72,17 @@ Treat conflicting outputs as integration inputs. The main agent owns final integ
 - Use a deep model for cross-system migrations, irreversible decisions, security-sensitive boundaries, or unclear trade-offs.
 - Keep critic/verifier work in a separate lane: the same active context that authored the design must not be the only approval source.
 
+### Escalation guidance
+
+When the architect agent encounters a decision that exceeds its model tier or assigned scope, it must escalate rather than guess:
+
+- **Ambiguous requirements:** if the spec or plan contains an ambiguity that materially changes the architecture, escalate to the main agent or spec author before proceeding. Document the ambiguity and the options considered.
+- **Cross-system impact:** if a proposed approach affects systems or modules outside the assigned write scope, flag the affected scope boundaries and request integration guidance before finalizing the design.
+- **Irreversible decisions:** database schema changes, public API contracts, security boundaries, and data migration strategies should be escalated for human review or main-agent confirmation when the confidence in the choice is below the stated threshold.
+- **Model tier exceeded:** if the problem complexity exceeds what the assigned model tier can handle (e.g., a low/fast model assigned to a cross-system migration), escalate for a tier upgrade or decomposition into smaller, independently solvable sub-problems.
+
+Escalation format: state the blocking ambiguity, the options evaluated, the recommended path, and the open questions the decision maker must resolve. Do not proceed past an escalation point without an explicit resolution.
+
 ## Ghi chú tiếng Việt
 
 Architect agent thiết kế hướng kỹ thuật tối thiểu, ưu tiên pattern hiện có. Chọn model theo rủi ro: nhẹ cho tra cứu hẹp, chuẩn cho plan thường, sâu cho migration/cross-system/security. Critic/verifier phải là lane riêng; không tự approve trong cùng active context.

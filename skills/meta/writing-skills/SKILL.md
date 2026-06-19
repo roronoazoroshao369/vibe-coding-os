@@ -22,6 +22,20 @@ A skill is only proven when you have watched an agent behave differently because
 
 This loop applies to edits too, not only new skills. A "small addition" that was never tested is an untested change.
 
+## When-to-use vs how-to-use discipline
+
+A common failure in skill-writing is describing *how* to do something before establishing *when* to do it. An agent that loads a skill to learn the procedure but has not decided whether the procedure applies will either skip the body (if the description reads like a summary) or apply the skill in the wrong situation. The **when-to-use** test is simple: write only the triggering conditions and concrete symptoms in the description and "When to use" section. If the description needs a workflow step or an output example, it is describing *how*, not *when*. Reserve detailed procedures for the Workflow section and never preview them in the description.
+
+A corollary: a skill with a rich "When to use" section can be shorter in the body because the agent already knows whether to load it. A skill that conflates when and how forces the agent to parse irrelevant detail before deciding relevance — which, under time pressure, means it guesses.
+
+## Token-budget guidance
+
+- Frequently-loaded meta skills: aim for ~300-500 words.
+- Core skills: ~500-800 words.
+- Reference-heavy skills (checklists): up to ~1200 words, but push detailed reference tables into separate files and link to them.
+- Cross-reference sibling skills instead of duplicating their guidance. A one-line "See writing-skills for the RED-GREEN-REFACTOR loop" saves 200 words.
+- Each token spent on a hypothetical scenario that was never observed is a token that could have been an observed-failure counter. Prefer evidence-based content over speculative padding.
+
 ## Pressure and rationalization testing
 
 Discipline skills (rules the agent is tempted to skip) must survive pressure, because that is exactly when they get abandoned. Test under combined pressure, not just calm questioning:
@@ -41,6 +55,41 @@ A skill that is never loaded teaches nothing. Optimize for discovery:
 2. **Keyword coverage.** Seed the words an agent would actually search: error strings, symptoms ("flaky", "ambiguous", "scope creep"), synonyms, and real tool/command/file names. Discovery is matching, so cover the vocabulary.
 3. **Active, verb-first names.** Prefer `writing-skills`, `review-before-merge`, `prototype-before-commitment` over noun blobs like `skill-creation`.
 4. **Token budget.** Frequently-loaded skills cost context on every conversation. Keep them tight — push exhaustive reference into separate files and link to it, cross-reference sibling skills instead of repeating them, and compress examples. Aim for well under ~500 words for ordinary skills, tighter for always-loaded ones. One excellent example beats five mediocre ones.
+
+## Composability and discoverability requirements
+
+Every skill should declare its relationships to other skills so an agent can assemble a coherent stack without loading contradictory guidance.
+
+### Required frontmatter fields
+
+Each skill entry in `registry/skills.json` MUST include:
+
+- **tags[]**: at least two searchable keywords. Use lower-kebab-case. Prefer tags that match actual search terms: "database", "auth", "async", "tdd", "review", "bug", "security", "cli", "migration", "frontend", "api", "architecture", "quality", "memory", "orchestration", "prompt", "meta".
+- **bundle**: bundle name (string) if the skill belongs to a domain bundle. Empty string if unaffiliated.
+- **platforms[]**: list of supported agent harnesses. `["*"]` if universal. Otherwise list specific: `["claude-code", "codex", "cursor", "gemini", "copilot", "opencode"]`.
+
+### Composability sections in SKILL.md body
+
+The skill body SHOULD contain these sections when cross-references matter:
+
+- **Works with**: sibling skills that complement this one. Example: "Works with `adversarial-code-review` — run after this checklist to catch security issues."
+- **Conflicts with**: skills whose guidance may contradict. Example: "Conflicts with `prototype-before-commitment` — this skill assumes production rigor, not exploration."
+- **Depends on**: prerequisite skills that must be loaded first.
+
+### Failure-modes section format
+
+Every skill MUST include a "Failure modes" section with bullet points describing what can go wrong. Each bullet should name a concrete failure pattern, not a generic risk. Use present tense and specific language ("Shipping an untested skill", not "Failure to test").
+
+### Maturity-level guidelines
+
+Every skill entry in `registry/skills.json` SHOULD include a `maturity` field that communicates stability and reliability to skill consumers. Use one of four levels:
+
+- **stable** — The skill is well-tested, its behavior is documented and verified, and breaking changes are rare. Agents can rely on this skill for production-quality work. Example: `adversarial-code-review`, `brainstorming`.
+- **beta** — The skill works in common scenarios but may have edge cases, incomplete refinements, or a small number of known gaps. Agents should use it but watch for surprising behavior and report issues. Example: `superagent-orchestration`, `adaptive-flow`.
+- **experimental** — The skill is a new pattern or an unproven approach. It may change, break, or be removed without notice. Use for exploration only; do not depend on it for critical work. Example: `adaptive-prompt-selection`, `quality-telemetry`.
+- **draft** — The skill is a placeholder or initial sketch. It exists in the catalog to signal intent but has not been tested, validated, or completed. Agents should skip draft skills unless explicitly directed to develop them. Example: `hook-based-memory`.
+
+Assigning maturity requires honest assessment of the skill's test history, not ambition. A skill that has passed RED-GREEN-REFACTOR testing under stacked pressure is a candidate for `stable`. One that exists only as a written document without observed behavior change is at most `draft` or `experimental`.
 
 ## Workflow
 

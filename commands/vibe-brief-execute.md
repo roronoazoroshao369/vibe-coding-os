@@ -36,9 +36,10 @@ obvious inline change, `commands/vibe-implement.md` is lighter and sufficient.
 5. Run the validation gates in order, cheap to expensive, exactly as the brief lists them.
 6. Iterate until green. If a gate fails, diagnose the root cause in the implementation (never
    weaken the check), fix it, and re-run the full ordered gate list. Repeat until all pass.
-7. Review the diff for unrelated churn, secrets, attribution issues, and full acceptance
+7. Validate against research: cross-check the implementation against the research findings captured in the brief. Confirm that documented edge cases are handled, positive patterns are followed, and known pitfalls are avoided. Record any discrepancies as assumptions discovered.
+8. Review the diff for unrelated churn, secrets, attribution issues, and full acceptance
    criteria coverage.
-8. Complete: report changed files, gate results, assumptions discovered, and any follow-ups.
+9. Complete: report changed files, gate results, assumptions discovered, and any follow-ups.
 
 ## Output format
 

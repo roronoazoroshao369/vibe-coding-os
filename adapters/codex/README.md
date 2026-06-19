@@ -102,6 +102,18 @@ npm run validate
 - Codex should not ask for interactive permissions in non-interactive runs; plan commands so they can run unattended.
 - Keep skill usage explicit in the prompt or plan instead of assuming Codex has loaded every framework file.
 
+## Skill format convention
+
+Skills developed or adapted for Codex CLI follow the Vibe Coding OS SKILL.md format with these Codex-specific conventions:
+
+- **File references**: Reference skill paths in `AGENTS.md` or paste skill content directly into the session prompt. Codex CLI does not auto-load skill files by default.
+- **Worker delegation**: Skills may reference Codex delegated agents/workers for parallel work. When a skill references workers, include a `## Platform notes` section noting the worker ownership and handoff requirements.
+- **Action verbs**: Prefer Codex-compatible verbs: "read", "write", "update", "run", "check". Avoid verbs that assume automatic subagent spawning.
+- **Context loading**: Codex performs better with task-relevant instructions rather than every skill loaded into hidden context. Skills should include a clear trigger description so the agent knows when to activate them.
+- **AGENTS.md integration**: Add skill references to `AGENTS.md` as "When X happens, read `skills/...`" directives so Codex discovers them by scope.
+
+Skills that are Codex-specific should list `platforms: ["codex"]` in their registry entry. Universal skills omit platforms or use `["*"]`.
+
 ## Example session
 
 For a non-trivial feature in a Codex run:

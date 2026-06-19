@@ -20,6 +20,19 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 - Separate ingestion, retrieval, search, privacy, evaluation, and provider concerns.
 - Keep provider integrations behind an optional abstraction.
 - Evaluate recall quality rather than assuming stored memory is useful.
+- **Six-phase retrieval workflow: define question → search broad → narrow by scope → fetch details → evaluate → cite or discard.**
+- **Retrieval quality scoring on four axes: relevance, freshness, groundedness, contradiction risk.**
+
+## Implementation status
+
+**Implemented:** `skills/memory/memory-retrieval/SKILL.md` (new), `commands/vibe-memory-retrieve.md`, `docs/workflows/memory-retrieval-before-work.md`, `templates/memory-retrieval-report-template.md`.
+
+The memory retrieval feature now has:
+
+- A dedicated `skills/memory/memory-retrieval/SKILL.md` with six explicit retrieval phases, each with gates and outputs.
+- The `vibe-memory-retrieve` command restructured as a phased retrieval command with `--question`, `--broad`, `--narrow`, `--fetch`, `--evaluate`, `--report` options and scoring gates.
+- The `memory-retrieval-before-work` workflow deepened with a retrieval phases reference table.
+- The `memory-retrieval-report-template` enhanced with retrieval quality scoring (relevance_score, freshness_score, groundedness_score, contradiction_risk) and a rejected entries log.
 
 ## Not applied upstream ideas
 

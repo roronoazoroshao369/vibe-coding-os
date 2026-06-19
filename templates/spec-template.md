@@ -24,6 +24,17 @@ What the user wants and why.
 
 - As a <user>, when <situation>, I expect <observable outcome>.
 
+### Per-scenario validation criteria
+
+For each scenario above, verify:
+
+- [ ] **Category identified:** happy path / error path / edge case / performance / security.
+- [ ] **Actor and trigger concretely named.**
+- [ ] **Expected outcome is observable** (not an implementation detail).
+- [ ] **Error paths** specify the failure signal and recovery behavior.
+- [ ] **Performance scenarios** include quantified bounds (latency, throughput, resource use).
+- [ ] **Security scenarios** describe what must NOT happen and the signal on boundary crossing.
+
 ## Edge cases
 
 - 

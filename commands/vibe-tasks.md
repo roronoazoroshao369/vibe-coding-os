@@ -40,6 +40,14 @@ coverage.
 Stop and ask when the plan is missing, when dependencies form a cycle that cannot be
 broken, or when an acceptance criterion has no feasible task.
 
+## Options
+
+- `--status` — Print a summary report of every task's current status with counts per state.
+  Useful before choosing the next task or before a handoff.
+- `--transition <task-id> <to-state>` — Validate that the given transition is legal per the
+  state machine in `skills/core/task-state-tracking/SKILL.md`. Exits with an error message
+  if the transition is not allowed (e.g., `proposed → review` or `done → in-progress`).
+
 ## Verification checklist
 
 - [ ] Each task has a done condition and named files.
@@ -47,6 +55,8 @@ broken, or when an acceptance criterion has no feasible task.
 - [ ] Parallel-safe tasks are marked.
 - [ ] Test tasks precede implementation tasks.
 - [ ] Every acceptance criterion maps to a task.
+- [ ] `--status` report shows no tasks stuck in `proposed` without an approved decision.
+- [ ] `--transition` validation passes for all in-progress transitions.
 
 ## Related skills/templates
 

@@ -38,9 +38,27 @@ Sanitized content or a clear block reason.
 - [ ] Useful context is preserved.
 - [ ] Blocked content is not committed.
 
+## Integration with context-policy
+
+This skill works downstream of `skills/core/context-policy/SKILL.md` in a defense-in-depth
+pipeline. The context-policy skill determines *what* files are loaded into the agent's working
+context using allow/block/flag rules. This privacy filter then sanitizes the loaded content
+before it enters memory or is transmitted. The two stages work together:
+
+1. **Context policy** (ingress gate): blocks sensitive files entirely (secrets/, .env, .key),
+   allows task-relevant files, and flags files for audit review.
+2. **Privacy filter** (content sanitizer): scans the allowed/flagged content for secrets,
+   tokens, credentials, and personal data; redacts or blocks as needed.
+
+This two-stage pipeline ensures that sensitive files never even reach the content-scanning
+stage, reducing false positives in the privacy filter and providing defense-in-depth against
+data leakage. When creating or updating a context policy, reference this skill as the
+downstream sanitization layer. When updating this skill, check whether the context-policy
+ingress gate covers the file patterns that would otherwise trigger redaction.
+
 ## Applied / Not Applied
 
-Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Applied from claude-mem-inspired privacy design: strip secrets from child process or sub-agent environments before spawn. Not applied: hosted Supermemory service requirement, claude-mem hook runtime, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
+Applied from Supermemory-inspired design: durable memory should be scoped, searchable, source-aware, privacy-filtered, and useful for later retrieval. Applied from claude-mem-inspired privacy design: strip secrets from child process or sub-agent environments before spawn. Applied from yvgude/lean-ctx-inspired ingress filtering: context-policy gates what files enter before privacy filter sanitizes content. Not applied: hosted Supermemory service requirement, claude-mem hook runtime, SDK client, cloud auth, dashboard, connector stack, database infrastructure, or storing full transcripts by default.
 
 ## Ghi chú tiếng Việt
 

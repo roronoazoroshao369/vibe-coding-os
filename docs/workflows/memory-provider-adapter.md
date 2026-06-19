@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this workflow to plan optional external memory backends without adding required dependencies.
+Use this workflow to plan optional external memory backends without adding required dependencies. Includes a decision flow for choosing between local-first and provider-backed memory.
 
 ## When to use
 
@@ -18,6 +18,17 @@ Use for non-trivial memory changes, before work that may depend on prior context
 6. Evaluate whether retrieved memory was relevant, fresh, and safe.
 7. Record follow-ups, audit triggers, and any provider assumptions.
 
+## Provider Decision Flow
+
+When considering an external provider adapter, run this decision flow:
+
+1. **Is a provider explicitly requested?** If no human or task explicitly asked for one, stop here — use local memory only. Document that provider was not requested.
+2. **Run the cloud-vs-local rubric** (from `skills/memory/local-first-memory/SKILL.md`): evaluate privacy, latency, offline need, sovereignty, and cost. If any criterion blocks cloud use, stop — use local memory and document the blocking criterion.
+3. **Check interface contract compliance** (from `skills/memory/memory-provider-adapter/SKILL.md`): can the provider implement the required operations (store, retrieve, search, delete)? If not, document the gap and use local memory.
+4. **Document opt-in**: record that the human explicitly authorized external storage. List exactly what data leaves local storage. Map provider outputs to local citation, confidence, freshness, and scope labels.
+5. **Define local fallback**: for every provider operation, document the local equivalent that activates when the provider is unavailable, too slow, or unsafe.
+6. **Plan compliance level**: state whether the adapter will be full, partial, or planned. Implement only after spec and plan approval.
+
 ## Required inputs
 
 - Task or decision.
@@ -27,7 +38,9 @@ Use for non-trivial memory changes, before work that may depend on prior context
 
 ## Outputs
 
-- Memory entry, retrieval report, privacy review, evaluation note, or adapter plan.
+- Provider adapter plan with decision flow outcome and compliance level.
+- Privacy/data-flow note.
+- Local fallback and troubleshooting checklist.
 - Clear applied/not-applied decisions and validation status.
 
 ## Related skills
@@ -40,7 +53,7 @@ Use for non-trivial memory changes, before work that may depend on prior context
 
 ## Applied / Not applied
 
-Applied: agent memory as an explicit local workflow, ingestion/retrieval/search separation, privacy rules, evaluation, optional provider abstraction, and local fallback. Not applied: hosted service requirement, Supermemory SDK/client, dashboard clone, cloud auth, connector stack, database infrastructure, or vendor code.
+Applied: agent memory as an explicit local workflow, ingestion/retrieval/search separation, privacy rules, evaluation, optional provider abstraction, local fallback, and provider decision flow with five gates. Not applied: hosted service requirement, Supermemory SDK/client, dashboard clone, cloud auth, connector stack, database infrastructure, or vendor code.
 
 ## Maintenance notes
 
@@ -48,4 +61,4 @@ When `supermemoryai/supermemory` changes API, retrieval/search, privacy/security
 
 ## Ghi chú tiếng Việt
 
-Quy trình này giúp dùng bộ nhớ có kiểm soát: chỉ lưu thông tin bền vững, luôn kiểm tra quyền riêng tư, ghi nguồn và độ tin cậy, và giữ adapter bên ngoài ở trạng thái tùy chọn.
+Quy trình này giúp lập kế hoạch adapter bộ nhớ tùy chọn. Luôn chạy decision flow: kiểm tra xem provider có được yêu cầu không, chạy rubric cloud-vs-local, kiểm tra interface contract, ghi nhận opt-in, và định nghĩa fallback cục bộ. Giữ adapter bên ngoài ở trạng thái tùy chọn.

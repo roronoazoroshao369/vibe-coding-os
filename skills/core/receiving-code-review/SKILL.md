@@ -12,6 +12,10 @@ Use when a human or agent reviewer provides comments, blockers, test failures, o
 
 Review comments, current diff, spec/plan, validation output, project constraints, and user priorities.
 
+## Optional: use an intelligence map
+
+If the review request asks for an intelligence map, or if the change is complex enough to warrant one, run `vibe-review-intelligence` or follow `skills/core/code-intelligence-review/SKILL.md` before analysing feedback. The intelligence map provides a structural baseline — call graph, dependency chains, data flow, and test gaps — that helps you classify feedback by true impact. A blocker that affects a widely-called function is more urgent than one in a leaf module; the map reveals this quickly.
+
 ## Workflow
 
 1. Classify feedback as blocker, correctness issue, maintainability suggestion, question, or optional follow-up.

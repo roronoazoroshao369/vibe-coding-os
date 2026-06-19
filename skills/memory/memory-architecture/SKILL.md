@@ -23,6 +23,18 @@ Use when adding or reorganizing memory workflows, defining schemas, splitting me
 4. Mark current knowledge with an `isLatest` or equivalent recency note when older entries remain useful history; only latest non-contradicted entries should drive current work.
 5. Keep the relation schema provider-neutral and storage-free; adapters may persist links, but the skill owns the meaning.
 6. Map each responsibility to one skill to prevent duplicate workflows.
+7. Add a **harness-scoped memory layer** for orchestrator-managed, session-bound
+   ephemeral state. Unlike durable project memory or provider-backed storage, harness
+   memory lives only for the duration of a SuperAgent orchestration session. It captures:
+   - subtask lifecycle states (queued, planning, executing, reviewing, merging, complete);
+   - inter-subtask handoff summaries and integration notes;
+   - ephemeral findings that are too granular for durable memory but too important to
+     lose mid-session;
+   - orchestrator decisions, rescoping events, and stall flags.
+   Harness memory is managed by the orchestrator, cleared at session end (unless
+   explicitly promoted to durable memory), and follows the same observation field
+   conventions (source, scope, timestamp, confidence, stale-risk) as other memory
+   layers.
 
 ## Outputs
 

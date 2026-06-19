@@ -23,6 +23,17 @@ Use the lightest useful version of each step. Tiny edits may only need intent, i
 
 ## Anti-patterns
 
+## Proficiency-level awareness
+
+When starting a new session, consider the user's likely proficiency level from `docs/proficiency-path.md`:
+
+- **Level 1:** Prefer simple commands, avoid deep orchestration patterns. Use `vibe-init`, `vibe-spec`, `vibe-implement`, `vibe-review`.
+- **Level 2:** Introduce skill-writing and bundle concepts. Use `vibe-write-skill`, reference `skills/meta/writing-skills/SKILL.md`.
+- **Level 3:** Apply SuperAgent orchestration, checkpoint gates, subagent delegation. Use `vibe-superagent`, `vibe-checkpoints`.
+- **Level 4:** Use team-agent orchestration, hook patterns, and advanced multi-agent workflows.
+
+When unsure, run `commands/vibe-proficiency.md` for a self-assessment prompt. Adjust workflow depth proportionally.
+
 Avoid:
 
 - coding before understanding the request;

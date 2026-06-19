@@ -8,11 +8,11 @@
 | Metric | Value |
 |---|---|
 | Version | 2.5.0 |
-| Skills | 118 |
-| Commands | 91 |
-| Templates | 87 |
-| Narrative files | 576 |
-| Upstream sources | 18 |
+| Skills | 128 |
+| Commands | 97 |
+| Templates | 94 |
+| Narrative files | 613 |
+| Upstream sources | 20 |
 | Broken refs | 0 |
 
 ### Skills by Category
@@ -21,9 +21,9 @@
 |---|---|
 | agents | 7 |
 | checklists | 5 |
-| core | 62 |
-| memory | 17 |
-| meta | 9 |
+| core | 68 |
+| memory | 18 |
+| meta | 12 |
 | prompts | 15 |
 | quality-evaluation-scenarios | 1 |
 | repo-map-concept | 1 |
@@ -45,17 +45,15 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
-| v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
-| v1.6.0 | ✅ Complete | Adoption Trust — CLI onboarding, README, adapters |
-| v1.7.0 | ✅ Complete | Quality Shield — docs, workflow, examples |
-| v1.8.0 | ✅ Complete | Expert Mode — risk classifier, critic pass |
-| v1.9.0 | ✅ Complete | Quality Engine — config, gates, scorecards |
-| v2.0.0 | ✅ Complete | Smart Adapt — adaptive gate selection |
-| v2.1.0 | ✅ Complete | Model-Aware Config — profile-based gates |
-| v2.2.0 | ✅ Complete | Quality Telemetry — events, metrics, trends |
-| v2.3.0 | ✅ Complete | Multi-Repository Learning — lesson exchange |
-| v2.4.0 | ✅ Complete | Quality Elevation — eval, benchmarks |
-| v2.5.0 | ✅ Complete | Advanced Orchestration — stage-gated workflows |
+| v1.5.0 | ✅ Complete | Core adoption, runtime freeze, adoption trust |
+| v1.6.0 | ✅ Complete | Adoption Trust: README paths, adapter docs, layer entrypoints, CLI onboarding, validation gates |
+| v1.7.0 | ✅ Complete | Quality Shield: docs, workflow, examples, discovery sync |
+| v2.0.0 | ✅ Complete | Quality Engine: enhanced validation, quality gates |
+| v2.1.0 | ✅ Complete | Model-aware adapter system |
+| v2.2.0 | ✅ Complete | Quality telemetry and reporting |
+| v2.3.0 | ✅ Complete | Advanced runtime contracts |
+| v2.4.0 | ✅ Complete | Expert Mode: task risk classification |
+| v2.5.0 | ✅ Complete | References loop: 18 sources, bug-fix lifecycle, MemScore, npm publish |
 
 ## Safety Metrics
 
