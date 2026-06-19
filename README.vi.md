@@ -20,7 +20,7 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.9.0):** validate:all 26/26 gates PASS · **132 skills** · **102 commands** · **100 templates** · **20 tracked sources** · 8 adapters
+**Bản phát hành hiện tại (v2.10.0):** validate:all 26/26 gates PASS · **131 skills** · **100 commands** · **85 templates** · **20 tracked sources** · 8 adapters
 
 **Mới nhất:** v2.9.0 Release Pipeline & Plugin Polish — pipeline release tự động, 5 MCP command tools, CLAUDE.md tối ưu
 

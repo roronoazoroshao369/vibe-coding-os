@@ -7,7 +7,7 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.9.0 |
+| Version | 2.10.0 |
 | Skills | 131 |
 | Commands | 101 |
 | Templates | 100 |
@@ -49,7 +49,8 @@
 | v1.6.0 | ✅ Complete | Adoption Trust — adapter docs, CLI onboarding, validation gates
 | v1.7.0 | ✅ Complete | Quality Shield — QS workflow, artifact audit, discovery sync
 | v1.8.0 | ✅ Complete | Quality Engine — telemetry, scorecard, CI integration
-| v1.9.0 | ✅ Complete | Expert Mode — task risk, model-aware adapter, critic pass
+| v1.9.0 | ✅ Complete | Expert Mode — task risk, model-aware adapter, critic pass |
+| v2.10.0 | ✅ Complete | Guard Bypass Protocol — autonomous adversarial prompt agent |
 | v2.0.0 | ✅ Complete | Quality Engine v2 — real-time quality deep queries, telemetry coverage
 | v2.1.0 | ✅ Complete | Model-aware adapter, adaptive prompt, model profiles
 | v2.2.0 | ✅ Complete | Quality telemetry — event-driven metrics, session scoring, trend report
