@@ -106,6 +106,14 @@ These are related to future/advanced engine orchestration, not required for basi
 
 For a copy-paste version of this workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md).
 
+## CI/CD integration
+
+For pull requests, use Quality Shield as the human-readable discipline layer and `npm run validate:all` as the blocking repository guard. CI can also generate Quality Engine summaries and optional redacted telemetry for reviewer evidence.
+
+- Integration guide: [`docs/quality-guard-integration.md`](quality-guard-integration.md)
+- CI/CD example: [`examples/cicd-integration/README.md`](../examples/cicd-integration/README.md)
+- Filled 26/26 sample summary: [`examples/cicd-integration/ci-quality-summary-sample.md`](../examples/cicd-integration/ci-quality-summary-sample.md)
+
 ## Escalating to Expert Mode
 
 When the standard Quality Shield workflow is not enough — security-sensitive changes, complex migrations, low confidence in tests, or a strong desire to avoid rubber-stamping — escalate to **Expert Mode** (v1.8.0):

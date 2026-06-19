@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.3.0 |
-| Skills | 115 |
-| Commands | 89 |
+| Version | 2.4.0 |
+| Skills | 116 |
+| Commands | 90 |
 | Templates | 85 |
-| Narrative files | 543 |
+| Narrative files | 550 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 6 |
 | checklists | 5 |
-| core | 60 |
+| core | 61 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |
@@ -54,6 +54,7 @@
 | v2.1.0 | ✅ Complete | Model-Aware Config, model registry, config skill |
 | v2.2.0 | ✅ Complete | Quality Telemetry, schema, collector, trend reports |
 | v2.3.0 | ✅ Complete | Multi-Repo Learning, lesson exchange, import/export |
+| v2.4.0 | ✅ Complete | CI/CD Integration, PR quality gate, reusable action, weekly report |
 
 ## Safety Metrics
 
@@ -95,14 +96,14 @@
 
 | Area | Status |
 |---|---|
-| Skills (115) | All discovered dynamically from `skills/` |
-| Commands (89) | All discovered dynamically from `commands/` |
+| Skills (116) | All discovered dynamically from `skills/` |
+| Commands (90) | All discovered dynamically from `commands/` |
 | Templates (85) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 2 |
+| Orphan templates | 1 |
 | Broken references | 0 |
 
 ## How to Regenerate

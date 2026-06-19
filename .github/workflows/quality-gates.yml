@@ -1,0 +1,271 @@
+name: Quality Gates
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: Quality engine profile (lean, standard, heavy)
+        required: false
+        default: standard
+      gates:
+        description: Comma-separated gate IDs to run (overrides profile)
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+concurrency:
+  group: quality-gates-${{ github.event.pull_request.number || github.sha }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gates:
+    name: Quality gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Detect changed files
+        id: changed-files
+        shell: bash
+        run: |
+          REPORT_DIR="quality-reports"
+          mkdir -p "$REPORT_DIR"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --name-only --diff-filter=ACMRT "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > "$REPORT_DIR/changed-files.txt"
+          else
+            git diff --name-only --diff-filter=ACMRT "${{ github.event.before }}" "${{ github.sha }}" > "$REPORT_DIR/changed-files.txt" 2>/dev/null || true
+          fi
+          count=$(wc -l < "$REPORT_DIR/changed-files.txt" | tr -d ' ' 2>/dev/null || echo "0")
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Changed files detected: $count"
+
+      - name: Run validate:all
+        id: validate-all
+        shell: bash
+        continue-on-error: true
+        run: |
+          REPORT_DIR="quality-reports"
+          set +e
+          npm run validate:all 2>&1 | tee "$REPORT_DIR/validate-all.log"
+          status=${PIPESTATUS[0]}
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -eq 0 ]; then
+            echo "status=passed" >> "$GITHUB_OUTPUT"
+            echo "::notice title=validate:all passed::All validation checks passed."
+          else
+            echo "status=failed" >> "$GITHUB_OUTPUT"
+            echo "::error title=validate:all failed::npm run validate:all exited with $status. See quality-reports artifact for details."
+          fi
+          exit 0
+
+      - name: Run quality engine (lean profile)
+        id: quality-engine
+        shell: bash
+        continue-on-error: true
+        run: |
+          REPORT_DIR="quality-reports"
+          mkdir -p "$REPORT_DIR"
+          set +e
+          PROFILE="${{ github.event.inputs.profile || 'lean' }}"
+          GATES="${{ github.event.inputs.gates || '' }}"
+          if [ -n "$GATES" ]; then
+            echo "Running quality engine with custom gates: $GATES"
+            node scripts/quality-engine.mjs --output-json --gates="$GATES" > "$REPORT_DIR/quality-engine.json" 2>&1
+          else
+            echo "Running quality engine with profile: $PROFILE"
+            node scripts/quality-engine.mjs --output-json --profile="$PROFILE" > "$REPORT_DIR/quality-engine.json" 2>&1
+          fi
+          exit_code=$?
+          echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
+          if [ "$exit_code" -eq 0 ]; then
+            echo "status=passed" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=failed" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Quality engine::Some gates flagged warnings or failures. Review the engine report."
+          fi
+          exit 0
+
+      - name: Generate engine report (markdown)
+        shell: bash
+        continue-on-error: true
+        run: |
+          REPORT_DIR="quality-reports"
+          if [ -f "$REPORT_DIR/quality-engine.json" ]; then
+            node scripts/quality-engine-report.mjs \
+              --output-json="$REPORT_DIR/quality-engine.json" \
+              --output-dir="$REPORT_DIR" 2>&1 | tee "$REPORT_DIR/engine-report.log"
+            latest_md=$(ls -t "$REPORT_DIR"/*.md 2>/dev/null | grep -v 'quality-summary.md' | head -n 1 || true)
+            if [ -n "$latest_md" ]; then
+              cp "$latest_md" "$REPORT_DIR/quality-engine-report.md"
+              echo "Engine report generated at $REPORT_DIR/quality-engine-report.md"
+            fi
+          fi
+
+      - name: Collect telemetry
+        id: telemetry
+        shell: bash
+        continue-on-error: true
+        run: |
+          REPORT_DIR="quality-reports"
+          mkdir -p "$REPORT_DIR"
+          set +e
+          if [ -f "$REPORT_DIR/quality-engine.json" ]; then
+            node scripts/quality-telemetry.mjs \
+              --engine "$REPORT_DIR/quality-engine.json" \
+              --dry-run \
+              --json 2>&1 | tee "$REPORT_DIR/telemetry-events.json" || true
+            echo "Telemetry events captured."
+            echo "collected=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No quality-engine.json found; skipping telemetry collection."
+            echo "collected=false" >> "$GITHUB_OUTPUT"
+          fi
+          exit 0
+
+      - name: Run secret scan
+        id: secrets
+        shell: bash
+        continue-on-error: true
+        run: |
+          REPORT_DIR="quality-reports"
+          set +e
+          npm run validate:secrets 2>&1 | tee "$REPORT_DIR/secret-scan.log"
+          status=${PIPESTATUS[0]}
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          if [ "$status" -eq 0 ]; then
+            echo "status=passed" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=failed" >> "$GITHUB_OUTPUT"
+            echo "::error title=Secret scan failed::Potential secret exposure detected. Review the scan log before merging."
+          fi
+          exit 0
+
+      - name: Generate summary report
+        id: summary
+        shell: bash
+        run: |
+          REPORT_DIR="quality-reports"
+          {
+            echo "# Quality Gates Summary"
+            echo
+            echo "| Gate | Status |"
+            echo "| --- | --- |"
+            echo "| validate:all | ${{ steps.validate-all.outputs.status || 'unknown' }} |"
+            echo "| Quality engine | ${{ steps.quality-engine.outputs.status || 'unknown' }} |"
+            echo "| Secret scan | ${{ steps.secrets.outputs.status || 'unknown' }} |"
+            echo "| Telemetry | ${{ steps.telemetry.outputs.collected || 'false' }} |"
+            echo
+            echo "Changed files: ${{ steps.changed-files.outputs.count || '0' }}"
+            echo
+            if [ -f "$REPORT_DIR/validate-all.log" ]; then
+              echo "## validate:all log"
+              echo '```'
+              tail -30 "$REPORT_DIR/validate-all.log"
+              echo '```'
+            fi
+          } > "$REPORT_DIR/quality-summary.md"
+          cat "$REPORT_DIR/quality-summary.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Annotate failed gates
+        uses: actions/github-script@v7
+        continue-on-error: true
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'quality-reports/quality-engine.json';
+            if (!fs.existsSync(path)) return;
+            let report;
+            try { report = JSON.parse(fs.readFileSync(path, 'utf8')); } catch { return; }
+            for (const result of report.results || []) {
+              if (result.passed) continue;
+              const command = result.critical ? 'error' : 'warning';
+              const message = `${result.name || result.id} ${result.timedOut ? 'timed out' : 'failed'} after ${result.durationMs || 0}ms`;
+              core[command](message, { title: `Quality gate: ${result.id || result.name}` });
+            }
+
+      - name: Archive quality reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports-${{ github.event.pull_request.number || github.sha }}
+          path: quality-reports/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Comment PR quality summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- quality-gates-summary -->';
+            const validateStatus = '${{ steps.validate-all.outputs.status }}' || 'unknown';
+            const engineStatus = '${{ steps.quality-engine.outputs.status }}' || 'unknown';
+            const secretsStatus = '${{ steps.secrets.outputs.status }}' || 'unknown';
+            const changedCount = '${{ steps.changed-files.outputs.count }}' || '0';
+            const telemetryCollected = '${{ steps.telemetry.outputs.collected }}' || 'false';
+
+            const passed = validateStatus === 'passed' && secretsStatus === 'passed';
+            const score = passed ? '100' : '50';
+            const color = passed ? 'brightgreen' : 'orange';
+
+            let gateRows = [
+              `| validate:all | ${validateStatus === 'passed' ? '✅ passed' : '❌ failed'} |`,
+              `| Quality engine | ${engineStatus === 'passed' ? '✅ passed' : '⚠️  flagged'} |`,
+              `| Secret scan | ${secretsStatus === 'passed' ? '✅ passed' : '❌ failed'} |`,
+              `| Telemetry | ${telemetryCollected === 'true' ? '✅ collected' : '⚠️  skipped'} |`
+            ];
+
+            let warnings = [];
+            if (validateStatus !== 'passed') warnings.push('**validate:all** failed. Review `validate-all.log` in the artifact.');
+            if (secretsStatus !== 'passed') warnings.push('**Secret scan** failed. Review `secret-scan.log` in the artifact.');
+            if (engineStatus !== 'passed') warnings.push('**Quality engine** flagged items. Review the engine report.');
+            if (telemetryCollected !== 'true') warnings.push('Telemetry collection was skipped (no engine report to process).');
+
+            const body = `${marker}\n## Quality Gates Summary\n\n` +
+              `![quality-score](https://img.shields.io/badge/quality-${score}%25-${color})\n\n` +
+              `Changed files scanned: **${changedCount}**\n\n` +
+              `| Gate | Status |\n| --- | --- |\n${gateRows.join('\n')}\n\n` +
+              `### Warnings\n${warnings.length ? warnings.map(w => `- ${w}`).join('\n') : '- None'}\n\n` +
+              `### Residual risks\n` +
+              `- ${validateStatus !== 'passed' ? '❌ Validation checks have failures that should be resolved before merge.' : '✅ All validation checks passed.'}\n` +
+              `- ${secretsStatus !== 'passed' ? '❌ Potential secrets detected — blocked from merge until resolved.' : '✅ No secrets detected.'}\n` +
+              `- ${engineStatus !== 'passed' ? '⚠️  Quality engine flagged items for review (advisory only).' : '✅ Quality engine passed all gates.'}\n\n` +
+              `### Action items\n${passed ? '- No action required. PR is ready for review.' : '- Review failed gates and push an update.'}\n\n` +
+              `Full report: download the \`quality-reports-${{ github.event.pull_request.number || github.sha }}\` workflow artifact.`;
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.rest.issues.listComments({ owner, repo, issue_number, per_page: 100 });
+            const existing = comments.data.find(c => c.user.type === 'Bot' && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Fail job on gate errors
+        if: steps.validate-all.outputs.status != 'passed' || steps.secrets.outputs.status != 'passed'
+        run: |
+          echo "::error::Quality gates failed. Check the workflow summary and artifact for details."
+          exit 1

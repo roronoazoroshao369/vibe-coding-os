@@ -13,6 +13,7 @@ Use this page to pick the smallest example that matches your current job. Start 
 | Refactor with discipline | [`refactor-workflow/`](refactor-workflow/) | Non-goals, safety checks, regression verification |
 | Elevate AI output quality | [`quality-elevation/`](quality-elevation/) | Quality rubric, self-review, adversarial review |
 | Run the Quality Shield end-to-end | [`quality-shield/`](quality-shield/) | Contract → context pack → minimal diff → self-review → scorecard |
+| Integrate quality guards in CI/CD | [`cicd-integration/`](cicd-integration/) | `validate:all`, Quality Engine summaries, and optional telemetry for PR checks |
 | Use CLI-oriented workflows | [`cli-workflows/`](cli-workflows/) | `vibe spec`, `vibe plan`, `vibe memory`, install packs |
 | See a product-style Next.js flow | [`react-nextjs-booking-workflow/`](react-nextjs-booking-workflow/) | Realistic app workflow and acceptance criteria |
 

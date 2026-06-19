@@ -113,6 +113,14 @@ The council should produce a concise decision record: findings, required fixes, 
 4. Rerun the most relevant verification.
 5. Final response states changed files, checks run, checks not run, residual risks, and any deferrals.
 
+## CI/CD integration
+
+Expert Mode findings should feed the same PR quality evidence used by Quality Shield: a blocking `validate:all` run, a Quality Engine summary when useful, and clear disposition of warnings or deferrals.
+
+- Quality guard integration: [`docs/quality-guard-integration.md`](quality-guard-integration.md)
+- CI/CD example: [`examples/cicd-integration/README.md`](../examples/cicd-integration/README.md)
+- Filled 26/26 sample summary: [`examples/cicd-integration/ci-quality-summary-sample.md`](../examples/cicd-integration/ci-quality-summary-sample.md)
+
 ## Boundary with Quality Engine and runtime
 
 Expert Mode is part of the portable core. It extends Quality Shield by adding stronger review protocols and specialized checklists, but it remains plain markdown content.

@@ -337,15 +337,19 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Release posture:** v2.3.0 turns multi-repo lesson exchange into release-ready metadata. Lesson exchange schema, exporter/importer/checker scripts, sample template, canonical guide, skill, command, and registry entries are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.4 — CI/CD Integration
-**Status:** 🗓️ PLANNED
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |:---|---|
-| PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | 🗓️ Planned |
-| Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | 🗓️ Planned |
-| Reusable GitHub composite action | 🗓️ Planned |
-| PR quality summary template | 🗓️ Planned |
-| CI/CD integration guide | 🗓️ Planned |
+| PR quality gate workflow (`.github/workflows/vibe-quality-gate.yml`) | ✅ Done |
+| Weekly quality report workflow (`.github/workflows/vibe-quality-report.yml`) | ✅ Done |
+| Reusable GitHub composite action (`.github/actions/vibe-quality-action/action.yml`) | ✅ Done |
+| CI/CD Integration skill (`skills/core/cicd-integration/SKILL.md`) | ✅ Done |
+| `vibe-ci-quality-summary` command (`commands/vibe-ci-quality-summary.md`) | ✅ Done |
+| CI/CD integration guide (`docs/cicd-integration-guide.md`) | ✅ Done |
+| Registry entries (`registry/skills.json`, `registry/prompts.json`) | ✅ Done |
+
+**Release posture:** v2.4.0 turns CI/CD integration into release-ready metadata. PR quality gate workflow, weekly report workflow, reusable composite action, skill, command, canonical guide, and registry entries are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.5 — Advanced Orchestration
 **Status:** 🗓️ PLANNED
@@ -383,5 +387,5 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.1.0: ████████████ 100%
 - v2.2.0: ████████████ 100%
 - v2.3.0: ████████████ 100%
-- v2.4:   ░░░░░░░░░░░ 0% (planned)
+- v2.4.0: ████████████ 100%
 - v2.5:   ░░░░░░░░░░░ 0% (planned)

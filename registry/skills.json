@@ -98,6 +98,12 @@
       "description": "Validate each phase before the next with an explicit implementation-readiness gate."
     },
     {
+      "name": "cicd-integration",
+      "path": "skills/core/cicd-integration/SKILL.md",
+      "category": "core",
+      "description": "Integrate Vibe Coding OS quality gates into GitHub Actions for automated PR checks, reusable composite actions, and weekly quality trend reports."
+    },
+    {
       "name": "clarify-before-code",
       "path": "skills/core/clarify-before-code/SKILL.md",
       "category": "core",
