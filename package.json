@@ -1,9 +1,19 @@
 {
   "name": "vibe-coding-os",
   "version": "2.5.0",
-  "private": true,
+  "private": false,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
+  "files": [
+    "scripts/", "commands/", "skills/", "templates/", "schemas/",
+    "registry/", "runtime/", "adapters/", "packs/",
+    "docs/", "examples/", "references/",
+    ".vibe/", ".github/",
+    "LICENSE", "README.md", "README.vi.md", "ROADMAP.md",
+    "INSTALL.md", "AGENTS.md", "CHANGELOG.md",
+    "NOTICE.md", "ATTRIBUTIONS.md",
+    ".gitignore", ".mcp.json", "install.sh"
+  ],
   "scripts": {
     "validate": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs",
     "validate:repo": "node scripts/validate-repo.mjs",
@@ -77,5 +87,17 @@
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roronoazoroshao369/vibe-coding-os.git"
+  },
+  "homepage": "https://roronoazoroshao369.github.io/vibe-coding-os/",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai-coding", "vibe-coding", "claude-code", "codex", "cursor",
+    "skill-framework", "agent-tools", "development-workflow"
+  ],
   "license": "MIT"
 }
