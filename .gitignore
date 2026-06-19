@@ -2,8 +2,19 @@
 references/upstreams/*
 !references/upstreams/README.md
 
+# Generated reference report
+references/update-report.md
+
 # Optional runtime state. Local-first, disposable, machine-generated.
-.omc/runtime/
+.omc/
+
+# Generated orchestration/quality reports (created by dry-run tests)
+docs/reports/orchestration/
+docs/reports/quality-engine/
+docs/reports/quality-telemetry/
+
+# Generated lessons data
+skills/core/lessons-learned-db/lessons.json
 
 # macOS Finder metadata.
 .DS_Store

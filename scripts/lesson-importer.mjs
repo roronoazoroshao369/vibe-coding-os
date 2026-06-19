@@ -45,8 +45,16 @@ function dedupeKey(lesson) {
 
 function isExpired(lesson, now = new Date()) {
   if (lesson.expiry === null || lesson.expiry === undefined || lesson.expiry === '') return false;
-  const expiry = new Date(`${lesson.expiry}T23:59:59.999Z`);
-  return Number.isNaN(expiry.getTime()) || expiry.getTime() < now.getTime();
+  // Handle both YYYY-MM-DD and ISO datetime formats
+  let expiryDate;
+  if (typeof lesson.expiry === 'string' && lesson.expiry.includes('T')) {
+    // ISO datetime string — parse directly
+    expiryDate = new Date(lesson.expiry);
+  } else {
+    // Date-only string — append end-of-day
+    expiryDate = new Date(`${lesson.expiry}T23:59:59.999Z`);
+  }
+  return Number.isNaN(expiryDate.getTime()) || expiryDate.getTime() < now.getTime();
 }
 
 function main() {

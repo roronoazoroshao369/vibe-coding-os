@@ -3,6 +3,9 @@
   "$id": "https://vibe-coding-os.local/schemas/runtime-common.schema.json",
   "title": "Vibe Coding OS Runtime Common Types",
   "description": "Shared schema definitions for optional runtime layer persisted state.",
+  "type": "object",
+  "required": [],
+  "additionalProperties": false,
   "$defs": {
     "isoDateTime": {
       "type": "string",

@@ -59,14 +59,14 @@ function valueAt(object, paths, fallback = undefined) {
 }
 
 function normalizeEvent(event) {
-  const timestamp = valueAt(event, ['timestamp', 'time', 'createdAt', 'startedAt', 'finishedAt']);
-  const sessionId = String(valueAt(event, ['sessionId', 'session_id', 'session.id', 'trace.sessionId'], 'unknown-session'));
-  const gateId = String(valueAt(event, ['gateId', 'gate_id', 'gate.id', 'gate', 'id', 'name'], 'unknown-gate'));
-  const modelId = String(valueAt(event, ['modelId', 'model_id', 'model.id', 'model', 'metadata.modelId'], 'unknown-model'));
-  const taskType = String(valueAt(event, ['taskType', 'task_type', 'task.type', 'task', 'metadata.taskType'], 'unknown-task'));
-  const durationMs = Number(valueAt(event, ['durationMs', 'durationMillis', 'duration_ms', 'duration', 'gate.durationMs'], 0)) || 0;
-  const status = String(valueAt(event, ['status', 'result', 'outcome', 'gate.status'], '')).toLowerCase();
-  const passedValue = valueAt(event, ['passed', 'success', 'ok', 'gate.passed']);
+  const timestamp = valueAt(event, ['timestamp', 'data.timestamp', 'time', 'data.time', 'createdAt', 'data.createdAt', 'startedAt', 'data.startedAt', 'finishedAt', 'data.finishedAt']);
+  const sessionId = String(valueAt(event, ['data.sessionId', 'sessionId', 'session_id', 'data.session_id', 'session.id', 'data.session.id', 'trace.sessionId'], 'unknown-session'));
+  const gateId = String(valueAt(event, ['data.gateId', 'gateId', 'gate_id', 'data.gate_id', 'gate.id', 'data.gate.id', 'gate', 'id', 'name'], 'unknown-gate'));
+  const modelId = String(valueAt(event, ['data.modelId', 'modelId', 'model_id', 'data.model_id', 'model.id', 'data.model.id', 'model', 'metadata.modelId'], 'unknown-model'));
+  const taskType = String(valueAt(event, ['data.taskType', 'taskType', 'task_type', 'data.task_type', 'task.type', 'data.task.type', 'task', 'metadata.taskType'], 'unknown-task'));
+  const durationMs = Number(valueAt(event, ['data.duration', 'data.durationMs', 'durationMs', 'durationMillis', 'duration_ms', 'data.durationMillis', 'data.duration_ms', 'duration', 'gate.durationMs', 'data.gate.durationMs'], 0)) || 0;
+  const status = String(valueAt(event, ['data.status', 'status', 'data.result', 'result', 'data.outcome', 'outcome', 'data.gate.status', 'gate.status'], '')).toLowerCase();
+  const passedValue = valueAt(event, ['data.pass', 'data.passed', 'passed', 'success', 'ok', 'data.success', 'data.ok', 'gate.passed', 'data.gate.passed']);
   const passed = typeof passedValue === 'boolean'
     ? passedValue
     : ['pass', 'passed', 'success', 'ok', 'true'].includes(status);

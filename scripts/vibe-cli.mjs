@@ -164,7 +164,13 @@ function projectGuidance(projectDir) {
 export async function cmdInit(toolOrArg = 'claude-code', rawArgs = []) {
   if ([toolOrArg, ...rawArgs].some((arg) => arg === '--help' || arg === '-h')) { cmdInitHelp(); return; }
   const { parseSetupProjectArgs, planProjectSetup, applyProjectSetup, SETUP_TOOLS } = await import('./setup-project.mjs');
-  const options = parseSetupProjectArgs([toolOrArg, ...rawArgs]);
+  let options;
+  try {
+    options = parseSetupProjectArgs([toolOrArg, ...rawArgs]);
+  } catch (err) {
+    console.error(`${fail} ${err.message}`);
+    process.exit(1);
+  }
   const validTools = Object.keys(SETUP_TOOLS).filter((t) => t !== 'claude');
   if (!SETUP_TOOLS[options.tool]) {
     console.error(`${fail} Unknown tool: ${options.tool}. Valid: ${validTools.join(', ')} (alias: claude)`);
@@ -536,11 +542,13 @@ export function cmdListSkills(category = null) {
 
   const categories = category ? [category] : getSubdirs(skillsDir);
   let totalCount = 0;
+  let catNotFound = false;
 
   for (const cat of categories) {
     const catDir = join(skillsDir, cat);
     if (!existsSync(catDir)) {
       console.log(`${c.yellow}Category '${cat}' not found${c.reset}`);
+      catNotFound = true;
       continue;
     }
 
@@ -563,6 +571,8 @@ export function cmdListSkills(category = null) {
   }
 
   console.log(`${c.dim}Total: ${totalCount} skills${c.reset}\n`);
+
+  if (catNotFound) process.exit(1);
 }
 
 export function cmdListCommands() {
@@ -616,6 +626,10 @@ export function cmdStats() {
 }
 
 export function cmdSpec(args) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe spec [name] [--copy]\n\nOptions:\n  --copy    Copy template to current directory as SPEC.md\n  -h, --help  Show this help\n\nExample:\n  vibe spec my-feature\n  vibe spec my-feature --copy`);
+    return;
+  }
   const templatePath = join(ROOT, 'templates/spec-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Spec template not found: templates/spec-template.md`);
@@ -646,6 +660,10 @@ export function cmdSpec(args) {
 }
 
 export function cmdPlan(args) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe plan [name] [--copy]\n\nOptions:\n  --copy    Copy template to current directory as PLAN.md\n  -h, --help  Show this help\n\nExample:\n  vibe plan my-feature\n  vibe plan my-feature --copy`);
+    return;
+  }
   const templatePath = join(ROOT, 'templates/plan-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Plan template not found: templates/plan-template.md`);
@@ -676,6 +694,10 @@ export function cmdPlan(args) {
 }
 
 export function cmdMemory(args) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe memory [name] [--copy]\n\nOptions:\n  --copy    Copy template to current directory as MEMORY.md\n  -h, --help  Show this help\n\nExample:\n  vibe memory my-observation\n  vibe memory my-observation --copy`);
+    return;
+  }
   const templatePath = join(ROOT, 'templates/memory-entry-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Memory template not found: templates/memory-entry-template.md`);
@@ -706,6 +728,10 @@ export function cmdMemory(args) {
 }
 
 export function cmdTask(args) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe task [name] [--copy]\n\nOptions:\n  --copy    Copy template to current directory as TASK.md\n  -h, --help  Show this help\n\nExample:\n  vibe task my-task\n  vibe task my-task --copy`);
+    return;
+  }
   const templatePath = join(ROOT, 'templates/task-template.md');
   if (!existsSync(templatePath)) {
     console.error(`${fail} Task template not found: templates/task-template.md`);
@@ -772,6 +798,10 @@ export function cmdTemplates() {
 
 // ─── Main ───
 export async function cmdEvents(args = []) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe events [options]\n\nOptions:\n  --json             Output as JSON\n  --limit=N          Max events to show (default: 10, max: 1000)\n  -h, --help         Show this help`);
+    return;
+  }
   const json = args.includes('--json');
   const limitArg = args.find((a) => a.startsWith('--limit='));
   let limit = limitArg ? Number(limitArg.split('=')[1]) : 10;
@@ -830,6 +860,10 @@ if (isMainModule) {
     case 'task': cmdTask(args); break;
     case 'templates': cmdTemplates(); break;
     case 'runtime-task': {
+      if (args.includes('--help') || args.includes('-h')) {
+        console.log('Usage: vibe runtime-task <command> [options]\n\nCommands:\n  list                          List all tasks\n  list-pending [limit]          List pending tasks\n  list-claimed [profile]        List claimed tasks\n  next [profile]                Claim the next pending task\n  status <id> [--to <state>]    Update task status\n  claim <id> [--profile <p>]    Claim a specific task\n  release <id>                  Release a claimed task\n  heartbeat <id>                Heartbeat a claimed task\n  help                          Show this help\n\nOptions:\n  --profile <name>              Agent profile\n  --to <new-state>              Target state for status update\n  -h, --help                    Show this help');
+        process.exit(0);
+      }
       const { spawnSync } = await import('node:child_process');
       const result = spawnSync(process.execPath, [join(__dirname, 'runtime-task.mjs'), ...args], {
         cwd: process.cwd(),
@@ -850,6 +884,10 @@ if (isMainModule) {
       break;
     }
     case 'runtime-audit': {
+      if (args.includes('--help') || args.includes('-h')) {
+        console.log(`Usage: vibe runtime-audit [options]\n\nRun safety audit on runtime state.\n\nOptions:\n  --json           Output as JSON\n  --root <dir>     Project root directory\n  -h, --help       Show this help`);
+        process.exit(0);
+      }
       const { spawnSync } = await import('node:child_process');
       const result = spawnSync(process.execPath, [join(__dirname, 'runtime-audit.mjs'), ...args], {
         cwd: process.cwd(),

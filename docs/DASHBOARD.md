@@ -11,7 +11,7 @@
 | Skills | 118 |
 | Commands | 90 |
 | Templates | 86 |
-| Narrative files | 562 |
+| Narrative files | 570 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -46,16 +46,16 @@
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
 | v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
-| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
-| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
-| v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
-| v1.9.0 | ✅ Complete | Smart Adapt, adaptive prompts, scorecards, lessons |
-| v2.0.0 | ✅ Complete | Quality Engine, schemas, integration tests, gate #26 |
-| v2.1.0 | ✅ Complete | Model-Aware Config, model registry, config skill |
-| v2.2.0 | ✅ Complete | Quality Telemetry, schema, collector, trend reports |
-| v2.3.0 | ✅ Complete | Multi-Repo Learning, lesson exchange, import/export |
-| v2.4.0 | ✅ Complete | CI/CD Integration, GitHub Actions, guard docs |
-| v2.5.0 | ✅ Complete | Advanced Orchestration, council escalation, release hardening |
+| v1.6.0 | ✅ Complete | Adoption Trust — README paths, adapters, CLI onboarding |
+| v1.7.0 | ✅ Complete | Quality Shield — canonical guide, workflow, scorecard |
+| v1.8.0 | ✅ Complete | Expert Mode — adversarial review, critique pass, quality packs |
+| v1.9.0 | ✅ Complete | Smart Adapt — adaptive prompt selection, model config |
+| v2.0.0 | ✅ Complete | Quality Engine — gates, contracts, scorecards, profiles |
+| v2.1.0 | ✅ Complete | Model-Aware Config — profiles, stack matrix, weakness logs |
+| v2.2.0 | ✅ Complete | Quality Telemetry — events, metrics, trend reports |
+| v2.3.0 | ✅ Complete | Multi-Repo Learning — lessons exchange, golden examples |
+| v2.4.0 | ✅ Complete | CI/CD Integration — quality summary, GitHub Actions |
+| v2.5.0 | ✅ Complete | Advanced Orchestration — workflows, critique, orchestrate |
 
 ## Safety Metrics
 
