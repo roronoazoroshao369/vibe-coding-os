@@ -362,6 +362,12 @@
       "description": "Define and execute stage-gated multi-agent workflows with quality gates."
     },
     {
+      "name": "advanced-orchestration",
+      "path": "skills/agents/advanced-orchestration/SKILL.md",
+      "category": "agents",
+      "description": "Orchestrate multi-team, multi-lane sprint workflows with checkpoint gates, council escalation, and stop/resume."
+    },
+    {
       "name": "plan-driven-execution",
       "path": "skills/core/plan-driven-execution/SKILL.md",
       "category": "core",

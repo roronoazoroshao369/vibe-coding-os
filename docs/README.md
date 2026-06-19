@@ -27,6 +27,7 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
 - [`quality-telemetry-guide.md`](quality-telemetry-guide.md) — Quality Telemetry guide for local event emission, session metrics, and trend reports (v2.2).
 - [`multi-repo-learning.md`](multi-repo-learning.md) — Multi-Repository Learning guide for lesson exchange across repositories (v2.3).
 - [`cicd-integration-guide.md`](cicd-integration-guide.md) — CI/CD Integration guide for PR quality gates, reusable GitHub Actions, and weekly reports (v2.4).
+- [`orchestration-guide.md`](orchestration-guide.md) — Advanced Orchestration guide for stage-gated multi-agent workflows (v2.5).
 - [`specs/README.md`](specs/README.md) — spec-driven development docs.
 - [`workflows/spec-driven-development.md`](workflows/spec-driven-development.md) — constitution → specify → plan → tasks → implement.
 - [`workflows/real-engineering-skills-workflow.md`](workflows/real-engineering-skills-workflow.md) — practical engineering-agent workflow.
@@ -122,6 +123,8 @@ The runtime is an opt-in companion for local JSON state. It is not required for 
 - [`CONTRIBUTING-SKILLS.md`](CONTRIBUTING-SKILLS.md) — skill/command/template contribution workflow.
 - [`ROADMAP-STATUS.md`](ROADMAP-STATUS.md) — version progress and roadmap status.
 - [`releases/`](releases/) — per-version release notes.
+- [`releases/v2.5.0-release-notes.md`](releases/v2.5.0-release-notes.md) — v2.5.0 Advanced Orchestration release notes.
+- [`releases/v2.5.0-final-readiness-report.md`](releases/v2.5.0-final-readiness-report.md) — release hardening and full v1.7→v2.5 completion summary.
 - [`reports/`](reports/) — generated and historical reports.
 - [`../CHANGELOG.md`](../CHANGELOG.md) — version history.
 

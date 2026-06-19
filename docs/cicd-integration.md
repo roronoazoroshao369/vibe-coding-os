@@ -278,3 +278,5 @@ uses: roronoazoroshao369/vibe-coding-os/.github/actions/vibe-quality-action@main
 - [Quality Telemetry Guide](quality-telemetry-guide.md) — telemetry event format, collector usage, trend reports
 - [Quality Scorecard Session Template](../templates/quality-scorecard-session.md) — per-file scorecard recording
 - [PR Quality Summary Template](../templates/ci-pr-quality-summary.md) — fillable markdown for PR summaries
+- [Orchestration Guide](orchestration-guide.md) — advanced orchestration workflows that use CI gates at each stage
+- [Release Hardening Playbook](release-hardening-playbook.md) — final validation, dashboard sync, and release tagging

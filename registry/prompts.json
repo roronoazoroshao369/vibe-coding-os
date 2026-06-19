@@ -234,7 +234,7 @@
     {
       "name": "vibe-orchestrate",
       "path": "commands/vibe-orchestrate.md",
-      "description": "Run stage-gated orchestration workflows with plan, implement, review, verify, and handoff stages."
+      "description": "Orchestrate multi-team sprints with lane planning, ownership assignment, checkpoint gates, council escalation, stop/resume, and summaries."
     },
     {
       "name": "vibe-parallel-explore",

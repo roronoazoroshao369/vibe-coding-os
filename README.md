@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.4.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **84 templates** · 14 tracked sources
+**Current release (v2.5.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **85 templates** · 14 tracked sources · Roadmap 100% complete through v2.5.0
 
 ---
 
@@ -39,6 +39,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | [Model-Aware Config](docs/model-aware-config-guide.md) | Configure Quality Engine gates from model capability, task risk, and project settings |
 | [Quality Telemetry](docs/quality-telemetry-guide.md) | Emit local quality events, aggregate session metrics, and generate trend reports |
 | [Multi-Repository Learning](docs/multi-repo-learning.md) | Export, review, and import portable lesson exchange batches across repositories |
+| [Advanced Orchestration](docs/orchestration-guide.md) | Run stage-gated multi-agent workflows for feature, bugfix, and security-audit delivery |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -67,18 +68,18 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v2.4.0
+## What's new in v2.5.0
 
-CI/CD Integration brings Vibe Coding OS quality gates into GitHub Actions — automated PR checks, reusable composite actions, and weekly quality trend reports.
+Advanced Orchestration adds schema-backed, stage-gated workflows for complex feature work, bugfixes, security audits, and multi-agent delivery. v2.5.0 also marks the roadmap 100% complete through v2.5.
 
-- **CI/CD Integration skill:** `skills/core/cicd-integration/SKILL.md` documents the full CI/CD workflow: PR quality gate, reusable action, weekly report, and failure-mode remediation.
-- **`vibe-ci-quality-summary` command:** `commands/vibe-ci-quality-summary.md` generates structured PR quality summaries from CI gate results and validation output.
-- **Canonical guide:** `docs/cicd-integration-guide.md` explains setup from start to finish: workflows, composite action, weekly reports, and troubleshooting.
-- **PR quality gate workflow:** `.github/workflows/vibe-quality-gate.yml` runs validate:all on every PR and posts a quality summary comment.
-- **Weekly report workflow:** `.github/workflows/vibe-quality-report.yml` generates automated weekly trend issues.
-- **Reusable composite action:** `.github/actions/vibe-quality-action/action.yml` lets other repos reference Vibe Coding OS quality gates with `uses:`.
-- **Registry sync:** cicd-integration skill and vibe-ci-quality-summary command are registered in `registry/skills.json` and `registry/prompts.json`.
-- **Runtime unchanged:** v2.4.0 respects ADR 0002 and does not require a daemon or hosted service.
+- **Orchestration workflow schema:** `schemas/orchestration-workflow.json` defines stages, agent roles, inputs, outputs, triggers, retry policies, and gate references.
+- **Workflow runner:** `scripts/orchestrate-workflow.mjs` executes workflows with `--workflow`, `--dry-run`, and `--output-json`.
+- **Workflow templates:** `templates/workflow-simple-feature.json`, `templates/workflow-bugfix.json`, and `templates/workflow-security-audit.json`.
+- **Orchestration skill:** `skills/core/orchestration-workflows/SKILL.md` documents stage-gated workflow discipline.
+- **`vibe-orchestrate` command:** `commands/vibe-orchestrate.md` provides the command entry point.
+- **Canonical guide:** `docs/orchestration-guide.md` explains usage, failure modes, reports, and quality-gate integration.
+- **Registry sync:** orchestration skill and `vibe-orchestrate` command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Roadmap complete:** v1.7→v2.5 is fully complete with 26/26 validation gates passing and no runtime expansion beyond ADR 0002.
 
 ---
 
@@ -135,7 +136,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**116 skills**, **90 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**116 skills**, **90 commands**, **85 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|

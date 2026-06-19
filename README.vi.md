@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.4.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **84 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v2.5.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **85 templates** · 14 tracked sources · roadmap hoàn tất 100% đến v2.5.0
 
-**Mới nhất:** v2.4.0 CI/CD Integration — tích hợp quality gates vào GitHub Actions, PR quality gate workflow, reusable composite action và báo cáo hàng tuần.
+**Mới nhất:** v2.5.0 Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
 **v2.3.0 trước đó:** Multi-Repository Learning — xuất, kiểm tra và nhập bài học lập trình có thể chia sẻ giữa các repository.
 
@@ -30,18 +30,18 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v2.4.0
+## Có gì mới trong v2.5.0
 
-CI/CD Integration tích hợp quality gates của Vibe Coding OS vào GitHub Actions — kiểm tra PR tự động, reusable composite action và báo cáo chất lượng hàng tuần.
+Advanced Orchestration thêm workflow nhiều stage có quality gates cho feature phức tạp, bugfix, security audit và multi-agent delivery. v2.5.0 cũng đánh dấu roadmap hoàn tất 100% đến v2.5.
 
-- **PR quality gate workflow:** `.github/workflows/vibe-quality-gate.yml` chạy `validate:all` trên mỗi PR và đăng comment tóm tắt chất lượng.
-- **Weekly report workflow:** `.github/workflows/vibe-quality-report.yml` tạo issue báo cáo xu hướng hàng tuần.
-- **Reusable composite action:** `.github/actions/vibe-quality-action/action.yml` cho phép repo khác tham chiếu quality gates.
-- **Skill mới:** `skills/core/cicd-integration/SKILL.md` hướng dẫn CI/CD workflow.
-- **Command mới:** `commands/vibe-ci-quality-summary.md` tạo PR quality summary từ kết quả CI.
-- **Guide chính:** `docs/cicd-integration-guide.md` giải thích setup chi tiết.
-- **Registry sync:** cicd-integration skill và vibe-ci-quality-summary command đã đăng ký trong `registry/skills.json` và `registry/prompts.json`.
-- **Runtime không đổi:** v2.4.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
+- **Schema orchestration:** `schemas/orchestration-workflow.json` định nghĩa stages, roles, inputs, outputs, triggers, retry policy và gate references.
+- **Workflow runner:** `scripts/orchestrate-workflow.mjs` chạy workflow với `--workflow`, `--dry-run`, `--output-json`.
+- **Workflow templates:** `templates/workflow-simple-feature.json`, `templates/workflow-bugfix.json`, `templates/workflow-security-audit.json`.
+- **Skill mới:** `skills/core/orchestration-workflows/SKILL.md` hướng dẫn workflow có stage gates.
+- **Command mới:** `commands/vibe-orchestrate.md` là command entry point cho orchestration.
+- **Guide chính:** `docs/orchestration-guide.md` giải thích usage, failure modes, reports và quality-gate integration.
+- **Registry sync:** orchestration skill và `vibe-orchestrate` đã đăng ký trong `registry/skills.json` và `registry/prompts.json`.
+- **Runtime không đổi:** v2.5.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ## Có gì mới trong v2.3.0
 

@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.4.0 |
-| Skills | 116 |
+| Version | 2.5.0 |
+| Skills | 117 |
 | Commands | 90 |
-| Templates | 85 |
-| Narrative files | 550 |
+| Templates | 86 |
+| Narrative files | 558 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -19,7 +19,7 @@
 
 | Category | Count |
 |---|---|
-| agents | 6 |
+| agents | 7 |
 | checklists | 5 |
 | core | 61 |
 | memory | 17 |
@@ -54,7 +54,8 @@
 | v2.1.0 | ✅ Complete | Model-Aware Config, model registry, config skill |
 | v2.2.0 | ✅ Complete | Quality Telemetry, schema, collector, trend reports |
 | v2.3.0 | ✅ Complete | Multi-Repo Learning, lesson exchange, import/export |
-| v2.4.0 | ✅ Complete | CI/CD Integration, PR quality gate, reusable action, weekly report |
+| v2.4.0 | ✅ Complete | CI/CD Integration, GitHub Actions, guard docs |
+| v2.5.0 | ✅ Complete | Advanced Orchestration, council escalation, release hardening |
 
 ## Safety Metrics
 
