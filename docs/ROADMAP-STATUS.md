@@ -364,7 +364,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.5.0: ████████████ 100%
 - v1.6.0: ████████████ 100%
 - v1.7.0: ████████████ 100%
-- v1.8.0: ░░░░░░░░░░░ 0% (planned)
+- v1.8.0: ████████████ 100%
 - v1.9.0: ░░░░░░░░░░░ 0% (planned)
 - v2.0:   ░░░░░░░░░░░ 0% (planned)
 - v2.1:   ░░░░░░░░░░░ 0% (planned)

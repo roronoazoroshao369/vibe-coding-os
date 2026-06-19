@@ -45,7 +45,10 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
-| v1.5.0 | ✅ Complete | Core adoption, runtime free
+| v1.5.0 | ✅ Complete | Core adoption, runtime freeze |
+| v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
+| v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
+| v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
 
 ## Safety Metrics
 
