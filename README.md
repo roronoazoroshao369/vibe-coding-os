@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.2.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **84 templates** · 14 tracked sources
+**Current release (v2.3.0):** validate:all 26/26 gates PASS · **115 skills** · **89 commands** · **84 templates** · 14 tracked sources
 
 ---
 
@@ -38,6 +38,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | [Quality Engine](docs/quality-engine-guide.md) | Run orchestrated quality gates, timing reports, and targeted fix recommendations |
 | [Model-Aware Config](docs/model-aware-config-guide.md) | Configure Quality Engine gates from model capability, task risk, and project settings |
 | [Quality Telemetry](docs/quality-telemetry-guide.md) | Emit local quality events, aggregate session metrics, and generate trend reports |
+| [Multi-Repository Learning](docs/multi-repo-learning.md) | Export, review, and import portable lesson exchange batches across repositories |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -63,6 +64,20 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Review** — inspect the diff for correctness, simplicity, security, and maintainability.
 - **Memory** — record durable decisions, gotchas, and follow-ups.
 - **Merge** — ship only after verification status is clear.
+
+---
+
+## What's new in v2.3.0
+
+Multi-Repository Learning turns local lessons learned into a portable exchange format — export lessons from one repository, inspect or filter them, and import useful patterns into another repository's lessons database.
+
+- **Multi-Repository Learning skill:** `skills/core/multi-repo-learning/SKILL.md` documents exporting, checking, and importing lesson exchange batches.
+- **`vibe-lesson-exchange` command:** `commands/vibe-lesson-exchange.md` provides export, check, and import interfaces.
+- **Canonical guide:** `docs/multi-repo-learning.md` explains the full workflow: quality check, export, safety review, dry-run, and import.
+- **Lesson exchange schema:** `schemas/lesson-exchange-format.json` defines the portable format for single lessons and exchange batches.
+- **Package scripts:** `lesson:export`, `lesson:import`, `lesson:check` are wired and ready.
+- **Registry sync:** multi-repo-learning skill and vibe-lesson-exchange command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v2.3.0 respects ADR 0002 and does not require a daemon or hosted service.
 
 ---
 
@@ -105,7 +120,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**114 skills**, **88 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**115 skills**, **89 commands**, **84 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -189,7 +204,7 @@ This repository is intentionally dependency-light. Run validation after any stru
 
 ```bash
 npm run validate        # core structural checks (4 gates)
-npm run validate:all    # full validation (25 gates)
+npm run validate:all    # full validation (26 gates)
 ```
 
 **Coverage honesty labels:**
@@ -275,6 +290,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/quality-engine-guide.md`](docs/quality-engine-guide.md) — Quality Engine guide (v2.0)
 - [`docs/model-aware-config-guide.md`](docs/model-aware-config-guide.md) — Model-Aware Config guide (v2.1)
 - [`docs/quality-telemetry-guide.md`](docs/quality-telemetry-guide.md) — Quality Telemetry guide (v2.2)
+- [`docs/multi-repo-learning.md`](docs/multi-repo-learning.md) — Multi-Repository Learning guide (v2.3)
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs

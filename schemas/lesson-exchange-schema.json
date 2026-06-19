@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vibe-coding-os.local/schemas/lesson-exchange-schema.json",
+  "title": "Portable Lesson Exchange",
+  "description": "A sanitized, portable lesson record for exchanging reusable learning across repositories without private code, secrets, raw logs, or unnecessary personal data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lesson_id",
+    "source_repo",
+    "timestamp",
+    "area",
+    "severity",
+    "root_cause",
+    "fix_pattern",
+    "prevention_rule",
+    "tags",
+    "privacy_level"
+  ],
+  "properties": {
+    "lesson_id": {
+      "type": "string",
+      "description": "Stable, non-secret lesson identifier unique within the source repository or export batch.",
+      "pattern": "^[a-zA-Z0-9._:-]+$",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "source_repo": {
+      "type": "string",
+      "description": "Sanitized source repository identifier. Use a public repo name, organization-neutral alias, or placeholder; do not include private URLs or internal hostnames.",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO 8601 date-time when the lesson was captured or exported.",
+      "format": "date-time"
+    },
+    "area": {
+      "type": "string",
+      "description": "Subsystem, workflow, language, framework, or feature area where the lesson applies.",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "severity": {
+      "type": "string",
+      "description": "Impact level of the original failure or review finding.",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "root_cause": {
+      "type": "string",
+      "description": "Reusable root-cause pattern stated without blame, private implementation details, raw logs, secrets, or customer data.",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "fix_pattern": {
+      "type": "string",
+      "description": "Generalized fix pattern that another repository can adapt safely.",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "prevention_rule": {
+      "type": "string",
+      "description": "Checklist item, test expectation, prompt instruction, quality gate, or workflow guard that prevents recurrence.",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "tags": {
+      "type": "array",
+      "description": "Search and filtering tags. Tags must not encode secrets, private repo names, customer names, or internal hostnames.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "privacy_level": {
+      "type": "string",
+      "description": "Sharing classification after privacy review. public is safe to publish; internal is safe only inside the organization; restricted requires explicit maintainer approval; private must not be exported outside the source repo.",
+      "enum": ["public", "internal", "restricted", "private"]
+    }
+  }
+}

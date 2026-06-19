@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.2.0 |
-| Skills | 114 |
-| Commands | 88 |
-| Templates | 84 |
-| Narrative files | 533 |
+| Version | 2.3.0 |
+| Skills | 115 |
+| Commands | 89 |
+| Templates | 85 |
+| Narrative files | 543 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 6 |
 | checklists | 5 |
-| core | 59 |
+| core | 60 |
 | memory | 17 |
 | meta | 9 |
 | prompts | 15 |
@@ -51,8 +51,9 @@
 | v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
 | v1.9.0 | ✅ Complete | Smart Adapt, adaptive prompts, scorecards, lessons |
 | v2.0.0 | ✅ Complete | Quality Engine, schemas, integration tests, gate #26 |
-| v2.1.0 | ✅ Complete | Model-Aware Config, model risk profiles, Quality Engine configuration |
-| v2.2.0 | ✅ Complete | Quality Telemetry, local event emission, session metrics, trend reports |
+| v2.1.0 | ✅ Complete | Model-Aware Config, model registry, config skill |
+| v2.2.0 | ✅ Complete | Quality Telemetry, schema, collector, trend reports |
+| v2.3.0 | ✅ Complete | Multi-Repo Learning, lesson exchange, import/export |
 
 ## Safety Metrics
 
@@ -94,14 +95,14 @@
 
 | Area | Status |
 |---|---|
-| Skills (114) | All discovered dynamically from `skills/` |
-| Commands (88) | All discovered dynamically from `commands/` |
-| Templates (82) | All discovered dynamically from `templates/` |
+| Skills (115) | All discovered dynamically from `skills/` |
+| Commands (89) | All discovered dynamically from `commands/` |
+| Templates (85) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 3 |
+| Orphan templates | 2 |
 | Broken references | 0 |
 
 ## How to Regenerate

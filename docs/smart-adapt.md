@@ -177,6 +177,7 @@ Smart Adapt is **not** the Quality Engine. It is the portable, human-readable ad
 - [`docs/expert-mode.md`](expert-mode.md) — Expert Mode v1.8 escalation paths
 - [`docs/quality-elevation-eval.md`](quality-elevation-eval.md) — Quality elevation evaluation scenarios
 - [`examples/quality-elevation/README.md`](../examples/quality-elevation/README.md) — Golden Example Library
+- [`examples/multi-repo-learning/README.md`](../examples/multi-repo-learning/README.md) — Cross-repo lesson exchange and golden-example promotion workflow
 - [`skills/core/model-weakness-memory/SKILL.md`](../skills/core/model-weakness-memory/SKILL.md) — Model Weakness Memory skill
 - [`skills/core/adaptive-prompt-selection/SKILL.md`](../skills/core/adaptive-prompt-selection/SKILL.md) — Adaptive Prompt Selection skill
 - [`skills/core/lessons-learned-db/SKILL.md`](../skills/core/lessons-learned-db/SKILL.md) — Lessons Learned DB skill

@@ -1,0 +1,22 @@
+{
+  "schema": "lesson-exchange-schema.json",
+  "exported_at": "2026-06-19T01:55:23.906Z",
+  "exported_by": "lesson-exchange.mjs --export",
+  "lessons": [
+    {
+      "lesson_id": "lesson-export-mqka156p",
+      "source_repo": "vibe-coding-os",
+      "timestamp": "2026-06-19T01:55:23.905Z",
+      "area": "<subsystem-or-feature-area>",
+      "severity": "medium",
+      "root_cause": "<The mistaken assumption, missing check, workflow gap, or implementation defect that caused the error. State it as a pattern, not a one-off blame statement.>",
+      "fix_pattern": "<The concrete change that resolved the issue, including tests or validation that proved it. Use synthetic examples if needed to avoid exposing private code.>",
+      "prevention_rule": "<The reusable rule, checklist item, test pattern, or prompt instruction to apply before similar future tasks.>",
+      "tags": [
+        "subsystem-or-feature-area",
+        "medium"
+      ],
+      "privacy_level": "public"
+    }
+  ]
+}

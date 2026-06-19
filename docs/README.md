@@ -25,6 +25,7 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
 - [`quality-engine-guide.md`](quality-engine-guide.md) — Quality Engine guide for orchestrated quality gates, reports, and fix recommendations (v2.0).
 - [`model-aware-config-guide.md`](model-aware-config-guide.md) — Model-Aware Config guide for model-capability and task-risk based Quality Engine configuration (v2.1).
 - [`quality-telemetry-guide.md`](quality-telemetry-guide.md) — Quality Telemetry guide for local event emission, session metrics, and trend reports (v2.2).
+- [`multi-repo-learning.md`](multi-repo-learning.md) — Multi-Repository Learning guide for lesson exchange across repositories (v2.3).
 - [`specs/README.md`](specs/README.md) — spec-driven development docs.
 - [`workflows/spec-driven-development.md`](workflows/spec-driven-development.md) — constitution → specify → plan → tasks → implement.
 - [`workflows/real-engineering-skills-workflow.md`](workflows/real-engineering-skills-workflow.md) — practical engineering-agent workflow.

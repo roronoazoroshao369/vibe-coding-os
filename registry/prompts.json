@@ -152,6 +152,11 @@
       "description": "Search, add, or review recent lessons learned from coding mistakes, fixes, reviews, and quality audits."
     },
     {
+      "name": "vibe-lesson-exchange",
+      "path": "commands/vibe-lesson-exchange.md",
+      "description": "Export, review, and import portable coding lessons across repositories using the v2.3 lesson exchange format."
+    },
+    {
       "name": "vibe-memory",
       "path": "commands/vibe-memory.md",
       "description": "Create a privacy-filtered durable session summary with decisions, changed files, verification, questions, and next actions."
