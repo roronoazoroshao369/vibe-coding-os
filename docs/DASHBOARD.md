@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.1.0 |
+| Version | 2.2.0 |
 | Skills | 114 |
 | Commands | 88 |
-| Templates | 82 |
-| Narrative files | 529 |
+| Templates | 84 |
+| Narrative files | 533 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -52,6 +52,7 @@
 | v1.9.0 | ✅ Complete | Smart Adapt, adaptive prompts, scorecards, lessons |
 | v2.0.0 | ✅ Complete | Quality Engine, schemas, integration tests, gate #26 |
 | v2.1.0 | ✅ Complete | Model-Aware Config, model risk profiles, Quality Engine configuration |
+| v2.2.0 | ✅ Complete | Quality Telemetry, local event emission, session metrics, trend reports |
 
 ## Safety Metrics
 

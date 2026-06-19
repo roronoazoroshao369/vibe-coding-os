@@ -20,13 +20,26 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.1.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **82 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v2.2.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **84 templates** · 14 tracked sources
 
-**Mới:** v2.1.0 Model-Aware Config — cấu hình Quality Engine gates theo năng lực model, rủi ro task và thiết lập dự án trước khi chạy. Runtime không đổi.
+**Mới nhất:** v2.2.0 Quality Telemetry & Analytics — phát tín hiệu chất lượng, tổng hợp metrics phiên và tạo trend reports nội bộ.
+
+**v2.1.0 trước đó:** Model-Aware Config — cấu hình Quality Engine gates theo năng lực model, rủi ro task và thiết lập dự án trước khi chạy. Runtime không đổi.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.2.0
+
+Quality Telemetry & Analytics giúp chất lượng có thể đo lường được ở cấp độ local — phát quality events từ engine runs, tổng hợp session metrics và tạo trend reports để cải tiến liên tục.
+
+- **Skill mới:** `skills/core/quality-telemetry/SKILL.md` hướng dẫn thu thập quality telemetry local.
+- **Command mới:** `commands/vibe-quality-telemetry.md` cung cấp emit, metrics và trend-report CLI.
+- **Guide chính:** `docs/quality-telemetry-guide.md` giải thích event schema, emit workflow, session aggregation, trend reporting và privacy patterns.
+- **Package scripts:** `quality:emit-event`, `quality:session-metrics`, `quality:trend-report` đã sẵn sàng.
+- **Registry sync:** quality-telemetry skill và command đã đăng ký trong `registry/skills.json` và `registry/prompts.json`.
+- **Runtime không đổi:** v2.2.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ## Có gì mới trong v2.1.0
 
@@ -196,6 +209,7 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 - [Smart Adapt](docs/smart-adapt.md)
 - [Quality Engine](docs/quality-engine-guide.md)
 - [Model-Aware Config](docs/model-aware-config-guide.md)
+- [Quality Telemetry](docs/quality-telemetry-guide.md)
 - [Roadmap Status](docs/ROADMAP-STATUS.md)
 - [Support Matrix](docs/support-matrix.md)
 - [Governance](docs/governance.md)
@@ -205,12 +219,12 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 ---
 
-## Release hiện tại: v2.1.0
+## Release hiện tại: v2.2.0
 
 Điểm chính:
 
-- Model-Aware Config cấu hình Quality Engine gates theo model capability, task risk và project settings.
-- `vibe-model-config` giúp chọn gate profile trước khi chạy Quality Engine.
+- Quality Telemetry & Analytics phát quality events, tổng hợp session metrics và tạo trend reports local.
+- `vibe-quality-telemetry` giúp đưa telemetry vào workflow Quality Engine mà không cần hosted service.
 - README, roadmap, dashboard và release metadata được sync với 26/26 validation gates.
 - Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 

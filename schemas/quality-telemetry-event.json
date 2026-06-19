@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vibe-coding-os.local/schemas/quality-telemetry-event.json",
+  "title": "Quality Telemetry Event",
+  "description": "Local-first quality telemetry event emitted from quality engine output and scorecard reports. The schema intentionally captures only run metadata, status, timing, model/task/profile context, and a hash of redacted evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "timestamp",
+    "version",
+    "gate_id",
+    "status",
+    "duration_ms",
+    "model_id",
+    "task_type",
+    "profile",
+    "evidence_hash"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier for this telemetry event. UUIDs are recommended; deterministic IDs are acceptable for reproducible collector dry runs.",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Event timestamp in ISO 8601 date-time format. Prefer the source run timestamp when present.",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string",
+      "description": "Quality telemetry event schema version.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "gate_id": {
+      "type": "string",
+      "description": "Quality gate identifier. Use aggregate pseudo-gates such as quality-engine or quality-scorecard-report for run/report summary events.",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "description": "Normalized gate or report status.",
+      "enum": ["pass", "fail", "warn", "skip", "timeout", "unknown"]
+    },
+    "duration_ms": {
+      "type": "integer",
+      "description": "Gate or report duration in milliseconds. Use 0 when the source report does not contain timing.",
+      "minimum": 0
+    },
+    "model_id": {
+      "type": "string",
+      "description": "Model identifier if known; otherwise use unknown. Do not include prompts or raw model output.",
+      "minLength": 1
+    },
+    "task_type": {
+      "type": "string",
+      "description": "Task type or risk category if known; otherwise use any or unknown.",
+      "minLength": 1
+    },
+    "profile": {
+      "type": "string",
+      "description": "Quality engine/model profile such as lean, standard, heavy, or unknown.",
+      "minLength": 1
+    },
+    "evidence_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of redacted evidence used for deduplication and audit without storing raw logs or private content.",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}
