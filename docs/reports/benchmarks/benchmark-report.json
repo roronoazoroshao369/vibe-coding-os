@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "version": "2.7.0",
+    "tool": "benchmark-validation-gates",
+    "gatesCount": 26,
+    "passedCount": 21,
+    "failedCount": 5,
+    "totalDurationMs": 44237,
+    "averageDurationMs": 1701,
+    "fastestGate": {
+      "name": "ROADMAP future-drift",
+      "durationMs": 58
+    },
+    "slowestGate": {
+      "name": "CLI smoke tests",
+      "durationMs": 7417
+    },
+    "timestamp": "2026-06-19T09:14:23.861Z",
+    "ci": false,
+    "nodeVersion": "v20.20.2",
+    "platform": "linux"
+  },
+  "gates": [
+    {
+      "name": "Repo structure",
+      "passed": true,
+      "status": 0,
+      "duration": 205,
+      "durationMs": 205,
+      "timestamp": "2026-06-19T09:13:39.820Z",
+      "outputLength": 166,
+      "command": "node scripts/validate-repo.mjs"
+    },
+    {
+      "name": "References",
+      "passed": false,
+      "status": 1,
+      "duration": 126,
+      "durationMs": 126,
+      "timestamp": "2026-06-19T09:13:39.947Z",
+      "outputLength": 149,
+      "command": "node scripts/validate-references.mjs"
+    },
+    {
+      "name": "Registry schemas",
+      "passed": true,
+      "status": 0,
+      "duration": 258,
+      "durationMs": 258,
+      "timestamp": "2026-06-19T09:13:40.206Z",
+      "outputLength": 135,
+      "command": "node scripts/validate-schemas.mjs"
+    },
+    {
+      "name": "Pack schemas",
+      "passed": true,
+      "status": 0,
+      "duration": 72,
+      "durationMs": 72,
+      "timestamp": "2026-06-19T09:13:40.278Z",
+      "outputLength": 73,
+      "command": "node scripts/validate-pack-schemas.mjs"
+    },
+    {
+      "name": "Traceability",
+      "passed": false,
+      "status": 1,
+      "duration": 500,
+      "durationMs": 500,
+      "timestamp": "2026-06-19T09:13:40.779Z",
+      "outputLength": 313,
+      "command": "node scripts/validate-traceability.mjs"
+    },
+    {
+      "name": "Injection scan",
+      "passed": true,
+      "status": 0,
+      "duration": 613,
+      "durationMs": 613,
+      "timestamp": "2026-06-19T09:13:41.392Z",
+      "outputLength": 169,
+      "command": "node scripts/validate-injection.mjs"
+    },
+    {
+      "name": "Secret scan",
+      "passed": true,
+      "status": 0,
+      "duration": 6340,
+      "durationMs": 6340,
+      "timestamp": "2026-06-19T09:13:47.732Z",
+      "outputLength": 68,
+      "command": "node scripts/validate-secrets.mjs"
+    },
+    {
+      "name": "Memory redaction",
+      "passed": true,
+      "status": 0,
+      "duration": 75,
+      "durationMs": 75,
+      "timestamp": "2026-06-19T09:13:47.807Z",
+      "outputLength": 569,
+      "command": "node scripts/verify-memory-redaction.mjs"
+    },
+    {
+      "name": "Adapter smoke tests",
+      "passed": true,
+      "status": 0,
+      "duration": 78,
+      "durationMs": 78,
+      "timestamp": "2026-06-19T09:13:47.886Z",
+      "outputLength": 326,
+      "command": "node scripts/smoke-test-adapters.mjs"
+    },
+    {
+      "name": "CLI smoke tests",
+      "passed": true,
+      "status": 0,
+      "duration": 7417,
+      "durationMs": 7417,
+      "timestamp": "2026-06-19T09:13:55.303Z",
+      "outputLength": 5099,
+      "command": "node scripts/smoke-test-cli.mjs"
+    },
+    {
+      "name": "E2E workflow",
+      "passed": true,
+      "status": 0,
+      "duration": 831,
+      "durationMs": 831,
+      "timestamp": "2026-06-19T09:13:56.134Z",
+      "outputLength": 308,
+      "command": "node scripts/test-e2e-workflow.mjs"
+    },
+    {
+      "name": "Dashboard data",
+      "passed": true,
+      "status": 0,
+      "duration": 1980,
+      "durationMs": 1980,
+      "timestamp": "2026-06-19T09:13:58.115Z",
+      "outputLength": 601,
+      "command": "node scripts/dashboard-data.mjs"
+    },
+    {
+      "name": "Dashboard sync check",
+      "passed": false,
+      "status": 1,
+      "duration": 1635,
+      "durationMs": 1635,
+      "timestamp": "2026-06-19T09:13:59.750Z",
+      "outputLength": 416,
+      "command": "node scripts/check-dashboard-sync.mjs"
+    },
+    {
+      "name": "Release metadata",
+      "passed": false,
+      "status": 1,
+      "duration": 77,
+      "durationMs": 77,
+      "timestamp": "2026-06-19T09:13:59.828Z",
+      "outputLength": 1263,
+      "command": "node scripts/validate-release-metadata.mjs"
+    },
+    {
+      "name": "Evaluation report",
+      "passed": false,
+      "status": 1,
+      "duration": 6479,
+      "durationMs": 6479,
+      "timestamp": "2026-06-19T09:14:06.307Z",
+      "outputLength": 845,
+      "command": "node scripts/evaluation-report.mjs"
+    },
+    {
+      "name": "Bilingual README sync",
+      "passed": true,
+      "status": 0,
+      "duration": 82,
+      "durationMs": 82,
+      "timestamp": "2026-06-19T09:14:06.389Z",
+      "outputLength": 263,
+      "command": "node scripts/validate-bilingual-sync.mjs"
+    },
+    {
+      "name": "Markdown links",
+      "passed": true,
+      "status": 0,
+      "duration": 140,
+      "durationMs": 140,
+      "timestamp": "2026-06-19T09:14:06.529Z",
+      "outputLength": 90,
+      "command": "node scripts/validate-markdown-links.mjs"
+    },
+    {
+      "name": "README heading version",
+      "passed": true,
+      "status": 0,
+      "duration": 67,
+      "durationMs": 67,
+      "timestamp": "2026-06-19T09:14:06.596Z",
+      "outputLength": 88,
+      "command": "node scripts/check-heading-version.mjs"
+    },
+    {
+      "name": "ROADMAP-STATUS integrity",
+      "passed": true,
+      "status": 0,
+      "duration": 68,
+      "durationMs": 68,
+      "timestamp": "2026-06-19T09:14:06.664Z",
+      "outputLength": 1027,
+      "command": "node scripts/validate-roadmap-status.mjs"
+    },
+    {
+      "name": "ROADMAP future-drift",
+      "passed": true,
+      "status": 0,
+      "duration": 58,
+      "durationMs": 58,
+      "timestamp": "2026-06-19T09:14:06.722Z",
+      "outputLength": 98,
+      "command": "node scripts/validate-roadmap-future-drift.mjs"
+    },
+    {
+      "name": "Runtime freeze guard",
+      "passed": true,
+      "status": 0,
+      "duration": 64,
+      "durationMs": 64,
+      "timestamp": "2026-06-19T09:14:06.786Z",
+      "outputLength": 268,
+      "command": "node scripts/validate-runtime-freeze.mjs"
+    },
+    {
+      "name": "Runtime behavioral tests",
+      "passed": true,
+      "status": 0,
+      "duration": 3583,
+      "durationMs": 3583,
+      "timestamp": "2026-06-19T09:14:10.369Z",
+      "outputLength": 741,
+      "command": "node scripts/runtime-behavior-tests.mjs"
+    },
+    {
+      "name": "Quality diff audit",
+      "passed": true,
+      "status": 0,
+      "duration": 79,
+      "durationMs": 79,
+      "timestamp": "2026-06-19T09:14:10.449Z",
+      "outputLength": 821,
+      "command": "node scripts/validate-quality-diff.mjs"
+    },
+    {
+      "name": "Quality scorecard report",
+      "passed": true,
+      "status": 0,
+      "duration": 63,
+      "durationMs": 63,
+      "timestamp": "2026-06-19T09:14:10.513Z",
+      "outputLength": 588,
+      "command": "node scripts/quality-scorecard-report.mjs"
+    },
+    {
+      "name": "Quality engine",
+      "passed": true,
+      "status": 0,
+      "duration": 6215,
+      "durationMs": 6215,
+      "timestamp": "2026-06-19T09:14:16.729Z",
+      "outputLength": 9329,
+      "command": "node scripts/quality-engine.mjs --profile=lean --output-json"
+    },
+    {
+      "name": "Quality engine integration tests",
+      "passed": true,
+      "status": 0,
+      "duration": 7132,
+      "durationMs": 7132,
+      "timestamp": "2026-06-19T09:14:23.861Z",
+      "outputLength": 337,
+      "command": "node scripts/test-quality-engine.mjs --lean"
+    }
+  ]
+}

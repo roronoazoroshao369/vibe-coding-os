@@ -1,0 +1,232 @@
+name: 'Quality Summary Action'
+description: 'Run validate:all, generate scorecard, emit quality summary outputs for PR comments.'
+branding:
+  icon: 'check-square'
+  color: 'green'
+
+inputs:
+  model:
+    description: 'Quality engine profile (lean, standard, heavy). Falls back to default.'
+    required: false
+    default: ''
+  gates:
+    description: 'Comma-separated gate IDs to run (overrides profile).'
+    required: false
+    default: ''
+  generate-scorecard:
+    description: 'Whether to generate a quality scorecard report (true/false).'
+    required: false
+    default: 'true'
+  collect-telemetry:
+    description: 'Whether to collect telemetry events (true/false).'
+    required: false
+    default: 'true'
+
+outputs:
+  validate-status:
+    description: 'passed or failed for validate:all'
+    value: ${{ steps.validate-all.outputs.status }}
+  validate-exit-code:
+    description: 'Exit code from validate:all'
+    value: ${{ steps.validate-all.outputs.exit_code }}
+  secret-scan-status:
+    description: 'passed or failed for secret scan'
+    value: ${{ steps.secrets.outputs.status }}
+  quality-engine-status:
+    description: 'passed or failed for quality engine'
+    value: ${{ steps.quality-engine.outputs.status }}
+  scorecard-generated:
+    description: 'true if scorecard was generated'
+    value: ${{ steps.scorecard.outputs.generated }}
+  telemetry-collected:
+    description: 'true if telemetry was collected'
+    value: ${{ steps.telemetry.outputs.collected }}
+  trend-available:
+    description: 'true if trend data was generated'
+    value: ${{ steps.trend.outputs.available }}
+  changed-file-count:
+    description: 'Number of changed files detected'
+    value: ${{ steps.changed-files.outputs.count }}
+  overall-status:
+    description: 'passed if all critical gates passed, failed otherwise'
+    value: ${{ steps.overall.outputs.status }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Detect changed files
+      id: changed-files
+      shell: bash
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          git diff --name-only --diff-filter=ACMRT "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > "$REPORT_DIR/changed-files.txt" 2>/dev/null || true
+        else
+          git diff --name-only --diff-filter=ACMRT "${{ github.event.before }}" "${{ github.sha }}" > "$REPORT_DIR/changed-files.txt" 2>/dev/null || true
+        fi
+        count=$(wc -l < "$REPORT_DIR/changed-files.txt" | tr -d ' ' 2>/dev/null || echo "0")
+        echo "count=$count" >> "$GITHUB_OUTPUT"
+        echo "Changed files detected: $count"
+
+    - name: Run validate:all
+      id: validate-all
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        npm run validate:all 2>&1 | tee "$REPORT_DIR/validate-all.log"
+        status=${PIPESTATUS[0]}
+        echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+        if [ "$status" -eq 0 ]; then
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+          echo "::notice title=validate:all passed::All validation checks passed."
+        else
+          echo "status=failed" >> "$GITHUB_OUTPUT"
+          echo "::error title=validate:all failed::npm run validate:all exited with $status."
+        fi
+        exit 0
+
+    - name: Run secret scan
+      id: secrets
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        npm run validate:secrets 2>&1 | tee "$REPORT_DIR/secret-scan.log"
+        status=${PIPESTATUS[0]}
+        echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+        if [ "$status" -eq 0 ]; then
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+        else
+          echo "status=failed" >> "$GITHUB_OUTPUT"
+          echo "::error title=Secret scan failed::Potential secret exposure detected."
+        fi
+        exit 0
+
+    - name: Run quality engine
+      id: quality-engine
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        PROFILE="${{ inputs.model || 'lean' }}"
+        GATES="${{ inputs.gates || '' }}"
+        if [ -n "$GATES" ]; then
+          echo "Running quality engine with custom gates: $GATES"
+          node scripts/quality-engine.mjs --output-json --gates="$GATES" > "$REPORT_DIR/quality-engine.json" 2>&1
+        else
+          echo "Running quality engine with profile: $PROFILE"
+          node scripts/quality-engine.mjs --output-json --profile="$PROFILE" > "$REPORT_DIR/quality-engine.json" 2>&1
+        fi
+        exit_code=$?
+        echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
+        if [ "$exit_code" -eq 0 ]; then
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+        else
+          echo "status=failed" >> "$GITHUB_OUTPUT"
+          echo "::warning title=Quality engine::Some gates flagged warnings or failures."
+        fi
+        exit 0
+
+    - name: Generate scorecard
+      id: scorecard
+      if: inputs.generate-scorecard == 'true'
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        if [ -f "$REPORT_DIR/quality-engine.json" ]; then
+          node scripts/quality-engine-report.mjs \
+            --output-json="$REPORT_DIR/quality-engine.json" \
+            --output-dir="$REPORT_DIR" 2>&1 | tee "$REPORT_DIR/scorecard-gen.log" || true
+          latest_md=$(ls -t "$REPORT_DIR"/*.md 2>/dev/null | grep -v 'quality-summary.md' | head -n 1 || true)
+          if [ -n "$latest_md" ]; then
+            cp "$latest_md" "$REPORT_DIR/quality-scorecard.md"
+            echo "generated=true" >> "$GITHUB_OUTPUT"
+            echo "Scorecard generated at $REPORT_DIR/quality-scorecard.md"
+          else
+            echo "generated=false" >> "$GITHUB_OUTPUT"
+          fi
+        else
+          echo "No quality-engine.json found."
+          echo "generated=false" >> "$GITHUB_OUTPUT"
+        fi
+        exit 0
+
+    - name: Collect telemetry
+      id: telemetry
+      if: inputs.collect-telemetry == 'true'
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        if [ -f "$REPORT_DIR/quality-engine.json" ]; then
+          node scripts/quality-telemetry.mjs \
+            --engine "$REPORT_DIR/quality-engine.json" \
+            --dry-run \
+            --json 2>&1 | tee "$REPORT_DIR/telemetry-events.json" || true
+          echo "collected=true" >> "$GITHUB_OUTPUT"
+          echo "Telemetry events captured."
+        else
+          echo "collected=false" >> "$GITHUB_OUTPUT"
+          echo "No quality-engine.json found; skipping telemetry."
+        fi
+        exit 0
+
+    - name: Generate trend indicator
+      id: trend
+      shell: bash
+      continue-on-error: true
+      run: |
+        REPORT_DIR="quality-summary-reports"
+        mkdir -p "$REPORT_DIR"
+        set +e
+        if node scripts/quality-trend-dashboard.mjs --json --since 30d > "$REPORT_DIR/trend-indicator.json" 2>/dev/null; then
+          echo "available=true" >> "$GITHUB_OUTPUT"
+          echo "Trend data available."
+        else
+          echo "available=false" >> "$GITHUB_OUTPUT"
+          echo "Trend data not available."
+        fi
+        exit 0
+
+    - name: Compute overall status
+      id: overall
+      shell: bash
+      run: |
+        VALIDATE="${{ steps.validate-all.outputs.status }}"
+        SECRETS="${{ steps.secrets.outputs.status }}"
+        if [ "$VALIDATE" = "passed" ] && [ "$SECRETS" = "passed" ]; then
+          echo "status=passed" >> "$GITHUB_OUTPUT"
+        else
+          echo "status=failed" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Archive summary reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: quality-summary-reports-${{ github.event.pull_request.number || github.sha }}
+        path: quality-summary-reports/
+        if-no-files-found: warn
+        retention-days: 14

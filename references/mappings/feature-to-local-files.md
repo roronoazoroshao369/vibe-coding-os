@@ -628,3 +628,48 @@ Bảng spec-driven nối từng tính năng (hiến chương, spec, plan, tasks,
   - `commands/vibe-plan.md`
   - `commands/vibe-tasks.md`
 |- Note: new convention is centralized in `STANDARDS.md`; commands can be updated incrementally.
+
+## AI Testing Suite (v2.7.0)
+
+### Property-based Testing Schema + Runner
+
+- Feature source: internal — Vibe Coding OS roadmap v2.7.0
+- Local files:
+  - `schemas/property-based-test.schema.json` — Schema defining property-based test structure
+  - `scripts/property-test-runner.mjs` — Fuzz-tester for skills/commands/templates
+  - `docs/property-based-testing.md` — Guide explaining property-based testing approach
+  - `references/features/property-based-testing.md` — Feature documentation
+
+### Benchmark Harness for Validation Gate Performance
+
+- Feature source: internal — Vibe Coding OS roadmap v2.7.0
+- Local files:
+  - `scripts/benchmark-validation-gates.mjs` — Runs each validation gate with timing
+  - `scripts/analyze-benchmark-trends.mjs` — Trend analysis across benchmark runs
+  - `docs/benchmark-harness.md` — Guide explaining benchmark methodology
+  - `references/features/benchmark-harness.md` — Feature documentation
+
+### Test Generator from Existing Skills/Commands
+
+- Feature source: internal — Vibe Coding OS roadmap v2.7.0
+- Local files:
+  - `scripts/test-generator.mjs` — Analyzes skills/commands, generates property-based tests
+  - `docs/test-generation.md` — Guide explaining auto-generation approach
+
+### Quality Score Trend Dashboard
+
+- Feature source: internal — Vibe Coding OS roadmap v2.7.0
+- Local files:
+  - `scripts/quality-trend-dashboard.mjs` — Trend data generator from telemetry
+  - `docs/quality-trend-dashboard.md` — Usage guide for trend dashboard
+  - `docs/DASHBOARD.md` — Trend section integrated
+  - `references/features/quality-trend-dashboard.md` — Feature documentation
+
+### GitHub Actions PR Comment with Quality Summary
+
+- Feature source: internal — Vibe Coding OS roadmap v2.7.0
+- Local files:
+  - `.github/workflows/pr-quality-comment.yml` — Workflow definition
+  - `.github/actions/quality-summary-action/action.yml` — Reusable action
+  - `docs/pr-quality-comment.md` — Usage guide for PR comment feature
+  - `references/features/pr-quality-comment.md` — Feature documentation

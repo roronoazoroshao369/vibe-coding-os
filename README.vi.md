@@ -20,15 +20,32 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.5.0):** validate:all 26/26 gates PASS · **117 skills** · **90 commands** · **86 templates** · 14 tracked sources · roadmap hoàn tất 100% đến v2.5.0
+**Bản phát hành hiện tại (v2.6.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · implementation loop 100% complete
 
-**Mới nhất:** v2.5.0 Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
+**Mới nhất:** v2.6.0 Full Reference Implementation — 20 sources, 43 new files, 70 modified, +2,312 lines. Đầy đủ SuperAgent orchestration, code intelligence review, plugin bundles, proficiency path, memory depth, crash-proof planning, context policy.
 
-**v2.3.0 trước đó:** Multi-Repository Learning — xuất, kiểm tra và nhập bài học lập trình có thể chia sẻ giữa các repository.
+**v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.6.0
+
+Full Reference Implementation — implement toàn bộ 20 reference sources, loop 10 batches đến 100% done:
+
+- **20 source references** xử lý: Deer-Flow, Code-Review-Graph, Antigravity, Best-Practice 58k★, Supermemory, ECC, CCPM, BMAD, Agent-OS, planning-with-files, lean-ctx + 9 deep sources
+- **43 files mới, 70 files sửa**, +2,312 lines
+- **SuperAgent orchestration** — orchestrator→worker lifecycle, sandboxed execution, research→code pipeline
+- **Code intelligence review** — call graph + dep map, incremental delta review, MCP patterns
+- **Plugin bundle system** — bundles.json, skill categories, multi-platform adapter guide
+- **Proficiency path** — 4-level (Basics→Prompt→Agentic→Orchestration) với maturity badges
+- **Memory depth** — 5-phase ingestion lifecycle, 6-phase retrieval workflow, provider interface
+- **7-state task machine** — proposed→approved→in-progress→review→done|blocked|abandoned
+- **Crash-proof planning** — YAML frontmatter, bracket markers, recovery workflow
+- **Context policy/DLP** — allow/block/flag ingress/egress rules
+- **20 local branches cũ** đã cleanup
+- **Runtime không đổi:** v2.6.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ## Có gì mới trong v2.5.0
 

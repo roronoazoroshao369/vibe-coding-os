@@ -1,0 +1,150 @@
+name: PR Quality Comment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+concurrency:
+  group: pr-quality-comment-${{ github.event.pull_request.number }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  quality-summary:
+    name: Quality summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run quality summary action
+        id: quality
+        uses: ./.github/actions/quality-summary-action
+        with:
+          model: lean
+          generate-scorecard: 'true'
+          collect-telemetry: 'true'
+
+      - name: Post PR comment with quality summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const REPORT_DIR = 'quality-summary-reports';
+            const marker = '<!-- quality-summary-pr-comment -->';
+
+            // Read outputs
+            const validateStatus = '${{ steps.quality.outputs.validate-status }}' || 'unknown';
+            const validateExitCode = '${{ steps.quality.outputs.validate-exit-code }}' || '';
+            const secretsStatus = '${{ steps.quality.outputs.secret-scan-status }}' || 'unknown';
+            const engineStatus = '${{ steps.quality.outputs.quality-engine-status }}' || 'unknown';
+            const scorecardGenerated = '${{ steps.quality.outputs.scorecard-generated }}' || 'false';
+            const telemetryCollected = '${{ steps.quality.outputs.telemetry-collected }}' || 'false';
+            const trendAvailable = '${{ steps.quality.outputs.trend-available }}' || 'false';
+            const changedCount = '${{ steps.quality.outputs.changed-file-count }}' || '0';
+            const overallStatus = '${{ steps.quality.outputs.overall-status }}' || 'failed';
+
+            // Determine if passed
+            const passed = overallStatus === 'passed';
+            const score = passed ? '100' : '0';
+            const color = passed ? 'brightgreen' : 'red';
+            const emoji = passed ? '✅' : '❌';
+
+            // Read validate output summary
+            let timingInfo = '';
+            const validateLogPath = `${REPORT_DIR}/validate-all.log`;
+            if (fs.existsSync(validateLogPath)) {
+              const log = fs.readFileSync(validateLogPath, 'utf8');
+              const timingLines = log.split('\n').filter(line => line.includes('PASS') || line.includes('FAIL') || line.includes('Overall:'));
+              timingInfo = timingLines.slice(-5).join('\n');
+            }
+
+            // Read scorecard summary
+            let scorecardSummary = '';
+            const scorecardPath = `${REPORT_DIR}/quality-scorecard.md`;
+            if (scorecardGenerated === 'true' && fs.existsSync(scorecardPath)) {
+              const sc = fs.readFileSync(scorecardPath, 'utf8');
+              scorecardSummary = sc.split('\n').slice(0, 20).join('\n');
+            }
+
+            // Read trend data summary
+            let trendSummary = '';
+            const trendPath = `${REPORT_DIR}/trend-indicator.json`;
+            if (trendAvailable === 'true' && fs.existsSync(trendPath)) {
+              try {
+                const trend = JSON.parse(fs.readFileSync(trendPath, 'utf8'));
+                const dailyCount = trend.timeSeries?.daily?.length || 0;
+                const weeklyCount = trend.timeSeries?.weekly?.length || 0;
+                const passRate = trend.summary?.overallPassRate || 0;
+                trendSummary = `- Daily data points: ${dailyCount}\n- Weekly data points: ${weeklyCount}\n- Overall pass rate: ${passRate}%`;
+              } catch (e) {
+                trendSummary = '- Trend data parsed with errors';
+              }
+            }
+
+            // Build gate status rows
+            const gateRows = [
+              `| \`validate:all\` | ${validateStatus === 'passed' ? '✅ PASS' : '❌ FAIL'} | See log below |`,
+              `| Secret scan | ${secretsStatus === 'passed' ? '✅ PASS' : '❌ FAIL'} | See artifact |`,
+              `| Quality engine | ${engineStatus === 'passed' ? '✅ PASS' : '⚠️  flagged'} | See artifact |`,
+              `| Scorecard | ${scorecardGenerated === 'true' ? '✅ generated' : '⚠️  skipped'} | See artifact |`,
+              `| Telemetry | ${telemetryCollected === 'true' ? '✅ collected' : '⚠️  skipped'} | See artifact |`
+            ];
+
+            // Build warnings
+            const warnings = [];
+            if (validateStatus !== 'passed') warnings.push('**validate:all** failed. Review the log below.');
+            if (secretsStatus !== 'passed') warnings.push('**Secret scan** failed. Potential secrets detected.');
+            if (engineStatus !== 'passed') warnings.push('**Quality engine** flagged items for review.');
+            if (warnings.length === 0) warnings.push('No warnings — all quality checks passed.');
+
+            // Build body
+            const body = `${marker}\n` +
+              `## ${emoji} Quality Summary — PR #${context.payload.pull_request.number}\n\n` +
+              `![quality-score](https://img.shields.io/badge/quality-${score}%25-${color})\n\n` +
+              `| Metric | Value |\n|---|---|\n` +
+              `| Status | **${overallStatus === 'passed' ? '✅ PASSED' : '❌ FAILED'}** |\n` +
+              `| Changed files | ${changedCount} |\n` +
+              `| Overall score | ${score}% |\n\n` +
+              `### Gate Results\n\n` +
+              `| Gate | Status | Details |\n|---|---|---|\n${gateRows.join('\n')}\n\n` +
+              `### Warnings\n\n${warnings.map(w => `- ${w}`).join('\n')}\n\n` +
+              `### Timing & Validate Output\n\n` +
+              '```\n' + (timingInfo || '(No timing data available)') + '\n```\n\n' +
+              (trendSummary ? `### Trend Data (30d)\n\n${trendSummary}\n\n` : '') +
+              `### Action Items\n\n` +
+              (passed
+                ? '- ✅ All quality checks passed. PR is ready for review.\n- [View trend dashboard](../docs/reports/quality-trend/dashboard.md)\n- [Quality trend guide](../docs/quality-trend-dashboard.md)'
+                : '- ❌ Some checks failed. Review the logs above and push fixes.\n- See the `quality-summary-reports` artifact for full logs.') +
+              `\n\n### Links\n\n` +
+              `- [Quality trend dashboard](../../docs/reports/quality-trend/dashboard.md)\n` +
+              `- [Quality trend guide](../../docs/quality-trend-dashboard.md)\n` +
+              `- [Telemetry guide](../../docs/quality-telemetry-guide.md)\n` +
+              `- [PR comment guide](../../docs/pr-quality-comment.md)\n` +
+              `\n*Report auto-generated by \`pr-quality-comment.yml\`*`;
+
+            // Post or update comment
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.rest.issues.listComments({ owner, repo, issue_number, per_page: 100 });
+            const existing = comments.data.find(c => c.user.type === 'Bot' && c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+              core.notice('Updated existing PR quality summary comment.');
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+              core.notice('Created new PR quality summary comment.');
+            }
+
+      - name: Fail job on critical gate errors
+        if: steps.quality.outputs.overall-status != 'passed'
+        run: |
+          echo "::error::Quality gates failed. Check the PR comment and workflow artifact for details."
+          exit 1

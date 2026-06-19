@@ -46,6 +46,7 @@ function extractSection(text, heading) {
 
 const versionProgress = extractSection(existing, 'Version Progress');
 const safetyMetrics = extractSection(existing, 'Safety Metrics');
+const qualityTrendDashboard = extractSection(existing, 'Quality Trend Dashboard');
 const validationGate = extractSection(existing, 'Validation Gate');
 const coverageSummary = extractSection(existing, 'Coverage Summary');
 
@@ -83,6 +84,11 @@ if (versionProgress) {
 
 if (safetyMetrics) {
   sections.push(safetyMetrics);
+  sections.push(``);
+}
+
+if (qualityTrendDashboard) {
+  sections.push(qualityTrendDashboard);
   sections.push(``);
 }
 

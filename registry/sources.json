@@ -161,6 +161,14 @@
       "status": "tracked_inspiration",
       "import_mode": "inspiration",
       "notes": "Apache-2.0 verified from upstream metadata during the 2026-06-19 audit. 2.7k-star context control system for policy-based file ingress for AI coding agents. Adapted as context-policy skill, policy template, and integrated with privacy-filter and context-engineering workflow. No upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "vibe-coding-os/property-based-testing",
+      "url": "https://github.com/roronoazoroshao369/vibe-coding-os",
+      "license": "MIT",
+      "status": "tracked",
+      "import_mode": "none",
+      "notes": "Original local capability. Property-based testing framework for skills, commands, and templates using randomized input generation and invariant verification. No upstream source adapted — inspiration drawn from Hypothesis/QuickCheck/fast-check methodology only."
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "2.7.0",
+  "generatedAt": "2026-06-19T09:12:48.373Z",
+  "source": "/home/devops/vibe-coding-os/docs/metrics/quality-telemetry-events.ndjson",
+  "filters": {
+    "since": "30d",
+    "model": null
+  },
+  "summary": {
+    "totalEvents": 0,
+    "totalPasses": 0,
+    "totalFailures": 0,
+    "totalWarnings": 0,
+    "totalSkips": 0,
+    "totalTimeouts": 0,
+    "overallPassRate": 0
+  },
+  "timeSeries": {
+    "daily": [],
+    "weekly": [],
+    "monthly": []
+  },
+  "gates": [],
+  "warnings": [
+    "Events file not found: /home/devops/vibe-coding-os/docs/metrics/quality-telemetry-events.ndjson"
+  ]
+}

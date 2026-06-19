@@ -13,7 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.5.0):** validate:all 26/26 gates PASS · **117 skills** · **90 commands** · **86 templates** · 14 tracked sources · Roadmap 100% complete through v2.5.0
+**Current release (v2.6.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 100% implementation loop complete
+
+**Latest:** v2.6.0 Full Reference Implementation — 20 sources, 43 new files, 70 modified, +2,312 lines.
 
 ---
 
@@ -67,6 +69,22 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Merge** — ship only after verification status is clear.
 
 ---
+
+## What's new in v2.6.0
+
+Full Reference Implementation — 20 reference sources fully processed across 10 batches:
+
+- **20 sources** implemented: Deer-Flow, Code-Review-Graph, Antigravity, Best-Practice 58k★, Supermemory, ECC, CCPM, BMAD, Agent-OS, planning-with-files, lean-ctx + 9 deep sources
+- **43 new files, 70 modified**, +2,312 lines
+- **SuperAgent orchestration** — orchestrator→worker lifecycle, sandboxed execution
+- **Code intelligence review** — call graph + dep map, delta-only incremental review
+- **Plugin bundle system** — bundles.json + skill categories + multi-platform adapter guide
+- **Proficiency path** — 4-level with maturity badges in registry
+- **Memory depth** — 5-phase ingestion, 6-phase retrieval, provider interface
+- **7-state task machine** — full state machine with rollback rules
+- **Crash-proof planning** — YAML frontmatter + bracket markers + recovery workflows
+- **Context policy/DLP** — allow/block/flag ingress/egress rules
+- **Runtime unchanged:** v2.6.0 respects ADR 0002.
 
 ## What's new in v2.5.0
 
@@ -136,7 +154,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**117 skills**, **90 commands**, **86 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**128 skills**, **96 commands**, **93 templates**, **20 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
