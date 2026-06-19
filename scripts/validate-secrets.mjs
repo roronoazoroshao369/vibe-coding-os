@@ -41,6 +41,7 @@ const ALLOWLIST_PATHS = [
   /^docs\/eval-scenarios\.md$/,
   /^docs\/memory-conventions\.md$/,
   /^runtime\/memory\/vector-store\.mjs$/,
+  /^examples\/bypass-demo\//,  // Demo files contain password-related code
 ];
 
 const TEXT_EXTENSIONS = new Set([

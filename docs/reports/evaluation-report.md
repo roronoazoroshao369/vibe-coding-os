@@ -6,10 +6,10 @@ Overall: **4/4 checks passed**
 
 ## Summary
 
-- ✅ **Repo Validation**: PASS (655 narrative files) — 838ms
-- ✅ **Secret Scanning**: PASS (0 secrets found) — 4.17s
+- ✅ **Repo Validation**: PASS (657 narrative files) — 810ms
+- ✅ **Secret Scanning**: PASS (0 secrets found) — 4.08s
 - ✅ **Memory Redaction**: PASS (All tests passed! ✓) — 52ms
-- ✅ **Adapter Smoke Tests**: PASS (10/10 adapters) — 46ms
+- ✅ **Adapter Smoke Tests**: PASS (10/10 adapters) — 47ms
 
 ## Details
 
@@ -18,7 +18,7 @@ Overall: **4/4 checks passed**
 - Command: `npm run validate`
 - Status: PASS
 - Exit code: 0
-- Duration: 838ms
+- Duration: 810ms
 - Last 10 lines of output:
 
 ```text
@@ -29,8 +29,8 @@ Checked 11 required files, 131 skills, 101 commands, 85 templates, and 2 example
 Reference Intelligence Layer validation passed.
 Checked 20 sources, 26 feature docs, 4 mapping docs, and 5 reference commands.
 Traceability validation passed.
-Checked 101 commands, 131 skills, 100 templates against 655 narrative files. Broken references: 0. Orphans (warnings): 3 commands, 2 skills, 3 templates.
-Injection scan passed: 500 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
+Checked 101 commands, 131 skills, 100 templates against 657 narrative files. Broken references: 0. Orphans (warnings): 3 commands, 2 skills, 3 templates.
+Injection scan passed: 501 text files + 1 MCP manifest(s) scanned, 0 blocking findings, 0 warning(s). Best-effort only — see docs/workflows/prompt-injection-handling.md.
 ```
 
 ### Secret Scanning
@@ -38,7 +38,7 @@ Injection scan passed: 500 text files + 1 MCP manifest(s) scanned, 0 blocking fi
 - Command: `node scripts/validate-secrets.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 4.17s
+- Duration: 4.08s
 - Last 10 lines of output:
 
 ```text
@@ -71,7 +71,7 @@ Secret scan passed: no secrets detected in tracked repository files.
 - Command: `node scripts/smoke-test-adapters.mjs`
 - Status: PASS
 - Exit code: 0
-- Duration: 46ms
+- Duration: 47ms
 - Last 10 lines of output:
 
 ```text
