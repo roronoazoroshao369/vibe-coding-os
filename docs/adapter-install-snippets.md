@@ -113,3 +113,99 @@ cd ~/vibe-coding-os
 node scripts/vibe-cli.mjs doctor
 npm run validate
 ```
+
+## Gemini
+
+```bash
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./GEMINI.md
+```
+
+Then launch Gemini CLI:
+
+```bash
+cd ~/your-project
+gemini
+```
+
+## Cline
+
+Cline uses `.clinerules` as the primary instruction surface.
+
+```bash
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./.clinerules
+```
+
+Optional mode-specific rules:
+
+```bash
+cp ~/vibe-coding-os/AGENTS.md ./.clinerules-architect
+cp ~/vibe-coding-os/AGENTS.md ./.clinerules-code
+cp ~/vibe-coding-os/AGENTS.md ./.clinerules-ask
+```
+
+Workflow start: open the project in VS Code with the Cline extension and start Cascade (or architect/ask/code mode).
+
+## Continue.dev
+
+Continue.dev uses `AGENTS.md` for per-directory context and `config.json` for slash commands.
+
+```bash
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./
+cp ~/vibe-coding-os/adapters/continue/config.example.json ./.continuerc.json
+```
+
+Then open the Continue.dev sidebar in VS Code (Ctrl+Shift+I) or JetBrains.
+
+## Aider
+
+Aider uses `CONVENTIONS.md` as the primary instruction surface.
+
+```bash
+cd ~/your-project
+cat >> CONVENTIONS.md << 'EOF'
+# Vibe Coding OS Conventions
+
+## Core workflow
+- For non-trivial work: spec → plan → tasks → implement.
+- Apply what-before-how: understand requirements before implementation.
+- Keep changes small, correct, and reviewable.
+- Run `npm run validate` for repository structure changes.
+EOF
+
+cat >> .aider.conf.yml << 'EOF'
+conventions: CONVENTIONS.md
+auto-commits: true
+lint: true
+lint-command: "npm run validate"
+architect: true
+EOF
+```
+
+Then launch Aider:
+
+```bash
+cd ~/your-project
+aider
+```
+
+Use `/architect` for spec/planning and `/code` for implementation.
+
+## Windsurf
+
+Windsurf uses `.windsurfrules` as the primary instruction surface.
+
+```bash
+cd ~/your-project
+cp ~/vibe-coding-os/AGENTS.md ./.windsurfrules
+```
+
+Legacy Cursor compatibility:
+
+```bash
+cp ~/vibe-coding-os/AGENTS.md ./.cursorrules
+```
+
+Then open the project in Windsurf IDE. The Cascade agent reads `.windsurfrules` automatically.

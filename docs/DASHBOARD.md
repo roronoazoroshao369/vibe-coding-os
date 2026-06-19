@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.6.0 |
+| Version | 2.7.0 |
 | Skills | 128 |
 | Commands | 97 |
 | Templates | 94 |
-| Narrative files | 626 |
+| Narrative files | 635 |
 | Upstream sources | 20 |
 | Broken refs | 0 |
 
@@ -45,7 +45,7 @@
 | v1.4.1 | ✅ Complete | Docs polish, CLI cleanup, runtime boundary hardening |
 | v1.4.2 | ✅ Complete | Runtime hardening, maxTaskLease enforcement, event schema v2, shell safety |
 | v1.4.3 | ✅ Complete | Operational hygiene, docs hub, config validation, 0 orphan templates |
-| v1.5.0 | ✅ Complete | Core adoption, runtime freeze
+| v1.5.0 | ✅ Complete | Core adoption, runtime free
 | v1.6.0 | ✅ Complete | Adoption Trust — adapter docs, CLI onboarding, validation gates
 | v1.7.0 | ✅ Complete | Quality Shield — QS workflow, artifact audit, discovery sync
 | v1.8.0 | ✅ Complete | Quality Engine — telemetry, scorecard, CI integration
@@ -57,6 +57,8 @@
 | v2.4.0 | ✅ Complete | Advanced orchestration — team-runner, MCP server, veteran evaluator
 | v2.5.0 | ✅ Complete | Quality Engine v3 — quality packs, skill packs, compliance checks
 | v2.6.0 | ✅ Complete | Full Reference Implementation — 20 sources, 43 new files, 70 modified
+| v2.7.0 | ✅ Complete | AI Testing Suite — property testing, benchmark, test gen, trend dashboard, PR comments
+| v2.8.0 | 🚧 In Progress | Adapter Expansion — Cline, Continue.dev, Aider, Windsurf
 
 ## Safety Metrics
 

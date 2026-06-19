@@ -1,0 +1,52 @@
+{
+  "rules": [
+    "Inspect the repository before changing files. Understand existing structure, registries, and conventions.",
+    "Prefer small, correct, reviewable changes over broad rewrites.",
+    "Do not invent requirements. If the request is ambiguous, ask a clarifying question or record an explicit assumption.",
+    "For non-trivial coding, create or update a spec before implementation.",
+    "Keep plans concrete: files to touch, steps to take, and checks to run.",
+    "Run validation when possible, especially `npm run validate` for repository structure changes.",
+    "Never claim success without verification.",
+    "Keep external attribution clean. Do not vendor third-party code, prompts, or docs.",
+    "Do not place secrets or private credentials in repository memory or examples.",
+    "Before using upstream inspiration, check `references/index.json`.",
+    "Run `npm run validate:traceability` after adding, renaming, or removing a command/skill/template."
+  ],
+  "slashCommands": [
+    {
+      "name": "spec",
+      "description": "Create or update a specification",
+      "prompt": "Read {{ ~/vibe-coding-os/commands/vibe-spec.md }} and follow its steps to create a system specification for the current task."
+    },
+    {
+      "name": "plan",
+      "description": "Create an implementation plan from a spec",
+      "prompt": "Read {{ ~/vibe-coding-os/commands/vibe-plan.md }} and follow its steps to create a detailed plan with files, steps, and verification checks."
+    },
+    {
+      "name": "implement",
+      "description": "Implement from a plan or spec",
+      "prompt": "Read {{ ~/vibe-coding-os/commands/vibe-implement.md }} and implement the planned changes. Apply what-before-how approach."
+    },
+    {
+      "name": "review",
+      "description": "Request a code review",
+      "prompt": "Read {{ ~/vibe-coding-os/commands/vibe-review.md }} and review the changes. Check correctness, scope, attribution, and tests."
+    },
+    {
+      "name": "memory",
+      "description": "Save session context to durable memory",
+      "prompt": "Read {{ ~/vibe-coding-os/commands/vibe-memory.md }} and save key decisions, rationale, and open questions from this session."
+    },
+    {
+      "name": "validate",
+      "description": "Run repository validation",
+      "prompt": "Run `npm run validate` and report any failures."
+    }
+  ],
+  "contextProviders": [
+    {"name": "files", "params": {}},
+    {"name": "codebase", "params": {}},
+    {"name": "terminal", "params": {}}
+  ]
+}

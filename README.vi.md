@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.6.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · implementation loop 100% complete
+**Bản phát hành hiện tại (v2.7.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters
 
-**Mới nhất:** v2.6.0 Full Reference Implementation — 20 sources, 43 new files, 70 modified, +2,312 lines. Đầy đủ SuperAgent orchestration, code intelligence review, plugin bundles, proficiency path, memory depth, crash-proof planning, context policy.
+**Mới nhất:** v2.7.0 AI Testing Suite + Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 

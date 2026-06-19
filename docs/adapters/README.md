@@ -10,6 +10,10 @@ This directory contains tool-specific setup guides for Vibe Coding OS. Each adap
 | Codex CLI | [codex.md](codex.md) | `vibe init codex` |
 | Cursor | [cursor.md](cursor.md) | `vibe init cursor` |
 | Gemini | [gemini.md](gemini.md) | `vibe init gemini` |
+| Cline | [cline.md](cline.md) | `cp AGENTS.md .clinerules` |
+| Continue.dev | [continue.md](continue.md) | `cp AGENTS.md ./` |
+| Aider | [aider.md](aider.md) | `cat >> CONVENTIONS.md` |
+| Windsurf | [windsurf.md](windsurf.md) | `cp AGENTS.md .windsurfrules` |
 
 ## Quick Links
 
