@@ -34,3 +34,4 @@ website/node_modules/
 website/.docusaurus/
 # Website lockfile (subproject — doesn't affect main package)
 website/package-lock.json
+node_modules
