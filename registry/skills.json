@@ -6,9 +6,17 @@
       "path": "skills/core/quality-shield/SKILL.md",
       "category": "core",
       "description": "Five-step copy-paste workflow for safe, verified changes: contract, context pack, smallest safe diff, self-review, scorecard.",
-      "tags": ["workflow", "quality", "review", "diff", "contract"],
+      "tags": [
+        "workflow",
+        "quality",
+        "review",
+        "diff",
+        "contract"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "stable"
     },
     {
@@ -16,9 +24,16 @@
       "path": "skills/core/acceptance-criteria/SKILL.md",
       "category": "core",
       "description": "Write observable, testable acceptance criteria that connect intent to verification.",
-      "tags": ["spec", "verification", "quality", "test"],
+      "tags": [
+        "spec",
+        "verification",
+        "quality",
+        "test"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "stable"
     },
     {
@@ -40,9 +55,17 @@
       "path": "skills/core/adversarial-code-review/SKILL.md",
       "category": "core",
       "description": "Red-team code review focused on correctness, safety, tests, compatibility, and minimal diff.",
-      "tags": ["review", "security", "quality", "adversarial", "testing"],
+      "tags": [
+        "review",
+        "security",
+        "quality",
+        "adversarial",
+        "testing"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "stable"
     },
     {
@@ -50,9 +73,16 @@
       "path": "skills/memory/agent-handoff/SKILL.md",
       "category": "memory",
       "description": "Create durable handoff summaries for agent/session switches.",
-      "tags": ["memory", "handoff", "session", "context"],
+      "tags": [
+        "memory",
+        "handoff",
+        "session",
+        "context"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "stable"
     },
     {
@@ -66,9 +96,17 @@
       "path": "skills/checklists/api-endpoint-quality/SKILL.md",
       "category": "checklists",
       "description": "Validate API endpoint changes for contract correctness, error handling, auth, rate limiting, backwards compatibility, and test coverage.",
-      "tags": ["api", "quality", "checklist", "review", "testing"],
+      "tags": [
+        "api",
+        "quality",
+        "checklist",
+        "review",
+        "testing"
+      ],
       "bundle": "web-dev",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "architect-agent",
@@ -93,18 +131,34 @@
       "path": "skills/checklists/async-job-quality/SKILL.md",
       "category": "quality",
       "description": "Checklist-driven quality review for queue jobs, scheduled tasks, background workers, webhook handlers, and batch processing.",
-      "tags": ["async", "quality", "checklist", "review", "background"],
+      "tags": [
+        "async",
+        "quality",
+        "checklist",
+        "review",
+        "background"
+      ],
       "bundle": "data-science",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "auth-quality",
       "path": "skills/checklists/auth-quality/SKILL.md",
       "category": "checklists",
       "description": "Review authentication, session, and permissions changes for security controls and negative test coverage.",
-      "tags": ["auth", "security", "quality", "checklist", "review"],
+      "tags": [
+        "auth",
+        "security",
+        "quality",
+        "checklist",
+        "review"
+      ],
       "bundle": "web-dev",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "brainstorming",
@@ -184,9 +238,17 @@
       "path": "skills/meta/context-budget/SKILL.md",
       "category": "meta",
       "description": "Audit skills, prompts, and docs for context bloat, duplication, and unnecessary token cost using ECC-inspired heuristics.",
-      "tags": ["meta", "context", "budget", "heuristics", "token"],
+      "tags": [
+        "meta",
+        "context",
+        "budget",
+        "heuristics",
+        "token"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "beta"
     },
     {
@@ -200,9 +262,17 @@
       "path": "skills/memory/context-injection/SKILL.md",
       "category": "memory",
       "description": "Build a scoped, citation-backed, privacy-filtered context injection bundle.",
-      "tags": ["memory", "context", "injection", "privacy", "bundle"],
+      "tags": [
+        "memory",
+        "context",
+        "injection",
+        "privacy",
+        "bundle"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "alpha"
     },
     {
@@ -247,9 +317,17 @@
       "path": "skills/checklists/db-migration-quality/SKILL.md",
       "category": "checklists",
       "description": "Validate database migrations for safety, reversibility, data integrity, and zero-downtime compatibility.",
-      "tags": ["database", "quality", "checklist", "migration", "review"],
+      "tags": [
+        "database",
+        "quality",
+        "checklist",
+        "migration",
+        "review"
+      ],
       "bundle": "web-dev",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "dependency-aware-task-ordering",
@@ -280,9 +358,17 @@
       "path": "skills/checklists/frontend-state-quality/SKILL.md",
       "category": "checklists",
       "description": "Review frontend state changes for predictable mutations, complete UI states, side-effect cleanup, and transition tests.",
-      "tags": ["frontend", "quality", "checklist", "review", "state"],
+      "tags": [
+        "frontend",
+        "quality",
+        "checklist",
+        "review",
+        "state"
+      ],
       "bundle": "web-dev",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "git-guardrails",
@@ -338,9 +424,17 @@
       "path": "skills/meta/instinct-extraction/SKILL.md",
       "category": "meta",
       "description": "Distill reusable session patterns into confidence-scored operating instincts using a continuous-learning loop with pre-session loading and post-session extraction.",
-      "tags": ["meta", "instinct", "extraction", "learning", "continuous"],
+      "tags": [
+        "meta",
+        "instinct",
+        "extraction",
+        "learning",
+        "continuous"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "beta"
     },
     {
@@ -402,27 +496,49 @@
       "path": "skills/memory/memory-compression/SKILL.md",
       "category": "memory",
       "description": "Compress noisy session observations into concise durable facts with confidence and staleness scoring.",
-      "tags": ["memory", "compression", "confidence", "privacy"],
+      "tags": [
+        "memory",
+        "compression",
+        "confidence",
+        "privacy"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "memory-ingestion",
       "path": "skills/memory/memory-ingestion/SKILL.md",
       "category": "memory",
       "description": "Capture durable memory entries through privacy-filtered ingestion.",
-      "tags": ["memory", "ingestion", "privacy", "capture"],
+      "tags": [
+        "memory",
+        "ingestion",
+        "privacy",
+        "capture"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "memory-retrieval",
       "path": "skills/memory/memory-retrieval/SKILL.md",
       "category": "memory",
       "description": "Retrieve task-relevant memory using a six-phase phased retrieval workflow with evaluation scoring.",
-      "tags": ["memory", "retrieval", "search", "evaluation", "scoring"],
+      "tags": [
+        "memory",
+        "retrieval",
+        "search",
+        "evaluation",
+        "scoring"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "memory-provider-adapter",
@@ -501,9 +617,16 @@
       "path": "skills/memory/privacy-filter/SKILL.md",
       "category": "memory",
       "description": "Prevent sensitive data from entering prompts, memory, examples, or commits.",
-      "tags": ["privacy", "security", "memory", "filter"],
+      "tags": [
+        "privacy",
+        "security",
+        "memory",
+        "filter"
+      ],
       "bundle": "memory-workflow",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "progressive-memory-disclosure",
@@ -746,18 +869,32 @@
       "path": "skills/meta/using-vibe-coding-os/SKILL.md",
       "category": "meta",
       "description": "Select and combine Vibe Coding OS commands, skills, templates, and registries.",
-      "tags": ["meta", "workflow", "bootstrap", "discovery"],
+      "tags": [
+        "meta",
+        "workflow",
+        "bootstrap",
+        "discovery"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "verification-before-completion",
       "path": "skills/core/verification-before-completion/SKILL.md",
       "category": "core",
       "description": "Require evidence and explicit limitations before claiming completion.",
-      "tags": ["verification", "quality", "workflow", "discipline"],
+      "tags": [
+        "verification",
+        "quality",
+        "workflow",
+        "discipline"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "verification-before-done",
@@ -812,27 +949,48 @@
       "path": "skills/meta/writing-skills/SKILL.md",
       "category": "meta",
       "description": "Write original, portable, indexed skills with required sections and validation.",
-      "tags": ["meta", "skill-design", "workflow", "template"],
+      "tags": [
+        "meta",
+        "skill-design",
+        "workflow",
+        "template"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "zoom-out-system-context",
       "path": "skills/core/zoom-out-system-context/SKILL.md",
       "category": "core",
       "description": "Explain broader system context before architecture-sensitive changes.",
-      "tags": ["architecture", "context", "workflow"],
+      "tags": [
+        "architecture",
+        "context",
+        "workflow"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "skill-catalog",
       "path": "skills/meta/skill-catalog/SKILL.md",
       "category": "meta",
       "description": "Organize skills into a discoverable catalog with tags, categories, bundles, and composability metadata.",
-      "tags": ["meta", "catalog", "discovery", "tags", "bundle"],
+      "tags": [
+        "meta",
+        "catalog",
+        "discovery",
+        "tags",
+        "bundle"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "stable"
     },
     {
@@ -840,27 +998,50 @@
       "path": "skills/meta/multi-platform-skill-guide/SKILL.md",
       "category": "meta",
       "description": "Write portable skills that work across Claude Code, Cursor, Codex CLI, Gemini CLI, Copilot, and OpenCode.",
-      "tags": ["meta", "portability", "platform", "adapter"],
+      "tags": [
+        "meta",
+        "portability",
+        "platform",
+        "adapter"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "plugin-bundle-system",
       "path": "skills/meta/plugin-bundle-system/SKILL.md",
       "category": "meta",
       "description": "Define, compose, and activate domain-organized skill bundles for common development scenarios.",
-      "tags": ["meta", "bundle", "discovery", "workflow", "domain"],
+      "tags": [
+        "meta",
+        "bundle",
+        "discovery",
+        "workflow",
+        "domain"
+      ],
       "bundle": "",
-      "platforms": ["*"]
+      "platforms": [
+        "*"
+      ]
     },
     {
       "name": "crash-proof-planning",
       "path": "skills/core/crash-proof-planning/SKILL.md",
       "category": "core",
       "description": "Persistent plan format with YAML frontmatter, completion markers, and recovery workflow that survives context resets.",
-      "tags": ["planning", "recovery", "persistence", "checkpoint", "workflow"],
+      "tags": [
+        "planning",
+        "recovery",
+        "persistence",
+        "checkpoint",
+        "workflow"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
       "maturity": "beta"
     },
     {
@@ -868,9 +1049,36 @@
       "path": "skills/core/context-policy/SKILL.md",
       "category": "core",
       "description": "Policy-based context control with allow/block/flag rules, severity levels, scope declarations, and sensitive content patterns.",
-      "tags": ["policy", "context", "dlp", "security", "privacy"],
+      "tags": [
+        "policy",
+        "context",
+        "dlp",
+        "security",
+        "privacy"
+      ],
       "bundle": "",
-      "platforms": ["*"],
+      "platforms": [
+        "*"
+      ],
+      "maturity": "beta"
+    },
+    {
+      "name": "guard-bypass-protocol",
+      "path": "skills/core/guard-bypass-protocol/SKILL.md",
+      "category": "core",
+      "description": "Autonomous adversarial prompt engineering agent that iteratively attempts to bypass AI model guardrails through structured techniques.",
+      "tags": [
+        "security",
+        "bypass",
+        "guardrail",
+        "red-team",
+        "adversarial",
+        "prompt-engineering"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
       "maturity": "beta"
     }
   ]

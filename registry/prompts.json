@@ -600,6 +600,12 @@
       "path": "commands/vibe-zoom-out.md",
       "description": "Explain system context before architecture-sensitive changes.",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-bypass",
+      "path": "commands/vibe-bypass.md",
+      "description": "Autonomous bypass agent: iteratively attempts to bypass AI model guardrails through structured techniques.",
+      "maturity": "beta"
     }
   ]
 }

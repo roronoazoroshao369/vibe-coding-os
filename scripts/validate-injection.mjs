@@ -47,7 +47,10 @@ const ALLOWLIST_FILES = new Set([
   // Documents the core rule by quoting the payloads it warns against.
   'docs/workflows/prompt-injection-handling.md',
   // The pattern source itself contains regex literals that match payloads.
-  'runtime/core/injection-patterns.mjs'
+  'runtime/core/injection-patterns.mjs',
+  // Guard bypass protocol — skill and command intentionally quote bypass patterns.
+  'skills/core/guard-bypass-protocol/SKILL.md',
+  'commands/vibe-bypass.md'
 ]);
 
 // Inline suppression marker: `injection-allow:<label>` on the offending line.
