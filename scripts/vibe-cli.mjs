@@ -4,6 +4,7 @@
 
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
+import { realpathSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -210,6 +211,14 @@ export function cmdVersion() {
 }
 
 export function cmdExport(tool) {
+  if (!tool || tool === '--help' || tool === '-h') {
+    console.log(`Usage: vibe export <tool>
+
+Export adapter configuration files for an AI coding tool.
+
+Valid tools: cursor, claude, codex, gemini (alias: claude-code → claude)`);
+    return;
+  }
   const aliases = { 'claude-code': 'claude', 'claude': 'claude', 'codex': 'codex', 'cursor': 'cursor', 'gemini': 'gemini' };
   const validTools = ['cursor', 'claude', 'codex', 'gemini'];
   if (!tool || !aliases[tool]) {
@@ -380,14 +389,36 @@ function renderInstalledPackReadme(manifest) {
 }
 
 export async function cmdDoctor(args = []) {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`Usage: vibe doctor [options]
+
+Options:
+  --project <path>   Check a project directory for vibe readiness
+  --json             Output as JSON
+  --runtime          Check runtime health
+  -h, --help         Show this help`);
+    return;
+  }
   const json = args.includes('--json');
   const runtime = args.includes('--runtime') || json;
+  // Support both --project <path> and --project=<path> syntax
+  let projectDir = null;
   const projectFlagIndex = args.indexOf('--project');
-  if (projectFlagIndex >= 0 && !args[projectFlagIndex + 1]) {
-    console.error(`${fail} --project requires a directory path. Usage: vibe doctor --project <path>`);
-    process.exit(1);
+  if (projectFlagIndex >= 0) {
+    const next = args[projectFlagIndex + 1];
+    if (next && !next.startsWith('--')) {
+      projectDir = resolve(next);
+    } else {
+      console.error(`${fail} --project requires a directory path. Usage: vibe doctor --project <path>`);
+      process.exit(1);
+    }
+  } else {
+    // Check --project=<path> syntax
+    const eqArg = args.find(a => a.startsWith('--project='));
+    if (eqArg) {
+      projectDir = resolve(eqArg.split('=')[1]);
+    }
   }
-  const projectDir = projectFlagIndex >= 0 ? resolve(args[projectFlagIndex + 1]) : null;
   if (projectDir && !existsSync(projectDir)) {
     console.error(`${fail} Project directory not found: ${projectDir}`);
     process.exit(1);
@@ -774,7 +805,7 @@ export async function cmdEvents(args = []) {
 const isMainModule = (() => {
   const entry = process.argv[1];
   try {
-    return entry && (resolve(entry) === resolve(fileURLToPath(import.meta.url)));
+    return entry && (realpathSync(entry) === realpathSync(fileURLToPath(import.meta.url)));
   } catch {
     return false;
   }
