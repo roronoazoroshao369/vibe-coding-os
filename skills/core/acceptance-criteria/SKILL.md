@@ -53,3 +53,12 @@ Viết tiêu chí chấp nhận quan sát được, kiểm chứng được, n�
 mô tả cách triển khai; bao phủ cả edge case và lỗi; mỗi tiêu chí nêu cách kiểm tra. Dùng
 làm cổng tại checkpoint. Liên kết: `skills/core/spec-first-development/SKILL.md`,
 `skills/core/checkpoint-validation/SKILL.md`.
+
+## Related quality packs
+
+- **Acceptance Criteria Quality Pack** (`templates/quality-packs/acceptance-criteria-pack.md`)
+  — Structured quality levels (Basic, Verified, Gated, Audited) for AC rigor, with reusable
+  criteria patterns, gate-pass criteria, and level selection guidance.
+- **Workflow doc** (`docs/workflows/acceptance-criteria-quality-pack.md`) — Step-by-step
+  guide for selecting, applying, and interpreting the AC quality pack, integrated with
+  checkpoints and scorecards.

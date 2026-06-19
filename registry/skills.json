@@ -196,6 +196,16 @@
       "description": "Find relevant repository context before making decisions."
     },
     {
+      "name": "context-injection",
+      "path": "skills/memory/context-injection/SKILL.md",
+      "category": "memory",
+      "description": "Build a scoped, citation-backed, privacy-filtered context injection bundle.",
+      "tags": ["memory", "context", "injection", "privacy", "bundle"],
+      "bundle": "memory-workflow",
+      "platforms": ["*"],
+      "maturity": "alpha"
+    },
+    {
       "name": "context-rich-implementation",
       "path": "skills/core/context-rich-implementation/SKILL.md",
       "category": "core",

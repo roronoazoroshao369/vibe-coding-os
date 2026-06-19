@@ -28,6 +28,103 @@
       "minProperties": 1
     }
   },
+  "example": {
+    "version": "1.0.0",
+    "task_type_packs": {
+      "feature": [
+        {
+          "id": "acceptance-criteria",
+          "name": "Acceptance Criteria Quality Pack",
+          "required_checks": [
+            "ac-observable",
+            "ac-verifiable",
+            "ac-edge-covered",
+            "ac-error-covered",
+            "ac-test-mapped",
+            "ac-traceable"
+          ],
+          "optional_checks": [
+            "ac-performance-aware",
+            "ac-security-tagged",
+            "ac-backward-compatibility"
+          ],
+          "priority_weight": 90
+        }
+      ],
+      "bugfix": [
+        {
+          "id": "acceptance-criteria",
+          "name": "Acceptance Criteria Quality Pack",
+          "required_checks": [
+            "ac-observable",
+            "ac-verifiable",
+            "ac-edge-covered",
+            "ac-error-covered"
+          ],
+          "optional_checks": [
+            "ac-test-mapped",
+            "ac-traceable"
+          ],
+          "priority_weight": 80
+        }
+      ],
+      "migration": [
+        {
+          "id": "acceptance-criteria",
+          "name": "Acceptance Criteria Quality Pack",
+          "required_checks": [
+            "ac-observable",
+            "ac-verifiable",
+            "ac-edge-covered",
+            "ac-error-covered",
+            "ac-test-mapped",
+            "ac-traceable",
+            "ac-performance-aware"
+          ],
+          "optional_checks": [
+            "ac-backward-compatibility",
+            "ac-security-tagged"
+          ],
+          "priority_weight": 95
+        }
+      ],
+      "security": [
+        {
+          "id": "acceptance-criteria",
+          "name": "Acceptance Criteria Quality Pack",
+          "required_checks": [
+            "ac-observable",
+            "ac-verifiable",
+            "ac-edge-covered",
+            "ac-error-covered",
+            "ac-test-mapped",
+            "ac-traceable",
+            "ac-security-tagged"
+          ],
+          "optional_checks": [
+            "ac-performance-aware"
+          ],
+          "priority_weight": 100
+        }
+      ],
+      "refactor": [
+        {
+          "id": "acceptance-criteria",
+          "name": "Acceptance Criteria Quality Pack",
+          "required_checks": [
+            "ac-observable",
+            "ac-verifiable"
+          ],
+          "optional_checks": [
+            "ac-edge-covered",
+            "ac-error-covered",
+            "ac-test-mapped"
+          ],
+          "priority_weight": 70
+        }
+      ]
+    }
+  },
   "definitions": {
     "qualityPack": {
       "type": "object",

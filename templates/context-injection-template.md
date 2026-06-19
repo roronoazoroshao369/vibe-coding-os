@@ -1,5 +1,7 @@
 # Context Injection Bundle
 
+*Referenced by: [context-injection](../skills/memory/context-injection/SKILL.md) skill, [vibe-context-inject](../commands/vibe-context-inject.md) command*
+
 ## Vietnamese usage note
 
 Ghi chú tiếng Việt: Dùng mẫu này để ghi bộ nhớ ngắn gọn, có nguồn và an toàn. Không lưu bí mật, token, mật khẩu, khóa riêng tư, thông tin cá nhân không cần thiết, hoặc transcript thô nhạy cảm.

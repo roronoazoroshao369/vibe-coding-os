@@ -20,6 +20,12 @@
       "maturity": "beta"
     },
     {
+      "name": "vibe-align",
+      "path": "commands/vibe-align.md",
+      "description": "Explicit alignment check: grill, align on domain terms, record ADRs, and confirm intent before coding.",
+      "maturity": "alpha"
+    },
+    {
       "name": "vibe-analyze",
       "path": "commands/vibe-analyze.md",
       "description": "Check spec, plan, and tasks for cross-artifact consistency before implementation.",
