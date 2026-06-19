@@ -52,3 +52,15 @@ Stop and ask when the task description is too vague to classify, when the matrix
 - Stack confirmed → load each pack and compose into the task context, then proceed with implementation.
 - Task type changes mid-flight → reclassify and adjust the pack stack.
 - New quality pack available → update `templates/adaptive-prompt-matrix.md`.
+
+## Related skills/commands
+
+- `skills/core/adaptive-prompt-selection/SKILL.md` — the skill backing this command
+- `templates/adaptive-prompt-matrix.md` — canonical task-type-to-pack matrix
+- `commands/vibe-model-weakness.md` — add model-specific weakness checks after selecting quality packs
+- `commands/vibe-lessons-learned.md` — add prior lesson prevention rules before implementation
+- `skills/core/adaptive-flow/SKILL.md` — tier-based proportional workflow selection
+- `skills/core/quality-execution-contract/SKILL.md` — quality contract before coding
+- `skills/prompts/quality-rubric/SKILL.md` — baseline quality rubric
+- `skills/core/verification-before-completion/SKILL.md` — final verification gate
+

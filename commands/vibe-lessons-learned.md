@@ -55,3 +55,28 @@ For recent:
 ## Stopping conditions
 
 Stop before writing if the lesson would include secrets, credentials, private keys, private personal data, or raw logs that are not needed for prevention. Ask for a sanitized version instead.
+Stop if the lessons log location is unclear and the user has not agreed to a durable, project-local path.
+
+## Verification checklist
+
+- [ ] The requested mode (`search`, `add`, or `recent`) is identified explicitly.
+- [ ] The lessons log location is confirmed before reading or writing.
+- [ ] Search results are ranked by relevance, severity, and recency.
+- [ ] New entries use `templates/lesson-entry-template.md` and contain no secrets or private data.
+- [ ] Prevention rules are translated into actionable checks for the current task.
+- [ ] Exact files read or written are reported to the user.
+
+## Related skills/commands
+
+- `skills/core/lessons-learned-db/SKILL.md` — the skill backing this command
+- `templates/lesson-entry-template.md` — standard entry shape for new lessons
+- `commands/vibe-diagnose.md` / `commands/vibe-debug.md` — root-cause analysis before logging a lesson
+- `commands/vibe-review.md` / `commands/vibe-quality-rubric.md` — review and quality checks that can surface repeatable patterns
+- `skills/core/disciplined-diagnosis/SKILL.md` — structured root-cause investigation
+- `skills/memory/privacy-filter/SKILL.md` — redaction and privacy review before persisting lessons
+
+## Handoffs / next-step suggestion
+
+- After adding a lesson → return the file path and a one-line prevention rule to inject into the next similar task.
+- After searching lessons → hand off to `commands/vibe-adaptive-prompt.md` or `commands/vibe-model-weakness.md` to compose the selected prevention rules into the active task context.
+- If no lessons log exists yet → propose a project-local path, create it, and record the first lesson as a seed entry.

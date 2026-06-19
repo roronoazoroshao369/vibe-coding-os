@@ -51,3 +51,12 @@ Stop and ask when the model type cannot be determined, when the weakness log doe
 - Checks confirmed → compose with the task's quality gates and proceed with implementation.
 - New weakness discovered during task → update `templates/model-weakness-log.md` with evidence.
 - Log empty → seed with initial entries from post-mortem analysis.
+
+## Related skills/commands
+
+- `skills/core/model-weakness-memory/SKILL.md` — the skill backing this command
+- `templates/model-weakness-log.md` — the weakness log template
+- `commands/vibe-adaptive-prompt.md` — complementary command for selecting quality packs alongside weakness checks
+- `commands/vibe-lessons-learned.md` — cross-reference repeatable pattern fixes
+- `skills/core/verification-before-completion/SKILL.md` — verify injected checks passed
+- `skills/core/self-review-before-response/SKILL.md` — post-task self-review

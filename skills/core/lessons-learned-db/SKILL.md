@@ -83,3 +83,16 @@ Use this skill:
 - [ ] Similar-task search was performed before implementing related work.
 - [ ] Relevant prevention rules were injected into the active workflow.
 - [ ] Final verification confirms the prevention rule was satisfied or explains why it did not apply.
+
+## Related skills/commands
+
+- `commands/vibe-lessons-learned.md` — command entry point for search, add, and recent review
+- `templates/lesson-entry-template.md` — standard entry shape
+- `skills/core/disciplined-diagnosis/SKILL.md` — structured root-cause analysis before logging a lesson
+- `skills/memory/privacy-filter/SKILL.md` — redaction review before persisting lessons
+- `skills/core/self-review-before-response/SKILL.md` — ensure the lesson is complete and not noisy
+- `skills/core/verification-before-completion/SKILL.md` — verify the prevention rule was applied
+
+## Ghi chú tiếng Việt
+
+Duy trì cơ sở dữ liệu có cấu trúc về lỗi lập trình, nguyên nhân gốc rễ, cách sửa và quy tắc phòng ngừa. Sau mỗi lần sửa lỗi hoặc phát hiện review lặp lại, hãy ghi lại bài học. Trước task tương tự, tra cứu lessons để trích xuất các prevention rules. Luôn giữ bài học không chứa bí mật, token, hoặc dữ liệu nhạy cảm.

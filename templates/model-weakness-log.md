@@ -1,22 +1,24 @@
 # Model Weakness Log
 
-Track known failure patterns per model type. Update after each confirmed incident. Prune entries when model updates resolve the weakness.
+Track confirmed, repeatable model failure patterns by model type. Use this as a fillable project-local template, not as a place for raw transcripts.
+
+## Privacy and redaction rules
+
+- Do not record secrets, credentials, tokens, private keys, customer data, private URLs, internal hostnames, or sensitive raw logs.
+- Keep examples synthetic or heavily summarized. Replace sensitive values with placeholders such as `<redacted-token>` or `<private-file-path>`.
+- Record only the minimum evidence needed to recognize and prevent the weakness.
+- Prune entries when model updates or local guardrails make them obsolete.
 
 ## Log
 
-| Model | Pattern Category | Example | Prevention | Last Seen |
-| --- | --- | --- | --- | --- |
-| claude-sonnet | Missing null-checks | Assumes DB query always returns a row; accesses `.id` without null guard | Verify every query result is null-checked before property access | 2026-06-15 |
-| gpt-4 | Hallucinated imports | Generates `from nonexistent_package import helper` | Cross-check all imports against `requirements.txt` or `package.json` before accepting | 2026-06-10 |
-| llama-3 | Off-by-one loops | Uses `range(len(arr))` and accesses `arr[i+1]` without bounds check | Validate loop bounds and confirm no out-of-range access on last iteration | 2026-06-08 |
-| local-qwen | Incorrect error handling | Wraps entire function in bare `except` and silently passes | Ensure each `except` clause catches a specific exception and logs or re-raises | 2026-06-12 |
-| claude-sonnet | API version mismatch | Uses deprecated v1 endpoint when v2 is documented | Check API version in imports and base URLs against current documentation | 2026-06-14 |
-| gpt-4 | Missing async await | Calls async function without `await`, gets coroutine instead of result | Verify every async function call is awaited; lint for unawaited coroutines | 2026-06-11 |
-| llama-3 | Regex injection | Builds regex from user input without escaping | Escape all user-supplied strings before embedding in regex patterns | 2026-06-09 |
-| gpt-4 | Ignoring race conditions | Reads shared state and writes without lock or atomic operation | Identify shared mutable state and verify synchronization strategy | 2026-06-13 |
+| Model | Pattern Category | Sanitized Example | Prevention Check | Evidence / Source | Last Seen | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| `<model-or-provider>` | `<failure-pattern>` | `<sanitized summary of what went wrong; no private data>` | `<specific check to run before/during review>` | `<issue/review/test reference, sanitized>` | `YYYY-MM-DD` | `active | under-review | archived` |
 
 ## How to update
 
-1. After a model-generated bug is confirmed, add a row with the model type, pattern category, a concrete example, the prevention strategy, and today's date.
-2. When a model update resolves a weakness, move the entry to an **Archived** section with the resolution date.
-3. Review quarterly: remove archived entries older than 6 months, promote recurring patterns to higher priority.
+1. Add a row only after a confirmed incident or repeated near-miss.
+2. Keep the example short, synthetic, and privacy-safe; never paste raw proprietary code, logs, prompts, API keys, or user data.
+3. Write the prevention check as an action the agent can verify, not a vague reminder.
+4. If the pattern stops reproducing after a model update or guardrail change, mark it `under-review`, then move it to an archived copy or remove it after review.
+5. Review at least quarterly: merge duplicates, remove stale entries, and promote recurring high-impact patterns into stronger checklists.

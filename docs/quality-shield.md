@@ -80,7 +80,8 @@ These assets extend Quality Shield but are not the core shield itself:
 - Expert review: [`skills/core/adversarial-code-review/SKILL.md`](../skills/core/adversarial-code-review/SKILL.md), [`skills/prompts/critique-pass/SKILL.md`](../skills/prompts/critique-pass/SKILL.md), [`skills/agents/writer-critic-pair/SKILL.md`](../skills/agents/writer-critic-pair/SKILL.md)
 - Task-specific quality packs: `skills/checklists/*-quality/SKILL.md` and `commands/vibe-quality-*.md`
 - **Expert Mode guide:** [`docs/expert-mode.md`](expert-mode.md) — escalation pathways, adversarial review, critique pass, quality packs, Writer-Critic Pair, and Quality Council
-- Smart Adapt: [`skills/core/model-weakness-memory/SKILL.md`](../skills/core/model-weakness-memory/SKILL.md), [`skills/core/adaptive-prompt-selection/SKILL.md`](../skills/core/adaptive-prompt-selection/SKILL.md), [`skills/core/lessons-learned-db/SKILL.md`](../skills/core/lessons-learned-db/SKILL.md)
+- **Smart Adapt guide:** [`docs/smart-adapt.md`](smart-adapt.md) — model weakness memory, adaptive prompt selection, scorecards, lessons learned, and quality-elevation examples
+- Smart Adapt assets: [`skills/core/model-weakness-memory/SKILL.md`](../skills/core/model-weakness-memory/SKILL.md), [`skills/core/adaptive-prompt-selection/SKILL.md`](../skills/core/adaptive-prompt-selection/SKILL.md), [`skills/core/lessons-learned-db/SKILL.md`](../skills/core/lessons-learned-db/SKILL.md)
 
 ### Quality Engine foundation assets
 

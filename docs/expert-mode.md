@@ -124,3 +124,15 @@ Expert Mode is part of the portable core. It extends Quality Shield by adding st
 - No secret-shaped examples in docs or templates.
 
 Future Quality Engine work may automate selection or reporting, but Expert Mode must remain usable by reading and applying the linked skills, commands, and templates directly.
+
+## Next layer: Smart Adapt (v1.9.0)
+
+Smart Adapt extends Expert Mode by adding model-aware adaptation: known model weaknesses are checked before each task, the right quality packs are selected automatically, project lessons are searched for relevant prevention rules, and session quality is measured with scorecards. See the full guide at [`docs/smart-adapt.md`](smart-adapt.md).
+
+Smart Adapt is markdown-first like Expert Mode, requires no runtime expansion, and composes naturally with all Expert Mode components.
+
+## Boundary with Smart Adapt
+
+- Expert Mode provides escalation paths and structured review protocols.
+- Smart Adapt provides pre-flight model weakness checks, adaptive pack selection, lessons learned, and scorecards.
+- Use Expert Mode when Smart Adapt's adaptive gates are not enough and you need structured adversarial review, critique passes, or multi-agent patterns.

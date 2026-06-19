@@ -269,14 +269,18 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Release posture:** v1.8.0 adds Expert Mode as a portable, markdown-first escalation layer on top of Quality Shield. Runtime remains frozen under ADR 0002; no new validation gate is added.
 
 ## v1.9.0 — Smart Adapt
-**Status:** 🗓️ PLANNED
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |---|---|
-| Model Weakness Memory | 🗓️ Planned |
-| Adaptive Prompt Selection | 🗓️ Planned |
-| Quality Score Card (session + report) | 🗓️ Planned |
-| Lessons Learned DB / Golden Example Library v2 | 🗓️ Planned |
+| Model Weakness Memory (`skills/core/model-weakness-memory/SKILL.md`, `commands/vibe-model-weakness.md`, `templates/model-weakness-log.md`) | ✅ Done |
+| Adaptive Prompt Selection (`skills/core/adaptive-prompt-selection/SKILL.md`, `commands/vibe-adaptive-prompt.md`, `templates/adaptive-prompt-matrix.md`) | ✅ Done |
+| Quality Score Card session template (`templates/quality-scorecard-session.md`) | ✅ Done |
+| Lessons Learned DB (`skills/core/lessons-learned-db/SKILL.md`, `commands/vibe-lessons-learned.md`, `templates/lesson-entry-template.md`) | ✅ Done |
+| Quality elevation examples (`examples/quality-elevation/README.md` and scenarios) | ✅ Done |
+| Smart Adapt canonical guide (`docs/smart-adapt.md`) | ✅ Done |
+
+**Release posture:** v1.9.0 is release-ready for metadata and registry scope with 25/25 validation gates targeted. Runtime remains frozen under ADR 0002; no new validation gate is added.
 
 ## v2.0 — Quality Engine
 **Status:** 🧭 FUTURE / FOUNDATION PRESENT
@@ -365,7 +369,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.6.0: ████████████ 100%
 - v1.7.0: ████████████ 100%
 - v1.8.0: ████████████ 100%
-- v1.9.0: ░░░░░░░░░░░ 0% (planned)
+- v1.9.0: ████████████ 100%
 - v2.0:   ░░░░░░░░░░░ 0% (planned)
 - v2.1:   ░░░░░░░░░░░ 0% (planned)
 - v2.2:   ░░░░░░░░░░░ 0% (planned)

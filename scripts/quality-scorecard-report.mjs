@@ -92,6 +92,19 @@ function detectTrend(notes) {
 }
 
 function main() {
+  // --help / -h: print usage and exit cleanly
+  if (process.argv.includes('--help') || process.argv.includes('-h')) {
+    console.log('usage: node scripts/quality-scorecard-report.mjs [--help|-h]');
+    console.log('');
+    console.log('Aggregate historical quality scorecard data from local markdown reports in');
+    console.log('docs/reports and docs. Zero dependencies, advisory only — exits 0 unless the');
+    console.log('script itself crashes.');
+    console.log('');
+    console.log('Options:');
+    console.log('  --help, -h    Show this usage message and exit.');
+    process.exit(0);
+  }
+
   const runs = collectScorecardRuns();
 
   console.log('# Quality Scorecard Report');
