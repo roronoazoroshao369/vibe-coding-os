@@ -171,13 +171,13 @@ Failure scenario: User ID is not a valid UUID. Observable behavior: 400 with
 **Criteria written:**
 ```
 [functional][test:test_session_create]
-Given a valid login, when a session is created, then the token is a JWT
-signed with HS256 and expires in 24 hours.
+Given a valid login, when a session is created, then the session identifier is returned
+and expires in 24 hours.
 Verified by: test_session::test_session_create
 Traceability: [spec:auth-03-session-tokens]
 
 [edge-case][test:test_session_expiry]
-Edge case: Token is presented 1ms after expiry. Expected: 401 Unauthorized.
+Edge case: Session is checked 1ms after expiry. Expected: 401 Unauthorized.
 Risk if missed: Stale sessions accepted.
 Verified by: test_session::test_session_expiry
 Traceability: [spec:auth-03-session-expiry]

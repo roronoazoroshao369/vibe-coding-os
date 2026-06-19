@@ -20,15 +20,32 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.8.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters
+**Bản phát hành hiện tại (v2.9.0):** validate:all 26/26 gates PASS · **132 skills** · **102 commands** · **100 templates** · **20 tracked sources** · 8 adapters
 
-**Mới nhất:** v2.8.0 Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Mới nhất:** v2.9.0 Release Pipeline & Plugin Polish — pipeline release tự động, 5 MCP command tools, CLAUDE.md tối ưu
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.9.0
+
+Release Pipeline & Plugin Polish:
+
+- **Pipeline release tự động**: `release-prepare.yml` + `release-publish.yml` — release 2 giai đoạn (PR → publish khi merge)
+- **Claude Code plugin polish**: plugin.json sync v2.9.0, marketplace metadata cập nhật
+- **5 MCP command tools**: `vibe.spec`, `vibe.plan`, `vibe.review`, `vibe.memory`, `vibe.merge`
+- **CLAUDE.md tối ưu**: 149→50 dòng (giảm 67%) với progressive disclosure
+- **Memory compression**: skill + command + template mới cho transformation observations thành durable facts
+- **Context injection**: SKILL.md mới cho scoped, citation-backed, privacy-filtered context bundles
+- **Acceptance criteria quality pack**: 4 cấp AC (basic/verified/gated/audited) với reuse patterns
+- **Agent alignment workflow**: `vibe-align` command orchestrate grill-user, grill-with-docs, shared-domain-language
+- **Anti-overengineering**: `vibe-anti-overengineer` command + review template
+- **Dashboard time-series**: bảng trend 7 ngày embedded trong DASHBOARD.md
+- **CI trend persistence**: GitHub Action lưu gate pass/fail qua các CI runs
+- **CHANGELOG backfilled**: v1.6.0→v2.9.0 entries đã được bổ sung
 
 ## Có gì mới trong v2.8.0
 

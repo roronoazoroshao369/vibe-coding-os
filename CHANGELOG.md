@@ -7,7 +7,128 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.0] — 2026-06-19
+
 ### Added
+- Release pipeline automation for streamlined versioning and publish workflow.
+- Plugin metadata support for adapter manifests and plugin discovery.
+- MCP command tools for richer model-context-protocol integration.
+- Dashboard trend persistence — CI-friendly trend data across releases.
+- Context injection skill for runtime prompt augmentation.
+- AC (acceptance criteria) quality pack for structured verification.
+- Agent alignment workflow for multi-agent coordination.
+
+### Changed
+- CLAUDE.md slimmed down for faster agent onboarding and reduced token usage.
+- Memory compression for more efficient session storage.
+- Anti-overengineering guardrails applied across core workflows.
+
+### Fixed
+- Claude Code quality pass: AGENTS.md deduplication, CLAUDE.md polish, onboarding UX fixes.
+- Post-release sync: README v2.8.0 sections, CLI tool listing, adapter smoke tests.
+
+## [2.8.0] — 2026-06-19
+
+### Added
+- Adapter expansion: **Cline**, **Continue.dev**, **Aider**, and **Windsurf** adapters with setup manifests and documentation.
+- Per-adapter README setup commands and compatibility notes.
+
+### Changed
+- Adapter support matrix expanded to cover 8 AI coding tools.
+
+## [2.7.0] — 2026-06-19
+
+### Added
+- AI Testing Suite: property-based testing framework for skill and command validation.
+- Benchmark harness for measuring workflow execution performance.
+- Test generator for automated behavioral test creation from specs.
+- Trend dashboard for visualizing test pass/fail rates over time.
+- PR comment integration for automated test summary annotations.
+
+## [2.6.0] — 2026-06-19
+
+### Added
+- Full implementation loop for all reference source features — upstream tracking, adoption scoring, provenance gates, and audit changelogs now fully wired end-to-end.
+- AI Testing Suite roadmap and Docusaurus website scaffold.
+- 4 new upstream sources added to reference index.
+- Bug-fix lifecycle tracking in reference docs.
+- MemScore triple metric in reference evaluation docs.
+
+### Fixed
+- Lesson-importer ISO expiry handling.
+- Schema warnings and CLI bug fixes.
+- Dashboard sync drift corrections.
+
+## [2.5.0] — 2026-06-19
+
+### Added
+- Advanced Orchestration — roadmap 100% complete.
+- Multi-agent task routing and parallelization rules.
+- Team orchestration handoff contracts and conflict handling.
+
+## [2.4.0] — 2026-06-19
+
+### Added
+- CI/CD Integration layer for automated validation, testing, and release gates.
+- GitHub Actions workflow enhancements for full validation pipeline.
+
+## [2.3.0] — 2026-06-19
+
+### Added
+- Multi-Repo Learning — cross-repository skill and pattern sharing.
+- Upstream intelligence aggregation across linked repositories.
+
+## [2.2.0] — 2026-06-19
+
+### Added
+- Quality Telemetry & Analytics: event emitter, metrics collector, and trend reports.
+- Runtime quality metrics for skill execution and workflow outcomes.
+
+## [2.1.0] — 2026-06-19
+
+### Added
+- Model-Aware Configuration: model profiles, task-risk classifier, and adaptive gate selector.
+- Context-aware workflow tier selection based on model capabilities.
+
+## [2.0.0] — 2026-06-19
+
+### Added
+- Quality Engine MVP: gate manifest, engine runner, report generator, quality skill, and quality command.
+- Structured quality verification framework with configurable gate definitions.
+
+## [1.9.0] — 2026-06-19
+
+### Added
+- Smart Adapt: model weakness memory, adaptive prompts, lessons learned, and scorecard report.
+- Runtime adaptation based on observed model failure patterns.
+
+## [1.8.0] — 2026-06-19
+
+### Added
+- Expert Mode: adversarial review pass, critique pass, 5 task-specific quality packs, and quality council.
+- Structured expert-level review workflows for high-risk changes.
+
+### Fixed
+- Dashboard and roadmap sync corrections.
+
+## [1.7.0] — 2026-06-19
+
+### Added
+- Quality Shield: quality-shield.md guide, quality-shield-workflow.md process, and quality-shield example.
+- Code Context Pack, Pattern Library, and Quality Diff Audit (Sprint 2).
+- Quality Shield completion artifacts and canonical guide.
+
+## [1.6.0] — 2026-06-19
+
+### Added
+- Adoption Trust foundations: README user/maintainer paths, adapter documentation, layer entrypoints.
+- CLI onboarding UX polish (`vibe init`, `vibe doctor`).
+- Validation gates and governance documentation.
+- Examples hub for discoverable workflow templates.
+- Project-local scope-selecting setup flow.
+
+### Changed
+- Hardened v1.6 adoption trust foundations across roadmap and docs.
 
 ## [1.5.0] — 2026-06-17
 
@@ -275,7 +396,23 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.9.0...HEAD
+[2.9.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.8.0...v2.9.0
+[2.8.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.7.0...v2.8.0
+[2.7.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.6.0...v2.7.0
+[2.6.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.5.0...v2.6.0
+[2.5.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.4.0...v2.5.0
+[2.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.3.0...v2.4.0
+[2.3.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.2.0...v2.3.0
+[2.2.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.0.0...v2.1.0
+[2.0.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.9.0...v2.0.0
+[1.9.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.8.0...v1.9.0
+[1.8.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.7.0...v1.8.0
+[1.7.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.6.0...v1.7.0
+[1.6.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.5.0...v1.6.0
+[1.5.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.3...v1.5.0
+[1.4.3]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.1...v1.4.3
 [1.4.1]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v1.2.0...v1.3.0

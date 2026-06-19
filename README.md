@@ -13,9 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.8.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Current release (v2.9.0):** validate:all 26/26 gates PASS · **132 skills** · **102 commands** · **100 templates** · **20 tracked sources** · 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
 
-**Latest:** v2.8.0 Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Latest:** v2.9.0 Release Pipeline & Plugin Polish — automated release pipeline, 5 MCP command tools, CLAUDE.md optimized
 
 ---
 
@@ -69,6 +69,23 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Merge** — ship only after verification status is clear.
 
 ---
+
+## What's new in v2.9.0
+
+Release Pipeline & Plugin Polish:
+
+- **Automated release pipeline**: `release-prepare.yml` + `release-publish.yml` — 2-phase release (PR → publish on merge)
+- **Claude Code plugin polished**: plugin.json synced to v2.9.0, marketplace metadata updated
+- **5 MCP command tools**: `vibe.spec`, `vibe.plan`, `vibe.review`, `vibe.memory`, `vibe.merge` via `runtime/mcp/command-tools.mjs`
+- **CLAUDE.md optimized**: 149→50 lines (67% reduction) via progressive disclosure
+- **Memory compression**: new skill + command + template for transforming noisy observations into durable facts
+- **Context injection**: new SKILL.md for scoped, citation-backed, privacy-filtered context bundles
+- **Acceptance criteria quality pack**: 4 AC levels (basic/verified/gated/audited) with reuse patterns
+- **Agent alignment workflow**: `vibe-align` command orchestrating grill-user, grill-with-docs, shared-domain-language
+- **Anti-overengineering**: `vibe-anti-overengineer` command + review template
+- **Dashboard time-series**: live 7-day trend table embedded in DASHBOARD.md
+- **CI trend persistence**: GitHub Action persists gate pass/fail across CI runs
+- **CHANGELOG backfilled**: v1.6.0 through v2.9.0 entries added
 
 ## What's new in v2.8.0
 

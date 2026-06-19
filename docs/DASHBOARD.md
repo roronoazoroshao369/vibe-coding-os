@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.8.0 |
+| Version | 2.9.0 |
 | Skills | 130 |
 | Commands | 100 |
 | Templates | 98 |
-| Narrative files | 647 |
+| Narrative files | 651 |
 | Upstream sources | 20 |
 | Broken refs | 0 |
 
