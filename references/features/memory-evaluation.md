@@ -55,6 +55,39 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 - Does local fallback work without network access or provider credentials?
 - Are adapter assumptions documented without implementing a client?
 
+## MemScore triple metric
+
+MemScore is a Supermemory-inspired evaluation pattern that scores memory quality on three independent axes. The three metrics are always reported as a separate triple — never collapsed into a single combined score — so each dimension remains actionable.
+
+| Metric | What it measures | Why it matters |
+|---|---|---|
+| `accuracy%` | Correctness and currency of cited facts in the memory entry or retrieval bundle | A retrieved memory that is wrong or stale is worse than no memory at all. Tracks groundedness and freshness. |
+| `latencyMs` | Time cost to retrieve and evaluate the memory entry (milliseconds) | High retrieval latency defeats the purpose of memory. Keeps the efficiency of recall visible. |
+| `contextTokens` | Context-window cost injected by the memory entry (tokens) | Every retrieved memory consumes prompt budget. Over-injection crowds out task-relevant context. |
+
+### Local implementation
+
+The scoring rubric is implemented in `skills/memory/memory-evaluation/SKILL.md`:
+
+1. Score usefulness — did the memory change a decision, reduce search, or prevent a mistake?
+2. Score accuracy — was the cited source correct, current, and non-contradicted? (drives `accuracy%`)
+3. Score safety — did the entry avoid secrets, unnecessary personal data, and overbroad scope?
+4. Apply a simple MemScore-style rubric: relevance, groundedness, and freshness.
+5. Report the composite triple separately, never collapsed into one score: `accuracy%`, `latencyMs`, and `contextTokens`.
+6. Mark action: keep, revise, supersede, archive, or delete.
+
+### Verification checklist
+
+- [ ] Relevance, groundedness, and freshness were checked.
+- [ ] `accuracy%`, `latencyMs`, and `contextTokens` were reported separately.
+- [ ] Privacy/scope safety was checked.
+- [ ] Action is explicit: keep, revise, supersede, archive, or delete.
+- [ ] Evaluation cites task outcome or evidence.
+
+### Not applied
+
+Hosted benchmark datasets, MemoryBench data, SDK clients, or copied upstream text are not part of the local implementation.
+
 ## Ghi chú tiếng Việt
 
 Tài liệu này biến ý tưởng từ Supermemory thành quy trình cục bộ, an toàn và tùy chọn. Khi dùng bộ nhớ, hãy lưu quyết định bền vững và nguồn gốc rõ ràng; không lưu token, mật khẩu, khóa riêng tư hoặc dữ liệu cá nhân không cần thiết.
