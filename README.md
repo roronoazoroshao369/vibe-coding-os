@@ -13,9 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.7.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Current release (v2.8.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
 
-**Latest:** v2.7.0 AI Testing Suite + Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Latest:** v2.8.0 Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
 
 ---
 
@@ -69,6 +69,29 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 - **Merge** — ship only after verification status is clear.
 
 ---
+
+## What's new in v2.8.0
+
+Adapter Expansion — từ 4 → 8 adapters:
+
+- **4 new tool adapters**: Cline, Continue.dev, Aider, Windsurf
+- **Cline adapter**: `.clinerules`, mode-specific rules (architect/ask/code), MCP native, skills directory
+- **Continue.dev adapter**: AGENTS.md per-directory, slash commands (`/spec`, `/plan`, `/implement`), config.example.json
+- **Aider adapter**: CONVENTIONS.md conventions, `.aider.conf.yml`, architect/editor mode, lint integration
+- **Windsurf adapter**: `.windsurfrules`, Cascade agent, Flows, Deep Context, legacy `.cursorrules` compat
+- **Compatibility matrix** expanded to 8 tools + docs hub + install snippets
+- **Runtime unchanged:** v2.8.0 respects ADR 0002.
+
+## What's new in v2.7.0
+
+AI Testing Suite — automated quality infrastructure for the framework:
+
+- **Property-based testing**: schema + runner (`npm run test:property`)
+- **Benchmark harness**: per-gate timing + regression trends (`npm run benchmark:gates`)
+- **Test generator**: auto-generates property tests from existing skills (`npm run test:generate`)
+- **Quality trend dashboard**: time-series from telemetry (`npm run dashboard:trend`)
+- **PR quality comment**: GitHub Actions auto-posts quality summary on PR
+- **Runtime unchanged:** v2.7.0 respects ADR 0002.
 
 ## What's new in v2.6.0
 

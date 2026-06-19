@@ -20,15 +20,38 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.7.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters
+**Bản phát hành hiện tại (v2.8.0):** validate:all 26/26 gates PASS · **128 skills** · **96 commands** · **93 templates** · **20 tracked sources** · 8 adapters
 
-**Mới nhất:** v2.7.0 AI Testing Suite + Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Mới nhất:** v2.8.0 Adapter Expansion — 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.8.0
+
+Adapter Expansion — từ 4 lên 8 adapters:
+
+- **4 adapters mới**: Cline, Continue.dev, Aider, Windsurf
+- **Cline**: `.clinerules`, mode-specific rules, MCP native, skills directory
+- **Continue.dev**: AGENTS.md per-directory, slash commands, config.example.json
+- **Aider**: CONVENTIONS.md, architect/editor mode, lint integration
+- **Windsurf**: `.windsurfrules`, Cascade agent, Flows, Deep Context
+- **Compatibility matrix** mở rộng 8 tools + docs hub + install snippets
+- **Runtime không đổi:** v2.8.0 tuân thủ ADR 0002.
+
+## Có gì mới trong v2.7.0
+
+AI Testing Suite — automated quality infrastructure:
+
+- **Property-based testing**: schema + runner (`npm run test:property`)
+- **Benchmark harness**: per-gate timing + trends (`npm run benchmark:gates`)
+- **Test generator**: auto-generate tests (`npm run test:generate`)
+- **Quality trend dashboard**: time-series từ telemetry (`npm run dashboard:trend`)
+- **PR quality comment**: GitHub Actions auto-post quality summary
+- **Runtime không đổi:** v2.7.0 tuân thủ ADR 0002.
 
 ## Có gì mới trong v2.6.0
 

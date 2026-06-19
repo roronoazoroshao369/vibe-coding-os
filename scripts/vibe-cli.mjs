@@ -63,11 +63,11 @@ ${c.bold}Usage:${c.reset}  node scripts/vibe-cli.mjs <command> [options]
 
 ${c.bold}Commands:${c.reset}
   ${c.green}init${c.reset} [tool] [flags] Initialize a project with the selected adapter
-                            Tools: claude-code (default), codex, cursor, gemini (alias: claude)
+                            Tools: claude-code (default), codex, cursor, gemini (alias: claude), cline, continue, aider, windsurf
                             Flags: --scope <minimal|recommended|full|runtime|team>
                                    --dry-run, --force, --current-terminal, --project <path>
   ${c.green}export${c.reset} [tool]      Generate tool-specific instructions in cwd
-                            Tools: cursor, claude, codex, gemini
+                            Tools: cursor, claude, codex, gemini, cline, continue, aider, windsurf
   ${c.green}doctor${c.reset} [--project <path>] Check runtime health (add --json for output)
   ${c.green}events${c.reset} [--json] [--limit=N] Show event store metadata and recent events
   ${c.green}install-pack${c.reset} <name> [--dry-run] [--force] Install a skill pack into .vibe/skills/<name>
@@ -114,7 +114,7 @@ ${c.bold}Usage:${c.reset}
   vibe init --tool <tool> [options]
 
 ${c.bold}Tools:${c.reset}
-  claude-code (default), codex, cursor, gemini (alias: claude)
+  claude-code (default), codex, cursor, gemini (alias: claude), cline, continue, aider, windsurf
 
 ${c.bold}Options:${c.reset}
   --tool <tool>              Adapter to configure
@@ -136,7 +136,7 @@ ${c.dim}Runtime note: core setup is project-local. Optional runtime state is not
 }
 
 function formatToolName(tool) {
-  return ({ 'claude-code': 'Claude Code', claude: 'Claude Code', codex: 'Codex', cursor: 'Cursor', gemini: 'Gemini' })[tool] || tool;
+  return ({ 'claude-code': 'Claude Code', claude: 'Claude Code', codex: 'Codex', cursor: 'Cursor', gemini: 'Gemini', cline: 'Cline', continue: 'Continue.dev', aider: 'Aider', windsurf: 'Windsurf' })[tool] || tool;
 }
 
 function projectGuidance(projectDir) {
@@ -146,6 +146,9 @@ function projectGuidance(projectDir) {
     { path: '.cursorrules', tool: 'cursor', next: 'Open this folder in Cursor; .cursorrules provides project guidance.' },
     { path: '.cursor/rules', tool: 'cursor', next: 'Open this folder in Cursor; rules under .cursor/rules provide project guidance.' },
     { path: 'GEMINI.md', tool: 'gemini', next: 'Open this repo with Gemini Code Assist; it reads GEMINI.md.' },
+    { path: '.clinerules', tool: 'cline', next: 'Open this folder in Cline; .clinerules provides project guidance.' },
+    { path: 'CONVENTIONS.md', tool: 'aider', next: 'Open this repo with Aider; it reads CONVENTIONS.md.' },
+    { path: '.windsurfrules', tool: 'windsurf', next: 'Open this folder in Windsurf; .windsurfrules provides project guidance.' },
   ].filter((signal) => existsSync(join(projectDir, signal.path)));
   let manifest = null;
   const manifestPath = join(projectDir, '.vibe', 'setup.json');

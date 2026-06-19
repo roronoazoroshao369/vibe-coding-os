@@ -7,6 +7,10 @@ export const SETUP_TOOLS = {
   codex: { file: 'AGENTS.md', src: 'AGENTS.md', manifestTool: 'codex' },
   cursor: { file: '.cursorrules', src: 'AGENTS.md', manifestTool: 'cursor' },
   gemini: { file: 'GEMINI.md', src: 'AGENTS.md', manifestTool: 'gemini' },
+  cline: { file: '.clinerules', src: 'AGENTS.md', manifestTool: 'cline' },
+  continue: { file: 'AGENTS.md', src: 'AGENTS.md', manifestTool: 'continue' },
+  aider: { file: 'CONVENTIONS.md', src: 'AGENTS.md', manifestTool: 'aider' },
+  windsurf: { file: '.windsurfrules', src: 'AGENTS.md', manifestTool: 'windsurf' },
 };
 
 export const SETUP_SCOPES = {
