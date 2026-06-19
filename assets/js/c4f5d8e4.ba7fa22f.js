@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkvibe_coding_os_docs=globalThis.webpackChunkvibe_coding_os_docs||[]).push([[634],{192(o,s,c){c.r(s),c.d(s,{default:()=>e});c(6540);var i=c(6347),d=c(6025),n=c(4848);function e(){return(0,n.jsx)(i.rd,{to:(0,d.Ay)("/docs/intro")})}}}]);
