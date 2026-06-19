@@ -74,6 +74,9 @@ jobs:
           fi
           echo "✅ package.json version ($PKG_VERSION) matches tag"
 
+      - name: Regenerate dashboard (ensure sync)
+        run: npm run dashboard:generate
+
       - name: Run final validation gate
         run: npm run validate:all
 
