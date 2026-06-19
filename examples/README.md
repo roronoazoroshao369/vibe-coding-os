@@ -16,6 +16,7 @@ Use this page to pick the smallest example that matches your current job. Start 
 | Integrate quality guards in CI/CD | [`cicd-integration/`](cicd-integration/) | `validate:all`, Quality Engine summaries, and optional telemetry for PR checks |
 | Use CLI-oriented workflows | [`cli-workflows/`](cli-workflows/) | `vibe spec`, `vibe plan`, `vibe memory`, install packs |
 | See a product-style Next.js flow | [`react-nextjs-booking-workflow/`](react-nextjs-booking-workflow/) | Realistic app workflow and acceptance criteria |
+| Orchestrate multi-stage workflows | [`advanced-orchestration/`](advanced-orchestration/) | Council → teams → validation → PR → release, plus council escalation resolution |
 
 ## Recommended first path
 

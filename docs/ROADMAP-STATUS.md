@@ -351,16 +351,21 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 
 **Release posture:** v2.4.0 turns CI/CD integration into release-ready metadata. PR quality gate workflow, weekly report workflow, reusable composite action, skill, command, canonical guide, and registry entries are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
-## v2.5 — Advanced Orchestration
-**Status:** 🗓️ PLANNED
+## v2.5.0 — Advanced Orchestration
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |:---|---|
-| Orchestration workflow schema (`schemas/orchestration-workflow.json`) | 🗓️ Planned |
-| Workflow templates (feature, bugfix, security audit) | 🗓️ Planned |
-| Workflow runner (`scripts/orchestrate-workflow.mjs`) | 🗓️ Planned |
-| Orchestration skill and command | 🗓️ Planned |
-| Orchestration guide | 🗓️ Planned |
+| Orchestration workflow schema (`schemas/orchestration-workflow.json`) | ✅ Done |
+| Workflow templates (feature, bugfix, security audit) | ✅ Done |
+| Workflow runner (`scripts/orchestrate-workflow.mjs`) | ✅ Done |
+| Orchestration skill (`skills/core/orchestration-workflows/SKILL.md`) | ✅ Done |
+| `vibe-orchestrate` command (`commands/vibe-orchestrate.md`) | ✅ Done |
+| Orchestration guide (`docs/orchestration-guide.md`) | ✅ Done |
+| Registry entries (`registry/skills.json`, `registry/prompts.json`) | ✅ Done |
+
+**Release posture:** v2.5.0 completes Advanced Orchestration and closes the v1.7→v2.5 roadmap at 100%. Validation gate count remains 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
+
 
 ---
 
@@ -388,4 +393,6 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.2.0: ████████████ 100%
 - v2.3.0: ████████████ 100%
 - v2.4.0: ████████████ 100%
-- v2.5:   ░░░░░░░░░░░ 0% (planned)
+- v2.5.0: ████████████ 100%
+
+**Overall roadmap through v2.5.0: ████████████ 100% COMPLETE**

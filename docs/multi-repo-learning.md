@@ -204,3 +204,4 @@ A **golden example** is a lesson that has been promoted beyond its original sour
 - `skills/core/lessons-learned-db/SKILL.md` — local lessons database skill
 - `scripts/lesson-exporter.mjs` — low-level exporter for the lessons DB
 - `scripts/lesson-importer.mjs` — low-level importer for the lessons DB
+- [Orchestration Guide](orchestration-guide.md) — multi-stage orchestration that can consume cross-repo lessons as stage inputs
