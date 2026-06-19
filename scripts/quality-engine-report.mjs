@@ -65,68 +65,124 @@ function formatDuration(ms) {
   return ms < 1000 ? `${ms}ms` : `${(ms / 1000).toFixed(2)}s`;
 }
 
+function asRuns(data) {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.runs)) return data.runs;
+  return [data];
+}
+
+function gateStatus(result) {
+  return result.passed ? 'PASS' : result.timedOut ? 'TIMEOUT' : 'FAIL';
+}
+
 function generateMarkdown(data) {
+  const runs = asRuns(data).filter(run => Array.isArray(run.results));
+  const primary = runs[0] || data;
   const lines = [];
-  const { engine, version, profile, startedAt, finishedAt, durationMs, totalTimeoutMs, summary, warnings, results } = data;
+  const { engine, version } = primary;
 
   lines.push('# Quality Engine Report');
   lines.push('');
   lines.push(`- Engine: \`${engine || 'quality-engine'}\` v${version ?? 1}`);
-  lines.push(`- Profile: \`${profile || 'standard'}\``);
-  lines.push(`- Started: ${startedAt || 'unknown'}`);
-  lines.push(`- Finished: ${finishedAt || 'unknown'}`);
-  lines.push(`- Duration: ${formatDuration(durationMs || 0)} (timeout: ${formatDuration(totalTimeoutMs || 0)})`);
+  lines.push(`- Runs included: ${runs.length}`);
   lines.push('');
-  lines.push('## Summary');
-  lines.push('');
-  lines.push(`- Total gates: ${summary?.total ?? results?.length ?? 0}`);
-  lines.push(`- Passed: ${summary?.passed ?? 0}`);
-  lines.push(`- Failed: ${summary?.failed ?? 0}`);
-  lines.push(`- Critical failures: ${summary?.criticalFailures ?? 0}`);
-  lines.push(`- Advisory failures: ${summary?.advisoryFailures ?? 0}`);
-  lines.push('');
-  if (warnings?.length) {
-    lines.push('## Warnings');
+
+  if (runs.length > 1) {
+    lines.push('## Profile Comparison');
     lines.push('');
-    for (const warning of warnings) lines.push(`- ${warning}`);
-    lines.push('');
-  }
-  lines.push('## Gate Results');
-  lines.push('');
-  for (const result of results || []) {
-    const icon = result.passed ? '✅' : result.critical ? '❌' : '⚠️';
-    const kind = result.critical ? 'critical' : 'advisory';
-    const cat = result.category ? ` [${result.category}]` : '';
-    lines.push(`- ${icon} **${result.name}**${cat} (${kind}): ${result.passed ? 'PASS' : result.timedOut ? 'TIMEOUT' : 'FAIL'} (${formatDuration(result.durationMs || 0)})`);
-    if (!result.passed && result.stderr) {
-      const snippet = result.stderr.split('\n').filter(Boolean).slice(-3).map(l => l.trim()).filter(Boolean);
-      for (const line of snippet) lines.push(`  - \`${line}\``);
+    for (const run of runs) {
+      lines.push(`- \`${run.profile || 'standard'}\` / \`${run.taskType || 'any'}\`: ${run.passed ? 'PASS' : 'FAIL'}, ${run.summary?.passed ?? 0}/${run.summary?.total ?? run.results.length} passed, ${run.summary?.criticalFailures ?? 0} critical failure(s), duration ${formatDuration(run.durationMs || 0)}`);
     }
+    lines.push('');
+    const allGateIds = [...new Set(runs.flatMap(run => (run.results || []).map(r => r.id)))].sort();
+    lines.push('### Gate-by-gate comparison');
+    lines.push('');
+    for (const gateId of allGateIds) {
+      const statuses = runs.map(run => {
+        const result = (run.results || []).find(r => r.id === gateId);
+        return `${run.profile || 'standard'}=${result ? gateStatus(result) : 'SKIPPED'}`;
+      });
+      lines.push(`- ${gateId}: ${statuses.join(', ')}`);
+    }
+    lines.push('');
   }
-  lines.push('');
-  lines.push('## Recommendations');
-  lines.push('');
-  const criticalFailures = (results || []).filter(r => r.critical && !r.passed);
-  const advisoryFailures = (results || []).filter(r => !r.critical && !r.passed);
-  if (criticalFailures.length > 0) {
-    lines.push(`- Resolve ${criticalFailures.length} critical gate failure(s) before release.`);
-    for (const result of criticalFailures) lines.push(`  - ${result.name}`);
+
+  for (const run of runs) {
+    const { profile, taskType, startedAt, finishedAt, durationMs, totalTimeoutMs, summary, warnings, results, selected_gates, skipped_gates, residual_risks } = run;
+    lines.push(`## Run: ${profile || 'standard'} / ${taskType || 'any'}`);
+    lines.push('');
+    lines.push(`- Started: ${startedAt || 'unknown'}`);
+    lines.push(`- Finished: ${finishedAt || 'unknown'}`);
+    lines.push(`- Duration: ${formatDuration(durationMs || 0)} (timeout: ${formatDuration(totalTimeoutMs || 0)})`);
+    lines.push(`- Overall: ${run.passed ? 'PASS' : 'FAIL'}`);
+    lines.push('');
+    lines.push('### Summary');
+    lines.push('');
+    lines.push(`- Selected gates: ${(selected_gates || results.map(r => r.id)).join(', ') || 'none'}`);
+    lines.push(`- Skipped gates: ${(skipped_gates || []).length}`);
+    lines.push(`- Total gates run: ${summary?.total ?? results?.length ?? 0}`);
+    lines.push(`- Passed: ${summary?.passed ?? 0}`);
+    lines.push(`- Failed: ${summary?.failed ?? 0}`);
+    lines.push(`- Critical failures: ${summary?.criticalFailures ?? 0}`);
+    lines.push(`- Advisory failures: ${summary?.advisoryFailures ?? 0}`);
+    lines.push('');
+    if (warnings?.length) {
+      lines.push('### Warnings');
+      lines.push('');
+      for (const warning of warnings) lines.push(`- ${warning}`);
+      lines.push('');
+    }
+    lines.push('### Gate Results');
+    lines.push('');
+    for (const result of results || []) {
+      const icon = result.passed ? '✅' : result.critical ? '❌' : '⚠️';
+      const kind = result.critical ? 'critical' : 'advisory';
+      const cat = result.category ? ` [${result.category}]` : '';
+      lines.push(`- ${icon} **${result.name}**${cat} (${kind}): ${gateStatus(result)} (${formatDuration(result.durationMs || 0)})`);
+      if (!result.passed && result.stderr) {
+        const snippet = result.stderr.split('\n').filter(Boolean).slice(-3).map(l => l.trim()).filter(Boolean);
+        for (const line of snippet) lines.push(`  - \`${line}\``);
+      }
+    }
+    lines.push('');
+    if ((skipped_gates || []).length) {
+      lines.push('### Skipped Gates');
+      lines.push('');
+      for (const gate of skipped_gates) lines.push(`- ${gate.id}: ${gate.reason}`);
+      lines.push('');
+    }
+    if ((residual_risks || []).length) {
+      lines.push('### Residual Risks');
+      lines.push('');
+      for (const risk of residual_risks.slice(0, 25)) lines.push(`- ${risk.gate || 'engine'} [${risk.severity}]: ${risk.reason}`);
+      if (residual_risks.length > 25) lines.push(`- ... ${residual_risks.length - 25} more risk item(s)`);
+      lines.push('');
+    }
+    lines.push('### Recommendations');
+    lines.push('');
+    const criticalFailures = (results || []).filter(r => r.critical && !r.passed);
+    const advisoryFailures = (results || []).filter(r => !r.critical && !r.passed);
+    if (criticalFailures.length > 0) {
+      lines.push(`- Resolve ${criticalFailures.length} critical gate failure(s) before release.`);
+      for (const result of criticalFailures) lines.push(`  - ${result.name}`);
+    }
+    if (advisoryFailures.length > 0) {
+      lines.push(`- Review ${advisoryFailures.length} advisory gate failure(s).`);
+      for (const result of advisoryFailures) lines.push(`  - ${result.name}`);
+    }
+    if (criticalFailures.length === 0 && advisoryFailures.length === 0) {
+      lines.push('- No action required for selected gates; review skipped-gate residual risks if this run is release-bound.');
+    }
+    lines.push('');
   }
-  if (advisoryFailures.length > 0) {
-    lines.push(`- Review ${advisoryFailures.length} advisory gate failure(s).`);
-    for (const result of advisoryFailures) lines.push(`  - ${result.name}`);
-  }
-  if (criticalFailures.length === 0 && advisoryFailures.length === 0) {
-    lines.push('- No action required; all selected gates passed.');
-  }
-  lines.push('');
   return lines.join('\n');
 }
 
 async function main() {
   const args = parseArgs(process.argv);
   const data = await loadReportData(args);
-  if (!data || !Array.isArray(data.results)) {
+  const runs = asRuns(data || {}).filter(run => Array.isArray(run.results));
+  if (!data || runs.length === 0) {
     console.error('No quality engine results found. Run the quality engine first, or provide --output-json <path|json> or --stdin.');
     process.exit(1);
   }

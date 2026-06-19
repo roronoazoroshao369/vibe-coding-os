@@ -55,15 +55,41 @@ const PROFILE_GATES = {
     'cli-smoke-tests', 'dashboard-data', 'quality-diff-audit', 'quality-scorecard-report'
   ]
 };
+const VALID_PROFILES = new Set(['lean', 'standard', 'heavy']);
+
+// Task-type → gate selection (used when --task-type flag is given)
+const TASK_TYPE_GATES = {
+  feature: [
+    'repo-structure', 'references', 'registry-schemas', 'traceability',
+    'injection-scan', 'secret-scan', 'quality-diff-audit', 'quality-scorecard-report'
+  ],
+  bugfix: [
+    'repo-structure', 'references', 'traceability',
+    'injection-scan', 'secret-scan', 'quality-diff-audit'
+  ],
+  refactor: [
+    'repo-structure', 'references', 'registry-schemas', 'traceability',
+    'injection-scan', 'secret-scan', 'cli-smoke-tests', 'quality-diff-audit'
+  ],
+  security: [
+    'repo-structure', 'references', 'registry-schemas', 'traceability',
+    'injection-scan', 'secret-scan', 'memory-redaction', 'quality-diff-audit'
+  ]
+};
+const VALID_TASK_TYPES = new Set(Object.keys(TASK_TYPE_GATES));
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 function parseArgs(argv) {
-  const args = { outputJson: false, gates: null, profile: null, totalTimeoutMs: null };
-  for (const arg of argv) {
+  const args = { outputJson: false, gates: null, profile: null, taskType: null, totalTimeoutMs: null };
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
     if (arg === '--output-json') args.outputJson = true;
     else if (arg.startsWith('--profile=')) args.profile = arg.slice('--profile='.length).trim();
+    else if (arg === '--profile' && argv[i + 1]) args.profile = argv[++i].trim();
+    else if (arg.startsWith('--task-type=')) args.taskType = arg.slice('--task-type='.length).trim();
+    else if (arg === '--task-type' && argv[i + 1]) args.taskType = argv[++i].trim();
     else if (arg.startsWith('--gates=')) args.gates = arg.slice('--gates='.length).split(',').map(v => v.trim()).filter(Boolean);
     else if (arg.startsWith('--timeout-ms=')) args.totalTimeoutMs = Number(arg.slice('--timeout-ms='.length));
   }
@@ -96,8 +122,9 @@ function isLevelCritical(level) {
 
 function normalizeGates(raw) {
   const gates = Array.isArray(raw) ? raw : Array.isArray(raw?.gates) ? raw.gates : [];
+  let counter = 0;
   return gates.map((gate) => ({
-    id: gate.id || gate.name || `gate-${Math.random().toString(36).slice(2, 6)}`,
+    id: gate.id || gate.name || `gate-${(++counter).toString(16).padStart(4, '0')}`,
     name: gate.name || gate.id || 'Unnamed gate',
     enabled: gate.enabled !== false,
     critical: isLevelCritical(gate.level ?? gate.severity ?? 'warning'),
@@ -107,7 +134,8 @@ function normalizeGates(raw) {
     command: gate.command || '',
     args: Array.isArray(gate.args) ? gate.args : undefined,
     category: gate.category || 'uncategorized',
-    auto_fixable: !!gate.auto_fixable
+    auto_fixable: !!gate.auto_fixable,
+    description: gate.description || ''
   }));
 }
 
@@ -177,9 +205,11 @@ function formatDuration(ms) {
 }
 
 function printHumanSummary(output) {
-  const { profile, startedAt, durationMs, totalTimeoutMs, summary, warnings, results } = output;
+  const { profile, taskType, startedAt, durationMs, summary, warnings, results } = output;
+  const skippedGates = output.skipped_gates || output.skippedGates || [];
   console.log('=== Vibe Coding OS Quality Engine ===');
   console.log(`Profile: ${profile}`);
+  console.log(`Task type: ${taskType || 'any'}`);
   console.log(`Started: ${startedAt}`);
   console.log('');
   for (const result of results) {
@@ -198,6 +228,7 @@ function printHumanSummary(output) {
     console.log('');
   }
   console.log(`Overall: ${summary.passed}/${summary.total} gates passed in ${formatDuration(durationMs)}`);
+  console.log(`Skipped: ${(skippedGates || []).length} gates`);
   console.log(summary.criticalFailures === 0
     ? 'Result: PASS (no critical gate failures)'
     : `Result: FAIL (${summary.criticalFailures} critical gate failure(s))`);
@@ -225,34 +256,62 @@ async function main() {
   const manifest = rawManifest && !rawManifest.__readError ? rawManifest : DEFAULT_MANIFEST;
 
   // Determine which gates to run
-  // Priority: --gates flag > --profile flag > config enabled_gates > default
+  // Priority: --gates flag > --task-type flag (intersected with profile) > --profile flag > config enabled_gates > default
   const profileName = args.profile || config.model_profile || 'standard';
+  const taskTypeName = args.taskType || config.task_profile || 'any';
   const allGates = normalizeGates(manifest);
+  const allGateIds = new Set(allGates.map(g => g.id));
 
-  let gateFilter;
+  // Build base gate set from profile or config
+  let baseGateSet;
   if (args.gates) {
     // Explicit --gates flag
-    gateFilter = new Set(args.gates);
+    baseGateSet = new Set(args.gates);
   } else if (args.profile && PROFILE_GATES[args.profile]) {
     // --profile flag: use the hardcoded profile gate sets
-    gateFilter = new Set(PROFILE_GATES[args.profile]);
+    baseGateSet = new Set(PROFILE_GATES[args.profile]);
   } else if (config.enabled_gates && Array.isArray(config.enabled_gates)) {
     // Config's enabled_gates list
     const enabledSet = new Set(config.enabled_gates);
     if (config.disabled_gates && Array.isArray(config.disabled_gates)) {
       for (const d of config.disabled_gates) enabledSet.delete(d);
     }
-    gateFilter = enabledSet;
+    baseGateSet = enabledSet;
   } else {
-    // No config: use first 8 gates from manifest
-    gateFilter = new Set(allGates.slice(0, 8).map(g => g.id));
+    // No config: use standard gates from manifest
+    baseGateSet = new Set(allGates.slice(0, 8).map(g => g.id));
+  }
+
+  // Intersect with task-type gates if specified
+  let gateFilter;
+  const taskTypeGates = TASK_TYPE_GATES[taskTypeName];
+  if (taskTypeGates && !args.gates) {
+    const taskGateSet = new Set(taskTypeGates);
+    // Intersect: only gates that are both in profile/base AND in task-type
+    const intersected = [...baseGateSet].filter(id => taskGateSet.has(id) && allGateIds.has(id));
+    gateFilter = new Set(intersected);
+    if (intersected.length === 0) {
+      // Fall back to task-type gates alone if intersection is empty
+      gateFilter = new Set(taskGateSet);
+      warnings.push(`Empty intersection between profile and task-type; using task-type gates only.`);
+    }
+  } else {
+    gateFilter = baseGateSet;
   }
 
   // Apply gate_overrides from config
   const gateOverrides = config.gate_overrides || {};
-  const gates = allGates.filter((gate) => {
-    if (!gate.enabled) return false;
-    if (!gateFilter.has(gate.id) && !gateFilter.has(gate.name)) return false;
+  const gates = [];
+  const skippedGates = [];
+  for (const gate of allGates) {
+    if (!gate.enabled) {
+      skippedGates.push({ ...gate, reason: 'disabled in config' });
+      continue;
+    }
+    if (!gateFilter.has(gate.id) && !gateFilter.has(gate.name)) {
+      skippedGates.push({ ...gate, reason: 'not selected by profile/task-type filter' });
+      continue;
+    }
     // Apply overrides (timeout in overrides is also in seconds, matching manifest convention)
     if (gateOverrides[gate.id]) {
       const { timeout, timeoutMs, ...override } = gateOverrides[gate.id];
@@ -260,8 +319,8 @@ async function main() {
       if (timeoutMs != null) gate.timeoutMs = Number(timeoutMs);
       Object.assign(gate, override);
     }
-    return true;
-  });
+    gates.push(gate);
+  }
 
   if (gates.length === 0) {
     warnings.push('No gates selected to run.');
@@ -296,15 +355,63 @@ async function main() {
   const criticalFailures = results.filter(r => r.critical && !r.passed);
   const advisoryFailures = results.filter(r => !r.critical && !r.passed);
 
+  // Build deterministic evidence and residual risks
+  const selectedGates = gates.map(g => g.id);
+  const skippedGatesReport = skippedGates.map(g => ({
+    id: g.id,
+    name: g.name,
+    reason: g.reason || 'unknown'
+  }));
+  const evidence = {};
+  for (const result of results) {
+    const snippets = [];
+    for (const source of ['stderr', 'stdout']) {
+      const lines = String(result[source] || '').split('\n').map(l => l.trim()).filter(Boolean).slice(-5);
+      if (lines.length) snippets.push({ source, lines });
+    }
+    evidence[result.id] = {
+      command: result.command,
+      exitCode: result.status,
+      signal: result.signal,
+      durationMs: result.durationMs,
+      timedOut: result.timedOut,
+      snippets
+    };
+  }
+  const residualRisksList = [];
+  for (const result of results) {
+    if (!result.passed) {
+      residualRisksList.push({
+        gate: result.id,
+        severity: result.critical ? 'critical' : result.timedOut ? 'timeout' : 'advisory',
+        reason: result.timedOut ? 'gate timed out' : 'gate failed'
+      });
+    }
+  }
+  for (const gate of skippedGatesReport) {
+    residualRisksList.push({
+      gate: gate.id,
+      severity: allGates.find(g => g.id === gate.id)?.critical ? 'critical (skipped)' : 'advisory (skipped)',
+      reason: gate.reason
+    });
+  }
+  for (const warning of warnings) {
+    residualRisksList.push({ gate: null, severity: 'warning', reason: warning });
+  }
+
   const output = {
     engine: 'quality-engine',
     version: 2,
     profile: profileName,
+    taskType: taskTypeName,
+    configVersion: config.version || '1.0.0',
     startedAt: startedAt.toISOString(),
     finishedAt: new Date().toISOString(),
     durationMs,
     totalTimeoutMs,
     passed: criticalFailures.length === 0,
+    selected_gates: selectedGates,
+    skipped_gates: skippedGatesReport,
     summary: {
       total: results.length,
       passed: results.filter(r => r.passed).length,
@@ -313,7 +420,9 @@ async function main() {
       advisoryFailures: advisoryFailures.length
     },
     warnings,
-    results
+    results,
+    evidence,
+    residual_risks: residualRisksList
   };
 
   if (args.outputJson) {

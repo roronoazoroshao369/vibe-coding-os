@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Quality Engine Configuration",
-  "description": "Project-level configuration schema for Vibe Coding OS quality engine — controls which gates run, their overrides, model profile, and task context",
+  "description": "Project-level configuration schema for Vibe Coding OS quality engine — controls which gates run, their overrides, model profile, task context, and profile structure definitions",
   "type": "object",
   "required": ["version", "enabled_gates", "model_profile", "task_profile"],
   "additionalProperties": false,
@@ -75,6 +75,144 @@
     "output_dir": {
       "type": "string",
       "description": "Directory path for storing gate execution reports and artifacts, relative to project root",
+      "minLength": 1
+    },
+    "total_timeout_ms": {
+      "type": "integer",
+      "description": "Total maximum execution time in milliseconds for the entire quality engine run",
+      "minimum": 1000,
+      "default": 120000
+    },
+    "profiles": {
+      "type": "object",
+      "description": "Optional per-profile gate definitions and settings. Overrides the engine built-in defaults when present",
+      "additionalProperties": false,
+      "properties": {
+        "lean": {
+          "type": "object",
+          "description": "Fast profile for small, low-risk changes. Runs most relevant gates only for quick signal",
+          "required": ["gates", "minGates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "gates": {
+              "type": "array",
+              "description": "Gate IDs to run in lean profile",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "uniqueItems": true
+            },
+            "minGates": {
+              "type": "integer",
+              "description": "Minimum number of gates that must be selected",
+              "minimum": 1,
+              "default": 4
+            },
+            "advisory": {
+              "type": "array",
+              "description": "Gate IDs that are treated as advisory (non-blocking) in this profile",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "uniqueItems": true
+            },
+            "required_categories": {
+              "type": "array",
+              "description": "Quality categories that must have at least one gate in this profile",
+              "items": {
+                "type": "string",
+                "enum": ["security", "quality", "docs", "tests", "regression"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        "standard": {
+          "type": "object",
+          "description": "Default profile for normal implementation work. Balances coverage, speed, and evidence quality",
+          "required": ["gates", "minGates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "gates": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+              "uniqueItems": true
+            },
+            "minGates": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 8
+            },
+            "advisory": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+              "uniqueItems": true
+            },
+            "required_categories": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["security", "quality", "docs", "tests", "regression"] },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        "heavy": {
+          "type": "object",
+          "description": "Deepest profile for high-risk changes: auth, data migrations, security, public APIs, release branches, broad refactors",
+          "required": ["gates", "minGates", "required_categories"],
+          "additionalProperties": false,
+          "properties": {
+            "gates": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+              "uniqueItems": true
+            },
+            "minGates": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 18
+            },
+            "advisory": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+              "uniqueItems": true
+            },
+            "required_categories": {
+              "type": "array",
+              "items": { "type": "string", "enum": ["security", "quality", "docs", "tests", "regression"] },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        }
+      }
+    },
+    "model_id": {
+      "type": "string",
+      "description": "Identifier for the AI model being used (e.g., 'gpt-4o', 'llama-3-8b'). Used for model-aware gate selection",
+      "minLength": 1
+    },
+    "model_capability": {
+      "type": "string",
+      "description": "Computed or declared capability tier of the model: low, medium, or high. Influences gate depth selection",
+      "enum": ["low", "medium", "high"]
+    },
+    "model_profiles_path": {
+      "type": "string",
+      "description": "Path to a JSON file defining model capability profiles, relative to project root",
+      "minLength": 1
+    },
+    "task_risk_classifier_path": {
+      "type": "string",
+      "description": "Path to a JSON file defining task risk classification keywords and profiles",
+      "minLength": 1
+    },
+    "stack_profile_matrix_path": {
+      "type": "string",
+      "description": "Path to a JSON file defining per-profile gate stacks and requirements",
       "minLength": 1
     }
   }

@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 1.9.0 |
+| Version | 2.0.0 |
 | Skills | 114 |
 | Commands | 88 |
 | Templates | 81 |
-| Narrative files | 524 |
+| Narrative files | 527 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -49,7 +49,8 @@
 | v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
 | v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
 | v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
-| v1.9.0 | ✅ Complete | Smart Adapt |
+| v1.9.0 | ✅ Complete | Smart Adapt, adaptive prompts, scorecards, lessons |
+| v2.0.0 | ✅ Complete | Quality Engine, schemas, integration tests, gate #26 |
 
 ## Safety Metrics
 
@@ -85,7 +86,7 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 25/25 gates passed**
+**Overall: 26/26 gates passed**
 
 ## Coverage Summary
 
@@ -98,7 +99,7 @@
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 6 |
+| Orphan templates | 3 |
 | Broken references | 0 |
 
 ## How to Regenerate

@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v1.9.0):** validate:all 25/25 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
+**Current release (v2.0.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
 
 ---
 
@@ -35,6 +35,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | [Quality Shield](docs/quality-shield.md) | Use the portable quality discipline layer for intent, context, verification, and self-review |
 | [Expert Mode](docs/expert-mode.md) | Escalate risky work to adversarial review, critique passes, task-specific quality packs, and writer-critic patterns |
 | [Smart Adapt](docs/smart-adapt.md) | Adapt prompt stacks to task risk, model weaknesses, and lessons learned |
+| [Quality Engine](docs/quality-engine-guide.md) | Run orchestrated quality gates, timing reports, and targeted fix recommendations |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -63,17 +64,16 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v1.9.0
+## What's new in v2.0.0
 
-Smart Adapt completes the Quality Elevation arc with adaptive prompt selection, model weakness memory, and a lessons-learned database. It remains markdown-first and does not expand runtime scope.
+Quality Engine promotes the Quality Shield/Smart Adapt discipline into an orchestrated gate runner with lean/heavy profiles, structured output, markdown reports, and targeted fix recommendations.
 
-## What's new in v1.9.0
-
-- **Smart Adapt:** Model Weakness Memory, Adaptive Prompt Selection, Lessons Learned DB — adapt quality behavior to model weaknesses, task types, and past mistakes.
-- **New templates:** `model-weakness-log.md`, `adaptive-prompt-matrix.md`, `lesson-entry-template.md`, `quality-scorecard-session.md`.
-- **Quality elevation examples:** `examples/quality-elevation/` hub with before/after scenarios.
-- **Registry sync:** all new skills and commands registered in `registry/skills.json` and `registry/prompts.json`.
-- **Runtime unchanged:** v1.9.0 respects ADR 0002 and does not expand runtime scope.
+- **Quality Engine runner:** `scripts/quality-engine.mjs` executes selected quality gates with timing and structured JSON output.
+- **Reports:** `scripts/quality-engine-report.mjs` produces markdown/structured summaries for release and review evidence.
+- **Skill + command:** `skills/core/quality-engine/SKILL.md` and `commands/vibe-quality-engine.md` document the workflow.
+- **Canonical guide:** `docs/quality-engine-guide.md` explains profiles, configuration, reporting, and adoption.
+- **Registry sync:** Quality Engine skill and command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v2.0.0 respects ADR 0002 and does not require a daemon or hosted service.
 
 ---
 
@@ -258,6 +258,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/quality-shield.md`](docs/quality-shield.md) — Quality Shield guide and audit map
 - [`docs/expert-mode.md`](docs/expert-mode.md) — Expert Mode escalation guide
 - [`docs/smart-adapt.md`](docs/smart-adapt.md) — Smart Adapt guide (v1.9)
+- [`docs/quality-engine-guide.md`](docs/quality-engine-guide.md) — Quality Engine guide (v2.0)
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs

@@ -33,6 +33,37 @@ const DEFAULT_RISK_CLASSIFIER = {
   },
   default_risk: 'medium'
 };
+// ---------------------------------------------------------------------------
+// Task Type Classification
+// ---------------------------------------------------------------------------
+const TASK_TYPE_KEYWORDS = {
+  feature: ['feature', 'new', 'implement', 'add', 'enhancement', 'capability', 'functionality', 'endpoint', 'api', 'command', 'integration'],
+  bugfix: ['bug', 'fix', 'issue', 'error', 'crash', 'regression', 'broken', 'incorrect', 'wrong', 'defect', 'hotfix', 'patch', 'repair'],
+  refactor: ['refactor', 'restructure', 'cleanup', 'reorganize', 'simplify', 'improve', 'optimize', 'modernize', 'migration', 'migrate'],
+  security: ['security', 'auth', 'vulnerability', 'cve', 'permission', 'audit', 'encrypt', 'secret', 'pii', 'xss', 'injection', 'csrf', 'authentication', 'authorization', 'sensitive']
+};
+
+const TASK_TYPE_GATES = {
+  feature: {
+    add: ['repo-structure', 'references', 'registry-schemas', 'quality-diff-audit'],
+    remove: []
+  },
+  bugfix: {
+    add: ['traceability', 'quality-diff-audit', 'runtime-behavioral-tests', 'secret-scan', 'injection-scan'],
+    remove: []
+  },
+  refactor: {
+    add: ['repo-structure', 'references', 'traceability', 'quality-diff-audit', 'registry-schemas'],
+    remove: []
+  },
+  security: {
+    add: ['injection-scan', 'secret-scan', 'memory-redaction', 'runtime-behavioral-tests', 'quality-diff-audit'],
+    remove: []
+  }
+};
+
+const TASK_TYPE_DEFAULT = 'feature';
+
 
 const DEFAULT_STACK_PROFILES = {
   lean: {
@@ -173,6 +204,25 @@ function classifyTaskRisk(task, classifier) {
   return classifier?.default_risk || DEFAULT_RISK_CLASSIFIER.default_risk;
 }
 
+function classifyTaskType(task) {
+  const taskLower = (task || '').toLowerCase();
+  let bestMatch = TASK_TYPE_DEFAULT;
+  let bestScore = 0;
+
+  for (const [taskType, keywords] of Object.entries(TASK_TYPE_KEYWORDS)) {
+    let score = 0;
+    for (const keyword of keywords) {
+      if (taskLower.includes(keyword)) score += 1;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = taskType;
+    }
+  }
+
+  return bestMatch;
+}
+
 // ---------------------------------------------------------------------------
 // Model Capability Lookup
 // ---------------------------------------------------------------------------
@@ -235,7 +285,7 @@ function loadWeaknessPatterns(modelId) {
 // ---------------------------------------------------------------------------
 // Gate Selection Logic
 // ---------------------------------------------------------------------------
-function selectGates({ capability, risk, stackProfiles, manifestGates, weaknessInfo }) {
+function selectGates({ capability, risk, taskType, stackProfiles, manifestGates, weaknessInfo }) {
   const profiles = stackProfiles || DEFAULT_STACK_PROFILES;
   const allGates = manifestGates || ALL_MANIFEST_GATES;
 
@@ -297,7 +347,47 @@ function selectGates({ capability, risk, stackProfiles, manifestGates, weaknessI
     });
   }
 
-  // Step 3: Weakness memory integration
+  // Step 3: Task-type aware gate selection
+  const typeGates = TASK_TYPE_GATES[taskType] || TASK_TYPE_GATES[TASK_TYPE_DEFAULT];
+  const typeAdded = [];
+  const typeRemoved = [];
+  if (typeGates) {
+    const currentSet = new Set(selectedGates);
+    for (const gate of (typeGates.add || [])) {
+      if (!currentSet.has(gate)) {
+        selectedGates.push(gate);
+        typeAdded.push(gate);
+        currentSet.add(gate);
+      }
+    }
+    if (typeAdded.length > 0) {
+      steps.push({
+        step: 'task-type',
+        action: 'add_task_type_gates',
+        taskType,
+        added: typeAdded,
+        description: `Task type "${taskType}": added ${typeAdded.length} specific gate(s) (${typeAdded.join(', ')})`
+      });
+    }
+    for (const gate of (typeGates.remove || [])) {
+      const idx = selectedGates.indexOf(gate);
+      if (idx !== -1) {
+        selectedGates.splice(idx, 1);
+        typeRemoved.push(gate);
+      }
+    }
+    if (typeRemoved.length > 0) {
+      steps.push({
+        step: 'task-type-remove',
+        action: 'remove_task_type_gates',
+        taskType,
+        removed: typeRemoved,
+        description: `Task type "${taskType}": removed ${typeRemoved.length} gate(s) (${typeRemoved.join(', ')})`
+      });
+    }
+  }
+
+  // Step 4: Weakness memory integration
   const addedFromWeakness = [];
   if (weaknessInfo?.hasLog && weaknessInfo?.modelPatterns?.length > 0) {
     const currentSet = new Set(selectedGates);
@@ -329,7 +419,7 @@ function selectGates({ capability, risk, stackProfiles, manifestGates, weaknessI
     });
   }
 
-  // Step 4: Ensure minimum gates
+  // Step 5: Ensure minimum gates
   const minGates = baseProfile.minGates || 4;
   if (selectedGates.length < minGates) {
     // Add missing critical gates from allGates to meet minimum
@@ -348,7 +438,7 @@ function selectGates({ capability, risk, stackProfiles, manifestGates, weaknessI
     });
   }
 
-  // Step 5: Ensure required categories are covered
+  // Step 6: Ensure required categories are covered
   // (This is a validation step — in practice the manifest gates cover all categories)
 
   // Deduplicate and sort
@@ -366,6 +456,7 @@ function selectGates({ capability, risk, stackProfiles, manifestGates, weaknessI
     addedFromWeakness,
     baseProfileName,
     riskLevel: risk,
+    taskType,
     modelCapability: capability
   };
 }
@@ -378,6 +469,7 @@ function buildOutput(modelId, task, result, startTime) {
     timestamp: new Date().toISOString(),
     model: modelId,
     task,
+    taskType: result.taskType,
     modelCapability: result.modelCapability,
     riskLevel: result.riskLevel,
     baseProfile: result.baseProfileName,
@@ -397,6 +489,7 @@ function printHumanOutput(output) {
   console.log(`Task:         ${output.task}`);
   console.log(`Capability:   ${output.modelCapability}`);
   console.log(`Risk Level:   ${output.riskLevel}`);
+  console.log(`Task Type:    ${output.taskType}`);
   console.log(`Base Profile: ${output.baseProfile}`);
   console.log('');
 
@@ -504,6 +597,9 @@ Examples:
   // Step 2: Task risk classification
   const risk = classifyTaskRisk(args.task, riskClassifier || DEFAULT_RISK_CLASSIFIER);
 
+  // Step 2b: Task type classification
+  const taskType = classifyTaskType(args.task);
+
   // Step 3: Load weakness memory
   const weaknessInfo = loadWeaknessPatterns(args.model);
 
@@ -511,6 +607,7 @@ Examples:
   const selection = selectGates({
     capability,
     risk,
+    taskType,
     stackProfiles,
     manifestGates,
     weaknessInfo

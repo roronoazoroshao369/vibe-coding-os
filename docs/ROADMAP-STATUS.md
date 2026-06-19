@@ -282,18 +282,21 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 
 **Release posture:** v1.9.0 is release-ready for metadata and registry scope with 25/25 validation gates targeted. Runtime remains frozen under ADR 0002; no new validation gate is added.
 
-## v2.0 — Quality Engine
-**Status:** 🧭 FUTURE / FOUNDATION PRESENT
+## v2.0.0 — Quality Engine
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |:---|---|
-| Quality engine schemas and data contracts | ✅ Foundation present |
-| Quality engine runner (core logic) | ✅ Foundation present |
-| Report generator (markdown + structured output) | ✅ Foundation present |
-| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | ✅ Foundation present |
-| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | ✅ Foundation present |
-| Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Foundation present |
-| Quality Engine registry entries (`skills.json`, `prompts.json`) | 🧭 Future hardening |
+| Quality engine schemas and data contracts (`schemas/quality-engine-config.json`, `templates/quality-engine-config.json`) | ✅ Done |
+| Quality engine runner (core logic: `scripts/quality-engine.mjs`) | ✅ Done |
+| Report generator (markdown + structured output: `scripts/quality-engine-report.mjs`) | ✅ Done |
+| Quality Engine skill (`skills/core/quality-engine/SKILL.md`) | ✅ Done |
+| `vibe-quality-engine` command (`commands/vibe-quality-engine.md`) | ✅ Done |
+| Quality Engine guide (`docs/quality-engine-guide.md`) | ✅ Done |
+| Quality Engine registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+| v2.0.0 release notes (`docs/releases/v2.0.0-release-notes.md`) | ✅ Done |
+
+**Release posture:** v2.0.0 turns Quality Engine from foundation into release-ready metadata and documentation. Existing engine runner/report artifacts are present, registries are synced, and runtime remains frozen under ADR 0002. A dedicated validation gate #26 is deferred until `scripts/test-quality-engine.mjs` exists.
 
 ## v2.1 — Model-Aware Config
 **Status:** 🗓️ PLANNED
@@ -370,7 +373,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.7.0: ████████████ 100%
 - v1.8.0: ████████████ 100%
 - v1.9.0: ████████████ 100%
-- v2.0:   ░░░░░░░░░░░ 0% (planned)
+- v2.0.0: ████████████ 100%
 - v2.1:   ░░░░░░░░░░░ 0% (planned)
 - v2.2:   ░░░░░░░░░░░ 0% (planned)
 - v2.3:   ░░░░░░░░░░░ 0% (planned)

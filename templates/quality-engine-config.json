@@ -29,5 +29,66 @@
   "model_profile": "standard",
   "task_profile": "any",
   "telemetry_enabled": false,
-  "output_dir": ".quality-engine/reports"
+  "output_dir": ".quality-engine/reports",
+  "total_timeout_ms": 120000,
+  "model_profiles_path": "templates/model-profiles.json",
+  "task_risk_classifier_path": "templates/task-risk-classifier.json",
+  "stack_profile_matrix_path": "templates/stack-profile-matrix.json",
+  "profiles": {
+    "lean": {
+      "gates": [
+        "repo-structure",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit"
+      ],
+      "minGates": 4,
+      "advisory": ["quality-scorecard-report"],
+      "required_categories": ["security", "quality"]
+    },
+    "standard": {
+      "gates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "quality-diff-audit",
+        "quality-scorecard-report"
+      ],
+      "minGates": 8,
+      "advisory": ["quality-scorecard-report", "dashboard-data", "evaluation-report"],
+      "required_categories": ["security", "quality", "tests"]
+    },
+    "heavy": {
+      "gates": [
+        "repo-structure",
+        "references",
+        "registry-schemas",
+        "pack-schemas",
+        "traceability",
+        "injection-scan",
+        "secret-scan",
+        "memory-redaction",
+        "adapter-smoke-tests",
+        "cli-smoke-tests",
+        "e2e-workflow",
+        "dashboard-data",
+        "dashboard-sync-check",
+        "release-metadata",
+        "evaluation-report",
+        "bilingual-readme-sync",
+        "markdown-links",
+        "readme-heading-version",
+        "roadmap-status-integrity",
+        "runtime-behavioral-tests",
+        "quality-diff-audit",
+        "quality-scorecard-report"
+      ],
+      "minGates": 18,
+      "advisory": ["quality-scorecard-report", "dashboard-data", "evaluation-report"],
+      "required_categories": ["security", "quality", "docs", "tests", "regression"]
+    }
+  }
 }
