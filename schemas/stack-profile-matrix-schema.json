@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Stack Profile Matrix Schema",
+  "description": "Schema for Vibe Coding OS stack profile matrix — maps technology stack features to recommended model profiles and quality pack overrides.",
+  "type": "object",
+  "required": ["version", "tech_stacks"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional human-readable description of this matrix."
+    },
+    "tech_stacks": {
+      "type": "array",
+      "description": "Array of technology stack entries, each defining framework, language, database, and recommended model profile.",
+      "items": {
+        "$ref": "#/definitions/techStackEntry"
+      },
+      "minItems": 1
+    }
+  },
+  "definitions": {
+    "techStackEntry": {
+      "type": "object",
+      "description": "Defines a technology stack combination with model profile hints and optional quality pack overrides.",
+      "required": ["id", "framework", "language", "profile_hint"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this stack entry.",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "framework": {
+          "type": "string",
+          "description": "Technology framework name. Use 'any' if framework-agnostic.",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary programming language.",
+          "minLength": 1
+        },
+        "database": {
+          "type": "string",
+          "description": "Primary database technology. Use 'any' or empty string if not applicable.",
+          "default": ""
+        },
+        "profile_hint": {
+          "type": "string",
+          "description": "Recommended quality engine profile for this stack combination.",
+          "enum": ["lean", "standard", "heavy"]
+        },
+        "quality_pack_overrides": {
+          "type": "object",
+          "description": "Optional per-task-type overrides to quality pack IDs for this stack entry.",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9-]*$"
+          }
+        }
+      }
+    }
+  }
+}

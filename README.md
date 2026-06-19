@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.0.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
+**Current release (v2.1.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **82 templates** · 14 tracked sources
 
 ---
 
@@ -36,6 +36,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 | [Expert Mode](docs/expert-mode.md) | Escalate risky work to adversarial review, critique passes, task-specific quality packs, and writer-critic patterns |
 | [Smart Adapt](docs/smart-adapt.md) | Adapt prompt stacks to task risk, model weaknesses, and lessons learned |
 | [Quality Engine](docs/quality-engine-guide.md) | Run orchestrated quality gates, timing reports, and targeted fix recommendations |
+| [Model-Aware Config](docs/model-aware-config-guide.md) | Configure Quality Engine gates from model capability, task risk, and project settings |
 | [Quickstart](docs/QUICKSTART.md) | 10-minute setup for Claude Code, Codex, or Cursor |
 | [Adapter hub](docs/adapters/README.md) | Tool-specific setup docs for Claude Code, Codex, Cursor, and Gemini |
 | [Tutorial](docs/TUTORIAL.md) | 15-minute zero-to-workflow walkthrough |
@@ -64,16 +65,15 @@ Intent → Spec → Plan → Implement → Test → Review → Memory → Merge
 
 ---
 
-## What's new in v2.0.0
+## What's new in v2.1.0
 
-Quality Engine promotes the Quality Shield/Smart Adapt discipline into an orchestrated gate runner with lean/heavy profiles, structured output, markdown reports, and targeted fix recommendations.
+Model-Aware Config makes Quality Engine gate selection sensitive to model capability, task risk, and project constraints before execution.
 
-- **Quality Engine runner:** `scripts/quality-engine.mjs` executes selected quality gates with timing and structured JSON output.
-- **Reports:** `scripts/quality-engine-report.mjs` produces markdown/structured summaries for release and review evidence.
-- **Skill + command:** `skills/core/quality-engine/SKILL.md` and `commands/vibe-quality-engine.md` document the workflow.
-- **Canonical guide:** `docs/quality-engine-guide.md` explains profiles, configuration, reporting, and adoption.
-- **Registry sync:** Quality Engine skill and command are registered in `registry/skills.json` and `registry/prompts.json`.
-- **Runtime unchanged:** v2.0.0 respects ADR 0002 and does not require a daemon or hosted service.
+- **Model-aware gate selection:** choose lean/heavy/custom gate profiles from declared model capability and task risk.
+- **Skill + command:** `skills/core/model-aware-config/SKILL.md` and `commands/vibe-model-config.md` document the workflow.
+- **Canonical guide:** `docs/model-aware-config-guide.md` explains profiles, inputs, examples, and Quality Engine integration.
+- **Registry sync:** Model-Aware Config skill and command are registered in `registry/skills.json` and `registry/prompts.json`.
+- **Runtime unchanged:** v2.1.0 respects ADR 0002 and does not require a daemon or hosted service.
 
 ---
 
@@ -91,7 +91,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**114 skills**, **88 commands**, **81 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**114 skills**, **88 commands**, **82 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -259,6 +259,7 @@ All adaptations are documented in `references/sources/` and `references/mappings
 - [`docs/expert-mode.md`](docs/expert-mode.md) — Expert Mode escalation guide
 - [`docs/smart-adapt.md`](docs/smart-adapt.md) — Smart Adapt guide (v1.9)
 - [`docs/quality-engine-guide.md`](docs/quality-engine-guide.md) — Quality Engine guide (v2.0)
+- [`docs/model-aware-config-guide.md`](docs/model-aware-config-guide.md) — Model-Aware Config guide (v2.1)
 - [`docs/TUTORIAL.md`](docs/TUTORIAL.md) — 15-minute tutorial
 - [`INSTALL.md`](INSTALL.md) — installation options
 - [`skills/README.md`](skills/README.md), [`commands/README.md`](commands/README.md), [`templates/README.md`](templates/README.md), [`registry/README.md`](registry/README.md) — layer READMEs

@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Model Profile Registry",
-  "description": "Schema for Vibe Coding OS model profile registry — defines model capability ratings and task-risk classifications for v2.1 Model-Aware Configuration",
+  "description": "Schema for Vibe Coding OS model-aware configuration. Defines model capabilities, task-to-quality-pack defaults, context limits, and recommended quality profiles.",
   "type": "object",
-  "required": ["version", "modelProfiles", "taskRiskProfiles"],
+  "required": ["version", "modelProfiles"],
   "additionalProperties": false,
   "properties": {
     "version": {
@@ -13,117 +13,82 @@
     },
     "modelProfiles": {
       "type": "object",
-      "description": "Record of model profile objects keyed by model identifier",
+      "description": "Record of model profile objects keyed by model_id",
       "additionalProperties": {
         "$ref": "#/definitions/modelProfile"
       },
       "propertyNames": {
-        "pattern": "^[a-z][a-z0-9.-]*$"
+        "pattern": "^[a-z][a-z0-9._:-]*$"
       },
       "minProperties": 1
-    },
-    "taskRiskProfiles": {
-      "type": "object",
-      "description": "Record of task risk profile objects keyed by task type",
-      "additionalProperties": {
-        "$ref": "#/definitions/taskRiskProfile"
-      },
-      "propertyNames": {
-        "pattern": "^[a-z][a-z0-9-]*$"
-      },
-      "minProperties": 1
-    }
-  },
-  "default": {
-    "version": "2.1.0",
-    "modelProfiles": {
-      "claude-sonnet-4": { "modelId": "claude-sonnet-4", "vendor": "anthropic", "name": "Claude Sonnet 4", "capability": "high", "qualityStack": "heavy", "advisoryLevel": "thorough" },
-      "claude-haiku-3.5": { "modelId": "claude-haiku-3.5", "vendor": "anthropic", "name": "Claude Haiku 3.5", "capability": "medium", "qualityStack": "standard", "advisoryLevel": "normal" },
-      "gpt-4o": { "modelId": "gpt-4o", "vendor": "openai", "name": "GPT-4o", "capability": "high", "qualityStack": "heavy", "advisoryLevel": "thorough" },
-      "gpt-4o-mini": { "modelId": "gpt-4o-mini", "vendor": "openai", "name": "GPT-4o mini", "capability": "medium", "qualityStack": "standard", "advisoryLevel": "normal" },
-      "gemini-2.0-flash": { "modelId": "gemini-2.0-flash", "vendor": "google", "name": "Gemini 2.0 Flash", "capability": "medium", "qualityStack": "standard", "advisoryLevel": "normal" },
-      "deepseek-v3": { "modelId": "deepseek-v3", "vendor": "deepseek", "name": "DeepSeek V3", "capability": "high", "qualityStack": "heavy", "advisoryLevel": "thorough" },
-      "llama-3-70b": { "modelId": "llama-3-70b", "vendor": "meta", "name": "Llama 3 70B", "capability": "medium", "qualityStack": "standard", "advisoryLevel": "normal" },
-      "hermes-3": { "modelId": "hermes-3", "vendor": "nous-research", "name": "Hermes 3", "capability": "medium", "qualityStack": "standard", "advisoryLevel": "normal" }
-    },
-    "taskRiskProfiles": {
-      "bugfix": { "taskType": "bugfix", "risk": "low", "minQualityStack": "standard", "requiredGates": ["repo-structure", "injection-scan", "secret-scan", "quality-diff-audit"] },
-      "refactor": { "taskType": "refactor", "risk": "low", "minQualityStack": "standard", "requiredGates": ["repo-structure", "injection-scan", "secret-scan", "quality-diff-audit", "traceability"] },
-      "feature": { "taskType": "feature", "risk": "medium", "minQualityStack": "standard", "requiredGates": ["repo-structure", "references", "registry-schemas", "traceability", "injection-scan", "secret-scan", "quality-diff-audit", "quality-scorecard-report"] },
-      "security": { "taskType": "security", "risk": "high", "minQualityStack": "heavy", "requiredGates": ["repo-structure", "references", "registry-schemas", "pack-schemas", "traceability", "injection-scan", "secret-scan", "memory-redaction", "quality-diff-audit", "quality-scorecard-report"] },
-      "migration": { "taskType": "migration", "risk": "high", "minQualityStack": "heavy", "requiredGates": ["repo-structure", "references", "registry-schemas", "pack-schemas", "traceability", "injection-scan", "secret-scan", "e2e-workflow", "quality-diff-audit", "quality-scorecard-report"] },
-      "init": { "taskType": "init", "risk": "medium", "minQualityStack": "standard", "requiredGates": ["repo-structure", "references", "registry-schemas", "traceability", "injection-scan", "secret-scan", "quality-diff-audit"] }
     }
   },
   "definitions": {
     "modelProfile": {
       "type": "object",
-      "description": "Defines a single model profile with capability rating and derived quality stack defaults",
-      "required": ["modelId", "vendor", "name", "capability", "qualityStack", "advisoryLevel"],
+      "description": "Defines a single model with provider metadata, capabilities, quality pack recommendations, and token limits.",
+      "required": [
+        "model_id",
+        "vendor",
+        "capabilities",
+        "quality_config",
+        "max_tokens",
+        "context_window",
+        "recommended_profile"
+      ],
       "additionalProperties": false,
       "properties": {
-        "modelId": {
+        "model_id": {
           "type": "string",
-          "description": "Unique model identifier used in config references (e.g., 'claude-sonnet-4')",
-          "pattern": "^[a-z][a-z0-9.-]*$"
+          "description": "Unique model identifier used in config references, matching the registry key.",
+          "pattern": "^[a-z][a-z0-9._:-]*$"
         },
         "vendor": {
           "type": "string",
-          "description": "Vendor or provider name (e.g., 'anthropic', 'openai', 'google', 'deepseek', 'meta', 'nous-research')",
+          "description": "Vendor or provider name such as anthropic, openai, google, deepseek, meta, or nous-research.",
           "minLength": 1
         },
         "name": {
           "type": "string",
-          "description": "Human-readable model display name (e.g., 'Claude Sonnet 4')",
+          "description": "Optional human-readable model display name.",
           "minLength": 1
         },
-        "capability": {
-          "type": "string",
-          "description": "General capability tier — influences which validation gates and quality checks are appropriate",
-          "enum": ["high", "medium", "low"]
-        },
-        "qualityStack": {
-          "type": "string",
-          "description": "Default quality engine stack for this model — lean skips expensive gates, standard runs typical checks, heavy runs all gates",
-          "enum": ["lean", "standard", "heavy"]
-        },
-        "advisoryLevel": {
-          "type": "string",
-          "description": "Default advisory gate thoroughness level — minimal shows only critical warnings, normal shows all, thorough includes deep analysis",
-          "enum": ["minimal", "normal", "thorough"]
-        }
-      }
-    },
-    "taskRiskProfile": {
-      "type": "object",
-      "description": "Defines risk classification for a task type, including the minimum quality stack and required gates",
-      "required": ["taskType", "risk", "minQualityStack", "requiredGates"],
-      "additionalProperties": false,
-      "properties": {
-        "taskType": {
-          "type": "string",
-          "description": "Task type identifier (e.g., 'bugfix', 'feature', 'security')",
-          "pattern": "^[a-z][a-z0-9-]*$"
-        },
-        "risk": {
-          "type": "string",
-          "description": "Risk level assigned to this task type — determines how many gates and which quality stack to enforce",
-          "enum": ["low", "medium", "high"]
-        },
-        "minQualityStack": {
-          "type": "string",
-          "description": "Minimum quality engine stack required for this task type — task risk can force a heavier stack than the model default",
-          "enum": ["lean", "standard", "heavy"]
-        },
-        "requiredGates": {
+        "capabilities": {
           "type": "array",
-          "description": "List of gate IDs that must run for this task type, regardless of model profile",
+          "description": "Supported model capabilities used for model-aware task routing and quality selection.",
           "items": {
             "type": "string",
-            "pattern": "^[a-z][a-z0-9-]*$"
+            "enum": ["vision", "code", "long_context", "reasoning", "tool_use"]
           },
           "uniqueItems": true,
           "minItems": 1
+        },
+        "quality_config": {
+          "type": "object",
+          "description": "Mapping from task type to the default quality pack id for this model.",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minProperties": 1
+        },
+        "max_tokens": {
+          "type": "integer",
+          "description": "Maximum output token budget recommended for this model.",
+          "minimum": 1
+        },
+        "context_window": {
+          "type": "integer",
+          "description": "Total model context window in tokens.",
+          "minimum": 1
+        },
+        "recommended_profile": {
+          "type": "string",
+          "description": "Recommended quality engine profile for typical use with this model.",
+          "enum": ["lean", "standard", "heavy"]
         }
       }
     }

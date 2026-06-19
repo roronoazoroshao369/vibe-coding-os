@@ -20,22 +20,21 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.0.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v2.1.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **82 templates** · 14 tracked sources
 
-**Mới:** v2.0.0 Quality Engine — thêm runner điều phối quality gates, profile lean/heavy, báo cáo markdown/JSON và đề xuất sửa lỗi có mục tiêu. Runtime không đổi.
+**Mới:** v2.1.0 Model-Aware Config — cấu hình Quality Engine gates theo năng lực model, rủi ro task và thiết lập dự án trước khi chạy. Runtime không đổi.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v2.0.0
+## Có gì mới trong v2.1.0
 
-- **Quality Engine:** `scripts/quality-engine.mjs` chạy quality gates theo profile, ghi timing và xuất JSON có cấu trúc.
-- **Báo cáo:** `scripts/quality-engine-report.mjs` tạo markdown/structured report để làm bằng chứng review và release.
-- **Skill + command:** `skills/core/quality-engine/SKILL.md` và `commands/vibe-quality-engine.md` hướng dẫn workflow.
-- **Guide chính:** `docs/quality-engine-guide.md` mô tả profile, config, reporting và cách áp dụng.
-- **Registry sync:** Quality Engine skill/command đã có trong `registry/skills.json` và `registry/prompts.json`.
-- **Không mở runtime:** v2.0.0 tiếp tục tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
+- **Model-aware gate selection:** chọn profile/gates dựa trên capability của model và risk của task.
+- **Skill + command:** `skills/core/model-aware-config/SKILL.md` và `commands/vibe-model-config.md` hướng dẫn workflow.
+- **Guide chính:** `docs/model-aware-config-guide.md` mô tả input, profile, ví dụ và tích hợp Quality Engine.
+- **Registry sync:** Model-Aware Config skill/command đã có trong `registry/skills.json` và `registry/prompts.json`.
+- **Không mở runtime:** v2.1.0 tiếp tục tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ---
 
@@ -196,6 +195,7 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 - [Docs Hub](docs/README.md)
 - [Smart Adapt](docs/smart-adapt.md)
 - [Quality Engine](docs/quality-engine-guide.md)
+- [Model-Aware Config](docs/model-aware-config-guide.md)
 - [Roadmap Status](docs/ROADMAP-STATUS.md)
 - [Support Matrix](docs/support-matrix.md)
 - [Governance](docs/governance.md)
@@ -205,12 +205,12 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 ---
 
-## Release hiện tại: v2.0.0
+## Release hiện tại: v2.1.0
 
 Điểm chính:
 
-- Quality Engine điều phối quality gates bằng profile lean/heavy và structured output.
-- Báo cáo Quality Engine hỗ trợ evidence cho review/release và đề xuất sửa lỗi.
+- Model-Aware Config cấu hình Quality Engine gates theo model capability, task risk và project settings.
+- `vibe-model-config` giúp chọn gate profile trước khi chạy Quality Engine.
 - README, roadmap, dashboard và release metadata được sync với 26/26 validation gates.
 - Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 

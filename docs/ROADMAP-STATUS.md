@@ -298,15 +298,17 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 
 **Release posture:** v2.0.0 turns Quality Engine from foundation into release-ready metadata and documentation. Existing engine runner/report artifacts are present, registries are synced, and runtime remains frozen under ADR 0002. A dedicated validation gate #26 is deferred until `scripts/test-quality-engine.mjs` exists.
 
-## v2.1 — Model-Aware Config
-**Status:** 🗓️ PLANNED
+## v2.1.0 — Model-Aware Config
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |---|---|
-| Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | 🗓️ Planned |
-| `vibe-model-config` command (`commands/vibe-model-config.md`) | 🗓️ Planned |
-| Model-Aware Config guide (`docs/model-aware-config-guide.md`) | 🗓️ Planned |
-| Model-Aware Config registry entries (`skills.json`, `prompts.json`) | 🗓️ Planned |
+| Model-Aware Config skill (`skills/core/model-aware-config/SKILL.md`) | ✅ Done |
+| `vibe-model-config` command (`commands/vibe-model-config.md`) | ✅ Done |
+| Model-Aware Config guide (`docs/model-aware-config-guide.md`) | ✅ Done |
+| Model-Aware Config registry entries (`skills.json`, `prompts.json`) | ✅ Done |
+
+**Release posture:** v2.1.0 adds model-aware Quality Engine configuration while keeping the validation gate count at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.2 — Quality Telemetry & Analytics
 **Status:** 🗓️ PLANNED
@@ -374,7 +376,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v1.8.0: ████████████ 100%
 - v1.9.0: ████████████ 100%
 - v2.0.0: ████████████ 100%
-- v2.1:   ░░░░░░░░░░░ 0% (planned)
+- v2.1.0: ████████████ 100%
 - v2.2:   ░░░░░░░░░░░ 0% (planned)
 - v2.3:   ░░░░░░░░░░░ 0% (planned)
 - v2.4:   ░░░░░░░░░░░ 0% (planned)
