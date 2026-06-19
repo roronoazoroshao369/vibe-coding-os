@@ -25,7 +25,12 @@ skills/core/lessons-learned-db/lessons.json
 .idea/
 .vscode/
 .hermes/
+# Claude Code local state
+.claude/
+*.claude.md
 # Docusaurus website build
 website/build/
 website/node_modules/
 website/.docusaurus/
+# Website lockfile (subproject — doesn't affect main package)
+website/package-lock.json

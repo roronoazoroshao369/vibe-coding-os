@@ -13,7 +13,7 @@ npm install
 npm run validate:all
 ```
 
-Mục tiêu hiện tại: 25/25 PASS.
+Mục tiêu hiện tại: 26/26 PASS.
 
 ---
 
@@ -24,26 +24,28 @@ Xem đầy đủ tại [docs/adapters/README.md](../adapters/README.md), gồm C
 ### Claude Code
 
 ```bash
-cp adapters/claude-code/skills.md docs/  # hoặc paste nội dung vào CLAUDE.md
+cp CLAUDE.md ./CLAUDE.md  # hoặc copy adapters/claude-code/README.md
 ```
 
-Sau đó mở Claude Code trong repo và chạy prompt từ [docs/vi/FIRST-WORKFLOW.md](FIRST-WORKFLOW.md). Chi tiết: [Claude Code adapter](../adapters/claude-code.md).
+Sau đó mở Claude Code trong repo và chạy prompt từ [docs/vi/FIRST-WORKFLOW.md](FIRST-WORKFLOW.md). Chi tiết: [Claude Code adapter](../../adapters/claude-code/README.md).
 
 ### Codex CLI
 
+Codex dùng `AGENTS.md` làm instruction file chính (đã có sẵn trong repo root):
+
 ```bash
-cp adapters/codex/AGENTS.md ./AGENTS.md
+cp AGENTS.md ./AGENTS.md
 ```
 
-Sau đó chạy Codex CLI trong repo. Chi tiết: [Codex adapter](../adapters/codex.md).
+Sau đó chạy Codex CLI trong repo. Chi tiết: [Codex adapter](../../adapters/codex/README.md).
 
 ### Cursor
 
 ```bash
-cp adapters/cursor/rules.md .cursor/rules/  # hoặc paste .cursorrules
+cp -r adapters/cursor/rules/ .cursor/rules/  # hoặc paste .cursorrules
 ```
 
-Sau đó mở Cursor trong repo. Chi tiết: [Cursor adapter](../adapters/cursor.md).
+Sau đó mở Cursor trong repo. Chi tiết: [Cursor adapter](../../adapters/cursor/README.md).
 
 ---
 
@@ -53,7 +55,7 @@ Sau đó mở Cursor trong repo. Chi tiết: [Cursor adapter](../adapters/cursor
 npm run validate:all
 ```
 
-Nếu 25/25 PASS, framework đã sẵn sàng.
+Nếu 26/26 PASS, framework đã sẵn sàng.
 
 ---
 
