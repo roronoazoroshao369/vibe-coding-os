@@ -20,21 +20,21 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v1.8.0):** validate:all 25/25 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v1.9.0):** validate:all 25/25 gates PASS · **114 skills** · **88 commands** · **81 templates** · 14 tracked sources
 
-**Mới:** v1.8.0 Expert Mode — xem `docs/expert-mode.md` để dùng adversarial review, critique pass, quality packs, Writer-Critic Pair và Quality Council. Runtime không đổi.
+**Mới:** v1.9.0 Smart Adapt — thêm Model Weakness Memory, Adaptive Prompt Selection và Lessons Learned DB để chọn quality stack theo task, model weakness và bài học đã ghi nhận. Runtime không đổi.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v1.8.0
+## Có gì mới trong v1.9.0
 
-- **Expert Mode:** thêm Adversarial Code Review, Critique Pass Protocol, 5 quality packs theo tác vụ (API, DB migration, auth, frontend state, async jobs), Writer-Critic Pair và Quality Council.
-- **Guide canonical:** `docs/expert-mode.md` giải thích khi nào nâng cấp từ Quality Shield sang Expert Mode.
-- **Templates mới:** `critique-pass-template.md` và `quality-pack-scorecard.md` để ghi evidence, blocker, residual risks và verdict.
+- **Smart Adapt:** thêm Model Weakness Memory, Adaptive Prompt Selection và Lessons Learned DB để workflow tự chọn prompt/quality pack phù hợp hơn.
+- **Templates mới:** `model-weakness-log.md`, `adaptive-prompt-matrix.md`, `lesson-entry-template.md`, `quality-scorecard-session.md`.
+- **Ví dụ quality elevation:** `examples/quality-elevation/` chứa hub và scenarios before/after.
 - **Registry sync:** skills/commands mới đã được đăng ký trong `registry/skills.json` và `registry/prompts.json`.
-- **Không mở runtime:** v1.8.0 tiếp tục tuân thủ ADR 0002.
+- **Không mở runtime:** v1.9.0 tiếp tục tuân thủ ADR 0002.
 
 ---
 
@@ -193,6 +193,7 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 ## Tài liệu quan trọng
 
 - [Docs Hub](docs/README.md)
+- [Smart Adapt](docs/smart-adapt.md)
 - [Roadmap Status](docs/ROADMAP-STATUS.md)
 - [Support Matrix](docs/support-matrix.md)
 - [Governance](docs/governance.md)
@@ -202,17 +203,14 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 ---
 
-## Release hiện tại: v1.5.0
+## Release hiện tại: v1.9.0
 
 Điểm chính:
 
-- Runtime scope freeze chính thức.
-- README.vi.md được diet để giảm onboarding overload.
-- Roadmap cập nhật v1.4.1 → v1.5.0.
-- Config hardening: normalize risk level, validate tool lists.
-- MCP approval scoped theo args hash.
-- Negative TTL bị reject ở public task lease APIs.
-- Thêm Vietnamese Quickstart và adoption feedback template.
+- Smart Adapt thêm memory cho model weakness, chọn prompt thích nghi và lessons learned có cấu trúc.
+- Quality Elevation examples hỗ trợ so sánh before/after và kịch bản cải thiện output.
+- README, roadmap, dashboard và release metadata được sync với 25/25 validation gates.
+- Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 
 ---
 

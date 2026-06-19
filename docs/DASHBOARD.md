@@ -1,17 +1,17 @@
 # Vibe Coding OS — Project Health Dashboard
 
 > **Auto-generated** by `scripts/generate-dashboard.mjs` — do not edit manually.
-> Last generated: 2026-06-18
+> Last generated: 2026-06-19
 
 ## Quick Status
 
 | Metric | Value |
 |---|---|
-| Version | 1.8.0 |
+| Version | 1.9.0 |
 | Skills | 114 |
 | Commands | 88 |
 | Templates | 81 |
-| Narrative files | 521 |
+| Narrative files | 524 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -49,6 +49,7 @@
 | v1.6.0 | ✅ Complete | Adoption trust, onboarding docs, CLI onboarding UX |
 | v1.7.0 | ✅ Complete | Quality Shield, copy-paste workflow, example |
 | v1.8.0 | ✅ Complete | Expert Mode, critique pass, quality packs, council |
+| v1.9.0 | ✅ Complete | Smart Adapt |
 
 ## Safety Metrics
 
@@ -90,9 +91,9 @@
 
 | Area | Status |
 |---|---|
-| Skills (112) | All have SKILL.md with required sections |
+| Skills (114) | All discovered dynamically from `skills/` |
 | Commands (88) | All discovered dynamically from `commands/` |
-| Templates (80) | All discovered dynamically from `templates/` |
+| Templates (81) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |

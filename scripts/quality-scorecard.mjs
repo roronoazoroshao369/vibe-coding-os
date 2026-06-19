@@ -69,6 +69,19 @@ function riskNotes(files, groups, qualityResult) {
 }
 
 function main() {
+  // --help / -h: print usage and exit cleanly
+  if (process.argv.includes('--help') || process.argv.includes('-h')) {
+    console.log('usage: node scripts/quality-scorecard.mjs [--help|-h]');
+    console.log('');
+    console.log('Print a lightweight markdown-style quality review report for the current');
+    console.log('working-tree diff. Zero dependencies, advisory only — exits 0 unless the');
+    console.log('script itself crashes.');
+    console.log('');
+    console.log('Options:');
+    console.log('  --help, -h    Show this usage message and exit.');
+    process.exit(0);
+  }
+
   const stat = run('git diff --stat HEAD');
   const names = run('git diff --name-only HEAD');
   const files = names.output ? names.output.split('\n').map((line) => line.trim()).filter(Boolean) : [];
