@@ -11,7 +11,7 @@
 | Skills | 117 |
 | Commands | 90 |
 | Templates | 86 |
-| Narrative files | 558 |
+| Narrative files | 559 |
 | Upstream sources | 14 |
 | Broken refs | 0 |
 
@@ -97,14 +97,14 @@
 
 | Area | Status |
 |---|---|
-| Skills (116) | All discovered dynamically from `skills/` |
+| Skills (117) | All discovered dynamically from `skills/` |
 | Commands (90) | All discovered dynamically from `commands/` |
-| Templates (85) | All discovered dynamically from `templates/` |
+| Templates (86) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
 | Orphan skills | 0 (warnings — review signal) |
-| Orphan templates | 1 |
+| Orphan templates | 0 |
 | Broken references | 0 |
 
 ## How to Regenerate

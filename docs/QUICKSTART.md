@@ -66,6 +66,8 @@ npm link
 npm run validate:all
 ```
 
+> **Fallback:** If `npm link` is unavailable or the `vibe` command is not found, use `node scripts/vibe-cli.mjs <command>` instead (e.g., `node scripts/vibe-cli.mjs doctor`).
+
 Then move to your target project:
 
 ```bash

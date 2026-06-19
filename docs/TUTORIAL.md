@@ -57,27 +57,20 @@ vibe doctor
 You should see all checks passing:
 
 ```
-🩺 Vibe Coding OS — Doctor
+Vibe Coding OS — Health Check
 
-Checking repository structure...
-  ✅ package.json found
-  ✅ AGENTS.md found
-  ✅ CHANGELOG.md found
-  ✅ docs/ directory found
-  ✅ skills/ directory found
-  ✅ commands/ directory found
-  ✅ templates/ directory found
-  ✅ scripts/ directory found
-  ✅ registry/ directory found
-  ✅ references/ directory found
+✓ package.json
+⚠ node_modules — not found (optional)
+✓ skills/
+✓ commands/
+✓ templates/
+✓ adapters/
+✓ scripts/
+✓ references/
+✓ package.json is valid with validate script
 
-Checking validation scripts...
-  ✅ scripts/validate-repo.mjs
-  ✅ scripts/validate-references.mjs
-  ✅ scripts/validate-traceability.mjs
-  ✅ scripts/validate-injection.mjs
-
-All checks passed! ✅
+Results: 8 passed, 0 failed
+✅ All checks passed! Vibe Coding OS is ready.
 ```
 
 > **Tip:** Run `vibe doctor` at the start of every session and after pulling new changes.

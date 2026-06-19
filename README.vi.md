@@ -20,7 +20,7 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.5.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **85 templates** · 14 tracked sources · roadmap hoàn tất 100% đến v2.5.0
+**Bản phát hành hiện tại (v2.5.0):** validate:all 26/26 gates PASS · **117 skills** · **90 commands** · **86 templates** · 14 tracked sources · roadmap hoàn tất 100% đến v2.5.0
 
 **Mới nhất:** v2.5.0 Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 

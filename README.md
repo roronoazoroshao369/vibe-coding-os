@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.5.0):** validate:all 26/26 gates PASS · **116 skills** · **90 commands** · **85 templates** · 14 tracked sources · Roadmap 100% complete through v2.5.0
+**Current release (v2.5.0):** validate:all 26/26 gates PASS · **117 skills** · **90 commands** · **86 templates** · 14 tracked sources · Roadmap 100% complete through v2.5.0
 
 ---
 
@@ -136,7 +136,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**116 skills**, **90 commands**, **85 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
+**117 skills**, **90 commands**, **86 templates**, **14 tracked inspiration sources**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|

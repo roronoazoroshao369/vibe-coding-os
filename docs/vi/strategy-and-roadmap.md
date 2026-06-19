@@ -14,7 +14,7 @@ Trạng thái v1.5.0:
 - 56 templates cho spec, plan, task, review, memory, upstream audit, scorecard, redaction, governance, ADR;
 - adapters cho Claude Code, Codex CLI, Cursor, Gemini CLI;
 - Reference Intelligence Layer với 14 upstream sources được theo dõi;
-- Validation: `validate:all` **20/20 gates PASS**, 0 broken refs, 0 orphan commands/skills;
+- Validation: `validate:all` **26/26 gates PASS**, 0 broken refs, 0 orphan commands/skills;
 - CLI smoke tests: **70/70 PASS**;
 - Runtime behavioral tests: **14/14 test files PASS**;
 - Optional runtime kernel: config layer, task state machine, event store v2 (sequence numbers, correlation/causation, idempotency);
@@ -66,7 +66,7 @@ Bốn trụ cột:
 
 | Metric | v1.4.0 | v1.5.0 | Trend |
 |--------|--------|--------|-------|
-| validate:all | 20/20 | 20/20 | ✅ ổn định |
+| validate:all | 26/26 | 26/26 | ✅ ổn định |
 | Skills | 90 | 90 | Giữ nguyên |
 | Commands | 68 | 68 | Giữ nguyên |
 | Templates | 56 | 56 | Giữ nguyên |

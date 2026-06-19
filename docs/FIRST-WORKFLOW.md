@@ -24,6 +24,8 @@ npm link
 
 After `npm link`, the `vibe` command is available globally. This is a one-time setup.
 
+> **Fallback:** If `npm link` is unavailable or the `vibe` command is not found, use `node scripts/vibe-cli.mjs <command>` instead (e.g., `node scripts/vibe-cli.mjs doctor`).
+
 ## Step 2 — Validate the Framework Installation
 
 ```bash
@@ -38,7 +40,7 @@ Then run the framework's own validation suite:
 npm run validate:all
 ```
 
-> **Note:** `npm run validate:all` validates the framework itself (20 gates). It is separate from your app's tests.
+> **Note:** `npm run validate:all` validates the framework itself (26 gates). It is separate from your app's tests.
 
 ## Step 3 — Switch to Your Target Project
 

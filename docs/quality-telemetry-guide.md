@@ -13,7 +13,7 @@ Instead of reviewing each run in isolation, telemetry shows you:
 
 ## What telemetry captures
 
-Each telemetry event is a flat object that conforms to `schemas/quality-telemetry-event.json`. The schema is intentionally lean — it records only metadata, never raw content:
+Each telemetry event is a flat object that conforms to `schemas/quality-telemetry-event.json`. The schema is intentionally lean — it records only metadata, never raw content. See `templates/quality-event-example.json` for example payloads for each supported `eventType`.
 
 | Field | Description |
 |---|---|
