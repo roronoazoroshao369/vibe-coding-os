@@ -278,6 +278,12 @@
       "description": "Maintain a structured searchable record of coding mistakes, fixes, and prevention rules for future similar work."
     },
     {
+      "name": "multi-repo-learning",
+      "path": "skills/core/multi-repo-learning/SKILL.md",
+      "category": "core",
+      "description": "Export, review, and import portable coding lessons across repositories using the v2.3 lesson exchange format."
+    },
+    {
       "name": "local-first-memory",
       "path": "skills/memory/local-first-memory/SKILL.md",
       "category": "memory",

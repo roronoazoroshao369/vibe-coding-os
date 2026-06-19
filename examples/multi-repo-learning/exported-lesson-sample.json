@@ -1,0 +1,67 @@
+{
+  "version": "2.3.0",
+  "schemaUrl": "https://vibe-coding-os.nousresearch.com/schemas/lesson-exchange-2.3.0.json",
+  "exportedAt": "2026-06-19T08:00:00.000Z",
+  "exportedBy": "lesson-exporter",
+  "sourceRepo": {
+    "id": "repo-vibe-coding-os",
+    "name": "vibe-coding-os",
+    "description": "AI coding skill framework for disciplined vibe coding"
+  },
+  "lessons": [
+    {
+      "version": "2.3.0",
+      "lessonId": "lesson-paths-001",
+      "repoId": "repo-vibe-coding-os",
+      "repoName": "vibe-coding-os",
+      "modelId": "claude-sonnet-4",
+      "timestamp": "2026-06-18T14:30:00.000Z",
+      "lessonType": "mistake-fix",
+      "pattern": "Resolve user-provided file paths relative to the repository root, not the current working directory.",
+      "context": "A validator script read config from the caller shell directory instead of the project root, causing false failures when invoked from a subdirectory.",
+      "fix": "Anchor default paths to import.meta.url and only resolve user-provided paths relative to the repo root.",
+      "tags": ["cli", "paths", "node", "cross-repo"],
+      "confidence": 0.92,
+      "scope": "global",
+      "source": "quality-engine",
+      "expiry": null,
+      "crossRepoVerified": true
+    },
+    {
+      "version": "2.3.0",
+      "lessonId": "lesson-secscan-002",
+      "repoId": "repo-vibe-coding-os",
+      "repoName": "vibe-coding-os",
+      "modelId": "gpt-4.1",
+      "timestamp": "2026-06-17T09:20:00.000Z",
+      "lessonType": "anti-pattern",
+      "pattern": "Do not inline shell commands in template strings without argument validation — prefer structured parameter arrays for child_process calls.",
+      "context": "A build helper used string interpolation for a git command and produced a hard-to-debug failure when a branch name contained special characters.",
+      "fix": "Use execFile or spawn with parameter arrays; validate and sanitize any user-derived values before they reach a shell context.",
+      "tags": ["security", "build", "node", "git"],
+      "confidence": 0.88,
+      "scope": "language",
+      "source": "telemetry-analysis",
+      "expiry": null,
+      "crossRepoVerified": false
+    },
+    {
+      "version": "2.3.0",
+      "lessonId": "lesson-metrics-003",
+      "repoId": "repo-vibe-coding-os",
+      "repoName": "vibe-coding-os",
+      "modelId": "gemini-2.5-pro",
+      "timestamp": "2026-06-16T11:05:00.000Z",
+      "lessonType": "performance-trick",
+      "pattern": "Aggregate telemetry events with an explicit reduction pass instead of mutating per-event accumulators inside a map.",
+      "context": "A trend-report script used Array.map with side effects to tally pass/fail counts, making the logic fragile when new status values were added.",
+      "fix": "Use a dedicated reduce pass or a status-counter helper that documents every expected value in a const enum or type union.",
+      "tags": ["telemetry", "patterns", "node", "data"],
+      "confidence": 0.81,
+      "scope": "framework",
+      "source": "user",
+      "expiry": "2027-06-16",
+      "crossRepoVerified": true
+    }
+  ]
+}

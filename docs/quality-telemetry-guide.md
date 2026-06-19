@@ -193,6 +193,8 @@ The telemetry workflow fits naturally after `vibe-quality-engine`:
 
 For model-aware config users, telemetry can surface whether a particular model profile consistently underperforms on certain task types, prompting a config adjustment.
 
+Telemetry-derived patterns can also feed cross-repo learning after privacy review. See [`examples/multi-repo-learning/README.md`](../examples/multi-repo-learning/README.md) for safe lesson exchange and golden-example promotion guidance.
+
 ## Troubleshooting
 
 - **"Quality engine output not found"** — verify the path; the `--engine` flag expects the `.json` output from `vibe-quality-engine --output-json`

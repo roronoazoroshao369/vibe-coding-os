@@ -325,14 +325,16 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 **Release posture:** v2.2.0 turns quality telemetry into release-ready metadata. Telemetry skill, command, guide, registry entries, and runtime scripts are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.3 — Multi-Repository Learning
-**Status:** 🗓️ PLANNED
+**Status:** ✅ COMPLETE — Release-ready metadata; tag/release pending
 
 | Deliverable | Status |
 |:---|---|
-| Lesson exchange schema (`schemas/lesson-exchange-format.json`) | 🗓️ Planned |
-| Lesson exporter/importer scripts | 🗓️ Planned |
-| Lesson quality checker | 🗓️ Planned |
-| Lesson exchange sample template | 🗓️ Planned |
+| Lesson exchange schema (`schemas/lesson-exchange-format.json`) | ✅ Done |
+| Lesson exporter/importer scripts (`scripts/lesson-exporter.mjs`, `scripts/lesson-importer.mjs`) | ✅ Done |
+| Lesson quality checker (`scripts/lesson-quality-checker.mjs`) | ✅ Done |
+| Lesson exchange sample template (`templates/lesson-exchange-sample.json`) | ✅ Done |
+
+**Release posture:** v2.3.0 turns multi-repo lesson exchange into release-ready metadata. Lesson exchange schema, exporter/importer/checker scripts, sample template, canonical guide, skill, command, and registry entries are present. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon or hosted service is added.
 
 ## v2.4 — CI/CD Integration
 **Status:** 🗓️ PLANNED
@@ -380,6 +382,6 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.0.0: ████████████ 100%
 - v2.1.0: ████████████ 100%
 - v2.2.0: ████████████ 100%
-- v2.3:   ░░░░░░░░░░░ 0% (planned)
+- v2.3.0: ████████████ 100%
 - v2.4:   ░░░░░░░░░░░ 0% (planned)
 - v2.5:   ░░░░░░░░░░░ 0% (planned)

@@ -20,15 +20,27 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.2.0):** validate:all 26/26 gates PASS · **114 skills** · **88 commands** · **84 templates** · 14 tracked sources
+**Bản phát hành hiện tại (v2.3.0):** validate:all 26/26 gates PASS · **115 skills** · **89 commands** · **84 templates** · 14 tracked sources
 
-**Mới nhất:** v2.2.0 Quality Telemetry & Analytics — phát tín hiệu chất lượng, tổng hợp metrics phiên và tạo trend reports nội bộ.
+**Mới nhất:** v2.3.0 Multi-Repository Learning — xuất, kiểm tra và nhập bài học lập trình có thể chia sẻ giữa các repository.
 
 **v2.1.0 trước đó:** Model-Aware Config — cấu hình Quality Engine gates theo năng lực model, rủi ro task và thiết lập dự án trước khi chạy. Runtime không đổi.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.3.0
+
+Multi-Repository Learning cho phép xuất bài học lập trình (lessons learned) thành định dạng có thể trao đổi giữa các repository — xuất từ kho này, kiểm tra, và nhập vào kho khác một cách an toàn.
+
+- **Skill mới:** `skills/core/multi-repo-learning/SKILL.md` hướng dẫn xuất, kiểm tra và nhập lesson exchange batches.
+- **Command mới:** `commands/vibe-lesson-exchange.md` cung cấp giao diện export, check và import.
+- **Guide chính:** `docs/multi-repo-learning.md` giải thích luồng làm việc: quality check, export, safety review, dry-run và import.
+- **Schema:** `schemas/lesson-exchange-format.json` định nghĩa định dạng portable cho single lessons và exchange batches.
+- **Package scripts:** `lesson:export`, `lesson:import`, `lesson:check` đã sẵn sàng.
+- **Registry sync:** multi-repo-learning skill và vibe-lesson-exchange command đã đăng ký trong `registry/skills.json` và `registry/prompts.json`.
+- **Runtime không đổi:** v2.3.0 tuân thủ ADR 0002; không yêu cầu daemon hay hosted service.
 
 ## Có gì mới trong v2.2.0
 
@@ -219,12 +231,12 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 ---
 
-## Release hiện tại: v2.2.0
+## Release hiện tại: v2.3.0
 
 Điểm chính:
 
-- Quality Telemetry & Analytics phát quality events, tổng hợp session metrics và tạo trend reports local.
-- `vibe-quality-telemetry` giúp đưa telemetry vào workflow Quality Engine mà không cần hosted service.
+- Multi-Repository Learning xuất, kiểm tra và nhập lesson exchange batches giữa các repository.
+- `vibe-lesson-exchange` giúp dùng exporter/importer/checker trong workflow có review rõ ràng.
 - README, roadmap, dashboard và release metadata được sync với 26/26 validation gates.
 - Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 
