@@ -1,0 +1,235 @@
+name: Release — Prepare
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - prerelease
+      prerelease_tag:
+        description: 'Pre-release identifier (only for prerelease bump type: alpha, beta, rc)'
+        required: false
+        type: choice
+        options:
+          - ''
+          - alpha
+          - beta
+          - rc
+      explicit_version:
+        description: 'Explicit semver (overrides bump_type, e.g. 3.0.0-rc.1)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-prepare
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Pre-release validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      version: ${{ steps.version.outputs.new_version }}
+      tag: ${{ steps.version.outputs.tag_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run full validation gate
+        run: npm run validate:all
+
+      - name: Run release metadata validation
+        run: node scripts/validate-release-metadata.mjs
+
+      - name: Calculate next version
+        id: version
+        shell: bash
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "current_version=$CURRENT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "Current version: $CURRENT_VERSION"
+
+          EXPLICIT="${{ github.event.inputs.explicit_version }}"
+          BUMP="${{ github.event.inputs.bump_type }}"
+          PRERELEASE_TAG="${{ github.event.inputs.prerelease_tag }}"
+
+          if [ -n "$EXPLICIT" ]; then
+            NEW_VERSION="$EXPLICIT"
+          else
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+            PATCH_CLEAN=$(echo "$PATCH" | sed 's/-.*//')
+
+            case "$BUMP" in
+              major)
+                MAJOR=$((MAJOR + 1))
+                MINOR=0
+                PATCH_CLEAN=0
+                ;;
+              minor)
+                MINOR=$((MINOR + 1))
+                PATCH_CLEAN=0
+                ;;
+              patch)
+                PATCH_CLEAN=$((PATCH_CLEAN + 1))
+                ;;
+              prerelease)
+                if echo "$CURRENT_VERSION" | grep -qE '-'; then
+                  PRE_NUM=$(echo "$CURRENT_VERSION" | grep -oP '\d+$')
+                  NEW_PRE_NUM=$((PRE_NUM + 1))
+                  NEW_VERSION=$(echo "$CURRENT_VERSION" | sed -E 's/.[0-9]+$//')
+                  NEW_VERSION="${NEW_VERSION}.${NEW_PRE_NUM}"
+                else
+                  MINOR=$((MINOR + 1))
+                  PATCH_CLEAN=0
+                  TAG_ID="${PRERELEASE_TAG:-alpha}"
+                  NEW_VERSION="${MAJOR}.${MINOR}.${PATCH_CLEAN}-${TAG_ID}.0"
+                  echo "tag_name=v${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+                  echo "new_version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+                  echo "New version: $NEW_VERSION"
+                  exit 0
+                fi
+                ;;
+            esac
+
+            if [ "$BUMP" != "prerelease" ]; then
+              NEW_VERSION="${MAJOR}.${MINOR}.${PATCH_CLEAN}"
+            fi
+          fi
+
+          TAG_NAME="v${NEW_VERSION}"
+          echo "new_version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag_name=${TAG_NAME}" >> "$GITHUB_OUTPUT"
+          echo "New version: $NEW_VERSION"
+          echo "Tag name: $TAG_NAME"
+
+      - name: Check tag does not exist
+        shell: bash
+        run: |
+          TAG="${{ steps.version.outputs.tag_name }}"
+          if git rev-parse --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "::error::Tag ${TAG} already exists. Choose a different version."
+            exit 1
+          fi
+          echo "Tag ${TAG} is available."
+
+      - name: Bump version in package.json
+        run: npm version ${{ steps.version.outputs.new_version }} --no-git-tag-version
+
+      - name: Run metadata validation after bump
+        run: node scripts/validate-release-metadata.mjs || echo "::warning::Some metadata checks may need manual update"
+
+      - name: Generate changelog section
+        id: changelog
+        shell: bash
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+          DATE=$(date -u +%Y-%m-%d)
+
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -n "$LAST_TAG" ]; then
+            RANGE="${LAST_TAG}..HEAD"
+          else
+            RANGE="HEAD"
+          fi
+
+          {
+            echo "## [$NEW_VERSION] — $DATE"
+            echo ""
+            echo "### Added"
+            git log $RANGE --pretty=format:"- %s" --no-merges 2>/dev/null | grep -iE '^[ ]*- *(feat|add|new|implement|introduce)' || echo "- _No items_"
+            echo ""
+            echo "### Fixed"
+            git log $RANGE --pretty=format:"- %s" --no-merges 2>/dev/null | grep -iE '^[ ]*- *(fix|bug|patch|resolve|correct)' || echo "- _No items_"
+            echo ""
+            echo "### Changed"
+            git log $RANGE --pretty=format:"- %s" --no-merges 2>/dev/null | grep -iE '^[ ]*- *(refactor|change|update|improve|rename|move|optimize|clean)' || echo "- _No items_"
+            echo ""
+            echo "### Documentation"
+            git log $RANGE --pretty=format:"- %s" --no-merges 2>/dev/null | grep -iE '^[ ]*- *(docs?|readme|doc)' || echo "- _No items_"
+          } > changelog-section.md
+
+          echo "### Full commit log" >> changelog-section.md
+          echo '```' >> changelog-section.md
+          git log $RANGE --pretty=format:"- %h %s (%an)" --no-merges >> changelog-section.md 2>/dev/null
+          echo '```' >> changelog-section.md
+
+          cat changelog-section.md
+          echo "---"
+          cat changelog-section.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create release branch and commit
+        shell: bash
+        run: |
+          TAG_NAME="${{ steps.version.outputs.tag_name }}"
+          BRANCH="release/${TAG_NAME}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore(release): prepare ${TAG_NAME}"
+          git push origin "$BRANCH"
+
+      - name: Create Release PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const version = '${{ steps.version.outputs.new_version }}';
+            const tag = '${{ steps.version.outputs.tag_name }}';
+            const branch = `release/${tag}`;
+
+            let body = `## 🚀 Release ${tag}\n\n`;
+            body += `**Version:** \`${version}\`\n`;
+            body += `**Tag:** \`${tag}\`\n\n`;
+
+            if (fs.existsSync('changelog-section.md')) {
+              body += '### Changelog\n\n';
+              body += fs.readFileSync('changelog-section.md', 'utf8') + '\n\n';
+            }
+
+            body += `### Post-merge steps\n\n`;
+            body += `Once this PR is approved and merged:\n`;
+            body += `1. The tag \`${tag}\` will be created automatically\n`;
+            body += `2. \`release-publish.yml\` will publish to npm and create the GitHub Release\n`;
+            body += `3. Verify the release at https://www.npmjs.com/package/vibe-coding-os\n\n`;
+
+            body += `### Checklist\n\n`;
+            body += `- [ ] CHANGELOG.md updated with release section\n`;
+            body += `- [ ] Release notes draft at \`docs/releases/${version}-release-notes.md\`\n`;
+            body += `- [ ] \`docs/DASHBOARD.md\` regenerated\n`;
+            body += `- [ ] \`docs/ROADMAP-STATUS.md\` reflects release status\n`;
+            body += `- [ ] \`README.md\` version banner updated\n`;
+            body += `- [ ] All CI checks pass (validate:all)\n`;
+
+            await github.rest.pulls.create({
+              ...context.repo,
+              title: `🚀 Release ${tag}`,
+              head: branch,
+              base: 'main',
+              body,
+              draft: false
+            });

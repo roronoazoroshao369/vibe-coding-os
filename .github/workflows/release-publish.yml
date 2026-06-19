@@ -1,0 +1,173 @@
+name: Release — Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to publish (e.g. v2.9.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Validate, publish & release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: npm-production
+    steps:
+      - name: Determine tag
+        id: tag
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]]; then
+            echo "::error::Invalid tag format: $TAG"
+            exit 1
+          fi
+
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Tag: $TAG"
+          echo "Version: $VERSION"
+
+      - name: Checkout (tag commit)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.tag.outputs.tag }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify package.json version matches tag
+        shell: bash
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${{ steps.tag.outputs.version }}"
+
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::package.json version ($PKG_VERSION) does not match tag ($TAG_VERSION)"
+            exit 1
+          fi
+          echo "✅ package.json version ($PKG_VERSION) matches tag"
+
+      - name: Run final validation gate
+        run: npm run validate:all
+
+      - name: Run release metadata validation
+        run: node scripts/validate-release-metadata.mjs || echo "::warning::Some metadata checks may need attention"
+
+      - name: Verify npm authentication
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm whoami
+          echo "✅ Authenticated to npm"
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION="${{ steps.tag.outputs.version }}"
+          TAG="${{ steps.tag.outputs.tag }}"
+
+          if echo "$VERSION" | grep -qE '-(alpha|beta|rc)'; then
+            DIST_TAG=$(echo "$VERSION" | sed -E 's/^[0-9]+\.[0-9]+\.[0-9]+-([a-zA-Z]+).*/\1/')
+            echo "Pre-release detected. Publishing with dist-tag: $DIST_TAG"
+            npm publish --access public --tag "$DIST_TAG"
+          else
+            echo "Stable release. Publishing with dist-tag: latest"
+            npm publish --access public
+          fi
+          echo "✅ Published ${TAG} to npm"
+
+      - name: Look for release notes file
+        id: notes
+        shell: bash
+        run: |
+          VERSION="${{ steps.tag.outputs.version }}"
+          NOTES_FILE="docs/releases/${VERSION}-release-notes.md"
+
+          if [ -f "$NOTES_FILE" ]; then
+            echo "notes_file=$NOTES_FILE" >> "$GITHUB_OUTPUT"
+            echo "has_notes=true" >> "$GITHUB_OUTPUT"
+            echo "✅ Found release notes: $NOTES_FILE"
+          else
+            echo "has_notes=false" >> "$GITHUB_OUTPUT"
+            echo "⚠️ No release notes file found at $NOTES_FILE"
+          fi
+
+      - name: Create GitHub Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          VERSION="${{ steps.tag.outputs.version }}"
+          HAS_NOTES="${{ steps.notes.outputs.has_notes }}"
+          NOTES_FILE="${{ steps.notes.outputs.notes_file }}"
+
+          PRERELEASE_FLAG=""
+          if echo "$VERSION" | grep -qE '-(alpha|beta|rc)'; then
+            PRERELEASE_FLAG="--prerelease"
+            echo "Creating pre-release GitHub Release"
+          fi
+
+          GH_ARGS=(
+            "$TAG"
+            --title "Release $TAG"
+            --target "${{ github.sha }}"
+          )
+
+          if [ "$HAS_NOTES" = "true" ] && [ -n "$NOTES_FILE" ]; then
+            GH_ARGS+=(--notes-file "$NOTES_FILE")
+          else
+            GH_ARGS+=(--generate-notes)
+          fi
+
+          if [ -n "$PRERELEASE_FLAG" ]; then
+            GH_ARGS+=("$PRERELEASE_FLAG")
+          fi
+
+          gh release create "${GH_ARGS[@]}"
+          echo "✅ GitHub Release created: $TAG"
+
+      - name: Print release summary
+        shell: bash
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          VERSION="${{ steps.tag.outputs.version }}"
+
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "## 🚀 Release $TAG Published" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Field | Value |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| --- | --- |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Version | \`$VERSION\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Tag | \`$TAG\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| npm | [vibe-coding-os@$VERSION](https://www.npmjs.com/package/vibe-coding-os/v/$VERSION) |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| GitHub Release | [$TAG](https://github.com/${{ github.repository }}/releases/tag/$TAG) |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"

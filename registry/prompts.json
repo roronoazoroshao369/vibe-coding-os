@@ -26,6 +26,12 @@
       "maturity": "stable"
     },
     {
+      "name": "vibe-anti-overengineer",
+      "path": "commands/vibe-anti-overengineer.md",
+      "description": "Run a simplicity check on a proposed design using the anti-overengineering 5-step workflow.",
+      "maturity": "alpha"
+    },
+    {
       "name": "vibe-brainstorm",
       "path": "commands/vibe-brainstorm.md",
       "description": "Brainstorm intent, assumptions, options, trade-offs, and next workflow step before coding.",

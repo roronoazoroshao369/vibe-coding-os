@@ -50,6 +50,65 @@ const qualityTrendDashboard = extractSection(existing, 'Quality Trend Dashboard'
 const validationGate = extractSection(existing, 'Validation Gate');
 const coverageSummary = extractSection(existing, 'Coverage Summary');
 
+// --- Embed live time-series trend data from quality-trend/dashboard.json ---
+const qualityTrendPath = join(ROOT, 'docs', 'reports', 'quality-trend', 'dashboard.json');
+let qualityTrendContent = qualityTrendDashboard;
+
+if (existsSync(qualityTrendPath)) {
+  try {
+    const rawTrend = JSON.parse(await readFile(qualityTrendPath, 'utf8'));
+    const daily = rawTrend.timeSeries?.daily || [];
+    const latest7 = daily.slice(-7);
+
+    if (latest7.length > 0) {
+      const rows = latest7.map((d, i) => {
+        const date = d.date;
+        const runs = d.total ?? d.runs ?? 0;
+        const rate = d.passRate != null ? d.passRate
+          : (d.total > 0 ? (d.passes / d.total * 100) : 0);
+        const rateStr = typeof rate === 'number' ? rate.toFixed(1) + '%' : 'N/A';
+        const prevRate = i > 0
+          ? (latest7[i - 1].passRate ?? (latest7[i - 1].total > 0 ? (latest7[i - 1].passes / latest7[i - 1].total * 100) : null))
+          : null;
+        const trend = d.trend
+          || (prevRate != null
+            ? (rate > prevRate + 1 ? '↑' : rate < prevRate - 1 ? '↓' : '→')
+            : '→');
+        return `| ${date} | ${runs} | ${rateStr} | ${trend} |`;
+      }).join('\n');
+
+      // Worst gates — only if any gates had failures in the last 7d window
+      const gates = rawTrend.gates || [];
+      const badGates = gates.filter(g => (g.failures ?? g.failed ?? 0) > 0);
+      let worstGates = '';
+      if (badGates.length > 0) {
+        worstGates = '### Worst Gates (Last 7d)\n\n'
+          + '| Gate | Failures | Pass rate |\n|---|---|---|\n'
+          + badGates.map(g => {
+              const failures = g.failures ?? g.failed ?? 0;
+              const total = g.total ?? g.runs ?? 0;
+              const pr = total > 0 ? ((total - failures) / total * 100).toFixed(1) + '%' : 'N/A';
+              return `| ${g.name || g.gate || '?'} | ${failures}/${total} | ${pr} |`;
+            }).join('\n') + '\n';
+      }
+
+      qualityTrendContent = '## Quality Trend Dashboard\n\n'
+        + '### Time-Series Trend (Last 7 Days)\n\n'
+        + '| Date | Runs | Pass rate | Trend |\n'
+        + '|-----|------|-----------|-------|\n'
+        + rows + '\n\n'
+        + worstGates;
+    }
+  } catch (err) {
+    console.error(`Warning: Could not parse quality trend data: ${err.message}`);
+  }
+}
+
+if (!qualityTrendContent) {
+  qualityTrendContent = '## Quality Trend Dashboard\n\n'
+    + 'No trend data yet. Run `npm run dashboard:trend` to generate.';
+}
+
 // Build the new DASHBOARD.md
 const sections = [];
 
@@ -87,10 +146,8 @@ if (safetyMetrics) {
   sections.push(``);
 }
 
-if (qualityTrendDashboard) {
-  sections.push(qualityTrendDashboard);
-  sections.push(``);
-}
+sections.push(qualityTrendContent);
+sections.push(``);
 
 if (validationGate) {
   sections.push(validationGate);

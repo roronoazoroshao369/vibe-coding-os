@@ -9,9 +9,9 @@
 |---|---|
 | Version | 2.8.0 |
 | Skills | 128 |
-| Commands | 97 |
-| Templates | 94 |
-| Narrative files | 636 |
+| Commands | 98 |
+| Templates | 95 |
+| Narrative files | 638 |
 | Upstream sources | 20 |
 | Broken refs | 0 |
 
@@ -72,14 +72,24 @@
 
 ## Quality Trend Dashboard
 
-| Metric | Value |
-|---|---|
-| Trend data source | `docs/metrics/quality-telemetry-events.ndjson` |
-| Daily data points | See `docs/reports/quality-trend/dashboard.md` |
-| Weekly data points | See `docs/reports/quality-trend/dashboard.md` |
-| Gates tracked | See `docs/reports/quality-trend/dashboard.md` |
+### Time-Series Trend (Last 7 Days)
 
-The **Quality Trend Dashboard** provides time-series visuali
+| Date | Runs | Pass rate | Trend |
+|-----|------|-----------|-------|
+| 2026-06-13 | 18 | 88.9% | → |
+| 2026-06-14 | 20 | 90.0% | ↑ |
+| 2026-06-15 | 22 | 90.9% | → |
+| 2026-06-16 | 19 | 89.5% | ↓ |
+| 2026-06-17 | 24 | 91.7% | ↑ |
+| 2026-06-18 | 21 | 95.2% | ↑ |
+| 2026-06-19 | 21 | 90.5% | ↓ |
+
+### Worst Gates (Last 7d)
+
+| Gate | Failures | Pass rate |
+|---|---|---|
+| validate-references | 1/7 | 85.7% |
+| validate-injection | 2/7 | 71.4% |
 
 ## Validation Gate
 
