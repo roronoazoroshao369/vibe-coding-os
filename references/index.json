@@ -735,6 +735,91 @@
       "last_checked": "2026-06-06",
       "last_known_commit": "3e945671dcf3ed1c1bcc422862815f92c1999143",
       "notes": "Baseline audited from local clone on 2026-06-06. Study for Claude Code agent boundaries, skill budgets, memory merge behavior, and plugin compatibility tests."
+    },
+    {
+      "id": "shanraisshan-claude-code-best-practice",
+      "name": "claude-code-best-practice",
+      "owner": "shanraisshan",
+      "url": "https://github.com/shanraisshan/claude-code-best-practice",
+      "category": "claude-code-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/shanraisshan-claude-code-best-practice.md",
+      "changelog": "references/changelogs/shanraisshan-claude-code-best-practice.md",
+      "features": [
+        "skill-orchestration",
+        "subagent-orchestration",
+        "hook-patterns",
+        "best-practice-workflow"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 58k-star comprehensive Claude Code best-practice collection. Study for structured learning path, subagent patterns, hook patterns, and skill orchestration conventions."
+    },
+    {
+      "id": "bytedance-deer-flow",
+      "name": "deer-flow",
+      "owner": "bytedance",
+      "url": "https://github.com/bytedance/deer-flow",
+      "category": "agent-team-orchestration",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/bytedance-deer-flow.md",
+      "changelog": "references/changelogs/bytedance-deer-flow.md",
+      "features": [
+        "superagent-harness",
+        "subagent-orchestration",
+        "sandboxed-execution",
+        "structured-memory",
+        "research-to-code-pipeline"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 71k-star ByteDance-backed SuperAgent harness for scalable subagent orchestration. Study for orchestrator-agent patterns, sandboxed execution, and structured memory in agent harnesses."
+    },
+    {
+      "id": "sickn33-antigravity-awesome-skills",
+      "name": "antigravity-awesome-skills",
+      "owner": "sickn33",
+      "url": "https://github.com/sickn33/antigravity-awesome-skills",
+      "category": "agentic-skills-framework",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/sickn33-antigravity-awesome-skills.md",
+      "changelog": "references/changelogs/sickn33-antigravity-awesome-skills.md",
+      "features": [
+        "skill-composability",
+        "multi-platform-skills",
+        "plugin-bundle-system",
+        "skill-catalog"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 41k-star massive skill library with 1,595+ SKILL.md playbooks across 6 platforms. Study for skill design patterns, composability, plugin bundling, and multi-platform conventions."
+    },
+    {
+      "id": "tirth8205-code-review-graph",
+      "name": "code-review-graph",
+      "owner": "tirth8205",
+      "url": "https://github.com/tirth8205/code-review-graph",
+      "category": "ai-code-review",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/tirth8205-code-review-graph.md",
+      "changelog": "references/changelogs/tirth8205-code-review-graph.md",
+      "features": [
+        "code-intelligence-graph",
+        "mcp-native-review",
+        "incremental-review",
+        "dependency-graph"
+      ],
+      "last_checked": "2026-06-19",
+      "last_known_commit": "unknown",
+      "notes": "Initial tracking from upstream research report 2026-06-19. 18k-star local-first code intelligence graph for AI code review. Study for code graph patterns, MCP-native tool integration, and incremental review techniques."
     }
   ]
 }

@@ -95,7 +95,7 @@
       "name": "bug-fix-lifecycle",
       "path": "skills/core/bug-fix-lifecycle/SKILL.md",
       "category": "core",
-      "description": "Guide bug fixes through reproduce, failing test, and fix-to-green phases."
+      "description": "TDD-anchored bug fix workflow: triage root cause, write failing test, fix, verify all green."
     },
     {
       "name": "checkpoint-validation",

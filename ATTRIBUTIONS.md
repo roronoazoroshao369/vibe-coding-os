@@ -158,3 +158,43 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: No upstream runtime, generated `.claude/agents`, generated `.claude/skills`, code, prompts, templates, docs, or installer behavior is vendored. Local artifacts are original markdown guidance.
+
+## shanraisshan/claude-code-best-practice
+
+- Name: `shanraisshan/claude-code-best-practice`
+- URL: https://github.com/shanraisshan/claude-code-best-practice
+- License: MIT, verified from upstream LICENSE during the 2026-06-19 audit.
+- Used for: study of comprehensive Claude Code best-practice collection covering subagents, commands, skills, hooks, and workflows. Structured learning path from "vibe coding" to "agentic engineering."
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Initial tracking entry. No local adaptations created yet. Study for structured learning path, subagent patterns, hook patterns, and skill orchestration conventions.
+
+## bytedance/deer-flow
+
+- Name: `bytedance/deer-flow`
+- URL: https://github.com/bytedance/deer-flow
+- License: MIT, verified from upstream LICENSE during the 2026-06-19 audit.
+- Used for: study of scalable subagent orchestration architecture with SuperAgent harness, sandboxed execution environments, structured memory subsystem, and deep research to code generation pipeline.
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Initial tracking entry. No local adaptations created yet. Study for orchestrator-agent patterns, sandboxed execution, and structured memory in agent harnesses.
+
+## sickn33/antigravity-awesome-skills
+
+- Name: `sickn33/antigravity-awesome-skills`
+- URL: https://github.com/sickn33/antigravity-awesome-skills
+- License: MIT, verified from upstream LICENSE during the 2026-06-19 audit.
+- Used for: study of massive-scale skill library design patterns, SKILL.md composability conventions, plugin bundle system, multi-platform skill patterns, and skill discovery catalog.
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Initial tracking entry. No local adaptations created yet. Study for skill design patterns, composability, plugin bundling, and multi-platform conventions.
+
+## tirth8205/code-review-graph
+
+- Name: `tirth8205/code-review-graph`
+- URL: https://github.com/tirth8205/code-review-graph
+- License: MIT, verified from upstream LICENSE during the 2026-06-19 audit.
+- Used for: study of local-first code intelligence graph for AI code review, MCP-native tool integration, incremental analysis patterns, dependency graph and call hierarchy mapping for codebase understanding.
+- Import mode: inspiration only.
+- Vendored code: no.
+- Notes: Initial tracking entry. No local adaptations created yet. Study for code graph patterns, MCP-native tool integration, and incremental review techniques for the requesting-code-review and receiving-code-review skills.

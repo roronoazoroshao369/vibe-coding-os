@@ -113,6 +113,38 @@
       "status": "tracked_inspiration",
       "import_mode": "inspiration",
       "notes": "Apache-2.0 (Copyright 2025 robin) from provided upstream facts during the 2026-06-07 audit. Used as idea-level inspiration for team-agent orchestration: six team patterns (Pipeline, Fan-out/Fan-in, Expert Pool, Producer-Reviewer, Supervisor, Hierarchical Delegation), the domain-analysis-to-validation phase workflow, progressive disclosure, and dry-run plus with-vs-without validation. No runtime, generated .claude/agents or .claude/skills, code, prompts, or docs are vendored. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "shanraisshan/claude-code-best-practice",
+      "url": "https://github.com/shanraisshan/claude-code-best-practice",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT verified from upstream LICENSE during the 2026-06-19 audit. 58k-star comprehensive Claude Code best-practice collection covering subagents, commands, skills, hooks, and workflows. Initial tracking only; no upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "bytedance/deer-flow",
+      "url": "https://github.com/bytedance/deer-flow",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT verified from upstream LICENSE during the 2026-06-19 audit. 71k-star ByteDance-backed SuperAgent harness for scalable subagent orchestration with sandboxed execution and structured memory. Initial tracking only; no upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "sickn33/antigravity-awesome-skills",
+      "url": "https://github.com/sickn33/antigravity-awesome-skills",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT verified from upstream LICENSE during the 2026-06-19 audit. 41k-star massive skill library with 1,595+ SKILL.md playbooks across 6 platforms. Initial tracking only; no upstream content copied. See ATTRIBUTIONS.md."
+    },
+    {
+      "name": "tirth8205/code-review-graph",
+      "url": "https://github.com/tirth8205/code-review-graph",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "MIT verified from upstream LICENSE during the 2026-06-19 audit. 18k-star local-first code intelligence graph for AI code review, MCP-native with incremental analysis. Initial tracking only; no upstream content copied. See ATTRIBUTIONS.md."
     }
   ]
 }

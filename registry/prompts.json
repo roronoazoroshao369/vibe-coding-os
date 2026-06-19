@@ -37,6 +37,11 @@
       "description": "Create a compact implementation brief with scoped context, examples, and validation gates."
     },
     {
+      "name": "vibe-bugfix",
+      "path": "commands/vibe-bugfix.md",
+      "description": "Fix bugs with TDD-anchored lifecycle: assess, failing test, fix, verify."
+    },
+    {
       "name": "vibe-brief-execute",
       "path": "commands/vibe-brief-execute.md",
       "description": "Execute an implementation brief: load, plan, implement, run validation gates, and iterate until green."

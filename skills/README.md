@@ -16,6 +16,7 @@ Use a skill when the task needs a repeatable method, for example:
 - Clarifying ambiguous intent before building.
 - Writing specs, plans, tasks, or acceptance criteria.
 - Debugging with disciplined diagnosis.
+- Fixing bugs with TDD-anchored bug-fix-lifecycle.
 - Running TDD, review, verification, or branch-finishing rituals.
 - Applying Quality Shield skills such as `quality-rubric`, `quality-execution-contract`, `code-context-pack`, `self-review-before-response`, and `quality-evaluation-scenarios`.
 - Capturing memory or preparing an agent handoff.
