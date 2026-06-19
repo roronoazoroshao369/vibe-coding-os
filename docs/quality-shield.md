@@ -102,11 +102,11 @@ These are related to future/advanced engine orchestration, not required for basi
 4. Implement the smallest correct change.
 5. Run project verification and, when useful, `npm run validate:quality-diff`.
 6. Run Self-Review Before Response.
-7. Final response must list what changed, evidence, and any unverified risks.
+## Quality Shield workflow
 
-For a copy-paste version of this workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md).
+For the five-step copy-paste workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md). For the reusable skill that implements this, see [`skills/core/quality-shield/SKILL.md`](../skills/core/quality-shield/SKILL.md).
 
-## CI/CD integration
+## Artifact audit map
 
 For pull requests, use Quality Shield as the human-readable discipline layer and `npm run validate:all` as the blocking repository guard. CI can also generate Quality Engine summaries and optional redacted telemetry for reviewer evidence.
 

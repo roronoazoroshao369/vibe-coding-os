@@ -2,6 +2,12 @@
   "version": "0.1.0",
   "skills": [
     {
+      "name": "quality-shield",
+      "path": "skills/core/quality-shield/SKILL.md",
+      "category": "core",
+      "description": "Five-step copy-paste workflow for safe, verified changes: contract, context pack, smallest safe diff, self-review, scorecard."
+    },
+    {
       "name": "acceptance-criteria",
       "path": "skills/core/acceptance-criteria/SKILL.md",
       "category": "core",
