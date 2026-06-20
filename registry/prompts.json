@@ -696,6 +696,18 @@
       "path": "commands/vibe-install.md",
       "description": "Install a skill from the Vibe Coding OS registry into your project.",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-adversarial-review",
+      "path": "commands/vibe-adversarial-review.md",
+      "description": "Run an adversarial code review on a PR, skill, or feature using STRIDE + red-team patterns.",
+      "maturity": "beta"
+    },
+    {
+      "name": "vibe-red-team-scan",
+      "path": "commands/vibe-red-team-scan.md",
+      "description": "Run a red-team scan on a skill, command, or marketplace content for bypass techniques, prompt injection, and secret leakage.",
+      "maturity": "beta"
     }
   ]
 }

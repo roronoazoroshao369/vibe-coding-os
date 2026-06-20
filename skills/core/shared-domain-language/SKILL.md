@@ -1,3 +1,14 @@
+---
+name: shared-domain-language
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+status: stable
+---
+
 # Skill: Shared Domain Language
 
 ## Purpose

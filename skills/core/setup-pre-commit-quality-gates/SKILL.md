@@ -1,3 +1,15 @@
+---
+name: setup-pre-commit-quality-gates
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+  - quality
+status: stable
+---
+
 # Skill: Setup Pre Commit Quality Gates
 
 ## Purpose

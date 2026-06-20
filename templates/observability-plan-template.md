@@ -1,3 +1,17 @@
+---
+title: Observability Plan
+type: template
+name: observability-plan-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: planning
+tags:
+  - template
+  - planning
+status: stable
+---
+
 # Observability Plan
 
 Design instrumentation **before shipping**. This template enforces the "questions before signals" workflow.

@@ -1,3 +1,16 @@
+---
+title: Team Architecture: <name>
+type: template
+name: team-architecture-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Team Architecture: <name>
 
 ## Intent

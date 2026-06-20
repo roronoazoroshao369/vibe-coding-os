@@ -1453,6 +1453,13 @@
         "*"
       ],
       "maturity": "stable"
+    },
+    {
+      "name": "authoring-skills",
+      "path": "skills/authoring-skills/SKILL.md",
+      "description": "Guide for authoring new skills that integrate with the Vibe Coding OS skill system.",
+      "maturity": "beta",
+      "category": "meta"
     }
   ]
 }

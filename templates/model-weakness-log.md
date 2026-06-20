@@ -1,3 +1,16 @@
+---
+title: Model Weakness Log
+type: template
+name: model-weakness-log
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Model Weakness Log
 
 Track confirmed, repeatable model failure patterns by model type. Use this as a fillable project-local template, not as a place for raw transcripts.

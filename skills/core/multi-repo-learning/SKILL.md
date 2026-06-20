@@ -1,3 +1,14 @@
+---
+name: multi-repo-learning
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+status: stable
+---
+
 # Multi-Repository Learning
 
 > Export, exchange, and import portable coding lessons across repositories without requiring a hosted service or daemon.

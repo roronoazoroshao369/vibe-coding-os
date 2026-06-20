@@ -1,3 +1,16 @@
+---
+title: Codex Minimal Response Template
+type: template
+name: codex-response-minimal
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Codex Minimal Response Template
 
 ## Summary

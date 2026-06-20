@@ -1,3 +1,16 @@
+---
+title: Sandbox Marker Reference
+type: template
+name: sandbox-mark
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: engineering
+tags:
+  - database
+status: stable
+---
+
 # Sandbox Marker Reference
 
 > Use this template when adding sandbox markers to new skills.

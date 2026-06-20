@@ -1,3 +1,17 @@
+---
+title: Claude Code Subagent Role — Memory Summarizer
+type: template
+name: claude-subagent-role-memory-summarizer
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - memory
+  - agents
+status: stable
+---
+
 # Claude Code Subagent Role — Memory Summarizer
 
 ## Identity

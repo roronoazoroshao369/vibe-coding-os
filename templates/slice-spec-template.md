@@ -1,3 +1,17 @@
+---
+title: Slice Spec
+type: template
+name: slice-spec-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: spec
+tags:
+  - template
+  - specification
+status: stable
+---
+
 # Slice Spec
 
 Use this template for each vertical slice. One file per slice. Commit the slice atomically (impl + test + verify + this spec).

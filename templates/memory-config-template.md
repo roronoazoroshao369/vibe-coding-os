@@ -1,3 +1,17 @@
+---
+title: Memory Configuration
+type: template
+name: memory-config-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - template
+  - memory
+status: stable
+---
+
 # Memory Configuration
 
 ## Vietnamese usage note

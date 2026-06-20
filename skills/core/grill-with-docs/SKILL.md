@@ -1,3 +1,14 @@
+---
+name: grill-with-docs
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+status: stable
+---
+
 # Skill: Grill With Docs
 
 ## Purpose

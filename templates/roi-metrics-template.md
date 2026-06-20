@@ -1,3 +1,16 @@
+---
+title: ROI Metrics Template
+type: template
+name: roi-metrics-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # ROI Metrics Template
 
 > Vietnamese usage note: Dùng để đo ROI của vibe coding bằng tay. Khung này không có telemetry tự động; mọi số liệu phải tự ghi và không lưu secrets.

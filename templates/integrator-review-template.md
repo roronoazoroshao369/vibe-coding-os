@@ -1,3 +1,17 @@
+---
+title: Integrator Review Template
+type: template
+name: integrator-review-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: review
+tags:
+  - template
+  - review
+status: stable
+---
+
 # Integrator Review Template
 
 > Template for multi-agent integrator review artifacts.

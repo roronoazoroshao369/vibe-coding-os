@@ -1,3 +1,16 @@
+---
+title: Triage Template
+type: template
+name: triage-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Triage Template
 
 > Vietnamese usage note: Dùng để phân loại issue/task. Không ghi dữ liệu nhạy cảm; nếu cần logs riêng tư, mô tả đã redacted.

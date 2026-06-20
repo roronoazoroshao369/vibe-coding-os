@@ -1,3 +1,16 @@
+---
+title: Quality Telemetry Trend Report
+type: template
+name: quality-trend-report
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # Quality Telemetry Trend Report
 
 Generated: [YYYY-MM-DDTHH:mm:ss.sssZ]

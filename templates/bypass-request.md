@@ -1,3 +1,16 @@
+---
+title: Bypass Request
+type: template
+name: bypass-request
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - red-team
+status: stable
+---
+
 # Bypass Request
 
 > Fill in this template before starting the bypass loop.

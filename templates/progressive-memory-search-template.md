@@ -1,3 +1,17 @@
+---
+title: Progressive Memory Search Report
+type: template
+name: progressive-memory-search-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - template
+  - memory
+status: stable
+---
+
 # Progressive Memory Search Report
 
 ## Vietnamese usage note

@@ -1,3 +1,16 @@
+---
+title: Requirements Checklist: <feature / focus area>
+type: template
+name: requirements-checklist-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Requirements Checklist: <feature / focus area>
 
 > Ghi chú sử dụng / usage note: Đây là "unit test cho tiếng Anh" — kiểm tra chất lượng yêu

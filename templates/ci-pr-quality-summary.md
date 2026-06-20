@@ -1,3 +1,16 @@
+---
+title: PR Quality Summary
+type: template
+name: ci-pr-quality-summary
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # PR Quality Summary
 
 > **Instructions:** Replace all `__` placeholders with actual values from your CI run. Delete sections that do not apply.

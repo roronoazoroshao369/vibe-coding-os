@@ -1,3 +1,17 @@
+---
+title: Skill Template
+type: template
+name: skill-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+  - skills
+status: stable
+---
+
 # Skill Template
 
 > Canonical 8-section template for new skills in the `skills/` tree.

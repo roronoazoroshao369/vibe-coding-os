@@ -1,3 +1,16 @@
+---
+title: 7-Section Prompt Template
+type: template
+name: prompt-template-7-section
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # 7-Section Prompt Template
 
 > Every prompt in `prompts/` should follow this structure. The Anti-patterns

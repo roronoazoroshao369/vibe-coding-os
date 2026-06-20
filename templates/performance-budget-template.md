@@ -1,3 +1,16 @@
+---
+title: Performance Budget Template
+type: template
+name: performance-budget-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Performance Budget Template
 
 Use this template to define and track performance budgets for user-facing or latency-sensitive features. Pairs with the MEASURE → IDENTIFY → FIX → VERIFY → GUARD loop in `skills/core/quality-engine/SKILL.md`.

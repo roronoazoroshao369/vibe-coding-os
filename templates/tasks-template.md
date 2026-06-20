@@ -1,3 +1,16 @@
+---
+title: Tasks: <title>
+type: template
+name: tasks-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Tasks: <title>
 
 > Vietnamese usage note / Ghi chú sử dụng: Đây là danh sách task được sinh từ plan. Mỗi

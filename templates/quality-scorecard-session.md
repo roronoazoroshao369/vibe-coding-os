@@ -1,3 +1,16 @@
+---
+title: Quality Scorecard Session
+type: template
+name: quality-scorecard-session
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # Quality Scorecard Session
 
 > Use this template to record per-file quality review outcomes for one coding session. Historical summaries can be aggregated with `npm run quality:scorecard:report`.

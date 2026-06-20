@@ -1,3 +1,17 @@
+---
+title: ADR [number]: [Title]
+type: template
+name: adr-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+  - architecture
+status: stable
+---
+
 # ADR [number]: [Title]
 
 > Vietnamese usage note: Dùng ADR cho quyết định quan trọng, không dùng để ghi mọi chi tiết nhỏ. Không lưu secrets.

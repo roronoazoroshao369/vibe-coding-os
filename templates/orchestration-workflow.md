@@ -1,3 +1,16 @@
+---
+title: Orchestration Workflow Template
+type: template
+name: orchestration-workflow
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Orchestration Workflow Template
 
 > Fill this template to define and execute a multi-team sprint orchestration.

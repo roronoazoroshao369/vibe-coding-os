@@ -1,3 +1,16 @@
+---
+title: Session Summary
+type: template
+name: session-summary-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Session Summary
 
 ## Vietnamese usage note

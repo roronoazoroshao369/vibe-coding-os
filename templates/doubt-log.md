@@ -1,3 +1,16 @@
+---
+title: Doubt Log
+type: template
+name: doubt-log
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Doubt Log
 
 Append-only ledger of in-flight doubt sessions. One entry per decision.

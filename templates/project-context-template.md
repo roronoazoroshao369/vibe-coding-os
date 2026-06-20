@@ -1,3 +1,16 @@
+---
+title: Project Context Template
+type: template
+name: project-context-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Project Context Template
 
 > Vietnamese usage note: Dùng template này để ghi ngôn ngữ chung của dự án. Không lưu secrets, token, private keys, dữ liệu cá nhân không cần thiết.

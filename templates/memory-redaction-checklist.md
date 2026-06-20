@@ -1,3 +1,16 @@
+---
+title: Memory Redaction Checklist
+type: template
+name: memory-redaction-checklist
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - memory
+status: stable
+---
+
 # Memory Redaction Checklist
 
 Use this checklist before committing memory entries, memory examples, or summaries derived from chats, logs, issues, or terminal output. Follow `docs/memory-conventions.md` as the source of truth.

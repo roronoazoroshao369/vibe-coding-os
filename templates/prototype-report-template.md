@@ -1,3 +1,16 @@
+---
+title: Prototype Report Template
+type: template
+name: prototype-report-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Prototype Report Template
 
 > Vietnamese usage note: Prototype là thử nghiệm để học; đánh dấu disposable và không lưu secrets/test data riêng tư.

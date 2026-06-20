@@ -1,3 +1,16 @@
+---
+title: Instinct Template
+type: template
+name: instinct-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Instinct Template
 
 > Use this template to record a structured engineering instinct in `references/instincts/`. Each instinct should be a single, testable trigger-action rule with explicit scope and confidence.

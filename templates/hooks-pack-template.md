@@ -1,3 +1,16 @@
+---
+title: Hooks Pack Template
+type: template
+name: hooks-pack-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Hooks Pack Template
 
 > Use this template to declare one Claude Code hook. Each entry in

@@ -1,3 +1,16 @@
+---
+title: Implementation Brief: <title>
+type: template
+name: implementation-brief-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Implementation Brief: <title>
 
 > Vietnamese usage note / Ghi chú sử dụng: Đây là bản tóm tắt thực thi gom đủ ngữ cảnh

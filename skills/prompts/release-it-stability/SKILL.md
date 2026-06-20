@@ -1,3 +1,14 @@
+---
+name: release-it-stability
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: prompts
+tags:
+  - prompts
+status: stable
+---
+
 # Release It! Stability Patterns
 
 ## Purpose
