@@ -1,7 +1,7 @@
 # Vibe Coding OS — Project Health Dashboard
 
 > **Auto-generated** by `scripts/generate-dashboard.mjs` — do not edit manually.
-> Last generated: 2026-06-19
+> Last generated: 2026-06-20
 
 ## Quick Status
 
@@ -10,8 +10,8 @@
 | Version | 2.10.0 |
 | Skills | 131 |
 | Commands | 101 |
-| Templates | 100 |
-| Narrative files | 657 |
+| Templates | 101 |
+| Narrative files | 659 |
 | Upstream sources | 20 |
 | Broken refs | 0 |
 
@@ -129,7 +129,7 @@
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 3 (warnings — review signal) |
-| Orphan skills | 2 (warnings — review signal) |
+| Orphan skills | 1 (warnings — review signal) |
 | Orphan templates | 3 |
 | Broken references | 0 |
 
