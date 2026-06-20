@@ -672,6 +672,30 @@
       "path": "commands/vibe-refactor.md",
       "description": "Start a safe refactor session using the 5-phase protocol from skills/core/safe-refactor/SKILL.md.",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-skill-search",
+      "path": "commands/vibe-skill-search.md",
+      "description": "Search across skills, commands, templates, and docs with regex and case-insensitive matching.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-docs-author",
+      "path": "commands/vibe-docs-author.md",
+      "description": "Create a new skill, command, or template following Vibe Coding OS five-section conventions.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-deps-graph",
+      "path": "commands/vibe-deps-graph.md",
+      "description": "Visualize the skill dependency graph in JSON, Mermaid, or stats format.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-install",
+      "path": "commands/vibe-install.md",
+      "description": "Install a skill from the Vibe Coding OS registry into your project.",
+      "maturity": "stable"
     }
   ]
 }

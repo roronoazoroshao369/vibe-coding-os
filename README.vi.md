@@ -20,15 +20,38 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.13.0):** validate:all 30/30 gates PASS · **142 skills** · **111 commands** · **95 templates** · **22 tracked sources** · 9 adapters
+**Bản phát hành hiện tại (v2.14.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters
 
-**Mới nhất:** v2.13.0 — Security Shield + Engineering Quality Lift (Wave A: bypass-gate, default-deny hooks, OWASP LLM, anti-injection, license-policy; Wave B: safe-refactor trio, ops templates, plan-skill tree, strict-new orphan gate, ADR refs). 30/30 gates PASS, 143 skills, 112 commands, 116 templates.
+**Mới nhất:** v2.14.0 — Defense in Depth (Wave A: 3-layer security pattern — Detect → Contain → Recover, injection counters 97.37% coverage, 60/60 redact tests, sandbox-marker convention, security regression gate). 33/33 gates PASS, 143 skills, 112 commands, 117 templates.
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
 **CTA đầu tiên:** Nếu bạn mới bắt đầu, hãy chạy ngay [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) để hoàn tất một vòng `spec → plan → verify` trước khi đọc runtime hay tooling cho maintainer.
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
+
+## Có gì mới trong v2.14.0
+
+**Wave A — Security (3-layer Defense in Depth, ADR 0003):**
+- **`security/defense/`** — Injection counters (97.37% coverage), 19 OWASP-mapped patterns, canary corpus with 43 payloads
+- **`security/redact/`** — 3-mode redactor (postTool / postSession / postPublish), 60/60 tests pass, allowlist for placeholders
+- **`security/README.md`** — Canonical guide for the 3-layer defense
+- **`skills/core/sandbox-marker/SKILL.md`** — Convention for marking skills that load external/untrusted content
+- **3 new validation gates**: `validate:security-regression`, `validate:redact`, `validate:sandbox-marker`
+
+**Wave B — Engineering:**
+- **`skills/core/skill-content-search/`** — Search across 541 files (skills, commands, templates, docs) with regex + case flags
+- **`skills/core/docs-author/`** — 5-section convention (Purpose → When to use → Workflow → Outputs → Failure modes)
+- **`skills/core/test-fixture-library/`** — Declarative JSON fixtures in `tests/fixtures/` with validator + generator
+- **`skills/core/skill-deps-graph/`** — Visualize skill dependency graph (JSON, Mermaid, stats)
+- **`skills/core/deprecate-skill/`** — Proper deprecation workflow (mark → log → notice → sunset)
+
+**Wave C — Adoption:**
+- **`docs/comparison.md`** — vs LangChain / Semantic Kernel / Cursor / Copilot
+- **`skills/core/install-skill/`** + `commands/vibe-install.md` — `node scripts/install-skill.mjs <name>` with --list/--dry-run/--force/--target
+- **`docs/FAQ.md`** — 10 Q&A pairs with Schema.org FAQPage JSON-LD for SEO
+- **`.github/discussion-templates/`** — Q&A, Show-and-tell, Feature-request templates
+- **`docs/show-hn-kit.md`** — Copy-paste HN post + image suggestions + Twitter/LinkedIn variants
 
 ## Có gì mới trong v2.12.0
 
@@ -48,7 +71,7 @@ Engineering Discipline Pack — inspired by addyosmani/agent-skills (MIT, 63.4k�
 - **Validator enhanced**: `scripts/validate-schemas.mjs` soft-warn sections khuyến nghị (`## Common rationalizations`, `## Red flags`, `## Verification checklist`) mà không phá existing skills
 - **Manifests regenerated**: `commands/manifest.json` (108 commands), `templates/manifest.json` (92 templates)
 - **Inspiration sources**: 20 → 21 (addyosmani/agent-skills tracked)
-- **Tổng**: 30/30 gates PASS, 136 skills, 108 commands, 92 templates
+- **Tổng**: 33/33 gates PASS, 136 skills, 108 commands, 92 templates
 
 ## Có gì mới trong v2.10.x
 
@@ -293,7 +316,7 @@ Gate này kiểm tra:
 - runtime behavior tests;
 - adapter smoke tests.
 
-Mục tiêu release: **30/30 PASS**.
+Mục tiêu release: **33/33 PASS**.
 
 ---
 
@@ -333,7 +356,7 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 - Multi-Repository Learning xuất, kiểm tra và nhập lesson exchange batches giữa các repository.
 - `vibe-lesson-exchange` giúp dùng exporter/importer/checker trong workflow có review rõ ràng.
-- README, roadmap, dashboard và release metadata được sync với 30/30 validation gates.
+- README, roadmap, dashboard và release metadata được sync với 33/33 validation gates.
 - Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 
 ---

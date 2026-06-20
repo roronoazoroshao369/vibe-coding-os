@@ -1331,6 +1331,128 @@
         "*"
       ],
       "maturity": "stable"
+    },
+    {
+      "name": "sandbox-marker",
+      "path": "skills/core/sandbox-marker/SKILL.md",
+      "category": "core",
+      "tags": [
+        "security",
+        "sandbox",
+        "marker",
+        "convention"
+      ],
+      "maturity": "stable",
+      "introduced_in": "v2.14.0",
+      "description": "Convention for marking skills that load external or untrusted content (ADR 0003)"
+    },
+    {
+      "name": "skill-content-search",
+      "path": "skills/core/skill-content-search/SKILL.md",
+      "category": "core",
+      "description": "Search across skills/commands/templates/docs with regex and case-insensitive matching",
+      "tags": [
+        "search",
+        "discover",
+        "content",
+        "grep",
+        "navigation"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "docs-author",
+      "path": "skills/core/docs-author/SKILL.md",
+      "category": "core",
+      "description": "Five-section structure convention for authoring skills, commands, and templates",
+      "tags": [
+        "docs",
+        "documentation",
+        "writing",
+        "structure",
+        "conventions"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "test-fixture-library",
+      "path": "skills/core/test-fixture-library/SKILL.md",
+      "category": "core",
+      "description": "Reusable test fixtures in JSON for security and validation tests",
+      "tags": [
+        "testing",
+        "fixtures",
+        "declarative",
+        "reusable",
+        "json"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "skill-deps-graph",
+      "path": "skills/core/skill-deps-graph/SKILL.md",
+      "category": "core",
+      "description": "Build a dependency graph of skills from cross-references",
+      "tags": [
+        "dependencies",
+        "graph",
+        "visualization",
+        "mermaid",
+        "analysis"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "deprecate-skill",
+      "path": "skills/core/deprecate-skill/SKILL.md",
+      "category": "core",
+      "description": "Workflow and tooling for deprecating skills properly (mark, log, redirect)",
+      "tags": [
+        "deprecation",
+        "lifecycle",
+        "retirement",
+        "migration",
+        "governance"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "install-skill",
+      "path": "skills/core/install-skill/SKILL.md",
+      "category": "core",
+      "description": "Install skills, commands, or templates from the registry into a target directory.",
+      "tags": [
+        "install",
+        "registry",
+        "packaging",
+        "deployment",
+        "npm"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
     }
   ]
 }

@@ -42,6 +42,12 @@ const ALLOWLIST_PATHS = [
   /^docs\/memory-conventions\.md$/,
   /^runtime\/memory\/vector-store\.mjs$/,
   /^examples\/bypass-demo\//,  // Demo files contain password-related code
+  /^scripts\/validate-redact\.mjs$/,  // Redactor test inputs (placeholders only)
+  /^security\/redact\/allowlist\.json$/,  // Allowlist contains placeholder patterns
+  /^security\/README\.md$/,  // Security docs contain example patterns
+  /^security\/redact\/README\.md$/,  // Redactor docs contain example patterns
+  /^tests\/fixtures\/.+\.json$/,  // Test fixtures contain example patterns
+  /^skills\/core\/test-fixture-library\/SKILL\.md$/,  // Skill describing fixtures
 ];
 
 const TEXT_EXTENSIONS = new Set([

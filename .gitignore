@@ -37,3 +37,6 @@ website/package-lock.json
 node_modules
 docs/security/bypass-load-attempts.log
 docs/security/session-audit/
+
+# Session-local todo state
+.todo_state.json

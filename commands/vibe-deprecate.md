@@ -1,73 +1,32 @@
----
-description: "Mark a skill, command, template, or registry entry as deprecated with a structured sunset timeline."
----
+# Command: deprecate-skill
 
-# Command: Vibe Deprecate
+> Properly deprecate a skill (mark, log, redirect — don't delete).
 
-## When to use
+## Usage
 
-Invoke when an artifact (skill, command, template, registry entry, schema) is being replaced, removed, or marked end-of-life. Pairs with `vibe-migrate` (the consumer-facing migration command).
+```bash
+# Mark a skill as deprecated
+node scripts/deprecate-skill.mjs mark <skill-name> "<reason>" <replacement>
 
-## Required inputs
+# Generate deprecation notice file
+node scripts/deprecate-skill.mjs notice <skill-name>
 
-- Target artifact path or identifier
-- Reason for deprecation
-- Replacement artifact (if any)
-- Migration path (steps users must take)
-- Severity classification (compulsory vs advisory)
+# List all deprecations
+node scripts/deprecate-skill.mjs list
 
-## Step-by-step behavior
+# Check if a skill is deprecated
+node scripts/deprecate-skill.mjs check <skill-name>
+```
 
-1. Answer the 5 pre-deprecation questions (system value, consumers, replacement, migration cost, maintenance cost of NOT deprecating).
-2. Classify severity:
-   - **Compulsory** → 2 minor versions OR 30 days notice, whichever is longer.
-   - **Advisory** → 1 minor version OR 14 days notice, whichever is longer.
-3. Fill `templates/deprecation-notice-template.md`.
-4. Add `status: "deprecated"` to the registry entry.
-5. Add `## Deprecation` section to the target file (severity, replacement, sunset date, link).
-6. Add entry to `registry/deprecation-tracker.json` (or extension).
-7. Update `CHANGELOG.md` under `### Deprecated`.
-8. For compulsory: also update README, layer READMEs, adapter docs.
-9. Update validation gate to warn (advisory) or error (compulsory) on references.
+## Workflow
 
-## Outputs
+1. `mark` — adds entry to `registry/deprecation-tracker.json`, updates frontmatter
+2. `notice` — generates `docs/deprecations/DEP-XXX.md`
+3. Commit both, announce in release notes
+4. After sunset date (default 30 days), physically remove the skill
 
-- Filled deprecation notice
-- Updated registry entry with `status: "deprecated"`
-- Updated target file with `## Deprecation` section
-- `CHANGELOG.md` entry
-- `registry/deprecation-tracker.json` entry
+## See also
 
-## Stopping conditions
-
-Stop when: (a) all 5 questions answered, (b) severity classified with justification, (c) notice filled, (d) artifact marked, (e) tracker updated, (f) changelog updated, (g) validation gate updated.
-
-## Verification checklist
-
-- [ ] 5 pre-deprecation questions answered
-- [ ] Severity classified
-- [ ] Deprecation notice filled
-- [ ] Artifact has `status: "deprecated"`
-- [ ] Target file has `## Deprecation` section
-- [ ] `CHANGELOG.md` updated
-- [ ] Compulsory: README/layer-READMEs updated
-- [ ] Tracker entry exists
-- [ ] Validation gate warns/errors on references
-- [ ] Sunset date set
-
-## Anti-patterns to avoid
-
-- Deprecating without a replacement (users stranded)
-- Marking compulsory when advisory would suffice (panic)
-- Marking advisory when compulsory is required (security incident)
-- Sunset date without notice period
-- Deprecation notice without migration path
-- Removing the artifact before sunset date
-- Deprecation without tracker entry
-
-## Related skills
-
-- `skills/core/deprecation-migration/SKILL.md` — full Compulsory/Advisory protocol
-- `commands/vibe-migrate.md` — consumer-facing migration command
-- `templates/deprecation-notice-template.md` — notice template
-- `registry/deprecation-tracker.json` — append-only tracker
+- `skills/core/deprecate-skill/SKILL.md` — full skill
+- `templates/deprecation-notice-template.md` — canonical template
+- `scripts/deprecate-skill.mjs` — source

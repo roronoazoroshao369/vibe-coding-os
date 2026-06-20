@@ -7,11 +7,11 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.13.0 |
-| Skills | 142 |
-| Commands | 112 |
-| Templates | 116 |
-| Narrative files | 707 |
+| Version | 2.14.0 |
+| Skills | 149 |
+| Commands | 116 |
+| Templates | 119 |
+| Narrative files | 727 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 7 |
 | checklists | 5 |
-| core | 80 |
+| core | 87 |
 | memory | 20 |
 | meta | 12 |
 | prompts | 15 |
@@ -65,6 +65,7 @@
 | v2.10.1 | ✅ Complete | QA fixes + 24/24 functional tests |
 | v2.11.0 | ✅ Complete | Engineering Discipline Pack — 5 skills, 7 commands, 6 templates, plugins/manifest, anti-patterns |
 | v2.13.0 | ✅ Complete | Security Shield + Engineering Quality Lift — Wave A: bypass-gate, default-deny hooks, OWASP LLM, anti-injection, license-policy. Wave B: safe-refactor trio, ops templates, plan-skill tree, strict-new orphan gate, ADR refs. 30/30 gates PASS. |
+| v2.14.0 | ✅ Complete | Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate. 33/33 gates PASS. |
 | v2.12.0 | ✅ Complete | Quality Shield + source #22 rohitg00 — 3 NEW skills (hooks-pack, secure-coding-checklist, prompt-architecture), 3 commands, 3 templates, GitHub SEO overhaul (15 topics + social preview), marketplace submission package, hardened Windsurf + Cline adapters, validate-skill-quality.mjs shipped |
 
 ## Safety Metrics
@@ -121,8 +122,11 @@
 | readme-heading-version | ✅ PASS | ~56ms |
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
+| validate-security-regression | ✅ PASS | ~107ms |
+| validate-redact | ✅ PASS | ~55ms |
+| validate-sandbox-marker | ✅ PASS | ~78ms |
 
-**Overall: 30/30 gates passed**
+**Overall: 33/33 gates passed**
 
 ## Coverage Summary
 

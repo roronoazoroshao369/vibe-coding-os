@@ -1,0 +1,20 @@
+{
+  "name": "{{TYPE}}-test-cases",
+  "type": "{{TYPE}}",
+  "version": "1.0.0",
+  "description": "{{DESCRIPTION}}",
+  "cases": [
+    {
+      "id": "{{TYPE}}-001",
+      "input": "{{INPUT}}",
+      "should_detect": true,
+      "threat_level": "high"
+    },
+    {
+      "id": "{{TYPE}}-002",
+      "input": "{{INPUT}}",
+      "should_detect": false,
+      "threat_level": "safe"
+    }
+  ]
+}

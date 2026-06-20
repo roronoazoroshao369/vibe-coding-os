@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "created": "2026-06-20",
+  "purpose": "Default secret detection patterns for redactor.mjs",
+  "owasp_mapping": [
+    "LLM06: Sensitive Information Disclosure"
+  ],
+  "patterns_count": 30,
+  "severity_levels": [
+    "low",
+    "medium",
+    "high",
+    "critical"
+  ],
+  "severity_definitions": {
+    "critical": "Direct credential with full access (AWS root, GitHub PAT, npm token)",
+    "high": "Scoped credential or auth token (JWT, Slack bot)",
+    "medium": "Configuration hint (service account JSON, Bearer header)",
+    "low": "Potential indicator (high-entropy string, private IP)"
+  },
+  "tuning_notes": "False positive rate target <2%. Allowlist test fixtures. Review every quarter."
+}

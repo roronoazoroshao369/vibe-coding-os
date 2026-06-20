@@ -1,0 +1,21 @@
+---
+name: Q&A
+title: "[Question] "
+labels: ["question"]
+description: Ask a question about how to use Vibe Coding OS.
+---
+
+## Question
+
+<!-- What do you want to know? -->
+
+## What I've tried
+
+<!-- Link to docs you read, commands you ran, etc. -->
+
+## Environment
+
+- **OS**: <!-- macOS / Linux / Windows -->
+- **AI tool**: <!-- Claude Code / Codex / Cursor / Gemini / other -->
+- **Vibe version**: <!-- e.g. v2.14.0 -->
+- **Node version**: <!-- e.g. v20.10.0 -->

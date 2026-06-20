@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-os",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "private": false,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
@@ -108,7 +108,11 @@
     "lesson:export": "node scripts/lesson-exporter.mjs",
     "lesson:import": "node scripts/lesson-importer.mjs",
     "lesson:check": "node scripts/lesson-quality-checker.mjs",
-    "validate:lesson-exchange": "node scripts/lesson-quality-checker.mjs"
+    "validate:lesson-exchange": "node scripts/lesson-quality-checker.mjs",
+    "validate:security-regression": "node scripts/validate-security-regression.mjs",
+    "validate:redact": "node scripts/validate-redact.mjs",
+    "validate:sandbox-marker": "node scripts/validate-sandbox-marker.mjs",
+    "security:regression": "node tests/security/regression.mjs"
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

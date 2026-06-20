@@ -1,0 +1,43 @@
+{
+  "name": "redactor-test-cases",
+  "type": "redactor",
+  "version": "1.0.0",
+  "description": "Reusable test cases for security/redact/redactor.mjs",
+  "cases": [
+    {
+      "id": "redact-001",
+      "input": "AWS_DOCS_KEY_PLACEHOLDER",
+      "should_redact": false,
+      "mode": "postTool",
+      "note": "AWS docs example (allowlisted)"
+    },
+    {
+      "id": "redact-002",
+      "input": "AWS_DEMO_KEY_PLACEHOLDER",
+      "should_redact": true,
+      "mode": "postTool",
+      "note": "Real AWS key"
+    },
+    {
+      "id": "redact-003",
+      "input": "STRIPE_LIVE_PLACEHOLDER",
+      "should_redact": true,
+      "mode": "postTool",
+      "note": "Stripe live key"
+    },
+    {
+      "id": "redact-004",
+      "input": "Hello world",
+      "should_redact": false,
+      "mode": "postTool",
+      "note": "Safe content"
+    },
+    {
+      "id": "redact-005",
+      "input": "AWS_DEMO_KEY_PLACEHOLDER",
+      "should_redact": true,
+      "mode": "postPublish",
+      "note": "AWS key in publish mode"
+    }
+  ]
+}

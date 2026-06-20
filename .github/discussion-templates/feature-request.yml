@@ -1,0 +1,24 @@
+---
+name: Feature request
+title: "[Feature] "
+labels: ["enhancement"]
+description: Suggest a new skill, command, template, or feature.
+---
+
+## Problem
+
+<!-- What problem does this solve? -->
+
+## Proposed solution
+
+<!-- Skill/command/template sketch -->
+
+## Alternatives considered
+
+<!-- Other approaches that didn't work as well -->
+
+## Willing to contribute
+
+- [ ] I can open a PR
+- [ ] I can review a PR
+- [ ] I can test

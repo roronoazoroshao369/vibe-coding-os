@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "created": "2026-06-20",
+  "purpose": "Patterns explicitly permitted to appear without redaction (test fixtures, examples, docs)",
+  "entries": [
+    {
+      "exact": "STRIPE_TEST_PLACEHOLDER",
+      "reason": "Stripe placeholder (exact match)"
+    },
+    {
+      "exact": "AKIAIO...MPLE",
+      "reason": "AWS docs example key (exact match)"
+    },
+    {
+      "exact": "github...xxxx",
+      "reason": "GitHub PAT placeholder (exact match)"
+    },
+    {
+      "exact": "EXAMPLE-JWT-TOKEN",
+      "reason": "JWT placeholder"
+    },
+    {
+      "exact": "sk-PLA...ENAI",
+      "reason": "OpenAI placeholder"
+    },
+    {
+      "regex": "^your-api-key-here$",
+      "reason": "Common placeholder (anchored)"
+    },
+    {
+      "regex": "^REPLACE_WITH_YOUR_TOKEN$",
+      "reason": "Template placeholder (anchored)"
+    },
+    {
+      "regex": "^<your-(token|key|secret)>$",
+      "reason": "Markdown placeholder"
+    },
+    {
+      "exact": "STRIPE_TEST_PLACEHOLDER",
+      "reason": "Stripe public test key (legacy placeholder)"
+    },
+    {
+      "exact": "SLACK_WEBHOOK_PLACEHOLDER",
+      "reason": "Slack webhook placeholder"
+    },
+    {
+      "exact": "STRIPE_LIVE_PLACEHOLDER",
+      "reason": "Stripe live key placeholder"
+    },
+    {
+      "exact": "STRIPE_TEST_PLACEHOLDER",
+      "reason": "Stripe test key placeholder"
+    },
+    {
+      "exact": "STRIPE_TEST_PLACEHOLDER_2",
+      "reason": "Stripe test key placeholder variant"
+    },
+    {
+      "exact": "STRIPE_LIVE_PLACEHOLDER",
+      "reason": "Stripe live key legacy placeholder (truncated pattern)"
+    },
+    {
+      "exact": "STRIPE_TEST_PLACEHOLDER_2",
+      "reason": "Stripe test key legacy placeholder (truncated pattern)"
+    }
+  ]
+}
