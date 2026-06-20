@@ -1,0 +1,292 @@
+{
+  "version": "1.0.0",
+  "description": "Detection patterns for cipher-based prompt injection attacks. Defensive reference for guard implementations, not bypass tools.",
+  "scope": "DEFENSE_ONLY - used by guard/filter implementations to identify and block cipher-encoded jailbreak attempts",
+  "license": "Apache-2.0 (matches vibe-coding-os)",
+  "attribution": "Synthesized from academic paper: RobustNLP/CipherChat (Yuan et al., 2024) - arXiv:2408.16718",
+  "patterns": [
+    {
+      "id": "cipher-detect-001",
+      "name": "ROT13 Detection",
+      "category": "classical-cipher",
+      "severity": "high",
+      "description": "Detect prompts containing ROT13-encoded text requesting the model to decode and respond",
+      "detection_hints": [
+        "Mentions 'rot13' or 'rot-13' explicitly",
+        "Contains 'decode this' followed by alphabetic characters with no spaces",
+        "Asks model to 'apply rot13' or 'rotate by 13'"
+      ],
+      "regex_patterns": [
+        "(?i)rot[- ]?13",
+        "(?i)rotate by 13",
+        "(?i)apply rot13"
+      ],
+      "defense_recommendation": "Block prompts requesting model to decode and execute ROT13-encoded instructions. ROT13 alone is not a secret - models can decode it trivially.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-002",
+      "name": "Atbash Cipher Detection",
+      "category": "classical-cipher",
+      "severity": "medium",
+      "description": "Detect Hebrew atbash cipher (A<->Z, B<->Y mapping) used to obfuscate harmful requests",
+      "detection_hints": [
+        "Reversed alphabet patterns in user text",
+        "References to 'atbash' or 'hebrew cipher'",
+        "Asks model to 'reverse the alphabet'"
+      ],
+      "regex_patterns": [
+        "(?i)atbash",
+        "(?i)hebrew cipher",
+        "(?i)reverse alphabet"
+      ],
+      "defense_recommendation": "Detect atbash-encoded harmful requests. Block when decoded content matches known harm categories.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-003",
+      "name": "Caesar Cipher Detection",
+      "category": "classical-cipher",
+      "severity": "high",
+      "description": "Detect Caesar shift cipher with variable offset (1-25) used to obfuscate requests",
+      "detection_hints": [
+        "Mentions 'caesar cipher' or 'shift cipher'",
+        "Asks model to 'shift by N' or 'shift back by N'",
+        "Provides encoded text and asks for decoding"
+      ],
+      "regex_patterns": [
+        "(?i)caesar cipher",
+        "(?i)shift cipher",
+        "(?i)shift by [0-9]+",
+        "(?i)shift back by [0-9]+"
+      ],
+      "defense_recommendation": "Block Caesar shift requests. Try all 25 possible shifts against content classifier.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-004",
+      "name": "Binary Encoding Detection",
+      "category": "encoding-cipher",
+      "severity": "high",
+      "description": "Detect prompts containing binary (0/1) representations of text requesting decoding",
+      "detection_hints": [
+        "Long strings of 0s and 1s (8+ char sequences) without context",
+        "Asks to 'convert binary' or 'decode binary'",
+        "Provides ASCII codes in binary"
+      ],
+      "regex_patterns": [
+        "[01]{8,}",
+        "(?i)decode binary",
+        "(?i)convert from binary"
+      ],
+      "defense_recommendation": "Block prompts with long binary sequences. Run content classifier on decoded binary before processing.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-005",
+      "name": "Hex Encoding Detection",
+      "category": "encoding-cipher",
+      "severity": "high",
+      "description": "Detect prompts with hex-encoded content requesting decode-and-execute",
+      "detection_hints": [
+        "Hex-looking strings (0-9a-f pairs, 16+ chars) without context",
+        "Asks to 'convert hex' or 'decode hex'",
+        "Provides ASCII codes in hex"
+      ],
+      "regex_patterns": [
+        "[0-9a-fA-F]{16,}",
+        "(?i)decode hex",
+        "(?i)convert from hex"
+      ],
+      "defense_recommendation": "Block hex-encoded instruction sequences. Decode and content-classify before processing.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-006",
+      "name": "Morse Code Detection",
+      "category": "encoding-cipher",
+      "severity": "medium",
+      "description": "Detect Morse code sequences (dots and dashes) in user prompts",
+      "detection_hints": [
+        "Long sequences of . - and spaces",
+        "Asks to 'decode morse'",
+        "Provides dot-dash patterns"
+      ],
+      "regex_patterns": [
+        "[.-]{5,}",
+        "(?i)decode morse",
+        "(?i)morse code"
+      ],
+      "defense_recommendation": "Block morse-encoded content. Run content classifier on decoded text.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-007",
+      "name": "Pig Latin Detection",
+      "category": "obfuscation-cipher",
+      "severity": "low",
+      "description": "Detect Pig Latin (English with -ay suffix) used to obfuscate harmful words",
+      "detection_hints": [
+        "Multiple words ending in -ay that are not actual English",
+        "References to 'pig latin'"
+      ],
+      "regex_patterns": [
+        "(?i)pig latin",
+        "\\b\\w+ay\\b"
+      ],
+      "defense_recommendation": "Pig Latin is weak obfuscation. Translate and content-classify.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-008",
+      "name": "String Reversal Detection",
+      "category": "obfuscation-cipher",
+      "severity": "low",
+      "description": "Detect reversed text strings used to bypass keyword filters",
+      "detection_hints": [
+        "Words with no vowels in standard positions",
+        "Asks to 'read backwards' or 'reverse the text'",
+        "Provides reversed text"
+      ],
+      "regex_patterns": [
+        "(?i)read (this )?backwards?",
+        "(?i)reverse the text",
+        "(?i)reverse (this|the) string"
+      ],
+      "defense_recommendation": "Reverse and content-classify. Simple defense - reverse is trivial to undo.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-009",
+      "name": "Self-Defined Cipher",
+      "category": "custom-cipher",
+      "severity": "critical",
+      "description": "Detect user-defined cipher systems provided in the prompt itself",
+      "detection_hints": [
+        "Prompt defines a substitution or mapping rule",
+        "Asks model to apply custom transformation",
+        "References 'my cipher' or 'custom encoding'"
+      ],
+      "regex_patterns": [
+        "(?i)my cipher",
+        "(?i)custom encoding",
+        "(?i)substitution rule"
+      ],
+      "defense_recommendation": "Block prompts that define their own encoding scheme. This is a strong signal of jailbreak attempt.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-010",
+      "name": "Unicode Obfuscation",
+      "category": "encoding-cipher",
+      "severity": "high",
+      "description": "Detect Unicode characters that visually resemble ASCII (homoglyphs, zero-width chars)",
+      "detection_hints": [
+        "Zero-width characters (U+200B, U+200C, U+200D, U+FEFF)",
+        "Homoglyphs (Cyrillic, Greek, etc. in Latin text)",
+        "Mixed-script words"
+      ],
+      "regex_patterns": [
+        "[\\u200B-\\u200D\\uFEFF]",
+        "[\\u0400-\\u04FF]"
+      ],
+      "defense_recommendation": "Normalize Unicode to ASCII before content classification. Reject mixed-script text.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-011",
+      "name": "Base64 Decoding Request",
+      "category": "encoding-cipher",
+      "severity": "high",
+      "description": "Detect prompts asking model to decode Base64 and execute the result",
+      "detection_hints": [
+        "Mentions 'base64' explicitly",
+        "Asks to 'decode this base64'",
+        "Provides long Base64-looking string"
+      ],
+      "regex_patterns": [
+        "(?i)base64",
+        "[A-Za-z0-9+/]{40,}={0,2}"
+      ],
+      "defense_recommendation": "Decode and content-classify before processing. Block if decoded text is harmful.",
+      "false_positive_risk": "low"
+    },
+    {
+      "id": "cipher-detect-012",
+      "name": "Leetspeak / Character Substitution",
+      "category": "obfuscation-cipher",
+      "severity": "medium",
+      "description": "Detect leetspeak (1337) or character substitution (a→@, e→3, etc.)",
+      "detection_hints": [
+        "High density of digits in word positions",
+        "Symbols replacing letters (@, $, !, 0)"
+      ],
+      "regex_patterns": [
+        "(?i)1337",
+        "(?i)l33t",
+        "(?i)leet speak"
+      ],
+      "defense_recommendation": "Normalize leetspeak to plain text before classification. Use a leet to ASCII dictionary.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-013",
+      "name": "Translation Pivot Attack",
+      "category": "obfuscation-cipher",
+      "severity": "high",
+      "description": "Detect prompts that translate request to low-resource language and ask for response back",
+      "detection_hints": [
+        "Mentions translation between English and another language",
+        "Asks for response 'in English' after providing foreign text",
+        "Low-resource language like Zulu, Welsh, Maori"
+      ],
+      "regex_patterns": [
+        "(?i)translate (this|back) to (chinese|russian|arabic|korean|japanese)",
+        "(?i)respond in (chinese|russian|arabic|korean|japanese)"
+      ],
+      "defense_recommendation": "Apply content classification in original language. Many LLMs have weaker safety in non-English.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-014",
+      "name": "Acrostic / First-Letter Cipher",
+      "category": "obfuscation-cipher",
+      "severity": "medium",
+      "description": "Detect prompts where first letters of each line/word form a hidden message",
+      "detection_hints": [
+        "Multiple lines with single-word starts",
+        "References to 'acrostic' or 'first letter'"
+      ],
+      "regex_patterns": [
+        "(?i)acrostic",
+        "(?i)first letter"
+      ],
+      "defense_recommendation": "Run content classification on extracted acrostic text. Hard to defend against at the prompt level.",
+      "false_positive_risk": "medium"
+    },
+    {
+      "id": "cipher-detect-015",
+      "name": "Emoji Substitution",
+      "category": "obfuscation-cipher",
+      "severity": "low",
+      "description": "Detect prompts using emoji to substitute for harmful words",
+      "detection_hints": [
+        "High density of emoji",
+        "References to 'emoji code' or 'emoji cipher'"
+      ],
+      "regex_patterns": [
+        "[\\xF0\\x9F\\x8C\\x80-\\xF0\\x9F\\xAA\\xBF]{3,}",
+        "(?i)emoji cipher",
+        "(?i)emoji code"
+      ],
+      "defense_recommendation": "Translate emoji to semantic concepts and run content classification.",
+      "false_positive_risk": "low"
+    }
+  ],
+  "usage_notes": {
+    "purpose": "This is a DEFENSIVE catalog. Use these patterns to build guard/filter implementations that BLOCK or DETECT cipher-based jailbreak attempts.",
+    "not_a_tool": "This file is NOT for generating bypass prompts. It is for building defenses against them.",
+    "integration": "Import this file in your guard implementation. Run pattern detection BEFORE sending user input to the model. Block or flag when patterns match.",
+    "citation": "Patterns inspired by: Yuan et al. (2024). 'CipherChat: An Interactive Visual Chat System Based on Cipher Code'. arXiv:2408.16718"
+  }
+}
