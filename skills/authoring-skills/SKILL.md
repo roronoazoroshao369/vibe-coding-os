@@ -56,3 +56,8 @@ When you are about to create a new skill file in `skills/<category>/<skill-name>
 - [ ] `validate:skill-quality` exits 0
 - [ ] Linked from at least one adapter or command (no orphan skills)
 - [ ] Optional: test file at `tests/skills/<skill-name>.test.mjs`
+
+
+## Related files
+
+- See `skills/SKILL.md` for the canonical template.

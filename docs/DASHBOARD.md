@@ -10,8 +10,8 @@
 | Version | 2.14.0 |
 | Skills | 151 |
 | Commands | 121 |
-| Templates | 127 |
-| Narrative files | 747 |
+| Templates | 128 |
+| Narrative files | 779 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 
@@ -139,7 +139,7 @@
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
-| Orphan skills | 0 (warnings — review signal) |
+| Orphan skills | 1 (warnings — review signal) |
 | Orphan templates | 0 |
 | Broken references | 0 |
 
