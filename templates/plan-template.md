@@ -28,12 +28,12 @@ Link or summarize the spec.
 
 ## Risks
 
-- 
+-
 
 ## Verification
 
 - Command: `<command>`
-- Expected result: 
+- Expected result:
 
 ## Rollback
 

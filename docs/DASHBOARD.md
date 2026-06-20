@@ -11,7 +11,7 @@
 | Skills | 151 |
 | Commands | 121 |
 | Templates | 128 |
-| Narrative files | 785 |
+| Narrative files | 786 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 
@@ -68,7 +68,7 @@
 | v2.13.0 | ✅ Complete | Security Shield + Engineering Quality Lift — Wave A: bypass-gate, default-deny hooks, OWASP LLM, anti-injection, license-policy. Wave B: safe-refactor trio, ops templates, plan-skill tree, strict-new orphan gate, ADR refs. 30/30 gates PASS. |
 | v2.14.0 | ✅ Complete | Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate. 33/33 gates PASS. |
 | v2.15.0 | ✅ Complete | Wire the Shield + Skill Maturity + Community Signals — Wave A: 5 hooks refactored to 30-pattern redactor, sandbox-marker heuristic, 3 new security commands, ADR 0004 adaptive trust. Wave B: 131 skills + 98 templates got frontmatter, 5 regression tests, stale-skill policy. Wave C: 4 adapter configs, 20 per-skill examples, 5 VI guides, community section, dependency policy. 33/33 gates PASS. |
-| v2.16.0 | ✅ Complete | Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates. 37/37 gates PASS. | <!-- injection-allow:* -->
+| v2.16.0 | ✅ Complete | Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates. 38/38 gates PASS. | <!-- injection-allow:* -->
 | v2.12.0 | ✅ Complete | Quality Shield + source #22 rohitg00 — 3 NEW skills (hooks-pack, secure-coding-checklist, prompt-architecture), 3 commands, 3 templates, GitHub SEO overhaul (15 topics + social preview), marketplace submission package, hardened Windsurf + Cline adapters, validate-skill-quality.mjs shipped |
 
 ## Safety Metrics
@@ -129,7 +129,7 @@
 | validate-redact | ✅ PASS | ~55ms |
 | validate-sandbox-marker | ✅ PASS | ~78ms |
 
-**Overall: 37/37 gates passed**
+**Overall: 38/38 gates passed**
 
 ## Coverage Summary
 

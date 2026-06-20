@@ -20,19 +20,19 @@ What the user wants and why.
 
 ## Goals
 
-- 
+-
 
 ## Non-goals
 
-- 
+-
 
 ## Constraints
 
-- 
+-
 
 ## Expected behavior
 
-- 
+-
 
 ## User scenarios
 
@@ -51,19 +51,19 @@ For each scenario above, verify:
 
 ## Edge cases
 
-- 
+-
 
 ## Assumptions
 
-- 
+-
 
 ## Acceptance criteria
 
-- [ ] 
+- [ ]
 
 ## Open questions
 
-- 
+-
 
 ## Deferred technical decisions
 

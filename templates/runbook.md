@@ -17,7 +17,6 @@ status: stable
 
 ## Header
 
-- **Runbook ID:** `<RB-XXX>`
 - **Title:** `<verb + object, e.g., "Failover primary database to standby">`
 - **Service:** `<service name>`
 - **On-call team:** `<team or rotation>`

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // validate-all.mjs — full release validation gate for Vibe Coding OS
 
-import { spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,7 +23,6 @@ const checks = [
   ['Dashboard data', 'node', ['scripts/dashboard-data.mjs']],
   ['Dashboard sync check', 'node', ['scripts/check-dashboard-sync.mjs']],
   ['Release metadata', 'node', ['scripts/validate-release-metadata.mjs']],
-  ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']],
   ['Bilingual README sync', 'node', ['scripts/validate-bilingual-sync.mjs']],
   ['Markdown links', 'node', ['scripts/validate-markdown-links.mjs']],
   ['README heading version', 'node', ['scripts/check-heading-version.mjs']],
@@ -44,6 +43,8 @@ const checks = [
   ['Quality engine integration tests', 'node', ['scripts/test-quality-engine.mjs', '--lean']],
   ['Trust scorer wired (v2.16.0)', 'node', ['scripts/validate-trust-scorer.mjs']],
   ['RTL coverage 100% (v2.16.0)', 'node', ['scripts/validate-rtl-coverage.mjs']],
+  ['Evaluation report', 'node', ['scripts/evaluation-report.mjs']],
+  ['Property tests ≥80% pass (v2.16.0)', 'node', ['scripts/validate-property-tests.mjs']],
   ['Security command coverage (v2.16.0)', 'node', ['scripts/validate-security-command-coverage.mjs']],
   ['No orphan TODOs (v2.16.0)', 'node', ['scripts/validate-no-orphan-todos.mjs']]
 ];
@@ -74,27 +75,40 @@ console.log('=== Vibe Coding OS Full Validation Gate ===');
 console.log(`Started: ${new Date().toISOString()}`);
 console.log('');
 
-for (const [name, command, args] of checks) {
-  const started = Date.now();
-  const result = spawnSync(command, args, {
-    cwd: ROOT,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    maxBuffer: 50 * 1024 * 1024
+await (async () => {
+
+// v2.16.0 Wave B — Parallelize validation: run independent checks concurrently
+// Group checks into batches of 6 to balance speed vs resource usage
+// All parallel - no batching
+const allResults = [];
+
+const batchResults = await Promise.all(checks.map(([name, command, args]) => {
+    const started = Date.now();
+    return new Promise((resolve) => {
+      const child = spawn(command, args, {
+        cwd: ROOT,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+        maxBuffer: 50 * 1024 * 1024
+      });
+      let output = '';
+      child.stdout.on('data', d => output += d);
+      child.stderr.on('data', d => output += d);
+      child.on('close', (status) => {
+        const duration = Date.now() - started;
+        resolve({ name, passed: status === 0, status: status ?? 1, duration, output });
+      });
   });
-  const output = `${result.stdout ?? ''}${result.stderr ?? ''}`.trim();
-  const passed = result.status === 0;
-  const duration = Date.now() - started;
+}));
 
-  results.push({ name, passed, status: result.status ?? 1, duration, output });
-
-  console.log(`${passed ? '✅' : '❌'} ${name}: ${passed ? 'PASS' : 'FAIL'} (${formatDuration(duration)})`);
-
-  if (name === 'Evaluation report' && output) {
-    console.log(summarizeEvaluationReport(output));
-  } else if (!passed && output) {
+for (const r of batchResults) {
+  results.push(r);
+  console.log(`${r.passed ? '✅' : '❌'} ${r.name}: ${r.passed ? 'PASS' : 'FAIL'} (${formatDuration(r.duration)})`);
+  if (r.name === 'Evaluation report' && r.output) {
+    console.log(summarizeEvaluationReport(r.output));
+  } else if (!r.passed && r.output) {
     console.log('Last output lines:');
-    for (const line of lastMeaningfulLines(output)) console.log(`  ${line}`);
+    for (const line of lastMeaningfulLines(r.output)) console.log(`  ${line}`);
   }
   console.log('');
 }
@@ -105,3 +119,5 @@ console.log(`Overall: ${passedCount}/${results.length} checks passed`);
 if (passedCount !== results.length) {
   process.exit(1);
 }
+
+})();

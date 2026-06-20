@@ -16,23 +16,23 @@ status: stable
 
 ## Durable facts
 
-- 
+-
 
 ## Decisions
 
-- 
+-
 
 ## Commands and results
 
-- 
+-
 
 ## Gotchas
 
-- 
+-
 
 ## Follow-ups
 
-- 
+-
 
 ## Metadata
 

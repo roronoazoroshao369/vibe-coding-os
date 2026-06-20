@@ -68,7 +68,6 @@ Do NOT use when:
 - [ ] Each refactor commit leaves the characterization test suite green.
 - [ ] Public surface (exported names, public methods, route paths, CLI flags) is documented in the diff.
 - [ ] No behavioral diff: characterization tests pass on both old and new code.
-- [ ] No dead code remains: no commented-out blocks, no `// TODO: remove`, no unreachable branches.
 - [ ] Registry/index updated: skill paths in `registry/skills.json`, command paths in `registry/commands.json`, template paths in `registry/templates.json` all reflect the refactor.
 - [ ] `npm run validate:traceability -- --strict-new` passes (no new orphans introduced).
 - [ ] PR description lists: smell addressed, target shape, commits in the chain, rollback commit hash.

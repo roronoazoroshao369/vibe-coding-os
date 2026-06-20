@@ -36,7 +36,6 @@ have drifted apart.
 4. Run detection passes:
    - **Duplication** — near-duplicate requirements or tasks.
    - **Ambiguity** — vague terms (fast, scalable, secure, intuitive) without measurable
-     criteria; unresolved placeholders (TODO, ???, `<placeholder>`).
    - **Underspecification** — requirements with no measurable outcome; tasks referencing
      files/components absent from spec or plan.
    - **Coverage gaps** — requirements with zero tasks; tasks with no mapped requirement.

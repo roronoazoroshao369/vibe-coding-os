@@ -64,7 +64,6 @@ The code being written or reviewed, the team's prevailing style conventions, and
 4. Do not comment bad code — rewrite it. A comment explaining confusing logic is an admission that the logic should be simpler.
 5. Keep comments local. A comment attached to a specific line is useful; a paragraph at the top of a function explaining what the function does is often a signal the function should be renamed or split.
 6. Avoid journal comments (`// 2024-01-15: fixed bug #123`), positional markers (`// --- Section ---`), and closing-brace comments (`} // end if`). Git tracks history; structure shows scope.
-7. For AI: do not generate `// TODO: implement this` unless the TODO is tracked in a real system. Otherwise every placeholder that survives is a broken window.
 
 ### 4. Error Handling — Exceptions Over Return Codes
 

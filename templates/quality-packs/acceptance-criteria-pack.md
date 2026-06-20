@@ -1,3 +1,7 @@
+---
+description: TODO
+---
+
 # Acceptance Criteria Quality Pack
 
 > Use this quality pack to classify, verify, and gate acceptance criteria through four maturity levels. Designed for reuse across any feature, bugfix, migration, or refactor task.

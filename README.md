@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.16.0):** validate:all 37/37 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.16.0):** validate:all 38/38 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
 
 **Latest:** v2.16.0 — Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates <!-- injection-allow:* -->
 
@@ -70,7 +70,7 @@ AI coding assistants can generate code fast — but speed without structure lead
 - [`tests/security/security-commands.test.mjs`](tests/security/security-commands.test.mjs) — coverage for 3 security commands (was 0%)
 - 4 orphan-TODO cleanups in `scripts/test-generator.mjs`
 - 4 new validation gates: trust-scorer-wired, rtl-coverage-100, security-command-coverage-100, no-orphan-todos
-- 37/37 gates PASS
+- 38/38 gates PASS
 
 
 ---
@@ -193,7 +193,7 @@ Advanced Orchestration adds schema-backed, stage-gated workflows for complex fea
 - **`vibe-orchestrate` command:** `commands/vibe-orchestrate.md` provides the command entry point.
 - **Canonical guide:** `docs/orchestration-guide.md` explains usage, failure modes, reports, and quality-gate integration.
 - **Registry sync:** orchestration skill and `vibe-orchestrate` command are registered in `registry/skills.json` and `registry/prompts.json`.
-- **Roadmap complete:** v1.7→v2.12 → v2.13.0 ships Security Shield + Engineering Quality Lift (37/37 gates PASS) and no runtime expansion beyond ADR 0002.
+- **Roadmap complete:** v1.7→v2.12 → v2.13.0 ships Security Shield + Engineering Quality Lift (38/38 gates PASS) and no runtime expansion beyond ADR 0002.
 
 ---
 

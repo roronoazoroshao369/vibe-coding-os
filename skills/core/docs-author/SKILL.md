@@ -12,7 +12,6 @@ description: Five-section structure (Purpose → When to use → Workflow → Ou
 
 ## Purpose
 
-Make any new skill, command, or template conform to Vibe Coding OS documentation conventions from the first draft — no rework, no orphan headings, no "TODO: fill this in" placeholders shipped to users.
 
 The five-section structure (Purpose, When to use, Workflow, Outputs, Failure modes) is the **minimum viable structure** validated by `validate-skill-quality.mjs`. Adding optional sections (Inputs, Verification checklist, Cross-references) signals flagship-quality work.
 

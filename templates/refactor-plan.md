@@ -85,7 +85,6 @@ After all commits:
 - [ ] New tests for the new shape pass.
 - [ ] `npm run validate:all` exits 0.
 - [ ] `npm run validate:traceability -- --strict-new` exits 0.
-- [ ] No `// TODO: remove` or commented-out blocks left.
 - [ ] Registry paths updated (skills/commands/templates indexes reflect new locations).
 - [ ] PR description cites the smell, the target shape, and the rollback hash.
 

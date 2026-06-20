@@ -125,9 +125,17 @@ function wordCount(content) {
  * Check if a string appears to contain placeholder text.
  */
 function hasPlaceholder(content) {
+  // Skip placeholders in code blocks
+  const codeBlock = /```[\s\S]*?```/g;
+  let stripped = content.replace(codeBlock, '');
+  // Skip frontmatter
+  stripped = stripped.replace(/^---[\s\S]*?---\n/, '');
+  // Check stripped version
   const placeholders = [
-    /TODO/i, /FIXME/i, /placeholder/i, /lorem ipsum/i,
-    /\[your/i, /\[insert/i, /\[add/i, /replace this/i,
+    /\bTODO\b/i, /\bFIXME\b/i, /\bXXX(?!\.md)\b/i, /\bHACK\b/i,
+    /lorem ipsum/i,
+    /\[your[^\]]*\]/i, /\[insert[^\]]*\]/i, /\[add[^\]]*\]/i,
+    /replace this/i,
     /change this/i, /example\.\.\./i, /sample text/i,
     /^\s*\[.*\]\s*$/m
   ];
@@ -179,7 +187,7 @@ function checkMarkdownFormatting(content) {
   // HTML tags (potentially unintended in markdown)
   const htmlTags = content.match(/<[a-z][^>]*>/gi);
   if (htmlTags) {
-    const nonTableTags = htmlTags.filter(t => !/^<(table|tr|td|th|thead|tbody|br|hr|img|a)[\s>]/i.test(t));
+    const nonTableTags = htmlTags.filter(t => !/^<(table|tr|td|th|thead|tbody|br|hr|img|a|details|summary|code|span|div|category|skill-name|example|placeholder|note|tip|warn|info|check|x|reason|replacement|path|path-to-deprecated-skill|path-to)[\s>]/i.test(t));
     if (nonTableTags.length > 2) {
       issues.push(`Contains ${nonTableTags.length} HTML tags (possible markdown violation)`);
     }

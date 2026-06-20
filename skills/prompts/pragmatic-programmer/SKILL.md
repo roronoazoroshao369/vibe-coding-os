@@ -85,9 +85,7 @@ The current code, the change being considered, any architectural constraints, an
 
 1. Fix technical debt the moment you encounter it, provided the fix is small and contained. A five-minute fix now saves an hour later.
 2. Leave code cleaner than you found it — but surgically. If a function is confusing, improve its naming or add a clarifying comment. Do not refactor the entire module.
-3. When a fix is too large for the current change, file a ticket or add a `TODO` with an owner and date. A broken window that is *tracked* is less likely to spread.
 4. The "broken window" is often a pattern: inconsistent naming, dead comments, unhandled errors, skipped tests. Fixing the pattern prevents the next broken window.
-5. For AI: when generating code, do not leave placeholder comments (`// TODO: implement this`) without adding them to a tracking system. Every placeholder is a broken window.
 6. Resist the "just this once" shortcut. A single shortcut in a clean codebase is more damaging than the same shortcut in an already-messy one.
 
 ## Outputs

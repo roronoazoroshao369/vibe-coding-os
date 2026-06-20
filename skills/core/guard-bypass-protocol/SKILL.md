@@ -105,7 +105,7 @@ MAX_ATTEMPTS = 20
 FOR each technique in selected_techniques:
     TECHNIQUE_FAILURES = 0
     REFINEMENT_COUNT = 0
-    
+
     WHILE TECHNIQUE_FAILURES < 3 AND GLOBAL_COUNTER < MAX_ATTEMPTS:
         1. Generate bypass prompt variant using the technique
         2. Apply rate limiting (2s cooldown)

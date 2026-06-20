@@ -49,7 +49,7 @@ Run this phase after any session that produced actionable observations:
    - Is this durable — likely to apply again in a similar context?
    - Is this specific enough to trigger on (concrete file names, error strings, command outputs)?
    - Is this actionable — does it say WHAT to do WHEN, not just "be careful"?
-   
+
    Convert each passing candidate into a structured instinct record (see Output format).
 
 3. **Score confidence 1—10.** Use this rubric:
@@ -75,7 +75,7 @@ Run this phase after any session that produced actionable observations:
    - Write to the instinct store as a structured markdown file: `references/instincts/<slug-name>.md`.
    - Each file follows the instinct template (see `templates/instinct-template.md`).
    - Update the instinct index if one exists.
-   
+
 7. **Determine placement.** Decide whether the instinct should also become:
    - A skill update (if the pattern is broad enough to warrant a full skill).
    - A project-memory note (if project-specific).
