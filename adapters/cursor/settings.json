@@ -1,0 +1,23 @@
+{
+  "version": "2.15.0",
+  "model": "claude-3-5-sonnet",
+  "temperature": 0.2,
+  "max_tokens": 4096,
+  "vibe": {
+    "enabled": true,
+    "workflow": {
+      "entry_point": "vibe-spec",
+      "plan": "vibe-plan",
+      "implement": "vibe-implement",
+      "review": "vibe-review",
+      "merge": "vibe-merge"
+    },
+    "skills": {
+      "auto_load": [
+        "skills/core/disciplined-diagnosis",
+        "skills/core/writing-plans",
+        "skills/core/review-before-merge"
+      ]
+    }
+  }
+}

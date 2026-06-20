@@ -1,0 +1,25 @@
+{
+  "version": "2.15.0",
+  "models": [
+    {
+      "title": "Vibe Coding OS",
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20241022",
+      "systemMessage": "You are a senior engineer using Vibe Coding OS workflow: spec → plan → implement → review → merge."
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Vibe Stubs",
+    "provider": "anthropic",
+    "model": "claude-3-5-haiku-20241022"
+  },
+  "vibe": {
+    "workflow": {
+      "spec": "vibe-spec",
+      "plan": "vibe-plan",
+      "implement": "vibe-implement",
+      "review": "vibe-review",
+      "merge": "vibe-merge"
+    }
+  }
+}

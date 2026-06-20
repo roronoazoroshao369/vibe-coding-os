@@ -1,0 +1,22 @@
+# Gemini Adapter Configuration
+# v2.15.0 — Wave C: Community Signals
+
+model: gemini-1.5-pro
+temperature: 0.3
+top_p: 0.9
+max_output_tokens: 4096
+safety_settings:
+  harassment: block_none
+  hate_speech: block_none
+  sexually_explicit: block_none
+  dangerous_content: block_none
+
+# Workflow integration
+workflow:
+  entry_point: vibe-spec
+  plan_command: vibe-plan
+
+# Skills auto-loaded
+skills:
+  - skills/core/disciplined-diagnosis
+  - skills/core/writing-plans
