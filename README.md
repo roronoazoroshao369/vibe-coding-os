@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.10.0):** validate:all 26/26 gates PASS · **131 skills** · **100 commands** · **85 templates** · **20 tracked sources** · 8 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf)
+**Current release (v2.11.0):** validate:all 26/26 gates PASS · **136 skills** · **108 commands** · **92 templates** · **21 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP)
 
 **Latest:** v2.9.0 Release Pipeline & Plugin Polish — automated release pipeline, 5 MCP command tools, CLAUDE.md optimized
 

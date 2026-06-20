@@ -1080,6 +1080,103 @@
         "*"
       ],
       "maturity": "beta"
+    },
+    {
+      "name": "doubt-driven-development",
+      "path": "skills/core/doubt-driven-development/SKILL.md",
+      "category": "core",
+      "description": "In-flight doubt posture with CLS-DAR protocol (CLAIM, LOCATE, SCRUTINIZE, DOUBT, ADJUDICATE, RECORD) and Loading Constraints. Pairs with code-review-and-quality (finished artifacts) and critique-pass-protocol (single-shot review).",
+      "tags": [
+        "verify",
+        "decision",
+        "guardrail",
+        "fresh-context",
+        "anti-rationalization",
+        "doubt"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable",
+      "source": "addyosmani-agent-skills"
+    },
+    {
+      "name": "observability-design",
+      "path": "skills/core/observability-design/SKILL.md",
+      "category": "core",
+      "description": "Design observability by starting from on-call questions before signals. Metric/log/trace trade-off table + SLO envelope. Counter 'telemetry without a question is noise'.",
+      "tags": [
+        "observability",
+        "telemetry",
+        "sre",
+        "slo",
+        "instrumentation",
+        "questions-first"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable",
+      "source": "addyosmani-agent-skills"
+    },
+    {
+      "name": "deprecation-migration",
+      "path": "skills/core/deprecation-migration/SKILL.md",
+      "category": "core",
+      "description": "Manage deprecation lifecycle: Compulsory vs Advisory classification, 5 pre-deprecation questions, sunset timeline, migration path enforcement. Applies to skills, commands, templates, registry entries, schemas.",
+      "tags": [
+        "deprecation",
+        "migration",
+        "lifecycle",
+        "sunset",
+        "compulsory-vs-advisory"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable",
+      "source": "addyosmani-agent-skills"
+    },
+    {
+      "name": "threat-model-driven-security",
+      "path": "skills/core/threat-model-driven-security/SKILL.md",
+      "category": "core",
+      "description": "Threat model during design with STRIDE 6-letter lens on (boundary, asset, adversary) tuples. Abuse cases alongside use cases. Likelihood \u00d7 Impact scoring.",
+      "tags": [
+        "security",
+        "threat-model",
+        "stride",
+        "abuse-case",
+        "design"
+      ],
+      "bundle": "security-review",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable",
+      "source": "addyosmani-agent-skills"
+    },
+    {
+      "name": "vertical-slicing",
+      "path": "skills/core/vertical-slicing/SKILL.md",
+      "category": "core",
+      "description": "Build features as end-to-end vertical slices (DB+API+UI) using 5-step cycle: Implement, Test, Verify, Commit, Next. Counter layer-by-layer anti-pattern.",
+      "tags": [
+        "incremental",
+        "vertical-slice",
+        "end-to-end",
+        "tdd",
+        "demoable"
+      ],
+      "bundle": "web-dev",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable",
+      "source": "addyosmani-agent-skills"
     }
   ]
 }

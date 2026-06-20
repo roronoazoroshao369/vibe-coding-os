@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "vibe-coding-os-marketplace",
+  "version": "2.11.0",
+  "description": "Marketplace index for Vibe Coding OS — discovery metadata for plugin managers, IDE marketplaces, and CLI installers. Adapts addyosmani/agent-skills marketplace pattern to a multi-CLI framework.",
+  "owner": {
+    "name": "Vibe Coding OS Maintainers",
+    "url": "https://github.com/roronoazoroshao369/vibe-coding-os"
+  },
+  "plugins": [
+    {
+      "name": "vibe-coding-os",
+      "version": "2.11.0",
+      "description": "Full Vibe Coding OS framework: 136 skills, 96 commands, 84 templates, 26 validation gates, 9 CLI adapters, 21 inspiration sources.",
+      "manifest": "plugins/manifest.json",
+      "source": "https://github.com/roronoazoroshao369/vibe-coding-os",
+      "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",
+      "license": "MIT",
+      "keywords": [
+        "skills",
+        "agents",
+        "engineering",
+        "spec",
+        "tdd",
+        "review",
+        "ship",
+        "vibe-coding",
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini"
+      ],
+      "categories": [
+        "spec-driven-development",
+        "test-driven-development",
+        "code-review",
+        "architecture",
+        "security",
+        "observability",
+        "performance",
+        "deprecation",
+        "threat-modeling",
+        "vertical-slicing"
+      ],
+      "supported_clis": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "aider",
+        "cline",
+        "continue",
+        "windsurf"
+      ],
+      "install": {
+        "method": "git-clone-or-package",
+        "command": "git clone https://github.com/roronoazoroshao369/vibe-coding-os.git",
+        "post_install": "cd vibe-coding-os && npm install && npm run validate:all"
+      }
+    }
+  ]
+}

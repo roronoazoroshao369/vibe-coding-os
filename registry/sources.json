@@ -72,7 +72,7 @@
       "license": "MIT-declared-incomplete",
       "status": "candidate_inspiration",
       "import_mode": "inspiration",
-      "notes": "INSPIRATION-ONLY RE-WRITE (no upstream text copied). MIT is declared in metadata only (.claude-plugin/plugin.json and README) by author forrestchang per the 2026-06-07 audit, but no standalone LICENSE file and no copyright line exist upstream, so the grant is incomplete/unverifiable. Used as idea source for all four engineering-discipline principles — Think-Before-Coding, Simplicity-First, Surgical-Changes, and Goal-Driven-Execution (attributed to Karpathy public commentary). Do not vendor until a complete license + notice is added upstream. See ATTRIBUTIONS.md."
+      "notes": "INSPIRATION-ONLY RE-WRITE (no upstream text copied). MIT is declared in metadata only (.claude-plugin/plugin.json and README) by author forrestchang per the 2026-06-07 audit, but no standalone LICENSE file and no copyright line exist upstream, so the grant is incomplete/unverifiable. Used as idea source for all four engineering-discipline principles \u2014 Think-Before-Coding, Simplicity-First, Surgical-Changes, and Goal-Driven-Execution (attributed to Karpathy public commentary). Do not vendor until a complete license + notice is added upstream. See ATTRIBUTIONS.md."
     },
     {
       "name": "obra/superpowers",
@@ -168,7 +168,15 @@
       "license": "MIT",
       "status": "tracked",
       "import_mode": "none",
-      "notes": "Original local capability. Property-based testing framework for skills, commands, and templates using randomized input generation and invariant verification. No upstream source adapted — inspiration drawn from Hypothesis/QuickCheck/fast-check methodology only."
+      "notes": "Original local capability. Property-based testing framework for skills, commands, and templates using randomized input generation and invariant verification. No upstream source adapted \u2014 inspiration drawn from Hypothesis/QuickCheck/fast-check methodology only."
+    },
+    {
+      "name": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "license": "MIT",
+      "status": "tracked_inspiration",
+      "import_mode": "adapted",
+      "notes": "MIT license verified from upstream root LICENSE during the 2026-06-20 audit. Adapted for 5 NEW skills (doubt-driven-development, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing) + 3 enhancements (quality-engine CWV budgets, grill 95% confidence stop, verification 5-axis pattern) + 2 architectural patterns (plugin manifest, orchestration anti-patterns). No upstream code, skill files, prompts, or documentation are vendored. See ATTRIBUTIONS.md and references/sources/addyosmani-agent-skills.md."
     }
   ]
 }

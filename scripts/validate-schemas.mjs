@@ -237,6 +237,19 @@ async function validateSkills() {
           if (!hasPurpose) {
             errors.push(`${skillFile}: missing ## Purpose section`);
           }
+          // Soft warn (not error) on missing skill-anatomy sections per addyosmani-inspired guidance.
+          // These are recommended but not yet required to avoid breaking the 136 existing skills.
+          const recommendedSections = [
+            '## Common rationalizations',
+            '## Red flags',
+            '## Verification checklist'
+          ];
+          const presentSections = lines.map((l) => l.trim()).filter((l) => l.startsWith('## '));
+          for (const rec of recommendedSections) {
+            if (!presentSections.includes(rec) && !presentSections.some((s) => s.startsWith(rec + ' '))) {
+              warnings.push(`${skillFile}: recommended section missing — "${rec}" (skill-anatomy inspired by addyosmani/agent-skills)`);
+            }
+          }
         } else {
           // Recurse into subdirectories
           await walkSkills(fullPath);

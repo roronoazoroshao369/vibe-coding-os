@@ -99,3 +99,66 @@ If project telemetry is enabled in quality configuration, quality-engine executi
 - Make high-risk and security gates required for advancement.
 - Use `--dry-run` before first execution to confirm planned stages and commands.
 - Review the final report before merge, release, or handoff.
+
+## Anti-patterns to avoid
+
+These anti-patterns come from observed failures in multi-agent orchestration. Inspired by `addyosmani/agent-skills` `references/orchestration-patterns.md` (MIT, verified 2026-06-20), adapted into Vibe Coding OS with original wording.
+
+### A. Persona-calls-persona (subagent tree)
+
+**Anti-pattern:** A persona's prompt or tool set instructs it to spawn another persona as a subagent to "consult on" or "delegate to".
+
+**Why it fails:** Subagent spawning creates tree-shaped orchestration that is hard to reason about, hard to log, and often produces context loss between layers. The parent persona's context budget gets consumed by the subagent's overhead, and the subagent's output may not align with the parent's intent.
+
+**Avoid by:** Keep orchestration in the orchestrator layer. A persona's `skills:` frontmatter should be leaf skills, not other personas. If a persona needs input from another domain, surface the question in the orchestrator, not via subagent delegation.
+
+### B. Deep persona trees
+
+**Anti-pattern:** Nested persona chains (persona → sub-persona → sub-sub-persona) more than 2 levels deep.
+
+**Why it fails:** Each level adds context loss, latency, and coordination overhead. Errors compound across levels; the root cause is hard to identify.
+
+**Avoid by:** Cap persona depth at 2 (orchestrator → specialist). If a specialist needs another specialist, route back through the orchestrator.
+
+### C. Single-agent doing all perspectives
+
+**Anti-pattern:** One agent tries to be planner + implementer + reviewer + tester + handoff.
+
+**Why it fails:** Conflict of interest — the agent rationalizes its own work, skips its own critique, and produces less rigorous output. The "second pair of eyes" benefit of multi-agent is lost.
+
+**Avoid by:** Use distinct agent roles with disjoint tool sets. Reviewer cannot edit code; implementer cannot mark done without reviewer sign-off.
+
+### D. Orchestrator losing nuance to summarize-for-handoff
+
+**Anti-pattern:** The orchestrator compresses all upstream output into a 1-paragraph "everything's good" summary before passing to the next stage.
+
+**Why it fails:** Detail is lost. The downstream agent (or human) cannot make informed decisions from a "looks good" message. Critical risks get buried.
+
+**Avoid by:** Pass upstream artifacts (review notes, verification reports, root cause) as-is. The orchestrator adds structure (gates, status) but does not summarize-away evidence.
+
+### E. Sequential when parallel would help
+
+**Anti-pattern:** Running independent stages sequentially (plan → review → implement → test) when plan+review could happen in parallel, or when independent test suites could run concurrently.
+
+**Why it fails:** Wastes wall-clock time; feedback loops slow down by N× the serial latency.
+
+**Avoid by:** Identify independent stages. Use `parallel: true` (or fan-out) for independent reviews/tests/implementations. Keep dependent stages sequential (a stage that consumes the previous stage's output).
+
+### F. Mid-slice commits in a vertical slice workflow
+
+**Anti-pattern:** A vertical slice (see `skills/core/vertical-slicing`) is split across multiple commits, with the working tree left mid-slice.
+
+**Why it fails:** The slice is no longer atomic. Rollback is partial. Reviewers see incomplete work.
+
+**Avoid by:** Commit the slice as a single atomic unit (impl + test + verify + spec). Do not commit mid-slice.
+
+## Loading constraints (anti-pattern catalog)
+
+| Anti-pattern | Why it fails | Avoid by |
+| --- | --- | --- |
+| Adding `doubt-driven-development` to a persona that spawns other personas | Doubt recurses; context budget blown | Invoke doubt at orchestration layer only |
+| Using `grill-user-before-building` in CI/loop | No dialogue partner | Use `verification-before-done` instead |
+| Using `vibe-deprecate` without a replacement | Users stranded | Always pair with a replacement or sunset path |
+| Using `vibe-threat-model` after implementation | Misses design flaws | Threat model during design |
+| Using `vibe-slice` with layer-only slices | Un-demoable code | Slice by outcome, not by layer |
+| Using `vibe-observability` after the feature ships | Post-incident instrumentation misses the failure mode | Design questions before signals |

@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.10.0 |
-| Skills | 131 |
-| Commands | 101 |
-| Templates | 101 |
-| Narrative files | 659 |
-| Upstream sources | 20 |
+| Version | 2.11.0 |
+| Skills | 136 |
+| Commands | 108 |
+| Templates | 108 |
+| Narrative files | 679 |
+| Upstream sources | 21 |
 | Broken refs | 0 |
 
 ### Skills by Category
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 7 |
 | checklists | 5 |
-| core | 69 |
+| core | 74 |
 | memory | 20 |
 | meta | 12 |
 | prompts | 15 |
@@ -60,7 +60,10 @@
 | v2.6.0 | ✅ Complete | Full Reference Implementation — 20 sources, 43 new files, 70 modified
 | v2.7.0 | ✅ Complete | AI Testing Suite — property testing, benchmark, test gen, trend dashboard, PR comments
 | v2.8.0 | ✅ Complete | Adapter Expansion — Cline, Continue.dev, Aider, Windsurf |
-| v2.9.0 | 🚧 In Progress | Release Pipeline & Plugin Polish — MCP tools, memory compression, agent alignment |
+| v2.9.0 | ✅ Complete | Release Pipeline & Plugin Polish — MCP tools, memory compression, agent alignment |
+| v2.10.0 | ✅ Complete | Guard Bypass Protocol + Cipher Detection + Scanner + Test Runner |
+| v2.10.1 | ✅ Complete | QA fixes + 24/24 functional tests |
+| v2.11.0 | ✅ Complete | Engineering Discipline Pack — 5 skills, 7 commands, 6 templates, plugins/manifest, anti-patterns |
 
 ## Safety Metrics
 

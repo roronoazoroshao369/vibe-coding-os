@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.11.0] — 2026-06-20 — "Engineering Discipline Pack"
+
+### Added
+- 5 NEW core skills inspired by `addyosmani/agent-skills` (MIT, verified 2026-06-20):
+  - `skills/core/doubt-driven-development/SKILL.md` — in-flight doubt posture with CLS-DAR protocol and Loading Constraints
+  - `skills/core/observability-design/SKILL.md` — questions-before-signals workflow with metric/log/trace trade-off
+  - `skills/core/deprecation-migration/SKILL.md` — Compulsory/Advisory classification with 5 pre-deprecation questions
+  - `skills/core/threat-model-driven-security/SKILL.md` — STRIDE 6-letter lens on (boundary, asset, adversary) tuples + abuse cases
+  - `skills/core/vertical-slicing/SKILL.md` — end-to-end vertical slice doctrine with 5-step cycle
+- 7 NEW commands: `vibe-doubt`, `vibe-observability`, `vibe-deprecate`, `vibe-migrate`, `vibe-threat-model`, `vibe-slice`, `vibe-perf-budget`
+- 6 NEW templates: `doubt-log`, `observability-plan-template`, `deprecation-notice-template`, `threat-model-template`, `slice-spec-template`, `performance-budget-template`
+- NEW architectural artifacts: `plugins/manifest.json` (plugin metadata), `plugins/marketplace.json` (discovery index)
+- NEW registry: `registry/deprecation-tracker.json` (append-only deprecation ledger)
+- NEW reference source tracking: `addyosmani/agent-skills` (#21), `references/sources/addyosmani-agent-skills.md`, `references/changelogs/addyosmani-agent-skills.md`
+
+### Changed
+- Enhanced `skills/core/quality-engine/SKILL.md` — added Core Web Vitals targets table (LCP/INP/CLS/TTFB/API p99) and MEASURE → IDENTIFY → FIX → VERIFY → GUARD loop
+- Enhanced `skills/core/grill-user-before-building/SKILL.md` — added 95% confidence stop condition, single-question cadence, Loading Constraints anti-pattern catalog
+- Enhanced `skills/core/verification-before-done/SKILL.md` — added 5-axis runtime verification (DOM, Console, Network, Performance, Visual)
+- Enhanced `docs/orchestration-guide.md` — added Anti-patterns section (persona-calls-persona, deep trees, single-agent-all-perspectives, summarize-for-handoff, sequential-when-parallel, mid-slice commits) + Loading Constraints table
+- Enhanced `scripts/validate-schemas.mjs` — soft-warns on missing recommended skill sections (`## Common rationalizations`, `## Red flags`, `## Verification checklist`) without breaking existing skills
+- Enhanced `commands/manifest.json` and `templates/manifest.json` — generated from filesystem (108 commands, 92 templates)
+
+### Sources
+- `addyosmani/agent-skills` (MIT) — full attribution in `ATTRIBUTIONS.md` and `NOTICE.md`
+
+### Inspiration sources tracked
+- 20 → 21 sources
+
 ## [2.9.0] — 2026-06-19
 
 ### Added

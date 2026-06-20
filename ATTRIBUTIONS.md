@@ -218,3 +218,13 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration only.
 - Vendored code: no.
 - Notes: Adapted as context-policy skill (`skills/core/context-policy/SKILL.md`) and policy template (`templates/context-policy-template.md`). Integrated with `skills/memory/privacy-filter/SKILL.md` as defense-in-depth pipeline and `docs/workflows/context-engineering.md` with policy-based context section. All local content is original wording; no upstream code, configuration, or documentation is copied.
+
+## addyosmani/agent-skills
+
+- Name: `addyosmani/agent-skills`
+- URL: https://github.com/addyosmani/agent-skills
+- License: MIT, verified from upstream metadata during the 2026-06-20 audit.
+- Used for: production-grade engineering skills for AI coding agents, SKILL.md anatomy (Purpose / When to use / Common rationalizations / Red flags / Verification checklist), anti-rationalization table patterns, doubt-driven decision posture, observability-design questions-first workflow, deprecation & migration lifecycle, threat-model-driven security (STRIDE + abuse cases), vertical slicing doctrine, plugin manifest + marketplace patterns, orchestration anti-patterns catalog.
+- Import mode: inspiration/adaptation only.
+- Vendored code: no.
+- Notes: Adapted into 5 NEW skills (doubt-driven-development, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing), 7 NEW commands (vibe-doubt, vibe-observability, vibe-deprecate, vibe-migrate, vibe-threat-model, vibe-slice, vibe-perf-budget), 6 NEW templates (doubt-log, observability-plan-template, deprecation-notice-template, threat-model-template, slice-spec-template, performance-budget-template), and 3 ENHANCED existing skills (quality-engine CWV + MEASURE→GUARD loop; grill-user-before-building 95% confidence stop; verification-before-done 5-axis runtime verification). Plus 2 NEW architectural artifacts: `plugins/manifest.json` and `plugins/marketplace.json`. Plus 1 ENHANCED guide: `docs/orchestration-guide.md` with anti-patterns section (persona-calls-persona, deep trees, single-agent-all-perspectives, summarize-for-handoff, sequential-when-parallel, mid-slice commits). Plus 1 ENHANCED validation: `scripts/validate-schemas.mjs` soft-warns on missing recommended sections. All local content is original wording; no upstream text is copied.

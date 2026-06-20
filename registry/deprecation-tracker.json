@@ -1,0 +1,5 @@
+{
+  "version": "0.1.0",
+  "description": "Append-only tracker for deprecations in Vibe Coding OS. One entry per deprecated artifact. Mirror of templates/deprecation-notice-template.md fields.",
+  "entries": []
+}

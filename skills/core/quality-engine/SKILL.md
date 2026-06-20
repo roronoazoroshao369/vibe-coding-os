@@ -49,8 +49,42 @@ Use after implementation, before a PR or merge, during periodic quality audits, 
 - [ ] Recommendations are specific, prioritized, and actionable.
 - [ ] Report is concise and distinguishes blockers from non-blocking warnings.
 
+## Performance budgets (frontend & API)
+
+Use these Core Web Vitals targets and the MEASURE → IDENTIFY → FIX → VERIFY → GUARD loop when the quality engine is evaluating user-facing or latency-sensitive changes.
+
+### Core Web Vitals target table
+
+| Metric | Good | Needs improvement | Poor | Vibe target (p75) |
+| --- | --- | --- | --- | --- |
+| **LCP** (Largest Contentful Paint) | ≤ 2.5s | 2.5s – 4.0s | > 4.0s | ≤ 2.0s |
+| **INP** (Interaction to Next Paint) | ≤ 200ms | 200ms – 500ms | > 500ms | ≤ 150ms |
+| **CLS** (Cumulative Layout Shift) | ≤ 0.1 | 0.1 – 0.25 | > 0.25 | ≤ 0.05 |
+| **TTFB** (Time to First Byte) | ≤ 800ms | 800ms – 1800ms | > 1800ms | ≤ 500ms |
+| **API p99** (for latency-sensitive endpoints) | ≤ 300ms | 300ms – 1000ms | > 1000ms | ≤ 200ms |
+
+### MEASURE → IDENTIFY → FIX → VERIFY → GUARD loop
+
+For any user-facing or latency-sensitive change:
+
+1. **MEASURE** — capture the baseline metric at p75 (LCP, INP, CLS, TTFB, or p99 for APIs). Use the project's existing observability signal or a synthetic test.
+2. **IDENTIFY** — if the metric exceeds the "Good" threshold, identify the dominant contributor (long task, render-blocking resource, layout shift source, DB query plan, N+1). Cite the source.
+3. **FIX** — make the smallest change that moves the metric into the "Good" range. Prefer fixes that benefit the worst decile, not just the median.
+4. **VERIFY** — re-measure at p75. Confirm the metric moved into "Good". If not, iterate from step 2.
+5. **GUARD** — wire a quality gate that fails the merge if the metric regresses beyond the "Good" threshold. Document the gate in the project's quality config.
+
+### Failure modes (performance)
+
+- Optimizing median while worst decile is unchanged (tail latency ignored).
+- "Looks fast on my machine" — local measurements are not p75.
+- Optimizing for synthetic Lighthouse while users hit real-world network throttling.
+- Adding a guard gate without a stable measurement source (noisy alerts).
+
 ## Related skills
 
 - `skills/core/quality-execution-contract/SKILL.md`
 - `skills/core/adversarial-code-review/SKILL.md`
 - `skills/core/adaptive-prompt-selection/SKILL.md`
+- `skills/core/observability-design/SKILL.md` — questions-before-signals (downstream consumer of quality-engine output)
+- `templates/performance-budget-template.md` — performance budget template
+- `commands/vibe-perf-budget.md` — perf budget command

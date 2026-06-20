@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "last_built": "2026-06-19T04:42:07.929Z",
+  "last_built": "2026-06-20T00:00:00.000Z",
   "sources": [
     {
       "id": "affaan-m-ecc",
@@ -81,7 +81,7 @@
       ],
       "last_checked": "2026-06-07",
       "last_known_commit": "unknown",
-      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored. Cross-reference: buildermethods/agent-os overlaps on project-standards and product-mission-roadmap features — update both entries when adapting new ideas from either source."
+      "notes": "Inspiration only; no upstream runtime, installer, agent pack, prompts, templates, or docs vendored. Cross-reference: buildermethods/agent-os overlaps on project-standards and product-mission-roadmap features \u2014 update both entries when adapting new ideas from either source."
     },
     {
       "id": "buildermethods-agent-os",
@@ -107,7 +107,7 @@
       ],
       "last_checked": "2026-06-07",
       "last_known_commit": "unknown",
-      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored. Cross-reference: bmad-code-org/BMAD-METHOD overlaps on project-standards and product-mission-roadmap features — update both entries when adapting new ideas from either source."
+      "notes": "Inspiration only; no installer, command pack, upstream templates, or scripts vendored. Cross-reference: bmad-code-org/BMAD-METHOD overlaps on project-standards and product-mission-roadmap features \u2014 update both entries when adapting new ideas from either source."
     },
     {
       "id": "coleam00-context-engineering",
@@ -287,7 +287,7 @@
         "TDD/checkpoint validation changes",
         "brownfield workflow changes"
       ],
-      "notes": "Spec-driven-development integration completed on 2026-06-06. Inspiration/adaptation only; no Specify CLI dependency, no upstream command names required, and no vendored templates or code. Extensions-and-presets feature is design-doc-only (ADR 0002) — no runtime engine, installer, or CLI built for this feature."
+      "notes": "Spec-driven-development integration completed on 2026-06-06. Inspiration/adaptation only; no Specify CLI dependency, no upstream command names required, and no vendored templates or code. Extensions-and-presets feature is design-doc-only (ADR 0002) \u2014 no runtime engine, installer, or CLI built for this feature."
     },
     {
       "id": "mattpocock-skills",
@@ -942,6 +942,58 @@
       "last_checked": "2026-06-19",
       "last_known_commit": "unknown",
       "notes": "Initial tracking from upstream research report 2026-06-19. 2.7k-star Apache-2.0 context control system for policy-based file ingress. Adapted as context-policy skill, policy template, and integrated with privacy-filter and context-engineering workflow. No upstream content copied."
+    },
+    {
+      "id": "addyosmani-agent-skills",
+      "name": "agent-skills",
+      "owner": "addyosmani",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "category": "engineering-workflow",
+      "status": "tracked",
+      "import_mode": "inspiration",
+      "license": "MIT",
+      "reference_doc": "references/sources/addyosmani-agent-skills.md",
+      "changelog": "references/changelogs/addyosmani-agent-skills.md",
+      "features": [
+        "doubt-driven-development",
+        "observability-design",
+        "deprecation-migration",
+        "threat-model-driven-security",
+        "source-driven-implementation",
+        "vertical-slicing",
+        "plugin-manifest-format",
+        "orchestration-anti-patterns",
+        "skill-anatomy-required-sections"
+      ],
+      "local_targets": [
+        "skills/core/doubt-driven-development/SKILL.md",
+        "commands/vibe-doubt.md",
+        "skills/core/observability-design/SKILL.md",
+        "commands/vibe-observability.md",
+        "templates/observability-plan-template.md",
+        "skills/core/deprecation-migration/SKILL.md",
+        "commands/vibe-deprecate.md",
+        "commands/vibe-migrate.md",
+        "templates/deprecation-notice-template.md",
+        "skills/core/threat-model-driven-security/SKILL.md",
+        "commands/vibe-threat-model.md",
+        "templates/threat-model-template.md",
+        "skills/core/vertical-slicing/SKILL.md",
+        "commands/vibe-slice.md",
+        "templates/slice-spec-template.md",
+        "skills/core/quality-engine/SKILL.md",
+        "skills/core/grill-user-before-building/SKILL.md",
+        "skills/core/verification-before-done/SKILL.md",
+        "templates/performance-budget-template.md",
+        "commands/vibe-perf-budget.md",
+        "plugins/manifest.json",
+        "plugins/marketplace.json",
+        "docs/orchestration-guide.md",
+        "schemas/skill.schema.json"
+      ],
+      "last_checked": "2026-06-20",
+      "last_known_commit": "main @ 2026-06-20",
+      "notes": "Production-grade engineering skills plugin manifest (63.4k stars, MIT). Adapted 5 NEW skills (doubt-driven, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing) + 3 enhancements (quality-engine CWV, grill 95% confidence, verification 5-axis) + 2 architectural patterns (plugin manifest, orchestration anti-patterns). Original wording throughout, no vendored code."
     }
   ]
 }

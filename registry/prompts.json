@@ -606,6 +606,48 @@
       "path": "commands/vibe-bypass.md",
       "description": "Autonomous bypass agent: iteratively attempts to bypass AI model guardrails through structured techniques.",
       "maturity": "beta"
+    },
+    {
+      "name": "vibe-doubt",
+      "path": "commands/vibe-doubt.md",
+      "description": "Run in-flight doubt on an in-progress decision before it hardens (CLS-DAR protocol).",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-observability",
+      "path": "commands/vibe-observability.md",
+      "description": "Design observability by starting from on-call questions before signals.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-deprecate",
+      "path": "commands/vibe-deprecate.md",
+      "description": "Mark an artifact as deprecated with Compulsory/Advisory classification and sunset timeline.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-migrate",
+      "path": "commands/vibe-migrate.md",
+      "description": "Migrate a project from a deprecated artifact to its replacement.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-threat-model",
+      "path": "commands/vibe-threat-model.md",
+      "description": "Run STRIDE threat model during design on (boundary, asset, adversary) tuples.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-slice",
+      "path": "commands/vibe-slice.md",
+      "description": "Slice a feature into end-to-end vertical increments.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-perf-budget",
+      "path": "commands/vibe-perf-budget.md",
+      "description": "Define and track performance budgets (CWV + MEASURE \u2192 GUARD loop).",
+      "maturity": "stable"
     }
   ]
 }

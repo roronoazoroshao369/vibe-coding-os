@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.10.0):** validate:all 26/26 gates PASS · **131 skills** · **100 commands** · **85 templates** · **20 tracked sources** · 8 adapters
+**Bản phát hành hiện tại (v2.11.0):** validate:all 26/26 gates PASS · **136 skills** · **108 commands** · **92 templates** · **21 tracked sources** · 9 adapters
 
-**Mới nhất:** v2.9.0 Release Pipeline & Plugin Polish — pipeline release tự động, 5 MCP command tools, CLAUDE.md tối ưu
+**Mới nhất:** v2.11.0 Engineering Discipline Pack — 5 skills mới từ addyosmani/agent-skills (doubt-driven, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing), 7 commands mới, 6 templates mới, plugins/manifest + marketplace, anti-patterns orchestration
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
@@ -30,7 +30,33 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v2.9.0
+## Có gì mới trong v2.11.0
+
+Engineering Discipline Pack — inspired by addyosmani/agent-skills (MIT, 63.4k★):
+
+- **5 skills mới**:
+  - `skills/core/doubt-driven-development/` — CLS-DAR protocol (Claim, Locate, Scrutinize, Doubt, Adjudicate, Record) với Loading Constraints chống persona recursion
+  - `skills/core/observability-design/` — questions-before-signals workflow, metric/log/trace trade-off table, SLO envelope
+  - `skills/core/deprecation-migration/` — Compulsory vs Advisory classification, 5 pre-deprecation questions, sunset timeline
+  - `skills/core/threat-model-driven-security/` — STRIDE 6-letter lens trên (boundary, asset, adversary) tuples, abuse cases đi kèm use cases
+  - `skills/core/vertical-slicing/` — 5-step increment cycle: Implement→Test→Verify→Commit→Next, slice theo outcome không theo layer
+- **7 commands mới**: `vibe-doubt`, `vibe-observability`, `vibe-deprecate`, `vibe-migrate`, `vibe-threat-model`, `vibe-slice`, `vibe-perf-budget`
+- **6 templates mới**: `doubt-log`, `observability-plan-template`, `deprecation-notice-template`, `threat-model-template`, `slice-spec-template`, `performance-budget-template`
+- **2 architectural artifacts mới**: `plugins/manifest.json` (plugin metadata), `plugins/marketplace.json` (discovery index)
+- **3 skills enhanced**: `quality-engine` (CWV targets + MEASURE→GUARD loop), `grill-user-before-building` (95% confidence stop), `verification-before-done` (5-axis runtime verification)
+- **Orchestration guide enhanced**: 6 anti-patterns (persona-calls-persona, deep trees, single-agent-all-perspectives, summarize-for-handoff, sequential-when-parallel, mid-slice commits) + Loading Constraints table
+- **Validator enhanced**: `scripts/validate-schemas.mjs` soft-warn sections khuyến nghị (`## Common rationalizations`, `## Red flags`, `## Verification checklist`) mà không phá existing skills
+- **Manifests regenerated**: `commands/manifest.json` (108 commands), `templates/manifest.json` (92 templates)
+- **Inspiration sources**: 20 → 21 (addyosmani/agent-skills tracked)
+- **Tổng**: 26/26 gates PASS, 136 skills, 108 commands, 92 templates
+
+## Có gì mới trong v2.10.x
+
+Guard Bypass Protocol + Cipher Detection:
+
+- **Option A**: Cipher attack detection catalog (8 cipher types × defense patterns)
+- **Option B**: Scanner patterns + red-team scan report template
+- **Option C**: Test runner + 24/24 functional tests PASS
 
 Release Pipeline & Plugin Polish:
 
