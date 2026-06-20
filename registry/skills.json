@@ -1292,29 +1292,6 @@
       "maturity": "stable"
     },
     {
-      "name": "Writing Plans",
-      "path": "skills/core/writing-plans/SKILL.md",
-      "category": "core",
-      "description": "Recipe for writing implementation plans with bite-sized tasks, file paths, and code samples.",
-      "tags": [
-        "meta",
-        "writing",
-        "plans"
-      ],
-      "bundle": "engineering-discipline-pack",
-      "platforms": [
-        "claude-code",
-        "codex",
-        "cursor",
-        "gemini",
-        "cline",
-        "continue",
-        "aider",
-        "windsurf"
-      ],
-      "maturity": "stable"
-    },
-    {
       "name": "safe-refactor",
       "path": "skills/core/safe-refactor/SKILL.md",
       "category": "core",
@@ -1453,6 +1430,20 @@
         "*"
       ],
       "maturity": "stable"
+    },
+    {
+      "name": "authoring-skills",
+      "path": "skills/authoring-skills/SKILL.md",
+      "description": "Guide for authoring new skills that integrate with the Vibe Coding OS skill system. Covers frontmatter, required sections, and the per-skill example convention.",
+      "maturity": "beta",
+      "category": "meta"
+    },
+    {
+      "name": "external-skill",
+      "path": "skills/core/external-skill/SKILL.md",
+      "description": "Example skill demonstrating the 'isolated' sandbox-marker level for third-party or marketplace content.",
+      "maturity": "beta",
+      "category": "core"
     }
   ]
 }

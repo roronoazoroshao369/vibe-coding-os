@@ -119,3 +119,8 @@ external_content: true
 - Quarterly: review all skills with `external_content: true`
 - Annual: downgrade review (can `isolated` become `read-only`?)
 - On incident: add new pattern to canary corpus + rotate test
+
+
+## See also
+
+- `skills/authoring-skills/SKILL.md` — guide for authoring new skills including this sandbox-marker convention
