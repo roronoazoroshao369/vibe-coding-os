@@ -9,6 +9,10 @@ tags:
   - onboarding
   - quality-gates
   - templates
+sandbox:
+  level: trusted
+  external_content: false  # Heuristic: pattern matched but content is documentation-only
+
 ---
 
 # Skill: Compact AGENTS.md Template

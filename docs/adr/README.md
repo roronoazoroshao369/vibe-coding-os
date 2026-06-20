@@ -24,6 +24,7 @@ Use `templates/adr-template.md`.
 | 0002 | Notification System | Accepted | 2026-06-19 |
 | 0002 | Runtime Scope Freeze | Accepted | 2026-06-19 |
 | 0003 | Defense in Depth (Security Architecture Pattern) | Accepted | 2026-06-20 |
+| 0004 | Adaptive Trust Levels (Per-Source Risk Scoring) | Accepted | 2026-06-20 |
 
 ADR 0003 introduces the 3-layer security pattern (Detect → Contain → Recover) that v2.14.0 implements across `security/defense/`, `security/redact/`, and `tests/security/`.
 

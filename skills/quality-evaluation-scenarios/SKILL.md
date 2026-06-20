@@ -11,6 +11,10 @@ tags:
   - quality
   - verification
   - coding
+sandbox:
+  level: trusted
+  external_content: false  # Heuristic: pattern matched but content is documentation-only
+
 ---
 
 # Quality Evaluation Scenarios Skill

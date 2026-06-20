@@ -696,6 +696,36 @@
       "path": "commands/vibe-install.md",
       "description": "Install a skill from the Vibe Coding OS registry into your project.",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-bypass-detect",
+      "path": "commands/vibe-bypass-detect.md",
+      "description": "Detect when an AI session is in a 'bypass-detection' loop, surface rate-limit/guardrail failures, and recommend counter-actions.",
+      "maturity": "beta"
+    },
+    {
+      "name": "vibe-adversarial-detect",
+      "path": "commands/vibe-adversarial-detect.md",
+      "description": "Scan a prompt, skill, or command for adversarial content: jailbreak frames, prompt-injection payloads, data-exfiltration attempts, and policy-bypass patterns.",
+      "maturity": "beta"
+    },
+    {
+      "name": "vibe-license-surface",
+      "path": "commands/vibe-license-surface.md",
+      "description": "Surface the license, copyright, and provenance metadata for any skill, command, template, or third-party content used in the project.",
+      "maturity": "beta"
+    },
+    {
+      "name": "vibe-adversarial-review",
+      "path": "commands/vibe-adversarial-review.md",
+      "description": "Run an adversarial code review on a PR, skill, or feature using STRIDE + red-team patterns.",
+      "maturity": "beta"
+    },
+    {
+      "name": "vibe-red-team-scan",
+      "path": "commands/vibe-red-team-scan.md",
+      "description": "Run a red-team scan on a skill, command, or marketplace content for bypass techniques, prompt injection, and secret leakage.",
+      "maturity": "beta"
     }
   ]
 }

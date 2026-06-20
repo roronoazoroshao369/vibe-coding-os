@@ -6,6 +6,10 @@ last_reviewed: 2026-06-20
 category: core
 tags: [deprecation, lifecycle, retirement, migration, governance]
 description: Workflow and tooling for deprecating skills properly. Marks the skill, logs to deprecation tracker, generates notice, updates frontmatter, and notifies consumers via search index.
+sandbox:
+  level: trusted
+  external_content: false  # Heuristic: pattern matched but content is documentation-only
+
 ---
 
 # Skill: Deprecate Skill
