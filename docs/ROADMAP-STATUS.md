@@ -435,3 +435,40 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - ADR refs in `registry/runtime-freeze-allowlist.json` + `scripts/validate-runtime-freeze.mjs`.
 
 **Validation gates:** 28 → 30. **PASS rate:** 30/30.
+
+
+## v2.14.0 — Security Shield + Engineering Quality Lift (Predecessor)
+**Status:** ✅ COMPLETE (released 2026-06-20)
+
+- 5 skills added (bypass protocol, security event log, red-team, etc.)
+- 5 deliverables (redactor with 30 patterns, defense in depth, etc.)
+- 33/33 PASS
+
+## v2.15.0 — Expert Mode Preview
+**Status:** ✅ COMPLETE (released 2026-06-20)
+
+- Council review for v2.16.0 (3 panels + master plan)
+- 33/33 + 22/22 + 51/51 gates PASS
+
+## v2.16.0 — Close the Gaps
+**Status:** ✅ COMPLETE (released 2026-06-20)
+
+**Wave A — Security Wiring**
+- ADR 0003: 3-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
+- ADR 0004: Layer 0 Trust Scoring (per-source risk classification)
+- 30-pattern redactor with 3 modes (block, redact, log)
+- 19/19 OWASP LLM01 coverage = 97.37%
+- Trust scorer wired into existing checks
+- RTL counter (Bidi attack prevention)
+- 6 canary payloads added (43 → 49)
+- 4 new validation gates
+
+**Wave B — Quality Hardening**
+- B1: Test coverage → 14% (11 new test files: commands, templates, adapters, security, core)
+- B2: Property tests gate (≥80% pass required, blocking)
+- B3: skills/core/INDEX.md groups 88 skills into 8 lifecycle stages
+- B4: validate:all 34s → 15.5s via Promise.all
+
+**Validation:** 38/38 PASS in 15.5s
+
+**Commits:** c525a8d (Wave A), 41574d6 (Wave B)
