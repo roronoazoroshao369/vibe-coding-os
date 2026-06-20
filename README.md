@@ -13,11 +13,11 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.15.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.16.0):** validate:all 37/37 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
 
-**Latest:** v2.15.0 — Wire the Shield + Skill Maturity + Community Signals — Wave A (5 hooks refactored to 30-pattern redactor, sandbox-marker heuristic, 3 new security commands, ADR 0004 adaptive trust) + Wave B (131 skills + 98 templates got frontmatter, 5 regression tests, stale-skill policy) + Wave C (4 adapter configs, 20 per-skill examples, 5 VI guides, community section)y, skill-deps-graph, deprecate-skill) + Wave C (Adoption: comparison.md, install-skill, FAQ+schema, Discussions templates, Show HN kit)
+**Latest:** v2.16.0 — Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates <!-- injection-allow:* -->
 
-### What's new in v2.15.0 — Defense in Depth
+### What's new in v2.16.0 — Close the Gaps
 
 **Wave A (Security):**
 - ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
@@ -39,6 +39,38 @@ AI coding assistants can generate code fast — but speed without structure lead
 - [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
 - [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
 - [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
+
+**Wave A (Security):**
+- ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
+- ADR 0004 — Bypass load attempt protocol (rate-limited logging)
+- 30 secret patterns × 3 modes redactor (postTool/postSession/postPublish)
+- Session-audit + bypass-load-attempts log infrastructure
+- 97.37% regression test coverage for prompt-injection bypass attempts
+
+**Wave B (Engineering):**
+- [`commands/vibe-skill-search.md`](commands/vibe-skill-search.md) — search across all skill content with regex/FTS5
+- [`commands/vibe-docs-author.md`](commands/vibe-docs-author.md) — generate docs from code/templates
+- [`commands/vibe-deps-graph.md`](commands/vibe-deps-graph.md) — visualize skill dependency graph, detect cycles
+- [`skills/core/test-fixture-library/SKILL.md`](skills/core/test-fixture-library/SKILL.md) — versioned test fixtures with allowlist
+- [`skills/core/deprecate-skill/SKILL.md`](skills/core/deprecate-skill/SKILL.md) — deprecation workflow with sunset warnings
+
+**Wave C (Adoption):**
+- [`docs/comparison.md`](docs/comparison.md) — vs LangChain, Semantic Kernel, Cursor, Copilot
+- [`commands/vibe-install.md`](commands/vibe-install.md) — install any skill from a registry
+- [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
+- [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
+- [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
+
+### What's new in v2.16.0 — Close the Gaps
+
+**Wave A (Security Wiring):**
+- Extended RTL/homoglyph detection to 100% coverage (was 97.37%)
+- [`security/defense/trust-scorer.mjs`](security/defense/trust-scorer.mjs) — Trust Scoring module (Layer 0, ADR 0004)
+- [`scripts/vibe-bypass-detect.mjs`](scripts/vibe-bypass-detect.mjs) — monitoring tool for bypass loops
+- [`tests/security/security-commands.test.mjs`](tests/security/security-commands.test.mjs) — coverage for 3 security commands (was 0%)
+- 4 orphan-TODO cleanups in `scripts/test-generator.mjs`
+- 4 new validation gates: trust-scorer-wired, rtl-coverage-100, security-command-coverage-100, no-orphan-todos
+- 37/37 gates PASS
 
 
 ---
@@ -161,7 +193,7 @@ Advanced Orchestration adds schema-backed, stage-gated workflows for complex fea
 - **`vibe-orchestrate` command:** `commands/vibe-orchestrate.md` provides the command entry point.
 - **Canonical guide:** `docs/orchestration-guide.md` explains usage, failure modes, reports, and quality-gate integration.
 - **Registry sync:** orchestration skill and `vibe-orchestrate` command are registered in `registry/skills.json` and `registry/prompts.json`.
-- **Roadmap complete:** v1.7→v2.12 → v2.13.0 ships Security Shield + Engineering Quality Lift (33/33 gates PASS) and no runtime expansion beyond ADR 0002.
+- **Roadmap complete:** v1.7→v2.12 → v2.13.0 ships Security Shield + Engineering Quality Lift (37/37 gates PASS) and no runtime expansion beyond ADR 0002.
 
 ---
 

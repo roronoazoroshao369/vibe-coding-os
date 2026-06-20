@@ -131,6 +131,12 @@ const PATTERNS = [
     regex: /\b(base64|b64|decode)\b.*[A-Za-z0-9+\/]{20,}={0,2}/gi },
   { id: 'hex-encode', category: 'llm04-data-poisoning',
     regex: /\\x[0-9a-f]{2}(\\x[0-9a-f]{2}){5,}/gi },
+  // v2.16.0: Extended RTL/bidi pattern (fallback if pre-check is bypassed)
+  { id: 'rtl-extended', category: 'llm04-data-poisoning',
+    regex: /[\u202A-\u202E\u2066-\u2069\u202F]/g },
+  // v2.16.0: Homoglyph pattern (Cyrillic/Greek)
+  { id: 'homoglyph', category: 'llm04-data-poisoning',
+    regex: /[\u0400-\u04FF\u0370-\u03FF]/g },
 ];
 
 /**
@@ -139,11 +145,32 @@ const PATTERNS = [
  */
 export function detectInjection(text) {
   if (!text) return { detected: false, threats: [], normalizedText: '' };
-  // Step 1: Normalize Unicode so zero-width + RTL overrides are visible to regex
-  const normalized = normalizeUnicode(text);
-  // Step 2: Run all patterns against NORMALIZED text
+  // v2.16.0: Pre-check for Unicode bidi controls + homoglyphs in ORIGINAL text
+  // (these get stripped by normalizeUnicode, so we must catch them first)
   const threats = [];
   const seen = new Set();
+  // Extended RTL/bidi: U+202A-U+202E, U+2066-U+2069 isolates, U+202F narrow nbsp
+  const bidiRe = /[\u202A-\u202E\u2066-\u2069\u202F\u200F\u200E]/g;
+  const bidiMatches = text.match(bidiRe);
+  if (bidiMatches && bidiMatches.length > 0) {
+    const key = `rtl-override:${bidiMatches[0]}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      threats.push({ id: 'rtl-override', category: 'llm04-data-poisoning', match: `Bidi control char: ${bidiMatches[0]}` });
+    }
+  }
+  // Homoglyph: Cyrillic/Greek chars that mimic Latin
+  const homoglyphRe = /[\u0400-\u04FF\u0370-\u03FF]/g;
+  const homoglyphMatches = text.match(homoglyphRe);
+  if (homoglyphMatches && homoglyphMatches.length > 0) {
+    const key = `homoglyph-attack:${homoglyphMatches[0]}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      threats.push({ id: 'homoglyph-attack', category: 'llm04-data-poisoning', match: `Cyrillic/Greek char: ${homoglyphMatches[0]}` });
+    }
+  }
+  // Step 1: Normalize Unicode so zero-width + RTL overrides are visible to regex
+  const normalized = normalizeUnicode(text);
   for (const p of PATTERNS) {
     const matches = normalized.match(p.regex);
     if (matches) {

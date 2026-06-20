@@ -41,7 +41,11 @@ const checks = [
   ['Sandbox marker compliance', 'node', ['scripts/validate-sandbox-marker.mjs']],
   ['Quality scorecard report', 'node', ['scripts/quality-scorecard-report.mjs']],
   ['Quality engine', 'node', ['scripts/quality-engine.mjs', '--profile=lean', '--output-json']],
-  ['Quality engine integration tests', 'node', ['scripts/test-quality-engine.mjs', '--lean']]
+  ['Quality engine integration tests', 'node', ['scripts/test-quality-engine.mjs', '--lean']],
+  ['Trust scorer wired (v2.16.0)', 'node', ['scripts/validate-trust-scorer.mjs']],
+  ['RTL coverage 100% (v2.16.0)', 'node', ['scripts/validate-rtl-coverage.mjs']],
+  ['Security command coverage (v2.16.0)', 'node', ['scripts/validate-security-command-coverage.mjs']],
+  ['No orphan TODOs (v2.16.0)', 'node', ['scripts/validate-no-orphan-todos.mjs']]
 ];
 
 function formatDuration(ms) {
