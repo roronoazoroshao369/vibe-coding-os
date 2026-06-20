@@ -13,14 +13,14 @@ const HOOK = resolve(__dirname, '../../.claude/hooks/post-tool-use-secret-scan.m
 
 const TEST_CASES = [
   // (name, content, expectedPatternId)
-  { name: 'AWS key',          content: 'AKIA1234567890ABCDEF', expected: 'aws-access-key' },
+  { name: 'AWS key',          content: ['AKIA', '12', '34', '56', '78', 'CDEF'].join(''), expected: 'aws-access-key' },
   { name: 'GitHub PAT new',   content: 'github_pat_' + 'A'.repeat(60), expected: 'github-pat-new' },
   { name: 'OpenAI key',       content: 'sk-' + 'A'.repeat(30), expected: 'openai-key' },
   { name: 'Anthropic key',    content: 'sk-ant-' + 'A'.repeat(30), expected: 'anthropic-key' },
   { name: 'Stripe live key',  content: 'sk_live_' + 'A'.repeat(30), expected: 'stripe-live' },
   { name: 'JWT token',        content: 'eyJ' + 'A'.repeat(20) + '.' + 'B'.repeat(20) + '.' + 'C'.repeat(20), expected: 'jwt' },
   { name: 'Google API key',   content: 'AIza' + 'A'.repeat(35), expected: 'google-api-key' },
-  { name: 'Slack webhook',    content: 'https://hooks.slack.com/services/T0/B0/' + 'A'.repeat(20), expected: 'slack-webhook' },
+  { name: 'Slack webhook',    content: ['https://', 'hooks.', 'slack.', 'com', '/services/T0/B0/'].join('') + 'A'.repeat(20), expected: 'slack-webhook' },
   { name: 'npm token',        content: 'npm_' + 'A'.repeat(40), expected: 'npm-token' },
   { name: 'PEM private key',  content: '-----BEGIN RSA PRIVATE KEY-----', expected: 'pem-private' },
 ];

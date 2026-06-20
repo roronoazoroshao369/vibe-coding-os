@@ -1444,6 +1444,13 @@
       "description": "Example skill demonstrating the 'isolated' sandbox-marker level for third-party or marketplace content.",
       "maturity": "beta",
       "category": "core"
+    },
+    {
+      "name": "skills-root-readme",
+      "path": "skills/SKILL.md",
+      "description": "Canonical template for SKILL.md structure.",
+      "maturity": "stable",
+      "category": "meta"
     }
   ]
 }

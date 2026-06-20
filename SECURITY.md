@@ -7,7 +7,7 @@ version: "2.15.0"
 
 ## Reporting vulnerabilities
 
-Email security@vibe-coding-os.example.com (replace with real contact) with details.
+See repo owner GitHub profile for security contact with details.
 
 ## Defense layers
 
