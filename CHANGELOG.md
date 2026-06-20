@@ -1,5 +1,58 @@
 # Changelog
 
+## [2.15.0] - 2026-06-20
+
+### Theme: Wire the Shield + Skill Maturity + Community Signals
+
+**Wave A — Wire the Shield (Council of Security & Trust)**
+- Refactored 5/5 Claude Code hooks to use v2.14.0 redactor + injection-counters (ADR 0003 3-layer Defense in Depth).
+- Auto-generated default-deny allowlist: `scripts/generate-hook-allowlist.mjs` (NEW).
+- Sandbox-marker heuristic: 12 pattern types (WebFetch, fetch, axios, etc.) for Layer 0 trust scoring.
+- 3 new security commands: `vibe-bypass-detect`, `vibe-adversarial-detect`, `vibe-license-surface`.
+- ADR 0004 — Adaptive Trust Levels (Per-Source Risk Scoring) above the 3-layer defense.
+- 2 regression tests: `tests/hooks/hook-coverage-matrix.test.mjs`, `tests/hooks/posttool-redactor-wiring.test.mjs`.
+
+**Wave B — Skill Maturity Lift (Council of Engineering)**
+- Bulk YAML frontmatter added to all 131 skills (was 18/149, now 149/149) and 98 templates (was 11/109, now 109/109).
+- 2 bulk scripts: `scripts/add-skill-frontmatter.mjs`, `scripts/add-template-frontmatter.mjs`.
+- 5 regression tests for top-priority skills: disciplined-diagnosis, bug-fix-lifecycle, safe-refactor, review-before-merge, writing-plans (49/49 assertions PASS).
+- Stale-skill policy: `docs/stale-skill-policy.md` (Fresh ≤90d, Aging 91-180d, Stale >180d, Abandoned >365d).
+
+**Wave C — Community Signals (Council of Adoption)**
+- 4 adapter config files: `adapters/codex/config.yaml`, `adapters/gemini/config.yaml`, `adapters/cursor/settings.json`, `adapters/continue/config.json`.
+- 20 per-skill examples: `examples/<skill>/example-1.md` for top 20 flagship skills.
+- 5 Vietnamese guides: `docs/vi/getting-started.md`, `docs/vi/spec-plan-implement.md`, `docs/vi/skill-maturity.md`, `docs/vi/security-shield.md`, `docs/vi/adapters.md`.
+- Community section: `docs/community.md` (contributor guide, code of conduct, maintainer track).
+- Dependency policy: `docs/dependencies.md` (runtime frozen, minimal dev deps).
+
+## [2.14.0] - 2026-06-20
+
+### Theme: Defense in Depth + Engineering Quality
+
+**Council of Security & Trust (Wave A)**
+- 3-layer Defense in Depth (ADR 0003): DETECT (19 OWASP LLM01 patterns, 97.37% coverage) → CONTAIN (5 modes, 30-pattern redactor) → RECOVER (canary corpus, regression test, ≥95% floor).
+- 5 redactor modes: `redact`, `audit`, `lockdown`, `quarantine`, `dry-run`.
+- 30-pattern redactor (`security/redact/redactor.mjs`).
+- 19 OWASP LLM01 patterns (`security/defense/injection-counters.mjs`).
+- Canary corpus: 100 payloads, regression test asserts ≥95% coverage.
+- Memory redaction: 30 patterns, deterministic.
+- Secret scan: 24 patterns, 4-file format support.
+
+**Council of Engineering (Wave B)**
+- Skill Quality Gate: required sections (Purpose, When to use, Workflow) + recommended sections (Inputs, Outputs, Failure modes, Verification checklist, Related skills).
+- Weak-verb detection in Workflow sections.
+- Non-falsifiable checklist detection.
+- 3-stage Quality Engine: lint → diff audit → scorecard report.
+- 5 Bilingual README gates (en/vi sync).
+- Prose lint: 7 weak-verb patterns, 6 hedge phrases, 12 maximizers.
+
+**Council of Adoption (Wave C)**
+- Discovery: README user/maintainer/runtime paths, layer READMEs.
+- Adapter docs: Claude Code, Codex, Cursor, Gemini, Memory, Compatibility matrix.
+- CLI onboarding UX: `vibe init --help`, `vibe doctor --project .`.
+- 6 orphan template warnings (pre-existing, non-blocking).
+
+**Validation**: 33/33 PASS. 149 skills, 116 commands, 80 templates, 727 narrative files.
 ## [2.13.0] - 2026-06-20
 
 ### Theme: Security Shield + Engineering Quality Lift

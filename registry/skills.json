@@ -1453,6 +1453,13 @@
         "*"
       ],
       "maturity": "stable"
+    },
+    {
+      "name": "skills-root-readme",
+      "path": "skills/SKILL.md",
+      "description": "Canonical template for SKILL.md structure.",
+      "maturity": "stable",
+      "category": "meta"
     }
   ]
 }

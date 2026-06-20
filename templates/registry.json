@@ -1,0 +1,33 @@
+---
+description: "Conceptual template for a registry.json file. Actual registries live in registry/ directory."
+---
+
+# Registry (Template)
+
+## When to use
+
+This is a conceptual template describing the structure of registry files. The actual registry lives in `registry/` (e.g., `registry/skills.json`, `registry/commands.json`).
+
+## Structure (conceptual)
+
+```json
+{
+  "version": "1.0",
+  "skills": [
+    {
+      "name": "<skill-name>",
+      "path": "skills/<category>/<skill-name>/SKILL.md",
+      "description": "<1-line purpose>",
+      "maturity": "stable|beta|draft",
+      "category": "<category>"
+    }
+  ]
+}
+```
+
+## Actual registry files
+
+- `registry/skills.json` — skill manifest
+- `registry/commands.json` — command manifest (if separate)
+- `registry/agents.json` — agent personas
+- `registry/templates.json` — (filesystem-scanned, not centralized)

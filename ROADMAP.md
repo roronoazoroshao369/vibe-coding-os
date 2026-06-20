@@ -41,7 +41,22 @@ Vibe Coding OS helps humans and coding agents turn intent into verified software
 
 File này giữ mission/roadmap để spec và plan có định hướng sản phẩm mà không nhồi strategy vào từng spec. Roadmap giúp ưu tiên, nhưng acceptance criteria vẫn phải cụ thể và kiểm chứng được.
 
-## Next roadmap theme: v2.7.0 — AI Testing Suite
+## Recent releases
+
+- **v2.15.0** (2026-06-20) — Wire the Shield + Skill Maturity + Community Signals. Council of Security (3-layer defense + ADR 0004 adaptive trust), Council of Engineering (frontmatter 100% coverage + 5 regression tests), Council of Adoption (4 adapter configs + 20 per-skill examples + 5 VI guides + community + dependencies).
+- **v2.14.0** (2026-06-20) — Defense in Depth + Engineering Quality. 3-layer defense (97.37% OWASP LLM01), 5 redactor modes, 30-pattern redactor, 19 OWASP patterns, canary corpus, skill quality gate, quality engine, 6 adapter docs.
+- **v2.13.0** (2026-06-20) — Security Shield + Engineering Quality Lift (Bypass authorization gate, default-deny hooks, OWASP LLM Top 10).
+
+## Next roadmap theme: v2.16.0 — Expert Mode (planned)
+
+| Target | Description |
+| --- | --- |
+| Task risk classifier | Auto-classify incoming tasks as low/medium/high risk |
+| Model-aware adapter | Switch adapter config based on model capability |
+| Auto-scope decision | Decide whether to use a team or solo agent |
+| Compact failure-mode library | 50+ named failure modes with mitigations |
+| Adaptive prompt escalation | Adjust prompt specificity based on model + task |
+| Critic pass | Run critic subagent to challenge assumptions |
 
 | Theme | Goal | Signals of success |
 | --- | --- | --- |

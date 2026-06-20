@@ -1,0 +1,23 @@
+# Codex Adapter Configuration
+# v2.15.0 — Wave C: Community Signals
+
+# Settings applied when using Vibe Coding OS with Codex CLI
+model: gpt-4
+temperature: 0.2
+max_tokens: 4096
+sandbox: workspace-write
+auto_approve: false
+notifications: true
+
+# Workflow integration
+workflow:
+  entry_point: vibe-spec
+  plan_command: vibe-plan
+  review_command: vibe-review
+  merge_command: vibe-merge
+
+# Skills auto-loaded
+skills:
+  - skills/core/disciplined-diagnosis
+  - skills/core/writing-plans
+  - skills/core/review-before-merge

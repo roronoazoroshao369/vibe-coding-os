@@ -9,9 +9,9 @@
 |---|---|
 | Version | 2.14.0 |
 | Skills | 149 |
-| Commands | 116 |
-| Templates | 119 |
-| Narrative files | 727 |
+| Commands | 118 |
+| Templates | 127 |
+| Narrative files | 771 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 
@@ -137,9 +137,9 @@
 | Templates (86) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 2 (warnings — review signal) |
-| Orphan skills | 1 (warnings — review signal) |
-| Orphan templates | 1 |
+| Orphan commands | 0 (warnings — review signal) |
+| Orphan skills | 0 (warnings — review signal) |
+| Orphan templates | 0 |
 | Broken references | 0 |
 
 ## How to Regenerate
