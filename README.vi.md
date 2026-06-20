@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.14.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters
+**Bản phát hành hiện tại (v2.15.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters
 
-**Mới nhất:** v2.14.0 — Defense in Depth (Wave A: 3-layer security pattern — Detect → Contain → Recover, injection counters 97.37% coverage, 60/60 redact tests, sandbox-marker convention, security regression gate). 33/33 gates PASS, 143 skills, 112 commands, 117 templates.
+**Mới nhất:** v2.15.0 — Defense in Depth (Wire the Shield + Skill Maturity + Community Signals — Detect → Contain → Recover, injection counters 97.37% coverage, 60/60 redact tests, sandbox-marker convention, security regression gate). 33/33 gates PASS, 143 skills, 112 commands, 117 templates.
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
@@ -30,7 +30,7 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 **Bắt đầu:** [Luồng đầu tiên](docs/vi/FIRST-WORKFLOW.md) · [Quickstart](docs/vi/QUICKSTART.md) · [Adapter hub](docs/adapters/README.md) · [Docs hub](docs/README.md)
 
-## Có gì mới trong v2.14.0
+## Có gì mới trong v2.15.0
 
 **Wave A — Security (3-layer Defense in Depth, ADR 0003):**
 - **`security/defense/`** — Injection counters (97.37% coverage), 19 OWASP-mapped patterns, canary corpus with 43 payloads

@@ -13,11 +13,11 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.14.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.15.0):** validate:all 33/33 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
 
-**Latest:** v2.14.0 — Wave A (Security: 3-layer Defense in Depth, 97.37% injection coverage, 60/60 redact tests, ADR 0003) + Wave B (Engineering: skill-content-search, docs-author, test-fixture-library, skill-deps-graph, deprecate-skill) + Wave C (Adoption: comparison.md, install-skill, FAQ+schema, Discussions templates, Show HN kit)
+**Latest:** v2.15.0 — Wire the Shield + Skill Maturity + Community Signals — Wave A (5 hooks refactored to 30-pattern redactor, sandbox-marker heuristic, 3 new security commands, ADR 0004 adaptive trust) + Wave B (131 skills + 98 templates got frontmatter, 5 regression tests, stale-skill policy) + Wave C (4 adapter configs, 20 per-skill examples, 5 VI guides, community section)y, skill-deps-graph, deprecate-skill) + Wave C (Adoption: comparison.md, install-skill, FAQ+schema, Discussions templates, Show HN kit)
 
-### What's new in v2.14.0 — Defense in Depth
+### What's new in v2.15.0 — Defense in Depth
 
 **Wave A (Security):**
 - ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)

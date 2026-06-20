@@ -7,7 +7,7 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.14.0 |
+| Version | 2.15.0 |
 | Skills | 151 |
 | Commands | 121 |
 | Templates | 128 |
