@@ -11,7 +11,7 @@
 | Skills | 142 |
 | Commands | 112 |
 | Templates | 116 |
-| Narrative files | 706 |
+| Narrative files | 707 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 
