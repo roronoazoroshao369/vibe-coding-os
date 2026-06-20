@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "vibe-coding-os": {
+      "command": "node",
+      "args": ["${workspaceFolder}/../vibe-coding-os/adapters/mcp/server.mjs"],
+      "env": {
+        "VIBE_HOME": "${env:HOME}/vibe-coding-os"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "vibe_list_skills",
+        "vibe_list_commands",
+        "vibe_list_templates",
+        "vibe_validate_all",
+        "vibe_quality_scorecard",
+        "vibe_dashboard"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${workspaceFolder}"],
+      "disabled": false
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+      },
+      "disabled": false
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "vibe-coding-os",
+  "version": "2.12.0",
+  "description": "Full Vibe Coding OS framework: 139 skills, 111 commands, 95 templates, 28 validation gates, 9 CLI adapters, 22 inspiration sources.",
+  "manifest": "plugins/manifest.json",
+  "source": "https://github.com/roronoazoroshao369/vibe-coding-os",
+  "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "agents",
+    "engineering",
+    "spec",
+    "tdd",
+    "review",
+    "ship",
+    "vibe-coding",
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "windsurf",
+    "cline",
+    "continue",
+    "aider"
+  ],
+  "categories": [
+    "engineering",
+    "spec-driven-development",
+    "test-driven-development",
+    "code-review",
+    "quality-engineering",
+    "agent-frameworks",
+    "vibe-coding"
+  ],
+  "supported_clis": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "windsurf",
+    "cline",
+    "continue",
+    "aider",
+    "mcp"
+  ],
+  "adapter_files": {
+    "windsurf": "adapters/windsurf/README.md",
+    "claude-code": "adapters/claude-code/README.md",
+    "cursor": "adapters/cursor/README.md",
+    "codex": "adapters/codex/README.md",
+    "gemini": "adapters/gemini/README.md",
+    "cline": "adapters/cline/README.md",
+    "continue": "adapters/continue/README.md",
+    "aider": "adapters/aider/README.md"
+  },
+  "windsurf": {
+    "rules_file": ".windsurfrules",
+    "rules_source": "AGENTS.md",
+    "legacy_compat": ".cursorrules",
+    "flows_supported": true,
+    "cascade_compatible": true,
+    "deep_context_compatible": true,
+    "supercomplete_compatible": true,
+    "recommended_install_command": "cp ~/vibe-coding-os/AGENTS.md .windsurfrules",
+    "rules_template_section": "Cascade-specific rules (appended)"
+  }
+}

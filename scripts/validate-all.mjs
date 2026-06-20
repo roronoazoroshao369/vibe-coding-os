@@ -32,6 +32,8 @@ const checks = [
   ['Runtime freeze guard', 'node', ['scripts/validate-runtime-freeze.mjs']],
   ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']],
   ['Quality diff audit', 'node', ['scripts/validate-quality-diff.mjs']],
+  ['Provenance gate', 'node', ['scripts/validate-provenance.mjs']],
+  ['Skill quality gate', 'node', ['scripts/validate-skill-quality.mjs']],
   ['Quality scorecard report', 'node', ['scripts/quality-scorecard-report.mjs']],
   ['Quality engine', 'node', ['scripts/quality-engine.mjs', '--profile=lean', '--output-json']],
   ['Quality engine integration tests', 'node', ['scripts/test-quality-engine.mjs', '--lean']]

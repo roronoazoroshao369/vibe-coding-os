@@ -42,12 +42,12 @@ Use after implementation, before a PR or merge, during periodic quality audits, 
 
 ## Verification checklist
 
-- [ ] Config loaded successfully or defaults applied intentionally.
-- [ ] Model profile selected and justified for the task size and risk.
-- [ ] Gates selected match task type and scope.
-- [ ] Each failing gate includes a reproducible observation or artifact.
-- [ ] Recommendations are specific, prioritized, and actionable.
-- [ ] Report is concise and distinguishes blockers from non-blocking warnings.
+- [ ] `validate:all` exits 0 (config + gates loaded; `--json` shape matches `schemas/`).
+- [ ] Selected profile (`lean|standard|heavy`) is recorded in the report header.
+- [ ] Every failing gate cites a file path, command, or captured output (not just "X failed").
+- [ ] Recommendation count == failing-gate count; no orphan recommendations.
+- [ ] Report file size > 1 KB and < 200 KB (sanity bounds; flags empty or runaway reports).
+- [ ] Report distinguishes `FAIL` from `WARN` in the summary table.
 
 ## Performance budgets (frontend & API)
 

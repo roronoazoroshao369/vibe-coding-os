@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "vibe-coding-os-marketplace",
-  "version": "2.11.0",
-  "description": "Marketplace index for Vibe Coding OS — discovery metadata for plugin managers, IDE marketplaces, and CLI installers. Adapts addyosmani/agent-skills marketplace pattern to a multi-CLI framework.",
+  "version": "2.12.0",
+  "description": "Marketplace index for Vibe Coding OS \u2014 discovery metadata for plugin managers, IDE marketplaces, and CLI installers. Adapts claude-code-marketplace schemastore pattern to a multi-CLI framework.",
   "owner": {
     "name": "Vibe Coding OS Maintainers",
     "url": "https://github.com/roronoazoroshao369/vibe-coding-os"
@@ -10,8 +10,8 @@
   "plugins": [
     {
       "name": "vibe-coding-os",
-      "version": "2.11.0",
-      "description": "Full Vibe Coding OS framework: 136 skills, 96 commands, 84 templates, 26 validation gates, 9 CLI adapters, 21 inspiration sources.",
+      "version": "2.12.0",
+      "description": "Full Vibe Coding OS framework: 139 skills, 111 commands, 95 templates, 28 validation gates, 9 CLI adapters, 22 inspiration sources.",
       "manifest": "plugins/manifest.json",
       "source": "https://github.com/roronoazoroshao369/vibe-coding-os",
       "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",

@@ -177,6 +177,14 @@
       "status": "tracked_inspiration",
       "import_mode": "adapted",
       "notes": "MIT license verified from upstream root LICENSE during the 2026-06-20 audit. Adapted for 5 NEW skills (doubt-driven-development, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing) + 3 enhancements (quality-engine CWV budgets, grill 95% confidence stop, verification 5-axis pattern) + 2 architectural patterns (plugin manifest, orchestration anti-patterns). No upstream code, skill files, prompts, or documentation are vendored. See ATTRIBUTIONS.md and references/sources/addyosmani-agent-skills.md."
+    },
+    {
+      "name": "RohitG00/awesome-claude-code-toolkit",
+      "url": "https://github.com/RohitG00/awesome-claude-code-toolkit",
+      "license": "Apache-2.0",
+      "status": "tracked_inspiration",
+      "import_mode": "inspiration",
+      "notes": "Apache-2.0 verified from upstream LICENSE via raw GitHub during 2026-06-20 audit. Used for hooks-pack pattern, secure-coding checklist, and 7-section prompt architecture. Adapted in original wording. No upstream code, shell scripts, or compiled hooks are vendored. See ATTRIBUTIONS.md."
     }
   ]
 }

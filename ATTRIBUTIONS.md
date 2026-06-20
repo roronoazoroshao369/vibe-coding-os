@@ -228,3 +228,25 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Import mode: inspiration/adaptation only.
 - Vendored code: no.
 - Notes: Adapted into 5 NEW skills (doubt-driven-development, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing), 7 NEW commands (vibe-doubt, vibe-observability, vibe-deprecate, vibe-migrate, vibe-threat-model, vibe-slice, vibe-perf-budget), 6 NEW templates (doubt-log, observability-plan-template, deprecation-notice-template, threat-model-template, slice-spec-template, performance-budget-template), and 3 ENHANCED existing skills (quality-engine CWV + MEASURE→GUARD loop; grill-user-before-building 95% confidence stop; verification-before-done 5-axis runtime verification). Plus 2 NEW architectural artifacts: `plugins/manifest.json` and `plugins/marketplace.json`. Plus 1 ENHANCED guide: `docs/orchestration-guide.md` with anti-patterns section (persona-calls-persona, deep trees, single-agent-all-perspectives, summarize-for-handoff, sequential-when-parallel, mid-slice commits). Plus 1 ENHANCED validation: `scripts/validate-schemas.mjs` soft-warns on missing recommended sections. All local content is original wording; no upstream text is copied.
+
+
+## Apache-2.0 sources
+
+### RohitG00/awesome-claude-code-toolkit
+
+- **Source**: https://github.com/RohitG00/awesome-claude-code-toolkit
+- **License**: Apache License 2.0
+- **Copyright**: (c) 2026 Rohit G00
+- **Verified**: 2026-06-20 (upstream LICENSE file)
+- **Adopted in**: v2.12.0
+- **Files influenced** (original wording, no copy):
+  - `skills/core/claude-code-hooks-pack/SKILL.md`
+  - `skills/core/secure-coding-checklist/SKILL.md`
+  - `skills/core/prompt-architecture/SKILL.md`
+  - `commands/vibe-hooks-pack.md`
+  - `commands/vibe-secure-coding.md`
+  - `commands/vibe-prompt-architect.md`
+  - `templates/hooks-pack-template.md`
+  - `templates/secure-coding-checklist-template.md`
+  - `templates/prompt-template-7-section.md`
+- **Notes**: Apache-2.0 permits derivative works with attribution. We adapt in original wording (no code, scripts, or compiled artifacts are vendored). See `references/sources/rohitg00-awesome-claude-code-toolkit.md`.

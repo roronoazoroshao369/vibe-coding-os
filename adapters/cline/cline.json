@@ -1,0 +1,61 @@
+{
+  "name": "vibe-coding-os",
+  "version": "2.12.0",
+  "description": "Full Vibe Coding OS framework: 139 skills, 111 commands, 95 templates, 28 validation gates, 9 CLI adapters, 22 inspiration sources.",
+  "manifest": "plugins/manifest.json",
+  "source": "https://github.com/roronoazoroshao369/vibe-coding-os",
+  "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "agents",
+    "engineering",
+    "spec",
+    "tdd",
+    "review",
+    "ship",
+    "vibe-coding",
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "cline",
+    "mcp"
+  ],
+  "categories": [
+    "engineering",
+    "spec-driven-development",
+    "test-driven-development",
+    "code-review",
+    "quality-engineering",
+    "agent-frameworks"
+  ],
+  "supported_clis": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "cline",
+    "continue",
+    "aider",
+    "windsurf",
+    "mcp"
+  ],
+  "adapter_files": {
+    "cline": "adapters/cline/README.md"
+  },
+  "cline": {
+    "primary_rules_file": ".clinerules",
+    "rules_source": "AGENTS.md",
+    "mode_files": {
+      "architect": ".clinerules-architect",
+      "ask": ".clinerules-ask",
+      "code": ".clinerules-code"
+    },
+    "skills_directory": ".cline/skills",
+    "mcp_compatible": true,
+    "mcp_settings_path": ".cline/mcp_settings.json",
+    "recommended_install_command": "cp ~/vibe-coding-os/AGENTS.md .clinerules",
+    "modes": ["architect", "ask", "code"]
+  }
+}

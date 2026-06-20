@@ -27,6 +27,16 @@ cp ~/vibe-coding-os/AGENTS.md .clinerules-code
 
 Cline also supports `CLAUDE.md` for backward compatibility with Claude Code projects. If your project already has a `CLAUDE.md`, Cline reads both `.clinerules` and `CLAUDE.md`.
 
+## Files in this adapter
+
+| File | Purpose |
+| ---- | ------- |
+| `README.md` | This file — primary adapter doc. |
+| `MODE_ARTIFACTS.md` | Architect / Ask / Code mode `.clinerules-*` content. |
+| `mcp_settings.example.json` | Drop-in MCP config for Cline. |
+| `TROUBLESHOOTING.md` | Common Cline failures and the canonical fix for each. |
+| `cline.json` | Machine-readable adapter metadata (used by `plugins/manifest.json` and the marketplace). |
+
 ## Usage
 
 - Paste relevant command prompts from `commands/` into Cline chat for workflow phases: `vibe-spec`, `vibe-plan`, `vibe-implement`, `vibe-review`, `vibe-memory`, or `vibe-merge`.

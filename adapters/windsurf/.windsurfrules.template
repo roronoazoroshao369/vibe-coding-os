@@ -1,0 +1,72 @@
+# Windsurf `.windsurfrules` template
+
+> Drop-in rules file for Windsurf Cascade. Mirrors `AGENTS.md` plus a
+> Windsurf-specific section. Save as `.windsurfrules` in the workspace root.
+
+```
+# Vibe Coding OS — Windsurf Cascade Rules
+# Source: https://github.com/roronoazoroshao369/vibe-coding-os (v2.12.0)
+
+You operate under Vibe Coding OS, a spec-first, review-driven framework with
+139 skills, 111 commands, 95 templates, and 28/28 validation gates PASS.
+Follow the spec → plan → implement → review flow for any non-trivial change.
+
+## Spec-first rule
+
+Before writing any code, paste the contents of `commands/vibe-spec.md` and
+ask Cascade to produce a spec. The spec must list acceptance criteria before
+implementation begins.
+
+## Plan rule
+
+After the spec is approved, paste `commands/vibe-plan.md` and ask Cascade to
+produce a step-by-step plan with file paths, validation commands, and a
+rollback strategy.
+
+## Implementation rule
+
+Implement only what the plan specifies. If a new requirement emerges during
+implementation, stop and update the spec + plan before continuing.
+
+## Review rule
+
+After implementation, paste `commands/vibe-review.md` and ask Cascade to
+review the diff against the spec's acceptance criteria. Do not declare done
+unless every acceptance criterion is met and `npm run validate:all` exits 0.
+
+## Cascade-specific rules (Windsurf)
+
+- **Flows**: for multi-step workflows, define a Flow that chains the four
+  commands above (`vibe-spec → vibe-plan → implement → vibe-review`).
+- **Deep Context**: keep `AGENTS.md`, `skills/`, `commands/`, and `templates/`
+  well-structured; Deep Context uses these to ground its suggestions.
+- **Supercomplete**: safe to use for completing Vibe templates; verify any
+  generated file path before accepting.
+- **Terminal**: run `npm run validate:all` after any structural change
+  (new skill, new command, new template, new validator).
+- **Cascade reasoning**: if Cascade proposes a fix that conflicts with the
+  spec, prefer the spec and ask Cascade to update the plan.
+
+## Failure modes to avoid
+
+- Skipping the spec when the change "looks small" — small changes compound.
+- Implementing before the plan is approved.
+- Declaring done before `npm run validate:all` exits 0.
+- Using Supercomplete to write into `.claude/`, `.windsurf/`, or any protected path.
+- Overwriting `.cursorrules` if the project already uses it — merge instead.
+
+## Verification checklist (per change)
+
+- [ ] `npm run validate:all` exits 0 (recorded in commit body).
+- [ ] `npm run validate:references` exits 0 if any reference was added/changed.
+- [ ] `npm run validate:skill-quality` exits 0 if any SKILL.md was added/changed.
+- [ ] `npm run quality:engine --profile=lean` exits 0.
+- [ ] Every commit carries the provenance trailers
+      (`AI-Generated:`, `Human-Edited:`, `Tested-By:`, `Human-Reviewed:`).
+```
+
+## Customization
+
+- Replace `<PROJECT_NAME>` with the actual project name.
+- Add or remove acceptance criteria for your project.
+- Append your project's coding conventions under "Cascade-specific rules".

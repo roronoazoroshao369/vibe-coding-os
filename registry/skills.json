@@ -1177,6 +1177,142 @@
       ],
       "maturity": "stable",
       "source": "addyosmani-agent-skills"
+    },
+    {
+      "name": "Claude Code Hooks Pack",
+      "path": "skills/core/claude-code-hooks-pack/SKILL.md",
+      "category": "core",
+      "description": "Declarative pattern for authoring Claude Code hooks (PreToolUse, PostToolUse, Stop, SessionStart, SessionEnd) with matchers and guard rails.",
+      "tags": [
+        "claude-code",
+        "hooks",
+        "security",
+        "operational"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "Secure Coding Checklist",
+      "path": "skills/core/secure-coding-checklist/SKILL.md",
+      "category": "core",
+      "description": "OWASP Top 10-mapped three-layer secure coding review (input validation, output encoding, identity & capability).",
+      "tags": [
+        "security",
+        "owasp",
+        "code-review",
+        "checklist"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "cline",
+        "continue",
+        "aider",
+        "windsurf"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "Prompt Architecture",
+      "path": "skills/core/prompt-architecture/SKILL.md",
+      "category": "core",
+      "description": "7-section prompt template (Persona, Context, Constraints, Toolset, Output Schema, Examples, Anti-patterns).",
+      "tags": [
+        "prompts",
+        "architecture",
+        "anti-patterns",
+        "writing"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "cline",
+        "continue",
+        "aider",
+        "windsurf"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "Red Team Bypass",
+      "path": "skills/core/red-team-bypass/SKILL.md",
+      "category": "core",
+      "description": "Defensive catalog of adversarial prompt injection, jailbreak, and evasion patterns with counter-measures.",
+      "tags": [
+        "security",
+        "red-team",
+        "defensive",
+        "owasp"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "cline",
+        "continue",
+        "aider",
+        "windsurf"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "Writing Skills",
+      "path": "skills/core/writing-skills/SKILL.md",
+      "category": "core",
+      "description": "Recipe for authoring new skills with the 8-section contract enforced by `validate-skill-quality.mjs`.",
+      "tags": [
+        "meta",
+        "writing",
+        "skills",
+        "linter"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "cline",
+        "continue",
+        "aider",
+        "windsurf"
+      ],
+      "maturity": "stable"
+    },
+    {
+      "name": "Writing Plans",
+      "path": "skills/core/writing-plans/SKILL.md",
+      "category": "core",
+      "description": "Recipe for writing implementation plans with bite-sized tasks, file paths, and code samples.",
+      "tags": [
+        "meta",
+        "writing",
+        "plans"
+      ],
+      "bundle": "engineering-discipline-pack",
+      "platforms": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "gemini",
+        "cline",
+        "continue",
+        "aider",
+        "windsurf"
+      ],
+      "maturity": "stable"
     }
   ]
 }

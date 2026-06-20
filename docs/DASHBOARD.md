@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |---|---|
-| Version | 2.11.0 |
-| Skills | 136 |
-| Commands | 108 |
-| Templates | 108 |
-| Narrative files | 679 |
-| Upstream sources | 21 |
+| Version | 2.12.0 |
+| Skills | 141 |
+| Commands | 111 |
+| Templates | 112 |
+| Narrative files | 699 |
+| Upstream sources | 22 |
 | Broken refs | 0 |
 
 ### Skills by Category
@@ -21,7 +21,7 @@
 |---|---|
 | agents | 7 |
 | checklists | 5 |
-| core | 74 |
+| core | 79 |
 | memory | 20 |
 | meta | 12 |
 | prompts | 15 |
@@ -64,6 +64,7 @@
 | v2.10.0 | ✅ Complete | Guard Bypass Protocol + Cipher Detection + Scanner + Test Runner |
 | v2.10.1 | ✅ Complete | QA fixes + 24/24 functional tests |
 | v2.11.0 | ✅ Complete | Engineering Discipline Pack — 5 skills, 7 commands, 6 templates, plugins/manifest, anti-patterns |
+| v2.12.0 | ✅ Complete | Quality Shield + source #22 rohitg00 — 3 NEW skills (hooks-pack, secure-coding-checklist, prompt-architecture), 3 commands, 3 templates, GitHub SEO overhaul (15 topics + social preview), marketplace submission package, hardened Windsurf + Cline adapters, validate-skill-quality.mjs shipped |
 
 ## Safety Metrics
 
@@ -120,7 +121,7 @@
 | roadmap-status-integrity | ✅ PASS | ~57ms |
 | runtime-behavior-tests | ✅ PASS | ~1600ms |
 
-**Overall: 26/26 gates passed**
+**Overall: 28/28 gates passed**
 
 ## Coverage Summary
 
@@ -131,7 +132,7 @@
 | Templates (86) | All discovered dynamically from `templates/` |
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
-| Orphan commands | 3 (warnings — review signal) |
+| Orphan commands | 6 (warnings — review signal) |
 | Orphan skills | 1 (warnings — review signal) |
 | Orphan templates | 3 |
 | Broken references | 0 |

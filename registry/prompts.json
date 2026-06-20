@@ -648,6 +648,24 @@
       "path": "commands/vibe-perf-budget.md",
       "description": "Define and track performance budgets (CWV + MEASURE \u2192 GUARD loop).",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-hooks-pack",
+      "path": "commands/vibe-hooks-pack.md",
+      "description": "Generate a Claude Code hooks pack with declarative guard rails (PreToolUse/PostToolUse/Stop).",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-secure-coding",
+      "path": "commands/vibe-secure-coding.md",
+      "description": "Run an OWASP Top 10-mapped secure coding review across a feature or PR.",
+      "maturity": "stable"
+    },
+    {
+      "name": "vibe-prompt-architect",
+      "path": "commands/vibe-prompt-architect.md",
+      "description": "Refactor a freeform prompt into the 7-section prompt-architecture template.",
+      "maturity": "stable"
     }
   ]
 }

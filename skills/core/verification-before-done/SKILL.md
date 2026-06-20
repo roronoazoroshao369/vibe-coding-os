@@ -51,10 +51,13 @@ A verification summary with commands, results, 5-axis matrix, and limitations.
 
 ## Verification checklist
 
-- [ ] Relevant checks were run or limitations stated.
-- [ ] Failures are reported honestly.
-- [ ] Acceptance criteria are accounted for.
-- [ ] Final status is not overstated.
+- [ ] All `npm run validate:*` commands invoked in this change exited 0 (record exit codes in commit body).
+- [ ] DOM/state axis captured: screenshot, DOM diff, or snapshot test attached for any UI change.
+- [ ] Console/logs axis captured: `console.log/error/warn` output recorded, zero new unhandled rejections.
+- [ ] Network/API axis captured: request/response trace or contract test recorded for any API change.
+- [ ] Performance axis captured: LCP / INP / CLS / TTFB / API p99 numbers recorded for any latency-sensitive change.
+- [ ] Visual axis captured: screenshot diff across the supported breakpoints (mobile, tablet, desktop).
+- [ ] Each check is recorded as `PASS` / `FAIL` / `LIMITATION:` — no "looks good" or "feels right".
 
 ## Superpowers alignment
 

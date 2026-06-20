@@ -5,6 +5,51 @@ All notable changes to Vibe Coding OS will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] — 2026-06-20 — "Quality Shield + rohitg00 Adoption + GitHub SEO"
+
+### Added
+- 3 NEW core skills inspired by `RohitG00/awesome-claude-code-toolkit` (Apache-2.0, verified 2026-06-20):
+  - `skills/core/claude-code-hooks-pack/SKILL.md` — declarative pattern for `PreToolUse`/`PostToolUse`/`Stop`/`SessionStart`/`SessionEnd` hooks with matchers and guard rails
+  - `skills/core/secure-coding-checklist/SKILL.md` — OWASP Top 10-mapped three-layer review (input validation, output encoding, identity & capability)
+  - `skills/core/prompt-architecture/SKILL.md` — 7-section prompt template (Persona → Context → Constraints → Toolset → Output Schema → Examples → Anti-patterns)
+- 3 NEW commands: `vibe-hooks-pack`, `vibe-secure-coding`, `vibe-prompt-architect`
+- 3 NEW templates: `hooks-pack-template`, `secure-coding-checklist-template`, `prompt-template-7-section`
+- NEW skill files for broken refs: `skills/core/red-team-bypass/SKILL.md`, `skills/core/writing-skills/SKILL.md`
+- NEW template: `templates/skill-template.md` (8-section canonical template enforced by `validate-skill-quality.mjs`)
+- NEW validator: `scripts/validate-skill-quality.mjs` — lints every SKILL.md against the 8-section contract; flags weak verbs, non-falsifiable verification gates, missing required sections, and token bloat
+- NEW adapter artifacts:
+  - `adapters/windsurf/.windsurfrules.template` — drop-in `.windsurfrules` content
+  - `adapters/windsurf/windsurf.json` + `adapters/windsurf/TROUBLESHOOTING.md`
+  - `adapters/cline/MODE_ARTIFACTS.md` — 3 mode files (architect / ask / code)
+  - `adapters/cline/mcp_settings.example.json` + `adapters/cline/TROUBLESHOOTING.md` + `adapters/cline/cline.json`
+- NEW docs: `docs/marketplace/SUBMISSION.md` (Claude Code marketplace submission package)
+- NEW asset: `docs/assets/social-preview.png` (1200×630 marketing banner)
+- NEW reference source: `RohitG00/awesome-claude-code-toolkit` (#22) — Apache-2.0, `references/sources/rohitg00-awesome-claude-code-toolkit.md` + changelog
+- GitHub SEO overhaul: 15 repo topics, project description, Discussions enabled, social preview image
+
+### Changed
+- Enhanced `skills/core/quality-engine/SKILL.md` — falsifiable Verification checklist (LCP/INP/CLS/TTFB/API p99, FCP, console errors, network call budget, profile coverage)
+- Enhanced `skills/core/verification-before-done/SKILL.md` — falsifiable 5-axis Verification checklist with concrete gates
+- Enhanced `adapters/windsurf/README.md` — added "Files in this adapter" table, references to `.windsurfrules.template` + `TROUBLESHOOTING.md`
+- Enhanced `adapters/cline/README.md` — added "Files in this adapter" table, references to `MODE_ARTIFACTS.md` + `TROUBLESHOOTING.md` + `mcp_settings.example.json`
+- Enhanced `package.json` — added `validate:skill-quality` script
+- Enhanced `scripts/validate-all.mjs` — wired in `validate-provenance.mjs` (Move 2a quick win) and `validate-skill-quality.mjs`
+- Enhanced `registry/skills.json` — registered 5 new skills (claude-code-hooks-pack, secure-coding-checklist, prompt-architecture, red-team-bypass, writing-skills)
+- Enhanced `registry/prompts.json` — registered 3 new commands (vibe-hooks-pack, vibe-secure-coding, vibe-prompt-architect)
+- Enhanced `plugins/marketplace.json` — bumped to v2.12.0; updated description and inner plugin counts
+- Enhanced `README.md`, `README.vi.md`, `docs/DASHBOARD.md` — all metadata bumped to v2.12.0 with new counts
+
+### Fixed
+- Provenance gate was not wired into `validate-all.mjs` (now wired — Move 2a).
+- Three orphan skills were referenced but missing files (red-team-bypass, writing-skills, prompt-architecture — now created).
+- One broken markdown link in `prompt-architecture/SKILL.md` (path now resolves).
+
+### Validation
+- `npm run validate:all` → **28/28 PASS**
+- `npm run validate:references` → **22 sources, 26 features, 5 commands**
+- `npm run validate:skill-quality` → **142 skills, 0 errors, 249 informational warnings**
+- `npm run quality:engine` → **PASS**
+
 ## [Unreleased]
 
 ## [2.11.0] — 2026-06-20 — "Engineering Discipline Pack"

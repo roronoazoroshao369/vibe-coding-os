@@ -6,7 +6,7 @@ See the [adapter compatibility matrix](../compatibility-matrix.md) for cross-too
 
 ## Quick setup
 
-### Via .windsurfrules (recommended)
+### Via `.windsurfrules` (recommended)
 
 Windsurf reads `.windsurfrules` from the workspace root and applies it as system instructions for the Cascade agent:
 
@@ -14,7 +14,26 @@ Windsurf reads `.windsurfrules` from the workspace root and applies it as system
 git clone https://github.com/roronoazoroshao369/vibe-coding-os ~/vibe-coding-os
 cd ~/your-project
 cp ~/vibe-coding-os/AGENTS.md .windsurfrules
+# Or use the dedicated Windsurf template (recommended for Windsurf-specific rules):
+cp ~/vibe-coding-os/adapters/windsurf/.windsurfrules.template .windsurfrules
 ```
+
+### Legacy `.cursorrules` compatibility
+
+Windsurf also reads `.cursorrules` if `.windsurfrules` does not exist. If you previously used Vibe Coding OS with Cursor, your existing `.cursorrules` will work with Windsurf:
+
+```bash
+cp ~/vibe-coding-os/AGENTS.md .cursorrules
+```
+
+## Files in this adapter
+
+| File | Purpose |
+| ---- | ------- |
+| `README.md` | This file — primary adapter doc. |
+| `.windsurfrules.template` | Drop-in `.windsurfrules` content with Vibe + Cascade-specific rules. |
+| `windsurf.json` | Machine-readable adapter metadata (used by `plugins/manifest.json` and the marketplace). |
+| `TROUBLESHOOTING.md` | Common Cascade failures and the canonical fix for each. |
 
 ### Legacy .cursorrules compatibility
 
