@@ -38,3 +38,15 @@ A concrete implementation plan with scope, file targets, ordered tasks, risks, r
 - [ ] Each step is actionable and ordered.
 - [ ] Risky files or decisions are named.
 - [ ] Validation commands are explicit.
+
+## Choose instead
+
+Turning a chosen direction into a step-by-step implementation plan with checkpoints.
+
+If this skill is not the right phase for your task, use one of these instead:
+
+- `skills/core/brainstorming/SKILL.md` — if the direction is not yet chosen.
+- `skills/core/spec-first-development/SKILL.md` — if no spec exists and one is needed before planning.
+- `skills/core/plan-driven-execution/SKILL.md` — if the plan is already written and you want to execute it.
+
+For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).

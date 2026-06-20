@@ -410,5 +410,28 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 - v2.7.0: ████████████ 100%
 - v2.8.0: ████████████ 100%
 - v2.9.0: ████████████ 100%
+- v2.10.0: ████████████ 100%
+- v2.11.0: ████████████ 100%
+- v2.12.0: ████████████ 100%
+- v2.13.0: ████████████ 100%
 
-**Overall roadmap through v2.9.0: ████████████ 100% COMPLETE**
+**Overall roadmap through v2.13.0: ████████████ 100% COMPLETE**
+
+## v2.13.0 — Security Shield + Engineering Quality Lift
+**Status:** ✅ COMPLETE
+
+**Wave A — Security Critical (Council of Security & Trust)**
+- Bypass authorization gate: `scripts/load-bypass-techniques.mjs` (gated behind `VIBE_ENABLE_OFFENSIVE_TECHNIQUES=1` + `--authorization-ref`).
+- Default-deny hooks baseline: `.claude/settings.json` + 6 hook scripts (PreToolUse, UserPromptSubmit, PostToolUse, SessionStart, Stop, SessionEnd).
+- OWASP LLM Top 10 coverage in `skills/core/secure-coding-checklist/SKILL.md`.
+- Prompt anti-injection contract in `templates/prompt-template-7-section.md`.
+- License policy enforcement: `scripts/validate-licenses.mjs` (eyaltoledano + multica-ai flagged).
+
+**Wave B — Engineering High-Value Additive**
+- Safe-refactor trio: `skills/core/safe-refactor/SKILL.md` + `commands/vibe-refactor.md` + `templates/refactor-plan.md`.
+- 3 ops templates: `incident-postmortem.md`, `rollout-plan.md`, `runbook.md`.
+- `docs/workflows/plan-skill-decision-tree.md` + `## Choose instead` sections on 6 plan-* skills.
+- `--strict-new --since=<tag>` mode in `validate-traceability.mjs`.
+- ADR refs in `registry/runtime-freeze-allowlist.json` + `scripts/validate-runtime-freeze.mjs`.
+
+**Validation gates:** 28 → 30. **PASS rate:** 30/30.

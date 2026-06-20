@@ -50,5 +50,18 @@
     "runtime:snapshot",
     "runtime:events",
     "runtime:behavior-tests"
-  ]
+  ],
+  "adr": "docs/adr/0002-runtime-scope-freeze.md",
+  "adr_exception_template": "docs/adr/TEMPLATE-runtime-exception.md",
+  "allowedRuntimeTopLevelDirs_rationale": {
+    "checkpoints": "Optional runtime state \u2014 opt-in per ADR 0002.",
+    "core": "Runtime core utilities \u2014 opt-in per ADR 0002.",
+    "daemon": "Optional background process \u2014 opt-in per ADR 0002.",
+    "install": "One-time installer \u2014 opt-in per ADR 0002.",
+    "mcp": "Optional MCP server \u2014 opt-in per ADR 0002.",
+    "memory": "Optional memory store \u2014 opt-in per ADR 0002.",
+    "sessions": "Optional session state \u2014 opt-in per ADR 0002.",
+    "tasks": "Optional task tracking \u2014 opt-in per ADR 0002.",
+    "teams": "Optional team orchestration \u2014 opt-in per ADR 0002."
+  }
 }

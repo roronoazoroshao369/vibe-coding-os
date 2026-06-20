@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.12.0):** validate:all 28/28 gates PASS · **142 skills** · **111 commands** · **95 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Quality Shield + Engineering Discipline Pack + 3 NEW skills (hooks-pack, secure-coding-checklist, prompt-architecture)
+**Current release (v2.13.0):** validate:all 30/30 gates PASS · **142 skills** · **111 commands** · **95 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Quality Shield + Engineering Discipline Pack + 3 NEW skills (hooks-pack, secure-coding-checklist, prompt-architecture)
 
 **Latest:** v2.9.0 Release Pipeline & Plugin Polish — automated release pipeline, 5 MCP command tools, CLAUDE.md optimized
 
@@ -137,7 +137,7 @@ Advanced Orchestration adds schema-backed, stage-gated workflows for complex fea
 - **`vibe-orchestrate` command:** `commands/vibe-orchestrate.md` provides the command entry point.
 - **Canonical guide:** `docs/orchestration-guide.md` explains usage, failure modes, reports, and quality-gate integration.
 - **Registry sync:** orchestration skill and `vibe-orchestrate` command are registered in `registry/skills.json` and `registry/prompts.json`.
-- **Roadmap complete:** v1.7→v2.12 is fully complete with 28/28 validation gates passing and no runtime expansion beyond ADR 0002.
+- **Roadmap complete:** v1.7→v2.12 → v2.13.0 ships Security Shield + Engineering Quality Lift (30/30 gates PASS) and no runtime expansion beyond ADR 0002.
 
 ---
 

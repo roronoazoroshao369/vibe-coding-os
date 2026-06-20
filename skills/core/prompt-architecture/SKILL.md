@@ -67,3 +67,4 @@ Inspired by [RohitG00/awesome-claude-code-toolkit](https://github.com/RohitG00/a
 ## See also
 
 - [`templates/prompt-template-7-section.md`](../../../templates/prompt-template-7-section.md) — drop-in 7-section prompt template.
+- [`commands/vibe-prompt-architect.md`](../../../commands/vibe-prompt-architect.md) — companion command that drives the 7-section authoring workflow interactively.

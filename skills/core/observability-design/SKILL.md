@@ -101,6 +101,14 @@ Use when designing a new feature, endpoint, async job, batch process, or any use
 
 Inspired by `addyosmani/agent-skills` `observability-and-instrumentation` category (MIT, verified 2026-06-20). Adapted into Vibe Coding OS with original wording, "questions before signals" framing, and bilingual maintainability notes. Renamed from `observability-and-instrumentation` to `observability-design` to avoid collision with `quality-telemetry` (which measures quality gates, not production instrumentation).
 
+## Related skills and templates
+
+- `templates/incident-postmortem.md` — fill in after any user-impacting incident that this design could have prevented.
+- `templates/rollout-plan.md` — every rollout that touches signals here must use this template.
+- `templates/runbook.md` — every signal with an alert must have a runbook linking back to it.
+- `skills/core/threat-model-driven-security/SKILL.md` — observability and security share the "what would an attacker do" lens.
+- `skills/core/verification-before-done/SKILL.md` — verification framework includes the observability axis (blind-test the on-call).
+
 ## Ghi chú tiếng Việt
 
 Kỹ năng này dạy workflow **questions → signals → SLOs** thay vì **metrics → dashboards → pray**. Trước khi ship feature, sinh 2-4 câu hỏi on-call sẽ hỏi lúc 3am; mỗi câu hỏi phải map sang ít nhất 1 signal (metric/log/trace). Mọi metric mà không có câu hỏi nào justify là noise. Cardinality phải bound lúc design, không phải lúc dashboard. SLO không có burn-rate alert chỉ là vanity number. PII phải redact tại emission, không bao giờ log raw body.

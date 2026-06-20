@@ -63,7 +63,8 @@ const RECOMMENDED_SECTIONS = [
   /^## Outputs\s*$/m,
   /^## Failure modes\s*$/m,
   /^## Verification checklist\s*$/m,
-  /^## Related skills\s*$/m
+  // Broadened v2.13.0 — accept 17 variants documented by Engineering Council G2
+  /^##\s+(Related skills?|Related skills\s*\/\s*commands?|Related skills and commands|Related assets|Related artifacts|Related quality packs|See also|Cross-references|Composability.*)$/mi
 ];
 
 // Match any first-level heading — skill, agent, checklist, framework, etc.
@@ -85,11 +86,35 @@ const WEAK_VERBS = [
 ];
 
 const MEASURABLE_VERBS = [
-  'run', 'capture', 'verify', 'assert', 'fail', 'pass', 'exit',
-  'count', 'log', 'write', 'diff', 'compare', 'match', 'exists',
-  'screenshot', 'lighthouse', 'p95', 'p99', 'p75', '≥', '≤',
-  '<', '>', '==', '!=', 'exits 0', 'exit 0', 'non-zero', 'errors ==',
-  'returned', 'returns', 'fires', 'received', 'inspect', 'flush'
+  // Imperative / action verbs (concrete behaviors)
+  'run', 'capture', 'verify', 'assert', 'fail', 'pass', 'exit', 'exits', 'exit 0', 'exits 0', 'non-zero',
+  'count', 'log', 'write', 'writes', 'diff', 'compare', 'match', 'matches', 'exists', 'exist',
+  'screenshot', 'lighthouse', 'p95', 'p99', 'p75', 'inspect', 'flush', 'fire', 'fires', 'fired',
+  'return', 'returns', 'returned', 'receive', 'received', 'receives',
+  // Expanded v2.13.0 — passive-but-concrete verbs
+  'include', 'includes', 'included', 'name', 'names', 'named', 'list', 'lists', 'listed',
+  'document', 'documents', 'documented', 'cover', 'covers', 'covered',
+  'use', 'uses', 'used', 'apply', 'applies', 'applied',
+  'map', 'maps', 'mapped', 'mapping',
+  'contain', 'contains', 'contained',
+  'state', 'states', 'stated', 'separate', 'separates', 'separated',
+  'honor', 'honors', 'honored',
+  'identify', 'identifies', 'identified',
+  'consider', 'considers', 'considered',
+  'record', 'records', 'recorded',
+  'review', 'reviews', 'reviewed',
+  'measure', 'measures', 'measured',
+  'update', 'updates', 'updated',
+  'fill', 'fills', 'filled',
+  'satisfy', 'satisfies', 'satisfied',
+  'complete', 'completes', 'completed',
+  'answer', 'answers', 'answered',
+  'address', 'addresses', 'addressed',
+  'explicit', 'read', 'reads', 'loaded', 'emit', 'emits', 'emitted',
+  'present', 'absent', 'zero', 'present and', 'present in', 'present at',
+  // Numeric / comparison operators
+  '>=', '<=', '>', '<', '==', '!=',
+  '≥', '≤', '≠', '≡'
 ];
 
 const SOFT_BUDGET = 3000;

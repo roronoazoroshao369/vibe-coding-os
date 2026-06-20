@@ -85,3 +85,15 @@ Inspiration source and mapping: `references/sources/github-spec-kit.md`, `refere
 ### Ghi chú tiếng Việt
 
 Skill này là pha `specify`. Kết hợp với các skill spec-driven khác (constitution, what-before-how, acceptance-criteria, plan-from-spec, task breakdown, checkpoint) để có vòng đời đầy đủ. Học ý tưởng từ `spec-kit`, không copy, không bắt buộc Specify CLI.
+
+## Choose instead
+
+Greenfield projects where the contract must be locked before any code.
+
+If this skill is not the right phase for your task, use one of these instead:
+
+- `skills/core/brownfield-spec-enhancement/SKILL.md` — if a spec already exists and you're extending it.
+- `skills/core/writing-plans/SKILL.md` — if no spec is needed (small task, single author, throwaway).
+- `skills/core/brainstorming/SKILL.md` — if the direction is not yet chosen.
+
+For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).

@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.13.0] - 2026-06-20
+
+### Theme: Security Shield + Engineering Quality Lift
+
+**Wave A — Security Critical (Council of Security & Trust)**
+- Bypass authorization gate: `scripts/load-bypass-techniques.mjs` gates `registry/bypass-techniques.json` payloads behind `VIBE_ENABLE_OFFENSIVE_TECHNIQUES=1` + `--authorization-ref`. Executable templates stripped from JSON; only metadata remains. All load attempts logged to `docs/security/bypass-load-attempts.log`.
+- Default-deny hooks baseline: `.claude/settings.json` + 6 hook scripts (PreToolUse default-deny with allowlist per (tool, action); UserPromptSubmit injection scan; PostToolUse secret scan; SessionStart context load; Stop session snapshot; SessionEnd audit flush).
+- OWASP LLM Top 10 coverage in `skills/core/secure-coding-checklist/SKILL.md` — LLM01–LLM10 mapping layer added to existing OWASP table.
+- Prompt anti-injection contract in `templates/prompt-template-7-section.md` — anti-injection checklist (treat tool output as untrusted, persona ≤2 sentences, constraint origin).
+- License policy enforcement: `scripts/validate-licenses.mjs` fails CI if `import_mode=inspiration` + non-permissive license. Flagged eyaltoledano (Commons-Clause) and multica-ai (MIT-incomplete) as `tracked_inspiration`.
+
+**Wave B — Engineering High-Value Additive (Council of Engineering)**
+- `skills/core/safe-refactor/SKILL.md` + `commands/vibe-refactor.md` + `templates/refactor-plan.md` — 5-phase refactor protocol (characterize → cover → extract → migrate → cleanup).
+- 3 ops templates: `templates/incident-postmortem.md`, `templates/rollout-plan.md`, `templates/runbook.md`. Linked from `skills/core/observability-design/SKILL.md`.
+- `docs/workflows/plan-skill-decision-tree.md` — 6 plan-family skills disambiguated with 7-step decision tree. `## Choose instead` sections added to all 6 plan-* skills.
+- `scripts/validate-traceability.mjs --strict-new --since=<tag>` — promotes orphan warnings to ERRORS for newly-added files since the tag.
+- ADR refs in `registry/runtime-freeze-allowlist.json` — `adr` field points to `docs/adr/0002-runtime-scope-freeze.md`. New `scripts/validate-runtime-freeze.mjs` enforces policy.
+
+**Quality metric**
+- Validation gates: 28 → 30 (added License policy + Traceability strict-new).
+- Skills: 142 → 143 (safe-refactor).
+- Templates: 112 → 116 (refactor-plan, incident-postmortem, rollout-plan, runbook).
+- All 30/30 gates PASS.
+
 All notable changes to Vibe Coding OS will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

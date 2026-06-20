@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.12.0):** validate:all 28/28 gates PASS · **142 skills** · **111 commands** · **95 templates** · **22 tracked sources** · 9 adapters
+**Bản phát hành hiện tại (v2.13.0):** validate:all 30/30 gates PASS · **142 skills** · **111 commands** · **95 templates** · **22 tracked sources** · 9 adapters
 
-**Mới nhất:** v2.12.0 — Quality Shield + Engineering Discipline Pack (5 skills từ addyosmani + 3 skills từ rohitg00), 7+3 commands mới, 6+3 templates mới, GitHub SEO overhaul (15 topics + social preview), marketplace submission package, hardened Windsurf + Cline adapters (doubt-driven, observability-design, deprecation-migration, threat-model-driven-security, vertical-slicing), 7 commands mới, 6 templates mới, plugins/manifest + marketplace, anti-patterns orchestration
+**Mới nhất:** v2.13.0 — Security Shield + Engineering Quality Lift (Wave A: bypass-gate, default-deny hooks, OWASP LLM, anti-injection, license-policy; Wave B: safe-refactor trio, ops templates, plan-skill tree, strict-new orphan gate, ADR refs). 30/30 gates PASS, 143 skills, 112 commands, 116 templates.
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
@@ -48,7 +48,7 @@ Engineering Discipline Pack — inspired by addyosmani/agent-skills (MIT, 63.4k�
 - **Validator enhanced**: `scripts/validate-schemas.mjs` soft-warn sections khuyến nghị (`## Common rationalizations`, `## Red flags`, `## Verification checklist`) mà không phá existing skills
 - **Manifests regenerated**: `commands/manifest.json` (108 commands), `templates/manifest.json` (92 templates)
 - **Inspiration sources**: 20 → 21 (addyosmani/agent-skills tracked)
-- **Tổng**: 28/28 gates PASS, 136 skills, 108 commands, 92 templates
+- **Tổng**: 30/30 gates PASS, 136 skills, 108 commands, 92 templates
 
 ## Có gì mới trong v2.10.x
 
@@ -293,7 +293,7 @@ Gate này kiểm tra:
 - runtime behavior tests;
 - adapter smoke tests.
 
-Mục tiêu release: **28/28 PASS**.
+Mục tiêu release: **30/30 PASS**.
 
 ---
 
@@ -333,7 +333,7 @@ Không dùng runtime nếu bạn chỉ cần workflow contract, specs, prompts, 
 
 - Multi-Repository Learning xuất, kiểm tra và nhập lesson exchange batches giữa các repository.
 - `vibe-lesson-exchange` giúp dùng exporter/importer/checker trong workflow có review rõ ràng.
-- README, roadmap, dashboard và release metadata được sync với 28/28 validation gates.
+- README, roadmap, dashboard và release metadata được sync với 30/30 validation gates.
 - Runtime scope vẫn freeze theo ADR 0002; không thêm runtime feature bắt buộc.
 
 ---

@@ -1313,6 +1313,24 @@
         "windsurf"
       ],
       "maturity": "stable"
+    },
+    {
+      "name": "safe-refactor",
+      "path": "skills/core/safe-refactor/SKILL.md",
+      "category": "core",
+      "description": "5-phase safe refactor protocol: characterize, cover, extract, migrate, cleanup. Behavior-preserving structural changes with reversible commits.",
+      "tags": [
+        "refactor",
+        "quality",
+        "workflow",
+        "tests",
+        "engineering"
+      ],
+      "bundle": "",
+      "platforms": [
+        "*"
+      ],
+      "maturity": "stable"
     }
   ]
 }

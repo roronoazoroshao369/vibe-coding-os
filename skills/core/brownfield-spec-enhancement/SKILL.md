@@ -57,3 +57,14 @@ behavior, a change diff, risks, and an incremental migration plan.
 nghĩa hành vi mong muốn, đánh giá rủi ro hồi quy, và lên kế hoạch di trú từng bước, có thể
 rollback. Thêm test ghim hành vi trước khi đổi. Liên kết:
 `skills/core/systematic-debugging/SKILL.md`, `templates/brownfield-spec-template.md`.
+
+## Choose instead
+
+Adding to an existing spec or contract in an existing codebase.
+
+If this skill is not the right phase for your task, use one of these instead:
+
+- `skills/core/spec-first-development/SKILL.md` — if there is no existing spec and the project is greenfield.
+- `skills/core/writing-plans/SKILL.md` — if the spec change is trivial and a plan can be written directly.
+
+For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).

@@ -2,6 +2,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 
 // -----------------------------------------------------------------------------
 // Vibe Coding OS traceability validator
@@ -22,6 +23,12 @@ import path from 'node:path';
 // Scope: every tracked markdown/json surface EXCEPT references/upstreams/, which
 // holds vendored upstream clones whose internal links must not constrain us.
 // The script never mutates anything.
+//
+// v2.13.0 strict-new mode:
+//   --strict-new --since=<git-tag>
+//   Promotes orphan warnings to ERRORS for inventory items that did NOT exist
+//   before <git-tag>. This catches newly-added orphans before they merge.
+//   Usage:  node scripts/validate-traceability.mjs --strict-new --since=v2.12.0
 // -----------------------------------------------------------------------------
 
 const INVENTORY_DIRS = ['commands', 'skills', 'templates'];
@@ -83,6 +90,12 @@ async function walkFiles(dir, predicate) {
 
 // --- Build inventories -------------------------------------------------------
 
+// Parse CLI args for strict-new mode
+const args = process.argv.slice(2);
+const strictNew = args.includes('--strict-new');
+const sinceArg = args.find(a => a.startsWith('--since='));
+const sinceTag = sinceArg ? sinceArg.split('=')[1] : null;
+
 const commandFiles = (await walkFiles('commands', (name) => name.endsWith('.md')))
   // commands/ is flat; ignore nested READMEs if any appear later.
   .filter((file) => file.split('/').length === 2);
@@ -97,6 +110,29 @@ const inventoryOnDisk = new Set([
   ...skillFiles,
   ...templateFiles
 ]);
+
+// --- Strict-new: identify files added since the given git tag --------------
+
+let newSinceTag = new Set();
+if (strictNew && sinceTag) {
+  try {
+    // Get list of inventory files added after sinceTag
+    const output = execSync(
+      `git log --diff-filter=A --name-only --pretty=format: ${sinceTag}..HEAD`,
+      { encoding: 'utf8' }
+    );
+    for (const f of output.split('\n')) {
+      const trimmed = f.trim();
+      if (trimmed && inventoryOnDisk.has(trimmed)) {
+        newSinceTag.add(trimmed);
+      }
+    }
+    console.log(`[strict-new] Since tag '${sinceTag}': ${newSinceTag.size} inventory files added.`);
+  } catch (e) {
+    console.error(`[strict-new] WARNING: Could not determine files since ${sinceTag}: ${e.message}`);
+    console.error('[strict-new] Falling back to non-strict mode.');
+  }
+}
 
 // --- Collect references from narrative surfaces ------------------------------
 
@@ -152,7 +188,13 @@ for (const file of scanFiles) {
 function reportOrphans(files, label) {
   const orphans = files.filter((file) => !referencedBy.has(file));
   for (const orphan of orphans) {
-    warnings.push(`Orphan ${label} (no narrative markdown links to it): ${orphan}`);
+    const isNew = newSinceTag.has(orphan);
+    if (isNew && strictNew) {
+      // Promote to ERROR in strict-new mode
+      errors.push(`[strict-new] NEW orphan ${label} added since ${sinceTag} (must be linked from narrative markdown): ${orphan}`);
+    } else {
+      warnings.push(`Orphan ${label} (no narrative markdown links to it): ${orphan}`);
+    }
   }
   return orphans.length;
 }
@@ -174,10 +216,14 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log('Traceability validation passed.');
+const strictSuffix = strictNew && sinceTag ? ` (strict-new since ${sinceTag})` : '';
+console.log(`Traceability validation passed${strictSuffix}.`);
 console.log(
   `Checked ${commandFiles.length} commands, ${skillFiles.length} skills, ` +
     `${templateFiles.length} templates against ${scanFiles.length} narrative files. ` +
     `Broken references: 0. Orphans (warnings): ${orphanCommands} commands, ` +
     `${orphanSkills} skills, ${orphanTemplates} templates.`
 );
+if (strictNew && sinceTag) {
+  console.log(`[strict-new] ${newSinceTag.size} new inventory files since ${sinceTag}; all linked.`);
+}

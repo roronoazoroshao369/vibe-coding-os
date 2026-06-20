@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const errors = [];
-const validImportModes = new Set(['none', 'inspiration', 'adapted', 'vendored']);
+const validImportModes = new Set(['none', 'inspiration', 'adapted', 'vendored', 'tracked_inspiration', 'candidate_inspiration']);
 const requiredFeatureDocs = [
   'spec-driven-development.md',
   'persistent-memory.md',

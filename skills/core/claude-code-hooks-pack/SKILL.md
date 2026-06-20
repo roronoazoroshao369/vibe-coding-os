@@ -54,6 +54,7 @@ Use when adding safety guard rails (block `Bash` commands matching destructive p
 - `skills/core/observability-design/SKILL.md` — questions-before-signals doctrine (downstream consumer)
 - `skills/core/threat-model-driven-security/SKILL.md` — STRIDE-driven hook placement (boundary → asset → adversary)
 - `skills/core/verification-before-done/SKILL.md` — 5-axis verification for hook runtime
+- [`commands/vibe-hooks-pack.md`](../../../commands/vibe-hooks-pack.md) — companion command that scaffolds a hook pack interactively.
 
 ## Attribution
 

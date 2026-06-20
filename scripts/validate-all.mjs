@@ -30,6 +30,8 @@ const checks = [
   ['ROADMAP-STATUS integrity', 'node', ['scripts/validate-roadmap-status.mjs']],
   ['ROADMAP future-drift', 'node', ['scripts/validate-roadmap-future-drift.mjs']],
   ['Runtime freeze guard', 'node', ['scripts/validate-runtime-freeze.mjs']],
+  ['License policy', 'node', ['scripts/validate-licenses.mjs']],
+  ['Traceability strict-new', 'node', ['scripts/validate-traceability.mjs', '--strict-new', '--since=v2.12.0']],
   ['Runtime behavioral tests', 'node', ['scripts/runtime-behavior-tests.mjs']],
   ['Quality diff audit', 'node', ['scripts/validate-quality-diff.mjs']],
   ['Provenance gate', 'node', ['scripts/validate-provenance.mjs']],

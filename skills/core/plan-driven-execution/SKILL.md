@@ -42,3 +42,14 @@ A practical plan with task order, file targets, risks, and checks.
 Use with `writing-plans` for plan creation and `executing-plans` for plan execution.
 
 Related mattpocock-inspired skill: `skills/core/issue-slicing/SKILL.md` for independently grabbable vertical slices.
+
+## Choose instead
+
+Executing a written, approved plan checkpoint by checkpoint (fresh execution).
+
+If this skill is not the right phase for your task, use one of these instead:
+
+- `skills/core/executing-plans/SKILL.md` — if work was started, paused, or context was lost (resumption).
+- `skills/core/writing-plans/SKILL.md` — if the plan does not yet exist or needs revision.
+
+For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).

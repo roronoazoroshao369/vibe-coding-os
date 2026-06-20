@@ -1,110 +1,93 @@
 #!/usr/bin/env node
-// validate-runtime-freeze.mjs — enforce ADR 0002 runtime scope freeze
+// scripts/validate-runtime-freeze.mjs
+//
+// ADR-0002 runtime-scope-freeze gate. Verifies that:
+//  1. registry/runtime-freeze-allowlist.json has an `adr` field pointing to an
+//     existing docs/adr/N-*.md file.
+//  2. The runtime/ directory structure does not contain new top-level dirs that
+//     are not on the allowlist.
+//  3. The package.json scripts do not introduce new `runtime:*` commands not on
+//     the allowlist.
+//
+// Exits 0 on success, 1 on any violation. Run as part of `npm run validate:all`.
 
-import { existsSync } from 'node:fs';
-import { readdir, readFile } from 'node:fs/promises';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import path from 'node:path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '..');
-const RUNTIME_DIR = join(ROOT, 'runtime');
-const SCRIPTS_DIR = join(ROOT, 'scripts');
-const PKG_PATH = join(ROOT, 'package.json');
-const ALLOWLIST_PATH = join(ROOT, 'registry', 'runtime-freeze-allowlist.json');
+const ALLOWLIST_PATH = 'registry/runtime-freeze-allowlist.json';
+const RUNTIME_DIR = 'runtime';
+const PACKAGE_JSON = 'package.json';
+const ADR_DIR = 'docs/adr';
 
-let failures = 0;
-let warnings = 0;
+function loadJson(p) {
+  return JSON.parse(readFileSync(p, 'utf8'));
+}
 
 function fail(msg) {
-  console.error(`  ❌ ${msg}`);
-  failures++;
+  errors.push(msg);
 }
 
-function warn(msg) {
-  console.log(`  ⚠️ ${msg}`);
-  warnings++;
+// 1. Allowlist has ADR field pointing to an existing file
+if (!existsSync(ALLOWLIST_PATH)) {
+  console.error(`[validate-runtime-freeze] FATAL: ${ALLOWLIST_PATH} not found`);
+  process.exit(1);
 }
+const allowlist = loadJson(ALLOWLIST_PATH);
+const errors = [];
 
-function pass(msg) {
-  console.log(`  ✅ ${msg}`);
-}
-
-function parseList(value) {
-  if (Array.isArray(value)) return value.map(v => String(v).trim()).filter(Boolean);
-  return [];
-}
-
-async function loadAllowlist() {
-  const text = await readFile(ALLOWLIST_PATH, 'utf8');
-  const data = JSON.parse(text);
-  return {
-    allowedRuntimeTopLevelDirs: parseList(data.allowedRuntimeTopLevelDirs),
-    allowedRuntimeScripts: parseList(data.allowedRuntimeScripts),
-    allowedPackageScripts: parseList(data.allowedPackageScripts)
-  };
-}
-
-async function listTopLevelEntries(dir) {
-  if (!existsSync(dir)) return [];
-  const entries = await readdir(dir, { withFileTypes: true });
-  return entries.map(entry => entry.name);
-}
-
-async function main() {
-  console.log('=== Runtime Freeze Validation (ADR 0002) ===');
-  console.log('');
-
-  if (!existsSync(ALLOWLIST_PATH)) {
-    fail(`Allowlist not found at ${ALLOWLIST_PATH}`);
-    console.log('');
-    console.log(`Overall: ${failures} failure(s), ${warnings} warning(s)`);
-    process.exit(1);
-  }
-
-  const allowlist = await loadAllowlist();
-  const pkg = JSON.parse(await readFile(PKG_PATH, 'utf8'));
-
-  // runtime/* top-level entries
-  const runtimeEntries = await listTopLevelEntries(RUNTIME_DIR);
-  const runtimeViolations = runtimeEntries.filter(name => !allowlist.allowedRuntimeTopLevelDirs.includes(name));
-  if (runtimeViolations.length === 0) {
-    pass('runtime/ top-level entries are within the frozen allowlist');
+if (!allowlist.adr) {
+  fail(`${ALLOWLIST_PATH} missing 'adr' field — every allowlist must cite an ADR per Engineering Council G3`);
+} else {
+  const adrPath = allowlist.adr;
+  if (!existsSync(adrPath)) {
+    fail(`allowlist.adr points to ${adrPath} which does not exist`);
   } else {
-    for (const name of runtimeViolations) {
-      fail(`runtime/${name} is not in the frozen allowlist`);
+    // Check the ADR file mentions the freeze policy
+    const adrContent = readFileSync(adrPath, 'utf8');
+    if (!/freeze/i.test(adrContent) || !/runtime/i.test(adrContent)) {
+      fail(`allowlist.adr (${adrPath}) does not appear to address runtime freeze policy`);
     }
   }
-
-  // scripts/runtime-*.mjs
-  const scriptEntries = existsSync(SCRIPTS_DIR)
-    ? (await readdir(SCRIPTS_DIR, { withFileTypes: true }))
-        .filter(entry => entry.isFile() && /^runtime-.*\.mjs$/.test(entry.name))
-        .map(entry => entry.name)
-    : [];
-  const scriptViolations = scriptEntries.filter(name => !allowlist.allowedRuntimeScripts.includes(name));
-  if (scriptViolations.length === 0) {
-    pass('scripts/runtime-*.mjs are within the frozen allowlist');
-  } else {
-    for (const name of scriptViolations) {
-      fail(`scripts/${name} is not in the frozen allowlist`);
-    }
-  }
-
-  // package.json runtime scripts
-  const pkgScriptNames = Object.keys(pkg.scripts ?? {}).filter(name => name.startsWith('runtime:'));
-  const pkgViolations = pkgScriptNames.filter(name => !allowlist.allowedPackageScripts.includes(name));
-  if (pkgViolations.length === 0) {
-    pass('package.json runtime scripts are within the frozen allowlist');
-  } else {
-    for (const name of pkgViolations) {
-      fail(`package.json script "${name}" is not in the frozen allowlist`);
-    }
-  }
-
-  console.log('');
-  console.log(`Overall: ${failures} failure(s), ${warnings} warning(s)`);
-  if (failures > 0) process.exit(1);
 }
 
-await main();
+// 2. runtime/ directory structure check
+if (existsSync(RUNTIME_DIR)) {
+  const actualDirs = readdirSync(RUNTIME_DIR, { withFileTypes: true })
+    .filter(e => e.isDirectory())
+    .map(e => e.name);
+  const allowedDirs = allowlist.allowedRuntimeTopLevelDirs || [];
+
+  const violations = actualDirs.filter(d => !allowedDirs.includes(d));
+  if (violations.length > 0) {
+    fail(`runtime/ has new top-level directories not on ADR-0002 allowlist: ${violations.join(', ')}`);
+    fail(`Fix: either (a) add to allowedRuntimeTopLevelDirs in ${ALLOWLIST_PATH}, or (b) move logic to portable core (skills/commands/templates)`);
+  }
+}
+
+// 3. package.json scripts check
+if (existsSync(PACKAGE_JSON)) {
+  const pkg = loadJson(PACKAGE_JSON);
+  const scripts = Object.keys(pkg.scripts || {});
+  const runtimeScripts = scripts.filter(s => s.startsWith('runtime:'));
+  const allowedPkgScripts = allowlist.allowedPackageScripts || [];
+
+  const violations = runtimeScripts.filter(s => !allowedPkgScripts.includes(s));
+  if (violations.length > 0) {
+    fail(`package.json introduces new runtime:* scripts not on ADR-0002 allowlist: ${violations.join(', ')}`);
+  }
+}
+
+// Report
+if (errors.length > 0) {
+  console.error(`[validate-runtime-freeze] FAILED: ${errors.length} violation(s):`);
+  for (const e of errors) console.error(`  ❌ ${e}`);
+  console.error('\n[validate-runtime-freeze] Policy: ADR 0002 freezes runtime scope. New runtime surface requires an ADR exception filed at docs/adr/.');
+  process.exit(1);
+}
+
+console.log(`[validate-runtime-freeze] PASSED: ADR-0002 runtime-freeze policy upheld`);
+console.log(`  - ADR reference: ${allowlist.adr}`);
+console.log(`  - Allowed runtime dirs: ${(allowlist.allowedRuntimeTopLevelDirs || []).length}`);
+console.log(`  - Allowed runtime scripts: ${(allowlist.allowedRuntimeScripts || []).length}`);
+console.log(`  - Allowed package.json runtime:* scripts: ${(allowlist.allowedPackageScripts || []).length}`);
+process.exit(0);

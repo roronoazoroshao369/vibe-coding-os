@@ -401,6 +401,8 @@ Skill này cung cấp giao thức tự động hóa để vượt qua bộ lọc
 - `quality-execution-contract` — Force explicit intent before edits
 - `model-aware-config` — Adapt quality packs to model capabilities
 - `context-policy` — DLP context control with allow/block rules
+- [`commands/vibe-bypass.md`](../../../commands/vibe-bypass.md) — companion command for interactive bypass sessions.
+- [`skills/core/red-team-bypass/SKILL.md`](../../core/red-team-bypass/SKILL.md) — defensive-detection sister skill for cataloging detected patterns (the bypass protocol uses techniques; the red-team-bypass skill catalogs them as defensive signals).
 
 ## References
 

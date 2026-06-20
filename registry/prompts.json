@@ -666,6 +666,12 @@
       "path": "commands/vibe-prompt-architect.md",
       "description": "Refactor a freeform prompt into the 7-section prompt-architecture template.",
       "maturity": "stable"
+    },
+    {
+      "name": "vibe-refactor",
+      "path": "commands/vibe-refactor.md",
+      "description": "Start a safe refactor session using the 5-phase protocol from skills/core/safe-refactor/SKILL.md.",
+      "maturity": "stable"
     }
   ]
 }

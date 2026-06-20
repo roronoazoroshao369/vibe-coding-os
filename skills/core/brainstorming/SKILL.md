@@ -37,3 +37,14 @@ A concise decision brief: clarified intent, assumptions, options, recommendation
 - [ ] At least one alternative was considered for meaningful work.
 - [ ] The recommended path is proportional to the task.
 - [ ] Next step is clear: ask, spec, plan, implement, or stop.
+
+## Choose instead
+
+Generating 2-4 options before committing to a direction.
+
+If this skill is not the right phase for your task, use one of these instead:
+
+- `skills/core/spec-first-development/SKILL.md` — once a direction is chosen and a spec is needed.
+- `skills/core/writing-plans/SKILL.md` — once a direction is chosen and you want a step-by-step plan.
+
+For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).

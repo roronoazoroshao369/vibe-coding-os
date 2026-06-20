@@ -43,3 +43,9 @@
 - [ ] `npm run validate:secrets` exit 0.
 - [ ] `npm run validate:injection` exit 0.
 - [ ] Worksheet committed to `docs/security/<date>-<feature>.md`.
+
+## Related skills and templates
+
+- `skills/core/secure-coding-checklist/SKILL.md` — full OWASP A01–A10 + LLM01–LLM10 checklist (use this template as the table-of-contents)
+- `templates/bypass-audit-trail.md` — fill in after every guard-bypass attempt (positive or negative)
+- `templates/bypass-request.md` — authorization form for red-team engagements
