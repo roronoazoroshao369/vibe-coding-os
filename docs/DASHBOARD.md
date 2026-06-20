@@ -139,7 +139,7 @@
 | Adapters | Claude Code 🟢, Codex 🟢, Cursor 🟢, Gemini 🟢, Memory 🟢, Compatibility matrix 🟢 |
 | References | 14 upstream sources tracked |
 | Orphan commands | 0 (warnings — review signal) |
-| Orphan skills | 1 (warnings — review signal) |
+| Orphan skills | 0 (warnings — review signal) |
 | Orphan templates | 0 |
 | Broken references | 0 |
 
