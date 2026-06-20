@@ -35,3 +35,8 @@ Skill validates and links related workflows.
 ## Ghi chú tiếng Việt
 
 Viết skill nhỏ, rõ trigger, có checklist và registry.
+
+
+## See also
+
+- `templates/registry.json` — conceptual template for registry files

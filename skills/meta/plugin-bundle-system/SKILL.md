@@ -1,3 +1,14 @@
+---
+name: plugin-bundle-system
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+status: stable
+---
+
 # Skill: Plugin Bundle System — Defining, Composing, and Activating Skill Bundles
 
 ## Purpose

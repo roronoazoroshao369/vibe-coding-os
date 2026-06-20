@@ -1,3 +1,16 @@
+---
+title: Quality Execution Contract
+type: template
+name: quality-contract
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # Quality Execution Contract
 
 > Complete this contract BEFORE making any code edits. It forces explicit intent,

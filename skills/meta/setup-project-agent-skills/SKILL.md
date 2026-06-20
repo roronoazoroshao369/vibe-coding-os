@@ -1,3 +1,15 @@
+---
+name: setup-project-agent-skills
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+  - agents
+status: stable
+---
+
 # Skill: Setup Project Agent Skills
 
 ## Purpose

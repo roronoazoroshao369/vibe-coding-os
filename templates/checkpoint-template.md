@@ -1,3 +1,16 @@
+---
+title: Checkpoint: <phase name>
+type: template
+name: checkpoint-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Checkpoint: <phase name>
 
 > Vietnamese usage note / Ghi chú sử dụng: Dùng template này để xác nhận một pha đạt tiêu

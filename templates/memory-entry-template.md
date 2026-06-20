@@ -1,3 +1,17 @@
+---
+title: Memory Entry Template
+type: template
+name: memory-entry-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - template
+  - memory
+status: stable
+---
+
 # Memory Entry Template
 
 > Do not store secrets: never include tokens, passwords, private keys, credentials, private URLs, regulated personal data, or unnecessary personal data. Use placeholders such as `<REDACTED_TOKEN>` only when context is still useful.

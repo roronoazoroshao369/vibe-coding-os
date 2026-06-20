@@ -1,3 +1,16 @@
+---
+title: Skill Proposal Template
+type: template
+name: skill-proposal
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - skills
+status: stable
+---
+
 # Skill Proposal Template
 
 > Use this template when proposing a new skill for Vibe Coding OS.

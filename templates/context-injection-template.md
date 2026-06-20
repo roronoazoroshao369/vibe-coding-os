@@ -1,3 +1,16 @@
+---
+title: Context Injection Bundle
+type: template
+name: context-injection-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Context Injection Bundle
 
 *Referenced by: [context-injection](../skills/memory/context-injection/SKILL.md) skill, [vibe-context-inject](../commands/vibe-context-inject.md) command*

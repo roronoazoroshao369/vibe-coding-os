@@ -1,3 +1,16 @@
+---
+title: Rollout Plan
+type: template
+name: rollout-plan
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: planning
+tags:
+  - planning
+status: stable
+---
+
 # Rollout Plan
 
 > A template for shipping a change to production safely. Use for any change that could cause user-visible impact: feature flags, schema migrations, dependency upgrades, configuration changes, new services. The plan defines the rollout stages, the rollback criteria, and the monitoring signals that gate each stage.

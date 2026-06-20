@@ -1,3 +1,14 @@
+---
+name: context-budget
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+status: stable
+---
+
 # Skill: Context Budget Audit
 
 ## Purpose

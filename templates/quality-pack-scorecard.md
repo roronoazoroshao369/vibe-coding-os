@@ -1,3 +1,16 @@
+---
+title: Task-Specific Quality Pack Scorecard
+type: template
+name: quality-pack-scorecard
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # Task-Specific Quality Pack Scorecard
 
 > Use this fillable scorecard after running a task-specific quality pack: API endpoint, database migration, auth/permissions, frontend state, or async/background job.

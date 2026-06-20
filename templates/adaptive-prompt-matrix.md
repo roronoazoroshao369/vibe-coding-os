@@ -1,3 +1,16 @@
+---
+title: Adaptive Prompt Selection Matrix
+type: template
+name: adaptive-prompt-matrix
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Adaptive Prompt Selection Matrix
 
 Maps task types to recommended quality packs from the Vibe Coding OS skill registry. Use with `skills/core/adaptive-prompt-selection/SKILL.md` and `commands/vibe-adaptive-prompt.md`.

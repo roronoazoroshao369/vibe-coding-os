@@ -1,3 +1,16 @@
+---
+title: Universal Code Quality Rubric
+type: template
+name: quality-rubric
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - quality
+status: stable
+---
+
 # Universal Code Quality Rubric
 
 1. Restate the goal in one clear sentence before changing anything.

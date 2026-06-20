@@ -1,3 +1,16 @@
+---
+title: Incident Postmortem
+type: template
+name: incident-postmortem
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Incident Postmortem
 
 > A blameless, action-oriented postmortem template. Use after any user-impacting incident or any near-miss that could have caused one. The goal is to learn, not to assign fault. Each finding produces a tracked action item with a deadline and an owner.

@@ -1,3 +1,15 @@
+---
+name: code-intelligence-review
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+  - review
+status: stable
+---
+
 # Skill: Code Intelligence Review
 
 ## Purpose

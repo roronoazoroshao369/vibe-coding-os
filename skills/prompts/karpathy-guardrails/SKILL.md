@@ -1,3 +1,14 @@
+---
+name: karpathy-guardrails
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: prompts
+tags:
+  - prompts
+status: stable
+---
+
 # Karpathy Guardrails
 
 ## Purpose

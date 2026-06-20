@@ -1,3 +1,16 @@
+---
+title: Diagnosis Template
+type: template
+name: diagnosis-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Diagnosis Template
 
 > Vietnamese usage note: Ghi bằng chứng debug theo từng bước. Không lưu secrets từ logs; redact trước khi dán.

@@ -1,3 +1,17 @@
+---
+title: Plan: <title>
+type: template
+name: plan-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: planning
+tags:
+  - template
+  - planning
+status: stable
+---
+
 # Plan: <title>
 
 ## Context

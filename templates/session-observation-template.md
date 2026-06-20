@@ -1,3 +1,16 @@
+---
+title: Session Observation
+type: template
+name: session-observation-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Session Observation
 
 ## Vietnamese usage note

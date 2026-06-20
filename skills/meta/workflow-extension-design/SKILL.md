@@ -1,3 +1,14 @@
+---
+name: workflow-extension-design
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+status: stable
+---
+
 # Workflow Extension Design
 
 ## Purpose

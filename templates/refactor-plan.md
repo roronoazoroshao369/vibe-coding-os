@@ -1,3 +1,16 @@
+---
+title: Refactor Plan Worksheet
+type: template
+name: refactor-plan
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: planning
+tags:
+  - planning
+status: stable
+---
+
 # Refactor Plan Worksheet
 
 > Used by `/vibe-refactor`. Copy this file to `docs/refactors/<timestamp>-<slug>.md` and fill in each section before the first commit.

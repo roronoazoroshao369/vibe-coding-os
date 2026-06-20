@@ -1,3 +1,16 @@
+---
+title: PRD: [Title]
+type: template
+name: prd-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # PRD: [Title]
 
 > Vietnamese usage note: PRD này tổng hợp yêu cầu đã được xác nhận. Đánh dấu assumption rõ ràng; không lưu secrets hoặc dữ liệu riêng tư.

@@ -1,3 +1,16 @@
+---
+title: Handoff Template
+type: template
+name: handoff-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Handoff Template
 
 > Vietnamese usage note: Dùng khi chuyển agent/session. Không lưu secrets, token, private keys, hoặc transcript dài không cần thiết.

@@ -1,3 +1,17 @@
+---
+title: Brownfield Spec: <feature / area>
+type: template
+name: brownfield-spec-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: spec
+tags:
+  - template
+  - specification
+status: stable
+---
+
 # Brownfield Spec: <feature / area>
 
 > Vietnamese usage note / Ghi chú sử dụng: Dùng cho hệ thống sẵn có. Ghi hành vi hiện tại

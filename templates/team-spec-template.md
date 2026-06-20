@@ -1,3 +1,17 @@
+---
+title: Team Spec Template
+type: template
+name: team-spec-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: spec
+tags:
+  - template
+  - specification
+status: stable
+---
+
 # Team Spec Template
 
 > Typed team role/task specification for coordinated multi-agent work.

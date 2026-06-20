@@ -1,3 +1,16 @@
+---
+title: Reference Scorecard: <source-id>
+type: template
+name: reference-scorecard-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Reference Scorecard: <source-id>
 
 Use this template with `references/reference-scorecard.md` during upstream audits. Keep evidence concise, original, and linked to local files or upstream metadata instead of copying upstream prose.

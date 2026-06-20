@@ -1,3 +1,15 @@
+---
+name: quality-shield
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: core
+tags:
+  - core
+  - quality
+status: stable
+---
+
 # Quality Shield
 
 > Five-step copy-paste workflow for making safe, verified changes to an existing codebase. Prevents scope creep, hallucination, and untested changes.

@@ -1,3 +1,16 @@
+---
+title: Templates
+type: template
+name: README
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Templates
 
 Templates are copy-paste artifact shapes for Vibe Coding OS workflows. They help users produce consistent specs, plans, tasks, ADRs, reviews, handoffs, memory entries, team specs, quality reports, and configuration examples.

@@ -1,3 +1,17 @@
+---
+title: Memory Compression Template
+type: template
+name: memory-compression-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: memory
+tags:
+  - template
+  - memory
+status: stable
+---
+
 # Memory Compression Template
 
 > Do not store secrets in compressed entries. All inputs must have passed privacy filtering before compression. Compressed entries inherit the privacy_status of their sources.

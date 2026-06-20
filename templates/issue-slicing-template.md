@@ -1,3 +1,16 @@
+---
+title: Issue Slicing Template
+type: template
+name: issue-slicing-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Issue Slicing Template
 
 > Vietnamese usage note: Mỗi issue nên là một lát dọc có thể review/test độc lập. Không đưa secrets vào issue.

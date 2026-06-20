@@ -1,3 +1,16 @@
+---
+title: Bypass Audit Trail
+type: template
+name: bypass-audit-trail
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - red-team
+status: stable
+---
+
 # Bypass Audit Trail
 
 > Auto-populated by the bypass loop. Do not edit manually during execution.

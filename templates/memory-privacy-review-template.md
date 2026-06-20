@@ -1,3 +1,18 @@
+---
+title: Memory Privacy Review Template
+type: template
+name: memory-privacy-review-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: review
+tags:
+  - template
+  - review
+  - memory
+status: stable
+---
+
 # Memory Privacy Review Template
 
 > Do not store secrets: never include tokens, passwords, private keys, credentials, private URLs, regulated personal data, or unnecessary personal data. Use placeholders such as `<REDACTED_TOKEN>` only when context is still useful.

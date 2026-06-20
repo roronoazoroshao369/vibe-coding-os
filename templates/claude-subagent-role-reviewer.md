@@ -1,3 +1,17 @@
+---
+title: Claude Code Subagent Role — Reviewer
+type: template
+name: claude-subagent-role-reviewer
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: review
+tags:
+  - review
+  - agents
+status: stable
+---
+
 # Claude Code Subagent Role — Reviewer
 
 ## Identity

@@ -1,3 +1,16 @@
+---
+title: Traceability Map Template
+type: template
+name: traceability-map-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+  - template
+status: stable
+---
+
 # Traceability Map Template
 
 Copy this into a plan, issue, or docs note when one piece of work spans a spec, tasks, and verification checkpoints.

@@ -1,3 +1,17 @@
+---
+title: Code Intelligence Map: <Change Title>
+type: template
+name: code-intelligence-review-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: review
+tags:
+  - template
+  - review
+status: stable
+---
+
 # Code Intelligence Map: <Change Title>
 
 ## Scope

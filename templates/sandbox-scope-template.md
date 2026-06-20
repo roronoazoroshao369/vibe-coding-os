@@ -1,3 +1,17 @@
+---
+title: Sandbox Scope Declaration
+type: template
+name: sandbox-scope-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: engineering
+tags:
+  - template
+  - database
+status: stable
+---
+
 # Sandbox Scope Declaration
 
 ## Subtask

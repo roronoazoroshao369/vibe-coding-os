@@ -1,3 +1,17 @@
+---
+title: Threat Model
+type: template
+name: threat-model-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: security
+tags:
+  - template
+  - security
+status: stable
+---
+
 # Threat Model
 
 Design security **before building** with the STRIDE 6-letter lens applied to (boundary, asset, adversary) tuples.

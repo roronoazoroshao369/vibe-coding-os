@@ -1,3 +1,17 @@
+---
+title: Hook Specification Template
+type: template
+name: hook-spec-template
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: spec
+tags:
+  - template
+  - specification
+status: stable
+---
+
 # Hook Specification Template
 
 Use this to specify a custom hook for an agent adapter or runtime.

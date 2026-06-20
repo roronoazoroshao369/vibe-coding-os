@@ -1,3 +1,14 @@
+---
+name: software-design-philosophy
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: prompts
+tags:
+  - prompts
+status: stable
+---
+
 # Philosophy of Software Design Skill
 
 ## Purpose

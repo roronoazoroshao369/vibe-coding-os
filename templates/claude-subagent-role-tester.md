@@ -1,3 +1,17 @@
+---
+title: Claude Code Subagent Role — Tester
+type: template
+name: claude-subagent-role-tester
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: testing
+tags:
+  - testing
+  - agents
+status: stable
+---
+
 # Claude Code Subagent Role — Tester
 
 ## Identity

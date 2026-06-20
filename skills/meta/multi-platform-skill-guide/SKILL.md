@@ -1,3 +1,14 @@
+---
+name: multi-platform-skill-guide
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+status: stable
+---
+
 # Skill: Multi-Platform Skill Guide — Writing Portable Skills Across Agent Harnesses
 
 ## Purpose

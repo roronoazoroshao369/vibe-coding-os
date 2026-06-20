@@ -1,3 +1,14 @@
+---
+name: skill-catalog
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: meta
+tags:
+  - meta
+status: stable
+---
+
 # Skill: Skill Catalog — Organizing Skills for Discoverability
 
 ## Purpose

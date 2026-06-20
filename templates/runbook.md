@@ -1,3 +1,16 @@
+---
+title: Runbook
+type: template
+name: runbook
+version: 1.0.0
+introduced_in: v2.15.0
+last_reviewed: 2026-06-20
+category: template
+tags:
+
+status: stable
+---
+
 # Runbook
 
 > A runbook is a step-by-step operational procedure for a specific task that on-call must execute without the author present. Use for any recurring operational task: restarts, failovers, scaling, data corrections, certificate rotations, dependency migrations.
