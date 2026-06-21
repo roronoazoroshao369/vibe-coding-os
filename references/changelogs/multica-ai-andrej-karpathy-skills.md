@@ -16,7 +16,7 @@ Track upstream changes that may affect Vibe Coding OS.
 - Finding: The local layer previously covered only two of the four principles in
   `skills/prompts/karpathy-engineering-discipline` (Think Before Coding, Surgical Changes).
   Confirmed Simplicity First is covered by `skills/prompts/anti-overengineering` and the
-  verification evidence bar by `skills/core/verification-before-completion`. Goal-Driven
+  verification evidence bar by `skills/core/verification-before-done`. Goal-Driven
   Execution (rewrite an imperative into a verifiable goal with per-step checks for independent
   looping) was missing as a distinct discipline.
 - Local follow-up: Added `skills/core/goal-driven-execution/SKILL.md` (original wording),

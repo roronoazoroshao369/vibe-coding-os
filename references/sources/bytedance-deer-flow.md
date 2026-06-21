@@ -31,7 +31,7 @@
 | --- | --- | --- | --- |
 | SuperAgent harness architecture | Provides a scalable pattern for orchestrator-agent spawning worker agents. | `skills/core/subagent-driven-development/SKILL.md`, `skills/core/team-agent-orchestration/SKILL.md` | Inspiration only; not copied. |
 | Sandboxed execution | Isolated subagent execution prevents side effects and improves reliability. | `skills/core/subagent-driven-development/SKILL.md` | Inspiration only; not copied. |
-| Structured memory in agent harness | Persistent memory across subagent sessions can inform memory architecture. | `skills/memory/memory-architecture/SKILL.md` | Inspiration only; not copied. |
+| Structured memory in agent harness | Persistent memory across subagent sessions can inform memory architecture. | `skills/memory/memory-ingestion/SKILL.md` | Inspiration only; not copied. |
 | Deep research → code pipeline | Structured pipeline from research to implementation can inform workflow design. | `docs/workflows/context-engineering.md`, `skills/core/context-rich-implementation/SKILL.md` | Inspiration only; not copied. |
 
 ## Local mapping

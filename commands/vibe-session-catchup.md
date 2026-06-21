@@ -128,7 +128,7 @@ next-action recommendation. The plan file's `recovery-count` is incremented and
 
 - `skills/core/crash-proof-planning/SKILL.md`
 - `templates/crash-proof-plan-template.md`
-- `skills/memory/agent-handoff/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
 - `commands/vibe-session-summary.md`
 
 ## Ghi chú tiếng Việt

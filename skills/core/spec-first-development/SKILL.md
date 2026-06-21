@@ -30,11 +30,18 @@ Intent, constraints, users, existing behavior, acceptance criteria.
 3. Describe expected behavior, user scenarios, and edge cases.
 4. Add acceptance criteria that can be verified.
 5. Apply what-before-how: keep technical choices out of the spec.
+   - Restate the desired outcome in user-visible terms: who, what they observe, and why.
+   - List acceptance criteria that are observable and testable, independent of technology.
+   - Identify and quarantine any "how" content (stack, schema, libraries) into the plan, not the spec.
+   - Flag premature technical lock-in and ask whether it is a real constraint or an assumption.
+   - Only after the what is agreed, allow technical-context decisions in the plan phase.
 6. Review the spec for missing assumptions before planning, then clear the spec checkpoint.
 
 ## Outputs
 
 A concise spec with goals, non-goals, behavior, edge cases, and acceptance criteria.
+A behavior-focused spec section plus a separate list of deferred technical decisions to
+resolve during planning.
 
 ## Scenario pattern taxonomy
 
@@ -68,6 +75,9 @@ Apply this checklist during the spec-review checkpoint. A scenario that fails an
 - Scenarios describe implementation details instead of observable behavior.
 - A scenario category is missing without an explicit non-goal.
 - Performance expectations are stated without measurement criteria.
+- Acceptance criteria are written in implementation terms.
+- A favored technology silently constrains the spec.
+- "What" and "how" are mixed, making the spec hard to review or change.
 
 ## Verification checklist
 
@@ -76,6 +86,10 @@ Apply this checklist during the spec-review checkpoint. A scenario that fails an
 - [ ] Open questions are listed.
 - [ ] Spec matches the user request.
 - [ ] Scenario validation checklist has been applied to every scenario.
+- [ ] Acceptance criteria are observable and tech-agnostic.
+- [ ] Technical choices are deferred to the plan.
+- [ ] Premature lock-ins are flagged as assumptions or real constraints.
+- [ ] The spec can be satisfied by more than one implementation.
 
 Related mattpocock-inspired skill: `skills/core/prd-from-context/SKILL.md` for product-shaped specs from existing conversation context.
 
@@ -84,18 +98,28 @@ Related mattpocock-inspired skill: `skills/core/prd-from-context/SKILL.md` for p
 This skill is the `specify` phase of the local spec-driven workflow. For the full lifecycle, compose with:
 
 - `skills/core/project-constitution/SKILL.md` — principles that constrain the spec.
-- `skills/core/what-before-how/SKILL.md` — keep technical choices out of the spec.
 - `skills/core/acceptance-criteria/SKILL.md` — observable, verifiable criteria.
 - `skills/core/plan-from-spec/SKILL.md` — turn the agreed spec into a plan.
 - `skills/core/task-breakdown-from-plan/SKILL.md` and `skills/core/dependency-aware-task-ordering/SKILL.md` — decompose and order tasks.
 - `skills/core/checkpoint-validation/SKILL.md` — the implementation-readiness gate.
 - `skills/core/brownfield-spec-enhancement/SKILL.md` — spec discipline for existing systems.
 
+**Applied / Not Applied**
+
+- Applied: the what-before-how discipline from `github/spec-kit` (merged from the former
+  `skills/core/spec-first-development/SKILL.md` in v2.17 trim).
+- Not applied: upstream phrasing, command names, or template text. The separation is
+  enforced locally through the spec and plan skills.
+
 Inspiration source and mapping: `references/sources/github-spec-kit.md`, `references/features/spec-driven-development.md`. No upstream content is vendored, and the Specify CLI is not required.
 
 ### Ghi chú tiếng Việt
 
 Skill này là pha `specify`. Kết hợp với các skill spec-driven khác (constitution, what-before-how, acceptance-criteria, plan-from-spec, task breakdown, checkpoint) để có vòng đời đầy đủ. Học ý tưởng từ `spec-kit`, không copy, không bắt buộc Specify CLI.
+
+"Cái gì trước, làm thế nào sau" (what-before-how): thống nhất hành vi người dùng và tiêu chí
+chấp nhận (what) trước khi chọn công nghệ (how). Đẩy mọi quyết định kỹ thuật sang pha plan.
+Học ý tưởng từ `spec-kit`, không copy chữ. Liên kết: `skills/core/plan-from-spec/SKILL.md`.
 
 ## Choose instead
 

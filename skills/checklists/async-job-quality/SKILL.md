@@ -14,7 +14,7 @@ tags:
   - observability
 ---
 
-# Async/Background Jobs Quality Checklist
+# Async-Job-Quality Checklist
 
 ## Purpose
 

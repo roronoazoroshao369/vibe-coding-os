@@ -2,24 +2,6 @@
   "version": "0.1.0",
   "skills": [
     {
-      "name": "quality-shield",
-      "path": "skills/core/quality-shield/SKILL.md",
-      "category": "core",
-      "description": "Five-step copy-paste workflow for safe, verified changes: contract, context pack, smallest safe diff, self-review, scorecard.",
-      "tags": [
-        "workflow",
-        "quality",
-        "review",
-        "diff",
-        "contract"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable"
-    },
-    {
       "name": "acceptance-criteria",
       "path": "skills/core/acceptance-criteria/SKILL.md",
       "category": "core",
@@ -63,23 +45,6 @@
         "testing"
       ],
       "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable"
-    },
-    {
-      "name": "agent-handoff",
-      "path": "skills/memory/agent-handoff/SKILL.md",
-      "category": "memory",
-      "description": "Create durable handoff summaries for agent/session switches.",
-      "tags": [
-        "memory",
-        "handoff",
-        "session",
-        "context"
-      ],
-      "bundle": "memory-workflow",
       "platforms": [
         "*"
       ],
@@ -252,30 +217,6 @@
       "maturity": "beta"
     },
     {
-      "name": "context-retrieval",
-      "path": "skills/memory/context-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Find relevant repository context before making decisions."
-    },
-    {
-      "name": "context-injection",
-      "path": "skills/memory/context-injection/SKILL.md",
-      "category": "memory",
-      "description": "Build a scoped, citation-backed, privacy-filtered context injection bundle.",
-      "tags": [
-        "memory",
-        "context",
-        "injection",
-        "privacy",
-        "bundle"
-      ],
-      "bundle": "memory-workflow",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "alpha"
-    },
-    {
       "name": "context-rich-implementation",
       "path": "skills/core/context-rich-implementation/SKILL.md",
       "category": "core",
@@ -293,12 +234,6 @@
       "category": "core",
       "description": "Coordinate a supervising orchestrator that decomposes, assigns, monitors lifecycle states, aggregates, and validates integrated output.",
       "maturity": "beta"
-    },
-    {
-      "name": "creative-parallel-exploration",
-      "path": "skills/core/creative-parallel-exploration/SKILL.md",
-      "category": "core",
-      "description": "Compare multiple candidate approaches against explicit criteria and record a decision."
     },
     {
       "name": "critique-pass",
@@ -386,20 +321,7 @@
       "name": "grill-user-before-building",
       "path": "skills/core/grill-user-before-building/SKILL.md",
       "category": "core",
-      "description": "Interview the user for alignment before building."
-    },
-    {
-      "name": "grill-with-docs",
-      "path": "skills/core/grill-with-docs/SKILL.md",
-      "category": "core",
-      "description": "Align with the user while maintaining context and ADR candidates."
-    },
-    {
-      "name": "hook-based-memory",
-      "path": "skills/memory/hook-based-memory/SKILL.md",
-      "category": "memory",
-      "description": "Plan optional memory lifecycle hooks without copying upstream scripts.",
-      "maturity": "draft"
+      "description": "Interview the user for alignment before building. Includes optional docs-aware phase for context/ADR updates."
     },
     {
       "name": "implementer-agent",
@@ -418,24 +340,6 @@
       "path": "skills/core/incremental-review/SKILL.md",
       "category": "core",
       "description": "Re-review efficiently by capturing a baseline, analysing only the diff, and assessing dependency impact and regressions."
-    },
-    {
-      "name": "instinct-extraction",
-      "path": "skills/meta/instinct-extraction/SKILL.md",
-      "category": "meta",
-      "description": "Distill reusable session patterns into confidence-scored operating instincts using a continuous-learning loop with pre-session loading and post-session extraction.",
-      "tags": [
-        "meta",
-        "instinct",
-        "extraction",
-        "learning",
-        "continuous"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "beta"
     },
     {
       "name": "issue-slicing",
@@ -466,30 +370,6 @@
       "path": "skills/core/multi-repo-learning/SKILL.md",
       "category": "core",
       "description": "Export, review, and import portable coding lessons across repositories using the v2.3 lesson exchange format."
-    },
-    {
-      "name": "local-first-memory",
-      "path": "skills/memory/local-first-memory/SKILL.md",
-      "category": "memory",
-      "description": "Keep local memory as the default fallback for all memory workflows."
-    },
-    {
-      "name": "memory-architecture",
-      "path": "skills/memory/memory-architecture/SKILL.md",
-      "category": "memory",
-      "description": "Design local-first agent memory contracts and boundaries."
-    },
-    {
-      "name": "memory-configuration",
-      "path": "skills/memory/memory-configuration/SKILL.md",
-      "category": "memory",
-      "description": "Define memory scopes, retention, privacy, and injection policy."
-    },
-    {
-      "name": "memory-evaluation",
-      "path": "skills/memory/memory-evaluation/SKILL.md",
-      "category": "memory",
-      "description": "Evaluate memory relevance, freshness, safety, cost, and latency."
     },
     {
       "name": "memory-compression",
@@ -524,39 +404,10 @@
       ]
     },
     {
-      "name": "memory-retrieval",
-      "path": "skills/memory/memory-retrieval/SKILL.md",
-      "category": "memory",
-      "description": "Retrieve task-relevant memory using a six-phase phased retrieval workflow with evaluation scoring.",
-      "tags": [
-        "memory",
-        "retrieval",
-        "search",
-        "evaluation",
-        "scoring"
-      ],
-      "bundle": "memory-workflow",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
-      "name": "memory-provider-adapter",
-      "path": "skills/memory/memory-provider-adapter/SKILL.md",
-      "category": "memory",
-      "description": "Plan optional memory provider adapters without required dependencies."
-    },
-    {
       "name": "memory-search",
       "path": "skills/memory/memory-search/SKILL.md",
       "category": "memory",
       "description": "Search local memory and optional providers with scoped queries."
-    },
-    {
-      "name": "memory-troubleshooting",
-      "path": "skills/memory/memory-troubleshooting/SKILL.md",
-      "category": "memory",
-      "description": "Diagnose missing, stale, unsafe, or noisy memory behavior."
     },
     {
       "name": "model-aware-config",
@@ -569,12 +420,6 @@
       "path": "skills/core/model-weakness-memory/SKILL.md",
       "category": "core",
       "description": "Track known failure patterns for model types and auto-inject relevant checks before tasks."
-    },
-    {
-      "name": "observation-citations",
-      "path": "skills/memory/observation-citations/SKILL.md",
-      "category": "memory",
-      "description": "Create and use observation IDs for memory-backed claims."
     },
     {
       "name": "orchestration-workflows",
@@ -611,28 +456,6 @@
       "path": "skills/core/prd-from-context/SKILL.md",
       "category": "core",
       "description": "Create a PRD from existing conversation context without inventing requirements."
-    },
-    {
-      "name": "privacy-filter",
-      "path": "skills/memory/privacy-filter/SKILL.md",
-      "category": "memory",
-      "description": "Prevent sensitive data from entering prompts, memory, examples, or commits.",
-      "tags": [
-        "privacy",
-        "security",
-        "memory",
-        "filter"
-      ],
-      "bundle": "memory-workflow",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
-      "name": "progressive-memory-disclosure",
-      "path": "skills/memory/progressive-memory-disclosure/SKILL.md",
-      "category": "memory",
-      "description": "Retrieve memory in progressive stages to avoid context overload."
     },
     {
       "name": "project-constitution",
@@ -749,34 +572,10 @@
       "description": "Capture safe session observations for persistent context."
     },
     {
-      "name": "session-summarizer",
-      "path": "skills/memory/session-summarizer/SKILL.md",
-      "category": "memory",
-      "description": "Compress a work session into useful handoff context."
-    },
-    {
       "name": "setup-pre-commit-quality-gates",
       "path": "skills/core/setup-pre-commit-quality-gates/SKILL.md",
       "category": "core",
       "description": "Set up lightweight maintainable pre-commit quality gates."
-    },
-    {
-      "name": "setup-project-agent-skills",
-      "path": "skills/meta/setup-project-agent-skills/SKILL.md",
-      "category": "meta",
-      "description": "Configure a repo for agent skills, context, issue flow, and validation."
-    },
-    {
-      "name": "shared-domain-language",
-      "path": "skills/core/shared-domain-language/SKILL.md",
-      "category": "core",
-      "description": "Maintain durable project vocabulary for humans and agents."
-    },
-    {
-      "name": "skillify-from-session",
-      "path": "skills/meta/skillify-from-session/SKILL.md",
-      "category": "meta",
-      "description": "Extract a reusable skill from a completed conversation or workflow."
     },
     {
       "name": "software-design-philosophy",
@@ -795,12 +594,6 @@
       "path": "skills/core/spec-first-development/SKILL.md",
       "category": "core",
       "description": "Turn intent into a compact specification before non-trivial code changes."
-    },
-    {
-      "name": "spec-template-design",
-      "path": "skills/meta/spec-template-design/SKILL.md",
-      "category": "meta",
-      "description": "Design and audit spec/plan/tasks templates for compact, complete, verifiable quality."
     },
     {
       "name": "subagent-driven-development",
@@ -881,22 +674,6 @@
       ]
     },
     {
-      "name": "verification-before-completion",
-      "path": "skills/core/verification-before-completion/SKILL.md",
-      "category": "core",
-      "description": "Require evidence and explicit limitations before claiming completion.",
-      "tags": [
-        "verification",
-        "quality",
-        "workflow",
-        "discipline"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
       "name": "verification-before-done",
       "path": "skills/core/verification-before-done/SKILL.md",
       "category": "core",
@@ -907,18 +684,6 @@
       "path": "skills/core/vibe-bootstrap/SKILL.md",
       "category": "core",
       "description": "Start a new Vibe Coding OS session with the right context, workflow, and safety rails."
-    },
-    {
-      "name": "what-before-how",
-      "path": "skills/core/what-before-how/SKILL.md",
-      "category": "core",
-      "description": "Agree user-visible behavior and acceptance criteria before choosing technology."
-    },
-    {
-      "name": "workflow-extension-design",
-      "path": "skills/meta/workflow-extension-design/SKILL.md",
-      "category": "meta",
-      "description": "Design optional, documented workflow variants/presets without a runtime engine."
     },
     {
       "name": "working-with-legacy-code",
@@ -943,88 +708,6 @@
       "path": "skills/core/writing-plans/SKILL.md",
       "category": "core",
       "description": "Create executable plans with file targets, risks, rollback points, and checks."
-    },
-    {
-      "name": "writing-skills",
-      "path": "skills/meta/writing-skills/SKILL.md",
-      "category": "meta",
-      "description": "Write original, portable, indexed skills with required sections and validation.",
-      "tags": [
-        "meta",
-        "skill-design",
-        "workflow",
-        "template"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
-      "name": "zoom-out-system-context",
-      "path": "skills/core/zoom-out-system-context/SKILL.md",
-      "category": "core",
-      "description": "Explain broader system context before architecture-sensitive changes.",
-      "tags": [
-        "architecture",
-        "context",
-        "workflow"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
-      "name": "skill-catalog",
-      "path": "skills/meta/skill-catalog/SKILL.md",
-      "category": "meta",
-      "description": "Organize skills into a discoverable catalog with tags, categories, bundles, and composability metadata.",
-      "tags": [
-        "meta",
-        "catalog",
-        "discovery",
-        "tags",
-        "bundle"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable"
-    },
-    {
-      "name": "multi-platform-skill-guide",
-      "path": "skills/meta/multi-platform-skill-guide/SKILL.md",
-      "category": "meta",
-      "description": "Write portable skills that work across Claude Code, Cursor, Codex CLI, Gemini CLI, Copilot, and OpenCode.",
-      "tags": [
-        "meta",
-        "portability",
-        "platform",
-        "adapter"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ]
-    },
-    {
-      "name": "plugin-bundle-system",
-      "path": "skills/meta/plugin-bundle-system/SKILL.md",
-      "category": "meta",
-      "description": "Define, compose, and activate domain-organized skill bundles for common development scenarios.",
-      "tags": [
-        "meta",
-        "bundle",
-        "discovery",
-        "workflow",
-        "domain"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ]
     },
     {
       "name": "crash-proof-planning",
@@ -1080,46 +763,6 @@
         "*"
       ],
       "maturity": "beta"
-    },
-    {
-      "name": "doubt-driven-development",
-      "path": "skills/core/doubt-driven-development/SKILL.md",
-      "category": "core",
-      "description": "In-flight doubt posture with CLS-DAR protocol (CLAIM, LOCATE, SCRUTINIZE, DOUBT, ADJUDICATE, RECORD) and Loading Constraints. Pairs with code-review-and-quality (finished artifacts) and critique-pass-protocol (single-shot review).",
-      "tags": [
-        "verify",
-        "decision",
-        "guardrail",
-        "fresh-context",
-        "anti-rationalization",
-        "doubt"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable",
-      "source": "addyosmani-agent-skills"
-    },
-    {
-      "name": "observability-design",
-      "path": "skills/core/observability-design/SKILL.md",
-      "category": "core",
-      "description": "Design observability by starting from on-call questions before signals. Metric/log/trace trade-off table + SLO envelope. Counter 'telemetry without a question is noise'.",
-      "tags": [
-        "observability",
-        "telemetry",
-        "sre",
-        "slo",
-        "instrumentation",
-        "questions-first"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable",
-      "source": "addyosmani-agent-skills"
     },
     {
       "name": "deprecation-migration",
@@ -1244,54 +887,6 @@
       "maturity": "stable"
     },
     {
-      "name": "Red Team Bypass",
-      "path": "skills/core/red-team-bypass/SKILL.md",
-      "category": "core",
-      "description": "Defensive catalog of adversarial prompt injection, jailbreak, and evasion patterns with counter-measures.",
-      "tags": [
-        "security",
-        "red-team",
-        "defensive",
-        "owasp"
-      ],
-      "bundle": "engineering-discipline-pack",
-      "platforms": [
-        "claude-code",
-        "codex",
-        "cursor",
-        "gemini",
-        "cline",
-        "continue",
-        "aider",
-        "windsurf"
-      ],
-      "maturity": "stable"
-    },
-    {
-      "name": "Writing Skills",
-      "path": "skills/core/writing-skills/SKILL.md",
-      "category": "core",
-      "description": "Recipe for authoring new skills with the 8-section contract enforced by `validate-skill-quality.mjs`.",
-      "tags": [
-        "meta",
-        "writing",
-        "skills",
-        "linter"
-      ],
-      "bundle": "engineering-discipline-pack",
-      "platforms": [
-        "claude-code",
-        "codex",
-        "cursor",
-        "gemini",
-        "cline",
-        "continue",
-        "aider",
-        "windsurf"
-      ],
-      "maturity": "stable"
-    },
-    {
       "name": "safe-refactor",
       "path": "skills/core/safe-refactor/SKILL.md",
       "category": "core",
@@ -1388,42 +983,6 @@
         "visualization",
         "mermaid",
         "analysis"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable"
-    },
-    {
-      "name": "deprecate-skill",
-      "path": "skills/core/deprecate-skill/SKILL.md",
-      "category": "core",
-      "description": "Workflow and tooling for deprecating skills properly (mark, log, redirect)",
-      "tags": [
-        "deprecation",
-        "lifecycle",
-        "retirement",
-        "migration",
-        "governance"
-      ],
-      "bundle": "",
-      "platforms": [
-        "*"
-      ],
-      "maturity": "stable"
-    },
-    {
-      "name": "install-skill",
-      "path": "skills/core/install-skill/SKILL.md",
-      "category": "core",
-      "description": "Install skills, commands, or templates from the registry into a target directory.",
-      "tags": [
-        "install",
-        "registry",
-        "packaging",
-        "deployment",
-        "npm"
       ],
       "bundle": "",
       "platforms": [

@@ -52,7 +52,7 @@
       "name": "How do I install a single skill?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Run `node scripts/install-skill.mjs <skill-name>` to copy a single skill into your project. Use --list to see all available skills, --dry-run to preview, --target to install elsewhere."
+        "text": "Skills are distributed as plain markdown files. Copy skills/<category>/<skill-name>/SKILL.md directly into your project's skill directory. All skills work with any AI agent that reads markdown."
       }
     },
     {
@@ -115,7 +115,7 @@ MIT. You can use it commercially, modify it, and redistribute. Attribution appre
 
 ### How do I install a single skill?
 
-Run `node scripts/install-skill.mjs <skill-name>` to copy a single skill into your project. Use `--list` to see all available skills, `--dry-run` to preview, `--target` to install elsewhere.
+Copy the skill's `SKILL.md` file from `skills/<category>/<skill-name>/` into your project. All skills are plain markdown.
 
 ### How are skills validated?
 

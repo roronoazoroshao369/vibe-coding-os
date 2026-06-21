@@ -20,6 +20,12 @@
       "maturity": "beta"
     },
     {
+      "name": "vibe-autopilot",
+      "path": "commands/vibe-autopilot.md",
+      "description": "Configure and run the autopilot loop with policy-based action control for automated tool execution.",
+      "maturity": "alpha"
+    },
+    {
       "name": "vibe-align",
       "path": "commands/vibe-align.md",
       "description": "Explicit alignment check: grill, align on domain terms, record ADRs, and confirm intent before coding.",
@@ -172,7 +178,7 @@
     {
       "name": "vibe-grill-with-docs",
       "path": "commands/vibe-grill-with-docs.md",
-      "description": "Grill the user while updating durable context and ADR candidates.",
+      "description": "Grill the user (docs-aware phase of grill-user-before-building) while updating durable context and ADR candidates.",
       "maturity": "stable"
     },
     {
@@ -392,12 +398,6 @@
       "maturity": "beta"
     },
     {
-      "name": "vibe-quality-rubric",
-      "path": "commands/vibe-quality-rubric.md",
-      "description": "Apply the universal code quality rubric before coding.",
-      "maturity": "stable"
-    },
-    {
       "name": "vibe-quality-telemetry",
       "path": "commands/vibe-quality-telemetry.md",
       "description": "Emit quality events, aggregate session metrics, and generate local trend reports.",
@@ -554,12 +554,6 @@
       "maturity": "stable"
     },
     {
-      "name": "vibe-triage",
-      "path": "commands/vibe-triage.md",
-      "description": "Classify incoming work and recommend next state/action.",
-      "maturity": "stable"
-    },
-    {
       "name": "vibe-upstream-sync",
       "path": "commands/vibe-upstream-sync.md",
       "description": "Audit tracked upstream references, update reference metadata, and adapt high-fit ideas without vendoring upstream source.",
@@ -606,24 +600,6 @@
       "path": "commands/vibe-bypass.md",
       "description": "Autonomous bypass agent: iteratively attempts to bypass AI model guardrails through structured techniques.",
       "maturity": "beta"
-    },
-    {
-      "name": "vibe-doubt",
-      "path": "commands/vibe-doubt.md",
-      "description": "Run in-flight doubt on an in-progress decision before it hardens (CLS-DAR protocol).",
-      "maturity": "stable"
-    },
-    {
-      "name": "vibe-observability",
-      "path": "commands/vibe-observability.md",
-      "description": "Design observability by starting from on-call questions before signals.",
-      "maturity": "stable"
-    },
-    {
-      "name": "vibe-deprecate",
-      "path": "commands/vibe-deprecate.md",
-      "description": "Mark an artifact as deprecated with Compulsory/Advisory classification and sunset timeline.",
-      "maturity": "stable"
     },
     {
       "name": "vibe-migrate",
@@ -689,12 +665,6 @@
       "name": "vibe-deps-graph",
       "path": "commands/vibe-deps-graph.md",
       "description": "Visualize the skill dependency graph in JSON, Mermaid, or stats format.",
-      "maturity": "stable"
-    },
-    {
-      "name": "vibe-install",
-      "path": "commands/vibe-install.md",
-      "description": "Install a skill from the Vibe Coding OS registry into your project.",
       "maturity": "stable"
     },
     {

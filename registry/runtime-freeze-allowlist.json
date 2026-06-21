@@ -10,7 +10,8 @@
     "memory",
     "sessions",
     "tasks",
-    "teams"
+    "teams",
+    "autopilot"
   ],
   "allowedRuntimeScripts": [
     "runtime-audit.mjs",
@@ -61,7 +62,8 @@
     "mcp": "Optional MCP server \u2014 opt-in per ADR 0002.",
     "memory": "Optional memory store \u2014 opt-in per ADR 0002.",
     "sessions": "Optional session state \u2014 opt-in per ADR 0002.",
-    "tasks": "Optional task tracking \u2014 opt-in per ADR 0002.",
-    "teams": "Optional team orchestration \u2014 opt-in per ADR 0002."
+    "tasks": "Optional task tracking — opt-in per ADR 0002.",
+    "teams": "Optional team orchestration — opt-in per ADR 0002.",
+    "autopilot": "Optional policy-driven autopilot loop — opt-in per ADR 0002."
   }
 }

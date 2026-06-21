@@ -41,7 +41,7 @@ Coding before understanding, scope creep, large rewrites without plan, faking te
 
 - **Superpowers:** [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md)
 - **Spec-driven:** [`commands/vibe-specify.md`](commands/vibe-specify.md)
-- **Memory rules:** [`skills/memory/memory-architecture/SKILL.md`](skills/memory/memory-architecture/SKILL.md)
+- **Memory rules:** [`skills/memory/memory-ingestion/SKILL.md`](skills/memory/memory-ingestion/SKILL.md)
 - **Reference intelligence:** [`docs/workflows/runtime-mcp-server.md`](docs/workflows/runtime-mcp-server.md)
 - **Proficiency levels:** [`commands/vibe-proficiency.md`](commands/vibe-proficiency.md)
 

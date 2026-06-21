@@ -16,7 +16,7 @@ implementation, while learning from tracked references.
 - `CONSTITUTION.md`
 - `docs/specs/README.md`, `docs/workflows/spec-driven-development.md`
 - `templates/spec-template.md`, `templates/plan-template.md`, `templates/tasks-template.md`, `templates/checkpoint-template.md`
-- `skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`, `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/checkpoint-validation/SKILL.md`
+- `skills/core/spec-first-development/SKILL.md`, `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/checkpoint-validation/SKILL.md`
 - `commands/vibe-specify.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`
 
 ## Applied upstream ideas

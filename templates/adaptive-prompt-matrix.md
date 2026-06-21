@@ -45,7 +45,7 @@ Maps task types to recommended quality packs from the Vibe Coding OS skill regis
 | Quality rubric | `skills/prompts/quality-rubric/SKILL.md` | Baseline for all coding tasks |
 | Disciplined diagnosis | `skills/core/disciplined-diagnosis/SKILL.md` | Bugfix tasks requiring root-cause analysis |
 | Bug-fix lifecycle | `skills/core/bug-fix-lifecycle/SKILL.md` | Any bugfix task |
-| Privacy filter | `skills/memory/privacy-filter/SKILL.md` | Security tasks handling sensitive data |
+| Privacy filter | `skills/memory/project-memory/SKILL.md` | Security tasks handling sensitive data |
 
 ## Usage notes
 

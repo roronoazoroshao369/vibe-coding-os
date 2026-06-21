@@ -43,7 +43,7 @@ Describe an optional memory provider without implementing a client.
 
 ## Provider Contract Compliance Checklist
 
-Before finalizing the adapter plan, verify compliance with the interface contract defined in `skills/memory/memory-provider-adapter/SKILL.md`:
+Before finalizing the adapter plan, verify compliance with the interface contract defined in `skills/memory/memory-ingestion/SKILL.md`:
 
 ### Required Operations
 

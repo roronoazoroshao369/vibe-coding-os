@@ -34,7 +34,7 @@ Out of scope for Quality Shield:
 
 - **Universal Code Quality Rubric**
   - Skill: [`skills/prompts/quality-rubric/SKILL.md`](../skills/prompts/quality-rubric/SKILL.md)
-  - Command: [`commands/vibe-quality-rubric.md`](../commands/vibe-quality-rubric.md)
+  - Command: [`commands/vibe-review.md (replaced vibe-quality-rubric v2.17)`](../commands/vibe-review.md (replaced vibe-quality-rubric v2.17))
   - Template: [`templates/quality-rubric.md`](../templates/quality-rubric.md)
 
 - **Quality Execution Contract**
@@ -71,7 +71,7 @@ Out of scope for Quality Shield:
 
 - **Quality Scorecard**
   - Templates: [`templates/quality-scorecard.md`](../templates/quality-scorecard.md), [`templates/quality-scorecard-session.md`](../templates/quality-scorecard-session.md)
-  - Scripts: [`scripts/quality-scorecard.mjs`](../scripts/quality-scorecard.mjs), [`scripts/quality-scorecard-report.mjs`](../scripts/quality-scorecard-report.mjs)
+  - Scripts: [`scripts/validate-skill-quality.mjs (replaced quality-scorecard v2.17)`](../scripts/validate-skill-quality.mjs (replaced quality-scorecard v2.17)), [`scripts/quality-scorecard-report.mjs`](../scripts/quality-scorecard-report.mjs)
 
 ### Adjacent Expert Mode and Smart Adapt assets
 
@@ -104,7 +104,7 @@ These are related to future/advanced engine orchestration, not required for basi
 6. Run Self-Review Before Response.
 ## Quality Shield workflow
 
-For the five-step copy-paste workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md). For the reusable skill that implements this, see [`skills/core/quality-shield/SKILL.md`](../skills/core/quality-shield/SKILL.md).
+For the five-step copy-paste workflow, see [`docs/quality-shield-workflow.md`](quality-shield-workflow.md). For the reusable skill that implements this, see [`skills/core/quality-execution-contract/SKILL.md`](../skills/core/quality-execution-contract/SKILL.md).
 
 ## Artifact audit map
 

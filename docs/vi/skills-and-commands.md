@@ -93,7 +93,7 @@ Vibe Coding OS hiện track `obra/superpowers` như nguồn cảm hứng/adaptat
 | Receive review | `vibe-receive-review` | `receiving-code-review` |
 | Finish branch | `vibe-finish-branch` | `finishing-a-development-branch` |
 | Debug | `vibe-debug` | `systematic-debugging` |
-| Verify | `vibe-verify` | `verification-before-completion`, alias `verification-before-done` |
+| Verify | `vibe-verify` | `verification-before-done` |
 | Write skill | `vibe-write-skill` | `writing-skills` |
 | Use framework | `vibe-init` | `using-vibe-coding-os`, `vibe-bootstrap` |
 

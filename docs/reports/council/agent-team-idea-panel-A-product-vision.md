@@ -57,7 +57,7 @@ The current `runtime/teams/team-store.mjs` solves **orchestration** (who runs wh
 ### MVP (ship in v1 of "Agent Teams" feature)
 - **Agent manifest** — a YAML/JSON file per agent (`agents/ada.yaml`): name, role, philosophy, skills refs, memory adapter, voice prompt
 - **3 starter agents** out of the box: e.g. Architect, Implementer, Reviewer (matching existing `skills/agents/`)
-- **Local-first memory** — file-backed store under `runtime/memory/agents/<name>/` (leveraging existing `skills/memory/local-first-memory/`)
+- **Local-first memory** — file-backed store under `runtime/memory/agents/<name>/` (leveraging existing `skills/memory/project-memory/`)
 - **MCP memory server** — single MCP tool `agent_memory(agent, query, write)` reading from local store, optional cloud sync later
 - **Cross-project loading** — `agents/` directory at user-home level (~/.vibe/agents/) auto-loaded when entering any repo
 - **Self-improvement**: post-session reflection hook that writes 1–3 lessons per agent per session, user approves before commit
@@ -81,7 +81,7 @@ The current `runtime/teams/team-store.mjs` solves **orchestration** (who runs wh
 These are where users will *actually* get stuck. Brutally honest list:
 
 1. **Cold start is empty.** New agent = zero memory = no demonstrable benefit. Users will judge on day 1 and bounce. *Mitigation: ship 3 agents with 20+ seeded lessons each.*
-2. **Memory is invisible.** If an agent silently "remembers" the wrong thing, the user will trust it less, not more. *Mitigation: every agent action must cite which memory entry drove it (existing `skills/memory/observation-citations/`).*
+2. **Memory is invisible.** If an agent silently "remembers" the wrong thing, the user will trust it less, not more. *Mitigation: every agent action must cite which memory entry drove it (existing `skills/memory/session-capture/`).*
 3. **Personality fatigue.** "Quirky voice" is fun for 5 minutes, annoying by Tuesday. *Mitigation: agents default to professional; personality is a power-user knob.*
 4. **Identity drift.** After 200 lessons, did "Ada the architect" become "Ada the generalist"? No telemetry to detect this. *Mitigation: per-agent memory health dashboard + "consistency" check.*
 5. **Cloud-memory privacy trap.** The user said "stored in cloud initially." A team of agents with persistent memory is a privacy nightmare if it leaks. *Mitigation: ship local-first; cloud is opt-in per agent with redaction by default.*

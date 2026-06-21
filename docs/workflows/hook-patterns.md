@@ -110,7 +110,7 @@ Vibe Coding OS documents hook contracts and patterns. It does not implement a ho
 ## Related resources
 
 - `adapters/hooks/memory-hooks-contract.md` — memory-specific hook contracts, built on this general taxonomy.
-- `skills/memory/hook-based-memory/SKILL.md` — hook-based memory skill that references the general hook architecture.
+- `skills/memory/memory-ingestion/SKILL.md` — hook-based memory skill that references the general hook architecture.
 - `references/features/hook-patterns.md` — pattern taxonomy rationale and design decisions.
 - `skills/core/superagent-orchestration/SKILL.md` — uses lifecycle monitoring hooks for subtask state transitions.
 - `docs/workflows/team-agent-orchestration.md` — uses workflow hooks for phase transitions in multi-agent teams.

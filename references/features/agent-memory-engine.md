@@ -12,7 +12,7 @@ Define agent memory as a first-class capability for Vibe Coding OS while keeping
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/memory-architecture/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/memory-ingestion/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 

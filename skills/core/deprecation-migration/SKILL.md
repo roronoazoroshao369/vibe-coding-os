@@ -44,7 +44,7 @@ Use when an artifact (skill, command, template, registry entry, schema, API cont
 2. **Classify severity.**
    - **Compulsory** — security vulnerability, irrecoverable error, license violation, irreplaceable dependency failure. NOT an option; users MUST migrate by sunset date. Notice period: minimum 2 minor versions OR 30 days, whichever is longer.
    - **Advisory** — replacement available, redundancy cleanup, end-of-life of a convenience feature. Users SHOULD migrate; no forced deadline. Notice period: minimum 1 minor version OR 14 days.
-3. **Document the deprecation notice.** Use `templates/deprecation-notice-template.md` with: target, reason, replacement, migration path, severity, sunset date, contact.
+3. **Document the deprecation notice.** Use a `## Deprecation` section in the skill/command file with: target, reason, replacement, migration path, severity, sunset date, contact.
 4. **Mark the artifact.** Add `status: "deprecated"` to the relevant registry entry, add a `## Deprecation` section to the skill/command file with severity, replacement, sunset date, and migration link.
 5. **Add the deprecation gate.** During validation, surface a warning (advisory) or error (compulsory) for any reference to a deprecated artifact. Track in `registry/deprecation-tracker.json` (or `registry/sources.json` extension).
 6. **Communicate.** Add entry to `CHANGELOG.md` under `### Deprecated`. For compulsory deprecations, also update README, layer READMEs, and any docs that reference the artifact.
@@ -52,7 +52,7 @@ Use when an artifact (skill, command, template, registry entry, schema, API cont
 
 ## Outputs
 
-- `templates/deprecation-notice-template.md` (filled)
+- `## Deprecation` section in target file
 - `registry/deprecation-tracker.json` entry (or extension to `registry/sources.json`)
 - Updated `CHANGELOG.md`
 - For compulsory: updated README + layer READMEs + adapter docs
@@ -95,9 +95,8 @@ Use when an artifact (skill, command, template, registry entry, schema, API cont
 
 - [ ] All 5 pre-deprecation questions answered
 - [ ] Severity classified (compulsory vs advisory) with justification
-- [ ] `templates/deprecation-notice-template.md` filled
-- [ ] Artifact marked with `status: "deprecated"`
-- [ ] `## Deprecation` section in target file
+- [ ] `## Deprecation` section in target file with severity, replacement, sunset date
+- [ ] Artifact marked with `status: "deprecated"` in registry
 - [ ] `CHANGELOG.md` updated under `### Deprecated`
 - [ ] For compulsory: README + layer READMEs + adapter docs updated
 - [ ] `registry/deprecation-tracker.json` (or extension) has the entry

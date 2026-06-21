@@ -61,7 +61,7 @@ Scores are advisory. The most honest self-assessment is the most useful one.
 Focus on completing bounded tasks with one agent pass. Read `skills/meta/using-vibe-coding-os/SKILL.md` for the skill discovery loop. Use `vibe-init`, `vibe-spec`, `vibe-implement`, and `vibe-review`. Avoid loading too many skills at once.
 
 **If Level 2:**
-Study `skills/meta/writing-skills/SKILL.md` and the RED-GREEN-REFACTOR loop. Write three original skills and test them under pressure. Learn the composability sections and maturity-level convention. Run `vibe-write-skill` for format validation.
+Study `skills/meta/write-reusable-skill/SKILL.md` and the RED-GREEN-REFACTOR loop. Write three original skills and test them under pressure. Learn the composability sections and maturity-level convention. Run `vibe-write-skill` for format validation.
 
 **If Level 3:**
 Study `skills/core/superagent-orchestration/SKILL.md` and `docs/proficiency-path.md`. Practice task decomposition and subagent brief writing. Use `vibe-checkpoints` before every implementation. Read `skills/core/subagent-driven-development/SKILL.md` for error-handling patterns.
@@ -99,6 +99,6 @@ Read `docs/workflows/hook-patterns.md` and `docs/workflows/team-agent-orchestrat
 
 - `docs/proficiency-path.md` — full detail on the four levels.
 - `skills/meta/using-vibe-coding-os/SKILL.md` — level-appropriate guidance embedded.
-- `skills/meta/writing-skills/SKILL.md` — maturity-level guidelines.
+- `skills/meta/write-reusable-skill/SKILL.md` — maturity-level guidelines.
 - `skills/core/superagent-orchestration/SKILL.md` — expanded patterns for Level 3+.
 - `docs/workflows/hook-patterns.md` — hook taxonomy for Level 4.

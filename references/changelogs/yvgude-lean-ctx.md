@@ -22,7 +22,7 @@ Track upstream changes that may affect Vibe Coding OS.
 - Not applied: upstream rule file format, CLI tool, runtime policy daemon, inotify watcher.
 - Local skills created: `skills/core/context-policy/SKILL.md` (110+ lines).
 - Templates created: `templates/context-policy-template.md` (55+ lines).
-- Existing files enhanced: `skills/memory/privacy-filter/SKILL.md` (context-policy ref),
+- Existing files enhanced: `skills/memory/project-memory/SKILL.md` (context-policy ref),
   `docs/workflows/context-engineering.md` (policy-based context section).
 - Indexing/mapping updates: added `yvgude-lean-ctx` entry to `references/index.json`,
   `registry/sources.json`; appended sections to

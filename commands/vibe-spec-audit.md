@@ -17,7 +17,7 @@ ship with weak acceptance criteria.
 ## Required inputs
 
 - The spec(s) to audit and the relevant templates.
-- The required-section list from `skills/meta/spec-template-design/SKILL.md`.
+- The required-section list from `skills/meta/write-reusable-skill/SKILL.md`.
 
 ## Step-by-step behavior
 
@@ -47,7 +47,7 @@ when a template change is needed that affects many specs.
 
 ## Related skills/templates
 
-- `skills/meta/spec-template-design/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`
+- `skills/meta/write-reusable-skill/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`
 - `templates/spec-audit-template.md`
 
 ## Ghi chú tiếng Việt

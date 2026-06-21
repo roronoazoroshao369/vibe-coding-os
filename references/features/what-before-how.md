@@ -11,8 +11,7 @@ and implementation structure (the "how") are chosen.
 
 ## Local implementation
 
-- `skills/core/what-before-how/SKILL.md`
-- `skills/core/spec-first-development/SKILL.md`
+- `skills/core/spec-first-development/SKILL.md` (subsumes the former `what-before-how` skill in v2.17)
 - `commands/vibe-specify.md`
 - `templates/spec-template.md`
 

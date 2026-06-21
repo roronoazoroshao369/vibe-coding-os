@@ -52,5 +52,4 @@ Stop if the repository structure is too different from expected (e.g., missing s
 ## Works with
 
 - `skills/meta/context-budget/SKILL.md` — the audit heuristics this command automates.
-- `skills/meta/writing-skills/SKILL.md` — token-budget and composability guidance.
 - `commands/vibe-instinct.md` — instinct store entries should also respect context budgets.

@@ -34,7 +34,7 @@ It is tracked as a reference for practical AI coding guardrails and empirical it
 | Think Before Coding | Settles intent and assumptions before editing. | skills/prompts/karpathy-engineering-discipline/SKILL.md | Re-written in original wording. |
 | Simplicity First | Keeps solutions proportional to the request. | skills/prompts/anti-overengineering/SKILL.md | Re-written in original wording. |
 | Surgical Changes | Keeps diffs minimal and traceable to the request. | skills/prompts/karpathy-engineering-discipline/SKILL.md | Re-written in original wording. |
-| Goal-Driven Execution | Turns imperatives into verifiable goals with per-step checks for independent looping. | skills/core/goal-driven-execution/SKILL.md, skills/core/verification-before-completion/SKILL.md | Re-written in original wording. |
+| Goal-Driven Execution | Turns imperatives into verifiable goals with per-step checks for independent looping. | skills/core/goal-driven-execution/SKILL.md, skills/core/verification-before-done/SKILL.md | Re-written in original wording. |
 
 ## Local mapping
 
@@ -43,7 +43,7 @@ The current local targets connected to this source are:
 - `skills/prompts/karpathy-engineering-discipline/SKILL.md` (Think Before Coding + Surgical Changes)
 - `skills/prompts/anti-overengineering/SKILL.md` (Simplicity First)
 - `skills/core/goal-driven-execution/SKILL.md` (Goal-Driven Execution)
-- `skills/core/verification-before-completion/SKILL.md` (evidence bar behind goal-driven)
+- `skills/core/verification-before-done/SKILL.md` (evidence bar behind goal-driven)
 - `skills/prompts/karpathy-guardrails/SKILL.md` (distinct, separately-authored ML-iteration skill)
 - `commands/vibe-implement.md`
 

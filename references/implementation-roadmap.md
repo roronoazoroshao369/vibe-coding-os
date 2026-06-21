@@ -206,7 +206,7 @@ npm run validate             # Full structure validation
 **What to implement:** Deer-Flow's memory is scoped to agent harness sessions — worker agents share structured memory under orchestrator control. Add patterns for harness-scoped memory (ephemeral working memory for multi-agent sessions) distinct from project/durable memory.
 
 **Files to modify:**
-- `skills/memory/memory-architecture/SKILL.md` — Add harness-scoped memory layer (ephemeral, session-bound, orchestrator-managed)
+- `skills/memory/memory-ingestion/SKILL.md` — Add harness-scoped memory layer (ephemeral, session-bound, orchestrator-managed)
 - `docs/workflows/memory-lifecycle.md` — Add harness-memory lifecycle: create with session, share among workers, expire on completion
 
 **Feature docs to modify:**
@@ -302,7 +302,7 @@ npm run validate             # Full structure validation
 **What to implement:** Enhance skill organization from flat directory structure to a category/tag/bundle system. Current skills/ is organized by category (core/memory/meta) but lacks cross-cutting tags, domain bundles, and explicit composability conventions.
 
 **Files to create:**
-- `skills/meta/skill-catalog/SKILL.md` — Guidelines for organizing skills into discoverable catalog with tags, categories, domain bundles, and composability metadata
+- `skills/meta/using-vibe-coding-os/SKILL.md` — Guidelines for organizing skills into discoverable catalog with tags, categories, domain bundles, and composability metadata
 - `registry/skill-categories.json` — Machine-readable category→tag→bundle mapping for skill discovery
 
 **Files to modify:**
@@ -324,7 +324,7 @@ npm run validate             # Full structure validation
 **What to implement:** Currently vibe-coding-os has adapters/ for claude-code, codex, cursor, gemini. Enhance these with skill-format conventions for each platform. Anti-gravity shows how the same skill can be structured for Claude Code (SKILL.md), Cursor (.cursorrules), Codex (instructions), etc.
 
 **Files to create:**
-- `skills/meta/multi-platform-skill-guide/SKILL.md` — Guidelines for writing skills that work across Claude Code, Cursor, Codex CLI, Gemini CLI, Copilot, OpenCode
+- `skills/meta/write-reusable-skill/SKILL.md` — Guidelines for writing skills that work across Claude Code, Cursor, Codex CLI, Gemini CLI, Copilot, OpenCode
 
 **Files to modify:**
 - `adapters/claude-code/README.md` — Add skill-format convention section
@@ -345,7 +345,7 @@ npm run validate             # Full structure validation
 
 **Files to create:**
 - `registry/bundles.json` — Bundle manifest: name, description, skills[], dependencies[], category
-- `skills/meta/plugin-bundle-system/SKILL.md` — How to define, compose, and activate skill bundles
+- `skills/meta/context-budget/SKILL.md` — How to define, compose, and activate skill bundles
 
 **Files to modify:**
 - `skills/meta/using-vibe-coding-os/SKILL.md` — Add bundle activation workflow
@@ -436,7 +436,7 @@ npm run validate             # Full structure validation
 
 **Files to modify:**
 - `adapters/hooks/memory-hooks-contract.md` — Generalize beyond memory; reference general hook patterns
-- `skills/memory/hook-based-memory/SKILL.md` — Reference general hook architecture
+- `skills/memory/memory-ingestion/SKILL.md` — Reference general hook architecture
 
 **Feature docs to create:**
 - `references/features/hook-patterns.md` — Pattern taxonomy and rationale
@@ -478,7 +478,7 @@ npm run validate             # Full structure validation
 **What to improve:** Create a dedicated `memory-retrieval` workflow that sits before planning/coding. Add progressive retrieval (search→narrow→fetch→cite). Add retrieval quality scoring.
 
 **Files to create:**
-- `skills/memory/memory-retrieval/SKILL.md` — Retrieval-before-work workflow: define question → search broad → narrow by scope → fetch details → evaluate → cite or discard
+- `skills/memory/memory-ingestion/SKILL.md` — Retrieval-before-work workflow: define question → search broad → narrow by scope → fetch details → evaluate → cite or discard
 - `commands/vibe-memory-retrieve.md` — Restructure from generic to specific phased retrieval command
 
 **Files to modify:**
@@ -496,12 +496,12 @@ npm run validate             # Full structure validation
 
 **Source:** supermemoryai/supermemory — provider-integration, memory-adapter-interface
 
-**Current state:** `skills/memory/memory-provider-adapter/SKILL.md` exists. `adapters/memory/README.md` exists. But the provider interface is not concretely specified.
+**Current state:** `skills/memory/memory-ingestion/SKILL.md` exists. `adapters/memory/README.md` exists. But the provider interface is not concretely specified.
 
 **What to improve:** Define a concrete memory provider contract: required operations (store, retrieve, search, delete), optional operations (batch, stream, rank), error semantics, and stability expectations. Keep it as interface documentation only.
 
 **Files to modify:**
-- `skills/memory/memory-provider-adapter/SKILL.md` — Add concrete interface contract with operation signatures and expected behaviors
+- `skills/memory/memory-ingestion/SKILL.md` — Add concrete interface contract with operation signatures and expected behaviors
 - `adapters/memory/README.md` — Reference the interface contract
 - `templates/memory-provider-adapter-template.md` — Add provider contract compliance checklist
 
@@ -517,12 +517,12 @@ npm run validate             # Full structure validation
 
 **Source:** supermemoryai/supermemory — cloud-vs-local-memory
 
-**Current state:** `skills/memory/local-first-memory/SKILL.md` exists. Need decision rubric.
+**Current state:** `skills/memory/project-memory/SKILL.md` exists. Need decision rubric.
 
 **What to improve:** Add decision rubric: when to use local memory vs when to consider an external provider. Include privacy, latency, offline availability, and data sovereignty criteria.
 
 **Files to modify:**
-- `skills/memory/local-first-memory/SKILL.md` — Add decision rubric table with criteria (privacy, latency, offline, sovereignty, cost)
+- `skills/memory/project-memory/SKILL.md` — Add decision rubric table with criteria (privacy, latency, offline, sovereignty, cost)
 - `docs/workflows/memory-provider-adapter.md` — Add decision flow before provider config
 
 **Estimated effort:** S (30 min)
@@ -542,11 +542,11 @@ npm run validate             # Full structure validation
 **What to implement:** Pattern for distilling reusable patterns from sessions into "instincts" — confidence-scored heuristics that guide future agent behavior. Different from durable memory (facts) — these are learned behavioral patterns.
 
 **Files to create:**
-- `skills/meta/instinct-extraction/SKILL.md` — Post-session instinct extraction: review session patterns → formulate instinct statements → confidence-score (1-10) → add to instinct store → reference in future sessions
+- `skills/meta/context-budget/SKILL.md` — Post-session instinct extraction: review session patterns → formulate instinct statements → confidence-score (1-10) → add to instinct store → reference in future sessions
 - `commands/vibe-instinct.md` — Command to extract, review, or apply instincts
 - `templates/instinct-template.md` — Structured instinct: pattern, evidence, confidence, expiry
 
-**File listing note:** `skills/meta/instinct-extraction/` may already exist from earlier yeachan-heo adaptation. Verify and enhance.
+**File listing note:** `skills/meta/context-budget/` may already exist from earlier yeachan-heo adaptation. Verify and enhance.
 
 **Feature docs to create:**
 - `references/features/continuous-learning.md` — Design rationale and when-to-use guidance
@@ -667,7 +667,7 @@ npm run validate             # Full structure validation
 
 **Source:** github/spec-kit — extensions-and-presets (currently "not-applied (design only)")
 
-**What to do:** The feature doc exists (`references/features/workflow-extensions-and-presets.md`) and skill exists (`skills/meta/workflow-extension-design/SKILL.md`). Document that this is design-only and reference why runtime preset engine is out of scope. Mark as complete from a portable-pattern perspective.
+**What to do:** The feature doc exists (`references/features/workflow-extensions-and-presets.md`) and skill exists (`skills/meta/write-reusable-skill/SKILL.md`). Document that this is design-only and reference why runtime preset engine is out of scope. Mark as complete from a portable-pattern perspective.
 
 **Files to modify:**
 - `references/features/workflow-extensions-and-presets.md` — Add "Status: design guidance only" with ADR reference
@@ -713,13 +713,13 @@ npm run validate             # Full structure validation
 
 **Source:** thedotmack/claude-mem — lifecycle-hooks (currently "partial")
 
-**Current state:** `adapters/hooks/memory-hooks-contract.md` exists. `skills/memory/hook-based-memory/SKILL.md` exists. Hooks are memory-specific only.
+**Current state:** `adapters/hooks/memory-hooks-contract.md` exists. `skills/memory/memory-ingestion/SKILL.md` exists. Hooks are memory-specific only.
 
 **What to improve:** Add general lifecycle event taxonomy (not just memory): session-start, session-end, phase-transition, decision-recorded, review-completed, merge-completed. Document as contract, not implementation.
 
 **Files to modify:**
 - `adapters/hooks/memory-hooks-contract.md` — Generalize to lifecycle-hooks-contract.md; add all lifecycle events
-- `skills/memory/hook-based-memory/SKILL.md` — Reference expanded lifecycle events
+- `skills/memory/memory-ingestion/SKILL.md` — Reference expanded lifecycle events
 - `docs/workflows/persistent-context-lifecycle.md` — Add lifecycle event flow
 
 **Estimated effort:** S (30 min)
@@ -781,7 +781,7 @@ npm run validate             # Full structure validation
 - `templates/context-policy-template.md` — Policy definition format: scope, rules (allow/block/flag), severity
 
 **Files to modify:**
-- `skills/memory/privacy-filter/SKILL.md` — Reference context-policy for ingress filtering
+- `skills/memory/project-memory/SKILL.md` — Reference context-policy for ingress filtering
 - `docs/workflows/context-engineering.md` — Add policy-based context section
 
 **Estimated effort:** M (1.5 hours)

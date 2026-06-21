@@ -48,7 +48,7 @@
 | Risk | Likelihood | Impact | Mitigation (cite existing assets) |
 |---|---|---|---|
 | **Memory poisoning** — one bad lesson propagates across all sessions & projects | High | Critical | Memory writes require `agent_id` + `origin_session` + `confidence` (`runtime/memory/memory-store.mjs` `assertKnownFields`); user-approval gate before commit (Panel A §5.10) |
-| **Self-improvement loop gaming** — reward hacking, sycophancy, alignment drift | High | Critical | **Never auto-write.** Reflection outputs a *draft* lesson; user curates before commit (Panel A §5.10). Reuse `skills/memory/observation-citations/` to require every lesson cite its source |
+| **Self-improvement loop gaming** — reward hacking, sycophancy, alignment drift | High | Critical | **Never auto-write.** Reflection outputs a *draft* lesson; user curates before commit (Panel A §5.10). Reuse `skills/memory/session-capture/` to require every lesson cite its source |
 | **Identity drift** — agent's principles silently mutate | Medium | Critical | Per-agent `principles.md` is git-versioned, separate from mutable `self.md` (Panel B §2.1); consistency check: re-extract principles monthly, diff vs signed baseline |
 
 ### 2.2 High (must address before MVP)
@@ -84,7 +84,7 @@
 | Agent templates | `templates/claude-subagent-role-*.md` (5 files) | Seed content for starter agents (architect, implementer, reviewer, tester, memory-summarizer, attribution-auditor) |
 | Agent registry | `registry/agents.json` | Extend schema with `cloud_memory_enabled`, `mcp_namespace` |
 | Council/ADR process | `docs/adr/0002-runtime-scope-freeze.md` | Hard boundary — cloud adapter lives outside `runtime/` |
-| Observation citations | `skills/memory/observation-citations/` | Mandatory on every memory write |
+| Observation citations | `skills/memory/session-capture/` | Mandatory on every memory write |
 
 ---
 

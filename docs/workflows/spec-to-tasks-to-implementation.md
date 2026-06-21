@@ -31,7 +31,7 @@ An ordered task list, checkpoint records, and verified implementation.
 ## Related skills
 
 - `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`
-- `skills/core/test-driven-development/SKILL.md`, `skills/core/checkpoint-validation/SKILL.md`, `skills/core/verification-before-completion/SKILL.md`
+- `skills/core/test-driven-development/SKILL.md`, `skills/core/checkpoint-validation/SKILL.md`, `skills/core/verification-before-done/SKILL.md`
 
 ## Related commands
 

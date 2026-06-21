@@ -21,7 +21,7 @@ references/instincts/
 ## Conventions
 
 - Each instinct file uses the slug as its filename: `<kebab-case-name>.md`.
-- Confidence scores follow the 1-10 rubric defined in `skills/meta/instinct-extraction/SKILL.md`.
+- Confidence scores follow the 1-10 rubric defined in `skills/meta/context-budget/SKILL.md`.
 - Expiry is set at creation time; re-verify before expiry.
 - Archived instincts are moved to `archived/` — never deleted.
 - No secrets, personal data, or raw transcripts are stored.

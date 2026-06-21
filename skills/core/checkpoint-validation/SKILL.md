@@ -68,4 +68,4 @@ passed or failed, with evidence and follow-ups.
 Kiểm tra từng pha đạt tiêu chí trước khi sang pha sau; cổng quan trọng nhất là
 implementation-readiness (spec/plan/tasks đều đạt mới được code). Ghi bằng chứng, fail thì
 quay lại. Liên kết: `skills/core/acceptance-criteria/SKILL.md`,
-`skills/core/verification-before-completion/SKILL.md`, `templates/checkpoint-template.md`.
+`skills/core/verification-before-done/SKILL.md`, `templates/checkpoint-template.md`.

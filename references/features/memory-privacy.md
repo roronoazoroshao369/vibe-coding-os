@@ -12,7 +12,7 @@ Define privacy rules for deciding what memory may store or retrieve for Vibe Cod
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/privacy-filter/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/project-memory/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 

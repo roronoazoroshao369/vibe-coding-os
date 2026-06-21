@@ -60,9 +60,8 @@ Use when adding safety guard rails (block `Bash` commands matching destructive p
 - [ ] Hook runtime is < 5s in p95 (measured with `time` in a sandbox).
 - [ ] Hook is documented in `templates/hooks-pack-template.md` with matcher, command, and exit code.
 
-## Related skills
+### Related skills
 
-- `skills/core/observability-design/SKILL.md` — questions-before-signals doctrine (downstream consumer)
 - `skills/core/threat-model-driven-security/SKILL.md` — STRIDE-driven hook placement (boundary → asset → adversary)
 - `skills/core/verification-before-done/SKILL.md` — 5-axis verification for hook runtime
 - [`commands/vibe-hooks-pack.md`](../../../commands/vibe-hooks-pack.md) — companion command that scaffolds a hook pack interactively.

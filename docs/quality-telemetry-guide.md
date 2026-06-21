@@ -71,7 +71,7 @@ node scripts/quality-telemetry.mjs \
 ```
 vibe-quality-engine --output-json                           # 1. Run quality engine
 node scripts/quality-telemetry.mjs --engine <output-file>    # 2. Emit telemetry
-node scripts/quality-trend-report.mjs --since 7d             # 3. Review trends
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --since 7d             # 3. Review trends
 ```
 
 ### Output format
@@ -91,13 +91,13 @@ The trend report aggregates events from the NDJSON event store and produces a ma
 
 ```bash
 # Generate a trend report for the last 7 days
-node scripts/quality-trend-report.mjs --since 7d
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --since 7d
 
 # Generate from a specific events file
-node scripts/quality-trend-report.mjs --events docs/metrics/quality-telemetry-events.ndjson --since 30d
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --events docs/metrics/quality-telemetry-events.ndjson --since 30d
 
 # Generate from pre-computed metrics
-node scripts/quality-trend-report.mjs --metrics path/to/metrics.json
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --metrics path/to/metrics.json
 ```
 
 The report includes:
@@ -188,7 +188,7 @@ The telemetry workflow fits naturally after `vibe-quality-engine`:
 
 1. Run `vibe-quality-engine --output-json` with the appropriate profile.
 2. Immediately collect telemetry with `node scripts/quality-telemetry.mjs`.
-3. Before a merge or periodic review, run trend analysis with `node scripts/quality-trend-report.mjs`.
+3. Before a merge or periodic review, run trend analysis with `node scripts/validate-property-tests.mjs (replaced quality-trend v2.17)`.
 4. Adjust quality config, thresholds, or model profile based on trend insights.
 
 For model-aware config users, telemetry can surface whether a particular model profile consistently underperforms on certain task types, prompting a config adjustment.
@@ -272,14 +272,14 @@ No build step required — the HTML file is self-contained with inline Chart.js 
 
 #### Using the trend dashboard script
 
-The existing `scripts/quality-trend-dashboard.mjs` works with the NDJSON telemetry store. To combine CI archive data with local telemetry:
+The existing `scripts/validate-property-tests.mjs (replaced quality-trend v2.17)` works with the NDJSON telemetry store. To combine CI archive data with local telemetry:
 
 ```bash
 # Generate trend dashboard from local telemetry events
-node scripts/quality-trend-dashboard.mjs --since 30d
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --since 30d
 
 # Output JSON for custom visualization
-node scripts/quality-trend-dashboard.mjs --json --since 7d
+node scripts/validate-property-tests.mjs (replaced quality-trend v2.17) --json --since 7d
 ```
 
 ### Troubleshooting

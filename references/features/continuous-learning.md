@@ -8,12 +8,12 @@ Define how Vibe Coding OS supports continuous learning across sessions: the deli
 
 - `affaan-m/ECC` (primary) — continuous-learning workflow and instinct extraction patterns.
 - `obra/superpowers` — skill-writing discipline and behavior-shaping documentation.
-- `skills/meta/instinct-extraction/SKILL.md` — the extraction workflow.
+- `skills/meta/context-budget/SKILL.md` — the extraction workflow.
 - `skills/meta/context-budget/SKILL.md` — instinct store entries should be budget-conscious.
 
 ## Local implementation
 
-- `skills/meta/instinct-extraction/SKILL.md` — two-phase continuous-learning loop (pre-session loading + post-session extraction).
+- `skills/meta/context-budget/SKILL.md` — two-phase continuous-learning loop (pre-session loading + post-session extraction).
 - `commands/vibe-instinct.md` — CLI to extract, review, apply, list, archive, or promote instincts.
 - `templates/instinct-template.md` — structured instinct record format.
 - `references/instincts/` — the instinct store directory (created on first use).

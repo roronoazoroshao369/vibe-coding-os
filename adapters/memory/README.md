@@ -8,7 +8,7 @@ Define an optional external memory provider interface for Vibe Coding OS while k
 
 A future adapter should document operations for `ingest`, `retrieve`, `search`, `update`, `forget`, `evaluate`, and `healthcheck`. Each operation must declare input schema, output schema, privacy behavior, failure behavior, rate/cost expectations, and local fallback.
 
-The concrete interface contract is defined in `skills/memory/memory-provider-adapter/SKILL.md`. All adapters must comply with that contract, which divides operations into required (store, retrieve, search, delete) and optional (batch, stream, rank), defines error semantics for each operation class, and sets stability expectations. Adapters must document their compliance level as `full`, `partial`, or `planned`.
+The concrete interface contract is defined in `skills/memory/memory-ingestion/SKILL.md`. All adapters must comply with that contract, which divides operations into required (store, retrieve, search, delete) and optional (batch, stream, rank), defines error semantics for each operation class, and sets stability expectations. Adapters must document their compliance level as `full`, `partial`, or `planned`.
 
 ## Local-first fallback
 

@@ -84,7 +84,7 @@ Use at the start of any coding or review task when the model is known and you wa
 - `skills/core/adaptive-prompt-selection/SKILL.md` — task-type quality pack selection
 - `skills/core/model-weakness-memory/SKILL.md` — model-specific weakness checks
 - `skills/core/quality-engine/SKILL.md` — executes selected gates
-- `skills/core/verification-before-completion/SKILL.md` — final verification gate
+- `skills/core/verification-before-done/SKILL.md` — final verification gate
 
 ## Ghi chú tiếng Việt
 

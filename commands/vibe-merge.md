@@ -54,5 +54,5 @@ Stop and ask when readiness depends on unresolved product decisions, failed crit
 
 - `skills/core/review-before-merge/SKILL.md`
 - `skills/core/verification-before-done/SKILL.md`
-- `skills/memory/privacy-filter/SKILL.md`
+- `skills/memory/project-memory/SKILL.md`
 - `templates/review-template.md`

@@ -38,7 +38,7 @@ For non-trivial software tasks, use the adapted workflow in `docs/workflows/supe
 - Create ADRs with `templates/adr-template.md` for important design decisions; do not create fake ADRs for decisions not made.
 - Use `skills/core/prd-from-context/SKILL.md` and `skills/core/issue-slicing/SKILL.md` for non-trivial product or multi-slice work.
 - Use TDD for behavior changes and `skills/core/disciplined-diagnosis/SKILL.md` for bugs.
-- Use `skills/memory/agent-handoff/SKILL.md` when context must survive an agent or session switch.
+- Use `skills/memory/session-capture/SKILL.md` when context must survive an agent or session switch.
 - Run validation before finishing, especially `npm run validate:references` for reference changes and `npm run validate` for broader repo changes.
 - Never copy upstream content blindly; use `mattpocock/skills` as inspiration only and preserve attribution.
 

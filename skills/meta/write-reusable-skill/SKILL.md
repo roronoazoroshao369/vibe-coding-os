@@ -45,4 +45,4 @@ Skill has all required headings; trigger is clear; failure modes are practical; 
 
 ## Ghi chú tiếng Việt
 
-Dùng khi viết skill mới. Ưu tiên nhỏ, dùng lại được, có checklist. File liên quan: `skills/meta/writing-skills/SKILL.md`, `commands/vibe-write-skill.md`.
+Dùng khi viết skill mới. Ưu tiên nhỏ, dùng lại được, có checklist. File liên quan: `skills/meta/write-reusable-skill/SKILL.md`, `commands/vibe-write-skill.md`.

@@ -13,7 +13,7 @@ status: stable
 
 ## Purpose
 
-Cut two of the most common LLM coding mistakes: charging into code before the intent is settled, and sprawling edits that touch far more than the request. This skill enforces a brief think-first pause and a surgical edit boundary. These are two of four sibling engineering disciplines; the other two are deliberately out of scope here. Simplicity-first lives in `skills/prompts/anti-overengineering`, and goal-driven execution — rewriting an imperative instruction into a verifiable goal with per-step checks — lives in `skills/core/goal-driven-execution`, which is in turn backed by `skills/core/verification-before-completion`. Together the four form one coherent discipline: think before coding, keep it simple, change surgically, and drive to a verifiable goal.
+Cut two of the most common LLM coding mistakes: charging into code before the intent is settled, and sprawling edits that touch far more than the request. This skill enforces a brief think-first pause and a surgical edit boundary. These are two of four sibling engineering disciplines; the other two are deliberately out of scope here. Simplicity-first lives in `skills/prompts/anti-overengineering`, and goal-driven execution — rewriting an imperative instruction into a verifiable goal with per-step checks — lives in `skills/core/goal-driven-execution`, which is in turn backed by `skills/core/verification-before-done`. Together the four form one coherent discipline: think before coding, keep it simple, change surgically, and drive to a verifiable goal.
 
 ## When to use
 
@@ -70,8 +70,8 @@ third, and points to the other two so the set stays coherent.
 - Surgical changes — this skill.
 - `skills/core/goal-driven-execution/SKILL.md` — Goal-Driven Execution (imperative →
   verifiable goal with per-step checks), backed by
-  `skills/core/verification-before-completion/SKILL.md`.
+  `skills/core/verification-before-done/SKILL.md`.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này siết hai lỗi LLM hay mắc: lao vào code khi chưa chốt ý định, và sửa lan ra ngoài phạm vi yêu cầu. Hai trụ: "Nghĩ trước khi code" (nêu cách hiểu, giả định, lựa chọn thay thế, hỏi khi mơ hồ) và "Sửa đúng chỗ" (chỉ chạm phần cần thiết, giữ nguyên phong cách quanh đó, mỗi dòng đổi đều truy về yêu cầu). Đây là 2 trong 4 trụ kỷ luật anh em: tính đơn giản nằm ở `skills/prompts/anti-overengineering`, còn thực thi theo mục tiêu (viết lại mệnh lệnh thành mục tiêu kiểm chứng được, mỗi bước kèm check) nằm ở `skills/core/goal-driven-execution`, được hậu thuẫn bởi `skills/core/verification-before-completion`. Ý tưởng lấy cảm hứng từ bình luận công khai của Karpathy (qua `multica-ai/andrej-karpathy-skills`, MIT-declared); viết lại hoàn toàn bằng lời của dự án, không sao chép văn bản upstream. Tên giữ khác biệt với `karpathy-guardrails` (chủ đề vòng lặp thực nghiệm ML).
+Kỹ năng này siết hai lỗi LLM hay mắc: lao vào code khi chưa chốt ý định, và sửa lan ra ngoài phạm vi yêu cầu. Hai trụ: "Nghĩ trước khi code" (nêu cách hiểu, giả định, lựa chọn thay thế, hỏi khi mơ hồ) và "Sửa đúng chỗ" (chỉ chạm phần cần thiết, giữ nguyên phong cách quanh đó, mỗi dòng đổi đều truy về yêu cầu). Đây là 2 trong 4 trụ kỷ luật anh em: tính đơn giản nằm ở `skills/prompts/anti-overengineering`, còn thực thi theo mục tiêu (viết lại mệnh lệnh thành mục tiêu kiểm chứng được, mỗi bước kèm check) nằm ở `skills/core/goal-driven-execution`, được hậu thuẫn bởi `skills/core/verification-before-done`. Ý tưởng lấy cảm hứng từ bình luận công khai của Karpathy (qua `multica-ai/andrej-karpathy-skills`, MIT-declared); viết lại hoàn toàn bằng lời của dự án, không sao chép văn bản upstream. Tên giữ khác biệt với `karpathy-guardrails` (chủ đề vòng lặp thực nghiệm ML).

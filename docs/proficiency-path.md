@@ -56,7 +56,7 @@ You write and compose skills effectively. You understand skill design, composabi
 - Understands the composability sections (Works with, Conflicts with, Depends on).
 - Can design a skill that survives stacked pressure testing.
 - Uses skill bundles from `registry/bundles.json` for domain work.
-- Can run the full RED-GREEN-REFACTOR loop from `skills/meta/writing-skills/SKILL.md`.
+- Can run the full RED-GREEN-REFACTOR loop from `skills/meta/write-reusable-skill/SKILL.md`.
 - Knows the maturity-level convention and can assess a skill's stability.
 
 ### What you can do
@@ -162,6 +162,6 @@ You design and conduct multi-agent teams for large, risky, or cross-domain work.
 - `skills/meta/using-vibe-coding-os/SKILL.md` — skill selection and bundle activation, annotated with level-appropriate guidance.
 - `CLAUDE.md` — repo-level instructions, now includes proficiency-level awareness.
 - `commands/vibe-proficiency.md` — entry command for determining current proficiency level.
-- `skills/meta/writing-skills/SKILL.md` — maturity-level guidelines for skill authors.
+- `skills/meta/write-reusable-skill/SKILL.md` — maturity-level guidelines for skill authors.
 - `skills/core/superagent-orchestration/SKILL.md` — expanded orchestration patterns for Level 3 and Level 4.
 - `docs/workflows/hook-patterns.md` — general hook pattern taxonomy for Level 4 lifecycle automation.

@@ -63,4 +63,4 @@ For each audited spec:
 
 Audit spec/template: kiểm đủ mục bắt buộc, tiêu chí quan sát được, non-goals, assumptions,
 cổng verification; ghi gap kèm cách sửa và đề xuất sửa template nếu gap mang tính hệ thống.
-Liên kết: `skills/meta/spec-template-design/SKILL.md`.
+Liên kết: `skills/meta/write-reusable-skill/SKILL.md`.

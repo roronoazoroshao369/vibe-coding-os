@@ -88,7 +88,7 @@ Do NOT use for:
 
 ## Cross-references
 
-- See `skills/core/quality-shield/SKILL.md` — quality contract before merging docs
+- See `skills/core/quality-execution-contract/SKILL.md` — quality contract before merging docs
 - See `skills/core/skill-content-search/SKILL.md` — find related content first
 - See `templates/adr-template.md` — for ADR-format decisions
 - See `docs/quality-shield.md` — Quality Shield workflow context
@@ -98,4 +98,4 @@ Do NOT use for:
 
 - Quarterly: review doc count, orphan docs, cross-reference completeness
 - On new convention: update this skill + announce in release notes
-- On retire: use `deprecate-skill` workflow (not delete) for backward compat
+- ~~On retire: use `git rm` + update registry~~ (removed in v2.17 trim)

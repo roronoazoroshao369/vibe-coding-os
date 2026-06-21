@@ -59,3 +59,26 @@ If this skill is not the right phase for your task, use one of these instead:
 - `skills/core/writing-plans/SKILL.md` — once a direction is chosen and you want a step-by-step plan.
 
 For the full decision tree across all 6 plan-family skills, see [docs/workflows/plan-skill-decision-tree.md](../../../docs/workflows/plan-skill-decision-tree.md).
+
+
+## Parallel exploration (from creative-parallel-exploration)
+
+Use when a design space is wide, when a decision is high-impact or hard to reverse, or when stakeholders disagree on direction.
+
+1. State the problem and the criteria the decision will be judged on.
+2. Generate 2–4 genuinely different candidate approaches.
+3. For each candidate, sketch how it works, its trade-offs, and its risks.
+4. Time-box the exploration so it does not become analysis paralysis.
+5. Score candidates against the criteria; note where evidence is thin.
+6. Choose one approach and record why, including the strongest ideas from rejected candidates worth carrying forward.
+7. Feed the decision into the spec or plan.
+
+## System context (from zoom-out-system-context)
+
+Pause local edits and explain the broader system, seams, risks, and options before architecture-sensitive work.
+
+1. Inspect neighboring code and docs.
+2. Describe system purpose and boundaries.
+3. Identify seams, coupling, invariants, and risk zones.
+4. Recommend whether to proceed, prototype, create ADR, or narrow scope.
+5. Keep the output concise enough to guide action.

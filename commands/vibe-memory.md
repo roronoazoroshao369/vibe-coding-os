@@ -51,10 +51,10 @@ Stop and ask when the user requests storing sensitive data, when it is unclear w
 
 ## Related skills/templates
 
-- `skills/memory/session-summarizer/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
 - `skills/memory/project-memory/SKILL.md`
-- `skills/memory/privacy-filter/SKILL.md`
-- `skills/memory/context-retrieval/SKILL.md`
+- `skills/memory/project-memory/SKILL.md`
+- `skills/memory/memory-search/SKILL.md`
 - `templates/memory-template.md`
 Summarize durable session knowledge according to `docs/memory-conventions.md`. Include only durable decisions, architecture constraints, commands that worked, gotchas, and actionable follow-ups. Add date, confidence, source, and staleness status so future sessions can judge whether the memory is current.
 

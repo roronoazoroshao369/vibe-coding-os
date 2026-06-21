@@ -10,7 +10,7 @@ tags:
 status: stable
 ---
 
-# Database Migration Quality Checklist
+# DB-Migration-Quality Checklist
 
 ## Purpose
 

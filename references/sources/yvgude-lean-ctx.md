@@ -67,7 +67,7 @@ controls, not an implicit full-repository dump.
 
 - `skills/core/context-policy/SKILL.md` — Policy-based context control skill
 - `templates/context-policy-template.md` — Policy definition template
-- `skills/memory/privacy-filter/SKILL.md` — Enhanced with context-policy reference
+- `skills/memory/project-memory/SKILL.md` — Enhanced with context-policy reference
 - `docs/workflows/context-engineering.md` — Enhanced with policy-based context section
 
 ## Upstream structure notes

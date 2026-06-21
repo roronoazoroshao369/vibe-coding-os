@@ -58,5 +58,5 @@ Stop and ask when the model type cannot be determined, when the weakness log doe
 - `templates/model-weakness-log.md` — the weakness log template
 - `commands/vibe-adaptive-prompt.md` — complementary command for selecting quality packs alongside weakness checks
 - `commands/vibe-lessons-learned.md` — cross-reference repeatable pattern fixes
-- `skills/core/verification-before-completion/SKILL.md` — verify injected checks passed
+- `skills/core/verification-before-done/SKILL.md` — verify injected checks passed
 - `skills/core/self-review-before-response/SKILL.md` — post-task self-review

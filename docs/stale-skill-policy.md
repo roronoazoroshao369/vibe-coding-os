@@ -39,12 +39,12 @@ A skill is considered **stale** if ANY of the following are true:
 1. Run `npm run validate:stale-skills` to generate staleness report
 2. Review flagged skills and update `last_reviewed` date
 3. For skills with no linked commands for > 1 year: mark as `abandoned`
-4. For abandoned skills: deprecate via `vibe-deprecate-skill` command
+4. For abandoned skills: deprecate via `git rm` + update registry
 5. Update registry metadata after changes
 
 ## Commands
 
-- `vibe-deprecate-skill` — mark a skill as deprecated with migration path
+- ~~`vibe-deprecate-skill` — removed in v2.17 trim (framework admin)~~
 - `validate:stale-skills` — report all skills with `last_reviewed` > 180 days
 
 ## Verification checklist

@@ -27,7 +27,7 @@ When operating within a SuperAgent orchestration session, an additional **harnes
 - **Promotion gate**: at any point, the orchestrator may promote harness memory entries to durable memory if they have lasting value (e.g., a rescoping decision that future sessions should know).
 - **Session end**: harness memory is cleared. All entries are either promoted to durable memory or discarded. No orphaned harness state persists across sessions.
 
-This keeps ephemeral orchestration state separate from the durable memory that future sessions depend on. See `skills/memory/memory-architecture/SKILL.md` for the harness-scoped memory layer definition.
+This keeps ephemeral orchestration state separate from the durable memory that future sessions depend on. See `skills/memory/memory-ingestion/SKILL.md` for the harness-scoped memory layer definition.
 
 ## Required inputs
 

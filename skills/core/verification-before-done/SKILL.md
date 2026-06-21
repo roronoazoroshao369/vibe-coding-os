@@ -13,15 +13,16 @@ status: stable
 
 ## Purpose
 
-Ensure completion claims are backed by evidence.
+Make completion claims only after relevant checks, review, and limitations are explicit.
 
 ## When to use
 
-Use before final response, handoff, merge, or deployment.
+Use before saying done, opening a PR, merging, handing off, or ending a long work session.
+Also use before final response, handoff, merge, or deployment.
 
 ## Inputs
 
-Diff, acceptance criteria, available commands, test results.
+Task goal, acceptance criteria, changed files, validation commands, test output, known limitations, and environment constraints.
 
 ## 5-axis runtime verification (abstract)
 
@@ -41,27 +42,34 @@ For multi-CLI projects, the **5 axes map to specific tools** per CLI:
 
 ## Workflow
 
-1. Review what changed.
-2. Map changes to acceptance criteria.
-3. Run relevant validation commands.
+1. Map acceptance criteria to concrete evidence: tests, validation, inspection, or user confirmation.
+2. Run the smallest relevant checks first, then broader validation when feasible.
+3. Record exact commands and outcomes, including failures and warnings.
 4. **Apply the 5-axis runtime verification** for any user-facing or latency-sensitive change.
-5. Record pass, fail, or limitation for each check (each axis).
-6. Do not mark done if critical checks fail.
+5. Inspect the final diff for scope, secrets, attribution, generated files, and stale notes.
+6. Do not convert environment limitations into success claims.
+7. End with a clear status: passed, failed, blocked, or partially verified.
 
 ## Outputs
 
-A verification summary with commands, results, 5-axis matrix, and limitations.
+A verification report with exact commands, outcomes, evidence coverage, 5-axis matrix, limitations, and final readiness status.
 
 ## Failure modes
 
+- Reporting tests as passed when they were not run.
 - Claiming success without running checks.
-- Ignoring failing tests.
-- Using broad checks while skipping obvious targeted checks.
+- Using broad validation to hide a missing targeted check.
+- Ignoring failed checks because the patch looks correct.
 - Skipping one of the 5 axes on a user-facing change.
+- Omitting environment limitations.
 - "It works on my machine" — local verification is not p75 user verification.
 
 ## Verification checklist
 
+- [ ] Acceptance criteria have matching evidence.
+- [ ] Exact commands and outcomes are listed.
+- [ ] Failures or limitations are visible.
+- [ ] Final status is not overstated.
 - [ ] All `npm run validate:*` commands invoked in this change exited 0 (record exit codes in commit body).
 - [ ] DOM/state axis captured: screenshot, DOM diff, or snapshot test attached for any UI change.
 - [ ] Console/logs axis captured: `console.log/error/warn` output recorded, zero new unhandled rejections.
@@ -70,6 +78,13 @@ A verification summary with commands, results, 5-axis matrix, and limitations.
 - [ ] Visual axis captured: screenshot diff across the supported breakpoints (mobile, tablet, desktop).
 - [ ] Each check is recorded as `PASS` / `FAIL` / `LIMITATION:` — no "looks good" or "feels right".
 
-## Superpowers alignment
+## Related skills
 
-Use with `verification-before-completion` as the local completion gate alias.
+This skill is the evidence bar that backs the goal-driven member of the four-part engineering
+discipline set (think-before-coding, simplicity-first, surgical-changes, goal-driven):
+
+- `skills/core/goal-driven-execution/SKILL.md` — turns an imperative into a verifiable goal
+  whose success condition is checked here.
+- `skills/prompts/karpathy-engineering-discipline/SKILL.md` — Think Before Coding and Surgical
+  Changes.
+- `skills/prompts/anti-overengineering/SKILL.md` — Simplicity First.

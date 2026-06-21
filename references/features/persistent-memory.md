@@ -12,9 +12,9 @@ Define how Vibe Coding OS should support persistent memory as an original local 
 ## Local implementation
 
 - `skills/memory/project-memory/SKILL.md`
-- `skills/memory/session-summarizer/SKILL.md`
-- `skills/memory/context-retrieval/SKILL.md`
-- `skills/memory/privacy-filter/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
+- `skills/memory/memory-search/SKILL.md`
+- `skills/memory/project-memory/SKILL.md`
 - `templates/memory-template.md`
 - `templates/memory-redaction-checklist.md`
 - `docs/memory-conventions.md`

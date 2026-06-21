@@ -11,7 +11,7 @@ documentation, without building a heavyweight runtime engine.
 
 ## Local implementation
 
-- `skills/meta/workflow-extension-design/SKILL.md`
+- `skills/meta/write-reusable-skill/SKILL.md`
 - `docs/workflows/spec-driven-development.md`
 
 ## Applied upstream ideas
@@ -47,7 +47,7 @@ documentation, without building a heavyweight runtime engine.
 
 ## Status: design guidance only (ADR 0002)
 
-This feature document describes a pattern that is intentionally left as design guidance and is not implemented as a runtime capability. Per ADR 0002 (Runtime Freeze), the Vibe Coding OS runtime layer is frozen; all extension/preset work remains in the documentation and skill layer. The `skills/meta/workflow-extension-design/SKILL.md` provides the design procedure, and this document records the upstream inspiration and local mapping. No extension/preset engine, CLI, or installer will be built unless ADR 0002 is amended.
+This feature document describes a pattern that is intentionally left as design guidance and is not implemented as a runtime capability. Per ADR 0002 (Runtime Freeze), the Vibe Coding OS runtime layer is frozen; all extension/preset work remains in the documentation and skill layer. The `skills/meta/write-reusable-skill/SKILL.md` provides the design procedure, and this document records the upstream inspiration and local mapping. No extension/preset engine, CLI, or installer will be built unless ADR 0002 is amended.
 
 ## Ghi chú tiếng Việt
 

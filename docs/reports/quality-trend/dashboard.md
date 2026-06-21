@@ -1,6 +1,6 @@
 # Quality Score Trend Dashboard
 
-> **Auto-generated** by `scripts/quality-trend-dashboard.mjs`
+> **Auto-generated** by `scripts/validate-property-tests.mjs (replaced quality-trend v2.17)`
 > Generated: 2026-06-19T09:12:48.373Z
 
 > Filter: since 30d

@@ -144,7 +144,7 @@ Fix or document every failed item before final response.
 Use:
 
 - Templates: [`templates/quality-scorecard.md`](../templates/quality-scorecard.md), [`templates/quality-scorecard-session.md`](../templates/quality-scorecard-session.md)
-- Optional scripts: `node scripts/quality-scorecard.mjs`, `node scripts/quality-scorecard-report.mjs`
+- Optional scripts: `node scripts/validate-skill-quality.mjs (replaced quality-scorecard v2.17)`, `node scripts/quality-scorecard-report.mjs`
 - Optional diff guard: `npm run validate:quality-diff`
 
 Copy this compact scorecard into the final handoff:

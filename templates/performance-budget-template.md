@@ -74,5 +74,4 @@ Add rows for feature-specific metrics.
 ## Related skills
 
 - `skills/core/quality-engine/SKILL.md` — MEASURE → IDENTIFY → FIX → VERIFY → GUARD loop
-- `skills/core/observability-design/SKILL.md` — questions-before-signals
 - `commands/vibe-perf-budget.md` — perf budget command

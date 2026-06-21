@@ -8,7 +8,7 @@ description: "Explicit alignment check: grill, align on domain terms, record ADR
 
 Run a structured pre-work alignment flow that sequences existing skills into a coherent
 check before any coding begins. This is a meta-workflow command — it orchestrates
-`grill-user-before-building`, `grill-with-docs`, `shared-domain-language`, and
+`grill-user-before-building` (Phase 2 docs-aware subsumes the former `grill-with-docs`), and
 `project-constitution` rather than replacing them.
 
 ## When to use
@@ -41,16 +41,7 @@ typo fixes, or tasks already fully specced.
 4. Propose updates to context or ADR notes only when durable.
 5. Output: proposed context updates and ADR candidates.
 
-### Step 3 — Align on shared domain terms (`shared-domain-language`)
-
-1. Inventory important terms from the conversation and code.
-2. Define each term by behavior and boundaries.
-3. List banned synonyms on `_Avoid:_` lines.
-4. Record ambiguities in the flagged-ambiguities log.
-5. Update `CONTEXT.md` glossary if terms are new or changed.
-6. Output: glossary updates or confirmation that existing terms suffice.
-
-### Step 4 — Record ADR candidates (`project-constitution` + ADR workflow)
+### Step 3 — Record ADR candidates (`project-constitution` + ADR workflow)
 
 1. Review any architecture or design decisions surfaced in steps 1–3.
 2. For each decision, write a brief ADR candidate: context, decision, consequences.
@@ -58,7 +49,7 @@ typo fixes, or tasks already fully specced.
 4. Flag conflicts between new decisions and existing principles.
 5. Output: ADR candidates ready for review, or confirmation no new ADRs needed.
 
-### Step 5 — Confirm alignment
+### Step 4 — Confirm alignment
 
 1. Produce an alignment summary using `templates/agent-alignment-template.md`.
 2. Present the summary to the user for confirmation.
@@ -70,11 +61,9 @@ typo fixes, or tasks already fully specced.
 | Condition | Action |
 |-----------|--------|
 | Task is trivial (typo, one-line fix, obvious change) | Skip alignment entirely — go directly to implementation |
-| Task is moderately complex | Run steps 1–3, skip step 4 (no new ADRs) |
-| Task is complex or architecture-affecting | Run all 5 steps |
-| Task involves domain-specific terminology | Deepen step 3 with extra term definitions |
-| Existing `CONSTITUTION.md` exists | Reference it in step 4 to check for conflicts |
-| No existing `CONTEXT.md` | Create one during step 3 |
+| Task is moderately complex | Run steps 1–2, skip step 3 (no new ADRs) |
+| Task is complex or architecture-affecting | Run all 4 steps |
+| Existing `CONSTITUTION.md` exists | Reference it in step 3 to check for conflicts |
 
 ## Outputs
 
@@ -110,7 +99,6 @@ For simple tasks, skip directly to `vibe-spec`.
 
 - [ ] Intent is restated and confirmed by the user.
 - [ ] Constraints are named (technical, business, time).
-- [ ] Domain terms are defined or confirmed with `_Avoid:_` lists.
 - [ ] ADR candidates document tradeoffs (or "none needed" is confirmed).
 - [ ] Non-goals are explicit.
 - [ ] Alignment summary uses the template.
@@ -119,14 +107,13 @@ For simple tasks, skip directly to `vibe-spec`.
 ## Related skills
 
 - `skills/core/grill-user-before-building/SKILL.md`
-- `skills/core/grill-with-docs/SKILL.md`
-- `skills/core/shared-domain-language/SKILL.md`
+- `skills/core/grill-user-before-building/SKILL.md` (Phase 2 docs-aware, subsumes former `grill-with-docs`)
 - `skills/core/project-constitution/SKILL.md`
 
 ## Related commands
 
 - `commands/vibe-grill-me.md`
-- `commands/vibe-grill-with-docs.md`
+- `commands/vibe-grill-with-docs.md` (docs-aware phase)
 - `commands/vibe-constitution.md`
 - `commands/vibe-specify.md`
 
@@ -141,7 +128,7 @@ For simple tasks, skip directly to `vibe-spec`.
 
 ## Ghi chú tiếng Việt
 
-Lệnh meta-workflow tổng hợp grill-user → grill-with-docs → ngôn ngữ chung → ADR → xác nhận
+Lệnh meta-workflow tổng hợp grill-user (Phase 2 docs-aware) → ngôn ngữ chung → ADR → xác nhận
 trước khi code. Dùng cho task phức tạp, bỏ qua cho task đơn giản. Đầu ra dùng template
 `agent-alignment-template.md`. Kết nối với workflow spec-first development.
 
@@ -149,5 +136,4 @@ trước khi code. Dùng cho task phức tạp, bỏ qua cho task đơn giản. 
 
 - Applied: sequencing of existing skills into a coherent pre-work flow, decision-point
   logic for task complexity, alignment template, integration with spec-first development.
-- Not applied: new interview techniques (reuses existing grill skills), new terminology
-  management (reuses shared-domain-language), new ADR format (reuses existing conventions).
+- Not applied: new interview techniques (reuses existing grill skills), new ADR format (reuses existing conventions).

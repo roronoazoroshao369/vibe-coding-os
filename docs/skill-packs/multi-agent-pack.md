@@ -15,7 +15,7 @@
 |---|-------|------|----------|
 | 1 | Team Agent Orchestration | `skills/core/team-agent-orchestration/SKILL.md` | Thiết kế team architecture |
 | 2 | Subagent Driven Development | `skills/core/subagent-driven-development/SKILL.md` | Giao việc cho subagents |
-| 3 | Agent Handoff | `skills/memory/agent-handoff/SKILL.md` | Handoff context giữa agents |
+| 3 | Agent Handoff | `skills/memory/session-capture/SKILL.md` | Handoff context giữa agents |
 | 4 | Team Agent Architecture | `skills/core/team-agent-orchestration/SKILL.md` | Define roles, write scopes, handoff contracts |
 
 ## Team Roles

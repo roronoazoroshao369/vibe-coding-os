@@ -14,7 +14,7 @@ description: Build a dependency graph of skills based on cross-reference extract
 
 Map how skills reference each other so you can identify orphan skills (no incoming refs), find foundational skills (most referenced), and visualize the dependency structure for docs, audits, and refactor planning.
 
-The graph is derived from cross-reference links in skill content (e.g. `See skills/core/quality-shield/SKILL.md`), not from a separate manifest. This keeps the graph in sync with what skills actually say about their dependencies.
+The graph is derived from cross-reference links in skill content (e.g. `See skills/core/quality-execution-contract/SKILL.md`), not from a separate manifest. This keeps the graph in sync with what skills actually say about their dependencies.
 
 ## When to use
 
@@ -69,7 +69,7 @@ cat /tmp/deps.md >> docs/architecture.md
 1. **Many orphans** — normal for a young ecosystem; review each before retiring (some may be intentional "leaf" skills)
 2. **No edges** — if regex fails to match cross-references, edges will be empty; check format with `node scripts/skill-deps-graph.mjs json`
 3. **Circular references** — possible but not harmful; the graph handles cycles (Mermaid renders them)
-4. **Path normalization mismatches** — refs like `skills/core/foo/` may not match `skills/core/quality-shield/SKILL.md`; script normalizes both
+4. **Path normalization mismatches** — refs like `skills/core/foo/` may not match `skills/core/goal-driven-execution/SKILL.md`; script normalizes both
 5. **Large graphs** — 100+ skills may produce unreadable Mermaid; use stats first
 
 ## Verification checklist

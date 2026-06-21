@@ -49,7 +49,7 @@ Without hooks, agent workflows are opaque: there is no standard point to observe
 
 - **General taxonomy:** `docs/workflows/hook-patterns.md` — the complete hook pattern taxonomy with lifecycle table, contract format, and principles.
 - **Memory specialization:** `adapters/hooks/memory-hooks-contract.md` — memory-specific hook contracts, built on the general taxonomy.
-- **Memory hook skill:** `skills/memory/hook-based-memory/SKILL.md` — operating procedure for hook-based memory, now referencing the general architecture.
+- **Memory hook skill:** `skills/memory/memory-ingestion/SKILL.md` — operating procedure for hook-based memory, now referencing the general architecture.
 - **Orchestration hooks:** `skills/core/superagent-orchestration/SKILL.md` — lifecycle monitoring for subtasks uses hook-like state transitions.
 - **Workflow hooks:** `docs/workflows/team-agent-orchestration.md` — phase transitions that can be instrumented with workflow hooks.
 - **Verification hooks:** `skills/core/checkpoint-validation/SKILL.md` — checkpoint gates serve as implementation-readiness hooks.

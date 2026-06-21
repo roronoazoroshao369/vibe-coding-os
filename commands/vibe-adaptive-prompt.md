@@ -62,5 +62,5 @@ Stop and ask when the task description is too vague to classify, when the matrix
 - `skills/core/adaptive-flow/SKILL.md` — tier-based proportional workflow selection
 - `skills/core/quality-execution-contract/SKILL.md` — quality contract before coding
 - `skills/prompts/quality-rubric/SKILL.md` — baseline quality rubric
-- `skills/core/verification-before-completion/SKILL.md` — final verification gate
+- `skills/core/verification-before-done/SKILL.md` — final verification gate
 

@@ -45,4 +45,4 @@ State is justified; missing info is requested; out-of-scope calls are polite and
 
 ## Ghi chú tiếng Việt
 
-Triage là phân loại có bằng chứng, không chỉ gắn nhãn. Dùng cho backlog/issue. File liên quan: `templates/triage-template.md`, `commands/vibe-triage.md`.
+Triage là phân loại có bằng chứng, không chỉ gắn nhãn. Dùng cho backlog/issue. File liên quan: `templates/triage-template.md`, `commands/vibe-plan.md (replaced vibe-triage v2.17)`.

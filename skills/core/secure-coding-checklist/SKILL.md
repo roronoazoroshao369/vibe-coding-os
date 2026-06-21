@@ -14,7 +14,7 @@ status: stable
 
 ## Purpose
 
-Provide an OWASP-mapped three-layer checklist (input validation at trust boundary, output encoding at sink boundary, identity & capability check at every privileged operation) for any code, config, or prompt that crosses a trust boundary. Cover both **OWASP Top 10 2021** (A01–A10) and **OWASP LLM Top 10** (LLM01–LLM10) for LLM-touching surfaces. Complement our `red-team-bypass` and `defensive-detection` skills with a preventive layer that catches the same bug classes before merge.
+Provide an OWASP-mapped three-layer checklist (input validation at trust boundary, output encoding at sink boundary, identity & capability check at every privileged operation) for any code, config, or prompt that crosses a trust boundary. Cover both **OWASP Top 10 2021** (A01–A10) and **OWASP LLM Top 10** (LLM01–LLM10) for LLM-touching surfaces. Complements our `threat-model-driven-security` skill with a preventive layer that catches the same bug classes before merge.
 
 ## When to use
 

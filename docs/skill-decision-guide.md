@@ -17,7 +17,7 @@
 | Review code trước merge | `requesting-code-review` | `vibe-request-review` | Solo |
 | Nhận review từ người khác | `receiving-code-review` | `vibe-receive-review` | Solo |
 | Chuẩn bị merge | `finishing-a-development-branch` | `vibe-finish-branch` | Solo |
-| Kiểm tra trước khi claim done | `verification-before-completion` | `vibe-verify` | Solo |
+| Kiểm tra trước khi claim done | `verification-before-done` | `vibe-verify` | Solo |
 | Tránh overengineering | `anti-overengineering` | — | Solo |
 | Cần zoom out kiến trúc | `zoom-out-system-context` | `vibe-zoom-out` | Solo |
 | Cải thiện kiến trúc codebase | `improve-codebase-architecture` | `vibe-improve-architecture` | Solo |
@@ -67,7 +67,7 @@ executing-plans → test-driven-development → subagent-driven-development
 
 ### Phase 5: Verification
 ```
-verification-before-completion → requesting-code-review → receiving-code-review
+verification-before-done → requesting-code-review → receiving-code-review
 ```
 
 ### Phase 6: Merge
@@ -89,12 +89,12 @@ session-capture → session-summarizer → privacy-filter → agent-handoff
 | Implement feature | `writing-plans` → `executing-plans` → `test-driven-development` |
 | Fix bug | `disciplined-diagnosis` → `test-driven-development` |
 | Refactor | `zoom-out-system-context` → `improve-codebase-architecture` |
-| Review code | `requesting-code-review` → `verification-before-completion` |
+| Review code | `requesting-code-review` → `verification-before-done` |
 | Quản lý context | `session-capture` → `memory-search` → `agent-handoff` |
 | Multi-agent work | `team-agent-orchestration` → `subagent-driven-development` |
 
 ## Meta and Prompt Skills
 
-- Use `skills/meta/instinct-extraction/SKILL.md` when a session reveals a repeatable engineering instinct that should be named, tested, and taught.
-- Use `skills/meta/skillify-from-session/SKILL.md` to turn a successful session pattern into a reusable skill with triggers and verification.
+- Use `skills/meta/context-budget/SKILL.md` when a session reveals a repeatable engineering instinct that should be named, tested, and taught.
+- Use `skills/memory/session-capture/SKILL.md` to turn a successful session pattern into a reusable skill with triggers and verification.
 - Use `skills/prompts/code-complete-construction/SKILL.md` when constructing high-signal prompts for code completion tools or prompt libraries.

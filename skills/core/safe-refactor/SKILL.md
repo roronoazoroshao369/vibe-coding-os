@@ -25,7 +25,7 @@ Use when:
 
 Do NOT use when:
 - The change is a bug fix (use `bug-fix-lifecycle`).
-- The change is a new feature (use `writing-skills` or feature workflow).
+- The change is a new feature (use `write-reusable-skill` or feature workflow).
 - The behavior itself is wrong — fix the behavior first, then refactor.
 
 ## Inputs

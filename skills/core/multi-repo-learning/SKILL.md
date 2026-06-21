@@ -9,7 +9,7 @@ tags:
 status: stable
 ---
 
-# Multi-Repository Learning
+# Multi-Repo-Learning
 
 > Export, exchange, and import portable coding lessons across repositories without requiring a hosted service or daemon.
 

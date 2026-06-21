@@ -89,9 +89,9 @@ Use this skill:
 - `commands/vibe-lessons-learned.md` — command entry point for search, add, and recent review
 - `templates/lesson-entry-template.md` — standard entry shape
 - `skills/core/disciplined-diagnosis/SKILL.md` — structured root-cause analysis before logging a lesson
-- `skills/memory/privacy-filter/SKILL.md` — redaction review before persisting lessons
+- `skills/memory/project-memory/SKILL.md` — redaction review before persisting lessons
 - `skills/core/self-review-before-response/SKILL.md` — ensure the lesson is complete and not noisy
-- `skills/core/verification-before-completion/SKILL.md` — verify the prevention rule was applied
+- `skills/core/verification-before-done/SKILL.md` — verify the prevention rule was applied
 
 ## Ghi chú tiếng Việt
 

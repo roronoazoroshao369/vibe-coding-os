@@ -12,7 +12,7 @@ Use to build a small citation-backed memory bundle for the active task. This com
 
 - task, retrieval query, candidate memory entries, privacy rules.
 - Source, confidence, sensitivity, staleness risk, and expected output format.
-- Relevant local memory skills, workflows, and templates. The [context-injection skill](../skills/memory/context-injection/SKILL.md) is the canonical reference for the end-to-end bundle-building process.
+- Relevant local memory skills, workflows, and templates. The [context-injection skill](../skills/memory/memory-ingestion/SKILL.md) is the canonical reference for the end-to-end bundle-building process.
 
 ## Step-by-step behavior
 
@@ -43,10 +43,10 @@ Stop if memory would store secrets, a required source cannot be checked, an exte
 
 ## Cross-references
 
-- [`context-injection` skill](../skills/memory/context-injection/SKILL.md) — canonical skill for building scoped, citation-backed, privacy-filtered context bundles.
+- [`context-injection` skill](../skills/memory/memory-ingestion/SKILL.md) — canonical skill for building scoped, citation-backed, privacy-filtered context bundles.
 - [`context-injection-template`](../templates/context-injection-template.md) — template for the output bundle format.
-- [`privacy-filter` skill](../skills/memory/privacy-filter/SKILL.md) — privacy gate used before any injection.
-- [`progressive-memory-disclosure` skill](../skills/memory/progressive-memory-disclosure/SKILL.md) — layered loading strategy for memory.
+- [`privacy-filter` skill](../skills/memory/project-memory/SKILL.md) — privacy gate used before any injection.
+- [`progressive-memory-disclosure` skill](../skills/memory/session-capture/SKILL.md) — layered loading strategy for memory.
 
 ## Ghi chú tiếng Việt
 

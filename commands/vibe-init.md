@@ -51,5 +51,5 @@ Stop and ask when the task goal is missing, the requested scope conflicts with r
 
 - `skills/core/vibe-bootstrap/SKILL.md`
 - `skills/core/clarify-before-code/SKILL.md`
-- `skills/memory/context-retrieval/SKILL.md`
+- `skills/memory/memory-search/SKILL.md`
 - `templates/task-template.md`

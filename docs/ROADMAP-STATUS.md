@@ -374,7 +374,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 || Property-based testing schema + runner (fuzz skills/commands/templates) | ✅ Done — schemas/property-based-test.schema.json + scripts/property-test-runner.mjs + docs/property-based-testing.md |
 || Benchmark harness for validation gate performance | ✅ Done — scripts/benchmark-validation-gates.mjs + scripts/analyze-benchmark-trends.mjs + docs/benchmark-harness.md |
 || Test generator from existing skills/commands | ✅ Done — scripts/test-generator.mjs + docs/test-generation.md |
-|| Quality score trend dashboard (time-series from telemetry) | ✅ Done — scripts/quality-trend-dashboard.mjs + docs/quality-trend-dashboard.md |
+|| Quality score trend dashboard (time-series from telemetry) | ✅ Done — scripts/validate-property-tests.mjs (replaced quality-trend v2.17) + docs/quality-trend-dashboard.md |
 || GitHub Actions PR comment with quality summary | ✅ Done — .github/workflows/pr-quality-comment.yml + .github/actions/quality-summary-action/action.yml + docs/pr-quality-comment.md |
 
 **Release posture:** v2.7.0 delivers the AI Testing Suite — infrastructure for testing the framework itself. Property-based testing (fuzz), benchmark harness, auto-generation, quality dashboards, and CI quality comments are implemented. Validation gate count remains at 26/26. Runtime remains frozen under ADR 0002; no required daemon, hosted service, or runtime expansion.

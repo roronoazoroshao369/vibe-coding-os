@@ -66,7 +66,7 @@ Use when authoring a new prompt, refactoring a sprawling prompt that drifts in q
 
 ## Related skills
 
-- `skills/core/writing-skills/SKILL.md` — author skill files (the sister skill to this one for prompts)
+- `skills/meta/write-reusable-skill/SKILL.md` — author skill files (the sister skill to this one for prompts)
 - `skills/core/clarify-before-code/SKILL.md` — restate goal + assumptions before authoring
 - `skills/core/grill-user-before-building/SKILL.md` — interview loop until 95% confidence
 

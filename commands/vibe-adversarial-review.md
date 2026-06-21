@@ -6,7 +6,7 @@ description: "Run an adversarial code review on a PR, skill, or feature using ST
 
 ## When to use
 
-Use this command when you want an attacker-perspective review of a code change, a published skill, or a feature spec. The command wires the `red-team-bypass` skill to OWASP LLM01/LLM04 patterns and produces a structured report.
+Use this command when you want an attacker-perspective review of a code change, a published skill, or a feature spec. The command wires the `threat-model-driven-security` skill to OWASP LLM01/LLM04 patterns and produces a structured report.
 
 ## Required inputs
 

@@ -47,11 +47,11 @@ Each event maps to one or more hook points in the general hook taxonomy (`docs/w
 ## Related skills
 
 - `skills/memory/session-capture/SKILL.md`
-- `skills/memory/session-summarizer/SKILL.md`
-- `skills/memory/progressive-memory-disclosure/SKILL.md`
-- `skills/memory/progressive-memory-disclosure/SKILL.md`
-- `skills/memory/observation-citations/SKILL.md`
-- `skills/memory/privacy-filter/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
+- `skills/memory/session-capture/SKILL.md`
+- `skills/memory/project-memory/SKILL.md`
 - Existing overlap skills: `memory-search`, `progressive-memory-disclosure`, `privacy-filter`, `session-summarizer`, and `agent-handoff`.
 
 ## Related commands

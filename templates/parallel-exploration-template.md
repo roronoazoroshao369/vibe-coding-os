@@ -77,4 +77,4 @@ status: stable
 ## Ghi chú tiếng Việt
 
 So sánh 2–4 hướng theo tiêu chí cố định trước, có time box, chọn và ghi lý do kèm ý hay từ
-hướng bị loại. Liên kết: `skills/core/creative-parallel-exploration/SKILL.md`.
+hướng bị loại. Liên kết: `skills/core/brainstorming/SKILL.md`.

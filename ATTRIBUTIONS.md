@@ -97,7 +97,7 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Used for: idea-level inspiration for four engineering-discipline principles — "Think Before Coding", "Simplicity First", "Surgical Changes", and "Goal-Driven Execution" (rewriting imperative instructions into verifiable goals with per-step checks). All attributed to Karpathy's public commentary.
 - Import mode: **inspiration-only re-write**. Because the license grant is incomplete, no upstream text is copied; the related local skills are written entirely in original wording.
 - Vendored code: no.
-- Notes: Treated as inspiration-only until upstream adds a complete license + copyright notice. Local targets: `skills/prompts/karpathy-engineering-discipline` (Think Before Coding + Surgical Changes), `skills/prompts/anti-overengineering` (Simplicity First), `skills/core/goal-driven-execution` (Goal-Driven Execution), and `skills/core/verification-before-completion` (its evidence bar). The existing `karpathy-guardrails` skill is a distinct, separately-authored artifact.
+- Notes: Treated as inspiration-only until upstream adds a complete license + copyright notice. Local targets: `skills/prompts/karpathy-engineering-discipline` (Think Before Coding + Surgical Changes), `skills/prompts/anti-overengineering` (Simplicity First), `skills/core/goal-driven-execution` (Goal-Driven Execution), and `skills/core/verification-before-done/` (its evidence bar). The existing `karpathy-guardrails` skill is a distinct, separately-authored artifact.
 
 ## bmad-code-org/BMAD-METHOD
 
@@ -217,7 +217,7 @@ When external ideas, code, docs, prompts, or tests are imported or closely adapt
 - Used for: idea-level inspiration for policy-based context control with allow/block/flag rules, severity levels, scope declarations, and sensitive content patterns.
 - Import mode: inspiration only.
 - Vendored code: no.
-- Notes: Adapted as context-policy skill (`skills/core/context-policy/SKILL.md`) and policy template (`templates/context-policy-template.md`). Integrated with `skills/memory/privacy-filter/SKILL.md` as defense-in-depth pipeline and `docs/workflows/context-engineering.md` with policy-based context section. All local content is original wording; no upstream code, configuration, or documentation is copied.
+- Notes: Adapted as context-policy skill (`skills/core/context-policy/SKILL.md`) and policy template (`templates/context-policy-template.md`). Integrated with `skills/memory/project-memory/SKILL.md` as defense-in-depth pipeline and `docs/workflows/context-engineering.md` with policy-based context section. All local content is original wording; no upstream code, configuration, or documentation is copied.
 
 ## addyosmani/agent-skills
 

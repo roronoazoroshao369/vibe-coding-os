@@ -14,14 +14,14 @@
 | # | Skill | Path | Khi Dùng |
 |---|-------|------|----------|
 | 1 | Session Capture | `skills/memory/session-capture/SKILL.md` | Lưu session state trước khi context bị mất |
-| 2 | Session Summarizer | `skills/memory/session-summarizer/SKILL.md` | Tóm tắt session ngắn gọn cho handoff |
-| 3 | Privacy Filter | `skills/memory/privacy-filter/SKILL.md` | Lọc secrets/PII trước khi lưu memory |
-| 4 | Observation Citations | `skills/memory/observation-citations/SKILL.md` | Trích dẫn nguồn khi dùng memory cũ |
-| 5 | Progressive Memory Disclosure | `skills/memory/progressive-memory-disclosure/SKILL.md` | Load memory theo tầng, không load hết 1 lần |
+| 2 | Session Summarizer | `skills/memory/session-capture/SKILL.md` | Tóm tắt session ngắn gọn cho handoff |
+| 3 | Privacy Filter | `skills/memory/project-memory/SKILL.md` | Lọc secrets/PII trước khi lưu memory |
+| 4 | Observation Citations | `skills/memory/session-capture/SKILL.md` | Trích dẫn nguồn khi dùng memory cũ |
+| 5 | Progressive Memory Disclosure | `skills/memory/session-capture/SKILL.md` | Load memory theo tầng, không load hết 1 lần |
 | 6 | Memory Search | `skills/memory/memory-search/SKILL.md` | Tìm memory relevant trước khi làm task mới |
-| 7 | Context Retrieval | `skills/memory/context-retrieval/SKILL.md` | Retrieve context theo progressive strategy |
-| 8 | Agent Handoff | `skills/memory/agent-handoff/SKILL.md` | Handoff context giữa agents/sessions |
-| 9 | Local First Memory | `skills/memory/local-first-memory/SKILL.md` | Ưu tiên memory local, fallback external |
+| 7 | Context Retrieval | `skills/memory/memory-search/SKILL.md` | Retrieve context theo progressive strategy |
+| 8 | Agent Handoff | `skills/memory/session-capture/SKILL.md` | Handoff context giữa agents/sessions |
+| 9 | Local First Memory | `skills/memory/project-memory/SKILL.md` | Ưu tiên memory local, fallback external |
 | 10 | Project Memory | `skills/memory/project-memory/SKILL.md` | Lưu quyết định project bền vững |
 
 ## Commands对应
@@ -60,5 +60,5 @@ Session bắt đầu:
 
 ```bash
 # Load privacy filter TRƯỚC KHI bắt đầu bất kỳ session mới nào:
-# "Load skills/memory/privacy-filter/SKILL.md trước khi làm việc"
+# "Load skills/memory/project-memory/SKILL.md trước khi làm việc"
 ```

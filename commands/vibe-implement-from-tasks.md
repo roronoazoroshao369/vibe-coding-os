@@ -48,7 +48,7 @@ spec.
 
 ## Related skills/templates
 
-- `skills/core/checkpoint-validation/SKILL.md`, `skills/core/plan-driven-execution/SKILL.md`, `skills/core/test-driven-development/SKILL.md`, `skills/core/verification-before-completion/SKILL.md`
+- `skills/core/checkpoint-validation/SKILL.md`, `skills/core/plan-driven-execution/SKILL.md`, `skills/core/test-driven-development/SKILL.md`, `skills/core/verification-before-done/SKILL.md`
 - `templates/checkpoint-template.md`
 
 ## Ghi chú tiếng Việt

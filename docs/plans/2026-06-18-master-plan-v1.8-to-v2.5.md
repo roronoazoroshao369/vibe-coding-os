@@ -198,7 +198,7 @@
 **Team 2 — Scripts Hardening:**
 - `scripts/quality-event-emitter.mjs` — enhance with privacy filters
 - `scripts/session-metrics-collector.mjs` — enhance
-- `scripts/quality-trend-report.mjs` — enhance with comparison
+- `scripts/validate-property-tests.mjs (replaced quality-trend v2.17)` — enhance with comparison
 - `package.json` scripts
 
 **Team 3 — Validation & Registry:**

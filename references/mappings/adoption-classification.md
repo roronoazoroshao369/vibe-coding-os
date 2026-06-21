@@ -11,7 +11,7 @@ Status values: `adapted` (original local content exists), `planned` (mapped but 
 | Source | Feature | Adoption class | Local target | Status | Notes |
 | --- | --- | --- | --- | --- | --- |
 | obra/superpowers | Mandatory workflow discipline (brainstorm → plan → test → review → verify) | adapt-skill | `skills/core/*` | adapted | MIT verified; original wording. |
-| obra/superpowers | Skill-authoring methodology (format, triggers, failure modes) | adapt-skill | `skills/meta/writing-skills/SKILL.md` | planned | Tier 1 #1; rewrite thin stub. |
+| obra/superpowers | Skill-authoring methodology (format, triggers, failure modes) | adapt-skill | `skills/meta/write-reusable-skill/SKILL.md` | planned | Tier 1 #1; rewrite thin stub. |
 | obra/superpowers | Visual companion WebSocket server / graph renderer / test runners | reject-runtime | — | rejected | Executable runtime; out of markdown-first scope. |
 | github/spec-kit | Constitution → specify → plan → tasks → implement phase ordering | adapt-skill | `skills/core/project-constitution`, `skills/core/spec-first-development`, `skills/core/plan-from-spec` | adapted | MIT verified; no upstream template/CLI text. |
 | github/spec-kit | `/checklist` requirements-quality gate ("unit tests for English") | adapt-skill | `skills/core/requirements-quality-checklist`, `commands/vibe-checklist.md` | planned | Tier 1 #2; novel, zero overlap. |
@@ -19,12 +19,12 @@ Status values: `adapted` (original local content exists), `planned` (mapped but 
 | github/spec-kit | Specify CLI + Python scripts + presets engine | reject-runtime | — | rejected | Runtime/CLI plumbing; CLI not required. |
 | mattpocock/skills | Two-axis review (Standards vs Spec, parallel subagents) | adapt-skill | `skills/core/review-before-merge/SKILL.md` | planned | Tier 1 #5; MIT verified. |
 | mattpocock/skills | Engineering-agent skills (grill, ADRs, diagnosis, handoff, guardrails) | adapt-skill | `skills/core/*`, `skills/meta/*` | adapted | MIT verified; original wording. |
-| mattpocock/skills | CONTEXT glossary `_Avoid:` synonyms + ambiguity log | adapt-template | `skills/core/shared-domain-language/SKILL.md` | planned | Tier 2 #17; format polish. |
+| mattpocock/skills | CONTEXT glossary `_Avoid:` synonyms + ambiguity log | adapt-template | ~~~~ (removed v2.17) | removed-v2.17 |
 | mattpocock/skills | Personal/in-progress skills (teach, writing, shoehorn, obsidian) | inspiration-only | — | rejected | Not coding-OS-aligned. |
-| supermemoryai/supermemory | Graph relationship typing + Memory-vs-RAG + MemScore metric | adapt-skill | `skills/memory/memory-architecture`, `skills/memory/memory-evaluation` | planned | Tier 1 #6; fold into existing skills. |
+| supermemoryai/supermemory | Graph relationship typing + Memory-vs-RAG + MemScore metric | adapt-skill | `skills/memory/memory-ingestion`, `skills/memory/memory-search` | planned | Tier 1 #6; fold into existing skills. |
 | supermemoryai/supermemory | Hosted product surface (Next.js dashboard, SDKs, embedding pipelines) | reject-runtime | — | rejected | Hosted infra; adapter-only at most, later. |
 | thedotmack/claude-mem | Project/worktree memory scoping + opt-out tracking | adapt-skill | `skills/memory/*` | planned | Tier 1 #7; Apache-2.0, NOTICE rules if code copied. |
-| thedotmack/claude-mem | Hook event contract taxonomy + privacy env-sanitizer | adapt-doc | `adapters/hooks/memory-hooks-contract.md`, `skills/memory/privacy-filter/SKILL.md` | planned | Tier 2 #15; design-portable, scripts not. |
+| thedotmack/claude-mem | Hook event contract taxonomy + privacy env-sanitizer | adapt-doc | `adapters/hooks/memory-hooks-contract.md`, `skills/memory/project-memory/SKILL.md` | planned | Tier 2 #15; design-portable, scripts not. |
 | thedotmack/claude-mem | Bun worker + SQLite + Chroma vector search + MCP server + installers | reject-runtime | — | rejected | Full daemon stack. |
 | affaan-m/ECC | Context-budget audit heuristics (file size, frontmatter, dup detection) | adapt-skill | `skills/meta/context-budget` | planned | Tier 1 #8; keeps framework lean. |
 | affaan-m/ECC | Continuous-learning / instinct extraction | adapt-skill | `skills/meta/*` | planned | Tier 2 #11; design-only, enforcement is runtime. |

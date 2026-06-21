@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trim Audit — Vibe Coding OS Council Synthesis</title>
+<style>
+  :root{
+    --bg-0:#0a0e14; --bg-1:#0f1419; --bg-2:#151b23; --bg-3:#1c242e;
+    --border:#1f2937; --border-2:#2d3748;
+    --fg-0:#e6edf3; --fg-1:#9ca3af; --fg-2:#6b7280;
+    --accent:#7c3aed; --accent-2:#a78bfa;
+    --green:#10b981; --green-soft:#0a2e25;
+    --red:#ef4444; --red-soft:#3a1010;
+    --orange:#f59e0b; --orange-soft:#3a2810;
+    --yellow:#fbbf24; --yellow-soft:#3a2810;
+    --blue:#3b82f6; --blue-soft:#0c2444;
+    --pink:#ec4899; --pink-soft:#3a0e2a;
+    --cyan:#06b6d4; --cyan-soft:#0a2e35;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+    background:var(--bg-0); color:var(--fg-0); line-height:1.65;
+    font-size:15px; padding:24px; max-width:1180px; margin:0 auto;}
+  h1{font-size:34px; margin:24px 0 12px;
+    background:linear-gradient(135deg, #e6edf3 0%, #ef4444 50%, #fbbf24 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+  h2{font-size:22px; margin:32px 0 10px; color:var(--accent-2);
+    border-bottom:1px solid var(--border); padding-bottom:6px}
+  h3{font-size:17px; margin:18px 0 8px; color:var(--fg-0)}
+  p{margin-bottom:12px}
+  code{background:#0d1117; border:1px solid #1f2937; padding:2px 6px;
+    border-radius:4px; font-family:'SF Mono', monospace; font-size:13px}
+  pre{background:#0d1117; border:1px solid #1f2937; border-radius:8px;
+    padding:14px; overflow-x:auto; margin:10px 0; font-size:13px; line-height:1.5}
+  pre code{background:none; border:none; padding:0}
+  .callout{border-left:4px solid var(--accent); background:#312e4a;
+    padding:14px 18px; border-radius:0 8px 8px 0; margin:14px 0;}
+  .green{border-color:var(--green); background:var(--green-soft)}
+  .red{border-color:var(--red); background:var(--red-soft)}
+  .orange{border-color:var(--orange); background:var(--orange-soft)}
+  .yellow{border-color:var(--yellow); background:var(--yellow-soft)}
+  .blue{border-color:var(--blue); background:var(--blue-soft)}
+  .cyan{border-color:var(--cyan); background:var(--cyan-soft)}
+  .ctitle{font-weight:700; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.5px; margin-bottom:6px}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:14px}
+  th{text-align:left; padding:9px 12px; background:#151b23;
+    border-bottom:1px solid #2d3748; color:var(--accent-2);
+    font-weight:600; font-size:11px; text-transform:uppercase}
+  td{padding:9px 12px; border-bottom:1px solid #1f2937}
+  .grid{display:grid; gap:14px; margin:14px 0}
+  .g-3{grid-template-columns:repeat(3, 1fr)}
+  .g-2{grid-template-columns:repeat(2, 1fr)}
+  @media (max-width:900px){.g-3{grid-template-columns:1fr}.g-2{grid-template-columns:1fr}}
+  .card{background:#151b23; border:1px solid #2d3748; border-radius:10px; padding:16px}
+  .card h4{margin:0 0 6px; font-size:14px; color:var(--fg-0)}
+  .card p{margin:0; font-size:13px; color:var(--fg-1)}
+  .stat-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin:18px 0}
+  @media (max-width:700px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:#0f1419; border:1px solid #1f2937; border-radius:10px; padding:16px; text-align:center}
+  .stat-num{font-size:28px; font-weight:800;
+    background:linear-gradient(135deg, #e6edf3 0%, #a78bfa 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+  .stat-label{font-size:11px; text-transform:uppercase; color:var(--fg-2); margin-top:4px; letter-spacing:0.5px}
+  .tier{background:#0f1419; border:1px solid #1f2937; border-radius:10px; padding:16px; margin:14px 0}
+  .tier h3{margin:0 0 10px; color:var(--orange)}
+  .tier-meta{font-size:12px; color:var(--fg-2); margin-bottom:8px}
+  .nav{margin:18px 0; padding:12px 16px; background:#0f1419;
+    border:1px solid #1f2937; border-radius:8px; font-size:13px}
+  .nav a{color:var(--accent-2); text-decoration:none; margin-right:12px}
+  .tag{display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px; margin-right:4px; font-weight:600}
+  .tag-red{background:#3a1010; color:#fca5a5; border:1px solid #7f1d1d}
+  .tag-orange{background:#3a2810; color:#fbbf24; border:1px solid #92400e}
+  .tag-green{background:#0a2e25; color:#6ee7b7; border:1px solid #047857}
+  .tag-blue{background:#0c2444; color:#93c5fd; border:1px solid #1e40af}
+  .converge{background:linear-gradient(135deg, #1a0a2e 0%, #0a1929 100%);
+    border:1px solid var(--accent); border-radius:10px; padding:18px; margin:14px 0;}
+  .converge h3{margin:0 0 8px; color:var(--accent-2)}
+  .small{font-size:13px; color:var(--fg-1)}
+</style>
+</head>
+<body>
+
+<h1>🗑 Trim Audit — Vibe Coding OS Council Synthesis</h1>
+<p class="small">3-panel expert audit · 2026-06-21 · v2.16.1 · Mission: accuracy + autonomy</p>
+
+<div class="nav">
+<a href="#verdict">1. Executive Verdict</a>
+<a href="#convergence">2. 3-Panel Convergence</a>
+<a href="#capabilities">3. 3 Critical Capabilities</a>
+<a href="#tier1">4. Tier 1: Remove</a>
+<a href="#tier2">5. Tier 2: Merge</a>
+<a href="#tier3">6. Tier 3: Trim Memory+Meta</a>
+<a href="#tier4">7. Tier 4: Build Autopilot</a>
+<a href="#tier5">8. Tier 5: Remove Theater</a>
+<a href="#coverage">9. Coverage Matrix</a>
+<a href="#after">10. After Implementation</a>
+</div>
+
+<!-- 1. VERDICT -->
+<h2 id="verdict">1. Executive Verdict</h2>
+
+<div class="callout red">
+  <div class="ctitle">🎯 3-Panel Convergence</div>
+  <p><strong>~57% of the repo is bloat.</strong> The remaining 43% is genuinely useful — but lacks 3 critical capabilities to deliver the mission: <strong>static analysis</strong> (catches hallucinated APIs), <strong>auto-approve policy</strong> (enables AI loop), and <strong>auto-review</strong> (replaces human-in-loop).</p>
+</div>
+
+<div class="stat-grid">
+  <div class="stat"><div class="stat-num">152</div><div class="stat-label">Skills hiện tại</div></div>
+  <div class="stat"><div class="stat-num">~65</div><div class="stat-label">On-mission</div></div>
+  <div class="stat"><div class="stat-num">25%</div><div class="stat-label">Bug coverage hiện tại</div></div>
+  <div class="stat"><div class="stat-num">75%</div><div class="stat-label">Sau khi build</div></div>
+</div>
+
+<table>
+<tr><th>Finding</th><th>Severity</th><th>Confidence</th></tr>
+<tr><td>152 skills → chỉ ~65 on-mission (57% bloat)</td><td><span class="tag tag-red">HIGH</span></td><td>3/3 panels</td></tr>
+<tr><td>~70% "quality" features là self-policing prompts, không phải enforcement</td><td><span class="tag tag-red">HIGH</span></td><td>Panels B+C</td></tr>
+<tr><td>Zero static analysis (hallucinated APIs không bị bắt)</td><td><span class="tag tag-red">CRITICAL</span></td><td>Panel B</td></tr>
+<tr><td>approval-gate chặn MỌI file.write (auto-pilot không khả thi)</td><td><span class="tag tag-red">CRITICAL</span></td><td>Panel C</td></tr>
+<tr><td>grill-user-before-building là interactive-only (chặn loop)</td><td><span class="tag tag-orange">HIGH</span></td><td>Panels A+C</td></tr>
+<tr><td>guard-bypass-protocol có hại (424 dòng jailbreak tools)</td><td><span class="tag tag-red">CRITICAL</span></td><td>Panels A+B</td></tr>
+</table>
+
+<!-- 2. CONVERGENCE -->
+<h2 id="convergence">2. 3-Panel Convergence — Những gì 3 panels ĐỒNG Ý</h2>
+
+<div class="grid g-3">
+  <div class="converge">
+    <h3>🚫 Guard Bypass Protocol</h3>
+    <p class="small"><strong>Panel A:</strong> 424 lines, zero mission relevance, creates liability</p>
+    <p class="small"><strong>Panel B:</strong> Actively harmful — dạy LLM phá safety filter. Zero bug-catching.</p>
+    <p class="small"><strong>Panel C:</strong> Blocks autonomy; user phải approve mỗi bypass.</p>
+    <p style="margin-top:8px; color:var(--red); font-weight:600">→ REMOVE từ core</p>
+  </div>
+
+  <div class="converge">
+    <h3>🔀 Quality-Shield ↔ Quality-Execution-Contract</h3>
+    <p class="small"><strong>Panel A:</strong> Shield step 1 literally invokes contract. 2 entry points = confusion.</p>
+    <p class="small"><strong>Panel B:</strong> Contract hữu ích; shield adds bureaucracy.</p>
+    <p class="small"><strong>Panel C:</strong> Contract needs auto-enforcement thay vì human.</p>
+    <p style="margin-top:8px; color:var(--yellow); font-weight:600">→ MERGE thành 1</p>
+  </div>
+
+  <div class="converge">
+    <h3>🧠 3 Skills "Explore Options"</h3>
+    <p class="small"><strong>Panel A:</strong> brainstorming + creative-parallel-exploration + zoom-out = 3 files, cùng 1 việc.</p>
+    <p class="small"><strong>Panel B:</strong> All 3 là process prompts; không catch bug nào.</p>
+    <p class="small"><strong>Panel C:</strong> Non-deterministic trong loop; cần auto-pick.</p>
+    <p style="margin-top:8px; color:var(--yellow); font-weight:600">→ CONSOLIDATE thành 1</p>
+  </div>
+</div>
+
+<!-- 3. CRITICAL CAPABILITIES -->
+<h2 id="capabilities">3. 3 Critical Capabilities Đang Thiếu</h2>
+
+<div class="grid g-3">
+  <div class="card" style="border-left:4px solid var(--red)">
+    <h4>🔬 Static Analysis Integration</h4>
+    <p>TypeScript/linter/import-exists checker để bắt hallucinated APIs. Hiện tại: ZERO. Effort: 4h. (Panel B)</p>
+  </div>
+  <div class="card" style="border-left:4px solid var(--red)">
+    <h4>🤖 Auto-Approve Policy</h4>
+    <p>approval-gate đảo ngược: default-approve safe ops, default-deny destructive. Effort: 8h. (Panel C)</p>
+  </div>
+  <div class="card" style="border-left:4px solid var(--red)">
+    <h4>👥 Auto-Review Layer</h4>
+    <p>Replace human-in-loop review bằng auto-council (3 independent contexts). Effort: 5h. (Panel C)</p>
+  </div>
+</div>
+
+<!-- 4. TIER 1 -->
+<h2 id="tier1">4. Tier 1 — REMOVE (1-2 dev-days)</h2>
+
+<div class="tier">
+  <h3>🔴 7 skills cần xoá NGAY</h3>
+  <p class="tier-meta">Mỗi cái là off-mission, tốn context, không phục vụ accuracy/autonomy</p>
+
+  <table>
+  <tr><th>#</th><th>Skill</th><th>Lý do xoá</th></tr>
+  <tr><td>1</td><td><code>skills/core/guard-bypass-protocol/</code></td><td>424 dòng jailbreak tools. Có hại. Zero bug-catching.</td></tr>
+  <tr><td>2</td><td><code>skills/core/observability-design/</code></td><td>DevOps/SRE workflow. Không liên quan AI code.</td></tr>
+  <tr><td>3</td><td><code>skills/core/doubt-driven-development/</code></td><td>Self-admits không tương thích với loops.</td></tr>
+  <tr><td>4</td><td><code>skills/core/install-skill/</code></td><td>Framework distribution. Không phải coding.</td></tr>
+  <tr><td>5</td><td><code>skills/core/deprecate-skill/</code></td><td>Repo admin. Không phải coding.</td></tr>
+  <tr><td>6</td><td><code>skills/core/writing-skills/</code></td><td>Meta-authoring. Không phải coding.</td></tr>
+  <tr><td>7</td><td><code>skills/core/red-team-bypass/</code></td><td>Overlaps secure-coding-checklist.</td></tr>
+  </table>
+  <p style="color:var(--orange); font-weight:600; margin-top:8px">→ 152 → 145 skills. Xoá ~40KB bloat.</p>
+</div>
+
+<!-- 5. TIER 2 -->
+<h2 id="tier2">5. Tier 2 — MERGE DUPLICATES (1 dev-day)</h2>
+
+<div class="tier">
+  <h3>🔀 5 cặp duplicates cần gộp</h3>
+  <p class="tier-meta">Mỗi cặp: 2 files cùng việc. Gộp thành 1 file có giá trị hơn.</p>
+
+  <table>
+  <tr><th>Merge từ</th><th>Vào</th><th>Lý do</th></tr>
+  <tr><td><code>verification-before-done</code></td><td><code>verification-before-completion</code></td><td>Latter literally admits là alias</td></tr>
+  <tr><td><code>quality-shield</code></td><td><code>quality-execution-contract</code></td><td>Shield step 1 invokes contract</td></tr>
+  <tr><td><code>brainstorming + creative-parallel-exploration + zoom-out</code></td><td><code>brainstorming-auto</code></td><td>3 files = cùng 1 workflow</td></tr>
+  <tr><td><code>grill-user-before-building + grill-with-docs</code></td><td><code>grill-auto-defaults</code></td><td>Cùng interview, khác optional flag</td></tr>
+  <tr><td><code>what-before-how</code></td><td><code>spec-first-development</code></td><td>Step 5 của spec-first literally invokes it</td></tr>
+  </table>
+  <p style="color:var(--orange); font-weight:600; margin-top:8px">→ 145 → 140 skills. Mỗi file giờ có unique value.</p>
+</div>
+
+<!-- 6. TIER 3 -->
+<h2 id="tier3">6. Tier 3 — TRIM MEMORY + META (2 dev-days)</h2>
+
+<div class="tier">
+  <h3>📦 Trim memory/ + meta/ layers</h3>
+  <p class="tier-meta">memory/ có 20 skills cho việc chỉ cần 5. meta/ có 12 skills, 9 cái là framework admin.</p>
+
+  <div class="grid g-2">
+    <div>
+      <h4>memory/ — giữ 5/20</h4>
+      <ul style="margin-left:20px; color:var(--fg-1)">
+        <li>project-memory</li>
+        <li>session-memory</li>
+        <li>memory-compression</li>
+        <li>model-weakness-memory</li>
+        <li>memory-search</li>
+      </ul>
+    </div>
+    <div>
+      <h4>meta/ — giữ 3/12</h4>
+      <ul style="margin-left:20px; color:var(--fg-1)">
+        <li>skill-content-search</li>
+        <li>skill-deps-graph</li>
+        <li>using-vibe-coding-os</li>
+      </ul>
+    </div>
+  </div>
+  <p style="color:var(--orange); font-weight:600; margin-top:8px">→ 140 → ~108 skills. 29% reduction từ 152.</p>
+</div>
+
+<!-- 7. TIER 4 -->
+<h2 id="tier4">7. Tier 4 — BUILD AUTOPILOT (3-5 dev-days)</h2>
+
+<div class="tier">
+  <h3>🚀 Build autopilot + static analysis</h3>
+  <p class="tier-meta">~450 dòng code mới. Không thêm skill mới. Chỉ wire những gì có sẵn.</p>
+
+  <table>
+  <tr><th>#</th><th>File</th><th>Lines</th><th>Effort</th><th>Mục đích</th></tr>
+  <tr><td>1</td><td><code>runtime/autopilot/policy.mjs</code></td><td>~80</td><td>4h</td><td>shouldAutoApprove / shouldAskUser logic</td></tr>
+  <tr><td>2</td><td><code>runtime/autopilot/loop.mjs</code></td><td>~60</td><td>3h</td><td>Drive daemon: read spec → code → test → fix → commit</td></tr>
+  <tr><td>3</td><td><code>commands/vibe-autopilot.md</code></td><td>~30</td><td>1h</td><td>Entry point: <code>vibe-autopilot --spec X</code></td></tr>
+  <tr><td>4</td><td><code>adapters/*/autopilot-hook.mjs</code></td><td>~40 × 3</td><td>4h</td><td>Pre-tool hook for Hermes/Codex/Claude</td></tr>
+  <tr><td>5</td><td><code>scripts/validate-imports.mjs</code></td><td>~100</td><td>4h</td><td>Bắt hallucinated APIs</td></tr>
+  <tr><td>6</td><td><code>scripts/validate-typecheck.mjs</code></td><td>~60</td><td>2h</td><td>Run TypeScript compiler</td></tr>
+  <tr><td>7</td><td><code>scripts/validate-scope-match.mjs</code></td><td>~80</td><td>3h</td><td>Diff strictly matches declared scope</td></tr>
+  </table>
+
+  <h4>Loop Architecture</h4>
+<pre><code>1. SPEC INTAKE → read .omc/specs/X.md
+       ↓
+2. CODE → apply smallest safe diff
+       → approval-gate: auto-approve safe, deny destructive
+       ↓
+3. TEST → npm run validate + targeted suite
+       → if red: jump to step 4
+       ↓
+4. FIX → re-read failure, generate hypothesis, patch
+       → retry from step 3 (cap 3x)
+       ↓
+5. COMMIT → git add + commit (local)
+       ↓
+6. REVIEW → spawn 3 independent contexts
+       → majority-wins, escalate iff blocker majority
+       ↓
+7. MERGE → tier ≤ small: local merge
+       → tier = medium: open PR + wait CI
+       → tier = risky: human approval</code></pre>
+</div>
+
+<!-- 8. TIER 5 -->
+<h2 id="tier5">8. Tier 5 — REMOVE THEATER (ongoing)</h2>
+
+<div class="tier">
+  <h3>🎭 5 features tưởng có giá trị, thực ra là noise</h3>
+  <p class="tier-meta">Những feature "trông pro" nhưng exit 0 luôn, không enforce gì cả.</p>
+
+  <table>
+  <tr><th>#</th><th>Feature</th><th>Vì sao là theater</th></tr>
+  <tr><td>1</td><td><code>scripts/quality-scorecard.mjs</code></td><td>Source comment: "exits 0 unless script itself crashes"</td></tr>
+  <tr><td>2</td><td><code>commands/vibe-triage.md</code></td><td>36-line stub, không enforce</td></tr>
+  <tr><td>3</td><td><code>commands/vibe-quality-rubric.md</code></td><td>Toàn self-discipline, không có external check</td></tr>
+  <tr><td>4</td><td><code>scripts/quality-trend-dashboard.mjs</code></td><td>Dashboard của non-data</td></tr>
+  <tr><td>5</td><td><code>scripts/quality-trend-report.mjs</code></td><td>Same — telemetry of advisory metrics</td></tr>
+  </table>
+</div>
+
+<!-- 9. COVERAGE MATRIX -->
+<h2 id="coverage">9. Coverage Matrix</h2>
+
+<table>
+<tr><th>Pain Point</th><th>Solution</th><th>Status</th></tr>
+<tr><td>AI hallucinates APIs</td><td><code>validate-imports.mjs</code> (chưa build)</td><td><span class="tag tag-red">UNSOLVED</span></td></tr>
+<tr><td>AI returns wrong types</td><td><code>validate-typecheck.mjs</code> (chưa build)</td><td><span class="tag tag-red">UNSOLVED</span></td></tr>
+<tr><td>AI adds scope creep</td><td><code>validate-scope-match.mjs</code> (chưa build)</td><td><span class="tag tag-red">UNSOLVED</span></td></tr>
+<tr><td>AI introduces silent regressions</td><td><code>safe-refactor</code> + <code>validate-regression.mjs</code> (chưa)</td><td><span class="tag tag-orange">PARTIAL</span></td></tr>
+<tr><td>Security holes</td><td><code>validate-secrets.mjs</code> + <code>validate-injection.mjs</code> + regression test</td><td><span class="tag tag-green">SOLVED</span></td></tr>
+<tr><td>AI can't loop without asking</td><td><code>approval-gate.mjs</code> inverted + <code>policy.mjs</code> (chưa build)</td><td><span class="tag tag-red">UNSOLVED</span></td></tr>
+<tr><td>Too many skills dilute focus</td><td>Tier 1-3 trim (152 → ~108)</td><td><span class="tag tag-red">NOT STARTED</span></td></tr>
+<tr><td>Guard-bypass creates liability</td><td>Remove from core</td><td><span class="tag tag-red">NOT STARTED</span></td></tr>
+<tr><td>Duplicated skills confuse AI</td><td>Merge 5 pairs</td><td><span class="tag tag-red">NOT STARTED</span></td></tr>
+<tr><td>Theater features waste context</td><td>Remove 4 zero-ROI features</td><td><span class="tag tag-red">NOT STARTED</span></td></tr>
+</table>
+
+<p style="text-align:center; margin-top:14px; font-size:18px; font-weight:700;
+  background:linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+  Coverage: 1 ✅ / 1 🟡 / 8 ❌ = 10% solved
+</p>
+
+<!-- 10. AFTER -->
+<h2 id="after">10. After Full Implementation</h2>
+
+<table>
+<tr><th>Metric</th><th>Before</th><th>After</th></tr>
+<tr><td>Skills</td><td>152</td><td><strong>~108 (29% trim)</strong></td></tr>
+<tr><td>Bug class coverage</td><td>~25%</td><td><strong>~75%</strong></td></tr>
+<tr><td>Autonomy capability</td><td>Human-in-loop only</td><td><strong>Auto-loop with trust-but-verify</strong></td></tr>
+<tr><td>Static analysis</td><td>None</td><td><strong>TypeScript + import-check + scope-check</strong></td></tr>
+<tr><td>Guard-bypass liability</td><td>Present</td><td><strong>Removed</strong></td></tr>
+<tr><td>Theater features</td><td>5+</td><td><strong>0</strong></td></tr>
+</table>
+
+<p style="text-align:center; margin-top:20px; font-size:22px; font-weight:800;
+  background:linear-gradient(135deg, var(--red) 0%, var(--green) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+  Score: 6/10 → 8.5/10
+</p>
+
+<p style="margin-top:24px; color:var(--fg-2); font-size:13px">
+  Expert Council: Panel A (Scope Auditor) + Panel B (Quality Impact Analyst) + Panel C (Auto-Pilot System Architect)<br>
+  Reports:
+  <code>trim-audit-panel-A-scope-auditor.md</code> ·
+  <code>trim-audit-panel-B-quality-impact.md</code> ·
+  <code>trim-audit-panel-C-autopilot-architect.md</code> ·
+  <code>trim-audit-COUNCIL-SYNTHESIS.md</code>
+</p>
+
+</body>
+</html>

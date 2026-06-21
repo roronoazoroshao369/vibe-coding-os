@@ -156,9 +156,9 @@ Why it is bad: it adds noise and may leak sensitive data. Summarize the durable 
 ## Mapping to local memory system
 
 - `skills/memory/project-memory/SKILL.md`: owns durable project memory capture. It should enforce allowed categories, required metadata, confidence, source, safety status, and staleness labels.
-- `skills/memory/privacy-filter/SKILL.md`: owns redaction before saving memory, publishing examples, sharing logs, or committing transcript-derived artifacts.
-- `skills/memory/context-retrieval/SKILL.md`: owns finding relevant prior memory and flagging missing, uncertain, or stale context before planning or changing files.
-- `skills/memory/session-summarizer/SKILL.md`: owns end-of-session compression into concise handoff context that can be promoted to project memory after redaction.
+- `skills/memory/project-memory/SKILL.md`: owns redaction before saving memory, publishing examples, sharing logs, or committing transcript-derived artifacts.
+- `skills/memory/memory-search/SKILL.md`: owns finding relevant prior memory and flagging missing, uncertain, or stale context before planning or changing files.
+- `skills/memory/session-capture/SKILL.md`: owns end-of-session compression into concise handoff context that can be promoted to project memory after redaction.
 - `templates/memory-template.md`: provides the standard structure for memory entries and should include date, confidence, source, staleness, and sensitivity checks.
 - `templates/memory-redaction-checklist.md`: provides a pre-commit checklist for memory entries, examples, and summaries.
 - `commands/vibe-memory.md`: should direct agents to these conventions when summarizing durable session knowledge.

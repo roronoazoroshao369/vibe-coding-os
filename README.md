@@ -40,11 +40,11 @@ AI coding assistants can generate code fast — but speed without structure lead
 - [`commands/vibe-docs-author.md`](commands/vibe-docs-author.md) — generate docs from code/templates
 - [`commands/vibe-deps-graph.md`](commands/vibe-deps-graph.md) — visualize skill dependency graph, detect cycles
 - [`skills/core/test-fixture-library/SKILL.md`](skills/core/test-fixture-library/SKILL.md) — versioned test fixtures with allowlist
-- [`skills/core/deprecate-skill/SKILL.md`](skills/core/deprecate-skill/SKILL.md) — deprecation workflow with sunset warnings
+- ~~~~ — removed in v2.17 trim (framework admin)~~
 
 **Wave C (Adoption):**
 - [`docs/comparison.md`](docs/comparison.md) — vs LangChain, Semantic Kernel, Cursor, Copilot
-- [`commands/vibe-install.md`](commands/vibe-install.md) — install any skill from a registry
+- ~~~~ — removed in v2.17 trim (framework admin)~~
 - [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
 - [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
 - [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
@@ -61,11 +61,11 @@ AI coding assistants can generate code fast — but speed without structure lead
 - [`commands/vibe-docs-author.md`](commands/vibe-docs-author.md) — generate docs from code/templates
 - [`commands/vibe-deps-graph.md`](commands/vibe-deps-graph.md) — visualize skill dependency graph, detect cycles
 - [`skills/core/test-fixture-library/SKILL.md`](skills/core/test-fixture-library/SKILL.md) — versioned test fixtures with allowlist
-- [`skills/core/deprecate-skill/SKILL.md`](skills/core/deprecate-skill/SKILL.md) — deprecation workflow with sunset warnings
+- ~~~~ — removed in v2.17 trim (framework admin)~~
 
 **Wave C (Adoption):**
 - [`docs/comparison.md`](docs/comparison.md) — vs LangChain, Semantic Kernel, Cursor, Copilot
-- [`commands/vibe-install.md`](commands/vibe-install.md) — install any skill from a registry
+- ~~~~ — removed in v2.17 trim (framework admin)~~
 - [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
 - [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
 - [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
@@ -146,7 +146,7 @@ Release Pipeline & Plugin Polish:
 - **Memory compression**: new skill + command + template for transforming noisy observations into durable facts
 - **Context injection**: new SKILL.md for scoped, citation-backed, privacy-filtered context bundles
 - **Acceptance criteria quality pack**: 4 AC levels (basic/verified/gated/audited) with reuse patterns
-- **Agent alignment workflow**: `vibe-align` command orchestrating grill-user, grill-with-docs, shared-domain-language
+- **Agent alignment workflow**: `vibe-align` command orchestrating grill-user, grill-with-docs (~~shared-domain-language~~ removed in v2.17 trim)
 - **Anti-overengineering**: `vibe-anti-overengineer` command + review template
 - **Dashboard time-series**: live 7-day trend table embedded in DASHBOARD.md
 - **CI trend persistence**: GitHub Action persists gate pass/fail across CI runs

@@ -6,7 +6,7 @@ description: "Migrate a project from a deprecated artifact to its replacement."
 
 ## When to use
 
-Invoke when a project (your repo, a consumer's repo, or a config file) is referencing a deprecated artifact and you need to migrate to the replacement. Pairs with `vibe-deprecate` (the artifact-side deprecation command).
+Invoke when a project (your repo, a consumer's repo, or a config file) is referencing a deprecated artifact and you need to migrate to the replacement. Use the deprecation protocol in `skills/core/deprecation-migration/SKILL.md` to identify the artifact-side details.
 
 ## Required inputs
 
@@ -63,6 +63,6 @@ Stop when: (a) all direct references migrated, (b) all indirect references updat
 ## Related skills
 
 - `skills/core/deprecation-migration/SKILL.md` — full Compulsory/Advisory protocol
-- `commands/vibe-deprecate.md` — artifact-side deprecation command
-- `templates/deprecation-notice-template.md` — notice template
+- ~~`vibe-deprecate` command (removed v2.17)~~ — artifact-side deprecation
+- Document deprecation directly in a `## Deprecation` section
 - `registry/deprecation-tracker.json` — append-only tracker

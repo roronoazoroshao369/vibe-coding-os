@@ -12,7 +12,7 @@ Define local durable fallback before any external memory provider for Vibe Codin
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/local-first-memory/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/project-memory/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 
@@ -25,7 +25,7 @@ Local implementation is documentation and workflow-first: `skills/memory/local-f
 
 ## Implementation status
 
-**Implemented:** `skills/memory/local-first-memory/SKILL.md`, `docs/workflows/memory-provider-adapter.md`.
+**Implemented:** `skills/memory/project-memory/SKILL.md`, `docs/workflows/memory-provider-adapter.md`.
 
 The local-first memory feature now has:
 

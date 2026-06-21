@@ -77,4 +77,4 @@ For each scenario above, verify:
 
 Giữ spec tập trung vào hành vi (what), đẩy quyết định kỹ thuật xuống "Deferred technical
 decisions" cho pha plan. Tiêu chí chấp nhận phải quan sát được. Liên kết:
-`skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`.
+`skills/core/spec-first-development/SKILL.md`.

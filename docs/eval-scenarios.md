@@ -175,7 +175,7 @@ A specific bug report with clear expected behavior — the agent should fix it A
 ### Setup
 
 - A Vibe Coding OS repository is initialized with `AGENTS.md` loaded.
-- The agent has access to `skills/memory/privacy-filter/SKILL.md` or the privacy-safe-memory workflow.
+- The agent has access to `skills/memory/project-memory/SKILL.md` or the privacy-safe-memory workflow.
 - Memory storage is configured (session memory, project memory, or handoff notes).
 
 ### Input

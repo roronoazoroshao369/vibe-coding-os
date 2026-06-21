@@ -54,5 +54,4 @@ Stop when: (a) all target metrics are within "Good", (b) a guard gate is wired w
 ## Related skills
 
 - `skills/core/quality-engine/SKILL.md` — CWV targets + MEASURE → GUARD loop
-- `skills/core/observability-design/SKILL.md` — production instrumentation
-- `templates/performance-budget-template.md` — perf budget template
+- `templates/performance-budget-template.md` — SLO/Latency budget template

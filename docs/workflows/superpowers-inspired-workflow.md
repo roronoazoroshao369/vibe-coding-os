@@ -15,7 +15,7 @@ Vibe Coding OS adapts the useful discipline patterns from `obra/superpowers` int
 9. **Use subagents or separate passes when helpful** — Use `skills/core/subagent-driven-development/SKILL.md` for bounded independent subtasks, tester passes, reviewer passes, or parallel exploration.
 10. **Request review** — Use `skills/core/requesting-code-review/SKILL.md` to package scope, diff, checks, risks, and questions.
 11. **Address review** — Use `skills/core/receiving-code-review/SKILL.md` to triage comments, fix blockers, rerun checks, and document deferrals.
-12. **Verify** — Use `skills/core/verification-before-completion/SKILL.md` or `commands/vibe-verify.md` before claiming completion.
+12. **Verify** — Use `skills/core/verification-before-done/SKILL.md` or `commands/vibe-verify.md` before claiming completion.
 13. **Finish branch** — Use `skills/core/finishing-a-development-branch/SKILL.md` or `commands/vibe-finish-branch.md` to prepare PR/handoff, final checks, attribution, and cleanup.
 14. **Record memory** — Use `commands/vibe-memory.md` and memory skills to preserve durable decisions without secrets.
 

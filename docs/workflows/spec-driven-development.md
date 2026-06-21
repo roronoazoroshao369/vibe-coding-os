@@ -33,7 +33,7 @@ A spec, a plan, an ordered task list, checkpoint records, and verified implement
 ## Related skills
 
 - `skills/core/project-constitution/SKILL.md`
-- `skills/core/spec-first-development/SKILL.md`, `skills/core/what-before-how/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`
+- `skills/core/spec-first-development/SKILL.md`, `skills/core/acceptance-criteria/SKILL.md`
 - `skills/core/plan-from-spec/SKILL.md`, `skills/core/task-breakdown-from-plan/SKILL.md`, `skills/core/dependency-aware-task-ordering/SKILL.md`
 - `skills/core/checkpoint-validation/SKILL.md`
 

@@ -26,7 +26,7 @@ Assumptions to confirm before implementation:
 
 ## 3. Sample zoom-out output
 
-Based on [`skills/core/zoom-out-system-context/SKILL.md`](../../skills/core/zoom-out-system-context/SKILL.md).
+Based on [`skills/core/brainstorming/SKILL.md`](../../skills/core/brainstorming/SKILL.md).
 
 ```markdown
 # Zoom-Out: Payment Module Context

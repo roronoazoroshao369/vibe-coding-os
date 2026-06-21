@@ -156,7 +156,7 @@ These anti-patterns come from observed failures in multi-agent orchestration. In
 
 | Anti-pattern | Why it fails | Avoid by |
 | --- | --- | --- |
-| Adding `doubt-driven-development` to a persona that spawns other personas | Doubt recurses; context budget blown | Invoke doubt at orchestration layer only |
+|| ~~Adding `doubt-driven-development` — removed in v2.17 trim~~ | ~~Doubt recurses; context budget blown~~ | Use `quality-execution-contract` instead |
 | Using `grill-user-before-building` in CI/loop | No dialogue partner | Use `verification-before-done` instead |
 | Using `vibe-deprecate` without a replacement | Users stranded | Always pair with a replacement or sunset path |
 | Using `vibe-threat-model` after implementation | Misses design flaws | Threat model during design |

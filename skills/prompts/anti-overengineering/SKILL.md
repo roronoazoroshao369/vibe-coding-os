@@ -56,4 +56,4 @@ This is the Simplicity-First member of a four-part engineering discipline set:
   Surgical Changes.
 - `skills/core/goal-driven-execution/SKILL.md` — Goal-Driven Execution (imperative →
   verifiable goal with per-step checks).
-- `skills/core/verification-before-completion/SKILL.md` — the evidence bar for "done".
+- `skills/core/verification-before-done/SKILL.md` — the evidence bar for "done".

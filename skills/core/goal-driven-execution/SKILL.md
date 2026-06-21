@@ -80,7 +80,7 @@ independent reader can confirm the goal was met without re-deriving it.
   writing the plan.
 - `skills/core/task-state-tracking/SKILL.md` — track each goal/step state and pick the next
   eligible step.
-- `skills/core/verification-before-completion/SKILL.md` — the evidence bar each success
+- `skills/core/verification-before-done/SKILL.md` — the evidence bar each success
   condition is checked against.
 - `skills/core/test-driven-development/SKILL.md` — the failing-check-first pattern for
   behavior goals.

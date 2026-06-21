@@ -49,7 +49,7 @@ decision cannot be justified against the criteria.
 
 ## Related skills/templates
 
-- `skills/core/creative-parallel-exploration/SKILL.md`, `skills/core/subagent-driven-development/SKILL.md`, `skills/core/architecture-decision-records/SKILL.md`
+- `skills/core/brainstorming/SKILL.md`, `skills/core/subagent-driven-development/SKILL.md`, `skills/core/architecture-decision-records/SKILL.md`
 - `templates/parallel-exploration-template.md`
 
 ## Ghi chú tiếng Việt

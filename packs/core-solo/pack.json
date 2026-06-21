@@ -13,7 +13,7 @@
     {"name": "prototype-before-commitment", "source": "core/prototype-before-commitment/SKILL.md"},
     {"name": "task-state-tracking", "source": "core/task-state-tracking/SKILL.md"},
     {"name": "subagent-driven-development", "source": "core/subagent-driven-development/SKILL.md"},
-    {"name": "what-before-how", "source": "core/what-before-how/SKILL.md"},
+    {"name": "spec-first-development", "source": "core/spec-first-development/SKILL.md"},
     {"name": "verification-before-completion", "source": "core/verification-before-completion/SKILL.md"},
     {"name": "triage-workflow", "source": "core/triage-workflow/SKILL.md"},
     {"name": "zoom-out-system-context", "source": "core/zoom-out-system-context/SKILL.md"}

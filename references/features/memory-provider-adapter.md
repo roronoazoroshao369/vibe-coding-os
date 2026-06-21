@@ -12,7 +12,7 @@ Define optional backend abstraction without required cloud dependency for Vibe C
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/memory-provider-adapter/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/memory-ingestion/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 
@@ -26,7 +26,7 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 
 ## Implementation status
 
-**Implemented:** `skills/memory/memory-provider-adapter/SKILL.md`, `adapters/memory/README.md`, `templates/memory-provider-adapter-template.md`, `docs/workflows/memory-provider-adapter.md`.
+**Implemented:** `skills/memory/memory-ingestion/SKILL.md`, `adapters/memory/README.md`, `templates/memory-provider-adapter-template.md`, `docs/workflows/memory-provider-adapter.md`.
 
 The memory provider adapter feature now has:
 

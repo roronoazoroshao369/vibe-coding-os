@@ -17,7 +17,7 @@ with a recorded trade-off.
 1. **Human intent stays sovereign.** The assistant proposes; it does not invent
    requirements or silently expand scope.
    - Rationale: scope creep and hallucinated requirements waste effort and erode trust.
-   - Enforced by: spec review, `skills/core/what-before-how/SKILL.md`, checkpoint gates.
+   - Enforced by: spec review, `skills/core/spec-first-development/SKILL.md`, checkpoint gates.
 
 2. **Quality is non-negotiable.** Changes are correct, readable, and consistent with
    existing conventions.
@@ -32,7 +32,7 @@ with a recorded trade-off.
 4. **Verification is part of done.** No change is complete without tests, validation, or a
    clearly stated limitation.
    - Rationale: "it should work" is not evidence.
-   - Enforced by: `skills/core/verification-before-completion/SKILL.md`, checkpoint gates.
+   - Enforced by: `skills/core/verification-before-done/SKILL.md`, checkpoint gates.
 
 5. **Maintainability over speed-at-any-cost.** Optimize for the next reader, including
    future agents.

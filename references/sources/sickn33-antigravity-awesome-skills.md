@@ -29,10 +29,10 @@
 
 | Feature | Why it matters | Local equivalent | Status |
 | --- | --- | --- | --- |
-| SKILL.md format conventions | Provides patterns for consistent skill documentation and discoverability. | `skills/meta/writing-skills/SKILL.md` | Inspiration only; not copied. |
+| SKILL.md format conventions | Provides patterns for consistent skill documentation and discoverability. | `skills/meta/write-reusable-skill/SKILL.md` | Inspiration only; not copied. |
 | Plugin bundle system | Domain-organized skill collections can inform skill discovery and organization. | `skills/meta/using-vibe-coding-os/SKILL.md` | Inspiration only; not copied. |
 | Multi-platform skill patterns | Portable skill conventions can inform adapter design across harnesses. | `adapters/claude-code/README.md` | Inspiration only; not copied. |
-| Skill composability at scale | Massive skill library demonstrates composability patterns for skill orchestration. | `skills/meta/writing-skills/SKILL.md` | Inspiration only; not copied. |
+| Skill composability at scale | Massive skill library demonstrates composability patterns for skill orchestration. | `skills/meta/write-reusable-skill/SKILL.md` | Inspiration only; not copied. |
 
 ## Local mapping
 

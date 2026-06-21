@@ -47,7 +47,7 @@ Automatically classifies a task into a type (feature, bugfix, refactor, security
 Provides a structured, repeatable way to assess per-file quality outcomes during a coding session and aggregate them across sessions for trend analysis.
 
 - **Templates:** [`templates/quality-scorecard.md`](../templates/quality-scorecard.md), [`templates/quality-scorecard-session.md`](../templates/quality-scorecard-session.md)
-- **Scripts:** [`scripts/quality-scorecard.mjs`](../scripts/quality-scorecard.mjs), [`scripts/quality-scorecard-report.mjs`](../scripts/quality-scorecard-report.mjs)
+- **Scripts:** [`scripts/validate-skill-quality.mjs (replaced quality-scorecard v2.17)`](../scripts/validate-skill-quality.mjs (replaced quality-scorecard v2.17)), [`scripts/quality-scorecard-report.mjs`](../scripts/quality-scorecard-report.mjs)
 - **Package scripts:** `npm run quality:scorecard`, `npm run quality:scorecard:report`
 
 **Session template fields:**

@@ -44,11 +44,11 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 - **`skills/core/docs-author/`** — 5-section convention (Purpose → When to use → Workflow → Outputs → Failure modes)
 - **`skills/core/test-fixture-library/`** — Declarative JSON fixtures in `tests/fixtures/` with validator + generator
 - **`skills/core/skill-deps-graph/`** — Visualize skill dependency graph (JSON, Mermaid, stats)
-- **`skills/core/deprecate-skill/`** — Proper deprecation workflow (mark → log → notice → sunset)
+- ~~**** — removed in v2.17 trim (framework admin)~~
 
 **Wave C — Adoption:**
 - **`docs/comparison.md`** — vs LangChain / Semantic Kernel / Cursor / Copilot
-- **`skills/core/install-skill/`** + `commands/vibe-install.md` — `node scripts/install-skill.mjs <name>` with --list/--dry-run/--force/--target
+- ~~**** + ~~~~ — removed in v2.17 trim (framework admin)~~
 - **`docs/FAQ.md`** — 10 Q&A pairs with Schema.org FAQPage JSON-LD for SEO
 - **`.github/discussion-templates/`** — Q&A, Show-and-tell, Feature-request templates
 - **`docs/show-hn-kit.md`** — Copy-paste HN post + image suggestions + Twitter/LinkedIn variants
@@ -58,8 +58,8 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 Engineering Discipline Pack — inspired by addyosmani/agent-skills (MIT, 63.4k★):
 
 - **5 skills mới**:
-  - `skills/core/doubt-driven-development/` — CLS-DAR protocol (Claim, Locate, Scrutinize, Doubt, Adjudicate, Record) với Loading Constraints chống persona recursion
-  - `skills/core/observability-design/` — questions-before-signals workflow, metric/log/trace trade-off table, SLO envelope
+  - ~~ — removed in v2.17 trim (off-mission)~~
+  - ~~ — removed in v2.17 trim (off-mission DevOps)~~
   - `skills/core/deprecation-migration/` — Compulsory vs Advisory classification, 5 pre-deprecation questions, sunset timeline
   - `skills/core/threat-model-driven-security/` — STRIDE 6-letter lens trên (boundary, asset, adversary) tuples, abuse cases đi kèm use cases
   - `skills/core/vertical-slicing/` — 5-step increment cycle: Implement→Test→Verify→Commit→Next, slice theo outcome không theo layer
@@ -90,7 +90,7 @@ Release Pipeline & Plugin Polish:
 - **Memory compression**: skill + command + template mới cho transformation observations thành durable facts
 - **Context injection**: SKILL.md mới cho scoped, citation-backed, privacy-filtered context bundles
 - **Acceptance criteria quality pack**: 4 cấp AC (basic/verified/gated/audited) với reuse patterns
-- **Agent alignment workflow**: `vibe-align` command orchestrate grill-user, grill-with-docs, shared-domain-language
+- **Agent alignment workflow**: `vibe-align` command orchestrate grill-user, grill-with-docs (~~shared-domain-language~~ removed in v2.17 trim)
 - **Anti-overengineering**: `vibe-anti-overengineer` command + review template
 - **Dashboard time-series**: bảng trend 7 ngày embedded trong DASHBOARD.md
 - **CI trend persistence**: GitHub Action lưu gate pass/fail qua các CI runs

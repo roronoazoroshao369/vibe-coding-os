@@ -66,7 +66,7 @@ Use when starting any coding task where the model type is known, when reviewing 
 - `templates/model-weakness-log.md` — the weakness log template
 - `skills/core/adaptive-prompt-selection/SKILL.md` — complementary skill for selecting quality packs
 - `skills/core/self-review-before-response/SKILL.md` — post-task self-review
-- `skills/core/verification-before-completion/SKILL.md` — mandatory verification gate
+- `skills/core/verification-before-done/SKILL.md` — mandatory verification gate
 - `skills/prompts/quality-rubric/SKILL.md` — universal quality checks to compose with
 
 ## Ghi chú tiếng Việt

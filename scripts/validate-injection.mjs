@@ -54,7 +54,11 @@ const ALLOWLIST_FILES = new Set([
   'skills/core/INDEX.md',
   // Guard bypass protocol — skill and command intentionally quote bypass patterns.
   'skills/core/guard-bypass-protocol/SKILL.md',
-  'commands/vibe-bypass.md'
+  'commands/vibe-bypass.md',
+  // Council audit reports — describe injection payloads as part of audit findings.
+  'docs/reports/council/trim-audit-panel-B-quality-impact.md',
+  // Vietnamese council explainer — describes security 3-layer defense by quoting detection patterns.
+  'docs/reports/council/v2.16.1-explained/README.md'
 ]);
 
 // Inline suppression marker: `injection-allow:<label>` on the offending line.

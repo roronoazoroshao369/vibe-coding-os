@@ -23,8 +23,8 @@ Use for non-trivial memory changes, before work that may depend on prior context
 When considering an external provider adapter, run this decision flow:
 
 1. **Is a provider explicitly requested?** If no human or task explicitly asked for one, stop here — use local memory only. Document that provider was not requested.
-2. **Run the cloud-vs-local rubric** (from `skills/memory/local-first-memory/SKILL.md`): evaluate privacy, latency, offline need, sovereignty, and cost. If any criterion blocks cloud use, stop — use local memory and document the blocking criterion.
-3. **Check interface contract compliance** (from `skills/memory/memory-provider-adapter/SKILL.md`): can the provider implement the required operations (store, retrieve, search, delete)? If not, document the gap and use local memory.
+2. **Run the cloud-vs-local rubric** (from `skills/memory/project-memory/SKILL.md`): evaluate privacy, latency, offline need, sovereignty, and cost. If any criterion blocks cloud use, stop — use local memory and document the blocking criterion.
+3. **Check interface contract compliance** (from `skills/memory/memory-ingestion/SKILL.md`): can the provider implement the required operations (store, retrieve, search, delete)? If not, document the gap and use local memory.
 4. **Document opt-in**: record that the human explicitly authorized external storage. List exactly what data leaves local storage. Map provider outputs to local citation, confidence, freshness, and scope labels.
 5. **Define local fallback**: for every provider operation, document the local equivalent that activates when the provider is unavailable, too slow, or unsafe.
 6. **Plan compliance level**: state whether the adapter will be full, partial, or planned. Implement only after spec and plan approval.

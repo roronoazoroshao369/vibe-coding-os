@@ -179,7 +179,7 @@ Next: Fill in the template before ending your session.
 
 - **At the end of every working session** — capture durable observations
 - Use before switching agents or ending a session
-- Helps with `skills/memory/agent-handoff` when context must survive
+- Helps with `skills/memory/session-capture` when context must survive
 - Summarize, don't dump — filter secrets, keep it actionable
 
 ---

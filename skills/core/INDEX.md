@@ -12,10 +12,10 @@ status: stable
 
 # Skills Index — `skills/core/`
 
-The `skills/core/` directory contains **88 reusable skills** organized by lifecycle stage.
+The `skills/core/` directory contains **79 reusable skills** organized by lifecycle stage.
 This index groups them by purpose to help you find the right skill quickly.
 
-> **Count**: 88 skills in 8 lifecycle groups. Use `node scripts/skill-content-search.mjs <keyword>` to find by capability.
+> **Count**: 79 skills in 8 lifecycle groups. Use `node scripts/skill-content-search.mjs <keyword>` to find by capability.
 
 ---
 
@@ -54,7 +54,7 @@ This index groups them by purpose to help you find the right skill quickly.
 - **team-agent-orchestration** — Design and coordinate a temporary agent team for large or risky work without turning Vibe Coding OS into a runtime. Use 
 - **triage-workflow** — Classify incoming issues or tasks into clear next states with evidence and next action.
 
-## Test & Review (17 skills)
+## Test & Review (16 skills)
 
 - **adversarial-code-review** — Run a red-team review of a code change that actively looks for ways the patch can be wrong, unsafe, insufficiently teste
 - **checkpoint-validation** — Validate that each workflow phase (constitution, spec, plan, tasks, implementation) is
@@ -63,7 +63,6 @@ This index groups them by purpose to help you find the right skill quickly.
 - **incremental-review** — Re-review code efficiently after iterative changes by capturing a baseline of the previous review state and analysing on
 - **quality-engine** — Run a configurable quality engine that executes relevant quality gates on a task or repository and returns structured re
 - **quality-execution-contract** — Force explicit intent declaration before any code edit. The contract makes the agent
-- **quality-shield** — Provide a disciplined, repeatable process for making safe changes to existing code. The workflow ensures every productio
 - **quality-telemetry** — Collect local-first quality telemetry from quality engine runs, sessions, and reviews to support trend analysis, model c
 - **receiving-code-review** — Turn review feedback into a prioritized response plan, fix real issues, and preserve explicit decisions for deferred ite
 - **requesting-code-review** — Package a change for useful review by making scope, intent, diff, risks, and verification evidence easy to inspect.
@@ -88,45 +87,37 @@ This index groups them by purpose to help you find the right skill quickly.
 - **prototype-before-commitment** — Build or describe a throwaway experiment to reduce uncertainty before committing to architecture or UI direction. The ki
 - **using-git-worktrees** — Isolate risky or parallel work so multiple branches can be developed, tested, or reviewed without corrupting the main ch
 
-## Maintain & Evolve (5 skills)
+## Maintain & Evolve (4 skills)
 
-- **deprecate-skill** — Provide a safe, auditable, append-only workflow for retiring skills. Deprecation is not deletion — it is the visible, ti
 - **deprecation-migration** — Manage the lifecycle of deprecating skills, commands, templates, registry entries, or any Vibe Coding OS artifact — dist
 - **docs-author** — The five-section structure (Purpose, When to use, Workflow, Outputs, Failure modes) is the **minimum viable structure** 
 - **grill-with-docs** — Align with the user while updating durable project context, domain language, and ADR candidates.
 - **safe-refactor** — Provide a 5-phase protocol for refactoring existing code without breaking behavior. Covers the full lifecycle: **charact
 
-## Meta (Skills & Process) (11 skills)
+## Meta (Skills & Process) (8 skills)
 
-- **doubt-driven-development** — Challenge in-progress decisions before they harden into code, surfacing uncertainty, anti-rationalizations, and loading-
 - **external-skill** — Example skill demonstrating the `isolated` sandbox-marker level. Use as a template when authoring third-party or marketp
 - **goal-driven-execution** — Turn an imperative instruction ("fix the bug", "make it faster", "add the export
-- **install-skill** — Pick a skill from the curated registry and copy it into your project (or any target directory) so you can use it without
 - **lessons-learned-db** — Create and use a structured record of coding mistakes and fixes so agents can learn from local project history. The less
 - **model-weakness-memory** — Track known failure patterns for different model types and auto-inject relevant checks before tasks. This skill builds a
 - **multi-repo-learning** — Enable teams to share sanitized, portable lessons across repositories so prevention rules, fix patterns, and root-cause 
 - **skill-content-search** — Quickly locate the right skill, command, template, or doc when the repo has grown past the point where you can remember 
 - **skill-deps-graph** — Map how skills reference each other so you can identify orphan skills (no incoming refs), find foundational skills (most
 - **task-state-tracking** — Keep task lists executable by tracking each task's current state, dependencies, and next
-- **writing-skills** — Provide a structural recipe for authoring new skills in the `skills/` tree. The recipe enforces section contracts (Purpo
 
-## Other / Cross-cutting (18 skills)
+## Other / Cross-cutting (14 skills)
 
 - **dependency-aware-task-ordering** — Order tasks by their real dependencies and identify which tasks can safely run in
 - **finishing-a-development-branch** — Close a branch cleanly with verified status, review readiness, attribution hygiene, memory notes, and clear next actions
 - **guard-bypass-protocol** — Autonomous adversarial prompt engineering agent that iteratively attempts to bypass AI model guardrails, safety filters,
 - **issue-slicing** — Break a PRD or plan into small vertical issues that independent agents can grab safely.
 - **model-aware-config** — Select model-aware quality packs and checks by combining the current `model_id`, the task type, stack/domain signals, th
-- **observability-design** — Design instrumentation **before shipping a feature** by starting from the questions on-call will ask, then deriving the 
 - **project-constitution** — Define a short, durable set of governing principles that constrain every later phase of
-- **red-team-bypass** — Document the patterns and counter-measures for adversarial prompt injection, jailbreak attempts, and model evasion techn
 - **sandbox-marker** — Mark skills, commands, or templates that load external or untrusted content so reviewers can audit the trust level at a 
 - **sandboxed-execution** — Define explicit work-scoping boundaries for sub-agents or delegated passes so each worker operates within a declared san
-- **shared-domain-language** — Keep a small, durable vocabulary that makes humans, agents, docs, and code use the same domain terms — including an expl
 - **threat-model-driven-security** — Design security **before building** by mapping trust boundaries, applying the STRIDE 6-letter lens, and writing abuse ca
 - **upstream-intelligence-loop** — Turn high-signal public AI-coding repositories into maintainable local improvements without vendoring upstream code, pro
-- **verification-before-completion** — Make completion claims only after relevant checks, review, and limitations are explicit.
-- **verification-before-done** — Ensure completion claims are backed by evidence.
+- **verification-before-done** — Make completion claims only after relevant checks, review, and limitations are explicit.
 - **vertical-slicing** — Build features as **complete vertical slices** through every layer of the stack (DB → API → UI → tests) rather than hori
 - **vibe-bootstrap** — Start a new Vibe Coding OS session with the right context, workflow, and safety rails.
 - **what-before-how** — Keep the discipline of agreeing on user-visible behavior and acceptance criteria (the
@@ -139,7 +130,7 @@ This index groups them by purpose to help you find the right skill quickly.
 2. **Find by capability**: use `node scripts/skill-content-search.mjs <keyword>`.
 3. **Find by dependency**: use the skill-deps-graph skill to see how skills connect.
 
-## Why 88 skills?
+## Why 79 skills?
 
 Vibe Coding OS is a **meta-framework**: each skill is a reusable pattern for a specific
 quality or workflow concern. The breadth reflects the variety of failure modes AI agents

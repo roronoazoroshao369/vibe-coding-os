@@ -50,7 +50,7 @@ implementation-readiness gate clears. See `docs/workflows/spec-driven-developmen
 
 ## Related skills and commands
 
-- Skills: `skills/core/spec-first-development`, `skills/core/what-before-how`,
+- Skills: `skills/core/spec-first-development` (includes what-before-how discipline),
   `skills/core/plan-from-spec`, `skills/core/task-breakdown-from-plan`,
   `skills/core/checkpoint-validation`, `skills/core/brownfield-spec-enhancement`,
   `skills/core/creative-parallel-exploration`, `skills/core/project-constitution`.

@@ -31,7 +31,7 @@
 | Claude Code best-practice learning path | Provides a structured progression from beginner to advanced patterns. | `CLAUDE.md`, `skills/meta/using-vibe-coding-os/SKILL.md` | Inspiration only; not copied. |
 | Subagent orchestration patterns | Expands subagent design patterns beyond current local references. | `skills/core/subagent-driven-development/SKILL.md`, `skills/core/team-agent-orchestration/SKILL.md` | Inspiration only; not copied. |
 | Hook and workflow patterns | Provides portable patterns for hook-based automation and workflow orchestration. | `docs/workflows/core-vs-optional-runtime.md` | Inspiration only; not copied. |
-| Skill orchestration conventions | Reinforces skill composability and discoverability patterns. | `skills/meta/writing-skills/SKILL.md`, `skills/meta/using-vibe-coding-os/SKILL.md` | Inspiration only; not copied. |
+| Skill orchestration conventions | Reinforces skill composability and discoverability patterns. | `skills/meta/write-reusable-skill/SKILL.md`, `skills/meta/using-vibe-coding-os/SKILL.md` | Inspiration only; not copied. |
 
 ## Local mapping
 

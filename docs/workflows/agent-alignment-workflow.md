@@ -46,9 +46,9 @@ implementation. No further alignment needed.
 **Decision point:** If no durable context is affected, skip to Phase 3.
 If this is a new project without `CONTEXT.md`, create one during this phase.
 
-### Phase 3 — Align on domain terms (shared-domain-language)
+### Phase 3 — Align on domain terms (domain-language)
 
-1. Inventory important terms from the conversation and codebase.
+1. Inventory important terms from the conversation and codebase. _(shared-domain-language skill removed in v2.17 trim)_
 2. Prefer existing local names unless they actively mislead.
 3. Define each term by behavior and boundaries.
 4. Add `_Avoid:_` synonym lists to prevent naming drift.
@@ -124,8 +124,7 @@ questions" as appropriate.
 ## Related skills
 
 - `skills/core/grill-user-before-building/SKILL.md`
-- `skills/core/grill-with-docs/SKILL.md`
-- `skills/core/shared-domain-language/SKILL.md`
+- `skills/core/grill-user-before-building/SKILL.md` (Phase 2 docs-aware)
 - `skills/core/project-constitution/SKILL.md`
 
 ## Related commands
@@ -143,8 +142,7 @@ questions" as appropriate.
 
 ## Ghi chú tiếng Việt
 
-Workflow tổng hợp năm kỹ năng hiện có (grill-user, grill-with-docs, shared-domain-language,
-project-constitution) thành luồng xác nhận trước khi code. Phân cấp theo độ phức tạp task:
+Workflow tổng hợp năm kỹ năng hiện có (grill-user, grill-with-docs, project-constitution) thành luồng xác nhận trước khi code. _shared-domain-language removed v2.17_ Phân cấp theo độ phức tạp task:
 đơn giản bỏ qua, trung bình 1–3 giai đoạn, phức tạp đầy đủ 5 giai đoạn. Kết nối trực
 tiếp với workflow spec-first development. Không tạo kỹ năng mới — chỉ sắp xếp lại kỹ năng
 có sẵn.

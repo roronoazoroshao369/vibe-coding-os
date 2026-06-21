@@ -13,7 +13,7 @@ status: stable
 
 # Context Injection Bundle
 
-*Referenced by: [context-injection](../skills/memory/context-injection/SKILL.md) skill, [vibe-context-inject](../commands/vibe-context-inject.md) command*
+*Referenced by: [context-injection](../skills/memory/memory-ingestion/SKILL.md) skill, [vibe-context-inject](../commands/vibe-context-inject.md) command*
 
 ## Vietnamese usage note
 

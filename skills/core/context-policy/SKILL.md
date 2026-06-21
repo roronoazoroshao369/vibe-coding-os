@@ -9,7 +9,7 @@ tags:
 status: stable
 ---
 
-# Skill: Policy-Based Context Control (DLP)
+# Context-Policy Skill
 
 ## Purpose
 
@@ -181,7 +181,7 @@ rules:
 ## Integration with Privacy Filter
 
 The context-policy skill works upstream of the privacy filter
-(`skills/memory/privacy-filter/SKILL.md`). Policy-based context control determines *what*
+(`skills/memory/project-memory/SKILL.md`). Policy-based context control determines *what*
 files are loaded into context; the privacy filter then sanitizes the loaded content before
 it enters memory or is transmitted. Together they form a defense-in-depth pipeline:
 

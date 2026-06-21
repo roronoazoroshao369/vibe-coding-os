@@ -97,7 +97,7 @@ weight, and verification evidence appropriate to the tier.
 - `docs/workflows/adaptive-flow.md` — the flow diagram and worked examples.
 - `skills/core/clarify-before-code/SKILL.md` — resolve ambiguity before classifying.
 - `skills/prompts/anti-overengineering/SKILL.md` — keeps the chosen flow from bloating.
-- `skills/core/verification-before-completion/SKILL.md` — the non-skippable verify step.
+- `skills/core/verification-before-done/SKILL.md` — the non-skippable verify step.
 
 ## Standards-mandated steps
 

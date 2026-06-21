@@ -17,7 +17,7 @@ Time-series visualization from telemetry data (quality-engine session metrics) s
 
 ## Implementation references
 
-- `scripts/quality-trend-dashboard.mjs` — Trend data generator
+- `scripts/validate-property-tests.mjs (replaced quality-trend v2.17)` — Trend data generator
 - `docs/quality-trend-dashboard.md` — Usage guide
 - `docs/DASHBOARD.md` — Trend section integrated
 

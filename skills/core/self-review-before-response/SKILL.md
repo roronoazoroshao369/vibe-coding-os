@@ -55,5 +55,5 @@ A completed self-review report with the checklist, files changed, verification r
 - [ ] Final response honestly reflects verification outcome.
 
 ## Related skills
-- `skills/core/verification-before-completion/SKILL.md` — runs verification commands and reports evidence.
+- `skills/core/verification-before-done/SKILL.md` — runs verification commands and reports evidence.
 - `commands/vibe-self-review.md` — short command prompt to trigger this checklist.

@@ -14,7 +14,7 @@ tags:
   - quality
 ---
 
-# Skill: Auth and Permissions Quality Checklist
+# Auth-Quality Checklist
 
 ## Purpose
 

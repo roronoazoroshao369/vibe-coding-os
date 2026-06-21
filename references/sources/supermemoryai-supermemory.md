@@ -28,16 +28,16 @@
 
 | Feature | Why it matters | Local equivalent | Status | Target local files | Maintenance notes |
 | --- | --- | --- | --- | --- | --- |
-| memory-api | Clarifies stable operations such as add, update, forget, recall, and context injection. | `adapters/memory/README.md`, `templates/memory-provider-adapter-template.md` | planned | `adapters/memory/README.md`, `skills/memory/memory-provider-adapter/SKILL.md` | Watch API shape only; do not implement a client yet. |
-| agent-memory | Treats memory as a capability agents request deliberately. | `skills/memory/memory-architecture/SKILL.md`, `skills/memory/agent-handoff/SKILL.md` | partial | `skills/memory/memory-architecture/SKILL.md`, `docs/workflows/memory-lifecycle.md` | Keep human intent and local repo context authoritative. |
+| memory-api | Clarifies stable operations such as add, update, forget, recall, and context injection. | `adapters/memory/README.md`, `templates/memory-provider-adapter-template.md` | planned | `adapters/memory/README.md`, `skills/memory/memory-ingestion/SKILL.md` | Watch API shape only; do not implement a client yet. |
+| agent-memory | Treats memory as a capability agents request deliberately. | `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/session-capture/SKILL.md` | partial | `skills/memory/memory-ingestion/SKILL.md`, `docs/workflows/memory-lifecycle.md` | Keep human intent and local repo context authoritative. |
 | memory-ingestion | Prevents transcript hoarding by selecting durable facts. | `skills/memory/memory-ingestion/SKILL.md` | planned | `commands/vibe-memory-ingest.md`, `templates/memory-entry-template.md` | Require privacy filtering before storage. |
 | memory-retrieval | Ensures useful context is recalled before decisions. | `skills/memory/memory-search/SKILL.md` | planned | `commands/vibe-memory-retrieve.md`, `docs/workflows/memory-retrieval-before-work.md` | Cite sources and label uncertainty. |
 | semantic-search | Supports meaning-based lookup while preserving local fallback. | `skills/memory/memory-search/SKILL.md` | planned | `commands/vibe-memory-search.md`, `references/features/memory-search.md` | Abstract search behavior; do not require vector infra. |
-| memory-evaluation | Makes memory quality measurable instead of assumed. | `skills/memory/memory-evaluation/SKILL.md` | planned | `templates/memory-evaluation-template.md`, `references/features/memory-evaluation.md` | Track correctness, freshness, usefulness, privacy, latency, cost. |
-| memorybench-or-evals | Inspires benchmark-style staged evaluation. | `references/features/memory-evaluation.md` | partial | `skills/memory/memory-evaluation/SKILL.md` | Study concepts only; no benchmark datasets vendored. |
-| provider-integration | Allows future optional backends. | `skills/memory/memory-provider-adapter/SKILL.md` | planned | `adapters/memory/supermemory-adapter-plan.md` | Must remain opt-in and dependency-free by default. |
-| privacy-safe-storage | Keeps secrets and sensitive data out of durable memory. | `skills/memory/privacy-filter/SKILL.md` | partial | `commands/vibe-memory-privacy-check.md`, `templates/memory-privacy-review-template.md` | Block unsafe memory rather than redact silently when risk is high. |
-| cloud-vs-local-memory | Separates external convenience from local control. | `skills/memory/local-first-memory/SKILL.md` | planned | `adapters/memory/local-memory-adapter.md`, `references/features/local-first-memory.md` | Local memory remains the default fallback. |
+| memory-evaluation | Makes memory quality measurable instead of assumed. | `skills/memory/memory-search/SKILL.md` | planned | `templates/memory-evaluation-template.md`, `references/features/memory-evaluation.md` | Track correctness, freshness, usefulness, privacy, latency, cost. |
+| memorybench-or-evals | Inspires benchmark-style staged evaluation. | `references/features/memory-evaluation.md` | partial | `skills/memory/memory-search/SKILL.md` | Study concepts only; no benchmark datasets vendored. |
+| provider-integration | Allows future optional backends. | `skills/memory/memory-ingestion/SKILL.md` | planned | `adapters/memory/supermemory-adapter-plan.md` | Must remain opt-in and dependency-free by default. |
+| privacy-safe-storage | Keeps secrets and sensitive data out of durable memory. | `skills/memory/project-memory/SKILL.md` | partial | `commands/vibe-memory-privacy-check.md`, `templates/memory-privacy-review-template.md` | Block unsafe memory rather than redact silently when risk is high. |
+| cloud-vs-local-memory | Separates external convenience from local control. | `skills/memory/project-memory/SKILL.md` | planned | `adapters/memory/local-memory-adapter.md`, `references/features/local-first-memory.md` | Local memory remains the default fallback. |
 | memory-adapter-interface | Defines provider contract without lock-in. | `adapters/memory/README.md` | planned | `templates/memory-provider-adapter-template.md`, `docs/workflows/memory-provider-adapter.md` | Interface documentation only; no Supermemory SDK dependency. |
 
 ## Applied to Vibe Coding OS
@@ -57,8 +57,8 @@
 ## Local mapping
 
 - Reference features: `references/features/agent-memory-engine.md`, `references/features/memory-ingestion.md`, `references/features/memory-retrieval.md`, `references/features/memory-search.md`, `references/features/memory-privacy.md`, `references/features/memory-evaluation.md`, `references/features/memory-provider-adapter.md`, `references/features/local-first-memory.md`.
-- Memory skills: `skills/memory/memory-architecture/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/memory-evaluation/SKILL.md`, `skills/memory/memory-provider-adapter/SKILL.md`, `skills/memory/local-first-memory/SKILL.md`.
-- Existing enhanced skills: `skills/memory/project-memory/SKILL.md`, `skills/memory/session-summarizer/SKILL.md`, `skills/memory/context-retrieval/SKILL.md`, `skills/memory/privacy-filter/SKILL.md`, `skills/memory/agent-handoff/SKILL.md`.
+- Memory skills: `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/project-memory/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/memory-ingestion/SKILL.md`, `skills/memory/project-memory/SKILL.md`.
+- Existing enhanced skills: `skills/memory/project-memory/SKILL.md`, `skills/memory/session-capture/SKILL.md`, `skills/memory/memory-search/SKILL.md`, `skills/memory/project-memory/SKILL.md`, `skills/memory/session-capture/SKILL.md`.
 - Adapter docs: `adapters/memory/README.md`, `adapters/memory/supermemory-adapter-plan.md`, `adapters/memory/local-memory-adapter.md`.
 
 ## Upstream structure notes

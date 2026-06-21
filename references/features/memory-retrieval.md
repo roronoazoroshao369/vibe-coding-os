@@ -25,11 +25,11 @@ Local implementation is documentation and workflow-first: `skills/memory/memory-
 
 ## Implementation status
 
-**Implemented:** `skills/memory/memory-retrieval/SKILL.md` (new), `commands/vibe-memory-retrieve.md`, `docs/workflows/memory-retrieval-before-work.md`, `templates/memory-retrieval-report-template.md`.
+**Implemented:** `skills/memory/memory-ingestion/SKILL.md` (new), `commands/vibe-memory-retrieve.md`, `docs/workflows/memory-retrieval-before-work.md`, `templates/memory-retrieval-report-template.md`.
 
 The memory retrieval feature now has:
 
-- A dedicated `skills/memory/memory-retrieval/SKILL.md` with six explicit retrieval phases, each with gates and outputs.
+- A dedicated `skills/memory/memory-ingestion/SKILL.md` with six explicit retrieval phases, each with gates and outputs.
 - The `vibe-memory-retrieve` command restructured as a phased retrieval command with `--question`, `--broad`, `--narrow`, `--fetch`, `--evaluate`, `--report` options and scoring gates.
 - The `memory-retrieval-before-work` workflow deepened with a retrieval phases reference table.
 - The `memory-retrieval-report-template` enhanced with retrieval quality scoring (relevance_score, freshness_score, groundedness_score, contradiction_risk) and a rejected entries log.

@@ -76,7 +76,7 @@ Crash-proof planning composes with the existing spec → plan → tasks → impl
 - Tasks (vibe-tasks) can reference the plan's step markers for state tracking.
 - Task-state-tracking (skills/core/task-state-tracking) composes with step markers:
   a task in `in-progress` state corresponds to a `[~]` step; `done` → `[x]`.
-- Agent handoff (skills/memory/agent-handoff) should mention the plan-id so the
+- Agent handoff (skills/memory/session-capture) should mention the plan-id so the
   receiving agent can run `vibe-session-catchup` immediately.
 
 ## Failure modes

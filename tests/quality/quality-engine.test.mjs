@@ -14,7 +14,7 @@ const files = [
   'scripts/quality-engine.mjs',
   'scripts/quality-scorecard-report.mjs',
   'commands/vibe-quality-engine.md',
-  'commands/vibe-quality-rubric.md',
+  'commands/vibe-review.md (replaced vibe-quality-rubric v2.17)',
   'commands/vibe-quality-gate.md',
 ];
 

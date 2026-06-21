@@ -9,7 +9,7 @@ tags:
 status: stable
 ---
 
-# Philosophy of Software Design Skill
+# Software-Design-Philosophy Prompt
 
 ## Purpose
 

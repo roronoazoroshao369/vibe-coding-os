@@ -97,6 +97,3 @@ For any user-facing or latency-sensitive change:
 - `skills/core/quality-execution-contract/SKILL.md`
 - `skills/core/adversarial-code-review/SKILL.md`
 - `skills/core/adaptive-prompt-selection/SKILL.md`
-- `skills/core/observability-design/SKILL.md` — questions-before-signals (downstream consumer of quality-engine output)
-- `templates/performance-budget-template.md` — performance budget template
-- `commands/vibe-perf-budget.md` — perf budget command

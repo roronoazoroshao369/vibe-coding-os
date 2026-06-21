@@ -10,7 +10,7 @@ Upstream improve-codebase-architecture, zoom-out, and prototype concepts.
 
 ## Local implementation
 
-Implemented by `skills/core/improve-codebase-architecture/SKILL.md`, `skills/core/zoom-out-system-context/SKILL.md`, `skills/core/prototype-before-commitment/SKILL.md`, related commands, templates, and workflow docs.
+Implemented by `skills/core/improve-codebase-architecture/SKILL.md`, `skills/core/brainstorming/SKILL.md`, `skills/core/prototype-before-commitment/SKILL.md`, related commands, templates, and workflow docs.
 
 ## Must-have behavior
 

@@ -39,8 +39,8 @@
 | receiving-code-review | `skills/core/receiving-code-review/SKILL.md`, `commands/vibe-receive-review.md` |
 | finishing-a-development-branch | `skills/core/finishing-a-development-branch/SKILL.md`, `commands/vibe-finish-branch.md`, related to `commands/vibe-merge.md` |
 | systematic-debugging | `skills/core/systematic-debugging/SKILL.md`, `commands/vibe-debug.md` |
-| verification-before-completion | `skills/core/verification-before-completion/SKILL.md`, aligned with `skills/core/verification-before-done/SKILL.md`, surfaced by `commands/vibe-verify.md` |
-| writing-skills | `skills/meta/writing-skills/SKILL.md`, `commands/vibe-write-skill.md` |
+| verification-before-done | `skills/core/verification-before-done/SKILL.md`, surfaced by `commands/vibe-verify.md` |
+| writing-skills | `skills/meta/write-reusable-skill/SKILL.md`, `commands/vibe-write-skill.md` |
 | using-superpowers | `skills/meta/using-vibe-coding-os/SKILL.md`, `docs/workflows/superpowers-inspired-workflow.md`, `commands/vibe-init.md` |
 
 ## Local mapping

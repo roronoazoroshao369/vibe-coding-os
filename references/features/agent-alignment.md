@@ -10,7 +10,7 @@ Ensure agents align on intent, constraints, domain terms, decisions, and setup b
 
 ## Local implementation
 
-Implemented through `skills/core/grill-user-before-building/SKILL.md`, `skills/core/grill-with-docs/SKILL.md`, `skills/meta/setup-project-agent-skills/SKILL.md`, `skills/meta/write-reusable-skill/SKILL.md`, and commands `vibe-setup-skills`, `vibe-grill-me`, `vibe-grill-with-docs`, `vibe-write-skill`.
+Implemented through `skills/core/grill-user-before-building/SKILL.md` (Phase 2 docs-aware subsumes the former `grill-with-docs`), `skills/meta/using-vibe-coding-os/SKILL.md`, `skills/meta/write-reusable-skill/SKILL.md`, and commands `vibe-setup-skills`, `vibe-grill-me`, `vibe-grill-with-docs`, `vibe-write-skill`.
 
 ## Must-have behavior
 

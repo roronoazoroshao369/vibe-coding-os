@@ -84,8 +84,8 @@ MAX_RESULTS=10 node scripts/skill-content-search.mjs "secret"
 
 ## Cross-references
 
-- See `skills/core/quality-shield/SKILL.md` for the workflow that often follows discovery
-- See `skills/core/quality-shield/SKILL.md` for a higher-level repo overview
+- See `skills/core/quality-execution-contract/SKILL.md` for the workflow that often follows discovery
+- See `skills/core/quality-execution-contract/SKILL.md` for a higher-level repo overview
 - See `commands/vibe-memory-search.md` for semantic memory search (different scope)
 - See `scripts/build-reference-index.mjs` for the full reference index builder
 

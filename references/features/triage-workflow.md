@@ -10,7 +10,7 @@ Upstream triage role concept; local triage template.
 
 ## Local implementation
 
-Implemented by `skills/core/triage-workflow/SKILL.md`, `commands/vibe-triage.md`, and `templates/triage-template.md`.
+Implemented by `skills/core/triage-workflow/SKILL.md`, `commands/vibe-plan.md (replaced vibe-triage v2.17)`, and `templates/triage-template.md`.
 
 ## Must-have behavior
 

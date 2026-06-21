@@ -80,7 +80,7 @@ Savings_share = savings / current_cost × 100
 
 ### Cross-file overlap detection
 
-- **Same instruction in 3+ files** → flag. Example: "Run verification before claiming completion" appearing in `verification-before-completion`, `quality-rubric`, `implementer-agent`, and `review-before-merge` means 3 of those should link to the canonical statement in the first file.
+- **Same instruction in 3+ files** → flag. Example: "Run verification before claiming completion" appearing in `verification-before-done`, `quality-rubric`, `implementer-agent`, and `review-before-merge` means 3 of those should link to the canonical statement in the first file.
 - **Same failure mode in 2+ meta files** → flag. Meta skills that share failure modes should define them once in a shared reference or in the canonical meta skill, then cross-reference.
 
 ### Heuristic cost model for context budgeting
@@ -123,14 +123,14 @@ A context-budget report listing flagged files with reason, token-cost estimates,
 
 ## Works with
 
-- `skills/meta/writing-skills/SKILL.md` — token-budget and composability guidance complements this audit.
-- `skills/meta/instinct-extraction/SKILL.md` — instinct store entries should respect context budgets too.
+- `skills/meta/write-reusable-skill/SKILL.md` — token-budget and composability guidance complements this audit.
+- `skills/meta/context-budget/SKILL.md` — instinct store entries should respect context budgets too.
 - `commands/vibe-context-audit.md` — CLI to run a structured context-budget audit against these heuristics.
 - `references/features/continuous-learning.md` — continuous learning includes periodic context budget reviews.
 
 ## Ghi chú tiếng Việt
 
-Kỹ năng này giữ framework gọn nhẹ: kiểm tra mức tiêu thụ context của skills/commands/templates. Ngưỡng cờ: file `> 400 dòng`, frontmatter/description `> 30 từ`, và các bản sao gần như trùng. Thêm ước lượng token (30-40 tokens/dòng tùy loại), phát hiện trùng lặp chéo file, và mô hình chi phí heuristic (~28K token cho framework). Xuất báo cáo tiết kiệm token theo thứ tự ưu tiên. File liên quan: `skills/meta/write-reusable-skill/SKILL.md`, `skills/meta/instinct-extraction/SKILL.md`.
+Kỹ năng này giữ framework gọn nhẹ: kiểm tra mức tiêu thụ context của skills/commands/templates. Ngưỡng cờ: file `> 400 dòng`, frontmatter/description `> 30 từ`, và các bản sao gần như trùng. Thêm ước lượng token (30-40 tokens/dòng tùy loại), phát hiện trùng lặp chéo file, và mô hình chi phí heuristic (~28K token cho framework). Xuất báo cáo tiết kiệm token theo thứ tự ưu tiên. File liên quan: `skills/meta/write-reusable-skill/SKILL.md`, `skills/meta/context-budget/SKILL.md`.
 
 ## Nguồn cảm hứng / Inspiration
 

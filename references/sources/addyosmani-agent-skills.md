@@ -37,11 +37,11 @@
 
 | Feature | Why it matters | Local equivalent | Status | Target local files |
 | --- | --- | --- | --- | --- |
-| doubt-driven-development | In-flight posture challenge with Loading Constraints + anti-rationalization table | `skills/core/critique-pass-protocol/` (single-shot) | gap | skills/core/doubt-driven-development/SKILL.md; commands/vibe-doubt.md; references/features/doubt-driven-development.md |
-| observability-and-instrumentation | "Questions before signals" framework + metric/log/trace trade-off table | `skills/core/quality-telemetry/` (metrics only) | gap | skills/core/observability-design/SKILL.md; commands/vibe-observability.md; templates/observability-plan-template.md |
-| deprecation-and-migration | Compulsory vs Advisory classification, 5 pre-deprecation questions, sunset lifecycle | (none) | gap | skills/core/deprecation-migration/SKILL.md; commands/vibe-deprecate.md; commands/vibe-migrate.md; templates/deprecation-notice-template.md |
+| ~~doubt-driven-development~~ | ~~In-flight posture challenge with Loading Constraints + anti-rationalization table~~ | removed-v2.17 |
+| ~~observability-and-instrumentation~~ | ~~"Questions before signals" framework + metric/log/trace trade-off table~~ | removed-v2.17 |
+| ~~deprecation-and-migration~~ | ~~Compulsory vs Advisory classification, 5 pre-deprecation questions, sunset lifecycle~~ | removed-v2.17 |
 | security-and-hardening | Threat model first (trust boundaries → STRIDE → abuse cases) | `skills/checklists/auth-quality/` (review-only) | gap | skills/core/threat-model-driven-security/SKILL.md; commands/vibe-threat-model.md; templates/threat-model-template.md |
-| source-driven-development | DETECT→FETCH→IMPLEMENT→CITE for framework code | `skills/core/grill-with-docs/` (challenges with docs) | gap | NOT ADOPTED in v2.11.0 (out of scope; tracked for future) |
+| source-driven-development | DETECT→FETCH→IMPLEMENT→CITE for framework code | `skills/core/grill-user-before-building/` (Phase 2 docs-aware) | gap | NOT ADOPTED in v2.11.0 (out of scope; tracked for future) |
 | performance-optimization (CWV) | Core Web Vitals target table + MEASURE→IDENTIFY→FIX→VERIFY→GUARD 5-step loop | `skills/core/quality-engine/` | enhance | skills/core/quality-engine/SKILL.md; templates/performance-budget-template.md; commands/vibe-perf-budget.md |
 | interview-me (95% loop) | Stop condition (≥95% confidence) + single-question cadence | `skills/core/grill-user-before-building/` | enhance | skills/core/grill-user-before-building/SKILL.md; references/features/clarification-loop.md |
 | incremental-implementation (vertical slices) | Build 1 complete path DB→API→UI, test, commit, next | `skills/core/task-breakdown-from-plan/` (decomposes by file) | gap | skills/core/vertical-slicing/SKILL.md; commands/vibe-slice.md; templates/slice-spec-template.md |

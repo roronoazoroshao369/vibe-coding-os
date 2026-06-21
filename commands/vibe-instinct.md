@@ -78,7 +78,7 @@ Stop if the session summary is empty or unavailable (nothing to extract from). S
 
 ## Works with
 
-- `skills/meta/instinct-extraction/SKILL.md` — the extraction workflow this command automates.
+- `skills/meta/context-budget/SKILL.md` — the extraction workflow this command automates.
 - `skills/meta/context-budget/SKILL.md` — instinct store entries should respect context budgets.
 - `templates/instinct-template.md` — structured format for instinct records.
 - `commands/vibe-session-capture.md` — session observations that feed instinct extraction.

@@ -10,7 +10,7 @@ Upstream handoff productivity concept; local memory system.
 
 ## Local implementation
 
-Implemented by `skills/memory/agent-handoff/SKILL.md`, `commands/vibe-handoff.md`, and `templates/handoff-template.md`.
+Implemented by `skills/memory/session-capture/SKILL.md`, `commands/vibe-handoff.md`, and `templates/handoff-template.md`.
 
 ## Must-have behavior
 

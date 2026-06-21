@@ -53,5 +53,5 @@ Stop and ask when the scope or acceptance criteria are unavailable, the diff inc
 - `skills/agents/reviewer-agent/SKILL.md`
 - `skills/core/review-before-merge/SKILL.md`
 - `skills/core/verification-before-done/SKILL.md`
-- `skills/memory/privacy-filter/SKILL.md`
+- `skills/memory/project-memory/SKILL.md`
 - `templates/review-template.md`

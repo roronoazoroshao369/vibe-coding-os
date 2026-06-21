@@ -89,7 +89,7 @@ data-loss-prevention (DLP) discipline to context management:
 - **Flag rules** permit access but log for post-session audit review.
 
 Policies declare a scope (project, directory, task, or session) and a default mode
-(restrictive or permissive). The integration with `skills/memory/privacy-filter/SKILL.md`
+(restrictive or permissive). The integration with `skills/memory/project-memory/SKILL.md`
 creates a defense-in-depth pipeline: context policy gates what files enter, then the
 privacy filter sanitizes the loaded content.
 

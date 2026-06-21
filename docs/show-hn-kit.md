@@ -28,7 +28,7 @@ https://github.com/roronoazoroshao369/vibe-coding-os
 **How it works:**
 1. Clone the repo (or `npm install -g vibe-coding-os`)
 2. Run the adapter for your tool: `npx vibe-adapter install claude`
-3. Use skills: `@skill: quality-shield` (Claude Code) or `/vibe-brainstorm` (Cursor)
+3. Use skills: `@skill: quality-execution-contract` (Claude Code) or `/vibe-quality-gate` (Cursor)
 4. Every change goes through validation before it ships
 
 **Why it matters:**
@@ -75,7 +75,7 @@ A markdown one-pager that can be used as a README for the Show HN comment thread
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os.git
 cd vibe-coding-os
-node scripts/install-skill.mjs quality-shield --dry-run
+node scripts/install-skill.mjs quality-execution-contract --dry-run
 node scripts/install-skill.mjs docs-author
 ```
 

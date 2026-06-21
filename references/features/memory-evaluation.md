@@ -12,7 +12,7 @@ Define quality checks for recall usefulness, freshness, and safety for Vibe Codi
 
 ## Local implementation
 
-Local implementation is documentation and workflow-first: `skills/memory/memory-evaluation/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
+Local implementation is documentation and workflow-first: `skills/memory/memory-search/SKILL.md`, related commands, templates, adapter docs, and mappings. No hosted service, SDK, database, connector, or cloud account is required.
 
 ## Applied upstream ideas
 
@@ -67,7 +67,7 @@ MemScore is a Supermemory-inspired evaluation pattern that scores memory quality
 
 ### Local implementation
 
-The scoring rubric is implemented in `skills/memory/memory-evaluation/SKILL.md`:
+The scoring rubric is implemented in `skills/memory/memory-search/SKILL.md`:
 
 1. Score usefulness — did the memory change a decision, reduce search, or prevent a mistake?
 2. Score accuracy — was the cited source correct, current, and non-contradicted? (drives `accuracy%`)

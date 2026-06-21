@@ -1,5 +1,5 @@
 ---
-name: compact-agents-md-template
+name: agents-md-compact
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -15,7 +15,7 @@ sandbox:
 
 ---
 
-# Skill: Compact AGENTS.md Template
+# Skill: Agents-MD-Compact Template
 
 ## Purpose
 
