@@ -1,5 +1,58 @@
 # Changelog
 
+## [2.16.1] - 2026-06-21
+
+### Theme: Tier 1 — Close "Shipped but Unwired" Gaps
+
+**Tier 1 maintenance release — closes 7 "shipped but unwired" findings from post-v2.16.0 repo audit (3-panel council, 2026-06-21). No breaking changes.**
+
+#### Fixed
+- **T1 — Injection scan false positives:** Added `injection-allow:<label>` markers on 3 lines that legitimately quote security-pattern prose (ROADMAP-STATUS, panel-B-ai-safety ×2) and added `skills/core/INDEX.md` to the allowlist (auto-generated file would lose inline markers on regen).
+- **T2 — MCP server dead on fresh install:** Added `@modelcontextprotocol/sdk ^1.29.0` to `package.json` dependencies. `npm install` brings 92 packages. MCP server now starts cleanly on fresh checkout.
+- **T3 — 5 stale local branches:** Deleted `fix/v1.4.2-hardening-and-adoption`, `hotfix/v1.8.0-post-release-sync`, `release/v1.1.0`, `release/v1.2.0`, `release/v1.3.0`. All pre-v2.0, never re-merged into main.
+- **T4 — `vibe-spec` / `vibe-specify` bifurcation:** Deprecated `commands/vibe-specify.md` (now a redirect notice). Updated 18+ references across CLAUDE.md, README files, registry/prompts.json, commands/manifest.json, 5 docs/workflows files, 2 docs/skill-packs, agent-alignment-template, superpowers plan. `vibe-spec` is now the single spec command.
+- **T5 — `command-tools.mjs` dead code:** Wired 5 command tools (`vibe.spec`, `vibe.plan`, `vibe.review`, `vibe.memory`, `vibe.merge`) into the MCP server. Server now exposes **11 tools total** (6 runtime + 5 vibe commands).
+- **T6 — Skill/command count drift:** README claimed 149/116/118; on-disk is 148/120/110. Updated README.md and README.vi.md. Regenerated `commands/manifest.json` (was out of sync — claimed 108, had 120).
+- **T7 — `evaluate:all` dashboard sync:** Dashboard narrative count (805 expected) drifted from filesystem (803). Added `skills/core/INDEX.md` to injection allowlist, regenerated dashboard.
+
+#### Hooks
+- **SessionEnd hook schema fix:** Claude Code v2.1.92 rejected the legacy `{ decision, info }` output. Updated `.claude/hooks/session-end-audit-flush.mjs` to emit `{ continue: true, suppressOutput: false }` (current schema). Audit logging behavior unchanged.
+
+#### Validation
+- `npm run validate:all` → **38/38 PASS** (was 34/38 with 4 injection-scan + dashboard-sync fails)
+- `npm run smoke-test:cli` → **70/70 PASS**
+- `npm run smoke-test:adapters` → **10/10 PASS**
+- `npm run test:e2e` → **5/5 PASS**
+- `npm run smoke-test:runtime` → **PASS**
+- `npm run test:project-setup` → **10/10 PASS**
+- Live MCP server test → 11 tools (6 runtime + 5 vibe commands)
+- Live test with Claude Code → all suites green
+
+## [2.16.0] - 2026-06-20
+
+### Theme: Close the Gaps
+
+**Wave A — Security Wiring (Council of Security & Trust)**
+- RTL coverage 100% — 0/126 RTL holes.
+- Trust Scoring module (ADR 0004) — Adaptive Trust Levels per source.
+- `vibe-bypass-detect` command + script (`scripts/bypass-detect.mjs`).
+- 3 new security command tests.
+- 4 orphan-TODO cleanups.
+- 4 new validation gates.
+
+**Wave B — Skill Maturity + Community Signals**
+- YAML frontmatter sweep complete (149/149 skills, 109/109 templates).
+- Stale-skill policy active.
+- Adapter configs (Codex, Gemini, Cursor, Continue).
+- 20 per-skill examples.
+- 5 Vietnamese guides.
+
+**Key metrics**
+- `npm run validate:all` → 38/38 PASS
+- Injection counters → 97.37% coverage
+- Memory redaction → 60/60 tests
+- Security regression gate → PASS
+
 ## [2.15.0] - 2026-06-20
 
 ### Theme: Wire the Shield + Skill Maturity + Community Signals

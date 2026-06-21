@@ -13,11 +13,20 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.16.0):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.16.1):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
 
-**Latest:** v2.16.0 — Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates <!-- injection-allow:* -->
+**Latest:** v2.16.1 — Tier 1 — Close "Shipped but Unwired" Gaps — T1: injection-scan false positives resolved, T2: @modelcontextprotocol/sdk wired, T3: stale branches cleaned, T4: vibe-specify deprecated → vibe-spec, T5: command-tools.mjs wired (11 MCP tools), T6: skill/command count synced, T7: 38/38 gates. Live-tested with Claude Code. <!-- injection-allow:* -->
 
-### What's new in v2.16.0 — Close the Gaps
+### What's new in v2.16.1 — Close "Shipped but Unwired" Gaps
+
+**Tier 1 fixes** — from the post-v2.16.0 3-panel council audit:
+- 🛡 **T1** — 4 injection-scan false positives resolved
+- 🧩 **T2** — `@modelcontextprotocol/sdk ^1.29.0` added, MCP server now works on fresh install
+- 🗑 **T3** — 5 stale local branches deleted
+- 🔀 **T4** — `vibe-specify` deprecated, unified into `vibe-spec`
+- 🔌 **T5** — 14KB dead code `command-tools.mjs` wired into MCP server (11 tools total)
+- 📊 **T6** — README skill/command/template counts synced to disk
+- ✅ **T7** — 38/38 PASS, all smoke & E2E tests, live-tested with Claude Code
 
 **Wave A (Security):**
 - ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)

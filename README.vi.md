@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.16.0):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters
+**Bản phát hành hiện tại (v2.16.1):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters
 
-**Mới nhất:** v2.16.0 — Close the Gaps (Security Wiring — RTL 100%, Trust Scoring, bypass-detect, 3 security command tests, 4 orphan-TODO cleanups, 4 new gates) (Wire the Shield + Skill Maturity + Community Signals — Detect → Contain → Recover, injection counters 97.37% coverage, 60/60 redact tests, sandbox-marker convention, security regression gate). 38/38 gates PASS, 148 skills, 120 commands, 110 templates. <!-- injection-allow:* -->
+**Mới nhất:** v2.16.1 — Tier 1 — Close "Shipped but Unwired" Gaps — T1-T7 fixes: injection scan, MCP SDK, branch cleanup, spec unify, dead code wire, count sync, full test suite + live Claude Code test. 38/38 gates. <!-- injection-allow:* -->
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 
