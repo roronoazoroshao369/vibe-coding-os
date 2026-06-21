@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repo State Audit (Post-v2.16.0) — Council Synthesis</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #161b22;
+  --bg-card: #1c2128;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --yellow: #d29922;
+  --red: #f85149;
+  --purple: #bc8cff;
+  --orange: #ffa657;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  padding: 32px 16px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+h1, h2, h3 { color: var(--text); margin-bottom: 16px; line-height: 1.3; }
+h1 { font-size: 2.2rem; background: linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2 { font-size: 1.6rem; margin-top: 48px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 1.2rem; margin-top: 24px; color: var(--accent); }
+p, li { color: var(--text); margin-bottom: 8px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.hero {
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg-card));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.hero .verdict { font-size: 1.1rem; color: var(--text); margin-bottom: 16px; }
+.hero .verdict strong { color: var(--orange); }
+.hero ul { padding-left: 24px; margin-top: 12px; }
+.hero li { color: var(--text); margin-bottom: 6px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.stat:hover { transform: translateY(-2px); border-color: var(--accent); }
+.stat .label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat .value { font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-top: 8px; }
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.badge.green { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.4); }
+.badge.yellow { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.4); }
+.badge.red { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.4); }
+.badge.purple { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.4); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--bg-soft); color: var(--text); font-weight: 600; font-size: 0.9rem; }
+td { color: var(--text); font-size: 0.92rem; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(88,166,255,0.04); }
+code { background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", Monaco, Consolas, monospace; font-size: 0.88em; color: var(--orange); }
+pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+  font-family: "SF Mono", Monaco, Consolas, monospace;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+.panel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.panel-card.b { border-left-color: var(--purple); }
+.panel-card.c { border-left-color: var(--orange); }
+.panel-card .persona { font-style: italic; color: var(--text-dim); margin-bottom: 8px; }
+.panel-card .score { font-size: 1.8rem; font-weight: 700; margin: 8px 0; }
+.tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.tier-card.tier-1 { border-left: 4px solid var(--red); }
+.tier-card.tier-2 { border-left: 4px solid var(--orange); }
+.tier-card.tier-3 { border-left: 4px solid var(--yellow); }
+.tier-card .tier-label { font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.tier-card.tier-1 .tier-label { color: var(--red); }
+.tier-card.tier-2 .tier-label { color: var(--orange); }
+.tier-card.tier-3 .tier-label { color: var(--yellow); }
+.tier-card ol { padding-left: 24px; }
+.tier-card li { margin-bottom: 8px; }
+.decision-box {
+  background: linear-gradient(135deg, rgba(188,140,255,0.1), rgba(88,166,255,0.1));
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.decision-box h3 { color: var(--purple); }
+details {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 8px 0;
+}
+details summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+details[open] summary { margin-bottom: 12px; }
+.footer { color: var(--text-dim); font-size: 0.85rem; text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); }
+.section-label { display: inline-block; padding: 2px 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 4px; font-size: 0.8rem; color: var(--text-dim); margin-right: 8px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.dot.green { background: var(--green); }
+.dot.yellow { background: var(--yellow); }
+.dot.red { background: var(--red); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>🏛️ Repo State Audit (Post-v2.16.0) — Council Synthesis</h1>
+  <p class="verdict">
+    <strong>Verdict (6/10):</strong> v2.16.0 là framework có xương sống tốt (security, validation pipeline, atomic stores, real task leases) nhưng 3 lớp friction chồng chéo: day-1 discoverability, runtime production-readiness, solo-maintainer sustainability.
+    <br><strong>Score: 6/10 → 8/10 nếu áp dụng Tier 1 + Tier 2.</strong>
+  </p>
+  <ul>
+    <li><strong>Cross-panel convergence (3/3 panels):</strong> "Shipped but unwired" anti-pattern vẫn còn — <code>command-tools.mjs</code> dead code, MCP SDK thiếu, <code>vibe-spec</code>/<code>vibe-specify</code> chẻ đôi, ROADMAP hứa nhưng CHANGELOG rỗng.</li>
+    <li><strong>Day-1 user mất 9 phút (may mắn)</strong> để tìm 1 skill OAuth vì không có goal-finder, <code>skill-decision-guide.md</code> không link từ README, doc/CLI drift về spec destination.</li>
+    <li><strong>Runtime "production-ready trên giấy" nhưng MCP server fail on fresh install</strong> — <code>@modelcontextprotocol/sdk</code> không có trong <code>package.json</code>, approval gate chỉ enforce qua 1 call site, privacy redactor không apply cho task/checkpoint.</li>
+  </ul>
+  <p style="margin-top: 16px;">
+    <span class="badge green">Head SHA: 5dd1f18</span>
+    <span class="badge purple">Version 2.16.0</span>
+    <span class="badge yellow">2026-06-21</span>
+  </p>
+</div>
+
+<h2>📊 Stats Hero</h2>
+<div class="stats-grid">
+  <div class="stat"><div class="label">Validation Gates</div><div class="value">38</div></div>
+  <div class="stat"><div class="label">Wall Time</div><div class="value">18.3s</div></div>
+  <div class="stat"><div class="label">Gate Pass</div><div class="value" style="color:var(--green)">34 ✅</div></div>
+  <div class="stat"><div class="label">Gate Fail</div><div class="value" style="color:var(--red)">4 ❌</div></div>
+  <div class="stat"><div class="label">Skills</div><div class="value">~108</div></div>
+  <div class="stat"><div class="label">Commands</div><div class="value">108</div></div>
+  <div class="stat"><div class="label">Templates</div><div class="value">128</div></div>
+  <div class="stat"><div class="label">Scripts</div><div class="value">117</div></div>
+  <div class="stat"><div class="label">Orphan Templates</div><div class="value" style="color:var(--yellow)">38/111</div></div>
+  <div class="stat"><div class="label">Deps Cycles</div><div class="value" style="color:var(--green)">0</div></div>
+  <div class="stat"><div class="label">Bus Factor</div><div class="value" style="color:var(--red)">1/5</div></div>
+  <div class="stat"><div class="label">Weekly Effort</div><div class="value" style="color:var(--orange)">14–18h</div></div>
+</div>
+
+<h2>🎭 Three Panels — Verdict riêng</h2>
+
+<div class="panel-card">
+  <h3>Panel A — Newcomer Onboarding <span class="badge yellow">5/10</span></h3>
+  <p class="persona">Day-1 dev vừa <code>npm install</code>, muốn add OAuth vào Express app, skeptical với overengineered frameworks.</p>
+  <ul>
+    <li><strong>9-min-by-luck skill discovery</strong> — <code>grep -rE "oauth|express" skills/</code> trả về 0 actionable match</li>
+    <li><strong>Spec command bifurcation</strong> — <code>vibe-spec</code> vs <code>vibe-specify</code> 90% identical</li>
+    <li><strong>Doc/CLI destination drift</strong> — <code>FIRST-WORKFLOW.md:114</code> nói <code>docs/specs/&lt;name&gt;.md</code>; <code>scripts/vibe-cli.mjs:649</code> ghi <code>SPEC.md</code></li>
+    <li><code>vibe-debug.md</code> chỉ 33 dòng vs peers 47–60</li>
+    <li>README/FAQ/disk counts disagree (149 / 148 / 108)</li>
+    <li><code>skill-decision-guide.md</code> không link từ README</li>
+  </ul>
+  <p style="margin-top:12px; color:var(--text-dim); font-style:italic;">Workflow trace (10 bước add OAuth): 22 phút tới usable spec; working OAuth flow không reach được trong 1 session.</p>
+</div>
+
+<div class="panel-card b">
+  <h3>Panel B — Runtime Realism <span class="badge yellow">6/10</span></h3>
+  <p class="persona">Senior platform engineer @ 50-engineer org, hỏi "có production-deployable không?"</p>
+  <table>
+    <thead><tr><th>Claimed</th><th>Code reality</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Atomic JSON store</td><td>PID-suffixed tmp + rename</td><td><span class="badge yellow">Same-process only</span></td></tr>
+      <tr><td>Memory retention/stale</td><td><code>stale</code> trong docstring, no TTL code</td><td><span class="badge yellow">Doc lies</span></td></tr>
+      <tr><td>Task store w/ claim/lease</td><td>Real claim/lease + TTL + reaper</td><td><span class="badge green">Real</span></td></tr>
+      <tr><td>MCP server (Claude Code)</td><td><code>@modelcontextprotocol/sdk</code> không có</td><td><span class="badge red">Broken</span></td></tr>
+      <tr><td><code>command-tools.mjs</code> (5 tools)</td><td>Zero importers — dead code</td><td><span class="badge red">Unwired</span></td></tr>
+      <tr><td>Approval gate</td><td>Chỉ fire trong MCP server</td><td><span class="badge yellow">Loophole</span></td></tr>
+      <tr><td>Privacy redactor everywhere</td><td>Không apply cho task/checkpoint</td><td><span class="badge red">Blind spots</span></td></tr>
+      <tr><td>Installer idempotent</td><td><code>.mcp.json</code> write non-atomic</td><td><span class="badge yellow">Partial</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="panel-card c">
+  <h3>Panel C — Maintainer Sustainability <span class="badge yellow">5/10</span></h3>
+  <p class="persona">Burned-out solo maintainer, 16 minor releases trong 6 tuần.</p>
+  <ul>
+    <li>✅ 38 gates / 18.3s · ✅ 0 cycles trong skill-deps · ✅ 0.16% TODO/FIXME debt</li>
+    <li>🟠 101/117 scripts không ai reference (cognitive load)</li>
+    <li>🟠 38/111 orphan templates · 10/152 registry labels disagree với disk</li>
+    <li>🔴 <code>package.json</code> empty <code>{}</code> — <code>npm run validate</code> không tồn tại</li>
+    <li>🔴 Bus factor 1/5 — <code>CONTRIBUTING-SKILLS.md</code> chỉ 4 dòng</li>
+    <li>🔴 5 stale local branches pre-v2.0</li>
+    <li>🔴 ROADMAP promises "Expert Mode" + "AI Testing Suite" — CHANGELOG <code>[Unreleased]</code> rỗng</li>
+  </ul>
+</div>
+
+<h2>🔗 Cross-Panel Themes (flagged by 2+ panels)</h2>
+<table>
+  <thead><tr><th>Theme</th><th>A</th><th>B</th><th>C</th><th>Convergence</th></tr></thead>
+  <tbody>
+    <tr><td>Shipped-but-unwired anti-pattern</td><td>✅</td><td>✅</td><td>✅</td><td><span class="badge red">3-panel</span></td></tr>
+    <tr><td>README/registry drift</td><td>✅</td><td>—</td><td>✅</td><td><span class="badge yellow">2-panel</span></td></tr>
+    <tr><td>Doc/code drift</td><td>✅</td><td>✅</td><td>—</td><td><span class="badge yellow">2-panel</span></td></tr>
+    <tr><td>"Where do I start?" gap</td><td>✅</td><td>✅</td><td>✅</td><td><span class="badge red">3-panel</span></td></tr>
+    <tr><td>Single-author fragility</td><td>—</td><td>✅</td><td>✅</td><td><span class="badge yellow">2-panel</span></td></tr>
+  </tbody>
+</table>
+<p style="margin-top:12px; color:var(--text-dim); font-style:italic;">
+  <strong>Headline:</strong> "Shipped but unwired" là highest-leverage finding. v2.15.0 ("Wire the Shield") + v2.16.0 ("Close the Gaps") chưa chạm tới hết: MCP SDK, command-tools.mjs, spec destination, registry labels.
+</p>
+
+<h2>📋 Coverage Matrix (Pain × Solution × Status)</h2>
+<p>Aggregate: <span class="badge green">1 ✅</span> <span class="badge yellow">7 🟡</span> <span class="badge red">10 ❌</span> = <strong>~44% has solution</strong>. Trong 10 unsolved, <strong>7 cái là 1-day fixes</strong>.</p>
+<table>
+  <thead><tr><th>Pain point</th><th>Solution</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>"Which skill for OAuth?"</td><td><code>vibe find "&lt;goal&gt;"</code> + tag-index</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>Spec command bifurcation</td><td>Delete one, add alias</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>Markdown-prompt doesn't bind template</td><td>Add <code>## Template</code> section</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>Spec destination drift</td><td>Pick <code>docs/specs/&lt;name&gt;.md</code>, update CLI</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td><code>vibe-debug</code> undersized</td><td>Expand to 80–120 lines</td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td>README/FAQ/disk count drift</td><td><code>npm run count:skills|commands|templates</code></td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td><code>skill-decision-guide</code> not linked</td><td>One line in README + QUICKSTART</td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td><strong>MCP server dead on install</strong></td><td>Add <code>@modelcontextprotocol/sdk</code></td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td><code>command-tools.mjs</code> dead code</td><td>Wire or delete</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>Approval gate không trong tmux-runner</td><td><code>withApprovalGate</code> in launchSession</td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td>Privacy không trong task/checkpoint</td><td><code>redactObject</code> in stores</td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td>Atomic <code>.mcp.json</code> writes</td><td>Reuse <code>fs-store.mjs</code> pattern</td><td><span class="badge green">Solved (not reused)</span></td></tr>
+    <tr><td><code>package.json</code> empty</td><td>Restore <code>scripts.validate</code></td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td>5 stale branches</td><td><code>git branch -D</code></td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>Bus factor 1/5</td><td><code>MAINTAINERS.md</code></td><td><span class="badge yellow">Partial</span></td></tr>
+    <tr><td>Injection gate regress on own reports</td><td>Per-file allowlist</td><td><span class="badge red">Unsolved</span></td></tr>
+    <tr><td>ROADMAP vs CHANGELOG drift</td><td>Ship or mark deferred</td><td><span class="badge red">Unsolved</span></td></tr>
+  </tbody>
+</table>
+
+<h2>🏆 Top 10 Recommendations (Tiered)</h2>
+
+<div class="tier-card tier-1">
+  <div class="tier-label">🔴 Tier 1 — DO FIRST (1 dev-day total)</div>
+  <ol>
+    <li><strong>Restore <code>package.json</code> scripts.validate</strong> → <code>node scripts/validate-all.mjs</code> — 1 line (Panel C)</li>
+    <li><strong>Add <code>@modelcontextprotocol/sdk</code></strong> to devDependencies — ~30 min (Panel B)</li>
+    <li><strong>Delete 5 stale branches</strong> (1 PR) — 5 min (Panel C)</li>
+    <li><strong>Per-file injection allowlist</strong> cho <code>docs/reports/council/</code> + <code>docs/security/</code> — 1 hr (Panel C)</li>
+    <li><strong>Unify <code>vibe-spec</code> + <code>vibe-specify</code></strong> — 1 hr (Panel A)</li>
+    <li><strong>Wire or delete <code>command-tools.mjs</code></strong> — 30 min (Panel B)</li>
+    <li><strong>Reconcile spec destination</strong> — pick <code>docs/specs/&lt;name&gt;.md</code>, update CLI — 1 hr (Panel A)</li>
+  </ol>
+</div>
+
+<div class="tier-card tier-2">
+  <div class="tier-label">🟠 Tier 2 — DO NEXT (1 dev-week)</div>
+  <ol start="8">
+    <li><strong>Codify <code>MAINTAINERS.md</code></strong> — closes bus factor (Panel C)</li>
+    <li><strong>Apply <code>redactObject</code> to task/checkpoint stores</strong> + add <code>validate:privacy-coverage</code> gate (Panel B)</li>
+    <li><strong><code>vibe find "&lt;goal&gt;"</code> command</strong> — NL-style goal matching (Panel A)</li>
+  </ol>
+</div>
+
+<div class="tier-card tier-3">
+  <div class="tier-label">🟡 Tier 3 — DEFER (post-v2.18)</div>
+  <ul>
+    <li>Tag-based skill browser</li>
+    <li>Single-source count script</li>
+    <li>Brownfield spec auto-detection</li>
+    <li>Ship "Expert Mode" + "AI Testing Suite" hoặc mark deferred</li>
+    <li>End-to-end state recovery (snapshot → replay)</li>
+  </ul>
+</div>
+
+<div class="decision-box">
+  <h3>🎬 One-Question Decision</h3>
+  <p style="font-size: 1.05rem; margin: 12px 0;">
+    <strong>Ship v2.17.0 as a MAINTENANCE-ONLY release</strong> (Tier 1 + Tier 2, ~2 dev-weeks), then declare 4-week feature freeze.
+  </p>
+  <p><strong>Lý do:</strong> Mọi Tier 1 item đều là removal, unification, hoặc codification — <strong>không phải new feature</strong>. Audit's #1 cross-panel finding là "shipped-but-unwired". Adding more skills/commands/templates sẽ deepen 117-script surface và 152-skill discoverability wall.</p>
+  <p style="margin-top:8px;"><strong>Counter-argument:</strong> Pure maintenance release không generate adoption signals. Nhưng v2.15.0 + v2.16.0 đều là consolidation themes và shipped substantive engineering work. v2.17.0 closing "shipped-but-unwired" anti-pattern là <strong>same theme continued</strong>.</p>
+</div>
+
+<h2>📁 Files trong council audit này</h2>
+<table>
+  <thead><tr><th>File</th><th>Lines</th><th>Panel</th></tr></thead>
+  <tbody>
+    <tr><td><code>repo-state-panel-A-newcomer-onboarding.md</code></td><td>171</td><td>Newcomer UX</td></tr>
+    <tr><td><code>repo-state-panel-B-runtime-realism.md</code></td><td>~150</td><td>Runtime production</td></tr>
+    <tr><td><code>repo-state-panel-C-maintainer-sustainability.md</code></td><td>~150</td><td>Solo maintainer load</td></tr>
+    <tr><td><code>repo-state-COUNCIL-SYNTHESIS.md</code></td><td>~250</td><td>Cross-panel synthesis</td></tr>
+    <tr><td><code>repo-state-deep-dive.md</code></td><td>~280</td><td>English deep-dive</td></tr>
+    <tr><td><code>repo-state-SUMMARY-vi.md</code></td><td>~200</td><td>Vietnamese summary</td></tr>
+    <tr><td><code>repo-state-deep-dive.html</code></td><td>(this file)</td><td>Visual deliverable</td></tr>
+  </tbody>
+</table>
+<p style="margin-top: 12px; color: var(--text-dim); font-style: italic;">
+  Tổng: 7 files, ~1300 lines, 74 file-reads across 3 panels.
+</p>
+
+<div class="footer">
+  Generated by Hermes Council Audit · 2026-06-21 · AI-Generated · Human-Reviewed<br>
+  <a href="https://github.com/vibe-coding-os">vibe-coding-os</a> @ commit <code>5dd1f18</code>
+</div>
+
+</div>
+</body>
+</html>
