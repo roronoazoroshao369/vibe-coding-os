@@ -24,7 +24,7 @@
 | Ghi quyết định kỹ thuật | `architecture-decision-records` | — | Solo |
 | Tạo PRD từ context | `prd-from-context` | `vibe-to-prd` | Solo |
 | Slice issue nhỏ | `issue-slicing` | `vibe-to-issues` | Solo |
-| Phân loại task | `triage-workflow` | `vibe-triage` | Solo |
+| Phân loại task | `triage-workflow` | *removed in v2.17* | Solo |
 | Enhance legacy code | `brownfield-spec-enhancement` | `vibe-brownfield-spec` | Solo |
 | Viết skill mới | `write-reusable-skill` | `vibe-write-skill` | Meta |
 | Kiểm tra context budget | `context-budget` | — | Meta |

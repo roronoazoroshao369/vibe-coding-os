@@ -53,7 +53,7 @@ implementation-readiness gate clears. See `docs/workflows/spec-driven-developmen
 - Skills: `skills/core/spec-first-development` (includes what-before-how discipline),
   `skills/core/plan-from-spec`, `skills/core/task-breakdown-from-plan`,
   `skills/core/checkpoint-validation`, `skills/core/brownfield-spec-enhancement`,
-  `skills/core/creative-parallel-exploration`, `skills/core/project-constitution`.
+  `skills/core/brainstorming`, `skills/core/project-constitution`.
 - Commands: `commands/vibe-spec.md`, `commands/vibe-plan-from-spec.md`,
   `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`,
   `commands/vibe-checkpoints.md`, `commands/vibe-brownfield-spec.md`,

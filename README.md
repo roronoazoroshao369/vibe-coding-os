@@ -13,11 +13,19 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.16.1):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.17.0):** validate:all 10/10 gates PASS in 6.41s · **115 skills** · **116 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
 
-**Latest:** v2.16.1 — Tier 1 — Close "Shipped but Unwired" Gaps — T1: injection-scan false positives resolved, T2: @modelcontextprotocol/sdk wired, T3: stale branches cleaned, T4: vibe-specify deprecated → vibe-spec, T5: command-tools.mjs wired (11 MCP tools), T6: skill/command count synced, T7: 38/38 gates. Live-tested with Claude Code. <!-- injection-allow:* -->
+**Latest:** v2.17.0 — Expert Council Trim — 152→115 skills (−24%), 120→116 commands, 110→107 templates. +Autopilot runtime (policy.mjs + loop.mjs + 2 hooks), +3 new validators (imports/typecheck/scope-match), dropped 4 red gates, validation 3× faster (18.3s → 6.41s). Fixes: README stats synced, CHANGELOG added, manifest/plugin.json regenerated, 13+ doc files updated. <!-- injection-allow:* -->
 
-### What's new in v2.16.1 — Close "Shipped but Unwired" Gaps
+### What's new in v2.17.0 — Expert Council Trim
+
+**5-tier council audit implementation:**
+- 🗑 **T1** — 7 off-mission skills removed (observability-design, doubt-driven-development, install/deprecate/writing/skills, shared-domain-language, red-team-bypass)
+- 🔀 **T2** — 5 duplicate pairs merged (10→5): verification-before-completion→verification-before-done, quality-shield→quality-execution-contract, what-before-how→spec-first-development, grill-with-docs→grill-user-before-building, creative+zoom-out→brainstorming
+- ✂️ **T3** — memory/ trimmed 20→5, meta/ trimmed 12→3
+- 🤖 **T4** — Autopilot built: policy engine + execution loop + 2 adapters + 3 validators (validate-imports, validate-typecheck, validate-scope-match)
+- 🎭 **T5** — 5 theater features removed (quality-scorecard, trend dashboard/report, vibe-triage, vibe-quality-rubric)
+- 🔟 — Now 10 validators, all PASS in 6.41s
 
 **Tier 1 fixes** — from the post-v2.16.0 3-panel council audit:
 - 🛡 **T1** — 4 injection-scan false positives resolved

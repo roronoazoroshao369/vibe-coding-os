@@ -75,8 +75,8 @@ A markdown one-pager that can be used as a README for the Show HN comment thread
 ```bash
 git clone https://github.com/roronoazoroshao369/vibe-coding-os.git
 cd vibe-coding-os
-node scripts/install-skill.mjs quality-execution-contract --dry-run
-node scripts/install-skill.mjs docs-author
+node scripts/install-skill.mjs quality-execution-contract --dry-run  # legacy: replaced by `vibe-setup-skills` in v2.17
+node scripts/install-skill.mjs docs-author  # legacy: replaced by `vibe-setup-skills` in v2.17
 ```
 
 **For AI tool adapters:**

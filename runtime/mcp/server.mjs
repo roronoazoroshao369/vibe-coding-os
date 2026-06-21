@@ -15,10 +15,11 @@ import { createCheckpoint } from '../checkpoints/checkpoint-engine.mjs';
 import { withApprovalGate } from '../core/approval-gate.mjs';
 import { assertToolAllowed, defaultContracts } from '../core/tool-contract.mjs';
 import { buildCommandTools } from './command-tools.mjs';
+import { buildAutopilotTools } from './autopilot-tools.mjs';
 
 export const SDK_PACKAGE = '@modelcontextprotocol/sdk';
 export const SERVER_NAME = 'vibe-coding-os-runtime';
-export const SERVER_VERSION = '0.1.0';
+export const SERVER_VERSION = '2.17.0';
 
 export const INSTALL_INSTRUCTIONS = [
   `The MCP server adapter needs the ${SDK_PACKAGE} package, which is not installed.`,
@@ -168,6 +169,7 @@ export async function startServer({ root = process.cwd() } = {}) {
   const tools = [
     ...buildTools(store),
     ...buildCommandTools(root),
+    ...buildAutopilotTools(root),
   ].map((tool) => ({
     ...tool,
     handler: withApprovalGate(tool.handler, store, tool.name),

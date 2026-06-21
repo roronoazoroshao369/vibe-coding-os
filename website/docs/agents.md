@@ -34,7 +34,7 @@ For non-trivial software tasks, use the adapted workflow in `docs/workflows/supe
 ## Real Engineering Skills Layer
 
 - Use `skills/core/grill-user-before-building/SKILL.md` or `commands/vibe-grill-me.md` for ambiguous tasks before implementation.
-- Use `CONTEXT.md` and `skills/core/shared-domain-language/SKILL.md` before large changes that affect project terminology or workflow meaning.
+- Use `CONTEXT.md` and `memory/project-memory/SKILL.md` to maintain consistent project terminology.
 - Create ADRs with `templates/adr-template.md` for important design decisions; do not create fake ADRs for decisions not made.
 - Use `skills/core/prd-from-context/SKILL.md` and `skills/core/issue-slicing/SKILL.md` for non-trivial product or multi-slice work.
 - Use TDD for behavior changes and `skills/core/disciplined-diagnosis/SKILL.md` for bugs.

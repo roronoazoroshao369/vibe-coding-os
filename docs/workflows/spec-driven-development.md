@@ -14,7 +14,7 @@ or risky refactors. Skip the heavier phases for tiny, obvious edits.
 ## Step-by-step workflow
 
 1. **Constitution** — Confirm or establish project principles (`skills/core/project-constitution/SKILL.md`).
-2. **Specify** — Write the spec with goals, non-goals, user scenarios, and observable acceptance criteria; apply what-before-how.
+2. **Specify** — Write the spec with goals, non-goals, user scenarios, and observable acceptance criteria; apply spec-first-development (formerly what-before-how merged).
 3. **Checkpoint** — Clear the spec gate (acceptance criteria observable, assumptions recorded).
 4. **Plan** — Turn the spec into a plan with separated technical context and spec traceability.
 5. **Tasks** — Decompose the plan into ordered tasks with dependencies, parallel markers, and test-first ordering.
@@ -43,7 +43,7 @@ A spec, a plan, an ordered task list, checkpoint records, and verified implement
 
 ## Applied / Not applied
 
-- Applied: constitution → specify → plan → tasks → implement, what-before-how, readiness gate, checkpoint validation.
+- Applied: constitution → specify → plan → tasks → implement, spec-first-development (what-before-how merged), readiness gate, checkpoint validation.
 - Not applied: Specify CLI dependency, upstream command names, copied templates, agent installer.
 
 ## Maintenance notes

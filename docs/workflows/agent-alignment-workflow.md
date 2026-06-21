@@ -35,7 +35,7 @@ already covered by a spec).
 **Decision point:** If the task is trivial, stop here and proceed directly to
 implementation. No further alignment needed.
 
-### Phase 2 — Update durable context (grill-with-docs)
+### Phase 2 — Update durable context (docs-aware via grill-user-before-building)
 
 1. Read `CONTEXT.md` and existing ADRs.
 2. Identify decisions that affect durable project knowledge.
@@ -131,7 +131,7 @@ questions" as appropriate.
 
 - `commands/vibe-align.md` — the command entry point
 - `commands/vibe-grill-me.md`
-- `commands/vibe-grill-with-docs.md`
+- `commands/vibe-grill-me.md` (Phase 2 — grill docs via vibe-grill-me)
 - `commands/vibe-constitution.md`
 - `commands/vibe-spec.md`
 - `commands/vibe-analyze.md`
@@ -142,7 +142,7 @@ questions" as appropriate.
 
 ## Ghi chú tiếng Việt
 
-Workflow tổng hợp năm kỹ năng hiện có (grill-user, grill-with-docs, project-constitution) thành luồng xác nhận trước khi code. _shared-domain-language removed v2.17_ Phân cấp theo độ phức tạp task:
+Workflow tổng hợp các kỹ năng hiện có (grill-user-before-building Phase 2 docs-aware, project-constitution) thành luồng xác nhận trước khi code. Phân cấp theo độ phức tạp task:
 đơn giản bỏ qua, trung bình 1–3 giai đoạn, phức tạp đầy đủ 5 giai đoạn. Kết nối trực
 tiếp với workflow spec-first development. Không tạo kỹ năng mới — chỉ sắp xếp lại kỹ năng
 có sẵn.

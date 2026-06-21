@@ -26,11 +26,11 @@ Context updates, ADR draft/update, linked decisions.
 
 ## Related skills
 
-shared-domain-language, architecture-decision-records, project-memory.
+architecture-decision-records, project-memory.
 
 ## Related commands
 
-`vibe-grill-with-docs`, `vibe-handoff`, `vibe-memory`.
+`vibe-grill-me` (docs-aware), `vibe-handoff`, `vibe-memory`.
 
 ## Maintenance notes
 

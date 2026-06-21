@@ -28,7 +28,7 @@ Architecture review, prototype report if used, refactor plan, ADR candidates, va
 
 ## Related skills
 
-zoom-out-system-context, improve-codebase-architecture, prototype-before-commitment, architecture-decision-records.
+brainstorming (formerly zoom-out-system-context merged), improve-codebase-architecture, prototype-before-commitment, architecture-decision-records.
 
 ## Related commands
 

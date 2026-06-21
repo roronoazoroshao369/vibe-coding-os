@@ -8,7 +8,7 @@ description: "Explicit alignment check: grill, align on domain terms, record ADR
 
 Run a structured pre-work alignment flow that sequences existing skills into a coherent
 check before any coding begins. This is a meta-workflow command — it orchestrates
-`grill-user-before-building` (Phase 2 docs-aware subsumes the former `grill-with-docs`), and
+`grill-user-before-building` (Phase 2 docs-aware), and
 `project-constitution` rather than replacing them.
 
 ## When to use
@@ -33,7 +33,7 @@ typo fixes, or tasks already fully specced.
 4. Record assumptions that remain explicit instead of hidden.
 5. Output: clarified intent and open questions.
 
-### Step 2 — Grill with docs (`grill-with-docs`)
+### Step 2 — Grill with docs (Phase 2 — docs-aware via `grill-user-before-building`)
 
 1. Read `CONTEXT.md` and ADR index if present.
 2. Identify decisions that will affect durable project knowledge.
@@ -107,13 +107,13 @@ For simple tasks, skip directly to `vibe-spec`.
 ## Related skills
 
 - `skills/core/grill-user-before-building/SKILL.md`
-- `skills/core/grill-user-before-building/SKILL.md` (Phase 2 docs-aware, subsumes former `grill-with-docs`)
+- `skills/core/grill-user-before-building/SKILL.md` (Phase 2 docs-aware)
 - `skills/core/project-constitution/SKILL.md`
 
 ## Related commands
 
 - `commands/vibe-grill-me.md`
-- `commands/vibe-grill-with-docs.md` (docs-aware phase)
+- `commands/vibe-grill-me.md` (Phase 2 docs-aware phase)
 - `commands/vibe-constitution.md`
 - `commands/vibe-specify.md`
 

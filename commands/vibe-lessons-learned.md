@@ -71,7 +71,7 @@ Stop if the lessons log location is unclear and the user has not agreed to a dur
 - `skills/core/lessons-learned-db/SKILL.md` — the skill backing this command
 - `templates/lesson-entry-template.md` — standard entry shape for new lessons
 - `commands/vibe-diagnose.md` / `commands/vibe-debug.md` — root-cause analysis before logging a lesson
-- `commands/vibe-review.md` / `commands/vibe-review.md (replaced vibe-quality-rubric v2.17)` — review and quality checks that can surface repeatable patterns
+- `commands/vibe-review.md` (replaced vibe-quality-rubric v2.17) — review and quality checks that can surface repeatable patterns
 - `skills/core/disciplined-diagnosis/SKILL.md` — structured root-cause investigation
 - `skills/memory/project-memory/SKILL.md` — redaction and privacy review before persisting lessons
 

@@ -38,7 +38,7 @@ All mattpocock-inspired local skills plus existing spec/plan/review/verification
 
 ## Related commands
 
-`vibe-setup-skills`, `vibe-grill-me`, `vibe-grill-with-docs`, `vibe-to-prd`, `vibe-to-issues`, `vibe-tdd`, `vibe-diagnose`, `vibe-handoff`.
+`vibe-setup-skills`, `vibe-grill-me` (Phase 1 + Phase 2 docs-aware), `vibe-to-prd`, `vibe-to-issues`, `vibe-tdd`, `vibe-diagnose`, `vibe-handoff`.
 
 ## Maintenance notes
 

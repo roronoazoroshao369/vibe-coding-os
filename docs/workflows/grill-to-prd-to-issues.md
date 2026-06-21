@@ -26,11 +26,11 @@ Alignment summary, PRD, issue slices, open questions.
 
 ## Related skills
 
-grill-user-before-building, grill-with-docs, prd-from-context, issue-slicing.
+grill-user-before-building (Phase 2 docs-aware merged), prd-from-context, issue-slicing.
 
 ## Related commands
 
-`vibe-grill-me`, `vibe-grill-with-docs`, `vibe-to-prd`, `vibe-to-issues`.
+`vibe-grill-me` (Phase 1 + Phase 2 docs-aware), `vibe-to-prd`, `vibe-to-issues`.
 
 ## Maintenance notes
 

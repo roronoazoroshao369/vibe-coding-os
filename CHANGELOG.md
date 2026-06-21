@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.17.0] - 2026-06-21
+
+### Theme: Expert Council Trim
+
+**5-tier trim release — 152→115 skills (−24%), 120→116 commands, 110→107 templates. +Autopilot runtime, +3 new validators, validation 3× faster. No breaking changes.**
+
+#### Changed
+- **T1 — 7 off-mission skills removed:** `observability-design`, `doubt-driven-development`, `install-skill`, `deprecate-skill`, `writing-skills`, `shared-domain-language`, `red-team-bypass`. `guard-bypass-protocol` preserved per user override.
+- **T2 — 5 duplicate pairs merged (10→5):** `verification-before-completion` → `verification-before-done`, `quality-shield` → `quality-execution-contract`, `what-before-how` → `spec-first-development`, `grill-with-docs` → `grill-user-before-building`, `creative-parallel-exploration` + `zoom-out-system-context` → `brainstorming`.
+- **T3 — memory/ trimmed 20→5, meta/ trimmed 12→3:** Kept only `project-memory`, `session-capture`, `memory-compression`, `memory-search`, `memory-ingestion` in memory/. Kept only `write-reusable-skill`, `context-budget`, `using-vibe-coding-os` in meta/.
+- **T4 — Autopilot built:** `runtime/autopilot/policy.mjs` (206 lines, Policy class), `runtime/autopilot/loop.mjs` (135 lines, execution engine), `adapters/hooks/autopilot-hook.mjs` + `adapters/claude-code/autopilot-hook.mjs`, `commands/vibe-autopilot.md`.
+- **T5 — 5 theater features removed:** `scripts/quality-scorecard.mjs`, `quality-trend-dashboard.mjs`, `quality-trend-report.mjs`, `commands/vibe-triage.md`, `commands/vibe-quality-rubric.md`.
+- **+3 new validators:** `validate-imports.mjs` (533 imports, 142 files), `validate-typecheck.mjs` (141 files, 0 warnings), `validate-scope-match.mjs` (341 files, 0 violations). Pipeline from 4→10 validators.
+
+#### Fixed
+- **5 registry name mismatches** in `registry/skills.json` normalized (title-case entries → kebab-case to match directory names).
+- **7 skill heading violations** fixed for scope-match compliance.
+- **Neutralized stale paths** in historical council reports.
+- **13+ doc files** updated to remove references to deleted/merged skills.
+- **commands/manifest.json** purged: removed `vibe-quality-rubric`, `vibe-triage`; updated `new_in_v2_11_0` section.
+- **`.claude-plugin/plugin.json`** regenerated: version v2.17.0, deduplicated 7 entries, removed 6 missing skill dirs.
+- **README.md + README.vi.md** stats synced to 115/116/107; version bumped.
+- **package.json** version bumped to 2.17.0.
+
+#### Validation
+- `npm run validate:all` → **10/10 PASS in 6.41s** (was 18.3s, 3× faster)
+- 3 new validators added to `validate:all` chain
+- Cross-references verified across 771 narrative files
+
 ## [2.16.1] - 2026-06-21
 
 ### Theme: Tier 1 — Close "Shipped but Unwired" Gaps
