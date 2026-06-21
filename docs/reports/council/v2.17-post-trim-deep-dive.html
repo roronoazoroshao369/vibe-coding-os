@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>v2.17 Post-Trim Council Audit — Deep-Dive</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6;padding:20px;max-width:1200px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:16px;padding:40px 30px;margin-bottom:30px;border:1px solid #30363d}
+.hero h1{font-size:28px;margin-bottom:10px}
+.hero .verdict{font-size:16px;color:#8b949e;margin-bottom:20px}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600}
+.pill.green{background:#0d4429;color:#3fb950}
+.pill.yellow{background:#3d2e00;color:#d29922}
+.pill.red{background:#5c1d1d;color:#f85149}
+.pill.blue{background:#0c2d6b;color:#58a6ff}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;margin:20px 0}
+.stat{background:#161b22;border-radius:12px;padding:20px;text-align:center;border:1px solid #30363d}
+.stat-num{font-size:28px;font-weight:800;background:linear-gradient(90deg,#58a6ff,#3fb950);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:12px;color:#8b949e;margin-top:4px}
+.panel{background:#161b22;border-radius:12px;padding:24px;margin:20px 0;border-left:4px solid #58a6ff}
+.panel-a{border-left-color:#58a6ff}
+.panel-b{border-left-color:#3fb950}
+.panel-c{border-left-color:#d29922}
+.panel h2{font-size:18px;margin-bottom:15px}
+.panel h3{font-size:15px;color:#8b949e;margin:15px 0 8px}
+table{width:100%;border-collapse:collapse;margin:10px 0}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #21262d;font-size:13px}
+th{color:#8b949e;font-weight:600;font-size:12px;text-transform:uppercase}
+td{color:#c9d1d9}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.badge.solved{background:#0d4429;color:#3fb950}
+.badge.partial{background:#3d2e00;color:#d29922}
+.badge.unsolved{background:#5c1d1d;color:#f85149}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin:15px 0}
+.card{background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:18px}
+.card h4{font-size:14px;margin-bottom:8px}
+.card p{font-size:13px;color:#8b949e}
+.callout{border-radius:10px;padding:16px 20px;margin:15px 0}
+.callout.green{background:#0d4429;border:1px solid #238636}
+.callout.yellow{background:#3d2e00;border:1px solid #9e6a03}
+.callout.red{background:#5c1d1d;border:1px solid #da3633}
+.callout.blue{background:#0c2d6b;border:1px solid #1f6feb}
+.callout h3{margin-bottom:6px;font-size:14px}
+.callout p{font-size:13px}
+.tier{background:#161b22;border-radius:10px;padding:18px;margin:12px 0;border:1px solid #30363d}
+.tier h3{margin-bottom:10px}
+.tier ol{padding-left:20px}
+.tier li{margin:6px 0;font-size:13px}
+.tier li strong{color:#58a6ff}
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}
+.before-after .col{background:#0d1117;border-radius:10px;padding:18px;border:1px solid #30363d}
+.before-after .col h4{text-align:center;margin-bottom:12px}
+h2{font-size:20px;margin:30px 0 15px;color:#e6edf3}
+h3{font-size:16px;color:#c9d1d9}
+hr{border:none;border-top:1px solid #21262d;margin:30px 0}
+code{background:#21262d;padding:2px 6px;border-radius:4px;font-size:12px;font-family:'SF Mono',monospace}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>🔍 v2.17 Post-Trim — Expert Council Audit</h1>
+<p class="verdict">Repo trimmed 24%, validation 3× faster, all gates green — but 4 release-blockers + 13 stale docs + autopilot not wired to MCP.</p>
+<div class="pill-row">
+<span class="pill green">10/10 gates PASS</span>
+<span class="pill yellow">115 skills</span>
+<span class="pill blue">6.41s validation</span>
+<span class="pill red">4 blockers</span>
+</div>
+</div>
+
+<div class="stat-grid">
+<div class="stat"><div class="stat-num">115</div><div class="stat-label">Skills (was 152)</div></div>
+<div class="stat"><div class="stat-num">116</div><div class="stat-label">Commands</div></div>
+<div class="stat"><div class="stat-num">107</div><div class="stat-label">Templates</div></div>
+<div class="stat"><div class="stat-num">81</div><div class="stat-label">Scripts</div></div>
+<div class="stat"><div class="stat-num">6.41s</div><div class="stat-label">Validation (was 18.3s)</div></div>
+<div class="stat"><div class="stat-num">10/10</div><div class="stat-label">Gates pass</div></div>
+<div class="stat"><div class="stat-num">37</div><div class="stat-label">Skills removed</div></div>
+<div class="stat"><div class="stat-num">245</div><div class="stat-label">Files changed</div></div>
+</div>
+
+<hr>
+
+<h2>3 Expert Panels</h2>
+
+<div class="panel panel-a">
+<h2>Panel A — Newcomer / Day-1 UX 🔴</h2>
+<p>Simulated a first-time user. Hit wrong numbers in 30 seconds (README says v2.16.1, 148 skills). Found 13+ doc files referencing deleted/merged skills. Onboarding works if you read CLAUDE.md (clean), but README is the first thing people see — and it's wrong.</p>
+
+<h3>Key findings</h3>
+<table>
+<tr><th>Severity</th><th>Count</th><th>Details</th></tr>
+<tr><td><span class="badge unsolved">🔴 Critical</span></td><td>3</td><td>README stats wrong, plugin.json outdated, manifest stale</td></tr>
+<tr><td><span class="badge partial">🟡 Important</span></td><td>6</td><td>Workflow files reference deleted skills (grill-with-docs, what-before-how, shared-domain-language)</td></tr>
+<tr><td><span class="badge partial">🟡 Cosmetic</span></td><td>3</td><td>commands/README.md, vibe-align.md, vibe-lessons-learned.md have old refs</td></tr>
+</table>
+</div>
+
+<div class="panel panel-b">
+<h2>Panel B — Runtime Engineer 🟡</h2>
+<p>Autopilot stack (policy.mjs 206 lines + loop.mjs 135 lines + 2 hooks) works in isolation. All 533 .mjs imports validate. But: <strong>MCP server has no autopilot tools</strong> — Claude Desktop users can't invoke it. No policy persistence (single-session only). No audit log.</p>
+
+<h3>Runtime inventory</h3>
+<table>
+<tr><th>Module</th><th>Lines</th><th>Status</th></tr>
+<tr><td><code>runtime/autopilot/policy.mjs</code></td><td>206</td><td>🆕 New — works but no persistence</td></tr>
+<tr><td><code>runtime/autopilot/loop.mjs</code></td><td>135</td><td>🆕 New — not wired to MCP or daemon</td></tr>
+<tr><td><code>adapters/claude-code/autopilot-hook.mjs</code></td><td>134</td><td>🆕 New — JSON schema correct</td></tr>
+<tr><td><code>runtime/mcp/server.mjs</code></td><td>—</td><td>⚠️ No autopilot tools registered</td></tr>
+</table>
+
+<h3>Validator coverage</h3>
+<p>All 10 validators pass in 6.41s. Coverage is broad but shallow — each catches one class of error. No validator checks manifest.json drift or plugin.json drift.</p>
+</div>
+
+<div class="panel panel-c">
+<h2>Panel C — Maintainer / Sustainability ✅</h2>
+<p>Trim was effective: 245 files changed, +8,085/−6,300 lines. Validation 3× faster. No orphan scripts. No stale .mjs imports. Bus factor 1.5/5 — single primary author, 30+ council reports are the only institutional memory.</p>
+
+<h3>4 Release-blockers</h3>
+<div class="card-grid">
+<div class="card"><h4>R1: No CHANGELOG entry</h4><p>v2.17 trim not documented in CHANGELOG.md. First place release-eng look.</p></div>
+<div class="card"><h4>R2: Version unbumped</h4><p>package.json still says 2.16.1. README says 2.16.1. Nothing says 2.17.</p></div>
+<div class="card"><h4>R3: Manifest stale</h4><p>commands/manifest.json lists vibe-quality-rubric and vibe-triage (both deleted). new_in_v2_11_0 lists 3 deleted commands.</p></div>
+<div class="card"><h4>R4: Plugin.json v2.8.0</h4><p>6 missing skill dirs, 7 duplicate entries, version field 9 major versions behind.</p></div>
+</div>
+</div>
+
+<hr>
+
+<h2>Cross-Panel Convergence (highest confidence)</h2>
+
+<table>
+<tr><th>Finding</th><th>Panels</th><th>Severity</th></tr>
+<tr><td>README shows wrong version/stats</td><td>A, C</td><td><span class="badge unsolved">🔴</span></td></tr>
+<tr><td>.claude-plugin/plugin.json severely outdated</td><td>A, C</td><td><span class="badge unsolved">🔴</span></td></tr>
+<tr><td>commands/manifest.json lists deleted commands</td><td>A, C</td><td><span class="badge unsolved">🔴</span></td></tr>
+<tr><td>13+ doc files reference deleted skills</td><td>A, C</td><td><span class="badge partial">🟡</span></td></tr>
+<tr><td>Bus factor 1.5/5</td><td>C</td><td><span class="badge partial">🟡</span></td></tr>
+<tr><td>Autopilot not wired to MCP</td><td>B</td><td><span class="badge partial">🟡</span></td></tr>
+</table>
+
+<hr>
+
+<h2>Top 10 Recommendations</h2>
+
+<div class="tier" style="border-left:3px solid #f85149">
+<h3>Tier 1 — Before Release (~35 min)</h3>
+<ol>
+<li><strong>README.md</strong> — update badge + stats → 115/116/107</li>
+<li><strong>CHANGELOG.md</strong> — add v2.17 entry (trim, autopilot, 3 validators)</li>
+<li><strong>package.json</strong> — bump 2.16.1 → 2.17.0</li>
+<li><strong>commands/manifest.json</strong> — remove deleted commands, fix count</li>
+<li><strong>.claude-plugin/plugin.json</strong> — regenerate (v2.8.0 → 2.17.0, dedup, remove 6 missing dirs)</li>
+</ol>
+</div>
+
+<div class="tier" style="border-left:3px solid #d29922">
+<h3>Tier 2 — Next Sprint (~1.5 hours)</h3>
+<ol>
+<li><strong>6 workflow files</strong> — update grill-with-docs, what-before-how, shared-domain-language refs</li>
+<li><strong>commands/vibe-align.md</strong> — remove 4 grill-with-docs refs</li>
+<li><strong>MCP server</strong> — wire autopilot tools (start/stop/status)</li>
+<li><strong>Policy persistence</strong> — save/load state + audit log</li>
+</ol>
+</div>
+
+<div class="tier" style="border-left:3px solid #58a6ff">
+<h3>Tier 3 — Quality of Life (~1 hour)</h3>
+<ol>
+<li><strong>MAINTAINERS.md</strong> — release process, skill/validator/audit how-tos</li>
+</ol>
+</div>
+
+<hr>
+
+<h2>Before vs After</h2>
+
+<div class="before-after">
+<div class="col">
+<h4>v2.16.1 (Before)</h4>
+<table>
+<tr><td>Skills</td><td>152</td></tr>
+<tr><td>Commands</td><td>120</td></tr>
+<tr><td>Validation</td><td>18.3s, 4 failures</td></tr>
+<tr><td>Autopilot</td><td>Does not exist</td></tr>
+<tr><td>Validators</td><td>4 core</td></tr>
+<tr><td>Release-blockers</td><td>0 (just released)</td></tr>
+</table>
+</div>
+<div class="col">
+<h4>v2.17 (After)</h4>
+<table>
+<tr><td>Skills</td><td><strong>115</strong> (−24%)</td></tr>
+<tr><td>Commands</td><td><strong>116</strong> (−4)</td></tr>
+<tr><td>Validation</td><td><strong>6.41s, 10/10 PASS</strong></td></tr>
+<tr><td>Autopilot</td><td><strong>Built but not wired</strong></td></tr>
+<tr><td>Validators</td><td><strong>10 (6 new)</strong></td></tr>
+<tr><td>Release-blockers</td><td><strong>4 (metadata drift)</strong></td></tr>
+</table>
+</div>
+</div>
+
+<hr>
+
+<div class="callout blue">
+<h3>💡 Kết luận</h3>
+<p>v2.17 trim đúng hướng — repo gọn hơn, validation nhanh hơn, gates sạch. Cần 35 phút fix Tier 1 release-blockers trước khi tag v2.17.0, rồi sprint sau giải quyết doc cleanup + autopilot wiring. Tổng effort ước tính: ~3.5 giờ.</p>
+</div>
+
+</body>
+</html>
