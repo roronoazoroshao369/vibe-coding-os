@@ -92,13 +92,13 @@ This command is the **pre-phase** of the spec-first development workflow (`docs/
 
 1. **vibe-align** ← this command (clarify intent, terms, decisions)
 2. **vibe-constitution** — confirm or update governing principles
-3. **vibe-specify** — write the spec
+3. **vibe-spec** — write the spec
 4. **vibe-plan-from-spec** — turn spec into plan
 5. **vibe-tasks** — decompose into ordered tasks
 6. **vibe-implement-from-tasks** — execute
 
 For complex tasks, `vibe-align` may trigger a constitution update in step 4.
-For simple tasks, skip directly to `vibe-specify`.
+For simple tasks, skip directly to `vibe-spec`.
 
 ## Stopping conditions
 

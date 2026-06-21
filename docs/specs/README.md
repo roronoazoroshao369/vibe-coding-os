@@ -54,7 +54,7 @@ implementation-readiness gate clears. See `docs/workflows/spec-driven-developmen
   `skills/core/plan-from-spec`, `skills/core/task-breakdown-from-plan`,
   `skills/core/checkpoint-validation`, `skills/core/brownfield-spec-enhancement`,
   `skills/core/creative-parallel-exploration`, `skills/core/project-constitution`.
-- Commands: `commands/vibe-specify.md`, `commands/vibe-plan-from-spec.md`,
+- Commands: `commands/vibe-spec.md`, `commands/vibe-plan-from-spec.md`,
   `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`,
   `commands/vibe-checkpoints.md`, `commands/vibe-brownfield-spec.md`,
   `commands/vibe-parallel-explore.md`, `commands/vibe-spec-audit.md`,

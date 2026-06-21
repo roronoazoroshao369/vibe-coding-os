@@ -39,7 +39,7 @@ A spec, a plan, an ordered task list, checkpoint records, and verified implement
 
 ## Related commands
 
-- `commands/vibe-constitution.md`, `commands/vibe-specify.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`, `commands/vibe-checkpoints.md`, `commands/vibe-spec-audit.md`
+- `commands/vibe-constitution.md`, `commands/vibe-spec.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`, `commands/vibe-checkpoints.md`, `commands/vibe-spec-audit.md`
 
 ## Applied / Not applied
 

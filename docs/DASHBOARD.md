@@ -1,7 +1,7 @@
 # Vibe Coding OS — Project Health Dashboard
 
 > **Auto-generated** by `scripts/generate-dashboard.mjs` — do not edit manually.
-> Last generated: 2026-06-20
+> Last generated: 2026-06-21
 
 ## Quick Status
 
@@ -11,7 +11,7 @@
 | Skills | 151 |
 | Commands | 121 |
 | Templates | 128 |
-| Narrative files | 786 |
+| Narrative files | 803 |
 | Upstream sources | 22 |
 | Broken refs | 0 |
 

@@ -13,7 +13,7 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.16.0):** validate:all 38/38 gates PASS · **149 skills** · **116 commands** · **118 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
+**Current release (v2.16.0):** validate:all 38/38 gates PASS · **148 skills** · **120 commands** · **110 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate
 
 **Latest:** v2.16.0 — Close the Gaps — Wave A Security Wiring: 100% RTL coverage, Trust Scoring module (ADR 0004), bypass-detect script, 3 security command tests, 4 orphan-TODO cleanups, 4 new validation gates <!-- injection-allow:* -->
 

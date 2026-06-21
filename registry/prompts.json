@@ -500,10 +500,10 @@
       "maturity": "beta"
     },
     {
-      "name": "vibe-specify",
+      "name": "vibe-specify (deprecated, use vibe-spec)",
       "path": "commands/vibe-specify.md",
-      "description": "Produce a behavior-focused spec with goals, non-goals, scenarios, and observable criteria.",
-      "maturity": "stable"
+      "description": "DEPRECATED: Use vibe-spec instead. Retained for backward compatibility.",
+      "maturity": "deprecated"
     },
     {
       "name": "vibe-subagents",

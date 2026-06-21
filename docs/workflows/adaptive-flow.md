@@ -77,7 +77,7 @@ behavior change. Flow: note the intended behavior in one line, implement, update
 exercises the function, run that test. Skip the standalone spec and written plan.
 
 **Medium — add pagination to a list endpoint.** Several files across route, query, and
-response shape; user-visible. Flow: write a short spec (`vibe-specify`), a plan
+response shape; user-visible. Flow: write a short spec (`vibe-spec`), a plan
 (`vibe-plan`), ordered tasks with status (`vibe-tasks`), implement, review, record memory. An
 implementation brief helps but is optional.
 

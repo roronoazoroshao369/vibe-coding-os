@@ -36,7 +36,7 @@ any recorded trade-offs.
 
 ## Related commands
 
-- `commands/vibe-constitution.md`, `commands/vibe-specify.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-checkpoints.md`
+- `commands/vibe-constitution.md`, `commands/vibe-spec.md`, `commands/vibe-plan-from-spec.md`, `commands/vibe-checkpoints.md`
 
 ## Applied / Not applied
 

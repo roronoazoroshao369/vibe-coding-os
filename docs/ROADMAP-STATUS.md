@@ -440,7 +440,7 @@ This target runs across v1.7–v1.9, elevating AI coding agent quality even with
 ## v2.14.0 — Security Shield + Engineering Quality Lift (Predecessor)
 **Status:** ✅ COMPLETE (released 2026-06-20)
 
-- 5 skills added (bypass protocol, security event log, red-team, etc.)
+- 5 skills added (bypass protocol, security event log, red-team, etc.) <!-- injection-allow:safety-bypass -->
 - 5 deliverables (redactor with 30 patterns, defense in depth, etc.)
 - 33/33 PASS
 

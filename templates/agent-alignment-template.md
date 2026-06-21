@@ -89,7 +89,7 @@ status: stable
 
 <!-- Choose one: -->
 <!-- - Skip to implementation (trivial task) -->
-<!-- - Proceed to `vibe-specify` (ready for spec) -->
+<!-- - Proceed to `vibe-spec` (ready for spec) -->
 <!-- - Proceed to `vibe-constitution` (need to update principles first) -->
 <!-- - Loop back to Phase N (alignment incomplete) -->
 

@@ -29,7 +29,7 @@
 |-------|---------|
 | Bắt đầu | `vibe-brainstorm` |
 | Làm rõ | `vibe-grill-me` |
-| Spec | `vibe-specify` |
+| Spec | `vibe-spec` |
 | Plan | `vibe-plan-from-spec` |
 | Implement | `vibe-implement` |
 | Review | `vibe-request-review` |
@@ -42,7 +42,7 @@
 User: "Thêm feature đăng nhập bằng Google"
     ↓ vibe-brainstorm (brainstorming skill)
     ↓ vibe-grill-me (grill-user skill)
-    ↓ vibe-specify (spec-first skill)
+    ↓ vibe-spec (spec-first skill)
     ↓ vibe-plan-from-spec (writing-plans skill)
     ↓ vibe-implement (executing-plans skill)
     ↓ vibe-tdd (TDD skill)

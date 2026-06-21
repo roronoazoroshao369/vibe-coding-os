@@ -96,7 +96,7 @@ This workflow is the **pre-phase** of the spec-first development workflow. It pr
 the alignment summary that feeds directly into:
 
 1. `vibe-constitution` — confirm or update governing principles
-2. `vibe-specify` — write the spec (using alignment summary as input)
+2. `vibe-spec` — write the spec (using alignment summary as input)
 3. `vibe-plan-from-spec` — turn spec into plan
 4. `vibe-tasks` — decompose into ordered tasks
 5. `vibe-implement-from-tasks` — execute
@@ -134,7 +134,7 @@ questions" as appropriate.
 - `commands/vibe-grill-me.md`
 - `commands/vibe-grill-with-docs.md`
 - `commands/vibe-constitution.md`
-- `commands/vibe-specify.md`
+- `commands/vibe-spec.md`
 - `commands/vibe-analyze.md`
 
 ## Related templates

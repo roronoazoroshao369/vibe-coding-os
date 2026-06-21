@@ -14,6 +14,7 @@ import { searchMemory } from '../memory/retrieval.mjs';
 import { createCheckpoint } from '../checkpoints/checkpoint-engine.mjs';
 import { withApprovalGate } from '../core/approval-gate.mjs';
 import { assertToolAllowed, defaultContracts } from '../core/tool-contract.mjs';
+import { buildCommandTools } from './command-tools.mjs';
 
 export const SDK_PACKAGE = '@modelcontextprotocol/sdk';
 export const SERVER_NAME = 'vibe-coding-os-runtime';
@@ -164,7 +165,10 @@ export async function startServer({ root = process.cwd() } = {}) {
 
   const { Server, StdioServerTransport, ListToolsRequestSchema, CallToolRequestSchema } = sdk;
   const store = createStore(root);
-  const tools = buildTools(store).map((tool) => ({
+  const tools = [
+    ...buildTools(store),
+    ...buildCommandTools(root),
+  ].map((tool) => ({
     ...tool,
     handler: withApprovalGate(tool.handler, store, tool.name),
   }));

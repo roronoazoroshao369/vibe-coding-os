@@ -53,7 +53,7 @@ Command hữu ích: `vibe-flow`, `vibe-triage`, `vibe-checkpoints`, `vibe-verify
 | --- | --- | --- |
 | Khởi động phiên | `vibe-init` | đọc instruction, registry, trạng thái repo |
 | Làm rõ ý định | `vibe-brainstorm`, `vibe-grill-me`, `vibe-grill-with-docs` | câu hỏi, assumption, boundary |
-| Viết spec | `vibe-spec`, `vibe-specify`, `vibe-brownfield-spec` | goals, non-goals, scenarios, acceptance criteria |
+| Viết spec | `vibe-spec`, `vibe-brownfield-spec` | goals, non-goals, scenarios, acceptance criteria |
 | Kiểm spec | `vibe-spec-audit`, `vibe-checklist` | lỗi mơ hồ, thiếu criteria, scope creep |
 | Lập plan | `vibe-plan`, `vibe-plan-from-spec`, `vibe-write-plan` | bước implement, files, risk, checks |
 | Chia task | `vibe-tasks`, `vibe-to-issues` | task có dependency, parallel marker, test-first order |
@@ -163,7 +163,7 @@ Luồng khuyến nghị: `vibe-team` để thiết kế team → `vibe-team-gene
 
 | Tình huống | Chuỗi dùng nhanh |
 | --- | --- |
-| Feature mới | `vibe-flow` → `vibe-specify` → `vibe-plan-from-spec` → `vibe-tasks` → `vibe-implement-from-tasks` → `vibe-verify` |
+| Feature mới | `vibe-flow` → `vibe-spec` → `vibe-plan-from-spec` → `vibe-tasks` → `vibe-implement-from-tasks` → `vibe-verify` |
 | Bug khó | `vibe-diagnose` → `vibe-tdd` → `vibe-implement` → `vibe-review` → `vibe-verify` |
 | Refactor | `vibe-zoom-out` → `vibe-improve-architecture` → ADR nếu cần → `vibe-plan` → `vibe-review` |
 | Legacy enhancement | `vibe-brownfield-spec` → characterization tests → `vibe-plan-from-spec` → `vibe-implement` |

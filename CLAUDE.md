@@ -12,7 +12,7 @@
 |-------|------|--------------|
 | **Default** | Every session | all `vibe-*` |
 | **Superpowers** | Brainstorming, exploration | `vibe-brainstorm`, `vibe-parallel-explore` |
-| **Spec-Driven** | Multi-file features | `vibe-specify` → `vibe-plan` → `vibe-tasks` |
+| **Spec-Driven** | Multi-file features | `vibe-spec` → `vibe-plan` → `vibe-tasks` |
 | **Real Engineering** | Debugging, legacy code | `vibe-diagnose`, TDD |
 
 ## Quick reference

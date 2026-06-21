@@ -17,11 +17,15 @@ import {
   SERVER_NAME,
   SERVER_VERSION,
 } from '../runtime/mcp/server.mjs';
+import { buildCommandTools } from '../runtime/mcp/command-tools.mjs';
 
 const args = process.argv.slice(2);
 
 function printHelp() {
-  const tools = buildTools(createStore(process.cwd()));
+  const tools = [
+    ...buildTools(createStore(process.cwd())),
+    ...buildCommandTools(process.cwd()),
+  ];
   const lines = [
     `${SERVER_NAME} v${SERVER_VERSION} — opt-in MCP server (stdio)`,
     '',
@@ -44,7 +48,10 @@ if (args.includes('--help') || args.includes('-h')) {
 }
 
 if (args.includes('--tools')) {
-  const tools = buildTools(createStore(process.cwd()));
+  const tools = [
+    ...buildTools(createStore(process.cwd())),
+    ...buildCommandTools(process.cwd()),
+  ];
   console.log(JSON.stringify(tools.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })), null, 2));
   process.exit(0);
 }

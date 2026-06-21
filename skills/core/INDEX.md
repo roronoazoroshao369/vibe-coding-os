@@ -2,7 +2,7 @@
 name: skills-core-index
 version: 1.0.0
 introduced_in: v2.16.0
-last_reviewed: 2026-06-20
+last_reviewed: 2026-06-21
 category: meta
 tags:
   - index
@@ -114,7 +114,7 @@ This index groups them by purpose to help you find the right skill quickly.
 
 - **dependency-aware-task-ordering** — Order tasks by their real dependencies and identify which tasks can safely run in
 - **finishing-a-development-branch** — Close a branch cleanly with verified status, review readiness, attribution hygiene, memory notes, and clear next actions
-- **guard-bypass-protocol** — Autonomous adversarial prompt engineering agent that iteratively attempts to bypass AI model guardrails, safety filters, <!-- injection-allow:* -->
+- **guard-bypass-protocol** — Autonomous adversarial prompt engineering agent that iteratively attempts to bypass AI model guardrails, safety filters,
 - **issue-slicing** — Break a PRD or plan into small vertical issues that independent agents can grab safely.
 - **model-aware-config** — Select model-aware quality packs and checks by combining the current `model_id`, the task type, stack/domain signals, th
 - **observability-design** — Design instrumentation **before shipping a feature** by starting from the questions on-call will ask, then deriving the 

@@ -8,7 +8,7 @@
 |---------|-------|---------|------|
 | Request mơ hồ, thiếu thông tin | `clarify-before-code` | `vibe-grill-me` | Solo |
 | Không biết bắt đầu từ đâu | `brainstorming` | `vibe-brainstorm` | Solo |
-| Cần spec trước khi code | `spec-first-development` | `vibe-specify` | Solo |
+| Cần spec trước khi code | `spec-first-development` | `vibe-spec` | Solo |
 | Chỉ định nghĩa "cái gì" trước | `what-before-how` | — | Solo |
 | Chia task nhỏ từ plan | `writing-plans` | `vibe-plan-from-spec` | Solo |
 | Viết test trước code | `test-driven-development` | `vibe-tdd` | Solo |

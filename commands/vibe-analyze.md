@@ -27,7 +27,7 @@ have drifted apart.
 ## Step-by-step behavior
 
 1. Confirm all three artifacts exist. If any is missing, stop and name the command that
-   produces it (`vibe-specify`, `vibe-plan`, or `vibe-tasks`).
+   produces it (`vibe-spec`, `vibe-plan`, or `vibe-tasks`).
 2. Load only the high-signal sections: requirements and acceptance criteria from the spec;
    architecture, phases, and constraints from the plan; task IDs, descriptions, parallel
    markers, and referenced files from the tasks.
