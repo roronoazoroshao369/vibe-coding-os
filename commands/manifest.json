@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "description": "Vibe Coding OS command manifest. One entry per command file under commands/. Source of truth: filesystem glob commands/*.md.",
-  "generated": "2026-06-21 (v2.17.0 manifest cleanup)",
-  "count": 115,
+  "generated": "2026-06-22 (v2.17.4 manifest cleanup)",
+  "count": 113,
   "commands": [
     "vibe-adaptive-prompt",
     "vibe-adversarial-detect",
@@ -66,7 +66,6 @@
     "vibe-model-config",
     "vibe-model-weakness",
     "vibe-orchestrate",
-    "vibe-parallel-explore",
     "vibe-perf-budget",
     "vibe-plan",
     "vibe-plan-from-spec",
@@ -103,7 +102,6 @@
     "vibe-slice",
     "vibe-spec",
     "vibe-spec-audit",
-    "vibe-specify",
     "vibe-subagents",
     "vibe-superagent",
     "vibe-tasks",

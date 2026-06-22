@@ -116,8 +116,9 @@ export async function gcSessions(root, ttlMs = DEFAULT_SESSION_TTL_MS) {
     try {
       const raw = await readFile(file, 'utf8');
       const session = JSON.parse(raw);
-      const created = new Date(session.createdAt).getTime();
-      if (now - created > ttlMs) {
+      const ts = session.createdAt;
+      const created = ts ? new Date(ts).getTime() : NaN;
+      if (isNaN(created) || now - created > ttlMs) {
         await unlink(file);
         removed++;
       }

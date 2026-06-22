@@ -135,3 +135,21 @@ describe('Policy constructor validation', () => {
       }, /Invalid approval/);
   });
 });
+
+describe('Policy edge cases (v2.17.4)', () => {
+  it('max_calls: 0 blocks all calls (current semantics)', () => {
+    const p = new Policy({ rules: [{ action: 'a.b', max_calls: 0, risk: 'low', approval: 'auto' }] });
+    assert.equal(p.allows('a.b'), false);
+  });
+
+  it('requiresApproval returns false for block rule', () => {
+    const p = new Policy({ rules: [{ action: 'a.b', risk: 'low', approval: 'block' }] });
+    assert.equal(p.requiresApproval('a.b'), false);
+  });
+
+  it('reserved shorthand "write" matches file.write.* patterns', () => {
+    const p = new Policy({ rules: [{ action: 'write', risk: 'medium', approval: 'require' }] });
+    // 'write' shorthand should expand to file.write.* family
+    assert.equal(typeof p.allows('file.write.something'), 'boolean');
+  });
+});

@@ -13,9 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.17.0):** validate:all 10/10 gates PASS in 6.41s · **115 skills** · **116 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
+**Current release (v2.17.4):** validate:all 11/11 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
 
-**Latest:** v2.17.0 — Expert Council Trim — 152→115 skills (−24%), 120→116 commands, 110→107 templates. +Autopilot runtime (policy.mjs + loop.mjs + 2 hooks), +3 new validators (imports/typecheck/scope-match), dropped 4 red gates, validation 3× faster (18.3s → 6.41s). Fixes: README stats synced, CHANGELOG added, manifest/plugin.json regenerated, 13+ doc files updated. <!-- injection-allow:* -->
+**Latest:** v2.17.4 — Post-Release Cleanup — fix gcSessions NaN bug, sweep deprecated command refs, delete 7 dead validators, add validate:no-deprecated-commands CI guard (11/11 gates). <!-- injection-allow:* -->
 
 ### What's new in v2.17.0 — Expert Council Trim
 

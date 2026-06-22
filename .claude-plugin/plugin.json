@@ -1,7 +1,7 @@
 {
   "name": "vibe-coding-os",
-  "version": "2.17.1",
-  "description": "Markdown-first AI coding OS for Claude Code: 115 skills, 116 commands, 107 templates, 22 reference sources, 9 tool adapters, and optional runtime helpers.",
+  "version": "2.17.4",
+   "description": "Markdown-first AI coding OS for Claude Code: 115 skills, 113 commands, 107 templates, 22 reference sources, 9 tool adapters, and optional runtime helpers.",
   "author": {
     "name": "Vibe Coding OS contributors"
   },

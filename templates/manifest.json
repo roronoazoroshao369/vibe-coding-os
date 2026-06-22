@@ -113,9 +113,6 @@
     "upstream-audit-template"
   ],
   "new_in_v2_11_0": [
-    "doubt-log",
-    "observability-plan-template",
-    "deprecation-notice-template",
     "threat-model-template",
     "slice-spec-template",
     "performance-budget-template"

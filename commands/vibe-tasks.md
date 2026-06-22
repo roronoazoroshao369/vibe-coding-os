@@ -71,7 +71,7 @@ After tasks are generated, suggest the likely next command:
   alignment before any code is written.
 - Analysis is clean → clear the implementation-readiness gate
   (`skills/core/checkpoint-validation/SKILL.md`), then `commands/vibe-implement.md`.
-- Tasks exposed missing coverage → return to `commands/vibe-plan.md` or `commands/vibe-specify.md`.
+- Tasks exposed missing coverage → return to `commands/vibe-plan.md` or `commands/vibe-spec.md`.
 
 ## Ghi chú tiếng Việt
 

@@ -57,7 +57,7 @@ implementation-readiness gate clears. See `docs/workflows/spec-driven-developmen
 - Commands: `commands/vibe-spec.md`, `commands/vibe-plan-from-spec.md`,
   `commands/vibe-tasks.md`, `commands/vibe-implement-from-tasks.md`,
   `commands/vibe-checkpoints.md`, `commands/vibe-brownfield-spec.md`,
-  `commands/vibe-parallel-explore.md`, `commands/vibe-spec-audit.md`,
+  `commands/vibe-flow.md`, `commands/vibe-spec-audit.md`,
   `commands/vibe-constitution.md`.
 
 ## Ghi chú tiếng Việt

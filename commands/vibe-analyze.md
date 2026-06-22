@@ -91,7 +91,7 @@ located, or when the artifacts disagree so fundamentally that analysis cannot pr
 
 ## Handoffs / next-step suggestion
 
-- CRITICAL or HIGH findings → re-run `commands/vibe-specify.md`, `commands/vibe-plan.md`, or
+- CRITICAL or HIGH findings → re-run `commands/vibe-spec.md`, `commands/vibe-plan.md`, or
   edit tasks to close the gap, then re-run `vibe-analyze`.
 - Only LOW/MEDIUM findings → proceed to `skills/core/checkpoint-validation/SKILL.md` (the
   implementation-readiness gate), then `commands/vibe-implement.md`.

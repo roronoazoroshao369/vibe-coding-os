@@ -64,7 +64,7 @@ or when requirements conflict so badly that no meaningful item can be written.
 
 After the checklist passes, suggest the likely next command:
 
-- Unresolved gaps in the spec → re-run `commands/vibe-specify.md` to tighten requirements.
+- Unresolved gaps in the spec → re-run `commands/vibe-spec.md` to tighten requirements.
 - Spec is solid and a plan exists → `commands/vibe-analyze.md` to check spec ↔ plan ↔ tasks alignment.
 - No plan yet → `commands/vibe-plan.md`.
 

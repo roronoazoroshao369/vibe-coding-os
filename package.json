@@ -1,6 +1,6 @@
 {
   "name": "vibe-coding-os",
-  "version": "2.17.3",
+  "version": "2.17.4",
   "private": false,
   "description": "A Claude/Codex-friendly AI coding skill framework for disciplined vibe coding.",
   "type": "module",
@@ -48,8 +48,9 @@
     "validate:runtime-freeze": "node scripts/validate-runtime-freeze.mjs",
     "validate:licenses": "node scripts/validate-licenses.mjs",
     "validate:traceability-strict-new": "node scripts/validate-traceability.mjs --strict-new --since=v2.12.0",
+    "validate:no-deprecated-commands": "node scripts/validate-no-deprecated-commands.mjs",
     "validate:roadmap-future-drift": "node scripts/validate-roadmap-future-drift.mjs",
-    "validate:all": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs && node scripts/validate-imports.mjs && node scripts/validate-typecheck.mjs && node scripts/validate-scope-match.mjs && node scripts/validate-secrets.mjs && node scripts/validate-licenses.mjs && node scripts/validate-provenance.mjs",
+    "validate:all": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs && node scripts/validate-imports.mjs && node scripts/validate-typecheck.mjs && node scripts/validate-scope-match.mjs && node scripts/validate-secrets.mjs && node scripts/validate-licenses.mjs && node scripts/validate-provenance.mjs && node scripts/validate-no-deprecated-commands.mjs",
     "validate:quality-diff": "node scripts/validate-quality-diff.mjs",
     "quality:scorecard:report": "node scripts/quality-scorecard-report.mjs",
     "eval:report": "node scripts/evaluation-report.mjs",

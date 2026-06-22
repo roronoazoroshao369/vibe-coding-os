@@ -19,7 +19,7 @@ import { buildAutopilotTools } from './autopilot-tools.mjs';
 
 export const SDK_PACKAGE = '@modelcontextprotocol/sdk';
 export const SERVER_NAME = 'vibe-coding-os-runtime';
-export const SERVER_VERSION = '2.17.0';
+export const SERVER_VERSION = '2.17.4';
 
 export const INSTALL_INSTRUCTIONS = [
   `The MCP server adapter needs the ${SDK_PACKAGE} package, which is not installed.`,

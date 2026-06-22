@@ -7,8 +7,6 @@
  * v1.0.0 — Initial autopilot integration
  */
 
-import { createHash } from 'node:crypto';
-
 const VALID_RISKS = ['low', 'medium', 'high', 'critical'];
 const VALID_APPROVAL = ['auto', 'require', 'block'];
 

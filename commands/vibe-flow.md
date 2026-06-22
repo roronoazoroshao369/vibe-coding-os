@@ -14,7 +14,7 @@ process, so tiny edits stay fast and risky work stays safe.
 
 Use it first, whenever you are unsure how much process a task deserves, or when a task changes
 shape mid-flight. If you already know the work is, say, a clear multi-file feature, you can go
-straight to `commands/vibe-specify.md`; `vibe-flow` exists for the common case where the right
+straight to `commands/vibe-spec.md`; `vibe-flow` exists for the common case where the right
 weight is not obvious.
 
 ## Required inputs
@@ -36,7 +36,7 @@ weight is not obvious.
 5. Route to the tier's flow:
    - **tiny** → implement directly, then run the smallest verification.
    - **small** → record a one-line spec note, implement, run a targeted test, verify.
-   - **medium** → `commands/vibe-specify.md` → `commands/vibe-plan.md` →
+   - **medium** → `commands/vibe-spec.md` → `commands/vibe-plan.md` →
      `commands/vibe-tasks.md` → implement → review → memory.
    - **large** → the medium flow plus an ADR, parallel exploration, subagents, an
      implementation brief, and `skills/core/review-before-merge/SKILL.md`.
@@ -71,12 +71,12 @@ when required decisions for the chosen tier are unresolved.
 - `skills/core/adaptive-flow/SKILL.md` — the tier rubric and safe-skip rules.
 - `docs/workflows/adaptive-flow.md` — flow diagram and worked examples.
 - `skills/core/clarify-before-code/SKILL.md`, `skills/prompts/anti-overengineering/SKILL.md`.
-- `commands/vibe-specify.md`, `commands/vibe-plan.md`, `commands/vibe-tasks.md`.
+- `commands/vibe-spec.md`, `commands/vibe-plan.md`, `commands/vibe-tasks.md`.
 
 ## Handoffs / next-step suggestion
 
 - Tier is tiny or small → implement and verify directly; no further routing needed.
-- Tier is medium or larger → hand off to `commands/vibe-specify.md` to start the spec.
+- Tier is medium or larger → hand off to `commands/vibe-spec.md` to start the spec.
 - Risk raised mid-task → re-run this command, choose the higher tier, and add the missing
   steps before continuing.
 

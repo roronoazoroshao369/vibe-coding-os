@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin.json",
   "name": "vibe-coding-os",
-  "version": "2.17.1",
-  "description": "Vibe Coding OS \u2014 a Claude/Codex-friendly AI coding skill framework for disciplined vibe coding. 115 skills, 116 commands, 107 templates, 10 validation gates, 9 CLI adapters, 22 inspiration sources.",
+  "version": "2.17.4",
+   "description": "Vibe Coding OS \u2014 a Claude/Codex-friendly AI coding skill framework for disciplined vibe coding. 115 skills, 113 commands, 107 templates, 11 validation gates, 9 CLI adapters, 22 inspiration sources.",
   "author": {
     "name": "Vibe Coding OS Maintainers",
     "url": "https://github.com/roronoazoroshao369/vibe-coding-os"

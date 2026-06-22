@@ -38,7 +38,7 @@ decision.
 
 ## Related commands
 
-- `commands/vibe-parallel-explore.md`
+- `commands/vibe-flow.md`
 
 ## Applied / Not applied
 

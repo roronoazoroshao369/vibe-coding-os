@@ -43,6 +43,7 @@ File này giữ mission/roadmap để spec và plan có định hướng sản p
 
 ## Recent releases
 
+- **v2.17.3** (2026-06-22) — Newcomer UX fix: CLAUDE.md orphan/deprecated references replaced; templates/manifest.json regenerated (92→107); ROADMAP release history updated.
 - **v2.17.2** (2026-06-22) — Bus factor safety: CODEOWNERS created, ADR 0001/0002 frontmatter added, ADR number collision resolved.
 - **v2.17.1** (2026-06-22) — Tier 1 bugfix: tool-contract allowlist expanded 6→15 tools (unblocked 9/15 MCP tools), .vibe/ git-isolated, stats aligned across 5 files, 5 workflow CLI commands added.
 - **v2.17.0** (2026-06-21) — Expert Council Trim. 152→115 skills (−24%), 120→116 commands, 110→107 templates. +Autopilot runtime, +3 validators, validation 3× faster. Post-release audit committed.

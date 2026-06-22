@@ -115,7 +115,7 @@ For simple tasks, skip directly to `vibe-spec`.
 - `commands/vibe-grill-me.md`
 - `commands/vibe-grill-me.md` (Phase 2 docs-aware phase)
 - `commands/vibe-constitution.md`
-- `commands/vibe-specify.md`
+- `commands/vibe-spec.md`
 
 ## Related templates
 

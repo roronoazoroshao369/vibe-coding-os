@@ -84,7 +84,7 @@ After the brief is complete:
 - Open questions remain or confidence is below 7 → gather missing context before coding.
 - Brief is complete and readiness gate is clear → `commands/vibe-brief-execute.md` to load,
   implement, and validate, or `commands/vibe-implement.md` for a smaller inline change.
-- Brief exposed missing acceptance criteria or missing tasks → return to `commands/vibe-specify.md`,
+- Brief exposed missing acceptance criteria or missing tasks → return to `commands/vibe-spec.md`,
   `commands/vibe-plan.md`, or `commands/vibe-tasks.md` as needed.
 
 ## Ghi chú tiếng Việt

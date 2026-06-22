@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.17.4] - 2026-06-22
+
+### Theme: Tier 5 — Council Findings Closure (87.5% audit closure, 100% code-side)
+
+**Final council audit closure: 22/25 findings FIXED. Fixes the last HIGH-severity bugs (gcSessions NaN, stale ref class), deletes 7 dead validators, and adds a CI guard against future stale references.**
+
+#### Fixed
+- **gcSessions NaN bug** (`runtime/mcp/autopilot-tools.mjs`): corrupt sessions with missing or unparseable `createdAt` were kept indefinitely because `new Date(undefined).getTime()` returns `NaN` and `NaN > ttlMs` is `false`. Now treats missing/invalid timestamps as corrupt and removes them.
+- **Stale command refs** across 7 files: `vibe-specify` → `vibe-spec` in `commands/vibe-flow.md`, `vibe-plan.md`, `vibe-align.md`, `vibe-tasks.md`, `vibe-brief.md`, `vibe-checklist.md`, `vibe-analyze.md`; `vibe-parallel-explore` → `vibe-flow` in `docs/specs/README.md`, `docs/workflows/brainstorming.md`, `docs/workflows/creative-parallel-exploration.md`.
+- **Version drift**: `SERVER_VERSION` 2.17.0 → 2.17.4 in `runtime/mcp/server.mjs`; `version` 2.17.1 → 2.17.4 in `.claude-plugin/plugin.json` and `plugins/manifest.json`; `version` 2.17.3 → 2.17.4 in `package.json`; README "Current release" and "Latest" tags synced to v2.17.4.
+- **templates/manifest.json** `new_in_v2_11_0` cleaned (3 stale entries removed).
+- **commands/manifest.json** deprecated/orphan entries removed (`vibe-specify`, `vibe-parallel-explore`); count 116 → 113.
+- **Dead code**: removed unused `createHash` import from `runtime/autopilot/policy.mjs`.
+
+#### Added
+- **`scripts/validate-no-deprecated-commands.mjs`**: CI guard scanning `commands/`, `docs/`, `CLAUDE.md`, `README.md`, `AGENTS.md`, and manifest files for references to `vibe-specify` or `vibe-parallel-explore`. Wired into `validate:all` (now 11/11 gates).
+- **3 new policy edge-case tests** (`max_calls: 0` blocks, `requiresApproval` for `block` rules, reserved shorthand `"write"`). Test suite now 17/17 PASS, 6 suites.
+
+#### Removed
+- 7 dead `validate-*.mjs` scripts with no npm wiring: `validate-no-orphan-todos`, `validate-pack-schemas`, `validate-release-metadata`, `validate-roadmap-status`, `validate-rtl-coverage`, `validate-security-command-coverage`, `validate-trust-scorer`.
+
+#### Validation
+- `npm run validate:all` → **11/11 PASS**
+- `npm run test:autopilot` → **17/17 PASS** (6 suites)
+- Council audit closure: **22/25 (87.5%)** (up from 16/19 = 84% in v2.17.3)
+- 3 remaining items are community/recruitment (bus factor 1.5/5) — not code-side.
+
+---
+
 ## [2.17.3] - 2026-06-22
 
 ### Theme: Tier 3-4 — Trim Residue + Autopilot Automation
@@ -699,7 +728,8 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.3...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.4...HEAD
+[2.17.4]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.3...v2.17.4
 [2.17.3]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.2...v2.17.3
 [2.17.2]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.1...v2.17.2
 [2.17.1]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.0...v2.17.1
