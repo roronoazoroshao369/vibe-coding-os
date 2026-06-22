@@ -628,6 +628,28 @@ export function cmdStats() {
   console.log('');
 }
 
+export function cmdPrompt(name, fileName, description) {
+  if (process.argv.includes('--help') || process.argv.includes('-h')) {
+    console.log(`Usage: vibe ${name}\n\nOptions:\n  --help, -h  Show this help\n\nDescription:\n  ${description}\n\nThis command is a prompt file — paste it into your AI assistant (Claude Code, Codex, Cursor)\nvia the commands/ directory or MCP tools.`);
+    process.exit(0);
+  }
+  const cmdPath = join(ROOT, 'commands', fileName);
+  if (!existsSync(cmdPath)) {
+    console.error(`${fail} Command file not found: commands/${fileName}`);
+    process.exit(1);
+  }
+  console.log(`${c.bold}${c.cyan}Vibe ${name.charAt(0).toUpperCase() + name.slice(1)}${c.reset} — ${description}\n`);
+  console.log(`${info} Prompt file: commands/${fileName}`);
+  console.log(`${info} Purpose: Paste into your AI assistant to execute this workflow step\n`);
+  console.log(`  Usage with your AI assistant:`);
+  console.log(`    1. Open your AI tool (Claude Code, Codex, Cursor)`);
+  console.log(`    2. Paste the contents of commands/${fileName}`);
+  console.log(`    3. Follow the instructions in the prompt\n`);
+  console.log(`  Usage with MCP tools (if runtime enabled):`);
+  console.log(`    The vibe.${name} tool is available via the MCP server`);
+  console.log('');
+}
+
 export function cmdSpec(args) {
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`Usage: vibe spec [name] [--copy]\n\nOptions:\n  --copy    Copy template to current directory as SPEC.md\n  -h, --help  Show this help\n\nExample:\n  vibe spec my-feature\n  vibe spec my-feature --copy`);
@@ -857,6 +879,11 @@ if (isMainModule) {
     case 'list-skills': cmdListSkills(args[0] || null); break;
     case 'list-commands': cmdListCommands(); break;
     case 'stats': cmdStats(); break;
+    case 'verify': cmdPrompt('verify', 'vibe-verify.md', 'Verify implementation against spec'); break;
+    case 'review': cmdPrompt('review', 'vibe-review.md', 'Request code review'); break;
+    case 'merge': cmdPrompt('merge', 'vibe-merge.md', 'Merge with review gate'); break;
+    case 'tasks': cmdPrompt('tasks', 'vibe-tasks.md', 'Break plan into tasks'); break;
+    case 'implement': cmdPrompt('implement', 'vibe-implement.md', 'Implement from tasks'); break;
     case 'spec': cmdSpec(args); break;
     case 'plan': cmdPlan(args); break;
     case 'memory': cmdMemory(args); break;

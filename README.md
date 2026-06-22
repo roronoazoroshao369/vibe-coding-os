@@ -267,7 +267,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**128 skills**, **96 commands**, **93 templates**, **20 tracked inspiration sources**, **8 adapters**, and an optional runtime layer.
+**115 skills**, **116 commands**, **107 templates**, **22 tracked inspiration sources**, **9 adapters**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|

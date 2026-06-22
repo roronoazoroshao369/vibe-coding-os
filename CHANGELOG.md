@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.17.1] - 2026-06-22
+
+### Theme: Tier 1 Bugfix — Tool Contract & Stats Alignment
+
+**5 post-audit fixes from Expert Council: tool-contract allowlist was blocking 9/15 MCP tools, 5+ files had contradictory stats, .vibe/ was leaking into git, --help showed 11/15 tools, 5 workflow commands missing from CLI.**
+
+#### Fixed
+- **🔥 Tool-contract allowlist (6→15):** `runtime/core/tool-contract.mjs:mcp/hermes/ai-assistant` arrays updated to include `vibe.spec`, `vibe.plan`, `vibe.review`, `vibe.memory`, `vibe.merge`, `autopilot.start`, `autopilot.status`, `autopilot.list`, `autopilot.stop`. All 15 MCP tools now pass the contract gate instead of 9 silently failing.
+- **🔒 .vibe/ git isolation:** Added `.vibe/` to `.gitignore`; removed `.vibe/` from `package.json` `files` array so autopilot sessions, audit logs, and setup manifests never leak into git.
+- **📊 Stats aligned across 5 files:** README.md, FAQ.md, .claude-plugin/plugin.json, plugins/manifest.json all updated to consistent "115 skills, 116 commands, 107 templates, 22 sources, 9 adapters, 10 gates". plugins/manifest.json version bumped 2.12.0→2.17.0.
+- **🛠️ --help/--tools shows all 15 tools:** `scripts/runtime-mcp.mjs` now imports `buildAutopilotTools` and includes it in both `printHelp()` and `--tools` JSON output (was missing autopilot tools).
+- **🧩 5 workflow CLI commands added:** `vibe-cli.mjs` now has `verify`, `review`, `merge`, `tasks`, `implement` as first-class subcommands with `cmdPrompt()` helper directing to the `.md` prompt files.
+
+#### Validation
+- `npm run validate:all` → **10/10 PASS**
+- `npm run test:e2e` → **5/5 PASS**
+- Live MCP test → **15/15 tools available**, **15/15 contract checks pass**
+- Tool count: 115 skills, 116 commands, 107 templates
+- gitignore: `.vibe/test.json` correctly ignored
+
+---
+
 ## [2.17.0] - 2026-06-21
 
 ### Theme: Expert Council Trim

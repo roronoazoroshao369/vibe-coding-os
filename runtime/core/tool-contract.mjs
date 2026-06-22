@@ -12,6 +12,8 @@ export const defaultContracts = {
     'memory.search',
     'memory.ingest',
     'checkpoint.create',
+    'vibe.spec', 'vibe.plan', 'vibe.review', 'vibe.memory', 'vibe.merge',
+    'autopilot.start', 'autopilot.status', 'autopilot.list', 'autopilot.stop',
   ],
   tmux: [],
   daemon: [],
@@ -22,6 +24,8 @@ export const defaultContracts = {
     'memory.search',
     'memory.ingest',
     'checkpoint.create',
+    'vibe.spec', 'vibe.plan', 'vibe.review', 'vibe.memory', 'vibe.merge',
+    'autopilot.start', 'autopilot.status', 'autopilot.list', 'autopilot.stop',
   ],
   'ai-assistant': [
     'task.list',
@@ -30,6 +34,8 @@ export const defaultContracts = {
     'memory.search',
     'memory.ingest',
     'checkpoint.create',
+    'vibe.spec', 'vibe.plan', 'vibe.review', 'vibe.memory', 'vibe.merge',
+    'autopilot.start', 'autopilot.status', 'autopilot.list', 'autopilot.stop',
   ],
 };
 
