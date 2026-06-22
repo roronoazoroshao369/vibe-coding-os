@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.17.6] - 2026-06-22
+
+### Theme: Tier 2 — MCP Security Hardening (auth + runtime injection scan)
+
+**Adds two council-demanded security layers to the optional MCP server adapter: token-gated handshake on StdioServerTransport, and runtime injection scanning on tool-call arguments. No new features exposed to end users — all changes inside `runtime/mcp/server.mjs`, `runtime/core/tool-contract.mjs`, and `docs/SECURITY-MODEL.md`. 25/25 new test cases passing.**
+
+#### Added
+- **MCP server auth handshake** (`runtime/mcp/server.mjs`):
+  - Token resolved in priority order: `MCP_AUTH_TOKEN` env var → `~/.vibe/mcp-token` file → auto-generate (24-byte hex, persisted with `0o600` permissions)
+  - New internal tool `_mcp.auth.verify({ token })` is the only tool callable before auth succeeds
+  - All other tools return `isError: true` with message `"Not authenticated..."` until handshake completes
+  - Added to `defaultContracts.mcp`, `defaultContracts.hermes`, `defaultContracts['ai-assistant']` allowlists
+- **Runtime injection scanning** on `request.params.arguments`:
+  - Reuses `INJECTION_PATTERNS` from `runtime/core/injection-patterns.mjs` (already validated by `validate-injection.mjs`)
+  - `error` severity → block call, return `isError`, log to event audit as `mcp.injection.blocked`
+  - `warn` severity → log to stderr, allow call
+  - Covers: instruction-override, role-reassignment, system-prompt-override, safety-bypass, exfiltration-directive, bidi-override-unicode, conceal-from-user, zero-width-unicode, base64-blob
+- **`tests/runtime/runtime-mcp-auth.test.mjs`** — 25 test cases covering: contract allowlist, `assertToolAllowed` auth path, unknown tool rejection, SDK loadability, `buildTools` shape, module exports, injection pattern coverage, end-to-end scan behavior on 6 real adversarial + benign payloads
+- **`docs/SECURITY-MODEL.md`** — new sections 6 (MCP auth) and 7 (runtime injection scan); new maintainer checklist items
+
+#### Security Notes
+- Token is single-tenant per `~/.vibe/mcp-token`; multi-tenant / per-client tokens are a future concern.
+- `lastIndex` reset on `g`-flag patterns to prevent stateful skip after first match.
+- Blocked-call audit log is best-effort (try/catch around `appendEvent`); not a hardened audit pipeline.
+
 ## [2.17.5] - 2026-06-22
 
 ### Theme: Maintenance-Only Cleanup — stat sync, CI consolidation, scope closing

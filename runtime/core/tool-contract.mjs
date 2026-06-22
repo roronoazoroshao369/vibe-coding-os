@@ -6,6 +6,7 @@
 export const defaultContracts = {
   native: [],
   mcp: [
+    '_mcp.auth.verify',
     'task.list',
     'task.next',
     'task.update',
@@ -18,6 +19,7 @@ export const defaultContracts = {
   tmux: [],
   daemon: [],
   hermes: [
+    '_mcp.auth.verify',
     'task.list',
     'task.next',
     'task.update',
@@ -28,6 +30,7 @@ export const defaultContracts = {
     'autopilot.start', 'autopilot.status', 'autopilot.list', 'autopilot.stop',
   ],
   'ai-assistant': [
+    '_mcp.auth.verify',
     'task.list',
     'task.next',
     'task.update',

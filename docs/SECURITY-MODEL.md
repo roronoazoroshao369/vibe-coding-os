@@ -68,7 +68,19 @@ Vibe Coding OS uses multiple lightweight layers. No single layer is sufficient a
    - Events, snapshots, replay, migration status, backups, and runtime audit scripts provide traceability.
    - Local-file runtime state is recoverable when snapshots/backups are present, but it is not a substitute for Git history or external backups.
 
-6. **Validation gates**
+6. **MCP server authentication** (v2.17.6+)
+   - `runtime/mcp/server.mjs` requires a token handshake before any tool can execute.
+   - Token resolved from `MCP_AUTH_TOKEN` env var → `~/.vibe/mcp-token` file → auto-generated on first start.
+   - Client must call `_mcp.auth.verify({ token })` as first tool call; all others return `isError` until authenticated.
+   - Token is 24-byte hex string, persisted with `0o600` permissions.
+
+7. **Runtime injection scanning on MCP tool arguments** (v2.17.6+)
+   - Before executing any tool, `callToolRequest` handler scans `request.params.arguments` against `INJECTION_PATTERNS` from `runtime/core/injection-patterns.mjs`.
+   - `error`-severity patterns (instruction-override, role-reassignment, exfiltration, bidi-override) block the call and return `isError` with the pattern name.
+   - `warn`-severity patterns (conceal-from-user, zero-width-unicode, base64-blob) log to stderr but allow the call.
+   - Blocked calls are recorded to the event audit log as `mcp.injection.blocked`.
+
+8. **Validation gates**
    - `npm run validate:all` is the release-quality gate for docs, registries, schemas, adapters, dashboard sync, traceability, and runtime smoke tests.
    - Release changes should include validation evidence in PRs or release notes.
 
@@ -112,6 +124,8 @@ For public documentation or validation gaps, open an issue using the safety eval
 
 Security-sensitive PRs should confirm:
 
+- [ ] MCP auth token resolves correctly (env → file → auto-generate).
+- [ ] MCP injection scan blocks adversarial payloads and passes benign content.
 - [ ] No real or realistic-looking secrets are added.
 - [ ] New runtime writes validate collection and item shape.
 - [ ] Dangerous actions pass through approval gates or are explicitly documented as out of scope.

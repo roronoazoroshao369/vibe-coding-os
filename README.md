@@ -13,9 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.17.5):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
+**Current release (v2.17.6):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
 
-**Latest:** v2.17.5 — Maintenance-Only Cleanup — fix stat chaos (README/FAQ/vi sync), remove duplicate Wave A/B/C block, close validate:no-deprecated-commands scope gaps (.claude-plugin/ + skills/), consolidate 3 PR-comment workflows, wire _check_orphans.mjs into validate:all. (12/12 gates, 17/17 tests). <!-- injection-allow:* -->
+**Latest:** v2.17.6 — Tier 2 MCP Security Hardening — token-gated handshake on StdioServerTransport + runtime injection scanning on tool-call arguments (25/25 new tests). Builds on v2.17.5 maintenance cleanup. (12/12 gates, 17/17 tests). <!-- injection-allow:* -->
 
 ### What's new in v2.17.0 — Expert Council Trim
 
