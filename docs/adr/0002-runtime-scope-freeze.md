@@ -1,5 +1,9 @@
 # ADR 0002: Runtime Scope Freeze
 
+**Status:** Accepted for v1.5.0
+**Date:** 2026-01-10
+**Deciders:** @roronoazoroshao369
+
 ## Status
 
 Accepted for v1.5.0.

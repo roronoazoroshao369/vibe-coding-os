@@ -1,5 +1,9 @@
 # ADR 0001: Optional runtime layer
 
+**Status:** Accepted
+**Date:** 2025-12-15
+**Deciders:** @roronoazoroshao369
+
 ## Status
 
 Accepted.

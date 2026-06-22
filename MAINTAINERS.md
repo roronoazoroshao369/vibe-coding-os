@@ -63,4 +63,4 @@ the maintainer).
 
 ---
 
-*Last updated: 2026-06-21 (v2.17.0)*
+*Last updated: 2026-06-22 (v2.17.1)*

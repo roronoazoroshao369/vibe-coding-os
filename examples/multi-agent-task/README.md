@@ -45,10 +45,10 @@ These domains have clear boundaries and can be worked on in parallel after the d
 
 | Role | Responsibility | Write scope | Read scope | Handoff artifact |
 | --- | --- | --- | --- | --- |
-| Architect | Design data model, define interfaces between components, create ADR. | `src/notifications/types.ts`, `src/notifications/model/`, `docs/adr/0002-notification-system.md` | Entire `src/` | Data model spec + interface definitions |
+| Architect | Design data model, define interfaces between components, create ADR. | `src/notifications/types.ts`, `src/notifications/model/`, `docs/adr/0005-notification-system-example.md` | Entire `src/` | Data model spec + interface definitions |
 | Implementer | Build delivery pipeline, provider integrations, retry logic. | `src/notifications/pipeline/`, `src/notifications/providers/` | `src/notifications/types.ts`, `src/notifications/model/`, task queue docs | Pipeline implementation + provider adapters |
 | Tester | Write integration tests for all providers and end-to-end delivery. | `src/notifications/__tests__/` | Entire `src/notifications/`, mock utilities | Test suite + test fixtures |
-| Reviewer | Security and reliability review of the full notification system. | `docs/reviews/notification-system-review.md` | Entire `src/notifications/`, `docs/adr/0002-notification-system.md` | Review report with blockers and suggestions |
+| Reviewer | Security and reliability review of the full notification system. | `docs/reviews/notification-system-review.md` | Entire `src/notifications/`, `docs/adr/0005-notification-system-example.md` | Review report with blockers and suggestions |
 
 ## Execution order
 
@@ -104,7 +104,7 @@ Design the notification data model and define clear interfaces between the notif
 1. `src/notifications/types.ts` — shared type definitions (Notification, NotificationStatus, NotificationChannel, UserPreferences).
 2. `src/notifications/model/notification.ts` — notification entity creation and status tracking.
 3. `src/notifications/model/preferences.ts` — user notification preference management.
-4. `docs/adr/0002-notification-system.md` — ADR for notification system architecture.
+4. `docs/adr/0005-notification-system-example.md` — ADR for notification system architecture.
 
 ## Constraints
 
@@ -122,7 +122,7 @@ Design the notification data model and define clear interfaces between the notif
 
 ## Write scope
 
-`src/notifications/types.ts`, `src/notifications/model/`, `docs/adr/0002-notification-system.md`
+`src/notifications/types.ts`, `src/notifications/model/`, `docs/adr/0005-notification-system-example.md`
 
 ## Forbidden scope
 
