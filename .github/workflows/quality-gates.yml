@@ -1,8 +1,6 @@
-name: Quality Gates
+name: Quality Gates (push only)
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
   push:
     branches: [main]
   workflow_dispatch:
@@ -51,11 +49,7 @@ jobs:
         run: |
           REPORT_DIR="quality-reports"
           mkdir -p "$REPORT_DIR"
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            git diff --name-only --diff-filter=ACMRT "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > "$REPORT_DIR/changed-files.txt"
-          else
-            git diff --name-only --diff-filter=ACMRT "${{ github.event.before }}" "${{ github.sha }}" > "$REPORT_DIR/changed-files.txt" 2>/dev/null || true
-          fi
+          git diff --name-only --diff-filter=ACMRT "${{ github.before }}" "${{ github.sha }}" > "$REPORT_DIR/changed-files.txt" 2>/dev/null || true
           count=$(wc -l < "$REPORT_DIR/changed-files.txt" | tr -d ' ' 2>/dev/null || echo "0")
           echo "count=$count" >> "$GITHUB_OUTPUT"
           echo "Changed files detected: $count"
@@ -213,7 +207,7 @@ jobs:
           retention-days: 14
 
       - name: Comment PR quality summary
-        if: github.event_name == 'pull_request'
+        if: false
         uses: actions/github-script@v7
         with:
           script: |

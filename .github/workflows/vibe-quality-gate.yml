@@ -1,4 +1,4 @@
-name: Vibe Quality Gate
+name: Vibe Quality Gate (deprecated — see pr-quality-comment.yml)
 
 on:
   pull_request:
