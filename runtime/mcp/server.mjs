@@ -27,7 +27,7 @@ import { join } from 'node:path';
 
 export const SDK_PACKAGE = '@modelcontextprotocol/sdk';
 export const SERVER_NAME = 'vibe-coding-os-runtime';
-export const SERVER_VERSION = '2.17.6';
+export const SERVER_VERSION = '2.17.7';
 
 export const INSTALL_INSTRUCTIONS = [
   `The MCP server adapter needs the ${SDK_PACKAGE} package, which is not installed.`,
@@ -41,15 +41,15 @@ export const INSTALL_INSTRUCTIONS = [
 ].join('\n');
 
 // ─── Auth ───────────────────────────────────────────────────────────────────
-const AUTH_PATH = join(homedir(), '.vibe', 'mcp-token');
-const AUTH_ENV_VAR = 'MCP_AUTH_TOKEN';
+export const AUTH_PATH = join(homedir(), '.vibe', 'mcp-token');
+export const AUTH_ENV_VAR = 'MCP_AUTH_TOKEN';
 
 /**
  * Resolve the auth token: from env var, from token file, or auto-generate one.
  * In auto-generate mode the server writes the token to ~/.vibe/mcp-token so the
  * client can read it from there.
  */
-async function resolveAuthToken() {
+export async function resolveAuthToken() {
   // 1. Env var takes precedence
   const fromEnv = process.env[AUTH_ENV_VAR];
   if (fromEnv) return { token: fromEnv, source: 'env' };

@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.17.6):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters · **+Autopilot runtime** +3 validators mới
+**Bản phát hành hiện tại (v2.17.7):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters · **+Autopilot runtime** +3 validators mới
 
-**Mới nhất:** v2.17.6 — Tier 2 MCP Security Hardening — token-gated handshake on StdioServerTransport + runtime injection scanning on tool-call arguments (25/25 new tests). Builds on v2.17.5 maintenance cleanup. (12/12 gates, 17/17 tests). <!-- injection-allow:* -->
+**Mới nhất:** v2.17.7 — Post-v2.17.6 Hardening — wires MCP auth test into CI (29/29 pass), adds priority-chain + 0o600 permission tests, writes MCP auth quick-start docs, fixes stale FAQ Q2. (12/12 gates, 29/29 auth tests). <!-- injection-allow:* -->
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 

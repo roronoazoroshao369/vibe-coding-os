@@ -15,3 +15,5 @@ jobs:
         with:
           node-version: '20'
       - run: npm run validate:all
+      - name: Run MCP auth tests
+        run: npm run test:auth

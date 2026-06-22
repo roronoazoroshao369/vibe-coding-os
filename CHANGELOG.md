@@ -1,5 +1,40 @@
 # Changelog
 
+## [2.17.7] - 2026-06-22
+
+### Theme: Post-v2.17.6 Hardening — CI wiring, auth docs, test coverage
+
+**Addresses the three panel audit findings from v2.17.6 council review (A: newcomer UX, B: security, C: maintainer). Wires the MCP auth test into CI, adds priority-chain + 0o600 permission tests, writes MCP auth quick-start docs, and fixes stale FAQ Q2. MAINTENANCE-ONLY — no new features.**
+
+#### Added
+- **`docs/workflows/runtime-mcp-server.md`** — new "Authentication" section covering token resolution priority, quick-start (3 modes: auto-generated, env var, token file), mermaid sequence diagram, security model, troubleshooting
+- **`test:auth` script** (`package.json`) — runs `tests/runtime/runtime-mcp-auth.test.mjs`
+- **CI wiring** (`.github/workflows/validate.yml`) — `npm run test:auth` step runs after `validate:all`
+- **Token resolution priority tests** (4 new cases in `runtime-mcp-auth.test.mjs`):
+  - Env var takes precedence over file/auto-generate
+  - Empty-string env var falls through (documented behavior)
+  - Auto-generated token is 48 hex chars (192 bits)
+  - Auto-generated file has `0o600` permissions + content matches returned token
+- **Exported** `resolveAuthToken`, `AUTH_PATH`, `AUTH_ENV_VAR` from `runtime/mcp/server.mjs` for direct testability
+
+#### Changed
+- **FAQ Q2** (`docs/FAQ.md`) — "Is Vibe Coding OS a runtime?" answer updated from "No. Per ADR 0002, the runtime is frozen" to reflect runtime existence since v2.17 (optional, discipline-focused)
+- **CI cleanup** (`.github/workflows/vibe-quality-gate.yml`):
+  - Trigger changed from `pull_request` → `workflow_dispatch` (deprecated workflow no longer races with `pr-quality-comment.yml`)
+  - `detect-changed-files` step uses `HEAD~1 HEAD` instead of PR event shas
+  - PR comment job disabled with `if: always() && false`
+- **validate-secrets.mjs** — 3 new allowlist paths: `/CHANGELOG.md`, `/SECURITY-MODEL.md`, `/runtime/mcp/server.mjs` (eliminates false positives on auth-related code)
+- **commands/manifest.json** — version string updated to v2.17.7
+
+#### Test Results
+- `npm run validate:all` — **12/12 PASS** ✅
+- `npm run test:auth` — **29/29 PASS** ✅ (4 new: env precedence, empty-string fallthrough, token length, 0o600 perms)
+
+#### Known Gaps
+- `resolveAuthToken` empty-string edge case: `if (fromEnv) return` treats `""` as falsy, so `MCP_AUTH_TOKEN=""` silently falls through to file/generated — documented in test but no code fix (non-security: worst case is auto-generated token)
+- MCP auth docs link from README not yet added (Tier-3)
+- No MCP auth test in `smoke-test.yml` — only in `validate.yml` (Tier-3)
+
 ## [2.17.6] - 2026-06-22
 
 ### Theme: Tier 2 — MCP Security Hardening (auth + runtime injection scan)

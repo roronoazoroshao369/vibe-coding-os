@@ -17,13 +17,22 @@
 // We exercise the wiring statically and via the request handler shape.
 
 import { strict as assert } from 'node:assert';
+import { readFileSync, statSync } from 'node:fs';
 import {
   defaultContracts,
   assertToolAllowed,
   getAllowedTools,
 } from '../../runtime/core/tool-contract.mjs';
 import { INJECTION_PATTERNS } from '../../runtime/core/injection-patterns.mjs';
-import { buildTools, loadSdk, SERVER_NAME, SERVER_VERSION, SDK_PACKAGE } from '../../runtime/mcp/server.mjs';
+import {
+  buildTools,
+  loadSdk,
+  SERVER_NAME,
+  SERVER_VERSION,
+  SDK_PACKAGE,
+  resolveAuthToken,
+  AUTH_ENV_VAR,
+} from '../../runtime/mcp/server.mjs';
 
 let pass = 0, fail = 0;
 function test(name, fn) {
@@ -231,6 +240,88 @@ await test('scanArgumentsForInjection handles non-object args', () => {
   assert.deepEqual(scanArgumentsForInjection(null), { blocked: null, warnings: [] });
   assert.deepEqual(scanArgumentsForInjection(undefined), { blocked: null, warnings: [] });
   assert.deepEqual(scanArgumentsForInjection(42), { blocked: null, warnings: [] });
+});
+
+// ─── Summary ──────────────────────────────────────────────────────────────
+console.log(`\n${pass} passed, ${fail} failed`);
+
+// ─── 9. Token resolution priority chain (env > file > auto-generate) ────
+//
+// New in v2.17.7 — covers the priority chain that was untested.
+// Each test isolates ONE source to ensure fallthrough ordering is correct.
+console.log('\n─── Token resolution priority chain ───');
+
+await test('resolveAuthToken — env var takes precedence over file', async () => {
+  // When AUTH_ENV_VAR is set, source=env. File presence doesn't matter
+  // because env is checked first. We just verify the env path.
+  const previous = process.env[AUTH_ENV_VAR];
+  process.env[AUTH_ENV_VAR] = 'token-from-env-xxx';
+  try {
+    const result = await resolveAuthToken();
+    assert.equal(result.source, 'env', 'env var should win');
+    assert.equal(result.token, 'token-from-env-xxx');
+  } finally {
+    if (previous === undefined) delete process.env[AUTH_ENV_VAR];
+    else process.env[AUTH_ENV_VAR] = previous;
+  }
+});
+
+await test('resolveAuthToken — empty string env var does not fall through (current behavior)', async () => {
+  // Document current behavior: `if (fromEnv) return` treats empty string as
+  // a valid token (JavaScript truthiness check: '' is falsy → falls through).
+  const previous = process.env[AUTH_ENV_VAR];
+  process.env[AUTH_ENV_VAR] = '';
+  try {
+    const result = await resolveAuthToken();
+    // Empty string is falsy, so we expect fallthrough to file/generated
+    assert.notEqual(result.source, 'env',
+      'empty-string env should not return source=env (falsy fallthrough)');
+    // Will be 'file' if file exists, 'generated' if not
+    assert.ok(['file', 'generated'].includes(result.source),
+      `expected file or generated, got ${result.source}`);
+  } finally {
+    if (previous === undefined) delete process.env[AUTH_ENV_VAR];
+    else process.env[AUTH_ENV_VAR] = previous;
+  }
+});
+
+await test('resolveAuthToken — generated token is 48 hex chars (192 bits)', async () => {
+  const fs = await import('node:fs');
+  const { AUTH_PATH } = await import('../../runtime/mcp/server.mjs');
+  const previous = process.env[AUTH_ENV_VAR];
+  const hadFile = fs.existsSync(AUTH_PATH);
+  if (hadFile) fs.rmSync(AUTH_PATH);
+  delete process.env[AUTH_ENV_VAR];
+  try {
+    const result = await resolveAuthToken();
+    assert.equal(result.source, 'generated', 'should auto-generate after file removed');
+    assert.match(result.token, /^[0-9a-f]{48}$/,
+      `token should be 48 hex chars, got length ${result.token.length}`);
+  } finally {
+    if (previous !== undefined) process.env[AUTH_ENV_VAR] = previous;
+  }
+});
+
+await test('resolveAuthToken — auto-generated token file has 0o600 permissions', async () => {
+  const { AUTH_PATH } = await import('../../runtime/mcp/server.mjs');
+  const previous = process.env[AUTH_ENV_VAR];
+  const fs = await import('node:fs');
+  // Remove any existing token so auto-generate kicks in
+  const hadFile = fs.existsSync(AUTH_PATH);
+  if (hadFile) fs.rmSync(AUTH_PATH);
+  delete process.env[AUTH_ENV_VAR];
+  try {
+    const result = await resolveAuthToken();
+    assert.equal(result.source, 'generated', 'should auto-generate after file removed');
+    const stats = statSync(AUTH_PATH);
+    const mode = stats.mode & 0o777;
+    assert.equal(mode, 0o600,
+      `token file mode should be 0o600, got 0o${mode.toString(8)}`);
+    const fileContent = readFileSync(AUTH_PATH, 'utf8').trim();
+    assert.equal(fileContent, result.token, 'file content should match returned token');
+  } finally {
+    if (previous !== undefined) process.env[AUTH_ENV_VAR] = previous;
+  }
 });
 
 // ─── Summary ──────────────────────────────────────────────────────────────

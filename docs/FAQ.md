@@ -20,7 +20,7 @@
       "name": "Is Vibe Coding OS a runtime?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Per ADR 0002, the runtime is frozen. Vibe Coding OS is a prompt and skill library, not an agent framework. You bring your own AI tool; we provide the prompts to use with it."
+        "text": "It started as a prompt library (ADR 0002), but since v2.17 it ships a lightweight Node.js runtime with task management, memory, MCP server, and autonomous coding loop. The runtime is optional — you can use just the prompts. But if you want structured task execution and discipline-enforced coding, the runtime is the way to go."
       }
     },
     {
@@ -99,7 +99,7 @@ A curated library of 115 skills, 113 commands, and 107 templates that augment an
 
 ### Is Vibe Coding OS a runtime?
 
-No. Per [ADR 0002](adr/0002-runtime-scope-freeze.md), the runtime is frozen. Vibe Coding OS is a prompt and skill library, not an agent framework. You bring your own AI tool; we provide the prompts to use with it.
+It started as a prompt library ([ADR 0002](adr/0002-runtime-scope-freeze.md)), but since v2.17 it ships a lightweight Node.js runtime with task management, memory, MCP server, and autonomous coding loop. The runtime is optional — you can use just the prompts. But if you want structured task execution and discipline-enforced coding, the runtime is the way to go.
 
 ### How is it different from LangChain?
 

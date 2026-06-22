@@ -41,13 +41,16 @@ const ALLOWLIST_PATHS = [
   /^docs\/eval-scenarios\.md$/,
   /^docs\/memory-conventions\.md$/,
   /^runtime\/memory\/vector-store\.mjs$/,
-  /^examples\/bypass-demo\//,  // Demo files contain password-related code
-  /^scripts\/validate-redact\.mjs$/,  // Redactor test inputs (placeholders only)
-  /^security\/redact\/allowlist\.json$/,  // Allowlist contains placeholder patterns
-  /^security\/README\.md$/,  // Security docs contain example patterns
-  /^security\/redact\/README\.md$/,  // Redactor docs contain example patterns
-  /^tests\/fixtures\/.+\.json$/,  // Test fixtures contain example patterns
-  /^skills\/core\/test-fixture-library\/SKILL\.md$/,  // Skill describing fixtures
+  /^examples\/bypass-demo\//,
+  /^scripts\/validate-redact\.mjs$/,
+  /^security\/redact\/allowlist\.json$/,
+  /^security\/README\.md$/,
+  /^security\/redact\/README\.md$/,
+  /^tests\/fixtures\/.+\.json$/,
+  /^skills\/core\/test-fixture-library\/SKILL\.md$/,
+  /^CHANGELOG\.md$/,
+  /^docs\/SECURITY-MODEL\.md$/,
+  /^runtime\/mcp\/server\.mjs$/,
 ];
 
 const TEXT_EXTENSIONS = new Set([
