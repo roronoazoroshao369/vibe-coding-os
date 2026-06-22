@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.17.2] - 2026-06-22
+
+### Theme: Bus Factor Safety + ADR Frontmatter
+
+**CODEOWNERS created, ADR frontmatter standardized, ADR number collision resolved. All gaps identified by Expert Council Panel C (Maintainer).**
+
+#### Added
+- **CODEOWNERS** (`.github/CODEOWNERS`) — 13 path patterns auto-assign PRs to BDFL @roronoazoroshao369. All top-level directories owned. Ready for future co-maintainer addition.
+
+#### Changed
+- **ADR 0001 frontmatter:** Added `Status: Accepted`, `Date: 2025-12-15`, `Deciders: @roronoazoroshao369`.
+- **ADR 0002 frontmatter (runtime-scope-freeze):** Added `Status: Accepted for v1.5.0`, `Date: 2026-01-10`, `Deciders: @roronoazoroshao369`.
+- **ADR example renamed:** `0002-notification-system` → `0005-notification-system-example` (resolved number collision with real ADR 0002). All refs in `examples/multi-agent-task/README.md` updated.
+- **MAINTAINERS.md:** Last-updated date advanced to v2.17.2.
+
+#### Validation
+- `npm run validate:all` → **10/10 PASS**
+- `npm run test:e2e` → **5/5 PASS**
+
+---
+
 ## [2.17.1] - 2026-06-22
 
 ### Theme: Tier 1 Bugfix — Tool Contract & Stats Alignment
