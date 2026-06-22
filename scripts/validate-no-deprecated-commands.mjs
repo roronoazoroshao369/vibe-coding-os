@@ -53,7 +53,7 @@ async function* walk(dir) {
   }
 }
 
-const targets = ['commands/', 'CLAUDE.md', 'README.md', 'README.vi.md', 'AGENTS.md', 'templates/manifest.json', 'commands/manifest.json', 'docs/'];
+const targets = ['commands/', 'skills/', '.claude-plugin/', 'CLAUDE.md', 'README.md', 'README.vi.md', 'AGENTS.md', 'templates/manifest.json', 'commands/manifest.json', 'docs/'];
 
 let findings = [];
 

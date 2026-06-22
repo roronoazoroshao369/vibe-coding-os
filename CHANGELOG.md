@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.17.5] - 2026-06-22
+
+### Theme: Maintenance-Only Cleanup — stat sync, CI consolidation, scope closing
+
+**Fixes 6 council-demanded items without adding a single new feature. Stats in README/FAQ/vi now match disk (115/113/107/templates 107/gates 12). Duplicate Wave A/B/C block removed. validate:no-deprecated-commands now covers `.claude-plugin/` and `skills/`. 3 PR-comment workflows consolidated into 1. Orphan checker (validate-orphans) wired into validate:all as non-blocking warning.**
+
+#### Fixed
+- **Stat chaos** (README/FAQ/vi:116→113 commands, FAQ's 26→11 gates, FIRST-WORKFLOW's 26→11 gates, vi's v2.17.0→v2.17.5)
+- **Duplicate Wave A/B/C block** removed from README (first occurrence preserved)
+- **validate:no-deprecated-commands scope gap closed**: now checks `.claude-plugin/` and `skills/` (was missing 3 stale refs)
+- **3 stale references fixed**: `.claude-plugin/plugin.json` had `vibe-parallel-explore` and duplicate `vibe-spec`; `skills/core/clarify-before-code/SKILL.md` had `vibe-specify`
+- **validate:orphans** validator created (non-blocking, wired into validate:all as 12th gate)
+- **Council injection allowlist**: Panel B safety-report examples marked `injection-allow:*`
+
+#### Changed
+- **CI consolidation**: `quality-gates.yml` now push-to-main only (no PR trigger); `vibe-quality-gate.yml` marked deprecated; `pr-quality-comment.yml` is sole PR-comment workflow
+- **`_check_orphans.mjs`** (root-level, ripgrep-based) replaced by `scripts/validate-orphans.mjs` (pure Node, no dependency)
+- **package.json**: v2.17.4 → v2.17.5
+
 ## [2.17.4] - 2026-06-22
 
 ### Theme: Tier 5 — Council Findings Closure (87.5% audit closure, 100% code-side)
@@ -728,7 +747,8 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.4...HEAD
+[2.17.5]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.4...v2.17.5
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.5...HEAD
 [2.17.4]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.3...v2.17.4
 [2.17.3]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.2...v2.17.3
 [2.17.2]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.1...v2.17.2

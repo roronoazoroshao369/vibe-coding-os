@@ -74,7 +74,7 @@ Related mattpocock-inspired skill: `skills/core/grill-user-before-building/SKILL
 
 The ≤5-question cap and the "encode answers back into the spec" discipline adapt the
 `clarify` idea from `github/spec-kit` (MIT, GitHub, Inc.) as original wording. No upstream
-prompt text or CLI is vendored. Related: `commands/vibe-specify.md`,
+prompt text or CLI is vendored. Related: `commands/vibe-spec.md`,
 `skills/core/requirements-quality-checklist/SKILL.md`.
 
 ### Ghi chú tiếng Việt

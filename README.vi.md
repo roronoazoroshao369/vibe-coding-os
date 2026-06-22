@@ -20,9 +20,9 @@ Nó không cố trở thành wrapper, product, hosted service, runtime hay task 
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.17.0):** validate:all 10/10 gates PASS trong 6.41s · **115 skills** · **116 commands** · **107 templates** · **22 tracked sources** · 9 adapters · **+Autopilot runtime** +3 validators mới
+**Bản phát hành hiện tại (v2.17.5):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters · **+Autopilot runtime** +3 validators mới
 
-**Mới nhất:** v2.17.0 — Expert Council Trim — 152→115 skills (−24%), 120→116 commands, 110→107 templates. +Autopilot runtime (policy.mjs + loop.mjs + 2 hooks), +3 validators (imports/typecheck/scope-match), validation 3× nhanh hơn (18.3s → 6.41s). 4 release-blockers đã fix. <!-- injection-allow:* -->
+**Mới nhất:** v2.17.5 — Maintenance-Only Cleanup — fix stat chaos (README/FAQ/vi sync), remove duplicate Wave A/B/C block, close validate:no-deprecated-commands scope gaps (.claude-plugin/ + skills/), consolidate 3 PR-comment workflows, wire _check_orphans.mjs into validate:all. (11/11 gates, 17/17 tests). <!-- injection-allow:* -->
 
 **v2.5.0 trước đó:** Advanced Orchestration — workflow nhiều stage có gate, schema orchestration, runner, templates feature/bugfix/security audit và roadmap hoàn tất 100% đến v2.5.
 

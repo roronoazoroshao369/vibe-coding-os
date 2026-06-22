@@ -13,9 +13,9 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.17.4):** validate:all 11/11 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
+**Current release (v2.17.5):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
 
-**Latest:** v2.17.4 — Post-Release Cleanup — fix gcSessions NaN bug, sweep deprecated command refs, delete 7 dead validators, add validate:no-deprecated-commands CI guard (11/11 gates). <!-- injection-allow:* -->
+**Latest:** v2.17.5 — Maintenance-Only Cleanup — fix stat chaos (README/FAQ/vi sync), remove duplicate Wave A/B/C block, close validate:no-deprecated-commands scope gaps (.claude-plugin/ + skills/), consolidate 3 PR-comment workflows, wire _check_orphans.mjs into validate:all. (12/12 gates, 17/17 tests). <!-- injection-allow:* -->
 
 ### What's new in v2.17.0 — Expert Council Trim
 
@@ -35,27 +35,6 @@ AI coding assistants can generate code fast — but speed without structure lead
 - 🔌 **T5** — 14KB dead code `command-tools.mjs` wired into MCP server (11 tools total)
 - 📊 **T6** — README skill/command/template counts synced to disk
 - ✅ **T7** — 38/38 PASS, all smoke & E2E tests, live-tested with Claude Code
-
-**Wave A (Security):**
-- ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
-- ADR 0004 — Bypass load attempt protocol (rate-limited logging)
-- 30 secret patterns × 3 modes redactor (postTool/postSession/postPublish)
-- Session-audit + bypass-load-attempts log infrastructure
-- 97.37% regression test coverage for prompt-injection bypass attempts
-
-**Wave B (Engineering):**
-- [`commands/vibe-skill-search.md`](commands/vibe-skill-search.md) — search across all skill content with regex/FTS5
-- [`commands/vibe-docs-author.md`](commands/vibe-docs-author.md) — generate docs from code/templates
-- [`commands/vibe-deps-graph.md`](commands/vibe-deps-graph.md) — visualize skill dependency graph, detect cycles
-- [`skills/core/test-fixture-library/SKILL.md`](skills/core/test-fixture-library/SKILL.md) — versioned test fixtures with allowlist
-- ~~~~ — removed in v2.17 trim (framework admin)~~
-
-**Wave C (Adoption):**
-- [`docs/comparison.md`](docs/comparison.md) — vs LangChain, Semantic Kernel, Cursor, Copilot
-- ~~~~ — removed in v2.17 trim (framework admin)~~
-- [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
-- [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
-- [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
 
 **Wave A (Security):**
 - ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
@@ -267,7 +246,7 @@ See [`docs/workflows/core-vs-optional-runtime.md`](docs/workflows/core-vs-option
 
 ## What's included
 
-**115 skills**, **116 commands**, **107 templates**, **22 tracked inspiration sources**, **9 adapters**, and an optional runtime layer.
+**115 skills**, **113 commands**, **107 templates**, **22 tracked inspiration sources**, **9 adapters**, and an optional runtime layer.
 
 | Layer | What it does |
 |---|---|
@@ -351,7 +330,7 @@ This repository is intentionally dependency-light. Run validation after any stru
 
 ```bash
 npm run validate        # core structural checks (4 gates)
-npm run validate:all    # full validation (26 gates)
+npm run validate:all    # full validation (11 gates)
 ```
 
 **Coverage honesty labels:**

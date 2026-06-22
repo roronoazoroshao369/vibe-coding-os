@@ -12,7 +12,7 @@
       "name": "What is Vibe Coding OS?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Vibe Coding OS is a curated library of 115 skills, 116 commands, and 107 templates that augment any AI coding tool (Claude Code, Codex, Cursor, Gemini). It's prompt-only middleware — markdown files that ship workflows, contracts, and validation gates."
+        "text": "Vibe Coding OS is a curated library of 115 skills, 113 commands, and 107 templates that augment any AI coding tool (Claude Code, Codex, Cursor, Gemini). It's prompt-only middleware — markdown files that ship workflows, contracts, and validation gates."
       }
     },
     {
@@ -95,7 +95,7 @@
 
 ### What is Vibe Coding OS?
 
-A curated library of 115 skills, 116 commands, and 107 templates that augment any AI coding tool (Claude Code, Codex, Cursor, Gemini). It's prompt-only middleware — markdown files that ship workflows, contracts, and validation gates.
+A curated library of 115 skills, 113 commands, and 107 templates that augment any AI coding tool (Claude Code, Codex, Cursor, Gemini). It's prompt-only middleware — markdown files that ship workflows, contracts, and validation gates.
 
 ### Is Vibe Coding OS a runtime?
 
