@@ -11,7 +11,7 @@
 | Layer | When | Key commands |
 |-------|------|--------------|
 | **Default** | Every session | all `vibe-*` |
-| **Superpowers** | Brainstorming, exploration | `vibe-brainstorm`, `vibe-parallel-explore` |
+| **Superpowers** | Brainstorming, exploration | `vibe-brainstorm`, `vibe-flow` |
 | **Spec-Driven** | Multi-file features | `vibe-spec` → `vibe-plan` → `vibe-tasks` |
 | **Real Engineering** | Debugging, legacy code | `vibe-diagnose`, TDD |
 
@@ -40,7 +40,7 @@ Coding before understanding, scope creep, large rewrites without plan, faking te
 ## On-demand deep dives
 
 - **Superpowers:** [`docs/workflows/superpowers-inspired-workflow.md`](docs/workflows/superpowers-inspired-workflow.md)
-- **Spec-driven:** [`commands/vibe-specify.md`](commands/vibe-specify.md)
+- **Spec-driven:** [`commands/vibe-spec.md`](commands/vibe-spec.md)
 - **Memory rules:** [`skills/memory/memory-ingestion/SKILL.md`](skills/memory/memory-ingestion/SKILL.md)
 - **Reference intelligence:** [`docs/workflows/runtime-mcp-server.md`](docs/workflows/runtime-mcp-server.md)
 - **Proficiency levels:** [`commands/vibe-proficiency.md`](commands/vibe-proficiency.md)

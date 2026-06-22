@@ -1,0 +1,30 @@
+name: Autopilot Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'runtime/autopilot/**'
+      - 'runtime/mcp/autopilot-tools.mjs'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'runtime/autopilot/**'
+      - 'runtime/mcp/autopilot-tools.mjs'
+  schedule:
+    - cron: '0 6 * * 1'  # weekly Monday 06:00 UTC
+
+jobs:
+  autopilot-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Run autopilot unit tests
+        run: npm run test:autopilot
+      - name: Run autopilot import validation
+        run: node scripts/validate-imports.mjs runtime/

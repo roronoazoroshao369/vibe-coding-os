@@ -99,6 +99,41 @@ export async function listSessions(root) {
 }
 
 /**
+ * Garbage collect old session files older than TTL (default 24h).
+ * Returns the number of sessions removed.
+ */
+const DEFAULT_SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+export async function gcSessions(root, ttlMs = DEFAULT_SESSION_TTL_MS) {
+  const dir = stateDir(root);
+  if (!existsSync(dir)) return 0;
+  const entries = await readdir(dir);
+  const now = Date.now();
+  let removed = 0;
+  for (const entry of entries) {
+    if (!entry.endsWith(STATE_EXT)) continue;
+    const file = path.join(dir, entry);
+    try {
+      const raw = await readFile(file, 'utf8');
+      const session = JSON.parse(raw);
+      const created = new Date(session.createdAt).getTime();
+      if (now - created > ttlMs) {
+        await unlink(file);
+        removed++;
+      }
+    } catch {
+      // corrupt session file — remove it
+      await unlink(file);
+      removed++;
+    }
+  }
+  if (removed > 0) {
+    await auditLog(root, 'gc', '-', `removed=${removed} ttl=${ttlMs}ms`);
+  }
+  return removed;
+}
+
+/**
  * Build the 3 autopilot MCP tools.
  *
  * Each tool:
@@ -179,6 +214,9 @@ export function buildAutopilotTools(root) {
           return { error: `Invalid policy: ${err.message}`, id: null };
         }
 
+        // Run GC before creating a new session to keep state directory lean
+        await gcSessions(base);
+
         await writeSession(base, session);
         await auditLog(base, 'start', id, `rules=${args.rules.length} autoApprove=${session.autoApprove}`);
         return {
@@ -231,6 +269,8 @@ export function buildAutopilotTools(root) {
       risk: { level: 'safe' },
       inputSchema: { type: 'object', properties: {}, additionalProperties: false },
       handler: async () => {
+        // Run GC before listing to auto‑expire stale sessions
+        await gcSessions(base);
         const ids = await listSessions(base);
         return { count: ids.length, ids };
       },

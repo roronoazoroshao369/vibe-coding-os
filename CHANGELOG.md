@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.17.3] - 2026-06-22
+
+### Theme: Tier 3-4 — Trim Residue + Autopilot Automation
+
+**Council-driven cleanup: stale CLAUDE.md orphan commands fixed, ROADMAP.md modernised, templates manifest regenerated (92→107), autopilot unit tests added (14/14 PASS), session TTL/GC implemented, CI workflow for autopilot.**
+
+#### Changed
+- **CLAUDE.md:** Replaced `vibe-parallel-explore` (orphan) → `vibe-flow` in Superpowers table; `commands/vibe-specify.md` → `commands/vibe-spec.md` in deep-dive links.
+- **ROADMAP.md:** Added v2.16.x, v2.17.0, v2.17.1, v2.17.2 to release history; replaced stale `v2.16.0 — Expert Mode` roadmap theme with `v2.18.0 — Council-Driven Audit Cadence`; removed duplicate section.
+- **templates/manifest.json:** Regenerated from filesystem (107 entries, was 92). Removed 3 stale entries (`deprecation-notice-template`, `doubt-log`, `observability-plan-template`).
+
+#### Added
+- **Autopilot unit tests** (`runtime/autopilot/__tests__/policy.test.mjs`): 14 tests covering `allows()`, `requiresApproval()`, call counters, wildcard matching, constructor validation. All pass.
+- **Session TTL/GC** (`runtime/mcp/autopilot-tools.mjs`): `gcSessions()` auto-expires sessions older than 24h; runs on `autopilot.start` and `autopilot.list`.
+- **CI workflow** (`.github/workflows/autopilot.yml`): runs autopilot tests on push/PR modifying `runtime/autopilot/**` or `autopilot-tools.mjs`, plus weekly schedule.
+- **`test:autopilot` npm script** in `package.json`.
+
+#### Fixed
+- **package.json:** Version bumped 2.17.1 → 2.17.3 to reflect Tier 3 + Tier 4 work.
+
+#### Validation
+- `npm run validate:all` → **10/10 PASS**
+- `npm run test:e2e` → **5/5 PASS**
+- `npm run test:autopilot` → **14/14 PASS**
+
+---
+
 ## [2.17.2] - 2026-06-22
 
 ### Theme: Bus Factor Safety + ADR Frontmatter
@@ -672,7 +699,18 @@ First public release of Vibe Coding OS — a markdown-first AI coding skill fram
 
 This project is licensed under the [MIT License](LICENSE).
 
-[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.9.0...HEAD
+[Unreleased]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.3...HEAD
+[2.17.3]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.2...v2.17.3
+[2.17.2]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.1...v2.17.2
+[2.17.1]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.17.0...v2.17.1
+[2.17.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.16.0...v2.17.0
+[2.16.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.15.0...v2.16.0
+[2.15.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.14.0...v2.15.0
+[2.14.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.13.0...v2.14.0
+[2.13.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.12.0...v2.13.0
+[2.12.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.11.0...v2.12.0
+[2.11.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.10.0...v2.11.0
+[2.10.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.9.0...v2.10.0
 [2.9.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/roronoazoroshao369/vibe-coding-os/compare/v2.6.0...v2.7.0
