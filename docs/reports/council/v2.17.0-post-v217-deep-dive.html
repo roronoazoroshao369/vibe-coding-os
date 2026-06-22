@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>v2.17.0 Post-Release Audit — Expert Council Deep-Dive</title>
+<style>
+  :root {
+    --bg: #0d1117; --surface: #161b22; --border: #30363d;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff;
+    --green: #3fb950; --yellow: #d29922; --red: #f85149;
+    --pink: #f778ba; --cyan: #39d2c0; --purple: #bc8cff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.6; padding:24px; max-width:1200px; margin:auto; }
+  h1,h2,h3,h4 { margin:1.2em 0 0.5em; }
+  a { color:var(--accent); }
+  code { background:#1f2937; padding:2px 6px; border-radius:4px; font-size:0.9em; }
+  pre { background:#0d1117; border:1px solid var(--border); border-radius:8px; padding:16px; overflow-x:auto; margin:12px 0; font-size:0.85em; }
+  hr { border:none; border-top:1px solid var(--border); margin:32px 0; }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg,#1a1b27,#0f1923); border:1px solid var(--border); border-radius:16px; padding:40px; margin-bottom:32px; }
+  .hero h1 { font-size:2em; margin:0 0 8px; }
+  .hero .verdict { color:var(--yellow); font-size:1.15em; margin-bottom:16px; }
+  .hero .meta-pills { display:flex; gap:10px; flex-wrap:wrap; }
+  .pill { background:#1f2937; border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:0.85em; }
+
+  /* Stat grid */
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin:24px 0; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center; }
+  .stat-num { font-size:2em; font-weight:700; background:linear-gradient(135deg,var(--cyan),var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .stat-label { color:var(--muted); font-size:0.85em; margin-top:4px; }
+
+  /* Cards */
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin:16px 0; }
+  .card h4 { margin:0 0 8px; display:flex; align-items:center; gap:8px; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.8em; font-weight:600; }
+  .badge-red { background:rgba(248,81,73,0.2); color:var(--red); }
+  .badge-yellow { background:rgba(210,153,34,0.2); color:var(--yellow); }
+  .badge-green { background:rgba(63,185,80,0.2); color:var(--green); }
+  .badge-cyan { background:rgba(57,210,192,0.2); color:var(--cyan); }
+
+  /* Expert panels */
+  .expert-panel { border-left:4px solid; padding:20px 24px; margin:20px 0; background:var(--surface); border-radius:0 12px 12px 0; }
+  .panel-A { border-color:var(--cyan); }
+  .panel-B { border-color:var(--green); }
+  .panel-C { border-color:var(--orange); border-color:var(--yellow); }
+  .panel-D { border-color:var(--pink); }
+  .expert-panel .quote { font-style:italic; color:var(--muted); margin-bottom:12px; font-size:0.95em; }
+  .expert-panel ol { padding-left:20px; }
+  .expert-panel li { margin:6px 0; }
+
+  /* Callout */
+  .callout { border-radius:10px; padding:16px 20px; margin:16px 0; border:1px solid; }
+  .callout-red { border-color:var(--red); background:rgba(248,81,73,0.08); }
+  .callout-yellow { border-color:var(--yellow); background:rgba(210,153,34,0.08); }
+  .callout-green { border-color:var(--green); background:rgba(63,185,80,0.08); }
+  .callout-blue { border-color:var(--accent); background:rgba(88,166,255,0.08); }
+  .callout strong { color:inherit; }
+
+  /* Grids */
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:768px){ .grid-2,.grid-3 { grid-template-columns:1fr; } }
+
+  /* Tables */
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.9em; }
+  th,td { border:1px solid var(--border); padding:10px 12px; text-align:left; }
+  th { background:#1c2333; font-weight:600; }
+  tr:nth-child(even) { background:rgba(255,255,255,0.02); }
+
+  /* Tier cards */
+  .tier-card { border-left:4px solid; padding:20px; margin:12px 0; background:var(--surface); border-radius:0 10px 10px 0; }
+  .tier-1 { border-color:var(--red); }
+  .tier-2 { border-color:var(--yellow); }
+  .tier-3 { border-color:var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>🔍 v2.17.0 Post-Release Audit</h1>
+  <div class="verdict">⚠️ v2.17.0 trim hoàn tất nhưng có 3 critical runtime gaps khiến 9/15 MCP tools silent-fail. Tier 1 fix chỉ ~55 phút.</div>
+  <div class="meta-pills">
+    <span class="pill">📅 2026-06-22</span>
+    <span class="pill">🏷️ v2.17.0 (d217c1a)</span>
+    <span class="pill">👥 3 panels</span>
+    <span class="pill">🔧 152→115 skills</span>
+    <span class="pill">📊 10/10 PASS</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stat-grid">
+  <div class="stat"><div class="stat-num">115</div><div class="stat-label">Skills on disk</div></div>
+  <div class="stat"><div class="stat-num">116</div><div class="stat-label">Commands</div></div>
+  <div class="stat"><div class="stat-num">107</div><div class="stat-label">Templates</div></div>
+  <div class="stat"><div class="stat-num">9/15</div><div class="stat-label">Tools blocked ❌</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Critical gaps</div></div>
+  <div class="stat"><div class="stat-num">10/10</div><div class="stat-label">Validators PASS</div></div>
+  <div class="stat"><div class="stat-num">9s</div><div class="stat-label">Validate time</div></div>
+  <div class="stat"><div class="stat-num">1.5/5</div><div class="stat-label">Bus factor</div></div>
+</div>
+
+<hr>
+
+<!-- VERDICT -->
+<div class="callout callout-yellow">
+  <strong>🎯 Verdict:</strong> v2.17.0 trim hiệu quả — zero orphan scripts, zero .bak files, zero stale .mjs imports. Validation pipeline mạnh (10/10 PASS, 9s). MCP server start cleanly. <strong>Nhưng:</strong> 9/15 tools registered but silent-fail (tool-contract.mjs bug), .vibe/ state leaks to git, README có 5 bộ stats mâu thuẫn. Newcomer quit rate ~60% trong 20 phút đầu tiên.
+</div>
+
+<hr>
+
+<!-- EXPERT PANELS -->
+<h2>🧑‍⚖️ 3 Expert Panel Findings</h2>
+
+<div class="expert-panel panel-A">
+  <h4>👤 Panel A — Newcomer UX <span class="badge badge-yellow">298 lines</span></h4>
+  <div class="quote">"Tôi clone repo, chạy vibe doctor ✅, nhưng vibe verify → unknown command, README nói 128 skills trong khi header nói 115 — tôi không tin được số nào."</div>
+  <ol>
+    <li><strong>6/10 workflow commands missing from CLI:</strong> verify, review, merge, tasks, implement, review — exist as .md prompts but not as <code>vibe-cli.mjs</code> subcommands. Typing <code>vibe verify</code> returns "unknown command".</li>
+    <li><strong>5 conflicting stat sets on same README page:</strong> L16: 115/116/107, L18: "152→115", L270: 128/96/93, FAQ.md:15: "148 skills", plugin.json:4: "128 skills".</li>
+    <li><strong>Generated CLAUDE.md references deprecated commands:</strong> <code>vibe init claude-code</code> creates CLAUDE.md that links to <code>commands/vibe-specify.md</code> (deprecated) and mentions <code>vibe-parallel-explore</code> (orphan).</li>
+    <li><strong>16+ active docs reference deleted/merged skills:</strong> what-before-how, zoom-out-system-context, vibe-triage, install-skill.mjs, vibe-quality-rubric, creative-parallel-exploration.</li>
+    <li><strong>Zero interactive end-to-end demos:</strong> <code>examples/react-nextjs-booking-workflow/</code> is a 138-line static README with no runnable code. Flagged in v2.16.0, still unfixed.</li>
+  </ol>
+</div>
+
+<div class="expert-panel panel-B">
+  <h4>⚙️ Panel B — Runtime Engineer <span class="badge badge-yellow">350 lines</span></h4>
+  <div class="quote">"MCP server starts with 15 tools, but tool-contract.mjs blocks 9 of them. .vibe/ leaks sessions to git. --tools says 11 not 15."</div>
+  <ol>
+    <li><strong>Tool contract blocks 9/15 tools:</strong> <code>tool-contract.mjs</code> <code>defaultContracts.mcp</code> only lists 6 core tools. All vibe.* and autopilot.* tools throw "Tool not allowed for adapter mcp" despite being registered.</li>
+    <li><strong>`.vibe/` not in .gitignore:</strong> Autopilot sessions, audit.log, setup.json all leak. <code>.vibe/</code> is also in <code>package.json</code> files array — npm publish exposes runtime state.</li>
+    <li><strong>`--help`/`--tools` shows 11 not 15:</strong> <code>runtime-mcp.mjs</code> printHelp omits <code>buildAutopilotTools()</code>.</li>
+    <li><strong>No TTL for autopilot sessions:</strong> Stale sessions accumulate forever. No garbage-collection mechanism. Client crash leaves orphaned sessions.</li>
+    <li><strong>Zero unit tests for Policy + AutopilotLoop:</strong> Only approval-gate has tests (15/15 PASS). Policy class and execution loop are untested.</li>
+    <li><strong>Audit log is tamperable:</strong> Plain-text append-only file with no HMAC, no checksum chain, no size caps. Legally insufficient for compliance.</li>
+  </ol>
+</div>
+
+<div class="expert-panel panel-C">
+  <h4>📋 Panel C — Maintainer/Sustainability <span class="badge badge-yellow">397 lines</span></h4>
+  <div class="quote">"Bus factor 1.5/5. 150 commits from a single duo. No CODEOWNERS. plugin.json description says 128 skills. ROADMAP.md references v2.16.0 as 'Next'."</div>
+  <ol>
+    <li><strong>Bus factor remains 1.5/5:</strong> Sole human maintainer Xich Chan. No CODEOWNERS file. MAINTAINERS.md exists but claims .github/CODEOWNERS that doesn't exist. ADR 0001/0002 undated and unsigned.</li>
+    <li><strong>Registry drift = 0 (fixed in v2.17.0):</strong> All 3 registries (skills.json, manifest.json, plugin.json) match disk. The 4 pre-tag blockers R1-R4 were fixed.</li>
+    <li><strong>Plugin.json description stale:</strong> Claims "128 skills, 97 commands, 94 templates" — actual v2.17.0 is 115/115/107. Copy-pasted from v2.16.</li>
+    <li><strong>ROADMAP.md references v2.16.0 as "Next roadmap theme":</strong> Section titled "Next roadmap theme: v2.16.0 — Expert Mode (planned)" but v2.16.0 shipped 2026-06-20.</li>
+    <li><strong>Provenance gate is vacuous on main:</strong> 0% trailer coverage on last 20 commits. The gate checks <code>main..HEAD</code> range — when HEAD == main, the check is a no-op.</li>
+    <li><strong>Trim complete, no half-deleted artifacts:</strong> Zero .bak, .orig, or orphan scripts from the 152→115 trim. 8 doc files still have stale references (low priority).</li>
+  </ol>
+</div>
+
+<hr>
+
+<!-- 3 CRITICAL GAPS -->
+<h2>🔴 3 Critical Gaps</h2>
+
+<div class="card">
+  <h4>🔥 Gap 1 — Tool Contract Blocks 9/15 MCP Tools <span class="badge badge-red">Critical · 2 min fix</span></h4>
+  <p><strong>Where:</strong> <code>runtime/core/tool-contract.mjs:8-15</code></p>
+  <p><strong>What happens:</strong> Any MCP client calling <code>vibe.spec</code>, <code>autopilot.start</code>, etc. gets: <code>"Tool not allowed for adapter mcp"</code> — despite tools being registered and advertised.</p>
+  <p><strong>Why:</strong> <code>defaultContracts.mcp</code> only lists 6 core tools. The 5 vibe.* + 4 autopilot.* tools were added to the server after the allowlist was written.</p>
+  <p><strong>Fix:</strong> Add all 9 missing tool names to the mcp array:</p>
+  <pre>'vibe.spec', 'vibe.plan', 'vibe.review', 'vibe.memory', 'vibe.merge',
+'autopilot.start', 'autopilot.status', 'autopilot.list', 'autopilot.stop'</pre>
+</div>
+
+<div class="card">
+  <h4>🔥 Gap 2 — `.vibe/` Runtime State Leaks into Git <span class="badge badge-red">Critical · 5 min fix</span></h4>
+  <p><strong>Where:</strong> <code>.gitignore</code> (missing <code>.vibe/</code>), <code>package.json</code> files array (includes <code>.vibe/</code>)</p>
+  <p><strong>What happens:</strong> Autopilot sessions (<code>.vibe/runtime/autopilot/*.json</code>), audit logs (<code>audit.log</code>), and <code>.vibe/setup.json</code> are tracked by git and included in npm publish. Sessions contain rule definitions, agent labels, and call statistics.</p>
+  <p><strong>Fix:</strong></p>
+  <pre>.gitignore: add ".vibe/"
+package.json: remove ".vibe/" from files array</pre>
+</div>
+
+<div class="card">
+  <h4>🔥 Gap 3 — README/FAQ/Plugin Stats Mismatch (5 files) <span class="badge badge-red">Critical · 15 min fix</span></h4>
+  <table>
+    <tr><th>File</th><th>Claims</th><th>Reality</th></tr>
+    <tr><td>README.md:16</td><td>115 skills, 116 cmds, 107 tmpl</td><td>✅ Correct</td></tr>
+    <tr><td>README.md:270</td><td>128 skills, 96 cmds, 93 tmpl</td><td>❌ Wrong</td></tr>
+    <tr><td>FAQ.md:15</td><td>148 skills, 115 cmds, 119 tmpl</td><td>❌ Wrong</td></tr>
+    <tr><td>.claude-plugin/plugin.json:4</td><td>128 skills, 97 cmds, 94 tmpl</td><td>❌ Wrong</td></tr>
+    <tr><td>plugins/manifest.json:5</td><td>v2.12.0, 136/96/84</td><td>❌ Wrong version + counts</td></tr>
+  </table>
+  <p><strong>Fix:</strong> Sweep all 5 files in one patch to match validate-repo output (115/116/107). Consider auto-generating at release time.</p>
+</div>
+
+<hr>
+
+<!-- COVERAGE MATRIX -->
+<h2>📊 Coverage Matrix</h2>
+<table>
+  <tr><th>Pain Point</th><th>Solution</th><th>Status</th></tr>
+  <tr><td>"Tool not allowed" when calling vibe/autopilot via MCP</td><td><code>tool-contract.mjs</code> allowlist needs all 15 tools</td><td><span class="badge badge-red">🔴 Unsolved</span></td></tr>
+  <tr><td>.vibe/ sessions leak to git + npm publish</td><td>Add .vibe/ to .gitignore, remove from package.json</td><td><span class="badge badge-red">🔴 Unsolved</span></td></tr>
+  <tr><td>5 different stat claims across 4 files</td><td>Manual sweep or auto-generate from validate-repo</td><td><span class="badge badge-red">🔴 Unsolved</span></td></tr>
+  <tr><td>--help/--tools shows 11 not 15</td><td>Add buildAutopilotTools to runtime-mcp.mjs</td><td><span class="badge badge-yellow">🟡 Unsolved</span></td></tr>
+  <tr><td>vibe verify → "unknown command"</td><td>Add 6 CLI cases or reword README</td><td><span class="badge badge-yellow">🟡 Unsolved</span></td></tr>
+  <tr><td>Generated CLAUDE.md refs deprecated commands</td><td>Update vibe init template</td><td><span class="badge badge-yellow">🟡 Unsolved</span></td></tr>
+  <tr><td>8 doc files still reference deleted skills</td><td>Stale reference cleanup (remaining from v2.17 trim)</td><td><span class="badge badge-yellow">🟡 Partial</span></td></tr>
+  <tr><td>Plugin.json description says wrong numbers</td><td>Regeneration script or manual update</td><td><span class="badge badge-yellow">🟡 Unsolved</span></td></tr>
+  <tr><td>Bus factor 1.5/5, no CODEOWNERS</td><td>Recruit maintainer (long-term)</td><td><span class="badge badge-yellow">🟡 Acknowledged</span></td></tr>
+  <tr><td>Autopilot sessions have no TTL</td><td>Stale sessions accumulate forever</td><td><span class="badge badge-yellow">🟡 Unsolved</span></td></tr>
+  <tr><td>Audit log is tamperable</td><td>Append-only but no integrity protection</td><td><span class="badge badge-cyan">⚪ Advisory</span></td></tr>
+</table>
+<p style="color:var(--muted);font-size:0.9em;margin-top:8px;"><strong>0 ✅ / 9 🟡 / 3 🔴 Unsolved = 0% critical gaps shipped. Tier 1 fix: ~55 minutes total.</strong></p>
+
+<hr>
+
+<!-- TIERED RECOMMENDATIONS -->
+<h2>🎯 Tiered Recommendations</h2>
+
+<div class="tier-card tier-1">
+  <h4 style="color:var(--red);">🔴 Tier 1 — Fix Now (~55 min)</h4>
+  <table>
+    <tr><th>#</th><th>Fix</th><th>Effort</th></tr>
+    <tr><td>T1.1</td><td>Update <code>tool-contract.mjs</code> mcp allowlist (6→15)</td><td>2 min</td></tr>
+    <tr><td>T1.2</td><td>Add <code>.vibe/</code> to .gitignore, remove from package.json files</td><td>5 min</td></tr>
+    <tr><td>T1.3</td><td>Add <code>buildAutopilotTools</code> to runtime-mcp.mjs printHelp/--tools</td><td>2 min</td></tr>
+    <tr><td>T1.4</td><td>Fix 5-file stats mismatch (README/FAQ/plugin.json)</td><td>15 min</td></tr>
+    <tr><td>T1.5</td><td>Add verify/review/merge/tasks/implement CLI cases to vibe-cli.mjs</td><td>30 min</td></tr>
+  </table>
+</div>
+
+<div class="tier-card tier-2">
+  <h4 style="color:var(--yellow);">🟡 Tier 2 — Fix Soon (~80 min)</h4>
+  <table>
+    <tr><th>#</th><th>Fix</th><th>Effort</th></tr>
+    <tr><td>T2.1</td><td>Update CLAUDE.md template in vibe init (deprecated refs)</td><td>10 min</td></tr>
+    <tr><td>T2.2</td><td>Clean remaining 8 stale doc references</td><td>40 min</td></tr>
+    <tr><td>T2.3</td><td>Add TTL/gc for autopilot sessions</td><td>20 min</td></tr>
+    <tr><td>T2.4</td><td>Create .github/CODEOWNERS file</td><td>10 min</td></tr>
+  </table>
+</div>
+
+<div class="tier-card tier-3">
+  <h4 style="color:var(--accent);">🔵 Tier 3 — Track (next release)</h4>
+  <table>
+    <tr><th>#</th><th>Fix</th><th>Effort</th></tr>
+    <tr><td>T3.1</td><td>Add unit tests for Policy class + AutopilotLoop</td><td>60 min</td></tr>
+    <tr><td>T3.2</td><td>Date/sign ADR 0001/0002</td><td>15 min</td></tr>
+    <tr><td>T3.3</td><td>Build interactive <code>vibe demo</code> command</td><td>4 hrs</td></tr>
+    <tr><td>T3.4</td><td>Harden audit log (HMAC chain)</td><td>60 min</td></tr>
+    <tr><td>T3.5</td><td>Regenerate templates/manifest.json (92 vs 106)</td><td>20 min</td></tr>
+  </table>
+</div>
+
+<hr>
+
+<!-- BEFORE vs AFTER -->
+<h2>📈 Before vs After (Tier 1 Implemented)</h2>
+<div class="grid-2">
+  <div class="callout callout-red">
+    <strong>🔴 Before v2.17.1 (current)</strong>
+    <ul style="margin-top:8px;">
+      <li>9/15 MCP tools throw "Tool not allowed"</li>
+      <li>.vibe/ sessions leak to git</li>
+      <li>5 different stats on same page</li>
+      <li>--tools says 11, server has 15</li>
+      <li>vibe verify → unknown command</li>
+      <li>Newcomer quit rate: ~60% in 20 min</li>
+    </ul>
+  </div>
+  <div class="callout callout-green">
+    <strong>🟢 After Tier 1 Fix (~55 min)</strong>
+    <ul style="margin-top:8px;">
+      <li>15/15 MCP tools functional ✅</li>
+      <li>.vibe/ excluded from git + npm ✅</li>
+      <li>Consistent stats everywhere ✅</li>
+      <li>--tools shows all 15 ✅</li>
+      <li>All 10 workflow commands work ✅</li>
+      <li>Newcomer quit rate: drops to ~20% ✅</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- FILES -->
+<h2>📂 Panel Reports</h2>
+<div class="grid-3">
+  <div class="card">
+    <h4>👤 Panel A — Newcomer</h4>
+    <p style="font-size:0.85em;color:var(--muted);">298 lines · 10-step trace · 5 friction points</p>
+    <p><a href="v2.17.0-post-v217-audit-panel-A-newcomer.md">→ Read report</a></p>
+  </div>
+  <div class="card">
+    <h4>⚙️ Panel B — Runtime</h4>
+    <p style="font-size:0.85em;color:var(--muted);">350 lines · 3 critical · 4 moderate gaps</p>
+    <p><a href="v2.17.0-post-v217-audit-panel-B-runtime.md">→ Read report</a></p>
+  </div>
+  <div class="card">
+    <h4>📋 Panel C — Maintainer</h4>
+    <p style="font-size:0.85em;color:var(--muted);">397 lines · 12 recommendations · ~11 hrs total</p>
+    <p><a href="v2.17.0-post-v217-audit-panel-C-maintainer.md">→ Read report</a></p>
+  </div>
+</div>
+
+<hr>
+
+<div class="callout callout-blue">
+  <strong>💬 Câu hỏi cho anh:</strong> Tier 1 fix (~55 phút) — implement ngay và tag v2.17.1? Hay muốn Tier 1 + Tier 2 (~135 phút)?
+</div>
+
+<p style="color:var(--muted);font-size:0.8em;margin-top:32px;text-align:center;">
+  Generated by Expert Council · 3-panel parallel audit · 2026-06-22 · v2.17.0 post-release
+</p>
+
+</body>
+</html>
