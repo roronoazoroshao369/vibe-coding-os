@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>v2.17.4 Post-Release Council Audit</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --yellow: #d29922;
+  --red: #f85149;
+  --purple: #bc8cff;
+  --orange: #f0883e;
+  --cyan: #39d0d8;
+  --pink: #f778ba;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  padding: 2rem 1rem;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+.hero {
+  background: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  color: white;
+}
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.1rem; opacity: 0.95; }
+.hero .verdict {
+  background: rgba(0,0,0,0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.stat-num {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; }
+section { margin-bottom: 2.5rem; }
+h2 {
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+h3 { color: var(--purple); margin: 1rem 0 0.5rem; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.card.high { border-left-color: var(--red); }
+.card.med { border-left-color: var(--yellow); }
+.card.low { border-left-color: var(--green); }
+.card-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; }
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.badge.green { background: rgba(63, 185, 80, 0.2); color: var(--green); border: 1px solid var(--green); }
+.badge.yellow { background: rgba(210, 153, 34, 0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+.badge.red { background: rgba(248, 81, 73, 0.2); color: var(--red); border: 1px solid var(--red); }
+.badge.cyan { background: rgba(57, 208, 216, 0.2); color: var(--cyan); border: 1px solid var(--cyan); }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td {
+  text-align: left;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+th { color: var(--muted); font-weight: 600; }
+code {
+  background: rgba(110, 118, 129, 0.3);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.85em;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.panel-A { border-left: 4px solid var(--cyan); }
+.panel-B { border-left: 4px solid var(--green); }
+.panel-C { border-left: 4px solid var(--orange); }
+.panel-tag {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.tier-1 { color: var(--red); }
+.tier-2 { color: var(--yellow); }
+.tier-3 { color: var(--green); }
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.metric {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+}
+.metric-label { color: var(--muted); font-size: 0.8rem; }
+.metric-value { font-size: 1.4rem; font-weight: bold; margin-top: 0.3rem; }
+.convergence {
+  background: rgba(188, 140, 255, 0.1);
+  border: 1px solid var(--purple);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.convergence h3 { color: var(--purple); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>v2.17.4 Post-Release Council Audit</h1>
+  <p>3-Panel deep analysis · df1e466 · 2026-06-22</p>
+  <div class="verdict">
+    <strong>Verdict:</strong> v2.17.4 is technically excellent and operationally fragile.
+    <br><br>
+    • 11/11 validation gates pass, 17/17 autopilot tests pass, 0 version drift across 6 files
+    <br>
+    • 5 unsolved findings: stat chaos, no MCP auth, CI overlap, scope gaps in CI guard, bus factor = 1
+    <br>
+    • Recommendation: ship v2.17.5 (maintenance-only) to fix the 4 T1 items before adding features
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">11/11</div><div class="stat-label">Validation gates</div></div>
+  <div class="stat"><div class="stat-num">17/17</div><div class="stat-label">Autopilot tests</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Version-synced files</div></div>
+  <div class="stat"><div class="stat-num">6/14</div><div class="stat-label">Pain points solved</div></div>
+  <div class="stat"><div class="stat-num">1.0</div><div class="stat-label">Effective bus factor</div></div>
+  <div class="stat"><div class="stat-num">32</div><div class="stat-label">Orphan templates</div></div>
+</div>
+
+<section>
+<h2>1. Cross-Panel Convergence</h2>
+<p>3 panels independently flagged the same themes — strongest signal of real problems.</p>
+
+<div class="convergence">
+  <h3>Theme 1: Documentation Stat Chaos (A + C)</h3>
+  <p>README claims 113, 115, AND 116 commands in different sections. FAQ says "33 gates" when validate:all runs 11. FIRST-WORKFLOW.md says "26 gates." No CI guard validates documentation stat claims against actual disk counts.</p>
+</div>
+
+<div class="convergence">
+  <h3>Theme 2: CI Overlap (B + C)</h3>
+  <p>3 PR-comment workflows (<code>pr-quality-comment.yml</code>, <code>quality-gates.yml</code>, <code>vibe-quality-gate.yml</code>) all re-run <code>validate:all</code> independently and post similar summaries. ~3× CI minutes per PR with no incremental value.</p>
+</div>
+
+<div class="convergence">
+  <h3>Theme 3: MCP Server Has No Auth (B)</h3>
+  <p><code>runtime/mcp/server.mjs</code> uses StdioServerTransport with zero caller verification. Any local process or modified <code>.mcp.json</code> gets all 16 tools.</p>
+</div>
+
+<div class="convergence">
+  <h3>Theme 4: Bus Factor = 1 (C)</h3>
+  <p>All 3 git authors in 30 days are the same operator. CODEOWNERS covers 19 paths but every entry defaults to the same handle. Q3 recruitment plan has no progress markers.</p>
+</div>
+</section>
+
+<section>
+<h2>2. Coverage Matrix</h2>
+<table>
+<thead><tr><th>Pain Point</th><th>Solution</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Stale command refs (vibe-specify, vibe-parallel-explore)</td><td>validate-no-deprecated-commands.mjs + v2.17.4 sweep</td><td><span class="badge green">✓ Solved</span></td></tr>
+<tr><td>Version drift (6 files)</td><td>v2.17.4 sync + grep pre-tag pattern</td><td><span class="badge green">✓ Solved</span></td></tr>
+<tr><td>Dead validate scripts (7)</td><td>v2.17.4 deletion</td><td><span class="badge green">✓ Solved</span></td></tr>
+<tr><td>gcSessions NaN bug</td><td>v2.17.4 fix (NaN guard)</td><td><span class="badge green">✓ Solved</span></td></tr>
+<tr><td>Deprecated commands still on disk</td><td>Deprecation shims (intentional)</td><td><span class="badge green">✓ Intentional</span></td></tr>
+<tr><td>11/11 validation gates passing</td><td>validate:all wired correctly</td><td><span class="badge green">✓ Solved</span></td></tr>
+<tr><td>Stats wrong in README/FAQ (3 different counts, wrong gate numbers)</td><td>No CI guard exists</td><td><span class="badge red">✗ Unsolved</span></td></tr>
+<tr><td>MCP server has no authentication</td><td>No auth layer exists</td><td><span class="badge red">✗ Unsolved</span></td></tr>
+<tr><td>3 overlapping PR-comment workflows</td><td>No consolidation</td><td><span class="badge red">✗ Unsolved</span></td></tr>
+<tr><td>Bus factor = 1</td><td>CODEOWNERS exists, no co-maintainer</td><td><span class="badge red">✗ Unsolved</span></td></tr>
+<tr><td>Duplicate Wave A/B/C content in README</td><td>No cleanup</td><td><span class="badge red">✗ Unsolved</span></td></tr>
+<tr><td>32 orphan templates not surfaced in CI</td><td>_check_orphans.mjs not wired</td><td><span class="badge yellow">~ Partial</span></td></tr>
+<tr><td>validate:no-deprecated-commands scope gaps (.claude-plugin/, skills/)</td><td>Gate misses 3 files</td><td><span class="badge yellow">~ Partial</span></td></tr>
+<tr><td>Injection scanner regex-only (no runtime defense)</td><td>Static scan only, no runtime</td><td><span class="badge yellow">~ Partial</span></td></tr>
+</tbody>
+</table>
+<p><strong>Coverage: 6 ✓ / 3 ~ / 5 ✗ = 43% has solution</strong></p>
+</section>
+
+<section>
+<h2>3. Panel Summaries</h2>
+
+<div class="panel panel-A">
+  <div class="card-title"><span class="panel-tag">PANEL A</span>Newcomer UX — 10-step Onboarding Trace</div>
+  <p><strong>Key finding:</strong> 6/10 stat claims in README/FAQ are wrong or contradictory. A newcomer sees 3 different command counts (113, 115, 116) and 3 different gate counts (11, 26, 33) in the same documentation set.</p>
+  <p><strong>Severity:</strong> <span class="badge red">HIGH</span> — undermines trust in the documentation</p>
+  <p><strong>Top fix:</strong> Add CI guard that validates README stat claims against actual disk counts</p>
+</div>
+
+<div class="panel panel-B">
+  <div class="card-title"><span class="panel-tag">PANEL B</span>AI Safety — Threat Model & Injection Defense</div>
+  <p><strong>Key finding:</strong> MCP server has zero authentication. Any local process with .mcp.json access gets all 16 tools. Injection scanner is static regex only — no runtime defense. validate:no-deprecated-commands misses .claude-plugin/ and skills/.</p>
+  <p><strong>OWASP coverage:</strong> 4/10 ✓, 3/10 ~, 3/10 ✗</p>
+  <p><strong>Top fix:</strong> Add local-token auth to MCP server (3 hr, lightweight)</p>
+</div>
+
+<div class="panel panel-C">
+  <div class="card-title"><span class="panel-tag">PANEL C</span>Maintainer/Sustainability — Bus Factor & CI</div>
+  <p><strong>Key finding:</strong> Bus factor is effectively 1.0 (all 3 git authors in 30 days are the same operator). 3 PR-comment workflows overlap. 32 orphan templates not surfaced in CI. Maintenance burden ~8 hr/wk, no slack.</p>
+  <p><strong>Validation:</strong> 11/11 gates, 17/17 tests, 0 version drift across 6 files</p>
+  <p><strong>Top fix:</strong> Consolidate PR workflows, wire _check_orphans.mjs into validate:all</p>
+</div>
+</section>
+
+<section>
+<h2>4. Tiered Action Plan</h2>
+
+<h3 class="tier-1">Tier 1 — DO FIRST (High Impact, High Confidence)</h3>
+<table>
+<thead><tr><th>#</th><th>Recommendation</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Fix README/FAQ stat chaos: sync all numbers to actual disk counts</td><td>30 min</td></tr>
+<tr><td>2</td><td>Add <code>validate:stat-sync.mjs</code> CI guard for stat claims</td><td>2 hr</td></tr>
+<tr><td>3</td><td>Close validate:no-deprecated-commands scope gaps (.claude-plugin/, skills/)</td><td>15 min</td></tr>
+<tr><td>4</td><td>Remove duplicate Wave A/B/C block in README (L60–79)</td><td>5 min</td></tr>
+</tbody>
+</table>
+
+<h3 class="tier-2">Tier 2 — NEXT (High Impact, Medium Confidence)</h3>
+<table>
+<thead><tr><th>#</th><th>Recommendation</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td>5</td><td>Add MCP server local-token auth</td><td>3 hr</td></tr>
+<tr><td>6</td><td>Consolidate 3 PR-comment workflows into 1</td><td>1 hr</td></tr>
+<tr><td>7</td><td>Wire _check_orphans.mjs into validate:all as warning</td><td>30 min</td></tr>
+</tbody>
+</table>
+
+<h3 class="tier-3">Tier 3 — LATER (Medium Impact, Medium Confidence)</h3>
+<table>
+<thead><tr><th>#</th><th>Recommendation</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>Add runtime injection scanning on MCP tool arguments</td><td>4 hr</td></tr>
+<tr><td>9</td><td>Add measurable co-maintainer criteria to MAINTAINERS.md</td><td>30 min</td></tr>
+<tr><td>10</td><td>Schedule automated council audit via GitHub Actions</td><td>2 hr</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>5. Decision Point</h2>
+<div class="card high">
+  <div class="card-title">Q: Should the next release be maintenance-only or feature-added?</div>
+  <p><strong>Recommendation: MAINTENANCE-ONLY (v2.17.5).</strong></p>
+  <p>The repo has 5 unsolved findings that are all fixable in &lt;1 day. Features can wait until stats are trustworthy, MCP auth exists, and CI overlap is resolved. Shipping features on top of stat chaos and no auth erodes the credibility the council audit just established.</p>
+</div>
+</section>
+
+<footer style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.85rem;">
+  Generated by Expert Council Audit (3-panel) · vibe-coding-os v2.17.4 · df1e466 · 2026-06-22
+</footer>
+
+</div>
+</body>
+</html>
