@@ -9,6 +9,10 @@ references/update-report.md
 .omc/
 .vibe/
 
+# Local memory appliance store (generated, may contain project context)
+.vibe-memory/
+**/.vibe-memory/
+
 # Generated orchestration/quality reports (created by dry-run tests)
 docs/reports/orchestration/
 docs/reports/quality-engine/

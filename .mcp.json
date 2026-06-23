@@ -3,6 +3,10 @@
     "vibe-coding-os-runtime": {
       "command": "node",
       "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/runtime-mcp.mjs"]
+    },
+    "vibe-memory": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/runtime/mcp/memory-server.mjs"]
     }
   }
 }
