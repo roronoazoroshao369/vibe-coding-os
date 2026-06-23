@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Marketplace entry for Vibe Coding OS Claude Code plugin.",
-    "version": "2.8.0"
+    "version": "2.17.7"
   },
   "plugins": [
     {
       "name": "vibe-coding-os",
       "source": "./",
-      "description": "Markdown-first AI coding OS: 128 skills, 97 commands, 94 templates, 20 reference sources, 8 tool adapters.",
-      "version": "2.8.0",
+      "description": "Markdown-first AI coding OS: 115 skills, 116 commands, 107 templates, 22 reference sources, 9 tool adapters.",
+      "version": "2.17.7",
       "category": "productivity",
       "homepage": "https://github.com/roronoazoroshao369/vibe-coding-os",
       "tags": [
@@ -26,5 +26,5 @@
       ]
     }
   ],
-  "version": "2.8.0"
+  "version": "2.17.7"
 }
