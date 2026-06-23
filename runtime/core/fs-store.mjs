@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, rename, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, rename, rm, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { CURRENT_SCHEMA_VERSION } from './validation.mjs';
@@ -71,15 +71,33 @@ export async function withLock(store, name, fn, options = {}) {
   const lock = path.join(store.runtimeDir, 'locks', `${name}.lock`);
   const timeoutMs = options.timeoutMs ?? 5000;
   const retryMs = options.retryMs ?? 25;
+  const staleMs = options.staleMs ?? 60000; // 60 seconds — default
   const start = Date.now();
 
   // eslint-disable-next-line no-constant-condition -- intentional retry loop with break
   while (true) {
+    // Pre-check: if an existing lock file is stale (older than staleMs), it's a
+    // leftover from a killed process. Steal it instead of waiting.
+    try {
+      const existingStat = await stat(lock);
+      const lockAge = Date.now() - existingStat.mtimeMs;
+      if (lockAge > staleMs) {
+        // Lock is stale — try to remove it and retry. If another process raced
+        // us, the rm will fail silently (force:true) and we'll wait a cycle.
+        await rm(lock, { force: true });
+      }
+    } catch { /* lock doesn't exist yet — proceed to acquire */ }
+
     try {
       await writeFile(lock, String(process.pid), { flag: 'wx' });
       break;
-    } catch {
-      if (Date.now() - start >= timeoutMs) throw new Error(`Runtime store is locked: ${name}`);
+    } catch (err) {
+      if (Date.now() - start >= timeoutMs) {
+        throw new Error(
+          `Runtime store is locked: ${name}. ` +
+          `If no other process is running, delete ${lock} manually.`
+        );
+      }
       await new Promise((resolve) => setTimeout(resolve, retryMs));
     }
   }

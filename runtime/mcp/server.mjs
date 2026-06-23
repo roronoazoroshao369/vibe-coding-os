@@ -52,7 +52,13 @@ export const AUTH_ENV_VAR = 'MCP_AUTH_TOKEN';
 export async function resolveAuthToken() {
   // 1. Env var takes precedence
   const fromEnv = process.env[AUTH_ENV_VAR];
-  if (fromEnv) return { token: fromEnv, source: 'env' };
+  if (fromEnv !== undefined && fromEnv !== null) {
+    if (fromEnv === '') {
+      console.error(`[mcp-auth] ERROR: ${AUTH_ENV_VAR} is set to empty string — either provide a value or unset it`);
+      return { token: null, source: 'env-empty-error' };
+    }
+    return { token: fromEnv, source: 'env' };
+  }
 
   // 2. Token file
   try {

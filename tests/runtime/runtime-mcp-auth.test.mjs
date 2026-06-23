@@ -266,19 +266,15 @@ await test('resolveAuthToken — env var takes precedence over file', async () =
   }
 });
 
-await test('resolveAuthToken — empty string env var does not fall through (current behavior)', async () => {
-  // Document current behavior: `if (fromEnv) return` treats empty string as
-  // a valid token (JavaScript truthiness check: '' is falsy → falls through).
+await test('resolveAuthToken — empty string env var returns env-empty-error', async () => {
   const previous = process.env[AUTH_ENV_VAR];
   process.env[AUTH_ENV_VAR] = '';
   try {
     const result = await resolveAuthToken();
-    // Empty string is falsy, so we expect fallthrough to file/generated
-    assert.notEqual(result.source, 'env',
-      'empty-string env should not return source=env (falsy fallthrough)');
-    // Will be 'file' if file exists, 'generated' if not
-    assert.ok(['file', 'generated'].includes(result.source),
-      `expected file or generated, got ${result.source}`);
+    assert.equal(result.source, 'env-empty-error',
+      'empty string should return env-empty-error source');
+    assert.equal(result.token, null,
+      'empty string should return null token');
   } finally {
     if (previous === undefined) delete process.env[AUTH_ENV_VAR];
     else process.env[AUTH_ENV_VAR] = previous;

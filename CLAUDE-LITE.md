@@ -26,3 +26,7 @@ Full guidance: [CLAUDE.md](CLAUDE.md). Use that when you have ≥64k context and
 ## When to escalate
 
 If your task requires any of: multi-agent coordination, parallel exploration, security red-teaming, advanced orchestration → **stop and tell the user to use `CLAUDE.md` instead.**
+
+## Next step
+
+If you need more detail, read **[docs/MID-TIER-FLOW.md](docs/MID-TIER-FLOW.md)** — a hardcoded linear path with exact skill/template picks for each task type.

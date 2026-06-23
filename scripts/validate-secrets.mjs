@@ -53,6 +53,7 @@ const ALLOWLIST_PATHS = [
   /^runtime\/mcp\/server\.mjs$/,
   /^docs\/workflows\/runtime-mcp-server\.md$/,
   /^tests\/runtime\/runtime-mcp-auth\.test\.mjs$/,
+  /^package-lock\.json$/,
 ];
 
 const TEXT_EXTENSIONS = new Set([

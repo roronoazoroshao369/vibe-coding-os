@@ -8,11 +8,15 @@
  */
 
 import { existsSync, statSync, readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { loadConfig } from './config.mjs';
 import { createStore } from './fs-store.mjs';
 import { getStateMachineSummary } from './task-state-machine.mjs';
 import { getEventMetadata } from './event-store.mjs';
+
+// Project root: doctor.mjs lives at runtime/core/doctor.mjs, so ../../ is the project root.
+const PROJECT_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 // ---------------------------------------------------------------------------
 // Check runner
@@ -177,6 +181,50 @@ const checks = [
       recommendation: stale.length > 0 ? 'Stale locks may need manual cleanup' : null,
       data: { total: locks.length, stale: stale.length },
     };
+  }),
+
+  makeCheck('version_check', async () => {
+    try {
+      const pkgPath = join(PROJECT_ROOT, 'package.json');
+      const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
+      const localVersion = pkg.version;
+
+      // Try online check (non-blocking if offline)
+      try {
+        const { execSync } = await import('node:child_process');
+        // Fetch latest tag, take the first line with a v-prefixed semver (skip annotated deref with ^{})
+        const out = execSync(
+          'git ls-remote --tags --sort=-v:refname https://github.com/roronoazoroshao369/vibe-coding-os.git 2>/dev/null | head -10',
+          { encoding: 'utf8', timeout: 5000, stdio: ['pipe', 'pipe', 'pipe'] }
+        );
+        // First non-^{} entry is the latest
+        const tagLines = out.split('\n').map(l => l.split('\t')[1] || '').filter(t => t && !t.includes('^{}'));
+        const latest = tagLines.length > 0 ? tagLines[0].replace('refs/tags/', '') : null;
+
+        if (latest && latest !== localVersion) {
+          return {
+            status: 'warn',
+            message: `Local v${localVersion}, latest release is ${latest}`,
+            recommendation: `Run \`git pull origin main\` to update to ${latest}`,
+            data: { local: localVersion, latest, updateAvailable: true },
+          };
+        }
+        return {
+          status: 'pass',
+          message: `v${localVersion} — up to date`,
+          data: { local: localVersion, latest, updateAvailable: false },
+        };
+      } catch {
+        // Offline or network error — just report local version
+        return {
+          status: 'info',
+          message: `v${localVersion} — could not check latest (offline)`,
+          data: { local: localVersion, latest: null, updateAvailable: null },
+        };
+      }
+    } catch {
+      return { status: 'info', message: 'No package.json — version unknown' };
+    }
   }),
 ];
 
