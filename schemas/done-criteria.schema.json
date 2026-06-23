@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://vibe-coding-os/schemas/done-criteria.schema.json",
+  "title": "Done Criteria",
+  "description": "Objective definition of 'done' for the loop engineer (/vibe-loop). Completion is the conjunction of all required gates passing — never the assistant's word.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "gates"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema/document version, e.g. '1.0.0'."
+    },
+    "spec": {
+      "type": "string",
+      "description": "Path to or identifier of the spec these criteria verify."
+    },
+    "gates": {
+      "type": "array",
+      "description": "Ordered list of gates that must all pass for DONE.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Stable gate identifier, e.g. 'tests' or 'typecheck'."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["tests", "typecheck", "imports", "scope-match", "lint", "acceptance-criteria", "command"],
+            "description": "Gate category. 'command' runs an arbitrary verification command."
+          },
+          "command": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Command + args for type='command' or to override the default runner, e.g. ['npm','test']."
+          },
+          "required": {
+            "type": "boolean",
+            "default": true,
+            "description": "If false, the gate is advisory and does not block DONE."
+          },
+          "timeoutMs": {
+            "type": "integer",
+            "minimum": 1000,
+            "default": 120000,
+            "description": "Hard timeout for the gate."
+          }
+        }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "description": "Loop stop conditions besides DONE.",
+      "additionalProperties": false,
+      "properties": {
+        "maxIterations": { "type": "integer", "minimum": 1, "default": 12 },
+        "budget": { "type": "integer", "minimum": 0, "description": "Token/cost ceiling." },
+        "stagnationLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 2,
+          "description": "Rounds without failure-count improvement before escalating."
+        }
+      }
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["lean", "standard", "strict"],
+      "default": "standard",
+      "description": "Safety/quality policy preset."
+    }
+  }
+}
