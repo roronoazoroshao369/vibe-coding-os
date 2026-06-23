@@ -140,6 +140,9 @@ function evaluate(tier, action) {
     };
   }
 
+  // Mid-tier: when action isn't explicitly set, treat as self-review check
+  if (tier === 'mid') action = action === 'unknown' || action === 'planning' || action === 'autopilot-supervised' ? 'self-review' : action;
+
   // Mid-tier: gate depends on action
   const riskyActions = ['self-review', 'post-tool-self-review', 'adversarial-review', 'quality-audit'];
   if (riskyActions.includes(action) || action === 'unknown') {
