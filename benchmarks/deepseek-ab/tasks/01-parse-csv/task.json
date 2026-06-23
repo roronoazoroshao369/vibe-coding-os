@@ -1,0 +1,10 @@
+{
+  "id": "01-parse-csv",
+  "language": "python",
+  "title": "Parse a CSV line with quoted commas",
+  "difficulty": "easy",
+  "entrypoint": "solution.py",
+  "knownSymbols": ["csv", "io", "StringIO", "open", "list", "dict", "str", "split"],
+  "testCmd": "python3 -m pytest tests/ -q",
+  "referenceLoc": 12
+}

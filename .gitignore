@@ -42,3 +42,20 @@ docs/security/session-audit/
 # Session-local todo state
 .todo_state.json
 docs/sessions/
+
+# Binary artifacts must never be vendored (P0 cleanup, v2.x)
+*.deb
+*.tar.gz
+*.zip
+*.bin
+cloudflared-*
+
+# Local cleanup/trash backups (never commit)
+.trash-*
+
+# Council/process reports are archived outside the repo (see docs/reports/council/README.md)
+docs/reports/council/archive/
+
+# Benchmark run outputs (commit results/report.json explicitly when publishing)
+benchmarks/deepseek-ab/results/raw/
+benchmarks/deepseek-ab/config.json

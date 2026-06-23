@@ -1,0 +1,23 @@
+{
+  "$schema": "./config.schema.json",
+  "model": {
+    "id": "deepseek-chat",
+    "baseUrl": "https://api.deepseek.com/v1",
+    "apiKeyEnv": "DEEPSEEK_API_KEY",
+    "temperature": 0.2,
+    "maxTokens": 4096
+  },
+  "run": {
+    "runsPerArm": 3,
+    "arms": ["control", "framework"],
+    "tasksDir": "benchmarks/deepseek-ab/tasks",
+    "resultsDir": "benchmarks/deepseek-ab/results",
+    "timeoutMs": 120000
+  },
+  "scoring": {
+    "firstTry": true,
+    "hallucination": true,
+    "rubric": true,
+    "judgeModel": null
+  }
+}

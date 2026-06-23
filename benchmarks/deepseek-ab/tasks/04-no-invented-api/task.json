@@ -1,0 +1,12 @@
+{
+  "id": "04-no-invented-api",
+  "language": "python",
+  "title": "Use the provided retry helper (do not invent one)",
+  "difficulty": "medium",
+  "entrypoint": "solution.py",
+  "knownSymbols": ["retry", "fetch_once", "time", "list", "dict", "str"],
+  "contextFiles": ["context/helpers.py"],
+  "testCmd": "python3 -m pytest tests/ -q",
+  "referenceLoc": 8,
+  "notes": "Anti-hallucination: solution MUST call retry() from helpers.py. Inventing a 'with_backoff' / 'requests.retry' style API counts as a hallucination."
+}
