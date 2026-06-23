@@ -127,6 +127,42 @@ export function redact(text, options = {}) {
 }
 
 /**
+ * Redact secrets from every string field of a plain object/array, recursively.
+ * Returns a new object (does not mutate the input) plus aggregated findings.
+ *
+ * Used by runtime stores (tasks, checkpoints) so that user-supplied free-text
+ * fields (description, acceptanceCriteria, notes, ...) are never persisted with
+ * secrets in plaintext. ADR 0003 Layer 2 (CONTAIN), extended to runtime state.
+ *
+ * @param {*} value           - Object, array, or scalar to scrub
+ * @param {object} [options]   - Same options as redact() (mode, allowlist, customPatterns)
+ * @returns {{ value: *, findings: object[], hasSecrets: boolean }}
+ */
+export function redactObject(value, options = {}) {
+  const findings = [];
+
+  function walk(node) {
+    if (typeof node === 'string') {
+      const r = redact(node, options);
+      if (r.hasSecrets) findings.push(...r.findings);
+      return r.redacted;
+    }
+    if (Array.isArray(node)) {
+      return node.map(walk);
+    }
+    if (node && typeof node === 'object') {
+      const out = {};
+      for (const [k, v] of Object.entries(node)) out[k] = walk(v);
+      return out;
+    }
+    return node;
+  }
+
+  const scrubbed = walk(value);
+  return { value: scrubbed, findings, hasSecrets: findings.length > 0 };
+}
+
+/**
  * Audit a payload for secrets without modifying it.
  * Used for dry-run before publish.
  */

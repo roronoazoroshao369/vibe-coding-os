@@ -189,6 +189,19 @@ const checks = [
       const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
       const localVersion = pkg.version;
 
+      // Network check is opt-in only. A default health check must not reach out
+      // to the network (privacy + speed). Enable with VIBE_CHECK_UPDATES=1 or
+      // by passing --check-updates to the doctor CLI.
+      const checkUpdates = process.env.VIBE_CHECK_UPDATES === '1'
+        || process.argv.includes('--check-updates');
+      if (!checkUpdates) {
+        return {
+          status: 'info',
+          message: `v${localVersion} — local only (set VIBE_CHECK_UPDATES=1 to check latest)`,
+          data: { local: localVersion, latest: null, updateAvailable: null },
+        };
+      }
+
       // Try online check (non-blocking if offline)
       try {
         const { execSync } = await import('node:child_process');

@@ -3,6 +3,7 @@ import { CURRENT_SCHEMA_VERSION, assertString, createItemValidator } from '../co
 import { readJson, writeJsonAtomic, withLock, emptyCollection } from '../core/fs-store.mjs';
 import { appendEvent } from '../core/events.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
+import { redactObject } from '../../security/redact/redactor.mjs';
 const FILE='checkpoints.json';
 
 const itemSchema = createItemValidator('runtime-checkpoint.schema.json');
@@ -26,6 +27,11 @@ export async function createCheckpoint(store,input){
   // Normalize status: if result is a valid status enum value, use it; otherwise default to 'skipped'
   const statusValues = ['passed', 'failed', 'blocked', 'skipped'];
   const normalizedStatus = statusValues.includes(input.result) ? input.result : (input.status || 'skipped');
+  // ADR 0003 Layer 2 (CONTAIN): scrub secrets from free-text fields before persisting.
+  const safeNotes = input.notes ? redactObject(input.notes, { mode: 'postTool' }).value : '';
+  const safeDecision = input.decision ? redactObject(input.decision, { mode: 'postTool' }).value : null;
+  const safeLimitations = input.limitations ? redactObject(input.limitations, { mode: 'postTool' }).value : null;
+  const safeResumeHint = (input.resumeHint || input.resume_hint) ? redactObject(input.resumeHint || input.resume_hint, { mode: 'postTool' }).value : null;
   return withLock(store,'checkpoints',async()=>{
     const items=await listCheckpoints(store);
     const item=withoutNullish({
@@ -36,14 +42,14 @@ export async function createCheckpoint(store,input){
       subject:input.subject||null,
       subjectType:input.subjectType||null,
       subjectId:input.subjectId||null,
-      notes:input.notes||'',
+      notes:safeNotes,
       status:normalizedStatus,
       evidence:input.evidence||(input.artifact_refs?input.artifact_refs.map(r=>({type:'file',ref:r,status:normalizedStatus,timestamp:nowIso()})):[]),
-      decision:input.decision||null,
-      resumeHint:input.resumeHint||input.resume_hint||null,
-      resume_hint:input.resume_hint||input.resumeHint||null,
+      decision:safeDecision,
+      resumeHint:safeResumeHint,
+      resume_hint:safeResumeHint,
       artifact_refs:input.artifact_refs||[],
-      limitations:input.limitations||null,
+      limitations:safeLimitations,
       command:input.command||null,
       phase:input.phase||null,
       created_by:input.created_by||null,

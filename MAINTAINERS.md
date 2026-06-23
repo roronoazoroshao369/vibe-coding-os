@@ -39,6 +39,56 @@ skill, command, template, and validator serves these five phases.
 4. **Cross-cutting (change core contract, add runtime dependency, change
    license):** Open an RFC + ADR. Minimum 72h review. Council audit required.
 
+## How to maintain (runbook for a new co-maintainer)
+
+This section codifies the day-to-day so the project does not depend on one
+person's memory (closes the bus-factor finding from the v2.17.7 council review).
+
+### Validate before any merge
+
+```bash
+npm run validate:all      # 13 structural + privacy gates (must be all PASS)
+npm run test:auth         # MCP auth tests
+npm run test:redact-object # privacy redaction behavior
+npm run test:autopilot    # autopilot policy + loop
+npm run test:e2e          # end-to-end CLI workflow
+```
+
+### Add a skill / command / template
+
+1. Create the file under `skills/<category>/<name>/SKILL.md` (or `commands/`, `templates/`).
+2. Register it in the matching `registry/*.json` and `*/manifest.json`.
+3. Run `npm run validate:all` — the orphan and traceability gates catch unregistered files.
+4. Update counts only via the documented stats; never hand-edit a number in one doc.
+
+### Triage an injection / secret finding
+
+1. Confirm it is a false positive (the line legitimately quotes attack prose).
+2. Add an `injection-allow:<label>` marker on that line, or add the path to the
+   relevant allowlist (`scripts/validate-secrets.mjs`, `security/redact/allowlist.json`).
+3. Never broaden a pattern to silence a finding — narrow the allowlist instead.
+
+### Privacy coverage
+
+Any new runtime store that persists user free-text MUST scrub it with
+`redactObject()` from `security/redact/redactor.mjs` before writing, and be added
+to `COVERED_STORES` in `scripts/validate-privacy-coverage.mjs`. The
+`validate:privacy-coverage` gate enforces this.
+
+### Cut a release
+
+1. `npm run validate:all` + the test suite above must pass.
+2. Add a `CHANGELOG.md` entry (theme + bullets + test results).
+3. Bump `package.json` version **only** for user-facing change (see
+   `tools/p0-cleanup/version-freeze.md`). Cleanup/doc churn does not bump.
+4. Tag `v${MAJOR}.${MINOR}.${PATCH}` on the merge commit.
+
+### Release cadence (sustainability)
+
+Prefer a **fixed cadence** (at most one minor per week; patches as needed) over
+day-by-day releases. The high release frequency is what produced most of the
+doc/stat drift the councils kept cleaning up. Batch related changes.
+
 ## Release engineering
 
 - **CHANGELOG.md** — entries for every release with thematic heading, bullet

@@ -74,6 +74,28 @@ Spec or narrow intent, acceptance criteria, a verification command set
 `loop.mjs` (bounded loop), `policy.mjs` (action gating), and
 `verifier.mjs` (objective Done gates). Criteria: `schemas/done-criteria.schema.json`.
 
+## Outputs
+
+A per-round event log (round, step, gate results, diff size) and a final completion summary: all gates passed + evidence, or the stop reason with open failures.
+
+## Failure modes
+
+- Claiming done while tests fail — gate evidence is the only proof of completion.
+- Escalating fixable failures instead of diagnosing the specific cause.
+- Widening scope by fixing unrelated tidy-ups between rounds.
+- Infinite token burn — relying on the loop to eventually succeed rather than stopping on no-progress.
+- Trusting the model's assertion over objective verification.
+
+## Verification checklist
+
+- [ ] Spec/accepted intent is re-read at round start.
+- [ ] Each round makes one minimal correct change.
+- [ ] Verification gates run every round; results are captured.
+- [ ] Progress check: compare current vs. previous round failures.
+- [ ] Stop conditions (done, max-iterations, budget, no-progress) are respected.
+- [ ] High-risk actions are gated for approval.
+- [ ] Final state is either all gates pass ✅ or a clear stop reason.
+
 ## Related skills/templates
 
 - `skills/core/verification-before-done/SKILL.md`

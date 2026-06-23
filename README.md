@@ -13,61 +13,11 @@
 
 AI coding assistants can generate code fast — but speed without structure leads to scope creep, forgotten edge cases, and unmaintainable output. Vibe Coding OS adds a lightweight discipline layer on top: spec-driven workflows, verification gates, and engineering practices that keep human intent sovereign while letting you ship at AI speed.
 
-**Current release (v2.17.7):** validate:all 12/12 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), injection counters (97.37% coverage), 60/60 redact tests, sandbox-marker convention, security regression gate — **+Autopilot runtime** +3 new validators (imports, typecheck, scope-match)
+**Current release (v2.18.0):** validate:all 13/13 gates PASS · **115 skills** · **113 commands** · **107 templates** · **22 tracked sources** · 9 adapters (Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP) — Defense in Depth — 3-layer security pattern (Detect → Contain → Recover), uniform secret redaction across runtime stores, sandbox-marker convention, security regression gate — **+Autopilot runtime**
 
-**Latest:** v2.17.7 — Post-v2.17.6 Hardening — wires MCP auth test into CI (29/29 pass), adds priority-chain + 0o600 permission tests, writes MCP auth quick-start docs, fixes stale FAQ Q2. (12/12 gates, 29/29 auth tests). <!-- injection-allow:* -->
+**Latest:** v2.18.0 — Surface Simplification. Acts on the v2.17.7 expert council review: a **[Core 10](docs/CORE-10.md)** golden path for newcomers, README trimmed of stale "What's new" history, uniform secret redaction across runtime stores (new `validate:privacy-coverage` gate, 13/13 gates), opt-in network in `vibe doctor`, and a co-maintainer runbook in [MAINTAINERS.md](MAINTAINERS.md). <!-- injection-allow:* -->
 
-### What's new in v2.17.0 — Expert Council Trim
-
-**5-tier council audit implementation:**
-- 🗑 **T1** — 7 off-mission skills removed (observability-design, doubt-driven-development, install/deprecate/writing/skills, shared-domain-language, red-team-bypass)
-- 🔀 **T2** — 5 duplicate pairs merged (10→5): verification-before-completion→verification-before-done, quality-shield→quality-execution-contract, what-before-how→spec-first-development, grill-with-docs→grill-user-before-building, creative+zoom-out→brainstorming
-- ✂️ **T3** — memory/ trimmed 20→5, meta/ trimmed 12→3
-- 🤖 **T4** — Autopilot built: policy engine + execution loop + 2 adapters + 3 validators (validate-imports, validate-typecheck, validate-scope-match)
-- 🎭 **T5** — 5 theater features removed (quality-scorecard, trend dashboard/report, vibe-triage, vibe-quality-rubric)
-- 🔟 — Now 10 validators, all PASS in 6.41s
-
-**Tier 1 fixes** — from the post-v2.16.0 3-panel council audit:
-- 🛡 **T1** — 4 injection-scan false positives resolved
-- 🧩 **T2** — `@modelcontextprotocol/sdk ^1.29.0` added, MCP server now works on fresh install
-- 🗑 **T3** — 5 stale local branches deleted
-- 🔀 **T4** — `vibe-specify` deprecated, unified into `vibe-spec`
-- 🔌 **T5** — 14KB dead code `command-tools.mjs` wired into MCP server (11 tools total)
-- 📊 **T6** — README skill/command/template counts synced to disk
-- ✅ **T7** — 38/38 PASS, all smoke & E2E tests, live-tested with Claude Code
-
-**Wave A (Security):**
-- ADR 0003 — Three-layer Defense in Depth (DETECT → CONTAIN → RECOVER)
-- ADR 0004 — Bypass load attempt protocol (rate-limited logging)
-- 30 secret patterns × 3 modes redactor (postTool/postSession/postPublish)
-- Session-audit + bypass-load-attempts log infrastructure
-- 97.37% regression test coverage for prompt-injection bypass attempts
-
-**Wave B (Engineering):**
-- [`commands/vibe-skill-search.md`](commands/vibe-skill-search.md) — search across all skill content with regex/FTS5
-- [`commands/vibe-docs-author.md`](commands/vibe-docs-author.md) — generate docs from code/templates
-- [`commands/vibe-deps-graph.md`](commands/vibe-deps-graph.md) — visualize skill dependency graph, detect cycles
-- [`skills/core/test-fixture-library/SKILL.md`](skills/core/test-fixture-library/SKILL.md) — versioned test fixtures with allowlist
-- ~~~~ — removed in v2.17 trim (framework admin)~~
-
-**Wave C (Adoption):**
-- [`docs/comparison.md`](docs/comparison.md) — vs LangChain, Semantic Kernel, Cursor, Copilot
-- ~~~~ — removed in v2.17 trim (framework admin)~~
-- [`docs/FAQ.md`](docs/FAQ.md) — 8 Q&A with JSON-LD FAQPage schema
-- [`.github/discussion-templates/`](.github/discussion-templates/) — feature-request, q-a, show-and-tell templates
-- [`docs/show-hn-kit.md`](docs/show-hn-kit.md) — one-pager + post template for Show HN
-
-### What's new in v2.16.0 — Close the Gaps
-
-**Wave A (Security Wiring):**
-- Extended RTL/homoglyph detection to 100% coverage (was 97.37%)
-- [`security/defense/trust-scorer.mjs`](security/defense/trust-scorer.mjs) — Trust Scoring module (Layer 0, ADR 0004)
-- [`scripts/vibe-bypass-detect.mjs`](scripts/vibe-bypass-detect.mjs) — monitoring tool for bypass loops
-- [`tests/security/security-commands.test.mjs`](tests/security/security-commands.test.mjs) — coverage for 3 security commands (was 0%)
-- 4 orphan-TODO cleanups in `scripts/test-generator.mjs`
-- 4 new validation gates: trust-scorer-wired, rtl-coverage-100, security-command-coverage-100, no-orphan-todos
-- 38/38 gates PASS
-
+> Full version history lives in [`CHANGELOG.md`](CHANGELOG.md). This README keeps only the latest release note to stay readable.
 
 ---
 
@@ -85,6 +35,7 @@ It is not a required wrapper, product, hosted service, or mandatory agent runtim
 
 | New to Vibe Coding OS | You want |
 |---|---|
+| [**Core 10**](docs/CORE-10.md) | **Start here — the 10 capabilities that cover ~90% of real work** |
 | [First Workflow](docs/FIRST-WORKFLOW.md) | Run one complete `spec → plan → verify` loop |
 | [Quality Shield](docs/quality-shield.md) | Use the portable quality discipline layer for intent, context, verification, and self-review |
 | [Expert Mode](docs/expert-mode.md) | Escalate risky work to adversarial review, critique passes, task-specific quality packs, and writer-critic patterns |

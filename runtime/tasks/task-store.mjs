@@ -8,6 +8,7 @@ import { loadConfig } from '../core/config.mjs';
 import { assertString, createItemValidator } from '../core/validation.mjs';
 import { transitionTask, canTransition } from '../core/task-state-machine.mjs';
 import { Enforcement } from '../core/enforcement.mjs';
+import { redactObject } from '../../security/redact/redactor.mjs';
 
 const itemSchema = createItemValidator('runtime-task.schema.json');
 const enforcement = new Enforcement(itemSchema);
@@ -31,14 +32,18 @@ async function save(store, items) { await writeJsonAtomic(store, FILE, { schemaV
 export async function createTask(store, input) {
   assertString(input.title, 'title');
   enforcement.assertKnownFields(input, ALLOWED_TASK_INPUT_FIELDS, 'task input');
+  // ADR 0003 Layer 2 (CONTAIN): scrub secrets from free-text fields before persisting.
+  const safeTitle = redactObject(input.title, { mode: 'postTool' }).value;
+  const safeDescription = input.description ? redactObject(input.description, { mode: 'postTool' }).value : null;
+  const safeAcceptance = input.acceptanceCriteria ? redactObject(input.acceptanceCriteria, { mode: 'postTool' }).value : [];
   return withLock(store, 'tasks', async () => {
     const items = await listTasks(store);
     const now = nowIso();
     const task = withoutNullish({
       schemaVersion: CURRENT_SCHEMA_VERSION,
       id: makeId('task'),
-      title: input.title.trim(),
-      description: input.description || null,
+      title: safeTitle.trim(),
+      description: safeDescription,
       status: 'pending',
       phase: input.phase || 'implementation',
       priority: input.priority || 'normal',
@@ -48,7 +53,7 @@ export async function createTask(store, input) {
       owner: input.owner || null,
       ownerRef: input.ownerRef || null,
       claim: null,
-      acceptanceCriteria: input.acceptanceCriteria || [],
+      acceptanceCriteria: safeAcceptance,
       allowedPaths: input.allowedPaths || [],
       touchedPaths: [],
       blockedReason: null,

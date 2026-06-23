@@ -1,8 +1,17 @@
 # ADR 0002: Runtime Scope Freeze
 
-**Status:** Accepted for v1.5.0
+**Status:** Accepted for v1.5.0 · **Amended v2.18.0** (see "Amendment" below)
 **Date:** 2026-01-10
 **Deciders:** @roronoazoroshao369
+
+> **Amendment (v2.18.0):** "Freeze" here means *do not grow the runtime into a
+> product center* — it does **not** mean "there is no runtime". The optional
+> local runtime exists and is maintained. The Autopilot runtime added in v2.17
+> landed under the allowed categories below (security/safety boundaries +
+> validation), not as scope expansion. When describing the project, say
+> "optional, local-first runtime with a frozen scope", never "no runtime" or
+> "the runtime is frozen" without that nuance. This resolves the messaging
+> inconsistency flagged in the v2.17.7 council review (§3.6).
 
 ## Status
 

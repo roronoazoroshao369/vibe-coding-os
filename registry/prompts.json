@@ -692,10 +692,22 @@
       "maturity": "beta"
     },
     {
-      "name": "vibe-red-team-scan",
-      "path": "commands/vibe-red-team-scan.md",
-      "description": "Run a red-team scan on a skill, command, or marketplace content for bypass techniques, prompt injection, and secret leakage.",
-      "maturity": "beta"
-    }
+    "name": "vibe-red-team-scan",
+    "path": "commands/vibe-red-team-scan.md",
+    "description": "Run a red-team scan on a skill, command, or marketplace content for bypass techniques, prompt injection, and secret leakage.",
+    "maturity": "beta"
+  },
+  {
+    "name": "vibe-loop",
+    "path": "commands/vibe-loop.md",
+    "description": "Loop engineer — iterate implement → verify → fix until objective Done with policy-gated safety.",
+    "maturity": "beta"
+  },
+  {
+    "name": "vibe-loop-status",
+    "path": "commands/vibe-loop-status.md",
+    "description": "Show current loop engineer status — round number, last verify result, open failures, and stop reason if finished.",
+    "maturity": "beta"
+  }
   ]
 }

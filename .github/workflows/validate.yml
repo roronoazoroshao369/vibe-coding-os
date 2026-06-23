@@ -17,3 +17,5 @@ jobs:
       - run: npm run validate:all
       - name: Run MCP auth tests
         run: npm run test:auth
+      - name: Run redactObject privacy tests
+        run: npm run test:redact-object
