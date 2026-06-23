@@ -53,6 +53,8 @@ const ALLOWLIST_PATHS = [
   /^runtime\/mcp\/server\.mjs$/,
   /^docs\/workflows\/runtime-mcp-server\.md$/,
   /^tests\/runtime\/runtime-mcp-auth\.test\.mjs$/,
+  /^tests\/memory\/verify\.mjs$/,
+  /^tests\/security\/redact-object\.test\.mjs$/,
   /^package-lock\.json$/,
 ];
 

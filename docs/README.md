@@ -53,6 +53,8 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
 - [`skill-packs/`](skill-packs/) — pack-specific docs.
 - [`../skills/`](../skills/) — reusable operating procedures.
 - [`../commands/`](../commands/) — reusable command prompts.
+- [`../commands/vibe-docs-author.md`](../commands/vibe-docs-author.md) — command prompt for creating skills, commands, and templates with the docs-author convention.
+- [`../skills/core/test-fixture-library/SKILL.md`](../skills/core/test-fixture-library/SKILL.md) — reusable fixture-library workflow for validation and security test corpora.
 - [`../templates/`](../templates/) — templates for specs, plans, tasks, reviews, memory, team orchestration, hooks, and runtime configs.
   - **Specs:** [`spec-template.md`](../templates/spec-template.md), [`brownfield-spec-template.md`](../templates/brownfield-spec-template.md), [`hook-spec-template.md`](../templates/hook-spec-template.md)
   - **Planning:** [`plan-template.md`](../templates/plan-template.md), [`implementation-brief-template.md`](../templates/implementation-brief-template.md)
@@ -61,12 +63,27 @@ Use this page as the navigation hub for Vibe Coding OS documentation.
   - **Review:** [`review-template.md`](../templates/review-template.md), [`spec-audit-template.md`](../templates/spec-audit-template.md), [`integrator-review-template.md`](../templates/integrator-review-template.md)
   - **Quality Shield:** [`quality-rubric.md`](../templates/quality-rubric.md), [`quality-contract.md`](../templates/quality-contract.md), [`code-context-pack-template.md`](../templates/code-context-pack-template.md), [`self-review-checklist.md`](../templates/self-review-checklist.md), [`quality-scorecard.md`](../templates/quality-scorecard.md), [`quality-scorecard-session.md`](../templates/quality-scorecard-session.md)
   - **Team orchestration:** [`team-spec-template.md`](../templates/team-spec-template.md), [`team-run-output-template.md`](../templates/team-run-output-template.md), [`team-spec-template.json`](../templates/team-spec-template.json), [`claude-subagent-role-architect.md`](../templates/claude-subagent-role-architect.md), [`claude-subagent-role-attribution-auditor.md`](../templates/claude-subagent-role-attribution-auditor.md), [`claude-subagent-role-implementer.md`](../templates/claude-subagent-role-implementer.md), [`claude-subagent-role-memory-summarizer.md`](../templates/claude-subagent-role-memory-summarizer.md), [`claude-subagent-role-reviewer.md`](../templates/claude-subagent-role-reviewer.md), [`claude-subagent-role-tester.md`](../templates/claude-subagent-role-tester.md)
-  - **Memory:** [`memory-entry-template.md`](../templates/memory-entry-template.md), [`session-summary-template.md`](../templates/session-summary-template.md), [`memory-privacy-review-template.md`](../templates/memory-privacy-review-template.md), [`memory-retrieval-template.md`](../templates/memory-retrieval-template.md)
+  - **Memory:** [`memory-entry-template.md`](../templates/memory-entry-template.md), [`session-summary-template.md`](../templates/session-summary-template.md), [`memory-privacy-review-template.md`](../templates/memory-privacy-review-template.md), [`memory-retrieval-template.md`](../templates/memory-retrieval-template.md), [`memory-compression-template.md`](../templates/memory-compression-template.md)
   - **Handoff/context:** [`handoff-template.md`](../templates/handoff-template.md), [`context-injection-template.md`](../templates/context-injection-template.md)
   - **Reference:** [`upstream-audit-template.md`](../templates/upstream-audit-template.md), [`reference-scorecard-template.md`](../templates/reference-scorecard-template.md)
   - **Diagnostics:** [`diagnosis-template.md`](../templates/diagnosis-template.md), [`prototype-report-template.md`](../templates/prototype-report-template.md)
+  - **Ops:** [`rollout-plan.md`](../templates/rollout-plan.md), [`runbook.md`](../templates/runbook.md)
+  - **Authoring:** [`skill-template.md`](../templates/skill-template.md)
   - **ROI/metrics:** [`roi-metrics-template.md`](../templates/roi-metrics-template.md)
   - **Runtime:** [`runtime-config-template.json`](../templates/runtime-config-template.json)
+
+### Advanced and maintainer command prompts
+
+These commands are intentionally outside the Core 10, but they remain useful for security review, runtime maintenance, repository hygiene, and documentation work:
+
+- [`vibe-adversarial-review`](../commands/vibe-adversarial-review.md) — run a hostile review pass for high-risk changes.
+- [`vibe-anti-overengineer`](../commands/vibe-anti-overengineer.md) — check whether a change is simpler than the proposed design.
+- [`vibe-autopilot`](../commands/vibe-autopilot.md) — operate the optional local autopilot runtime workflow.
+- [`vibe-deps-graph`](../commands/vibe-deps-graph.md) — inspect skill dependency graph structure.
+- [`vibe-memory-compress`](../commands/vibe-memory-compress.md) — compress noisy observations into durable memory entries.
+- [`vibe-migrate`](../commands/vibe-migrate.md) — plan and review deprecation or migration work.
+- [`vibe-red-team-scan`](../commands/vibe-red-team-scan.md) — scan prompts/docs for red-team or prompt-injection risks.
+- [`vibe-skill-search`](../commands/vibe-skill-search.md) — search the skill surface before adding or duplicating workflows.
 
 ---
 

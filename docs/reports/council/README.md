@@ -1,38 +1,42 @@
-# Council & Process Reports — Archived
+# Council & Process Reports
 
 **Status: archived. Not part of the shipped framework.**
 
-This directory previously accumulated one or more "expert council",
-"gap analysis", and "readiness" reports **per release** (v1.0 → v2.17.x).
-That cadence produced significant repo noise and read, to an outside
-reviewer, as process/audit theater rather than evidence of quality.
+This directory intentionally contains only this README. Historical expert-council,
+gap-analysis, readiness, panel, synthesis, and deep-dive reports are not active
+product documentation. Old, already-fixed issues should not look like current
+roadmap work.
 
-## New policy (effective v2.x cleanup)
+## Current policy
 
-1. **Council reports are no longer committed to the main tree.**
-   They live under `docs/reports/council/archive/`, which is
-   **git-ignored**. Keep them locally or in a separate `*-process`
-   repo / wiki if you want the history.
+1. **Keep this directory README-only by default.**
+   A short-lived active synthesis may appear here while findings are still open,
+   but it must be removed from the active docs tree after durable decisions are
+   merged into living docs.
 
-2. **One living document replaces per-version reports.**
-   Architectural decisions go in ADRs
-   (`skills/core/architecture-decision-records/`). A single
-   `ROADMAP.md` tracks direction. We do not snapshot a new council
-   file for every patch release.
+2. **Merge durable decisions into living docs.**
+   If a report produced a durable rule, move that rule into `ROADMAP.md`,
+   `MAINTAINERS.md`, `CHANGELOG.md`, `docs/adr/`, or the relevant user guide.
+   Do not keep a report as the source of truth.
 
-3. **Version bumps are reserved for user-facing change.**
-   Cleanup, doc edits, and report churn must NOT bump the package
-   version. See `tools/p0-cleanup/version-freeze.md`.
+3. **Keep historical reports outside committed docs.**
+   Resolved panels, deep dives, summaries, and superseded syntheses should live
+   in an ignored local archive, external process repo, wiki, or release artifact
+   only when the history is still useful.
 
-## How to migrate the existing reports
+4. **Do not keep generated HTML exports.**
+   Generated `.html` deep dives should be deleted or kept outside the repo when
+   a Markdown report or synthesis exists.
 
-Run from the repo root:
+5. **Do not bump version for cleanup-only changes.**
+   Documentation cleanup, report archiving, and process-report churn are not
+   user-facing product changes.
 
-```bash
-bash tools/p0-cleanup/archive-council-reports.sh          # dry-run
-bash tools/p0-cleanup/archive-council-reports.sh --apply  # move + stage
-```
+## Cleanup performed
 
-This moves the historical `v*.md` council/gap/readiness reports into
-`docs/reports/council/archive/` (ignored) so Git stops tracking them,
-while keeping the files on disk for reference.
+The active council directory was reduced to README only.
+
+The v2.17.7 expert synthesis was merged into `ROADMAP.md` and `MAINTAINERS.md`,
+then removed from active docs. Historical report files and generated HTML exports
+were moved out of `docs/` so validation, traceability, and injection scans do not
+keep reviewing stale process artifacts.

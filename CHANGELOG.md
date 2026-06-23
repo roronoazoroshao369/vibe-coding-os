@@ -4,7 +4,7 @@
 
 ### Theme: Surface Simplification — acting on the v2.17.7 expert council review
 
-**Implements the high-impact recommendations from `docs/reports/council/v2.17.7-expert-review-COUNCIL-SYNTHESIS.md`. This is a consolidation release: a golden path for newcomers, uniform privacy redaction across runtime stores, a co-maintainer runbook, and a leaner README. No new skills/commands added — surface narrowed, not widened.**
+**Implements the high-impact recommendations from the v2.17.7 expert review, with durable decisions merged into `ROADMAP.md` and `MAINTAINERS.md`. This is a consolidation release: a golden path for newcomers, uniform privacy redaction across runtime stores, a co-maintainer runbook, and a leaner README. No new skills/commands added — surface narrowed, not widened.**
 
 #### Added
 - **`docs/CORE-10.md`** — "Core 10" golden path: the 10 capabilities that cover ~90% of real work, with a table of when to leave the Core 10 (§3.1/§#2 of the review). Linked first in README "Start here".
