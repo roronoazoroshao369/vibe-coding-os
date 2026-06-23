@@ -7,7 +7,7 @@
 //   - Duplicate parameter names in the same function signature
 //
 // This is NOT a full type checker. It uses targeted regex pattern matching.
-// Returns exit code 0 on success, warns only (no hard failures).
+// Returns exit code 0 on success, 1 if warnings found (blocking gate).
 //
 // v1.0.0 — Initial autopilot integration validator
 
@@ -138,4 +138,4 @@ if (warnings.length > 0) {
   console.log(`Type check passed: ${totalFiles} .mjs files scanned, 0 warnings.`);
 }
 
-process.exit(0);
+process.exit(warnings.length > 0 ? 1 : 0);

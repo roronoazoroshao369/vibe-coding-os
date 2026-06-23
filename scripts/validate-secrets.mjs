@@ -51,6 +51,8 @@ const ALLOWLIST_PATHS = [
   /^CHANGELOG\.md$/,
   /^docs\/SECURITY-MODEL\.md$/,
   /^runtime\/mcp\/server\.mjs$/,
+  /^docs\/workflows\/runtime-mcp-server\.md$/,
+  /^tests\/runtime\/runtime-mcp-auth\.test\.mjs$/,
 ];
 
 const TEXT_EXTENSIONS = new Set([

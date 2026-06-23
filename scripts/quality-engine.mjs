@@ -168,7 +168,7 @@ function runGate(gate, remainingMs) {
       timedOut = true;
       child.kill('SIGTERM');
       // Force kill if graceful shutdown doesn't work
-      setTimeout(() => { try { child.kill('SIGKILL'); } catch {} }, 1000).unref();
+      setTimeout(() => { try { child.kill('SIGKILL'); } catch { /* intentionally empty */ } }, 1000).unref();
     }, limit);
 
     child.stdout.on('data', (chunk) => { stdout += chunk.toString(); });

@@ -51,6 +51,8 @@
     "validate:no-deprecated-commands": "node scripts/validate-no-deprecated-commands.mjs",
     "validate:orphans": "node scripts/validate-orphans.mjs",
     "validate:roadmap-future-drift": "node scripts/validate-roadmap-future-drift.mjs",
+    "lint": "eslint scripts/ runtime/ tests/",
+    "lint:fix": "eslint scripts/ runtime/ tests/ --fix",
     "validate:all": "node scripts/validate-repo.mjs && node scripts/validate-references.mjs && node scripts/validate-traceability.mjs && node scripts/validate-injection.mjs && node scripts/validate-imports.mjs && node scripts/validate-typecheck.mjs && node scripts/validate-scope-match.mjs && node scripts/validate-secrets.mjs && node scripts/validate-licenses.mjs && node scripts/validate-provenance.mjs && node scripts/validate-no-deprecated-commands.mjs && node scripts/validate-orphans.mjs",
     "validate:quality-diff": "node scripts/validate-quality-diff.mjs",
     "quality:scorecard:report": "node scripts/quality-scorecard-report.mjs",
@@ -142,5 +144,8 @@
     "agent-tools",
     "development-workflow"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
 }

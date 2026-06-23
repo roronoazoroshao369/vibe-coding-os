@@ -40,7 +40,7 @@ for (const tc of TEST_CASES) {
   try {
     const out = JSON.parse(hookResult.stdout);
     hookCaught = (out.warnings || []).length > 0;
-  } catch {}
+  } catch { /* intentionally empty */ }
 
   const bothCaught = redactorCaught && hookCaught;
   const status = bothCaught ? '✅' : (redactorCaught !== hookCaught ? '❌' : '⚠️');

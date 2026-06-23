@@ -47,7 +47,7 @@ async function findSkillFiles(dir) {
         results.push(full);
       }
     }
-  } catch {}
+  } catch { /* intentionally empty */ }
   return results;
 }
 
@@ -72,14 +72,14 @@ function parseFrontmatter(content) {
         fm[currentKey] = value;
       }
     } else if (currentObj && line.match(/^\s+-/)) {
-      const item = line.replace(/^\s+-\s*/, '').trim().replace(/^["\']|["\']$/g, '');
+      const item = line.replace(/^\s+-\s*/, '').trim().replace(/^["']|["']$/g, '');
       const m = currentKey.match(/^(\w+)_sources$/);
       const listKey = m ? 'content_sources' : (currentKey + '_list');
       if (!Array.isArray(currentObj[listKey])) currentObj[listKey] = [];
       currentObj[listKey].push(item);
     } else if (currentObj && line.match(/^\s+\w+:/)) {
       const [k, ...v] = line.split(':');
-      currentObj[k.trim()] = v.join(':').trim().replace(/^["\']|["\']$/g, '');
+      currentObj[k.trim()] = v.join(':').trim().replace(/^["']|["']$/g, '');
     }
   }
   return fm;

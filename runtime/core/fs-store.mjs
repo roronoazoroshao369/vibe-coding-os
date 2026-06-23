@@ -73,6 +73,7 @@ export async function withLock(store, name, fn, options = {}) {
   const retryMs = options.retryMs ?? 25;
   const start = Date.now();
 
+  // eslint-disable-next-line no-constant-condition -- intentional retry loop with break
   while (true) {
     try {
       await writeFile(lock, String(process.pid), { flag: 'wx' });

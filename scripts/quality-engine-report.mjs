@@ -38,7 +38,7 @@ async function loadReportData(args) {
   }
   // 2. If --output-json is inline JSON, parse it
   if (args.outputJson) {
-    try { return JSON.parse(args.outputJson); } catch {}
+    try { return JSON.parse(args.outputJson); } catch { /* intentionally empty */ }
   }
   // 3. If --stdin, read from stdin
   if (args.stdin) {

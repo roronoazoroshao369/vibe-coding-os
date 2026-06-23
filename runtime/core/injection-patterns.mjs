@@ -88,6 +88,7 @@ export const INJECTION_PATTERNS = [
     label: 'zero-width-unicode',
     severity: 'warn',
     scope: 'text',
+    // eslint-disable-next-line no-irregular-whitespace -- intentional: scanning for zero-width chars
     re: /[​-‍﻿]/g
   },
   {

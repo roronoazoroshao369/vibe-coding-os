@@ -152,7 +152,7 @@ export function transitionTask(task, newStatus, options = {}) {
       task.blockedReason = options.blockedReason || null;
       break;
 
-    case 'in_progress':
+    case 'in_progress': {
       // Auto-claim when entering in_progress
       const ttl = options.ttl || 300;
       task.claim = {
@@ -163,6 +163,7 @@ export function transitionTask(task, newStatus, options = {}) {
       };
       task.blockedReason = null;
       break;
+    }
 
     case 'pending':
       // Clear claim when reverting to pending

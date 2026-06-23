@@ -43,7 +43,7 @@ function countFiles(dir, ext) {
     try {
       if (statSync(fp).isDirectory()) count += countFiles(fp, ext);
       else if (!ext || f.endsWith(ext)) count++;
-    } catch {}
+    } catch { /* intentionally empty */ }
   }
   return count;
 }

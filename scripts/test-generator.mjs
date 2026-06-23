@@ -441,7 +441,7 @@ function findFilesWithExtension(dir, extension) {
 
   try {
     const { readdirSync, statSync } = require('node:fs');
-    function walk(currentDir) {
+    const walk = function(currentDir) {
       const entries = readdirSync(currentDir);
       for (const entry of entries) {
         const fullPath = join(currentDir, entry);

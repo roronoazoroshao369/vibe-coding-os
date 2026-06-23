@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "extends": ["eslint:recommended"],
+  "ignorePatterns": [
+    "node_modules/",
+    "references/upstreams/",
+    "docs/reports/council/",
+    "*.min.js",
+    "coverage/"
+  ],
+  "overrides": [
+    {
+      "files": ["scripts/**/*.mjs", "runtime/**/*.mjs", "tests/**/*.mjs"],
+      "env": { "node": true },
+      "rules": {
+        "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+        "no-undef": "error",
+        "no-unreachable": "warn"
+      }
+    }
+  ]
+}

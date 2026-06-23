@@ -23,7 +23,7 @@ async function findSkillFiles(dir) {
         results.push(full);
       }
     }
-  } catch {}
+  } catch { /* intentionally empty */ }
   return results;
 }
 

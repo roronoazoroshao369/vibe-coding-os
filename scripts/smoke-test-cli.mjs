@@ -238,7 +238,7 @@ if (taskId) {
     const expired = JSON.parse(listExpiredRes.stdout);
     if (expired.length === 0) console.log('  → list-expired returned empty (expected)');
     else console.log(`  ⚠ list-expired returned ${expired.length} items (may overlap with other tasks)`);
-  } catch {}
+  } catch { /* intentionally empty */ }
 
   // 6. Cancel expired (should be 0 for our fresh task)
   const cancelExpiredRes = runCmd('runtime-task.mjs', ['cancel-expired'], {
@@ -248,7 +248,7 @@ if (taskId) {
   try {
     const count = JSON.parse(cancelExpiredRes.stdout);
     console.log(`  → cancel-expired released ${count} claims`);
-  } catch {}
+  } catch { /* intentionally empty */ }
 
   // 7. Release the task
   runCmd('runtime-task.mjs', ['release', taskId], {
