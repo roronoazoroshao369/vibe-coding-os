@@ -19,11 +19,14 @@ This document removes all four traps. It hardcodes a linear path with no decisio
 
 ```
 1. Read goal
-2. Read ONE skill (listed below)
+2. Load CLAUDE-LITE.md + read ONE skill (listed below)
 3. Read ONE template (listed below)
-4. Write the change
-5. Run npm run validate:all
-6. Done
+4. Run the confidence gate: node scripts/confidence-gate.mjs
+   - If BLOCK → skip self-review, go to step 5 directly
+   - If ALLOW → you may self-review after step 5
+5. Write the change
+6. Run npm run validate:all
+7. Done
 ```
 
 No tier classification. No orchestrator. No Adaptive Flow. No Smart Adapt.
@@ -63,14 +66,15 @@ If your task requires any of these, **stop and tell the user**: "This task needs
 
 ## After implementing
 
-Run these two commands and stop:
+Run the confidence gate first, then validators:
 
 ```bash
+node scripts/confidence-gate.mjs
 npm run validate:all
 npm run lint
 ```
 
-Both must exit 0. If not, fix and re-run. Don't run any other validators (we get noise from them, and they waste context).
+Both must exit 0. If the gate says BLOCK, do NOT self-review — just fix errors the external tools report and re-run.
 
 ## Anti-patterns (mid-tier specific)
 

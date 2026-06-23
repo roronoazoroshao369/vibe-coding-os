@@ -18,8 +18,8 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { Policy } from '../autopilot/policy.mjs';
 
-const STATE_DIR = '.vibe/runtime/autopilot';
-const AUDIT_LOG = '.vibe/runtime/autopilot/audit.log';
+const STATE_DIR = '.omc/runtime/autopilot';
+const AUDIT_LOG = '.omc/runtime/autopilot/audit.log';
 const STATE_EXT = '.json';
 
 /**

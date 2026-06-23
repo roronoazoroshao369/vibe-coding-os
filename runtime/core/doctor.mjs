@@ -226,6 +226,36 @@ const checks = [
       return { status: 'info', message: 'No package.json — version unknown' };
     }
   }),
+
+  makeCheck('state_dirs', async () => {
+    // v2.17.7+ consolidated autopilot state from .vibe/runtime/autopilot → .omc/runtime/autopilot
+    const legacyPath = join(process.cwd(), '.vibe', 'runtime', 'autopilot');
+    const canonicalPath = join(process.cwd(), '.omc', 'runtime', 'autopilot');
+    const hasLegacy = existsSync(legacyPath);
+    const hasCanonical = existsSync(canonicalPath);
+
+    if (hasLegacy && !hasCanonical) {
+      return {
+        status: 'warn',
+        message: 'Legacy .vibe/runtime/autopilot/ exists but canonical .omc/runtime/autopilot/ does not',
+        recommendation: 'Autopilot state was moved to .omc/runtime/ in v2.17.7. Move existing data: mv .vibe/runtime/autopilot .omc/runtime/autopilot',
+        data: { legacyPath, canonicalPath, action: 'migrate' },
+      };
+    }
+    if (hasLegacy && hasCanonical) {
+      return {
+        status: 'info',
+        message: 'Both legacy .vibe/runtime/autopilot/ and .omc/runtime/autopilot/ exist',
+        recommendation: 'Remove legacy after confirming no processes write to .vibe/runtime/autopilot/',
+        data: { legacyPath, canonicalPath, action: 'cleanup-legacy' },
+      };
+    }
+    return {
+      status: 'pass',
+      message: hasCanonical ? 'Autopilot state in canonical .omc/runtime/autopilot/' : 'No autopilot state (clean)',
+      data: { legacyPath: hasLegacy, canonicalPath: hasCanonical },
+    };
+  }),
 ];
 
 // ────────────────────────────────────────────────────────────────────────────

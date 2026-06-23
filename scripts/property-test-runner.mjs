@@ -130,6 +130,8 @@ function hasPlaceholder(content) {
   let stripped = content.replace(codeBlock, '');
   // Skip frontmatter
   stripped = stripped.replace(/^---[\s\S]*?---\n/, '');
+  // Skip inline code (backtick) — "todo" as task status in backticks is intentional
+  stripped = stripped.replace(/`[^`]+`/g, '');
   // Check stripped version
   const placeholders = [
     /\bTODO\b/i, /\bFIXME\b/i, /\bXXX(?!\.md)\b/i, /\bHACK\b/i,
@@ -348,6 +350,8 @@ const BUILT_IN_INVARIANTS = [
     check: async (target) => {
       const content = await readMarkdown(path.join(ROOT, target.path));
       if (!content) return { passed: false, detail: 'Could not read file' };
+      // Templates are allowed to have placeholder text (that's their purpose)
+      if (target.type === 'template') return { passed: true, detail: 'Template — placeholders expected' };
       if (hasPlaceholder(content)) return { passed: false, detail: 'Contains placeholder text (TODO, FIXME, Lorem Ipsum, etc.)' };
       return { passed: true };
     }
@@ -357,6 +361,8 @@ const BUILT_IN_INVARIANTS = [
     check: async (target) => {
       const content = await readMarkdown(path.join(ROOT, target.path));
       if (!content) return { passed: false, detail: 'Could not read file' };
+      // Templates may have non-standard markdown (HTML tables, etc.)
+      if (target.type === 'template') return { passed: true, detail: 'Template — markdown conventions relaxed' };
       const issues = checkMarkdownFormatting(content);
       if (issues.length > 0) return { passed: false, detail: `Markdown issues: ${issues.join('; ')}` };
       return { passed: true };
@@ -415,7 +421,168 @@ const BUILT_IN_INVARIANTS = [
       if (words > 50000) return { passed: true, detail: `Very long content (${words} words) — check for bloat` };
       return { passed: true };
     }
-  }
+  },
+  // ── Content quality invariants (added v2.17.7 Tier 3) ──────────────────
+  {
+    name: 'executable_steps',
+    check: async (target) => {
+      if (target.type !== 'skill') return { passed: true };
+      const content = await readMarkdown(path.join(ROOT, target.path));
+      if (!content) return { passed: false, detail: 'Could not read file' };
+      const body = content.replace(/^---[\s\S]*?---\n?/, '');
+      // Extract all code blocks
+      const codeBlocks = [...body.matchAll(/```(\S*)\n([\s\S]*?)```/g)];
+      // Extract numbered/ordered steps (1., 2., - step, etc.)
+      const stepLines = body.split('\n').filter(l => /^\s*(?:\d+\.|[-*])\s+/.test(l));
+      // Extract inline commands (\`command\`)
+      const inlineCmds = [...body.matchAll(/`([^`]+)`/g)];
+
+      // A quality skill must have at least ONE of:
+      const hasCodeBlock = codeBlocks.length > 0;
+      const hasStepList = stepLines.length >= 3;
+      const hasInlineCmd = inlineCmds.length >= 2;
+
+      if (!hasCodeBlock && !hasStepList && !hasInlineCmd) {
+        return { passed: false, detail: 'No executable steps: no code blocks, step lists, or inline commands found' };
+      }
+      // Check for 'echo' or placeholder commands that indicate low quality
+      const echoCount = codeBlocks.filter(([, , code]) => /^echo\s/.test(code.trim())).length;
+      if (codeBlocks.length > 0 && echoCount === codeBlocks.length) {
+        return { passed: true, detail: `All ${echoCount} code blocks are echo-only — consider adding real commands` };
+      }
+      return { passed: true, detail: `${codeBlocks.length} code blocks, ${stepLines.length} steps, ${inlineCmds.length} inline commands` };
+    }
+  },
+  {
+    name: 'cross_refs_valid',
+    check: async (target) => {
+      const content = await readMarkdown(path.join(ROOT, target.path));
+      if (!content) return { passed: false, detail: 'Could not read file' };
+      // Skip template/example files with placeholder paths
+      const isTemplate = target.type === 'template' || target.path.includes('<');
+      if (isTemplate) return { passed: true, detail: 'Template file — skipped' };
+      // Remove code blocks — references in code are not cross-refs
+      const body = content.replace(/```[\s\S]*?```/g, '');
+      // Find markdown links to files: [text](path) where path doesn't start with http
+      const refs = [...body.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)]
+        .map(m => m[2])
+        .filter(p => !p.startsWith('http') && !p.startsWith('#') && !p.startsWith('data:') && !p.startsWith('mailto:'));
+      // Find relative paths mentioned in backticks that look like file refs (only in prose, not code)
+      const cmdRefs = [...body.matchAll(/`([^`]+)`/g)]
+        .map(m => m[1])
+        .filter(p => (p.includes('/') || p.endsWith('.md') || p.endsWith('.mjs') || p.endsWith('.json')) && !p.startsWith('http'));
+
+      const allRefs = [...new Set([...refs, ...cmdRefs])];
+      if (allRefs.length === 0) return { passed: true };
+
+      const broken = [];
+      for (const ref of allRefs) {
+        // Skip placeholders, URLs, anchors
+        if (ref.includes('<') || ref.includes('${') || ref.includes('{') || ref.startsWith('http')) continue;
+        // Skip refs that are clearly English prose, not file paths
+        // A real file path has /, .ext, or matches patterns like skills/X/SKILL.md
+        const looksLikeFile = /^[\w./_-]+(\.\w+)$/.test(ref) || /\//.test(ref);
+        if (!looksLikeFile) continue;
+        // Skip exact bare filenames without extension that aren't real file paths
+        if (!path.extname(ref) && !ref.includes('/')) continue;
+        // Resolve relative to the source file's directory, falling back to repo root
+        let resolved;
+        if (ref.startsWith('/')) {
+          resolved = path.join(ROOT, ref);
+        } else if (ref.startsWith('../') || ref.startsWith('./')) {
+          resolved = path.join(path.dirname(path.join(ROOT, target.path)), ref);
+        } else if (ref.includes('/')) {
+          resolved = path.join(ROOT, ref);
+        } else {
+          // Bare filename or keyword (e.g. "STANDARDS.md", "update index.json")
+          continue;
+        }
+        try {
+          await stat(resolved);
+        } catch {
+          // Only flag broken refs that look intentional (have a file extension)
+          if (path.extname(ref)) broken.push(ref);
+        }
+      }
+      if (broken.length > 0) {
+        return { passed: false, detail: `${broken.length} broken references: ${broken.slice(0, 5).join(', ')}${broken.length > 5 ? ` (+${broken.length - 5} more)` : ''}` };
+      }
+      return { passed: true, detail: `${allRefs.length} resolved references` };
+    }
+  },
+  {
+    name: 'mid_tier_compatible',
+    check: async (target) => {
+      if (target.type !== 'skill') return { passed: true };
+      const content = await readMarkdown(path.join(ROOT, target.path));
+      if (!content) return { passed: false, detail: 'Could not read file' };
+      const body = content.replace(/^---[\s\S]*?---\n?/, '');
+      const words = wordCount(content);
+      const headings = extractHeadings(content);
+      const maxDepth = Math.max(...headings.map(h => h.level), 0);
+      const codeBlockCount = [...body.matchAll(/```/g)].length / 2;
+      // Count branching keywords (conditional language)
+      const branchKeywords = ['if', 'else', 'or', 'alternatively', 'depending on', 'case', 'scenario'];
+      const branchCount = branchKeywords.reduce((sum, kw) => {
+        const regex = new RegExp(`\\b${kw}\\b`, 'gi');
+        const matches = body.match(regex);
+        return sum + (matches ? matches.length : 0);
+      }, 0);
+
+      // Scoring
+      const issues = [];
+      if (words > 3000) issues.push(`word count ${words} > 3000 (may exceed 32k context)`);
+      if (codeBlockCount > 10) issues.push(`${codeBlockCount} code blocks — consider splitting skill`);
+      if (maxDepth > 3) issues.push(`heading depth ${maxDepth} — consider simplifying structure`);
+      if (branchCount > 15) issues.push(`${branchCount} branching keywords — mid-tier models may mis-follow`);
+      if (!body.includes('```') && body.length > 500) issues.push('no code blocks in long skill — add runnable examples');
+
+      if (issues.length > 0) {
+        return { passed: true, detail: `Mid-tier warnings: ${issues.join('; ')}` };
+      }
+      return { passed: true, detail: `Mid-tier compatible (${words} words, max depth ${maxDepth})` };
+    }
+  },
+  {
+    name: 'referenced_commands_exist',
+    check: async (target) => {
+      if (target.type !== 'skill') return { passed: true };
+      const content = await readMarkdown(path.join(ROOT, target.path));
+      if (!content) return { passed: false, detail: 'Could not read file' };
+      const body = content.replace(/^---[\s\S]*?---\n?/, '');
+      // Find vibe-* references — but skip those in file paths (have /), backticks, or historical notes
+      const lines = body.split('\n');
+      const vibes = [];
+      for (const line of lines) {
+        // Skip lines with file paths (have / before or after vibe-)
+        if (/\bpath\b|\bfile\b|\.yml|\.json|\.md|replaced|deprecated|was\b/i.test(line)) continue;
+        for (const m of line.matchAll(/\b(vibe-[\w-]+)\b/g)) {
+          // Skip if the match is part of a longer file path
+          const idx = m.index;
+          const before = line.slice(Math.max(0, idx - 10), idx);
+          if (before.includes('/')) continue;
+          const after = line.slice(idx + m[0].length, idx + m[0].length + 5);
+          if (after.startsWith('/')) continue;
+          vibes.push(m[1]);
+        }
+      }
+      if (vibes.length === 0) return { passed: true };
+      const unique = [...new Set(vibes)];
+      const missing = [];
+      for (const cmd of unique) {
+        const cmdPath = path.join(ROOT, 'commands', `${cmd}.md`);
+        try {
+          await stat(cmdPath);
+        } catch {
+          missing.push(cmd);
+        }
+      }
+      if (missing.length > 0) {
+        return { passed: false, detail: `Referenced commands not found: ${missing.join(', ')}` };
+      }
+      return { passed: true, detail: `${unique.length} referenced commands all exist` };
+    }
+  },
 ];
 
 // ---------------------------------------------------------------------------

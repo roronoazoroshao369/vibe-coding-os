@@ -11,7 +11,7 @@ Full guidance: [CLAUDE.md](CLAUDE.md). Use that when you have ≥64k context and
 3. **Use the linear path only:** `vibe-spec` → `vibe-plan` → `vibe-implement` → `vibe-verify`. No adaptive re-routing.
 4. **Prefer checklist skills** (under 100 lines, single-purpose): `verification-before-done`, `verification-before-completion`, `karpathy-engineering-discipline`.
 5. **Avoid** `guard-bypass-protocol`, `context-policy`, `crash-proof-planning`, `superagent-orchestration`, `advanced-orchestration` (all >160 lines, branchy).
-6. **Trust external validation over self-review.** ESLint and `npm run validate:all` catch bugs you cannot detect yourself. Self-audit is unreliable for mid-tier models.
+6. **Use the confidence gate.** Before self-reviewing, run `node scripts/confidence-gate.mjs --json`. If it returns `BLOCK`, skip self-review entirely and run external validation (ESLint, `validate:all`). Self-audit is unreliable for mid-tier models.
 
 ## Minimum per-session load
 

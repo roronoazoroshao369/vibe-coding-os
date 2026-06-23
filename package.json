@@ -121,7 +121,10 @@
     "validate:security-regression": "node scripts/validate-security-regression.mjs",
     "validate:redact": "node scripts/validate-redact.mjs",
     "validate:sandbox-marker": "node scripts/validate-sandbox-marker.mjs",
-    "security:regression": "node tests/security/regression.mjs"
+    "security:regression": "node tests/security/regression.mjs",
+    "validate:property-tests": "node scripts/validate-property-tests.mjs",
+    "validate:confidence-gate": "node scripts/confidence-gate.mjs --json",
+    "validate:state-dirs": "node -e \"import('./runtime/core/doctor.mjs').then(m=>m.runDoctor().then(r=>{const s=r.checks.find(c=>c.name==='state_dirs');console.log(s.status==='pass'?'PASS':'WARN: '+s.message);process.exit(s.status==='pass'?0:1)}))\""
   },
   "bin": {
     "vibe": "./scripts/vibe-cli.mjs"

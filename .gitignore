@@ -41,3 +41,4 @@ docs/security/session-audit/
 
 # Session-local todo state
 .todo_state.json
+docs/sessions/
