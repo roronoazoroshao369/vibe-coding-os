@@ -28,6 +28,8 @@ const SHIM_FILES = new Set([
 const ALLOWLIST_DIRS = [
   'docs/reports/council/',         // historical council reports
   'docs/reports/audits/',          // audit reports
+  'docs/archive/',                 // historical roadmap/release snapshots
+  'docs/plans/historical/',        // superseded implementation plans
   'CHANGELOG.md',                  // changelog history
   '.vibe/',                        // runtime state (gitignored anyway)
   'node_modules/',

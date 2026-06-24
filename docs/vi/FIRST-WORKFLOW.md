@@ -36,7 +36,7 @@ Sau đó chạy bộ validation của framework:
 npm run validate:all
 ```
 
-> **Lưu ý:** `npm run validate:all` validate chính framework này (26 gates). Nó khác với test của app/project của bạn.
+> **Lưu ý:** `npm run validate:all` validate chính framework này bằng bộ gate hiện tại lấy từ source-of-truth trong `package.json`. Nó khác với test của app/project của bạn.
 
 ## Bước 3 — Chuyển Sang Project Thật Của Bạn
 

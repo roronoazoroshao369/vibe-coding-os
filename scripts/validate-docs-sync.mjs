@@ -63,6 +63,13 @@ requireContains('README.vi.md', readmeVi, `${skills} skills`, 'skill count');
 requireContains('README.vi.md', readmeVi, `${commands} commands`, 'command count');
 requireContains('README.vi.md', readmeVi, `${templates} templates`, 'template count');
 
+const strategyVi = await read('docs/vi/strategy-and-roadmap.md');
+requireContains('docs/vi/strategy-and-roadmap.md', strategyVi, `v${version}`, 'current version');
+requireContains('docs/vi/strategy-and-roadmap.md', strategyVi, `${validationGates}/${validationGates} gates`, 'gate count');
+requireContains('docs/vi/strategy-and-roadmap.md', strategyVi, `${skills} skills`, 'skill count');
+requireContains('docs/vi/strategy-and-roadmap.md', strategyVi, `${commands} commands`, 'command count');
+requireContains('docs/vi/strategy-and-roadmap.md', strategyVi, `${templates} templates`, 'template count');
+
 const roadmap = await read('ROADMAP.md');
 requireContains('ROADMAP.md', roadmap, `v${version}`, 'current version');
 requireContains('ROADMAP.md', roadmap, 'docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md', 'canonical long-term plan link');

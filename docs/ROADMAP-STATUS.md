@@ -1,6 +1,6 @@
 # Roadmap Status — Vibe Coding OS
 
-> Source-of-truth sync: 2026-06-23.
+> Source-of-truth sync: 2026-06-24.
 > Counts come from `scripts/repo-metadata.mjs`; release history comes from `CHANGELOG.md`; active direction comes from `ROADMAP.md`.
 
 ## Current release snapshot
@@ -8,7 +8,7 @@
 | Metric | Value |
 |---|---|
 | Current version | v2.18.0 |
-| validate:all | 14/14 gates PASS |
+| validate:all | 16/16 gates PASS |
 | Skills | 112 skills |
 | Commands | 115 commands |
 | Templates | 107 templates |
@@ -109,9 +109,10 @@ For detailed per-release notes, use `CHANGELOG.md` rather than duplicating full 
 | Council/report policy merged into living docs | ✅ Done |
 | Source-of-truth metadata script (`scripts/repo-metadata.mjs`) | ✅ Done |
 | Docs/source sync gate (`scripts/validate-docs-sync.mjs`) | ✅ Done |
+| Roadmap/status sync gate (`scripts/validate-roadmap-sync.mjs`) | ✅ Done |
 | Dashboard and roadmap/status resynced to v2.18.0 | ✅ Done |
 
-**Validation posture:** validate:all 14/14 gates PASS expected after source-of-truth sync.
+**Validation posture:** validate:all 16/16 gates PASS expected after source-of-truth sync.
 
 ## Active roadmap
 
@@ -125,7 +126,7 @@ For detailed per-release notes, use `CHANGELOG.md` rather than duplicating full 
 | P1 | Runtime behavior tests | Deferred | Add end-to-end tests for snapshot → replay → rebuild stores and doctor edge cases. |
 | P1 | Promote long-term quality roadmap | Done | v2.19 → v3.0 plan lives in `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md`. |
 | P2 | Runtime init-path consolidation | Deferred | Reconcile runtime init/install/bootstrap flows so collection layout has one source of truth. |
-| P2 | Count/source-of-truth drift prevention | Done, guard | `npm run count:all`, `npm run dashboard:check`, and `npm run validate:docs-sync` fail on release-facing drift. |
+| P2 | Count/source-of-truth drift prevention | Done, guard | `npm run count:all`, `npm run dashboard:check`, `npm run validate:docs-sync`, and `npm run validate:roadmap-sync` fail on release-facing drift. |
 
 ## Next roadmap: v2.19 → v3.0
 
@@ -144,5 +145,5 @@ The canonical future plan is `docs/plans/2026-06-23-long-term-quality-roadmap-v2
 1. Do not hand-edit release-facing counts without updating `scripts/repo-metadata.mjs` consumers.
 2. Run `npm run count:all` before editing README, roadmap, dashboard, or manifests.
 3. Run `npm run validate:docs-sync` after editing release-facing docs.
-4. Historical plans remain in `docs/plans/` only when clearly labeled as historical or superseded.
+4. Historical version roadmaps live under `docs/archive/roadmaps/`; historical implementation plans live under `docs/plans/historical/`.
 5. Active product direction belongs in `ROADMAP.md` and the canonical long-term plan, not scattered reports.

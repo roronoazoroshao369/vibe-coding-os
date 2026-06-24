@@ -1,6 +1,6 @@
 # Status, Goal chiến lược và Roadmap — Bản tiếng Việt
 
-> Cập nhật cho v2.18.0 ngày 2026-06-23. Tài liệu này là bản tóm tắt tiếng Việt; source-of-truth chính là `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `CHANGELOG.md` và `scripts/repo-metadata.mjs`.
+> Cập nhật cho v2.18.0 ngày 2026-06-24. Tài liệu này là bản tóm tắt tiếng Việt; source-of-truth chính là `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `CHANGELOG.md` và `scripts/repo-metadata.mjs`.
 
 ## 1. Status hiện tại
 
@@ -8,13 +8,14 @@ Vibe Coding OS v2.18.0 là framework markdown-first cho AI-assisted coding disci
 
 Trạng thái v2.18.0:
 
-- `validate:all` **14/14 gates PASS**;
+- `validate:all` **16/16 gates PASS**;
 - **112 skills**, **115 commands**, **107 templates**;
 - **22 tracked sources**, **9 adapters**;
 - Core 10 golden path đã được đưa lên làm entrypoint chính trong `docs/CORE-10.md`;
 - README và README.vi đã được rút gọn để chỉ giữ release hiện tại, entrypoint chính và link tới CHANGELOG;
 - `scripts/repo-metadata.mjs` là source-of-truth cho release-facing counts;
 - `scripts/validate-docs-sync.mjs` bắt lệch giữa README, README.vi, ROADMAP, ROADMAP-STATUS, DASHBOARD và command manifest;
+- `scripts/validate-roadmap-sync.mjs` bắt lệch giữa active roadmap/status và ngăn roadmap/plan cũ quay lại active docs;
 - long-term roadmap v2.19 → v3.0 đã được promote thành canonical plan tại `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md`.
 
 ## 2. Goal chiến lược hiện tại
@@ -56,7 +57,7 @@ Chi tiết roadmap nằm ở:
 | Skills | filesystem `skills/<category>/<name>/SKILL.md`, không tính root aggregator |
 | Commands | `commands/manifest.json` active public list |
 | Templates | `templates/manifest.json` active list |
-| Dashboard/status sync | `scripts/repo-metadata.mjs`, `scripts/validate-docs-sync.mjs`, `scripts/check-dashboard-sync.mjs` |
+| Dashboard/status sync | `scripts/repo-metadata.mjs`, `scripts/validate-docs-sync.mjs`, `scripts/check-dashboard-sync.mjs`, `scripts/validate-roadmap-sync.mjs` |
 
 Command count trong headline là active public command count. File compatibility cũ có thể còn tồn tại trên disk để tránh phá workflow cũ, nhưng không tính vào public inventory.
 
@@ -64,7 +65,7 @@ Command count trong headline là active public command count. File compatibility
 
 | Rủi ro | Trạng thái | Hành động |
 |---|---|---|
-| Docs/stat drift | Đang được guard | `validate:docs-sync` fail nếu release-facing docs lệch metadata |
+| Docs/stat drift | Đang được guard | `validate:docs-sync` và `validate:roadmap-sync` fail nếu release-facing/roadmap docs lệch metadata hoặc active status |
 | Surface quá lớn | Đã giảm, còn cần tiếp tục | Core 10 là entrypoint; v2.20 nhắm tới one front door và surface reduction |
 | Behavior chưa được chứng minh đủ | Còn mở | v2.19 ưu tiên behavior tests và FTQS |
 | Bus factor | Còn rủi ro | MAINTAINERS có runbook; v2.22 tập trung co-maintainer/on-ramp |
@@ -73,7 +74,7 @@ Command count trong headline là active public command count. File compatibility
 ## 6. Next steps
 
 1. Giữ `README.md`, `README.vi.md`, `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `docs/DASHBOARD.md` đồng bộ với `scripts/repo-metadata.mjs`.
-2. Khi thay đổi count/gate/version, chạy `npm run count:all`, `npm run dashboard:check`, `npm run validate:docs-sync`.
+2. Khi thay đổi count/gate/version, chạy `npm run count:all`, `npm run dashboard:check`, `npm run validate:docs-sync`, `npm run validate:roadmap-sync`.
 3. Tiếp tục v2.19 theo hướng **Behavior over Shape**: runtime e2e tests, doctor edge cases, FTQS benchmark.
 4. Không thêm surface mới nếu chưa có lý do rõ và chưa offset bằng merge/delete/demotion.
 

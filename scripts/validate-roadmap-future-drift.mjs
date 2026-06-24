@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// validate-roadmap-future-drift.mjs — warn if docs imply future versions are already complete
+// validate-roadmap-future-drift.mjs — fail if roadmap status implies future releases are complete.
 
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -17,7 +17,7 @@ try {
   process.exit(1);
 }
 
-const version = (() => {
+const packageVersion = (() => {
   try {
     return JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8')).version ?? '';
   } catch {
@@ -25,9 +25,25 @@ const version = (() => {
   }
 })();
 
-const versionPrefix = version.replace(/-.*$/, '');
-const lines = content.split('\n');
+function parseVersion(value) {
+  const match = String(value).match(/v?(\d+)\.(\d+)\.(\d+)|v?(\d+)\.(\d+)/);
+  if (!match) return null;
+  if (match[1] !== undefined) {
+    return [Number(match[1]), Number(match[2]), Number(match[3])];
+  }
+  return [Number(match[4]), Number(match[5]), 0];
+}
 
+function compareVersions(a, b) {
+  for (let i = 0; i < 3; i++) {
+    if (a[i] > b[i]) return 1;
+    if (a[i] < b[i]) return -1;
+  }
+  return 0;
+}
+
+const currentVersion = parseVersion(packageVersion);
+const lines = content.split('\n');
 let failures = 0;
 
 function fail(msg) {
@@ -40,35 +56,38 @@ function pass(msg) {
 }
 
 console.log('=== ROADMAP-STATUS future-drift validation ===');
+console.log(`Current package version: v${packageVersion}`);
 
-let currentVersionHeading = null;
-for (const line of lines) {
-  const match = line.trim().match(/^##\s+(v\S+)/);
-  if (!match) continue;
+if (!currentVersion) {
+  fail(`Unable to parse package.json version: ${packageVersion || 'missing'}`);
+} else {
+  for (let idx = 0; idx < lines.length; idx++) {
+    const heading = lines[idx].trim().match(/^##\s+(v\d+\.\d+(?:\.\d+)?(?:\S*)?)/);
+    if (!heading) continue;
 
-  const headingVersion = match[1].replace(/\*$/, '').trim();
-  currentVersionHeading = headingVersion;
+    const headingVersion = heading[1].replace(/\*$/, '').trim();
+    const parsedHeading = parseVersion(headingVersion);
+    if (!parsedHeading) continue;
+    if (compareVersions(parsedHeading, currentVersion) <= 0) continue;
 
-  const parsed = parseFloat(headingVersion);
-  if (Number.isNaN(parsed)) continue;
-  if (parsed <= parseFloat(versionPrefix)) continue;
+    const sectionLines = [];
+    for (let i = idx + 1; i < lines.length; i++) {
+      if (lines[i].trim().startsWith('## ')) break;
+      sectionLines.push(lines[i]);
+    }
 
-  // Future version
-  const idx = lines.indexOf(line);
-  const sectionLines = [];
-  for (let i = idx + 1; i < lines.length; i++) {
-    if (lines[i].trim().startsWith('## ')) break;
-    sectionLines.push(lines[i]);
-  }
+    const section = sectionLines.join('\n');
+    const impliesComplete = /(?:Status\s*:\s*✅|✅\s*Complete|\bDone\b|\bCOMPLETE\b|\bComplete\b)/i.test(section);
+    const explicitlyPlanned = /\bPlanned\b|\bDeferred\b|\bActive roadmap\b/i.test(section);
 
-  const hasComplete = sectionLines.some(l => /(?:Status|Deliverable|Done|COMPLETE)/.test(l));
-  if (hasComplete) {
-    fail(`${headingVersion} appears to be marked complete while package.json is ${version}`);
+    if (impliesComplete && !explicitlyPlanned) {
+      fail(`${headingVersion} appears complete while package.json is v${packageVersion}`);
+    }
   }
 }
 
 if (failures === 0) {
-  pass('No future versions appear to be marked complete');
+  pass('No future version section is marked complete');
 }
 
 console.log('');

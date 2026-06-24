@@ -156,7 +156,7 @@ Run in **Vibe Coding OS repo**:
 
 ```bash
 npm run validate        # core structural checks
-npm run validate:all    # full 20-gate validation
+npm run validate:all    # full source-of-truth validation gate set
 ```
 
 Run in **target project**:

@@ -15,7 +15,7 @@ It is not a mandatory wrapper, hosted service, product platform, or required run
 
 ## Current status
 
-**Current release (v2.18.0):** validate:all **14/14 gates PASS** · **112 skills** · **115 commands** · **107 templates** · **22 tracked sources** · **9 adapters**.
+**Current release (v2.18.0):** validate:all **16/16 gates PASS** · **112 skills** · **115 commands** · **107 templates** · **22 tracked sources** · **9 adapters**.
 
 **Latest:** v2.18.0 — Surface Simplification. This release keeps the focus on the Core 10 golden path, living roadmap hygiene, privacy coverage, maintainer sustainability, and source-of-truth sync. Full release history lives in [`CHANGELOG.md`](CHANGELOG.md).
 

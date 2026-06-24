@@ -26,9 +26,10 @@ intelligence.
 | `ROADMAP.md` | Product mission, principles, active roadmap, recent releases. |
 | `docs/ROADMAP-STATUS.md` | Release/status summary through v2.18.0 and active roadmap snapshot. |
 | `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md` | Canonical long-term quality roadmap for v2.19 → v3.0. |
+| `docs/archive/roadmaps/` and `docs/plans/historical/` | Historical/superseded roadmap and implementation-plan archive. |
 | `CHANGELOG.md` | Full release history and validation evidence. |
 
-Release-facing counts and gate totals come from `scripts/repo-metadata.mjs` (`npm run count:all`). Docs/source drift is guarded by `npm run validate:docs-sync`.
+Release-facing counts and gate totals come from `scripts/repo-metadata.mjs` (`npm run count:all`). Docs/source drift is guarded by `npm run validate:docs-sync` and `npm run validate:roadmap-sync`.
 
 ## Current roadmap themes
 
@@ -45,13 +46,14 @@ Release-facing counts and gate totals come from `scripts/repo-metadata.mjs` (`np
 | Priority | Item | Status | Acceptance criteria |
 | --- | --- | --- | --- |
 | P0 | Keep Core 10 as the golden path | Done, maintain | `docs/CORE-10.md` remains the first entry point; README links to it before advanced surfaces. |
-| P0 | Archive resolved council/process reports | In progress | `docs/reports/council/` keeps only README; historical reports live under `archive/`; generated HTML exports are not kept as active docs. |
-| P0 | Merge audit findings into living docs | In progress | v2.17.7 findings are represented here and in MAINTAINERS; the synthesis report is archived after merge. |
-| P1 | Bus factor growth | Planned | Recruit 1–2 trusted contributors; update CODEOWNERS and Reviewers table when real reviewers exist. |
-| P1 | Runtime behavior tests | Deferred | Add end-to-end tests for snapshot → replay → rebuild store and doctor edge cases such as corrupt store, stale lock, and invalid timestamps. |
-| P2 | Runtime init-path consolidation | Deferred | Reconcile `runtime-init.mjs` and installer/bootstrap flows so collection layout has one source of truth. |
-| P2 | README release-history cleanup | Done, maintain | README keeps only current release and core workflow; older release detail lives in CHANGELOG. |
-| P2 | Roadmap/status sync | Done, guard | `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, README, README.vi, DASHBOARD, and command manifest agree on current version, inventory counts, and validation gate count. |
+| P0 | Archive resolved council/process reports | Done, maintain | `docs/reports/council/` keeps only README; historical reports are outside active product docs. |
+| P0 | Merge audit findings into living docs | Done, maintain | v2.17.7/v2.18.0 findings are represented in `ROADMAP.md`, `MAINTAINERS.md`, README, and this file. |
+| P0 | Roadmap/status/dashboard sync | Done, guard | `README.md`, `README.vi.md`, `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `docs/DASHBOARD.md`, and `commands/manifest.json` agree on v2.18.0 source-of-truth metadata. |
+| P1 | Bus factor growth | Planned | Recruit 1–2 trusted contributors; update CODEOWNERS and reviewer table when real reviewers exist. |
+| P1 | Runtime behavior tests | Deferred | Add end-to-end tests for snapshot → replay → rebuild stores and doctor edge cases. |
+| P1 | Promote long-term quality roadmap | Done | v2.19 → v3.0 plan lives in `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md`. |
+| P2 | Runtime init-path consolidation | Deferred | Reconcile runtime init/install/bootstrap flows so collection layout has one source of truth. |
+| P2 | Count/source-of-truth drift prevention | Done, guard | `npm run count:all`, `npm run dashboard:check`, `npm run validate:docs-sync`, and `npm run validate:roadmap-sync` fail on release-facing drift. |
 
 ## Council/report policy
 

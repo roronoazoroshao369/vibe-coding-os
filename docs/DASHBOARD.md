@@ -1,6 +1,6 @@
 # Vibe Coding OS — Project Health Dashboard
 
-> **Generated from source-of-truth metadata** (`scripts/repo-metadata.mjs`) on 2026-06-23.
+> **Generated from source-of-truth metadata** (`scripts/repo-metadata.mjs`) on 2026-06-24.
 > Release-facing counts come from package.json, active manifests, and the validation script list.
 
 ## Quick Status
@@ -12,7 +12,7 @@
 | Commands | 115 |
 | Templates | 107 |
 | Upstream sources | 22 |
-| Validation gates | 14 |
+| Validation gates | 16 |
 
 ## Source-of-truth policy
 
@@ -25,6 +25,7 @@
 | Template count | `templates/manifest.json` active template list |
 | Dashboard sync | `npm run dashboard:check` |
 | Docs sync | `npm run validate:docs-sync` |
+| Roadmap sync | `npm run validate:roadmap-sync` |
 
 ## Version Progress
 
@@ -60,8 +61,10 @@
 | validate-orphans | ✅ PASS expected | `scripts/validate-orphans.mjs` |
 | validate-privacy-coverage | ✅ PASS expected | `scripts/validate-privacy-coverage.mjs` |
 | validate-docs-sync | ✅ PASS expected | `scripts/validate-docs-sync.mjs` |
+| validate-roadmap-future-drift | ✅ PASS expected | `scripts/validate-roadmap-future-drift.mjs` |
+| validate-roadmap-sync | ✅ PASS expected | `scripts/validate-roadmap-sync.mjs` |
 
-**Overall: 14/14 gates passed**
+**Overall: 16/16 gates passed**
 
 ## Coverage Summary
 
@@ -73,9 +76,9 @@
 | Adapters | 9 adapter surfaces: Claude Code, Codex, Cursor, Gemini, Cline, Continue, Aider, Windsurf, MCP |
 | References | 22 tracked upstream sources |
 | Broken refs | Validate with `npm run validate:traceability` |
-| Orphan commands | 1 |
+| Orphan commands | 0 |
 | Orphan skills | 0 |
-| Orphan templates | 1 |
+| Orphan templates | 0 |
 
 ## How to regenerate/check
 
@@ -84,6 +87,7 @@ npm run count:all
 npm run dashboard:data
 npm run dashboard:check
 npm run validate:docs-sync
+npm run validate:roadmap-sync
 npm run validate:all
 ```
 

@@ -20,8 +20,8 @@ import { execSync } from 'node:child_process';
 //      keyword-triggered skills can legitimately stand alone, so an orphan is a
 //      signal to review, not a failure.
 //
-// Scope: every tracked markdown/json surface EXCEPT references/upstreams/, which
-// holds vendored upstream clones whose internal links must not constrain us.
+// Scope: active markdown/json surfaces EXCEPT references/upstreams/ and historical
+// archive directories, whose internal links must not constrain active inventory.
 // The script never mutates anything.
 //
 // v2.13.0 strict-new mode:
@@ -32,6 +32,14 @@ import { execSync } from 'node:child_process';
 // -----------------------------------------------------------------------------
 
 const INVENTORY_DIRS = ['commands', 'skills', 'templates'];
+const COMPAT_COMMAND_SHIMS = new Set([
+  'commands/vibe-specify.md',
+  'commands/vibe-parallel-explore.md'
+]);
+const HISTORICAL_SCAN_PREFIXES = [
+  'docs/archive/',
+  'docs/plans/historical/'
+];
 
 // Narrative surfaces that may legitimately link inventory items.
 const SCAN_DIRS = [
@@ -96,14 +104,33 @@ const strictNew = args.includes('--strict-new');
 const sinceArg = args.find(a => a.startsWith('--since='));
 const sinceTag = sinceArg ? sinceArg.split('=')[1] : null;
 
-const commandFiles = (await walkFiles('commands', (name) => name.endsWith('.md')))
-  // commands/ is flat; ignore nested READMEs if any appear later.
-  .filter((file) => file.split('/').length === 2);
+async function readActiveCommandFiles() {
+  try {
+    const manifest = JSON.parse(await readFile('commands/manifest.json', 'utf8'));
+    if (Array.isArray(manifest.commands)) {
+      return manifest.commands
+        .map((command) => `commands/${command}.md`)
+        .filter((file) => existsSync(file))
+        .sort();
+    }
+  } catch {
+    // Fall back to filesystem discovery below.
+  }
+
+  return (await walkFiles('commands', (name) => name.endsWith('.md')))
+    // commands/ is flat; README.md is directory documentation, not a command.
+    .filter((file) => file.split('/').length === 2 && file !== 'commands/README.md')
+    .filter((file) => !COMPAT_COMMAND_SHIMS.has(file));
+}
+
+const commandFiles = await readActiveCommandFiles();
 const skillFiles = await walkFiles('skills', (name) => name === 'SKILL.md');
-const templateFiles = await walkFiles(
+const templateFiles = (await walkFiles(
   'templates',
   (name) => name.endsWith('.md') || name.endsWith('.json')
-);
+))
+  // templates/README.md is directory documentation, not a reusable template.
+  .filter((file) => file !== 'templates/README.md');
 
 const inventoryOnDisk = new Set([
   ...commandFiles,
@@ -136,6 +163,10 @@ if (strictNew && sinceTag) {
 
 // --- Collect references from narrative surfaces ------------------------------
 
+function isHistoricalScanFile(file) {
+  return HISTORICAL_SCAN_PREFIXES.some((prefix) => file.startsWith(prefix));
+}
+
 async function collectScanFiles() {
   const files = new Set();
   for (const dir of SCAN_DIRS) {
@@ -143,7 +174,11 @@ async function collectScanFiles() {
       dir,
       (name) => name.endsWith('.md') || name.endsWith('.json')
     );
-    for (const file of found) files.add(file);
+    for (const file of found) {
+      if (COMPAT_COMMAND_SHIMS.has(file)) continue;
+      if (isHistoricalScanFile(file)) continue;
+      files.add(file);
+    }
   }
   for (const file of SCAN_ROOT_FILES) {
     if (existsSync(file)) files.add(normalizePath(file));

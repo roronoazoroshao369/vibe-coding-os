@@ -12,7 +12,7 @@ Nó không phải wrapper bắt buộc, hosted service, product platform hay run
 
 ## Trạng thái hiện tại
 
-**Bản phát hành hiện tại (v2.18.0):** validate:all **14/14 gates PASS** · **112 skills** · **115 commands** · **107 templates** · **22 tracked sources** · **9 adapters**.
+**Bản phát hành hiện tại (v2.18.0):** validate:all **16/16 gates PASS** · **112 skills** · **115 commands** · **107 templates** · **22 tracked sources** · **9 adapters**.
 
 **Mới nhất:** v2.18.0 — Surface Simplification. Release này tập trung vào Core 10 golden path, living roadmap hygiene, privacy coverage, maintainer sustainability và source-of-truth sync. Lịch sử đầy đủ nằm trong [`CHANGELOG.md`](CHANGELOG.md).
 

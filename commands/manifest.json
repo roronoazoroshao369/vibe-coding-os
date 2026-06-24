@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Vibe Coding OS command manifest. One entry per command file under commands/. Source of truth: filesystem glob commands/*.md.",
+  "description": "Vibe Coding OS active public command manifest. Source of truth for headline command count; deprecated compatibility shims may remain under commands/ but are excluded.",
   "generated": "2026-06-23 (v2.18.0 source-of-truth sync)",
   "releaseVersion": "2.18.0",
   "count": 115,

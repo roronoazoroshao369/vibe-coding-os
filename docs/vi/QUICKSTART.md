@@ -13,7 +13,7 @@ npm install
 npm run validate:all
 ```
 
-Mục tiêu hiện tại: 26/26 PASS.
+Mục tiêu hiện tại: `npm run validate:all` PASS theo bộ gate hiện tại từ source-of-truth.
 
 ---
 
@@ -55,7 +55,7 @@ Sau đó mở Cursor trong repo. Chi tiết: [Cursor adapter](../../adapters/cur
 npm run validate:all
 ```
 
-Nếu 26/26 PASS, framework đã sẵn sàng.
+Nếu `npm run validate:all` PASS, framework đã sẵn sàng.
 
 ---
 
