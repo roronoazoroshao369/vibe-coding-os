@@ -1,6 +1,7 @@
-# Master Plan: Vibe Coding OS — Roadmap v1.8.0 → v2.5.0
+# Historical Master Plan: Vibe Coding OS — Roadmap v1.8.0 → v2.5.0
 
-> Generated: 2026-06-18 | Based on Expert Council synthesis + repo baseline audit
+> Historical/complete plan. Generated: 2026-06-18 | Based on Expert Council synthesis + repo baseline audit.
+> Superseded by `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md` and summarized in `ROADMAP.md` / `docs/ROADMAP-STATUS.md`.
 
 ## 0. Current Baseline
 

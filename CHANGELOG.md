@@ -8,18 +8,19 @@
 
 #### Added
 - **`docs/CORE-10.md`** — "Core 10" golden path: the 10 capabilities that cover ~90% of real work, with a table of when to leave the Core 10 (§3.1/§#2 of the review). Linked first in README "Start here".
-- **`scripts/validate-privacy-coverage.mjs`** + **`validate:privacy-coverage`** gate — enforces that every runtime store persisting user free-text scrubs secrets via `redactObject()` before writing. Wired into `validate:all` (now 13 gates).
+- **`scripts/validate-privacy-coverage.mjs`** + **`validate:privacy-coverage`** gate — enforces that every runtime store persisting user free-text scrubs secrets via `redactObject()` before writing.
 - **`redactObject()`** in `security/redact/redactor.mjs` — recursive, non-mutating object/array secret scrubbing built on the existing 30-pattern redactor (ADR 0003 Layer 2 extended to runtime state).
 - **`tests/security/redact-object.test.mjs`** + **`test:redact-object`** script — behavior tests for recursive redaction; wired into CI.
 - **MAINTAINERS.md — "How to maintain" runbook** — validate-before-merge, add a skill/command/template, triage injection findings, privacy-coverage rule, cut-a-release steps, and a fixed-cadence policy (closes bus-factor finding §3.2/§#3).
+- **`scripts/repo-metadata.mjs`** + **`validate:docs-sync`** — single source-of-truth metadata for version, counts, and validation gate totals, plus a guard that fails if README, README.vi, ROADMAP, ROADMAP-STATUS, DASHBOARD, or command manifest drift.
 
 #### Changed
 - **Privacy: uniform redaction** — `runtime/tasks/task-store.mjs` (title, description, acceptanceCriteria) and `runtime/checkpoints/checkpoint-engine.mjs` (notes, decision, limitations, resumeHint) now scrub secrets before persisting (closes §3.4/§#4).
 - **`vibe doctor` `version_check` is now opt-in** — no network by default; enable with `VIBE_CHECK_UPDATES=1` or `--check-updates` (privacy + speed, §#9).
-- **README trimmed** — removed stale per-version "What's new" blocks (v2.16/v2.17 detail); keeps only the latest release note + a pointer to `CHANGELOG.md` (closes §3.1/§#1).
+- **README and README.vi trimmed** — removed stale per-version "What's new" blocks; both now keep the latest release, Core 10 entrypoint, source-of-truth policy, and a pointer to `CHANGELOG.md` (closes §3.1/§#1).
 
 #### Validation
-- `validate:all` — 13/13 gates (added `validate:privacy-coverage`).
+- `validate:all` — 14/14 gates (added `validate:privacy-coverage` and `validate:docs-sync`).
 - New tests: `test:redact-object`, plus existing `test:auth` in CI.
 
 ---

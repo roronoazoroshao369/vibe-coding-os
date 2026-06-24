@@ -1,99 +1,80 @@
 # Status, Goal chiến lược và Roadmap — Bản tiếng Việt
 
-> Cập nhật cho v1.6.0. Tài liệu này tóm tắt trạng thái repo hiện tại và hướng đi chiến lược.
+> Cập nhật cho v2.18.0 ngày 2026-06-23. Tài liệu này là bản tóm tắt tiếng Việt; source-of-truth chính là `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `CHANGELOG.md` và `scripts/repo-metadata.mjs`.
 
 ## 1. Status hiện tại
 
-Vibe Coding OS v1.5.0 là framework AI coding discipline layer với optional runtime kernel đã được harden và freeze scope. Core vẫn giữ nguyên triết lý markdown-first, zero-deps. Runtime là layer tùy chọn, inspection-friendly, chỉ bảo trì theo ADR 0002 trừ khi có exception rõ ràng.
+Vibe Coding OS v2.18.0 là framework markdown-first cho AI-assisted coding discipline. Core vẫn là workflow portable `spec → plan → implement → verify → remember`; runtime là local-only optional companion, không phải platform bắt buộc.
 
-Trạng thái v1.5.0:
+Trạng thái v2.18.0:
 
-- workflow mặc định `Intent → Spec → Plan → Implement → Test → Review → Memory → Merge`;
-- 90 skills trong các nhóm core, agents, memory, meta, prompts;
-- 68 command prompts cho init/spec/plan/implement/review/memory/merge/doctor/reference;
-- 56 templates cho spec, plan, task, review, memory, upstream audit, scorecard, redaction, governance, ADR;
-- adapters cho Claude Code, Codex CLI, Cursor, Gemini CLI;
-- Reference Intelligence Layer với 14 upstream sources được theo dõi;
-- Validation: `validate:all` **26/26 gates PASS**, 0 broken refs, 0 orphan commands/skills;
-- CLI smoke tests: **70/70 PASS**;
-- Runtime behavioral tests: **14/14 test files PASS**;
-- Optional runtime kernel: config layer, task state machine, event store v2 (sequence numbers, correlation/causation, idempotency);
-- Hardening runtime: `claimTask()` từ chối terminal states, `maxTaskLease` được áp dụng trên tất cả lease paths;
-- README giảm từ 618 → 268 dòng, README.vi.md giảm từ 536 → 194 dòng, `docs/README.md` là docs navigation hub.
+- `validate:all` **14/14 gates PASS**;
+- **112 skills**, **115 commands**, **107 templates**;
+- **22 tracked sources**, **9 adapters**;
+- Core 10 golden path đã được đưa lên làm entrypoint chính trong `docs/CORE-10.md`;
+- README và README.vi đã được rút gọn để chỉ giữ release hiện tại, entrypoint chính và link tới CHANGELOG;
+- `scripts/repo-metadata.mjs` là source-of-truth cho release-facing counts;
+- `scripts/validate-docs-sync.mjs` bắt lệch giữa README, README.vi, ROADMAP, ROADMAP-STATUS, DASHBOARD và command manifest;
+- long-term roadmap v2.19 → v3.0 đã được promote thành canonical plan tại `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md`.
 
-## 2. Điều chỉnh strategic focus
+## 2. Goal chiến lược hiện tại
 
-Sau v1.4.0 → v1.5.0, strategic focus được xác nhận lại:
-
-| Vấn đề | Phân tích | Hành động |
-|---------|-----------|-----------|
-| Quá nhiều thứ trong README | README 618 dòng làm loãng thông điệp core | ✅ README diet xong, còn ~268 dòng |
-| Runtime hardening chưa đủ | Warnings từ Expert Council v1.4.2 | ✅ lease caps, terminal state guard, process.exit thrown |
-| New user onboarding chưa rõ | INSTALL/QUICKSTART/FIRST-WORKFLOW overlap | ✅ doc roles đã clear, docs/README.md là hub |
-| Runtime lock freeze | Cần tránh perception runtime lock-in | ✅ ADR 0002 tuyên bố runtime scope freeze từ v1.5.0 |
-| Stale VI docs | Strategy doc còn ở mốc v1.4.x | ✅ updated lên v1.5.0 |
-
-## 3. Goal chiến lược hiện tại
-
-**Mục tiêu:** Vibe Coding OS là **portable workflow contract + discipline layer** số 1 cho AI-assisted coding. Runtime là optional companion.
+**Mục tiêu:** Vibe Coding OS là portable workflow contract + discipline layer cho AI-assisted software work. Runtime chỉ là helper local tùy chọn.
 
 Bốn trụ cột:
 
-1. **Core workflow contract** — spec → plan → implement → verify → memory → merge, portable mọi tool.
-2. **Adoption trust** — docs rõ, onboarding nhanh, product identity sắc nét.
-3. **Optional runtime** — hardened nhưng frozen: không thêm feature mới, chỉ bảo trì.
-4. **Quality Elevation** — nâng chất lượng AI coding agent ngay cả khi dùng model trung bình/mid-tier bằng prompt discipline, rules, skills, quản lý knowledge/context, workflow discipline, verification gates, self-review, adversarial review và model-adaptive intelligence.
+1. **Core workflow contract** — intent → spec → plan → implement → test → review → memory → merge.
+2. **Surface simplification** — người mới bắt đầu bằng Core 10, không bị lạc trong kho prompt/tool quá lớn.
+3. **Verification-oriented quality** — green gate phải đi kèm evidence, không chỉ metadata đúng hình thức.
+4. **Sustainability** — giảm bus-factor risk, giữ release cadence lành mạnh, đưa quyết định bền vững vào living docs.
 
-**Công thức chất lượng:** Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
+Công thức nền tảng: **Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.**
 
-## 4. Version roadmap
+## 3. Roadmap hiện tại
 
-| Version | Scope | Status | Ghi chú |
-|---------|-------|--------|---------|
-| v1.0.0 | Foundation: structure, commands, skills, templates | ✅ Released | n/a |
-| v1.1.0 | Reference Intelligence Layer, X% more reach | ✅ Released | mở rộng inventory |
-| v1.4.0 | Runtime kernel + core stabilization | ✅ Released | P0: runtime không phá validate |
-| v1.4.1 | Release polish: CLI cleanup, docs trust fix | ✅ Released | CHANGELOG retroactive, support-matrix version-neutral |
-| v1.4.2 | Runtime hardening: lease caps, terminal guard, tmux safety | ✅ Released | State machine fix, absolute lease cap |
-| v1.4.3 | Operational hygiene: shell safety, docs hub, config validation | ✅ Released | docs hub, 0 orphan templates |
-| **v1.5.0** | **Core adoption + runtime scope freeze** | ✅ **Released** | ADR 0002, README.vi diet, QUICKSTART tiếng Việt |
-| **v1.6.0** | **Adoption Trust + Quality Elevation kick-off** | 🔄 **In progress** | docs/onboarding/landing improvements (Sprint 1) |
-| **v1.7.0** | **Quality Shield** | 🔄 **In progress** | Quality Rubric, Quality Execution Contract, Self-Review, AGENTS.md Template, Code Context Pack, Pattern Library, Quality Diff Audit Script |
-| **v1.8.0** | **Expert Mode** | 📋 **Planned** | Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council |
-| **v1.9.0** | **Smart Adapt** | 📋 **Planned** | Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2 |
+| Mốc | Theme | Status | Ghi chú |
+|---|---|---|---|
+| v2.18.0 | Surface Simplification | ✅ Complete / maintain | Core 10, privacy coverage, maintainer runbook, docs/source sync |
+| v2.19.0 | Behavior over Shape | Planned | Runtime e2e behavior tests, FTQS baseline |
+| v2.20.0 | One Front Door | Planned | Discovery command, surface reduction, count drift prevention |
+| v2.21.0 | Structural Uniformity | Planned | Single persistence choke-point, approval/privacy consistency, init-path consolidation |
+| v2.22.0 | Two Hands on the Wheel | Planned | Co-maintainer on-ramp, fixed cadence, bus-factor metrics |
+| v3.0.0 | Proven Discipline | Planned | Consolidated, behavior-proven, maintainable framework |
 
-## 5. Metrics
+Chi tiết roadmap nằm ở:
 
-| Metric | v1.4.0 | v1.5.0 | Trend |
-|--------|--------|--------|-------|
-| validate:all | 26/26 | 26/26 | ✅ ổn định |
-| Skills | 90 | 90 | Giữ nguyên |
-| Commands | 68 | 68 | Giữ nguyên |
-| Templates | 56 | 56 | Giữ nguyên |
-| Sources tracked | 14 | 14 | Giữ nguyên |
-| Runtime tests | 14/14 | 14/14 test files | ✅ aggregate reconciled |
-| CLI smoke tests | 70/70 | 70/70 | ✅ ổn định |
-| README dòng | 618 | 268 | ✅ giảm ~57% |
-| README.vi.md dòng | 536 | 194 | ✅ giảm ~64% |
-| Orphan templates | 11 | 0 | ✅ đã resolve qua docs hub |
+- `ROADMAP.md` — mission, principles, active roadmap;
+- `docs/ROADMAP-STATUS.md` — status summary đến v2.18.0;
+- `docs/plans/2026-06-23-long-term-quality-roadmap-v2.19-to-v3.0.md` — kế hoạch chất lượng dài hạn.
 
-## 6. Rủi ro hiện tại
+## 4. Source-of-truth policy
 
-- **Runtime lock-in perception:** đã giảm bằng ADR 0002 và freeze language trong docs; tiếp tục giữ runtime ở chế độ bảo trì.
-- **Docs drift:** cần duy trì sync cho tài liệu release-facing khi có thay đổi inventory, validator hoặc roadmap.
-- **Onboarding adoption:** cần đo feedback từ người dùng mới sau README diet và QUICKSTART tiếng Việt.
-- **Runtime exception creep:** mọi mở rộng runtime phải qua ADR 0002 exception process + Engine Adoption Gate.
+| Dữ liệu | Source |
+|---|---|
+| Version | `package.json` |
+| Validation gates | `package.json:scripts.validate:all` |
+| Skills | filesystem `skills/<category>/<name>/SKILL.md`, không tính root aggregator |
+| Commands | `commands/manifest.json` active public list |
+| Templates | `templates/manifest.json` active list |
+| Dashboard/status sync | `scripts/repo-metadata.mjs`, `scripts/validate-docs-sync.mjs`, `scripts/check-dashboard-sync.mjs` |
 
-## 7. Next steps
+Command count trong headline là active public command count. File compatibility cũ có thể còn tồn tại trên disk để tránh phá workflow cũ, nhưng không tính vào public inventory.
 
-1. ✅ Hoàn thành v1.4.3: operational hygiene + config validation + docs hub
-2. ✅ Tuyên bố runtime scope freeze qua ADR 0002 trong v1.5.0
-3. ✅ Resolve orphan templates bằng docs hub
-4. 🔄 **v1.6.0 Adoption Trust** — cải thiện docs/onboarding/landing (đang tiến hành Sprint 1)
-5. ✅ **v1.7.0 Quality Shield** — Canonical guide [`docs/quality-shield.md`](../quality-shield.md) đã hoàn tất; tài liệu Quality Shield hiện tại gồm rubric, execution contract, self-review, code context pack, compact AGENTS.md template, repo map starter, quality diff audit, evaluation scenarios, và scorecard. Boundary giữa **Quality Shield** (portable markdown discipline) và **Quality Engine** (orchestration/future) đã được xác nhận trong tài liệu trung tâm.
-6. ⏭️ **v1.8.0 Expert Mode** — Adversarial Code Review, Critique Pass Protocol, Task-Specific Quality Packs, Writer-Critic Pair / Quality Council
-7. ⏭️ **v1.9.0 Smart Adapt** — Model Weakness Memory, Adaptive Prompt Selection, Quality Score Card, Lessons Learned DB / Golden Example Library v2
+## 5. Rủi ro hiện tại
 
-**Công thức nền tảng:** Agent Quality = Model Capability × Context Quality × Workflow Discipline × Verification Feedback.
+| Rủi ro | Trạng thái | Hành động |
+|---|---|---|
+| Docs/stat drift | Đang được guard | `validate:docs-sync` fail nếu release-facing docs lệch metadata |
+| Surface quá lớn | Đã giảm, còn cần tiếp tục | Core 10 là entrypoint; v2.20 nhắm tới one front door và surface reduction |
+| Behavior chưa được chứng minh đủ | Còn mở | v2.19 ưu tiên behavior tests và FTQS |
+| Bus factor | Còn rủi ro | MAINTAINERS có runbook; v2.22 tập trung co-maintainer/on-ramp |
+| Runtime consistency | Còn deferred item | v2.21/v2.22 xử lý init-path và cross-cutting uniformity |
 
-> **Nguyên tắc:** Workflow contract first. Runtime optional. Human intent stays sovereign.
+## 6. Next steps
+
+1. Giữ `README.md`, `README.vi.md`, `ROADMAP.md`, `docs/ROADMAP-STATUS.md`, `docs/DASHBOARD.md` đồng bộ với `scripts/repo-metadata.mjs`.
+2. Khi thay đổi count/gate/version, chạy `npm run count:all`, `npm run dashboard:check`, `npm run validate:docs-sync`.
+3. Tiếp tục v2.19 theo hướng **Behavior over Shape**: runtime e2e tests, doctor edge cases, FTQS benchmark.
+4. Không thêm surface mới nếu chưa có lý do rõ và chưa offset bằng merge/delete/demotion.
+
+> Nguyên tắc: Workflow contract first. Runtime optional. Human intent stays sovereign.

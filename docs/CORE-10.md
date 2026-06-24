@@ -8,7 +8,7 @@ status: stable
 
 # Core 10 — the 10 things you actually use daily
 
-Vibe Coding OS ships 115 skills, 113 commands, and 107 templates. **You do not
+Vibe Coding OS ships 112 skills, 115 commands, and 107 templates. **You do not
 need most of them to be productive.** This is the golden path: ten capabilities
 that cover ~90% of real work. Everything else is *advanced/optional* — reach for
 it only when a specific need arises.

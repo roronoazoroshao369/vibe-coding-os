@@ -1,58 +1,16 @@
 #!/usr/bin/env node
-// dashboard-data.mjs — lightweight repository health data extractor
+// dashboard-data.mjs — repository health data extractor.
+// Release-facing counts come from scripts/repo-metadata.mjs.
 
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { readdir, readFile, stat } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getRepoMetadata } from './repo-metadata.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
-
-async function pathExists(path) {
-  return existsSync(path);
-}
-
-async function listFiles(dir, predicate = () => true) {
-  if (!(await pathExists(dir))) return [];
-
-  const entries = await readdir(dir, { withFileTypes: true });
-  const files = [];
-
-  for (const entry of entries) {
-    const fullPath = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...await listFiles(fullPath, predicate));
-    } else if (predicate(fullPath, entry.name)) {
-      files.push(fullPath);
-    }
-  }
-
-  return files;
-}
-
-async function countSkillsByCategory() {
-  const skillsDir = join(ROOT, 'skills');
-  const categories = {};
-
-  for (const entry of await readdir(skillsDir, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const categoryDir = join(skillsDir, entry.name);
-    const skillFiles = await listFiles(categoryDir, (_path, name) => name === 'SKILL.md');
-    categories[entry.name] = skillFiles.length;
-  }
-
-  return Object.fromEntries(Object.entries(categories).sort(([a], [b]) => a.localeCompare(b)));
-}
-
-async function countMarkdownFiles(dir) {
-  return (await listFiles(join(ROOT, dir), (_path, name) => name.endsWith('.md'))).length;
-}
-
-async function countTemplateFiles() {
-  return (await listFiles(join(ROOT, 'templates'), (_path, name) => name.endsWith('.md') || name.endsWith('.json'))).length;
-}
 
 function runNodeScript(script) {
   try {
@@ -100,41 +58,40 @@ function parseTraceability(output) {
   };
 }
 
-async function readPackageVersion() {
-  const packageJson = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
-  return packageJson.version;
-}
-
-async function readUpstreamCount() {
-  const indexPath = join(ROOT, 'references', 'index.json');
-  if (!(await pathExists(indexPath))) return 0;
-  const index = JSON.parse(await readFile(indexPath, 'utf8'));
-  return Array.isArray(index.sources) ? index.sources.length : 0;
+async function countNarrativeFallback() {
+  // Lightweight fallback only used if traceability output cannot provide the count.
+  const { readdir } = await import('node:fs/promises');
+  const files = [];
+  async function walk(current) {
+    const entries = await readdir(current, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = join(current, entry.name);
+      const rel = relative(ROOT, full).split('\\').join('/');
+      if (entry.name === 'node_modules' || entry.name === '.git' || rel.startsWith('references/upstreams/')) continue;
+      if (entry.isDirectory()) await walk(full);
+      else if (entry.isFile() && entry.name.endsWith('.md')) files.push(rel);
+    }
+  }
+  if (existsSync(ROOT)) await walk(ROOT);
+  return files.length;
 }
 
 export async function getDashboardSummary() {
-  const skillsByCategory = await countSkillsByCategory();
+  const metadata = await getRepoMetadata();
   const traceabilityRun = runNodeScript('validate-traceability.mjs');
   const traceability = parseTraceability(traceabilityRun.output);
-  const commandFiles = await countMarkdownFiles('commands');
-  const templateFiles = await countTemplateFiles();
-  const narrativeFallback = (await listFiles(ROOT, (path, name) => {
-    const rel = relative(ROOT, path);
-    return name.endsWith('.md')
-      && !rel.startsWith('node_modules/')
-      && !rel.startsWith('references/upstreams/');
-  })).length;
 
   return {
     generatedAt: new Date().toISOString(),
-    version: await readPackageVersion(),
+    version: metadata.version,
     counts: {
-      skills: Object.values(skillsByCategory).reduce((sum, count) => sum + count, 0),
-      skillsByCategory,
-      commands: traceability.commands ?? commandFiles,
-      templates: traceability.templates ?? templateFiles,
-      narrativeFiles: traceability.narrativeFiles ?? narrativeFallback,
-      upstreamSources: await readUpstreamCount()
+      skills: metadata.counts.skills,
+      skillsByCategory: metadata.counts.skillsByCategory ?? {},
+      commands: metadata.counts.commands,
+      templates: metadata.counts.templates,
+      validationGates: metadata.counts.validationGates,
+      narrativeFiles: traceability.narrativeFiles ?? await countNarrativeFallback(),
+      upstreamSources: metadata.counts.upstreamSources
     },
     traceability: {
       validationPassed: traceabilityRun.ok,
@@ -142,15 +99,15 @@ export async function getDashboardSummary() {
       orphanCommands: traceability.orphanCommands,
       orphanSkills: traceability.orphanSkills,
       orphanTemplates: traceability.orphanTemplates
-    }
+    },
+    policy: metadata.policy
   };
 }
 
-// When run directly, print JSON summary
 const isMainModule = (() => {
   const entry = process.argv[1];
   try {
-    return entry && (resolve(entry) === resolve(fileURLToPath(import.meta.url)));
+    return entry && resolve(entry) === resolve(fileURLToPath(import.meta.url));
   } catch {
     return false;
   }

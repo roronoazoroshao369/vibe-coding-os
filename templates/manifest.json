@@ -1,7 +1,8 @@
 {
   "schemaVersion": 1,
   "description": "Vibe Coding OS template manifest. One entry per template file under templates/. Source of truth: filesystem glob templates/*.md.",
-  "generated": "2026-06-22 from filesystem (v2.17.3)",
+  "generated": "2026-06-23 (v2.18.0 source-of-truth sync)",
+  "releaseVersion": "2.18.0",
   "count": 107,
   "templates": [
     "README",
